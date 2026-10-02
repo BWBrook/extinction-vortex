@@ -1,0 +1,7 @@
+series=200000, detection p=0.8, forward threshold C*=30
+mu=-0.05 sig=0.25 Allee A= 0: backward D~s slope (excl. final) +0.015 (n=9826) | forward mean log growth -0.078 (n=140050); smaller-start half -0.083 vs larger -0.073
+mu=-0.05 sig=0.25 Allee A=10: backward D~s slope (excl. final) +0.045 (n=90566) | forward mean log growth -0.720 (n=189324); smaller-start half -0.814 vs larger -0.645
+mu=-0.05 sig=0.25 Allee A=25: backward D~s slope (excl. final) +0.065 (n=48871) | forward mean log growth -1.170 (n=168335); smaller-start half -1.206 vs larger -1.142
+mu=+0.00 sig=0.25 Allee A= 0: backward D~s slope (excl. final) +0.016 (n=2624) | forward mean log growth -0.022 (n=73879); smaller-start half -0.026 vs larger -0.019
+mu=+0.00 sig=0.25 Allee A=10: backward D~s slope (excl. final) +0.043 (n=74153) | forward mean log growth -0.649 (n=163575); smaller-start half -0.748 vs larger -0.552
+mu=+0.00 sig=0.25 Allee A=25: backward D~s slope (excl. final) +0.061 (n=57742) | forward mean log growth -1.129 (n=170242); smaller-start half -1.184 vs larger -1.082

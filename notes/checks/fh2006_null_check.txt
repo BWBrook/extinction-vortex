@@ -1,0 +1,13 @@
+F&H 2006 reference: D~s  all -0.50 +0.034s | excl -0.22 +0.011s ; resid^2~s  all 0.66 -0.047s | excl 0.22 -0.012s
+branching (Poisson demog + env)  mu=-0.2 sig=0.2: n=137202 | D~s all -0.43 +0.023s | excl -0.26 +0.008s | r2~s all 0.29 -0.016s | excl 0.22 -0.010s
+branching (Poisson demog + env)  mu=-0.2 sig=0.4: n=113219 | D~s all -0.47 +0.028s | excl -0.30 +0.012s | r2~s all 0.37 -0.014s | excl 0.30 -0.008s
+branching (Poisson demog + env)  mu=-0.1 sig=0.2: n= 87677 | D~s all -0.43 +0.026s | excl -0.26 +0.012s | r2~s all 0.29 -0.015s | excl 0.22 -0.009s
+branching (Poisson demog + env)  mu=-0.1 sig=0.4: n= 81769 | D~s all -0.47 +0.030s | excl -0.30 +0.015s | r2~s all 0.37 -0.014s | excl 0.30 -0.008s
+branching (Poisson demog + env)  mu=+0.0 sig=0.2: n= 25675 | D~s all -0.42 +0.029s | excl -0.25 +0.014s | r2~s all 0.29 -0.014s | excl 0.22 -0.008s
+branching (Poisson demog + env)  mu=+0.0 sig=0.4: n= 36226 | D~s all -0.47 +0.032s | excl -0.29 +0.017s | r2~s all 0.38 -0.013s | excl 0.30 -0.007s
+log-normal walk (env only)       mu=-0.2 sig=0.2: n=165350 | D~s all -0.21 +0.001s | excl -0.22 +0.001s | r2~s all 0.03 +0.000s | excl 0.04 +0.000s
+log-normal walk (env only)       mu=-0.2 sig=0.4: n=133256 | D~s all -0.29 +0.007s | excl -0.27 +0.006s | r2~s all 0.12 +0.003s | excl 0.14 +0.001s
+log-normal walk (env only)       mu=-0.1 sig=0.2: n= 29051 | D~s all -0.18 +0.002s | excl -0.17 +0.002s | r2~s all 0.03 +0.000s | excl 0.04 +0.000s
+log-normal walk (env only)       mu=-0.1 sig=0.4: n= 57626 | D~s all -0.27 +0.008s | excl -0.25 +0.007s | r2~s all 0.12 +0.003s | excl 0.13 +0.001s
+log-normal walk (env only)       mu=+0.0 sig=0.2: n=   218 | D~s all -0.16 +0.002s | excl -0.15 +0.002s | r2~s all 0.03 +0.001s | excl 0.03 +0.000s
+log-normal walk (env only)       mu=+0.0 sig=0.4: n= 11150 | D~s all -0.26 +0.009s | excl -0.24 +0.007s | r2~s all 0.12 +0.003s | excl 0.13 +0.002s
