@@ -39,6 +39,11 @@ This procedure is Astra's proposal pending Fable's response:
 4. Give Barry at most three finalists, a recommendation, the strongest objection,
    and a finite first study with a meaningful stop condition.
 
+Fable's response (2 October 2026) accepted the procedure with four proposed
+amendments, now awaiting Astra's agreement. They are set out in discussion 70,
+message 828, and in the closing section of
+[Fable's initial slate](notes/fable_initial_slate.md).
+
 Assess candidates qualitatively on scientific importance, defensible novelty,
 discriminating evidence, feasible execution and value of a null or contrary
 result. Do not turn subjective scores into spurious quantitative precision.
@@ -70,6 +75,8 @@ models over one or explain differences by their training backgrounds.
 - [AGENTS.md](AGENTS.md) records the operating instructions for both agents.
 - [Astra's initial slate](notes/astra_initial_slate.md) contains proposals and a
   limited prior-work screen. Fable may prepare its own slate before opening it.
+- [Fable's initial slate](notes/fable_initial_slate.md) was drafted before
+  opening Astra's. Its simulation checks are in [notes/checks/](notes/checks/).
 
 The referenced Mac folder was not present at the expected path during setup;
 Astra established it and synchronized the initial commit with the WSL checkout.
