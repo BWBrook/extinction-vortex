@@ -1,20 +1,21 @@
 # Current state
 
-Updated: 5 October 2026, 12:01 Hobart (AEDT), by Astra.
+Updated: 5 October 2026, 13:00 Hobart (AEDT), by Fable.
 
 **Stage:** proposed; setup and topic ideation. No research topic, design or
 scientific claim has been approved.
 
-**Next response:** Fable. Fable should:
+**Barry, 5 October, in chat to Fable:** a provisional preference for the vortex
+idea, together with a request for a careful, PRISMA-style pre-registered plan.
+His exact words are quoted in discussion 70, message 990, and in
+[Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
+not a topic selection.
 
-- answer Astra's source/method audit and candidate dispositions (discussion 70,
-  messages 956, 958 and 959);
-- provide the proposed T3 data/eligibility check, including study overlap,
-  counts versus indices, detection and evidence for extirpation;
-- accept or contest the revised Fable-1 question, the forward-estimator
-  objection, the Daphnia benchmark's role and symmetric continuation rules;
-- answer Astra's qualifications to procedure amendment 4 and the bounded T1/T2
-  allocation. Amendments 1–3 are agreed.
+**Next response:** Astra. Astra should accept or contest:
+
+- the corrected Fable-1 question and minimal specification (988);
+- the T3 data and eligibility report and the T2 statement (989);
+- the pre-registration plan, section allocation and stage order (990).
 
 No decision is requested from Barry yet.
 
@@ -53,19 +54,37 @@ No decision is requested from Barry yet.
   and findings on A, B and C (830–832).
 - Fable's preliminary ranking: Fable-1 (vortex) first. Fable-2 could follow it
   as a second paper on the same data. Astra-C is the strongest of Astra's three.
+- Round 2 (5 October): read 956–959 in full and Astra's review. Accepted all
+  four objections, the symmetric continuation rules and both qualifications to
+  amendment 4. Set out a corrected Part 1/Part 2 specification with staged
+  gates, completed T3 and a short T2, and proposed a PRISMA-style
+  pre-registration with a section allocation.
+  - Recorded in [notes/fable_round2_response_20261005.md](notes/fable_round2_response_20261005.md),
+    with the T3 inventory and GPDD script in [notes/t3/](notes/t3/).
+  - Posted 988 (audit response and specification), 989 (T3 and T2) and 990
+    (Barry's input and plan).
+  - `notes/checks/vortex_forward_design.py` is withdrawn as evidence: it is
+    outcome-selected. It stays as a superseded pilot.
 
 ## Pending
 
-1. Fable responds to the audit and returns the bounded T3 check. A short T2
-   residual-gap statement on Astra-A suffices; Astra proposes no extensive
-   attempt to rescue its generic formulation.
-2. Agree the smallest defensible question and prospective estimand. A valid
-   null leaving a large residual is not an abandonment condition. Data
-   insufficiency, duplication or inability to distinguish explanations may be.
-   No broad empirical fitting is needed at this stage.
-3. After this exchange, Astra drafts the topic decision brief for Barry (at most
-   two pages, plus questions only he can answer), and Fable reviews it. Barry may
-   choose, redirect or reject. Rename the repo once the topic is clear.
+1. Astra responds to 988–990.
+2. If agreed, draft `notes/vortex_protocol.md`. Proposed split: Fable writes
+   §§1–4 and 7 (aims, estimands, generative models, simulation validation and
+   gates, analysis plan). Astra writes §§5–6 and 8 (PRISMA compilation,
+   exposure log and sealing, roles and independent implementation). Each
+   reviews the other's sections.
+3. Astra drafts the two-page brief summarising the protocol, the fallbacks
+   (Fable-2, Astra-C) and the questions only Barry can answer (LPD data
+   agreement, his comfort with a critique near his own work, importance, the
+   founder-size module). Fable reviews it. Barry then selects, redirects or
+   rejects; rename the repo once the topic is clear.
+4. Proposed stage order, once a topic is authorised:
+   - reproduce the published numbers;
+   - run the Part 1 matched nulls and confusion matrix;
+   - run the Part 2 synthetic identifiability and power gate;
+   - only if the gate passes, run the PRISMA compilation and a sealed forward
+     analysis.
 
 ## Correspondence checkpoint for this Astra task
 
@@ -78,10 +97,11 @@ No decision is requested from Barry yet.
 ## Correspondence checkpoint for this Fable task
 
 - Project: `project` (active view); discussion 70.
-- Read 826–827 in full, then posted 828–832.
-- Last full retrieval `next_after`: **827**. Fable's own posts run through 832.
-- Explicit acknowledgement: through message **832** in discussion 70.
-- Next retrieval: use `after=832` and omit `through`.
+- Read 826–827, posted 828–832; read 956–959, posted 988–990.
+- Last full retrieval `next_after`: **987**, a global boundary with no project
+  messages between 959 and 987. Fable's own posts run through 990.
+- Explicit acknowledgement: through message **990** in discussion 70.
+- Next retrieval: use `after=990` and omit `through`.
 
 ## Coordination note
 

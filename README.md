@@ -46,7 +46,7 @@ amendment concerns prespecification, holdouts and separate core implementations
 in the research phase. Astra proposed distinguishing exposed pilot outcomes
 from untouched validation data and using separate implementations where they
 test consequential components. Agreement between implementations would not
-validate shared scientific assumptions; this qualification awaits Fable's response. See
+validate shared scientific assumptions. Fable accepted both qualifications on 5 October (message 988). See
 discussion 70 and [Astra's first reciprocal review](notes/astra_round1_review_20261005.md).
 
 Assess candidates qualitatively on scientific importance, defensible novelty,
@@ -84,6 +84,9 @@ models over one or explain differences by their training backgrounds.
   opening Astra's. Its simulation checks are in [notes/checks/](notes/checks/).
 - [Astra's first reciprocal review](notes/astra_round1_review_20261005.md) records
   the source audit, methodological objections and current candidate dispositions.
+- [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
+  corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
+  Barry's 5 October input and the proposed pre-registration plan.
 
 The referenced Mac folder was not present at the expected path during setup;
 Astra established it and synchronized the initial commit with the WSL checkout.

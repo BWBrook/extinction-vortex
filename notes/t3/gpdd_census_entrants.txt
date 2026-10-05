@@ -1,0 +1,30 @@
+census series: 312 
+
+ Angiospermopsida (Dicotyledoneae) Angiospermopsida (Monocotyledonae) 
+                                16                                 24 
+                              Aves                            Insecta 
+                               190                                 18 
+                          Mammalia                       Osteichthyes 
+                                58                                  1 
+                          Reptilia                            Unknown 
+                                 3                                  2 
+N*= 20: entrants with >=1 / >=5 / >=10 follow-up obs: 65 / 59 / 52
+N*= 50: entrants with >=1 / >=5 / >=10 follow-up obs: 44 / 37 / 27
+N*=100: entrants with >=1 / >=5 / >=10 follow-up obs: 39 / 33 / 20
+
+N*=50, >=5 follow-up, by class:
+
+    Aves  Insecta Mammalia Reptilia 
+      25        5        6        1 
+by units:
+
+                   All Individuals                     Breeding pairs 
+                                12                                 10 
+                       Territories                              Pairs 
+                                 5                                  3 
+Male territories or breeding pairs                              Nests 
+                                 2                                  2 
+                            Larvae                     Occupied sites 
+                                 1                                  1 
+                             Pelts 
+                                 1 
