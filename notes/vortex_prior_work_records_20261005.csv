@@ -1,0 +1,940 @@
+query_id,rank_on_returned_page,provider_id,doi,title,publication_year_as_indexed,publication_date_as_indexed
+Q0,1,https://openalex.org/W2122879786,10.1111/j.1461-0248.2005.00845.x,Quantifying the extinction vortex,2005,2005-11-09
+Q0,2,https://openalex.org/W3036779495,10.1111/gcb.15186,Mating patterns influence vulnerability to the extinction vortex,2020,2020-06-19
+Q0,3,https://openalex.org/W2923310162,10.1002/eap.1868,Extinction vortex dynamics of top predators isolated by urbanization,2019,2019-03-20
+Q0,4,https://openalex.org/W4404039382,10.1016/j.cub.2024.09.081,Conservation: Corals in an extinction vortex,2024,2024-11-01
+Q0,5,https://openalex.org/W1503540889,10.1111/j.1523-1739.2012.01870.x,Possible Extinction Vortex for a Population of Iberian Lynx on the Verge of Extirpation,2012,2012-06-25
+Q0,6,https://openalex.org/W4413618701,10.1111/conl.13122,The Eel Market Extinction Vortex,2025,2025-07-01
+Q0,7,https://openalex.org/W3048415770,10.22541/au.159714949.96971742,Small body size exacerbates the extinction vortex,2020,2020-08-11
+Q0,8,https://openalex.org/W4413267368,10.32920/29660633.v1,Extinction Vortex,2025,2025-07-28
+Q0,9,https://openalex.org/W2504866806,10.1093/acprof:oso/9780199214211.003.0001,"The extinction vortex, is genetic variation related to extinction?",2009,2009-03-19
+Q0,10,https://openalex.org/W2376964470,,The extinction vortex of small population,2008,2008-01-01
+Q0,11,https://openalex.org/W3158629465,10.1002/ece3.7555,Scaling the extinction vortex: Body size as a predictor of population dynamics close to extinction events,2021,2021-05-02
+Q0,12,https://openalex.org/W4416794021,10.1093/emph/eoaf035,Harnessing the extinction vortex against acute lymphoblastic leukemia,2025,2025-01-01
+Q0,13,https://openalex.org/W2160620081,10.1186/1471-2148-10-33,Trapped in the extinction vortex? Strong genetic effects in a declining vertebrate population,2010,2010-01-01
+Q0,14,https://openalex.org/W2963832328,10.1239/aap/1401369702,Stochastic Modeling of Density-Dependent Diploid Populations and the Extinction Vortex,2014,2014-05-29
+Q0,15,https://openalex.org/W4211183379,10.1007/s13280-022-01705-3,Semi-natural habitats in the European boreal region: Caught in the socio-ecological extinction vortex?,2022,2022-02-12
+Q0,16,https://openalex.org/W4388880084,10.1098/rspb.2023.1228,"How density dependence, genetic erosion and the extinction vortex impact evolutionary rescue",2023,2023-11-21
+Q0,17,https://openalex.org/W1989742768,10.1017/s0001867800007163,Stochastic Modeling of Density-Dependent Diploid Populations and the Extinction Vortex,2014,2014-06-01
+Q0,18,https://openalex.org/W1965185557,10.1016/j.actao.2010.08.004,"Indication of a species in an extinction vortex: The ocellated turkey on the Yucatan peninsula, Mexico",2010,2010-09-16
+Q0,19,https://openalex.org/W4297878810,10.48550/arxiv.1207.4920,Stochastic modeling of density-dependent diploid populations and extinction vortex,2012,2012-07-20
+Q0,20,https://openalex.org/W4233606111,10.3410/f.1030428.359433,Faculty Opinions recommendation of Quantifying the extinction vortex.,2006,2006-01-23
+Q0,21,https://openalex.org/W4307743036,10.1101/2022.10.29.514126,"How density dependence, genetic erosion, and the extinction vortex impact evolutionary rescue",2022,2022-10-31
+Q0,22,https://openalex.org/W340093613,,Extinction vortex in a Chinese grouse (Bonasa sewerzowi) population,2005,2005-01-01
+Q0,23,https://openalex.org/W4224885915,10.35363/via.sts.2022.76,LATVIAN SEMI-NATURAL GRASSLANDS IN THE SOCIO-ECOLOGICAL EXTINCTION VORTEX: THE EVIDENCE AND RESEARCH GAPS,2022,2022-04-08
+Q0,24,https://openalex.org/W186709038,,Escaping the extinction vortex: Identifying factors affecting population performance and recovery in endangered Sierra Nevada bighorn sheep,2010,2010-01-01
+Q0,25,https://openalex.org/W4394984539,10.1101/2024.04.18.590004,Genetic purging of strongly deleterious mutations underlies black-necked crane’s unusual escape from an extinction vortex,2024,2024-04-21
+Q0,26,https://openalex.org/W2571477541,,"Extinction vortex in Bulbophyllum bicolor, an outcrossing epiphytic orchid: evidence from an analysis of microsatellites",2016,2016-01-01
+Q0,27,https://openalex.org/W7161784491,10.3390/plants15101555,18-Year Monitoring of the Steno-Endemic Verbascum rupicola (Scrophulariaceae): Compounding Pressures and the Extinction Vortex,2026,2026-05-20
+Q0,28,https://openalex.org/W7163524038,10.1016/j.avrs.2026.100398,Increasing population size may help threatened species with limited genetic diversity escape the extinction vortex,2026,2026-06-04
+Q0,29,https://openalex.org/W4411254392,10.1111/acv.70022,"Teetering on the Edge of Extinction Vortex: Habitat Fragmentation and Low Density Threaten Chinese Pangolin Populations in Guangdong, China",2025,2025-06-11
+Q0,30,https://openalex.org/W4402437459,10.1016/j.flora.2024.152602,"Surviving the extinction vortex? Discovering remnant stands of Senecio hercynicus (Compositae, Senecioneae) evading genetic swamping by its congener S. ovatus in the Bavarian and Bohemian Forest region",2024,2024-09-11
+Q0,31,https://openalex.org/W2081600465,10.1016/s0082-0784(00)80620-7,Vortex-induced extinction behavior in methanol gaseous flames: A comparison with quasi-steady extinction,2000,2000-01-01
+Q0,32,https://openalex.org/W2006609726,10.1016/s0082-0784(98)80465-7,Extinction processes during a non-premixed flame-vortex interaction,1998,1998-01-01
+Q0,33,https://openalex.org/W2024294483,10.1016/j.combustflame.2004.03.013,Numerical investigation of extinction in a counterflow nonpremixed flame perturbed by a vortex,2004,2004-06-11
+Q0,34,https://openalex.org/W6762191,10.3795/ksme-b.2003.27.10.1401,Extinction in a Counterflow Nonpremixed Flame Interacting with a Vortex,2003,2003-10-01
+Q0,35,https://openalex.org/W2067790516,10.1016/s0082-0784(96)80211-6,Vortex-flame interactions and extinction in turbulent jet diffusion flames,1996,1996-01-01
+Q0,36,https://openalex.org/W4319599136,10.3390/atmos14020337,Physical Mechanism of the Development and Extinction of the China Southwest Vortex,2023,2023-02-07
+Q0,37,https://openalex.org/W2072856058,10.1016/j.ces.2005.12.037,Unsteady extinction mechanism of nonpremixed flame interacting with a vortex,2006,2006-02-25
+Q0,38,https://openalex.org/W4392168582,10.19080/ijesnr.2024.33.556360,"""Human Pressure meets Climate Change: The Extinction Vortex of the Freshwater Pearl Mussel Margaritifera margaritifera How does the Evolutionary History Relate to the Current Status as Endangered Species?""",2024,2024-02-21
+Q0,39,https://openalex.org/W7125782964,10.37190/oa/211819,Study on the hollow extinction ratio of Gaussian vortex light,2026,2026-01-26
+Q0,40,https://openalex.org/W1987167769,10.1016/j.combustflame.2009.10.014,Effect of NO on extinction and re-ignition of vortex-perturbed hydrogen flames,2009,2009-11-23
+Q0,41,https://openalex.org/W2331945806,10.1299/kikaib.69.1296,Extinction of Diffusion Flame Interacted with a Large Scale Vortex,2003,2003-01-01
+Q0,42,https://openalex.org/W2048343187,10.1016/s0010-2180(98)00085-6,"Investigations of heat release, extinction, and time evolution of the flame surface, for a nonpremixed flame interacting with a vortex",1999,1999-04-01
+Q0,43,https://openalex.org/W4414414139,10.1016/j.proci.2025.105825,Microgravity flame extinction induced by a moving air vortex ring,2025,2025-01-01
+Q0,44,https://openalex.org/W7171297629,10.1016/j.combustflame.2026.115217,Modelling flame response to air vortex ring and extinction dynamics,2026,2026-07-27
+Q0,45,https://openalex.org/W2192760516,10.1016/j.combustflame.2015.09.006,Characterizing spray flame–vortex interaction: A spray spectral diagram for extinction,2015,2015-10-26
+Q0,46,https://openalex.org/W1991816261,10.1016/j.proci.2008.06.158,Extinction and interruption of diffusion flame interacting with a large scale vortex,2008,2008-10-05
+Q0,47,https://openalex.org/W2045265394,10.1016/j.combustflame.2007.10.021,A 2-D DNS investigation of extinction and reignition dynamics in nonpremixed flame–vortex interactions,2008,2008-01-18
+Q0,48,https://openalex.org/W2152029777,10.1371/journal.pbio.0040415,Rarity Value and Species Extinction: The Anthropogenic Allee Effect,2006,2006-11-22
+Q0,49,https://openalex.org/W1963654680,10.1016/j.proci.2008.06.150,Effects of H2O and NO on extinction and re-ignition of vortex-perturbed hydrogen counterflow flames,2008,2008-10-13
+Q0,50,https://openalex.org/W4385495462,10.1007/s11082-023-05156-2,Extinction efficiency and scattering asymmetry of a PEMC sphere illuminated by vortex electromagnetic waves,2023,2023-08-02
+Q0,51,https://openalex.org/W2029080255,10.1080/00102200601149902,FLAME PROPAGATION IN SWIRLING FLOWS—EFFECT OF LOCAL EXTINCTION ON THE COMBUSTION INDUCED VORTEX BREAKDOWN,2007,2007-06-07
+Q0,52,https://openalex.org/W7211978783,,Extinction of stagnating premixed flame by the vertically impinging vortex tube,2012,2012-07-31
+Q0,53,https://openalex.org/W2053300306,10.1007/s00348-003-0698-6,Simultaneous PLIF/PIV investigation of vortex-induced annular extinction in H 2 -air counterflow diffusion flames,2004,2004-02-01
+Q0,54,https://openalex.org/W2056637489,10.1016/j.proci.2004.08.130,Unsteady effects on flame extinction limits during gaseous and two-phase flame/vortex interactions,2005,2005-01-01
+Q0,55,https://openalex.org/W2061871115,10.1016/j.tree.2005.11.014,Genetic sex determination and extinction,2005,2005-12-15
+Q0,56,https://openalex.org/W2105110874,10.1007/s101440050009,Extinction of populations by inbreeding depression under stochastic environments,2000,2000-04-01
+Q0,57,https://openalex.org/W2045465876,10.1063/1.3139308,Numerical studies of vortex-induced extinction/reignition relevant to the near-field of high-Reynolds number jets,2009,2009-05-01
+Q0,58,https://openalex.org/W2324837720,10.2514/6.1995-139,Vortex-flame interactions and the local extinction of turbulent jet diffusion flames,1995,1995-01-09
+Q0,59,https://openalex.org/W2980942778,10.1016/j.combustflame.2019.09.031,Extinction strain rate suppression of the precessing vortex core in a swirl stabilised combustor and consequences for thermoacoustic oscillations,2019,2019-10-15
+Q0,60,https://openalex.org/W2167828238,10.1073/pnas.0502271102,Complementary sex determination substantially increases extinction proneness of haplodiploid populations,2005,2005-07-14
+Q0,61,https://openalex.org/W2519680318,,Numerical Investigation of the Mechanisms of Local Extinction Using Flame Kernel-Vortex interactions.,2006,2006-11-14
+Q0,62,https://openalex.org/W4321080286,10.1364/lacea.2002.pd4,Studies of Vortex-Induced Flame Extinction in Couterflow Diffusion Flames Using CH PLIF and PIV,2002,2002-01-01
+Q0,63,https://openalex.org/W2482061514,,Effect of H2O and NO on extinction and re-ignition of vortex-perturbed hydrogen flames in counterflow.,2007,2007-09-01
+Q0,64,https://openalex.org/W4210637486,10.1109/piers53385.2021.9694774,Channel Capacity of the Carrier of Relative Rotation Double Gaussian Vortex Laser in Weak Turbulence and Extinction Seawater,2021,2021-11-21
+Q0,65,https://openalex.org/W2102472387,10.1007/978-3-642-05016-9_7,Practical Implementation of Vortex Rings: Extinction of Fires at Gushing Gas and Oil Wells,2009,2009-01-01
+Q0,66,https://openalex.org/W4412745090,10.1086/737752,"Multiple Genetic Impacts of Immigration Interact to Shape Local Population Persistence versus Extinction: Evolutionary Rescue, Inbreeding Vortex, and Migrational Meltdown",2025,2025-07-30
+Q0,67,https://openalex.org/W2509016411,10.1098/rspb.2016.0957,"Interactions between demography, genetics, and landscape connectivity increase extinction probability for a small population of large carnivores in a major metropolitan area",2016,2016-08-31
+Q0,68,https://openalex.org/W253841098,,Flame-Vortex Studies to Quantify Markstein Numbers Needed to Model Flame Extinction Limits,2003,2003-08-01
+Q0,69,https://openalex.org/W4389282081,10.1007/s11082-023-05837-y,Correction: Extinction efficiency and scattering asymmetry of a PEMC sphere illuminated by vortex electromagnetic waves,2023,2023-12-03
+Q0,70,https://openalex.org/W2053296570,10.1029/1999jd901123,Properties of the 1979 SAM II Antarctic 1.0‐μm extinction coefficients: Implications of dehydration and seasonal evolution of the Antarctic polar vortex,2000,2000-04-01
+Q0,71,https://openalex.org/W2081128495,10.1371/journal.pone.0094214,Sex Ratio Bias and Extinction Risk in an Isolated Population of Tuatara (Sphenodon punctatus),2014,2014-04-08
+Q0,72,https://openalex.org/W1968640874,10.1364/ao.42.002063,Vortex-induced flame extinction in two-phase counterflow diffusion flames with CH planar laser-induced fluorescence and particle-image velocimetry,2003,2003-04-20
+Q0,73,https://openalex.org/W2128892656,10.1098/rspb.2003.2520,"Fitness reduction and potential extinction of wild populations of Atlantic salmon,Salmo salar, as a result of interactions with escaped farm salmon",2003,2003-12-07
+Q0,74,https://openalex.org/W2188393956,10.1890/es15-00049.1,Overcoming extinction: understanding processes of recovery of the Tibetan antelope,2015,2015-09-01
+Q0,75,https://openalex.org/W2104498661,10.1007/0-387-22648-6_16,Theoretical Properties of Extinction by Inbreeding Depression Under Stochastic Environments,2006,2006-05-08
+Q0,76,https://openalex.org/W4281860783,10.1093/aob/mcac061,Tracking population genetic signatures of local extinction with herbarium specimens,2022,2022-06-07
+Q0,77,https://openalex.org/W4238209207,10.1016/s0140-6701(00)95215-9,"00/00427 Investigations of heat release, extinction, and time evolution of the flame surface, for a nonpremixed flame interacting with a vortex",2000,2000-01-01
+Q0,78,https://openalex.org/W7170069340,10.3389/fevo.2026.1832820,Unveiling the size scaling of extinction and extremal abundance in marine phytoplankton,2026,2026-07-22
+Q0,79,https://openalex.org/W2886387889,10.1111/mec.14824,On the path to extinction: Inbreeding and admixture in a declining grey wolf population,2018,2018-08-07
+Q0,80,https://openalex.org/W2971194848,10.11647/obp.0177.08,8. Extinction Is Forever,2019,2019-08-28
+Q0,81,https://openalex.org/W363151448,,TED-AJ03-307 EXTINCTION AND INTERRUPTION OF DIFFUSION FLAME INTERACTED WITH A LARGE SCALE VORTEX MEASURED BY RAYLEIGH SCATTERING AND LIF,2003,2003-01-01
+Q0,82,https://openalex.org/W4414538310,10.1002/oik.11280,Effects of environmental and individual variation on time patterns of extinction in small experimental populations,2025,2025-09-26
+Q0,83,https://openalex.org/W4403889219,10.1098/rspb.2026.0600,Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation,2026,2026-06-03
+Q0,84,https://openalex.org/W2094807927,10.1007/s10531-009-9639-x,Extinction of the blue antelope Hippotragus leucophaeus: modeling predicts non-viable global population size as the primary driver,2009,2009-04-27
+Q0,85,https://openalex.org/W4404230642,10.1101/2024.11.09.622040,Effects of environmental and individual variation on time patterns of extinction in small experimental populations.,2024,2024-11-11
+Q0,86,https://openalex.org/W7160666533,10.6084/m9.figshare.c.8466053,"Supplementary material from ""Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation""",2026,2026-05-08
+Q0,87,https://openalex.org/W7160606072,10.6084/m9.figshare.c.8466053.v1,"Supplementary material from ""Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation""",2026,2026-05-08
+Q0,88,https://openalex.org/W4245854516,10.3410/f.1026986.335989,Faculty Opinions recommendation of Complementary sex determination substantially increases extinction proneness of haplodiploid populations.,2005,2005-09-22
+Q0,89,https://openalex.org/W1575953333,10.1002/ajp.22402,Quantifying the severity of hurricanes on extinction probabilities of a primate population: Insights into “Island” extirpations,2015,2015-04-02
+Q0,90,https://openalex.org/W2121556443,10.1017/s0030605310001055,"Can the grey literature help us understand the decline and extinction of the Near Threatened Eurasian otter Lutra lutra in Latium, central Italy?",2011,2011-04-01
+Q0,91,https://openalex.org/W3008154731,10.1101/2020.02.28.969402,Models for Eco-evolutionary Extinction Vortices and their Detection,2020,2020-02-29
+Q0,92,https://openalex.org/W2054587179,10.1071/wr9930045,VORTEX: a computer simulation model for population viability analysis,1993,1993-01-01
+Q0,93,https://openalex.org/W3106713440,10.1086/712805,Models for Eco-Evolutionary Extinction Vortices under Balancing Selection,2020,2020-11-25
+Q0,94,https://openalex.org/W2151837081,10.1034/j.1600-0706.2002.960301.x,Allee effects in stochastic populations,2002,2002-03-01
+Q0,95,https://openalex.org/W2404774425,,Structure of the VORTEX simulation model for population viability analysis,2000,2000-01-01
+Q0,96,https://openalex.org/W2605334888,10.1007/s10531-017-1347-3,Colonization potential of an endangered riparian shrub species,2017,2017-04-07
+Q0,97,https://openalex.org/W2172619558,10.1554/0014-3820(2003)057[0177:potvoa]2.0.co;2,POPULATION ON THE VERGE OF A MUTATIONAL MELTDOWN? FITNESS COSTS OF GENETIC LOAD FOR AN AMPHIBIAN IN THE WILD,2003,2003-01-01
+Q0,98,https://openalex.org/W2604619916,10.1111/2041-210x.12786,vortex R: an R package for post Vortex simulation analysis,2017,2017-04-05
+Q0,99,https://openalex.org/W2593662014,10.1007/s10531-017-1330-z,Overcoming barriers to active interventions for genetic diversity,2017,2017-03-04
+Q0,100,https://openalex.org/W4297237022,10.3389/fgene.2022.960958,Challenges in quantifying genome erosion for conservation,2022,2022-09-26
+Q0,101,https://openalex.org/W4246816265,10.1111/j.0014-3820.2003.tb00228.x,POPULATION ON THE VERGE OF A MUTATIONAL MELTDOWN? FITNESS COSTS OF GENETIC LOAD FOR AN AMPHIBIAN IN THE WILD,2003,2003-01-01
+Q0,102,https://openalex.org/W2313227679,10.2307/2845572,The Vortex Model of Coral Reef Biogeography,1992,1992-07-01
+Q0,103,https://openalex.org/W4393317290,10.1038/s41566-024-01418-x,Integrated vortex soliton microcombs,2024,2024-03-29
+Q0,104,https://openalex.org/W1972743720,10.1007/s10592-014-0605-0,Island isolation reduces genetic diversity and connectivity but does not significantly elevate diploid male production in a neotropical orchid bee,2014,2014-04-15
+Q0,105,https://openalex.org/W4386775966,10.1093/hesc/9780198783688.003.0069,Challenges,2022,2022-07-29
+Q0,106,https://openalex.org/W2950125598,10.3389/fevo.2019.00258,"Western Monarch Population Plummets: Status, Probable Causes, and Recommended Conservation Actions",2019,2019-07-03
+Q0,107,https://openalex.org/W2037413395,10.1146/annurev-fluid-010814-014711,"Ignition, Liftoff, and Extinction of Gaseous Diffusion Flames",2014,2014-09-24
+Q0,108,https://openalex.org/W3134190146,10.1038/s41523-021-00230-y,Novel evolutionary dynamics of small populations in breast cancer adjuvant and neoadjuvant therapy,2021,2021-03-11
+Q0,109,https://openalex.org/W1983664510,10.1016/s0082-0784(96)80331-6,Unsteady extinction mechanisms of diffusion flames,1996,1996-01-01
+Q0,110,https://openalex.org/W3006831735,10.1126/science.aba4597,Ultrafast control of vortex microlasers,2020,2020-02-27
+Q0,111,https://openalex.org/W2905104967,10.1063/1.5045233,Vortex fibers for STED microscopy,2018,2018-12-13
+Q0,112,https://openalex.org/W2071583692,10.1016/0010-2180(94)00180-z,Experiments on the interaction between a vortex and a strained diffusion flame,1995,1995-02-01
+Q0,113,https://openalex.org/W2001307150,10.1007/s00348-003-0608-y,PIV/PLIF investigation of two-phase vortex–flame interactions: effects of vortex size and strength,2003,2003-05-09
+Q0,114,https://openalex.org/W2008195468,10.1017/s0022112099003869,Direct computation of the sound generated by vortex pairing in an axisymmetric jet,1999,1999-03-25
+Q0,115,https://openalex.org/W4385400466,10.1093/evolut/qpad128,Critical role of insertion preference for invasion trajectory of transposons,2023,2023-07-24
+Q0,116,https://openalex.org/W2913064076,10.20506/rst.37.2.2858,Rabies as a threat to wildlife,2018,2018-08-01
+Q0,117,https://openalex.org/W2062645633,10.1016/s0082-0784(00)80281-7,A computational study of combustion instabilities due to vortex shedding,2000,2000-01-01
+Q0,118,https://openalex.org/W2060025015,10.1063/1.1525875,Magneto-optical imaging setup for single vortex observation,2003,2003-01-01
+Q0,119,https://openalex.org/W2166719390,10.1002/jqs.693,European quaternary refugia: a factor in large carnivore extinction?,2002,2002-12-01
+Q0,120,https://openalex.org/W1994653329,10.1029/93jd02461,Use of stratospheric aerosol properties as diagnostics of Antarctic vortex processes,1993,1993-12-20
+Q0,121,https://openalex.org/W2054544377,10.1016/s0082-0784(00)80619-0,Regimes of non-premixed flame-vortex interactions,2000,2000-01-01
+Q0,122,https://openalex.org/W2059522138,10.1063/1.1429248,Interaction of a vortex ring with a diffusion flame,2002,2002-02-01
+Q0,123,https://openalex.org/W2344415799,,LA CONSERVACIÓN BIOLÓGICA Y SU PERSPECTIVA EVOLUTIVA Biological Conservation and its Evolutionary Perspective,2009,2009-01-01
+Q0,124,https://openalex.org/W2303157632,10.1371/journal.pone.0151730,Genetic Diversity and Population Structure of the Rare and Endangered Plant Species Pulsatilla patens (L.) Mill in East Central Europe,2016,2016-03-22
+Q0,125,https://openalex.org/W1502394744,,Biological Conservation and its Evolutionary Perspective,2009,2009-12-01
+Q0,126,https://openalex.org/W2343528471,10.1016/j.exppara.2016.04.018,"The effects of inbreeding on disease susceptibility: Gyrodactylus turnbulli infection of guppies, Poecilia reticulata",2016,2016-04-29
+Q0,127,https://openalex.org/W2322685759,10.1016/j.combustflame.2016.03.011,Coupled dynamics of lift-off and precessing vortex core formation in swirl flames,2016,2016-04-09
+Q0,128,https://openalex.org/W2046694958,10.1016/s0082-0784(00)80599-8,Wave nature in vortex-bursting initiation,2000,2000-01-01
+Q0,129,https://openalex.org/W4210849722,10.1071/pc000347,Predation at Sooty Shearwater Puffinus griseus colonies on the New Zealand mainland: is there safety in numbers?,1999,1999-12-10
+Q0,130,https://openalex.org/W2921615156,,Evidence of Inbreeding and Divergence in the Western Prairie Fringed Orchid (Platanthera praeclara),2018,2018-01-01
+Q0,131,https://openalex.org/W2064049312,10.1029/gl010i010p00941,Spatial changes in the stratospheric aerosol associated with the north polar vortex,1983,1983-10-01
+Q0,132,https://openalex.org/W2036877503,10.1016/j.combustflame.2006.12.012,On the dynamics of flame edges in diffusion-flame/vortex interactions,2007,2007-02-15
+Q0,133,https://openalex.org/W2088545517,10.1175/1520-0469(1985)042<1536:vitsaa>2.0.co;2,Variation in the Stratospheric Aerosol Associated with the North Cyclonic Polar Vortex as Measured by the SAM II Satellite Sensor,1985,1985-07-01
+Q0,134,https://openalex.org/W2022019641,10.1890/12-1828.1,Experimental separation of genetic and demographic factors on extinction risk in wild populations,2013,2013-05-28
+Q0,135,https://openalex.org/W2032498364,10.1163/156853809788201072,Predicted climate change may spark box turtle declines,2009,2009-01-01
+Q0,136,https://openalex.org/W2029483411,10.1353/pbm.1993.0081,Impacts of Inbreeding in Natural and Captive Populations of Vertebrates: Implications for Conservation,1993,1993-03-01
+Q0,137,https://openalex.org/W4402957402,10.1002/mma.10493,Traveling waves reflecting various processes represented by reaction–diffusion equations,2024,2024-09-29
+Q0,138,https://openalex.org/W2138487263,10.1093/molbev/mss185,"Ancient DNA Reveals Genetic Stability Despite Demographic Decline: 3,000 Years of Population History in the Endemic Hawaiian Petrel",2012,2012-07-25
+Q0,139,https://openalex.org/W4252083266,10.1016/b978-0-444-63768-0.00487-x,Endangered Species,2008,2008-01-01
+Q0,140,https://openalex.org/W2581606756,10.1103/physrevlett.116.093901,Valley Vortex States in Sonic Crystals,2016,2016-02-29
+Q0,141,https://openalex.org/W3084798657,10.3390/genes9110548,De-Extinction,2018,2018-11-13
+Q0,142,https://openalex.org/W2793035317,10.1017/s0030605317001600,Seed dispersal syndromes in the Madagascan flora: the unusual importance of primates,2018,2018-02-14
+Q0,143,https://openalex.org/W1978182046,10.1016/s1540-7489(02)80075-x,Extinction and reignition in counterflow spray diffusion flames interacting with laminar vortices,2002,2002-01-01
+Q0,144,https://openalex.org/W4387022471,10.1016/j.expthermflusci.2023.111059,Blow-off of diffusion flame by moving air vortex ring,2023,2023-09-25
+Q0,145,https://openalex.org/W2013317022,10.1029/2000jd000101,"Onset, extent, and duration of dehydration in the southern hemisphere polar vortex",2001,2001-10-01
+Q0,146,https://openalex.org/W2573716088,10.1016/j.fuel.2016.12.097,Lagrangian mechanisms of flame extinction for lean turbulent premixed flames,2017,2017-01-13
+Q0,147,https://openalex.org/W157463801,10.1007/978-1-4899-1091-2_11,Orangutan Life History and VORTEX Analysis,1995,1995-01-01
+Q0,148,https://openalex.org/W4205435320,10.1016/b978-008045405-4.00487-0,Endangered Species,2008,2008-01-01
+Q0,149,https://openalex.org/W61786378,,Iberian lynx: the uncertain future of a critically endangered cat,2010,2010-01-01
+Q0,150,https://openalex.org/W4365505048,10.1016/j.jqsrt.2023.108620,Attenuation of Bessel vortex beam transmission in the rain environment,2023,2023-04-14
+Q0,151,https://openalex.org/W2989701378,10.7717/peerj.9220,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2020,2020-06-16
+Q0,152,https://openalex.org/W1992863312,10.1086/378285,KH 15D: A Star Eclipsed by a Large-Scale Dusty Vortex?,2003,2003-07-18
+Q0,153,https://openalex.org/W2076889192,10.1016/s0082-0784(00)80310-0,An experimental study of vortex-flame interaction in counterflow spray diffusion flames,2000,2000-01-01
+Q0,154,https://openalex.org/W2106753736,10.5194/acp-12-6629-2012,The evolution of microphysical and optical properties of an A380 contrail in the vortex phase,2012,2012-07-26
+Q0,155,https://openalex.org/W2799422507,10.1016/j.jqsrt.2018.05.001,Scattering of a vector Bessel vortex beam by a charged sphere,2018,2018-05-03
+Q0,156,https://openalex.org/W4407791117,10.1007/978-3-031-67169-2_12,The Sumatran Rhinoceros: What Went Wrong and How to Move Forward,2025,2025-01-01
+Q0,157,https://openalex.org/W3155140850,10.1016/bs.acr.2021.02.003,Treatment-induced evolutionary dynamics in nonmetastatic locally advanced rectal adenocarcinoma,2021,2021-01-01
+Q0,158,https://openalex.org/W3101831904,10.1101/717074,Response to CAR T cell therapy can be explained by ecological cell dynamics and stochastic extinction events,2019,2019-07-28
+Q0,159,https://openalex.org/W7125672497,10.1111/ele.70296,Sex Ratio Bias Triggers Demographic Suicide in a Dense Tortoise Population,2026,2026-01-01
+Q0,160,https://openalex.org/W4312076216,10.21203/rs.3.rs-2367975/v1,Integrated vortex soliton microcombs,2022,2022-12-21
+Q0,161,https://openalex.org/W4252754808,10.7287/peerj.9220v0.2/reviews/1,"Peer Review #1 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.2)""",2020,2020-06-16
+Q0,162,https://openalex.org/W1776828917,10.1007/s10841-015-9780-7,Predicting priority areas for conservation from historical climate modelling: stingless bees from Atlantic Forest hotspot as a case study,2015,2015-05-29
+Q0,163,https://openalex.org/W4249780000,10.7287/peerj.9220v0.1/reviews/3,"Peer Review #3 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q0,164,https://openalex.org/W4255193391,10.7287/peerj.9220v0.2/reviews/2,"Peer Review #2 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.2)""",2020,2020-06-16
+Q0,165,https://openalex.org/W3043143090,10.9734/arjom/2020/v16i830212,Extinction Growth Model,2020,2020-07-13
+Q0,166,https://openalex.org/W4237636612,10.7287/peerj.9220v0.1/reviews/1,"Peer Review #1 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q0,167,https://openalex.org/W4231834858,10.7287/peerj.9220v0.1/reviews/2,"Peer Review #2 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q0,168,https://openalex.org/W1971153665,10.1063/1.2720595,A regime diagram for premixed flame kernel-vortex interactions,2007,2007-04-01
+Q0,169,https://openalex.org/W2976571937,10.1007/s10494-019-00063-7,On Impact of Helical Structures on Stabilization of Swirling Flames with Vortex Breakdown,2019,2019-08-27
+Q0,170,https://openalex.org/W4225507054,10.1177/21582440221082106,Let Us Now Praise Mountain Lions: Revisiting Edward Abbey in the Santa Monica Mountains,2022,2022-01-01
+Q0,171,https://openalex.org/W2040361651,10.1117/12.682088,The high-contrast performance of an optical vortex coronagraph,2006,2006-08-31
+Q0,172,https://openalex.org/W4313595785,10.1080/19942060.2022.2156926,Numerical study of instability mechanism in the air-core vortex formation process,2023,2023-01-06
+Q0,173,https://openalex.org/W2884289554,10.1016/j.proci.2018.07.050,Transient interactions between a premixed double flame and a vortex,2018,2018-07-29
+Q0,174,https://openalex.org/W348448399,10.14214/sf.1705,Genetic diversity of Castanea sativa an endangered species in the Hyrcanian forest,2017,2017-01-01
+Q0,175,https://openalex.org/W4311726158,10.48550/arxiv.2212.07639,Integrated vortex soliton microcombs,2022,2022-12-15
+Q0,176,https://openalex.org/W4246635837,10.7287/peerj.preprints.27985,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2019,2019-09-26
+Q0,177,https://openalex.org/W4389348737,10.1103/physrevfluids.8.123201,Interaction between trefoil knotted flame and vortex,2023,2023-12-05
+Q0,178,https://openalex.org/W4231310351,10.7287/peerj.preprints.27985/supp-1,,2019,2019-09-26
+Q0,179,https://openalex.org/W4232094423,10.7287/peerj.preprints.27985v1,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2019,2019-09-26
+Q0,180,https://openalex.org/W4254864529,10.7287/peerj.preprints.27985v1/supp-1,,2019,2019-09-26
+Q0,181,https://openalex.org/W2912742222,10.1016/j.combustflame.2019.02.002,Mechanisms of flame extinction and lean blowout of bluff body stabilized flames,2019,2019-02-13
+Q0,182,https://openalex.org/W2101336168,10.1080/00102209808952094,Visual Investigation of a Vortex Ring Interacting with a Nonpremixed Flame,1998,1998-10-01
+Q0,183,https://openalex.org/W2090417825,10.1016/s1540-7489(02)80206-1,Quantitative scalar dissipation rate measurements in vortex-perturbed counterflow diffusion flames,2002,2002-01-01
+Q0,184,https://openalex.org/W4404580894,10.1215/17432197-11321330,Vortex,2024,2024-11-01
+Q0,185,https://openalex.org/W4210342347,10.1016/j.combustflame.2022.112002,Insight into flickering/shedding in buoyant droplet-diffusion flame during interaction with vortex,2022,2022-02-01
+Q0,186,https://openalex.org/W2333474512,10.2514/6.1996-521,Numerical experiments on the local extinction of jet diffusion flames,1996,1996-01-15
+Q0,187,https://openalex.org/W4387925068,10.1016/j.ecolmodel.2023.110534,"Is toxicity a curse or blessing, or both?—Searching answer from a disease-induced consumer-resource system",2023,2023-10-24
+Q0,188,https://openalex.org/W2983464307,10.1101/831677,Using software Vortex as a tool towards conservation actions for sharks,2019,2019-11-05
+Q0,189,https://openalex.org/W2062667781,10.1063/1.3372167,The regime diagram for premixed flame kernel-vortex interactions—Revisited,2010,2010-04-01
+Q0,190,https://openalex.org/W3026241566,10.1299/kikaib.62.3191,A Study on Lean Combustion in Vortex Flow.,1996,1996-01-01
+Q0,191,https://openalex.org/W2102473398,10.1046/j.1466-822x.2003.00063.x,Modelling differential extinctions to understand big cat distribution on Indonesian islands,2003,2003-10-17
+Q0,192,https://openalex.org/W2898217630,10.1016/j.gecco.2018.e00464,Left hung out to dry: How inadequate international protection can fuel trade in endemic species – The case of the earless monitor,2018,2018-10-01
+Q0,193,https://openalex.org/W4413383809,10.1093/oso/9780192898166.003.0012,Dynamics of small and declining populations,2025,2025-08-21
+Q0,194,https://openalex.org/W4417225609,10.5194/acp-25-18209-2025,Observations of stratospheric streamers and frozen-in anticyclones in aerosol extinction,2025,2025-12-11
+Q0,195,https://openalex.org/W4414020542,10.5194/egusphere-2025-3984,Observations of stratospheric streamers and frozen-in anticyclones in aerosol extinction,2025,2025-09-05
+Q0,196,https://openalex.org/W1999112408,10.1080/00102200008947341,Numerical Study of Opposed-Jet H2/Air Diffusion Flame - Vortex Interactions,2000,2000-09-01
+Q0,197,https://openalex.org/W2789536537,10.1080/00102202.2018.1430030,Similarity solutions for the evolution of unsteady spray diffusion flames in vortex flows,2018,2018-03-02
+Q0,198,https://openalex.org/W3081343568,,On the dynamics of flame-edges in diffusion-flame/vortex interactions,2004,2004-11-01
+Q0,199,https://openalex.org/W2331172512,10.1299/kikaib.70.773,Numerical Analysis of Jet Diffusion Flames Interacted with Large Scale Vortex,2004,2004-01-01
+Q0,200,https://openalex.org/W4378715368,10.3390/w15112053,Application of Vortex Identification Methods in Vertical Slit Fishways,2023,2023-05-29
+Q1,1,https://openalex.org/W2122879786,10.1111/j.1461-0248.2005.00845.x,Quantifying the extinction vortex,2005,2005-11-09
+Q1,2,https://openalex.org/W2923310162,10.1002/eap.1868,Extinction vortex dynamics of top predators isolated by urbanization,2019,2019-03-20
+Q1,3,https://openalex.org/W3036779495,10.1111/gcb.15186,Mating patterns influence vulnerability to the extinction vortex,2020,2020-06-19
+Q1,4,https://openalex.org/W1503540889,10.1111/j.1523-1739.2012.01870.x,Possible Extinction Vortex for a Population of Iberian Lynx on the Verge of Extirpation,2012,2012-06-25
+Q1,5,https://openalex.org/W2152029777,10.1371/journal.pbio.0040415,Rarity Value and Species Extinction: The Anthropogenic Allee Effect,2006,2006-11-22
+Q1,6,https://openalex.org/W4404039382,10.1016/j.cub.2024.09.081,Conservation: Corals in an extinction vortex,2024,2024-11-01
+Q1,7,https://openalex.org/W2376964470,,The extinction vortex of small population,2008,2008-01-01
+Q1,8,https://openalex.org/W2504866806,10.1093/acprof:oso/9780199214211.003.0001,"The extinction vortex, is genetic variation related to extinction?",2009,2009-03-19
+Q1,9,https://openalex.org/W2128892656,10.1098/rspb.2003.2520,"Fitness reduction and potential extinction of wild populations of Atlantic salmon,Salmo salar, as a result of interactions with escaped farm salmon",2003,2003-12-07
+Q1,10,https://openalex.org/W2963832328,10.1239/aap/1401369702,Stochastic Modeling of Density-Dependent Diploid Populations and the Extinction Vortex,2014,2014-05-29
+Q1,11,https://openalex.org/W2167828238,10.1073/pnas.0502271102,Complementary sex determination substantially increases extinction proneness of haplodiploid populations,2005,2005-07-14
+Q1,12,https://openalex.org/W2151837081,10.1034/j.1600-0706.2002.960301.x,Allee effects in stochastic populations,2002,2002-03-01
+Q1,13,https://openalex.org/W4233606111,10.3410/f.1030428.359433,Faculty Opinions recommendation of Quantifying the extinction vortex.,2006,2006-01-23
+Q1,14,https://openalex.org/W4388880084,10.1098/rspb.2023.1228,"How density dependence, genetic erosion and the extinction vortex impact evolutionary rescue",2023,2023-11-21
+Q1,15,https://openalex.org/W2105110874,10.1007/s101440050009,Extinction of populations by inbreeding depression under stochastic environments,2000,2000-04-01
+Q1,16,https://openalex.org/W1965185557,10.1016/j.actao.2010.08.004,"Indication of a species in an extinction vortex: The ocellated turkey on the Yucatan peninsula, Mexico",2010,2010-09-16
+Q1,17,https://openalex.org/W4211183379,10.1007/s13280-022-01705-3,Semi-natural habitats in the European boreal region: Caught in the socio-ecological extinction vortex?,2022,2022-02-12
+Q1,18,https://openalex.org/W2509016411,10.1098/rspb.2016.0957,"Interactions between demography, genetics, and landscape connectivity increase extinction probability for a small population of large carnivores in a major metropolitan area",2016,2016-08-31
+Q1,19,https://openalex.org/W3158629465,10.1002/ece3.7555,Scaling the extinction vortex: Body size as a predictor of population dynamics close to extinction events,2021,2021-05-02
+Q1,20,https://openalex.org/W3048415770,10.22541/au.159714949.96971742,Small body size exacerbates the extinction vortex,2020,2020-08-11
+Q1,21,https://openalex.org/W1989742768,10.1017/s0001867800007163,Stochastic Modeling of Density-Dependent Diploid Populations and the Extinction Vortex,2014,2014-06-01
+Q1,22,https://openalex.org/W4416794021,10.1093/emph/eoaf035,Harnessing the extinction vortex against acute lymphoblastic leukemia,2025,2025-01-01
+Q1,23,https://openalex.org/W4307743036,10.1101/2022.10.29.514126,"How density dependence, genetic erosion, and the extinction vortex impact evolutionary rescue",2022,2022-10-31
+Q1,24,https://openalex.org/W340093613,,Extinction vortex in a Chinese grouse (Bonasa sewerzowi) population,2005,2005-01-01
+Q1,25,https://openalex.org/W4297878810,10.48550/arxiv.1207.4920,Stochastic modeling of density-dependent diploid populations and extinction vortex,2012,2012-07-20
+Q1,26,https://openalex.org/W2081128495,10.1371/journal.pone.0094214,Sex Ratio Bias and Extinction Risk in an Isolated Population of Tuatara (Sphenodon punctatus),2014,2014-04-08
+Q1,27,https://openalex.org/W2061871115,10.1016/j.tree.2005.11.014,Genetic sex determination and extinction,2005,2005-12-15
+Q1,28,https://openalex.org/W2950125598,10.3389/fevo.2019.00258,"Western Monarch Population Plummets: Status, Probable Causes, and Recommended Conservation Actions",2019,2019-07-03
+Q1,29,https://openalex.org/W7161784491,10.3390/plants15101555,18-Year Monitoring of the Steno-Endemic Verbascum rupicola (Scrophulariaceae): Compounding Pressures and the Extinction Vortex,2026,2026-05-20
+Q1,30,https://openalex.org/W2571477541,,"Extinction vortex in Bulbophyllum bicolor, an outcrossing epiphytic orchid: evidence from an analysis of microsatellites",2016,2016-01-01
+Q1,31,https://openalex.org/W7163524038,10.1016/j.avrs.2026.100398,Increasing population size may help threatened species with limited genetic diversity escape the extinction vortex,2026,2026-06-04
+Q1,32,https://openalex.org/W2303157632,10.1371/journal.pone.0151730,Genetic Diversity and Population Structure of the Rare and Endangered Plant Species Pulsatilla patens (L.) Mill in East Central Europe,2016,2016-03-22
+Q1,33,https://openalex.org/W4394984539,10.1101/2024.04.18.590004,Genetic purging of strongly deleterious mutations underlies black-necked crane’s unusual escape from an extinction vortex,2024,2024-04-21
+Q1,34,https://openalex.org/W2172619558,10.1554/0014-3820(2003)057[0177:potvoa]2.0.co;2,POPULATION ON THE VERGE OF A MUTATIONAL MELTDOWN? FITNESS COSTS OF GENETIC LOAD FOR AN AMPHIBIAN IN THE WILD,2003,2003-01-01
+Q1,35,https://openalex.org/W4246816265,10.1111/j.0014-3820.2003.tb00228.x,POPULATION ON THE VERGE OF A MUTATIONAL MELTDOWN? FITNESS COSTS OF GENETIC LOAD FOR AN AMPHIBIAN IN THE WILD,2003,2003-01-01
+Q1,36,https://openalex.org/W2886387889,10.1111/mec.14824,On the path to extinction: Inbreeding and admixture in a declining grey wolf population,2018,2018-08-07
+Q1,37,https://openalex.org/W1972743720,10.1007/s10592-014-0605-0,Island isolation reduces genetic diversity and connectivity but does not significantly elevate diploid male production in a neotropical orchid bee,2014,2014-04-15
+Q1,38,https://openalex.org/W186709038,,Escaping the extinction vortex: Identifying factors affecting population performance and recovery in endangered Sierra Nevada bighorn sheep,2010,2010-01-01
+Q1,39,https://openalex.org/W2343528471,10.1016/j.exppara.2016.04.018,"The effects of inbreeding on disease susceptibility: Gyrodactylus turnbulli infection of guppies, Poecilia reticulata",2016,2016-04-29
+Q1,40,https://openalex.org/W2593662014,10.1007/s10531-017-1330-z,Overcoming barriers to active interventions for genetic diversity,2017,2017-03-04
+Q1,41,https://openalex.org/W2029483411,10.1353/pbm.1993.0081,Impacts of Inbreeding in Natural and Captive Populations of Vertebrates: Implications for Conservation,1993,1993-03-01
+Q1,42,https://openalex.org/W4402437459,10.1016/j.flora.2024.152602,"Surviving the extinction vortex? Discovering remnant stands of Senecio hercynicus (Compositae, Senecioneae) evading genetic swamping by its congener S. ovatus in the Bavarian and Bohemian Forest region",2024,2024-09-11
+Q1,43,https://openalex.org/W2094807927,10.1007/s10531-009-9639-x,Extinction of the blue antelope Hippotragus leucophaeus: modeling predicts non-viable global population size as the primary driver,2009,2009-04-27
+Q1,44,https://openalex.org/W2188393956,10.1890/es15-00049.1,Overcoming extinction: understanding processes of recovery of the Tibetan antelope,2015,2015-09-01
+Q1,45,https://openalex.org/W2793035317,10.1017/s0030605317001600,Seed dispersal syndromes in the Madagascan flora: the unusual importance of primates,2018,2018-02-14
+Q1,46,https://openalex.org/W4297237022,10.3389/fgene.2022.960958,Challenges in quantifying genome erosion for conservation,2022,2022-09-26
+Q1,47,https://openalex.org/W4281860783,10.1093/aob/mcac061,Tracking population genetic signatures of local extinction with herbarium specimens,2022,2022-06-07
+Q1,48,https://openalex.org/W2913064076,10.20506/rst.37.2.2858,Rabies as a threat to wildlife,2018,2018-08-01
+Q1,49,https://openalex.org/W4210849722,10.1071/pc000347,Predation at Sooty Shearwater Puffinus griseus colonies on the New Zealand mainland: is there safety in numbers?,1999,1999-12-10
+Q1,50,https://openalex.org/W2032498364,10.1163/156853809788201072,Predicted climate change may spark box turtle declines,2009,2009-01-01
+Q1,51,https://openalex.org/W2138487263,10.1093/molbev/mss185,"Ancient DNA Reveals Genetic Stability Despite Demographic Decline: 3,000 Years of Population History in the Endemic Hawaiian Petrel",2012,2012-07-25
+Q1,52,https://openalex.org/W2605334888,10.1007/s10531-017-1347-3,Colonization potential of an endangered riparian shrub species,2017,2017-04-07
+Q1,53,https://openalex.org/W1978221227,10.1016/s0006-3207(97)00014-1,"Aster kantoensis Kitam., an endangered flood plain endemic plant in Japan: Its ability to form persistent soil seed banks",1997,1997-10-01
+Q1,54,https://openalex.org/W348448399,10.14214/sf.1705,Genetic diversity of Castanea sativa an endangered species in the Hyrcanian forest,2017,2017-01-01
+Q1,55,https://openalex.org/W3188593577,10.1111/j.1523-1739.2003.01763.x,Retiring Cassandra,2003,2003-12-01
+Q1,56,https://openalex.org/W2104498661,10.1007/0-387-22648-6_16,Theoretical Properties of Extinction by Inbreeding Depression Under Stochastic Environments,2006,2006-05-08
+Q1,57,https://openalex.org/W1776828917,10.1007/s10841-015-9780-7,Predicting priority areas for conservation from historical climate modelling: stingless bees from Atlantic Forest hotspot as a case study,2015,2015-05-29
+Q1,58,https://openalex.org/W3173885732,10.1007/978-3-030-71330-0_11,Sliding Toward the Collapse of Mediterranean Coastal Marine Rocky Ecosystems,2021,2021-01-01
+Q1,59,https://openalex.org/W2521824992,10.1111/cobi.12841,Conservation implications of physiological carry‐over effects in bats recovering from white‐nose syndrome,2016,2016-09-19
+Q1,60,https://openalex.org/W4403889219,10.1098/rspb.2026.0600,Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation,2026,2026-06-03
+Q1,61,https://openalex.org/W2064352402,10.1016/j.biocon.2012.10.011,Rescue of a small declining population of Spanish imperial eagles,2013,2013-01-20
+Q1,62,https://openalex.org/W61786378,,Iberian lynx: the uncertain future of a critically endangered cat,2010,2010-01-01
+Q1,63,https://openalex.org/W7160666533,10.6084/m9.figshare.c.8466053,"Supplementary material from ""Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation""",2026,2026-05-08
+Q1,64,https://openalex.org/W4404230642,10.1101/2024.11.09.622040,Effects of environmental and individual variation on time patterns of extinction in small experimental populations.,2024,2024-11-11
+Q1,65,https://openalex.org/W2027916862,10.1111/j.1600-0706.2011.20219.x,Inbreeding at the edge: does inbreeding depression increase under more stressful conditions?,2012,2012-05-29
+Q1,66,https://openalex.org/W2344415799,,LA CONSERVACIÓN BIOLÓGICA Y SU PERSPECTIVA EVOLUTIVA Biological Conservation and its Evolutionary Perspective,2009,2009-01-01
+Q1,67,https://openalex.org/W4407791117,10.1007/978-3-031-67169-2_12,The Sumatran Rhinoceros: What Went Wrong and How to Move Forward,2025,2025-01-01
+Q1,68,https://openalex.org/W7160606072,10.6084/m9.figshare.c.8466053.v1,"Supplementary material from ""Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation""",2026,2026-05-08
+Q1,69,https://openalex.org/W4225507054,10.1177/21582440221082106,Let Us Now Praise Mountain Lions: Revisiting Edward Abbey in the Santa Monica Mountains,2022,2022-01-01
+Q1,70,https://openalex.org/W2121556443,10.1017/s0030605310001055,"Can the grey literature help us understand the decline and extinction of the Near Threatened Eurasian otter Lutra lutra in Latium, central Italy?",2011,2011-04-01
+Q1,71,https://openalex.org/W7170069340,10.3389/fevo.2026.1832820,Unveiling the size scaling of extinction and extremal abundance in marine phytoplankton,2026,2026-07-22
+Q1,72,https://openalex.org/W3134190146,10.1038/s41523-021-00230-y,Novel evolutionary dynamics of small populations in breast cancer adjuvant and neoadjuvant therapy,2021,2021-03-11
+Q1,73,https://openalex.org/W2989701378,10.7717/peerj.9220,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2020,2020-06-16
+Q1,74,https://openalex.org/W2898217630,10.1016/j.gecco.2018.e00464,Left hung out to dry: How inadequate international protection can fuel trade in endemic species – The case of the earless monitor,2018,2018-10-01
+Q1,75,https://openalex.org/W2769419687,10.1007/s10530-017-1617-8,Displacement and replacement in real time: Polistes dominula’s impact on P. fuscatus in the northeastern U.S.,2017,2017-11-18
+Q1,76,https://openalex.org/W1502394744,,Biological Conservation and its Evolutionary Perspective,2009,2009-12-01
+Q1,77,https://openalex.org/W4386775966,10.1093/hesc/9780198783688.003.0069,Challenges,2022,2022-07-29
+Q1,78,https://openalex.org/W4252083266,10.1016/b978-0-444-63768-0.00487-x,Endangered Species,2008,2008-01-01
+Q1,79,https://openalex.org/W2039478257,10.1023/b:bioc.0000014458.16767.d4,Recovery directions for monoecious and endangered Bertya ingramii using autecology and comparisons with common B. rosmarinifolia (Euphorbiaceae),2004,2004-02-04
+Q1,80,https://openalex.org/W4231834858,10.7287/peerj.9220v0.1/reviews/2,"Peer Review #2 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q1,81,https://openalex.org/W7125672497,10.1111/ele.70296,Sex Ratio Bias Triggers Demographic Suicide in a Dense Tortoise Population,2026,2026-01-01
+Q1,82,https://openalex.org/W4414538310,10.1002/oik.11280,Effects of environmental and individual variation on time patterns of extinction in small experimental populations,2025,2025-09-26
+Q1,83,https://openalex.org/W4385400466,10.1093/evolut/qpad128,Critical role of insertion preference for invasion trajectory of transposons,2023,2023-07-24
+Q1,84,https://openalex.org/W4205435320,10.1016/b978-008045405-4.00487-0,Endangered Species,2008,2008-01-01
+Q1,85,https://openalex.org/W4249780000,10.7287/peerj.9220v0.1/reviews/3,"Peer Review #3 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q1,86,https://openalex.org/W4252754808,10.7287/peerj.9220v0.2/reviews/1,"Peer Review #1 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.2)""",2020,2020-06-16
+Q1,87,https://openalex.org/W4403334518,10.1016/j.cub.2024.09.035,Hybridization and inbreeding affect the survival of a critically endangered coral,2024,2024-10-11
+Q1,88,https://openalex.org/W3208262474,10.1007/s10531-021-02309-1,Integrating multiple datasets into spatially-explicit capture-recapture models to estimate the abundance of a locally scarce felid,2021,2021-10-23
+Q1,89,https://openalex.org/W1575953333,10.1002/ajp.22402,Quantifying the severity of hurricanes on extinction probabilities of a primate population: Insights into “Island” extirpations,2015,2015-04-02
+Q1,90,https://openalex.org/W7166495451,,Practical aspects of pollinator conservation,2026,2026-01-01
+Q1,91,https://openalex.org/W4385753250,10.1016/j.biocon.2023.110217,Demographic collapse threatens the long-term persistence of Andean condors in the northern Andes,2023,2023-08-11
+Q1,92,https://openalex.org/W4281723697,10.1111/cobi.13940,Modeling minimum viable population size with multiple genetic problems of small populations,2022,2022-06-08
+Q1,93,https://openalex.org/W4231310351,10.7287/peerj.preprints.27985/supp-1,,2019,2019-09-26
+Q1,94,https://openalex.org/W4402957402,10.1002/mma.10493,Traveling waves reflecting various processes represented by reaction–diffusion equations,2024,2024-09-29
+Q1,95,https://openalex.org/W4414402706,10.1002/inc3.70045,The Two Faces of Introgression in Conservation Biology,2025,2025-09-01
+Q1,96,https://openalex.org/W4387925068,10.1016/j.ecolmodel.2023.110534,"Is toxicity a curse or blessing, or both?—Searching answer from a disease-induced consumer-resource system",2023,2023-10-24
+Q1,97,https://openalex.org/W2921615156,,Evidence of Inbreeding and Divergence in the Western Prairie Fringed Orchid (Platanthera praeclara),2018,2018-01-01
+Q1,98,https://openalex.org/W4246635837,10.7287/peerj.preprints.27985,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2019,2019-09-26
+Q1,99,https://openalex.org/W4254864529,10.7287/peerj.preprints.27985v1/supp-1,,2019,2019-09-26
+Q1,100,https://openalex.org/W4255193391,10.7287/peerj.9220v0.2/reviews/2,"Peer Review #2 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.2)""",2020,2020-06-16
+Q1,101,https://openalex.org/W4237636612,10.7287/peerj.9220v0.1/reviews/1,"Peer Review #1 of ""Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils (v0.1)""",2020,2020-06-16
+Q1,102,https://openalex.org/W4245854516,10.3410/f.1026986.335989,Faculty Opinions recommendation of Complementary sex determination substantially increases extinction proneness of haplodiploid populations.,2005,2005-09-22
+Q1,103,https://openalex.org/W3092409727,10.1080/09397140.2020.1833471,"Habitat modelling reveals extreme habitat fragmentation in the endangered and declining Asir Magpie, Pica asirensis, Saudi Arabia’s only endemic bird (Aves: Passeriformes)",2020,2020-10-01
+Q1,104,https://openalex.org/W7107877389,10.5281/zenodo.17741315,The Asymmetric Embrace: Allee Effects and K-Carrying Capacity Sculpting r/K Life Histories,2025,2025-11-27
+Q1,105,https://openalex.org/W3207567965,10.1111/plb.13346,"High genetic diversity and low structure in an endemic long‐lived tree, Yucca capensis (Asparagaceae)",2021,2021-10-11
+Q1,106,https://openalex.org/W2527761198,10.6092/unibo/amsdottorato/7562,Exploring Plant-Pollinator interactions: critical studies for the safeguard of wild Apoidea and spontaneous plant populations,2016,2016-01-01
+Q1,107,https://openalex.org/W7133864131,10.1002/ece3.73070,Adaptive Genetic Variation in Black‐and‐White Snub‐Nosed Monkeys ( Rhinopithecus bieti ): Low Diversity and the Role of Balancing Selection,2026,2026-03-01
+Q1,108,https://openalex.org/W4232094423,10.7287/peerj.preprints.27985v1,Inbreeding depression in one of the last DFTD-free wild populations of Tasmanian devils,2019,2019-09-26
+Q1,109,https://openalex.org/W7133358934,10.21203/rs.3.rs-8734754/v1,Genomic Signatures of Decline and Recovery in an Endangered Bat,2026,2026-03-03
+Q1,110,https://openalex.org/W4413383809,10.1093/oso/9780192898166.003.0012,Dynamics of small and declining populations,2025,2025-08-21
+Q1,111,https://openalex.org/W4411374441,10.1111/emr.70014,To Breed or Not to Breed? An Examination of Reproductive Success of Translocated Eastern Quolls,2025,2025-06-17
+Q1,112,https://openalex.org/W3189845399,10.1101/2021.08.02.454753,Modeling minimum viable population size with multiple genetic problems of small populations,2021,2021-08-04
+Q1,113,https://openalex.org/W4205324927,10.1007/s13364-021-00614-2,Genetic variability and population size covary positively across nine badgers (Meles meles) populations in France,2022,2022-01-15
+Q1,114,https://openalex.org/W3155140850,10.1016/bs.acr.2021.02.003,Treatment-induced evolutionary dynamics in nonmetastatic locally advanced rectal adenocarcinoma,2021,2021-01-01
+Q1,115,https://openalex.org/W4360611811,10.1201/9781003271833-15,Population ecology's profound questions,2023,2023-03-23
+Q1,116,https://openalex.org/W4383342212,10.1111/geb.13727,Population density and genetic diversity are positively correlated in wild felids globally,2023,2023-07-06
+Q1,117,https://openalex.org/W2997479602,10.20506/rst.38.2.3008,Domestication and genetic improvement: balancing improved production against increased disease risks from inbreeding,2019,2019-09-01
+Q1,118,https://openalex.org/W7107862456,10.5281/zenodo.17741314,The Asymmetric Embrace: Allee Effects and K-Carrying Capacity Sculpting r/K Life Histories,2025,2025-11-27
+Q1,119,https://openalex.org/W7203558130,10.2139/ssrn.7274239,Capacity Before Promotion A Dynamic Ecological-Economic Model of Agricultural Modernization and Crop Genetic Erosion,2026,2026-01-01
+Q1,120,https://openalex.org/W2971194848,10.11647/obp.0177.08,8. Extinction Is Forever,2019,2019-08-28
+Q1,121,https://openalex.org/W4403092536,10.1371/journal.pone.0311412,First genetic evaluation of a wild population of Crocodylus intermedius: New insights for the recovery of a Critically Endangered species,2024,2024-10-03
+Q1,122,https://openalex.org/W7160474590,,"Genomic Signatures of Decline and Recovery in an Endangered Bat, Myotis Grisescens",2026,2026-01-01
+Q1,123,https://openalex.org/W7119299004,,"Relação de parentesco de uma população isolada de toninha (Pontoporia blainvillei, Gervais & D’orbigny, 1844) no Brasil, Sudoeste do Oceano Atlântico",2023,2023-11-27
+Q1,124,https://openalex.org/W3207672994,,"Spatiotemporal distributions of the endangered treefrog, Hyla suweonensis, in relation to sympatric H. japonica : Calling activity and habitat characteristics",2013,2013-07-01
+Q1,125,https://openalex.org/W4389004177,10.1101/2023.11.24.568549,Genomic-guided conservation actions to restore the most endangered conifer in the Mediterranean Basin,2023,2023-11-25
+Q1,126,https://openalex.org/W4396732722,10.1111/eva.13677,Taxonomic inflation as a conservation trap for inbred populations,2024,2024-05-01
+Q1,127,https://openalex.org/W4416096990,10.1101/2025.11.07.687144,Long-term population monitoring reveals an alarming decline in the endangered endemic Reunion Harrier Circus maillardi,2025,2025-11-09
+Q1,128,https://openalex.org/W2902064789,10.2445/9783258478890,"Habitatfragmentierung, kleine Populationen und das Überleben von Wildtieren. Populationsbiologische Überlegungen und genetische Hintergründe untersucht am Beispiel des Rehes",2014,2014-01-01
+Q1,129,https://openalex.org/W4417275507,10.3389/fevo.2025.1758504,Editorial: Surviving the Anthropocene: the 3 E’s under pressing planetary issues,2025,2025-12-12
+Q1,130,https://openalex.org/W2993346429,,Cover article: Saving the Blues,2009,2009-01-01
+Q1,131,https://openalex.org/W2621424220,,Conservation genetics of the critically endangered Montseny brook newt (Calotriton arnoldi),2015,2015-01-01
+Q1,132,https://openalex.org/W3012954755,10.18307/2020.0200,How to evaluate and rescue endangered species,2020,2020-03-01
+Q1,133,https://openalex.org/W2336051536,10.1111/acv.12271,Ameliorating the loss of genetic diversity in captive wildlife populations,2016,2016-04-01
+Q1,134,https://openalex.org/W8029268,,"Apport de la phylogéographie, de la dynamique et de la structure des populations pour la conservation de végétaux endémiques méditerranéens",2006,2006-01-01
+Q1,135,https://openalex.org/W1930501434,10.1111/j.1523-1739.2008.01104.x,Two May Be Company but Three Is Seldom a Crowd: Allee Effects in Ecology and Conservation,2008,2008-12-01
+Q1,136,https://openalex.org/W871850510,,Stochastic modeling and eco-evolution of a diploid population,2013,2013-01-01
+Q1,137,https://openalex.org/W4393370150,,"Evolution and mechanisms of inbreeding avoidance in a parasitoid wasp, Venturia canescens",2017,2017-12-20
+Q1,138,https://openalex.org/W7148506214,10.70675/97b35ae1z9b68z4808z9711z7834f60e5206,Évolution et mécanismes d’évitement de la consanguinité chez un hyménoptère parasitoïde Venturia canescens,2017,2017-12-20
+Q1,139,https://openalex.org/W4386966984,10.31219/osf.io/jfg7v,Taxonomic inflation as a conservation trap: the capercaillie case,2023,2023-09-21
+Q1,140,https://openalex.org/W4392269580,,Genetic-demography interactions in small populations : studies on a Hymenoptera with genetic incompatibilities,2014,2014-02-13
+Q1,141,https://openalex.org/W7143768205,10.70675/836be4bez3aa4z417fz9218z874f27a36c56,Interaction entre démographie et génétique dans les petites populations : études sur un Hyménoptère parasitoïde avec incompatibilités génétiques,2014,2014-02-13
+Q1,142,https://openalex.org/W2783740026,,6.06Stratégies de préservation des espèces menacées,2017,2017-08-03
+Q1,143,https://openalex.org/W4413267368,10.32920/29660633.v1,Extinction Vortex,2025,2025-07-28
+Q1,144,https://openalex.org/W2160620081,10.1186/1471-2148-10-33,Trapped in the extinction vortex? Strong genetic effects in a declining vertebrate population,2010,2010-01-01
+Q1,145,https://openalex.org/W4413618701,10.1111/conl.13122,The Eel Market Extinction Vortex,2025,2025-07-01
+Q1,146,https://openalex.org/W4224885915,10.35363/via.sts.2022.76,LATVIAN SEMI-NATURAL GRASSLANDS IN THE SOCIO-ECOLOGICAL EXTINCTION VORTEX: THE EVIDENCE AND RESEARCH GAPS,2022,2022-04-08
+Q1,147,https://openalex.org/W4411254392,10.1111/acv.70022,"Teetering on the Edge of Extinction Vortex: Habitat Fragmentation and Low Density Threaten Chinese Pangolin Populations in Guangdong, China",2025,2025-06-11
+Q1,148,https://openalex.org/W4392168582,10.19080/ijesnr.2024.33.556360,"""Human Pressure meets Climate Change: The Extinction Vortex of the Freshwater Pearl Mussel Margaritifera margaritifera How does the Evolutionary History Relate to the Current Status as Endangered Species?""",2024,2024-02-21
+Q1,149,https://openalex.org/W3106713440,10.1086/712805,Models for Eco-Evolutionary Extinction Vortices under Balancing Selection,2020,2020-11-25
+Q1,150,https://openalex.org/W7213247446,10.59350/x6x5d-8yv94,What can we learn from vanishing wildlife species: the case of the Pyrenean Ibex,2021,2021-04-06
+Q1,151,https://openalex.org/W7213238267,10.59350/sngkm-wrh62,What can we learn from vanishing wildlife species: the case of the Pyrenean Ibex,2021,2021-04-06
+Q1,152,https://openalex.org/W3008154731,10.1101/2020.02.28.969402,Models for Eco-evolutionary Extinction Vortices and their Detection,2020,2020-02-29
+Q1,153,https://openalex.org/W2041477057,10.1371/journal.pone.0114039,Tracing the Trans-Pacific Evolutionary History of a Domesticated Seaweed (Gracilaria chilensis) with Archaeological and Genetic Data,2014,2014-12-11
+Q1,154,https://openalex.org/W2931643777,10.1002/ece3.5105,Intricate trophic links between threatened vertebrates confined to a small island in the Atlantic Ocean,2019,2019-04-01
+Q1,155,https://openalex.org/W2468083215,10.1007/s10530-016-1214-2,"Booms, busts and population collapses in invasive ants",2016,2016-07-01
+Q1,156,https://openalex.org/W4388733763,10.1111/mec.17205,Population genomics of the muskox' resilience in the near absence of genetic variation,2023,2023-11-16
+Q1,157,https://openalex.org/W4382314114,10.3389/finsc.2023.1145158,Invasion potential of hornets (Hymenoptera: Vespidae: Vespa spp.),2023,2023-05-09
+Q1,158,https://openalex.org/W1990503413,10.1029/96gl02921,An overview of POAM II aerosol measurments at 1.06 µm,1996,1996-11-01
+Q1,159,https://openalex.org/W7128323646,,Spatial molecular ecology of the brown bear in Western Carpathians,2023,2023-01-01
+Q1,160,https://openalex.org/W3215302947,10.1016/j.ecochg.2021.100044,Climate change can disrupt ecological interactions in mysterious ways: Using ecological generalists to forecast community-wide effects,2021,2021-11-24
+Q1,161,https://openalex.org/W3101831904,10.1101/717074,Response to CAR T cell therapy can be explained by ecological cell dynamics and stochastic extinction events,2019,2019-07-28
+Q1,162,https://openalex.org/W7125931306,10.1098/rspb.2025.1925,Genetic consequences of rapid demographic collapses suggested by population genomics of the black-necked crane,2026,2026-01-28
+Q1,163,https://openalex.org/W7128621770,10.5061/dryad.905qftv0v,Data for: Pollinators maintain biodiversity in assembling plant communities,2026,2026-01-21
+Q1,164,https://openalex.org/W2059800445,10.3389/fevo.2014.00062,Spatially-explicit estimation of Wright's neighborhood size in continuous populations,2014,2014-10-08
+Q1,165,https://openalex.org/W7108360781,10.6084/m9.figshare.c.8179795.v1,"Supplementary material from ""Genetic consequence of rapid demographic collapses suggested by population genomics of the black-necked cranes""",2025,2025-01-01
+Q1,166,https://openalex.org/W7108365661,10.6084/m9.figshare.c.8179795,"Supplementary material from ""Genetic consequence of rapid demographic collapses suggested by population genomics of the black-necked cranes""",2025,2025-01-01
+Q1,167,https://openalex.org/W4413490626,10.47191/ijcsrr/v8-i8-39,"Harnessing Genomics for One Health: A Blueprint for Equity, Access, and Action",2025,2025-08-25
+Q1,168,https://openalex.org/W7152056217,10.1002/ecy.70369,Pollinators maintain biodiversity in assembling plant communities,2026,2026-04-01
+Q1,169,https://openalex.org/W4408737745,10.1016/j.gecco.2025.e03556,Unveiling the genetic landscape of Bletilla striata: conservation challenges in a medicinal orchid under threat,2025,2025-03-22
+Q1,170,https://openalex.org/W1541595377,,Etude théorique des conséquences démographiques et évolutives des processus s'exprimant à faible densité dans les systèmes hote-parasitoide,2014,2014-01-01
+Q1,171,https://openalex.org/W2048161683,10.1371/journal.pone.0036028,"Massive Nest-Box Supplementation Boosts Fecundity, Survival and Even Immigration without Altering Mating and Reproductive Behaviour in a Rapidly Recovered Bird Population",2012,2012-04-24
+Q1,172,https://openalex.org/W7213775095,10.64898/2026.09.13.751268,"How small is too small? Genetic signatures from naturally small populations of a large island vertebrate, the Turks and Caicos Rock Iguana",2026,2026-09-18
+Q1,173,https://openalex.org/W4412745090,10.1086/737752,"Multiple Genetic Impacts of Immigration Interact to Shape Local Population Persistence versus Extinction: Evolutionary Rescue, Inbreeding Vortex, and Migrational Meltdown",2025,2025-07-30
+Q1,174,https://openalex.org/W3032013788,10.1007/s10592-020-01280-8,Population genomic diversity and structure at the discontinuous southern range of the Great Gray Owl in North America,2020,2020-05-31
+Q1,175,https://openalex.org/W2743101090,,Discrimination of haploid and diploid males of bumblebees based on wing shape,2016,2016-08-09
+Q1,176,https://openalex.org/W4405120587,10.1111/mec.17605,Genomic‐Guided Conservation Actions to Restore the Most Endangered Conifer in the Mediterranean Basin,2024,2024-12-06
+Q1,177,https://openalex.org/W2999993783,10.1007/s11629-019-5418-7,An evaluation of central Iran’s protected areas under different climate change scenarios (A Case on Markazi and Hamedan provinces),2020,2020-01-01
+Q1,178,https://openalex.org/W4295220651,10.1016/j.ecolmodel.2022.110122,Managed culls mean extinction for a marine mammal population when combined with extreme climate impacts,2022,2022-09-11
+Q1,179,https://openalex.org/W3203831497,10.1101/2021.09.29.462338,Managed culls mean extinction for a marine mammal population when combined with extreme climate impacts,2021,2021-09-30
+Q1,180,https://openalex.org/W2787311780,10.13140/rg.2.2.34061.23520,Evolution et mécanismes d'évitement de la consanguinité chez un hyménoptère parasitoïde Venturia canescens,2017,2017-01-01
+Q1,181,https://openalex.org/W2054784634,10.1016/0006-3207(95)90037-3,"A simulation study of the impacts of population subdivision on the mountain brushtail possum Trichosurus caninus Ogilby (Phalangeridae: Marsupialia), in south-eastern Australia. II. Loss of genetic variation within and between subpopulations",1995,1995-01-01
+Q1,182,https://openalex.org/W7125185135,10.5061/dryad.b5mkkwhrz,Adaptive genetic variation in black-and-white snub-nosed monkeys (Rhinopithecus bieti): low diversity and the role of balancing selection,2025,2025-10-16
+Q1,183,https://openalex.org/W2123400978,10.5860/choice.51-1498,"Conservation of wildlife populations: demography, genetics, and management",2013,2013-10-21
+Q1,184,https://openalex.org/W4255882729,10.1016/0006-3207(95)91940-y,"A simulation study of the impacts of population subdivision on the mountain brushtail possum Trichosurus caninus Ogilby (phalangeridae: marsupialia), in South-Eastern Australia. II. Loss of genetic variation within and between subpopulations",1995,1995-01-01
+Q1,185,https://openalex.org/W7111914642,,"Population viability analysis for Atlantic salmon (Salmo salar) in River Klarälven, Sweden, in relation to the effects of hydropower",2024,2024-01-01
+Q1,186,https://openalex.org/W2742050149,,RESEARCH ARTICLE The Geographic Distribution of Genetic Diversity within Gorillas,2015,2015-01-01
+Q1,187,https://openalex.org/W2611125792,10.25959/23242772,"Can snow skinks survive climate change? : The potential for behaviour, physiology and competition to mitigate and enhance climate change impacts on snow skink life history, distribution and persistence",2016,2016-01-01
+Q1,188,https://openalex.org/W2022962697,10.1046/j.1523-1739.2002.00113.x,Compute and Conserve,2002,2002-01-18
+Q1,189,https://openalex.org/W4293085124,10.1111/acv.12780,How to reverse the rhino poaching crisis: a commentary on Nhleko et al. (2022),2022,2022-03-23
+Q1,190,https://openalex.org/W2886260583,10.1111/aje.12545,Conservation conundrum: Endangered predators eating endangered prey,2018,2018-08-06
+Q1,191,https://openalex.org/W4394769053,10.1093/jmammal/gyae025,"Mammals and roads: Joseph Grinnell’s 1920 observation, modern threats and solutions, and a call to mammalogists for more and better research",2024,2024-04-12
+Q1,192,https://openalex.org/W2956694137,10.1111/ecog.04740,"Understanding extinction debts: spatio–temporal scales, mechanisms and a roadmap for future research",2019,2019-07-13
+Q1,193,https://openalex.org/W2766618498,10.1073/pnas.1707279114,Survival and divergence in a small group: The extraordinary genomic history of the endangered Apennine brown bear stragglers,2017,2017-10-24
+Q1,194,https://openalex.org/W4319460316,10.1111/cobi.14064,Genetic diversity and IUCN Red List status,2023,2023-02-08
+Q1,195,https://openalex.org/W3174812320,10.1073/pnas.2021390118,Museum genomics reveals the rapid decline and extinction of Australian rodents since European settlement,2021,2021-06-28
+Q1,196,https://openalex.org/W2172063221,10.1098/rspb.2012.1867,Mating system affects population performance and extinction risk under environmental challenge,2012,2012-09-12
+Q1,197,https://openalex.org/W2737143330,10.1371/journal.pone.0181849,"Consequences of severe habitat fragmentation on density, genetics, and spatial capture-recapture analysis of a small bear population",2017,2017-07-24
+Q1,198,https://openalex.org/W2126243313,10.1111/j.1755-263x.2008.00016.x,Toward a biocultural theory of avoided extinction,2008,2008-06-12
+Q1,199,https://openalex.org/W2950758965,10.1002/ecs2.1413,The genetic Allee effect: a unified framework for the genetics and demography of small populations,2016,2016-07-01
+Q1,200,https://openalex.org/W1961226178,10.1186/1742-9994-4-2,Spot the match – wildlife photo-identification using information theory,2007,2007-01-16
+Q2,1,,10.32920/29660633.v1,Extinction Vortex,,
+Q2,2,,10.32920/29660633,Extinction Vortex,,
+Q2,3,,10.1093/acprof:oso/9780199214211.003.0001,"The extinction vortex, is genetic variation related to extinction?",,
+Q2,4,,10.1007/978-3-642-05016-9_7,Practical Implementation of Vortex Rings: Extinction of Fires at Gushing Gas and Oil Wells,,
+Q2,5,,10.22541/au.159714949.96971742,Small body size exacerbates the extinction vortex,,
+Q2,6,,10.1016/j.cub.2024.09.081,Conservation: Corals in an extinction vortex,,
+Q2,7,,10.3410/f.1030428.359433,Faculty Opinions recommendation of Quantifying the extinction vortex.,,
+Q2,8,,10.1111/j.1461-0248.2005.00845.x,Quantifying the extinction vortex,,
+Q2,9,,10.1111/conl.13122,The Eel Market Extinction Vortex,,
+Q2,10,,10.1016/s0082-0784(00)80620-7,Vortex-induced extinction behavior in methanol gaseous flames: A comparison with quasi-steady extinction,,
+Q2,11,,10.3390/plants15101555,18-Year Monitoring of the Steno-Endemic Verbascum rupicola (Scrophulariaceae): Compounding Pressures and the Extinction Vortex,,
+Q2,12,,10.1002/ece3.7555,Scaling the extinction vortex: Body size as a predictor of population dynamics close to extinction events,,
+Q2,13,,10.1101/2022.10.29.514126,"How density dependence, genetic erosion, and the extinction vortex impact evolutionary rescue",,
+Q2,14,,10.3390/atmos14020337,Physical Mechanism of the Development and Extinction of the China Southwest Vortex,,
+Q2,15,,10.2514/6.1995-139,Vortex-flame interactions and the local extinction of turbulent jet diffusion flames,,
+Q2,16,,10.1016/j.combustflame.2015.09.006,Characterizing spray flame–vortex interaction: A spray spectral diagram for extinction,,
+Q2,17,,10.1016/j.combustflame.2026.115217,Modelling flame response to air vortex ring and extinction dynamics,,
+Q2,18,,10.1239/aap/1401369702,Stochastic Modeling of Density-Dependent Diploid Populations and the Extinction Vortex,,
+Q2,19,,10.35363/via.sts.2022.76,LATVIAN SEMI-NATURAL GRASSLANDS IN THE SOCIO-ECOLOGICAL EXTINCTION VORTEX: THE EVIDENCE AND RESEARCH GAPS,,
+Q2,20,,10.1093/emph/eoaf035,Harnessing the extinction vortex against acute lymphoblastic leukemia,,
+Q2,21,,10.1063/1.3139308,Numerical studies of vortex-induced extinction/reignition relevant to the near-field of high-Reynolds number jets,,
+Q2,22,,10.1016/s0082-0784(98)80465-7,Extinction processes during a non-premixed flame-vortex interaction,,
+Q2,23,,10.1016/j.combustflame.2007.10.021,A 2-D DNS investigation of extinction and reignition dynamics in nonpremixed flame–vortex interactions,,
+Q2,24,,10.1016/j.combustflame.2004.03.013,Numerical investigation of extinction in a counterflow nonpremixed flame perturbed by a vortex,,
+Q2,25,,10.1111/acv.70022,"Teetering on the Edge of Extinction Vortex: Habitat Fragmentation and Low Density Threaten Chinese Pangolin Populations in Guangdong, China",,
+Q2,26,,10.1016/j.ces.2005.12.037,Unsteady extinction mechanism of nonpremixed flame interacting with a vortex,,
+Q2,27,,10.1109/piers53385.2021.9694774,Channel Capacity of the Carrier of Relative Rotation Double Gaussian Vortex Laser in Weak Turbulence and Extinction Seawater,,
+Q2,28,,10.1016/j.proci.2008.06.158,Extinction and interruption of diffusion flame interacting with a large scale vortex,,
+Q2,29,,10.1016/s0082-0784(96)80211-6,Vortex-flame interactions and extinction in turbulent jet diffusion flames,,
+Q2,30,,10.1016/s0140-6701(00)95215-9,"00/00427 Investigations of heat release, extinction, and time evolution of the flame surface, for a nonpremixed flame interacting with a vortex",,
+Q2,31,,10.1364/lacea.2002.pd4,Studies of Vortex-Induced Flame Extinction in Couterflow Diffusion Flames Using CH PLIF and PIV,,
+Q2,32,,10.5040/9781682661345,Extinction,,
+Q2,33,,10.1186/1471-2148-10-33,Trapped in the extinction vortex? Strong genetic effects in a declining vertebrate population,,
+Q2,34,,10.1016/j.proci.2025.105825,Microgravity flame extinction induced by a moving air vortex ring,,
+Q2,35,,10.1016/j.actao.2010.08.004,"Indication of a species in an extinction vortex: The ocellated turkey on the Yucatan peninsula, Mexico",,
+Q2,36,,10.37190/oa/211819,Study on the hollow extinction ratio of Gaussian vortex light,,
+Q2,37,,10.1111/gcb.15186,Mating patterns influence vulnerability to the extinction vortex,,
+Q2,38,,10.1016/j.combustflame.2009.10.014,Effect of NO on extinction and re-ignition of vortex-perturbed hydrogen flames,,
+Q2,39,,10.1016/j.proci.2004.08.130,Unsteady effects on flame extinction limits during gaseous and two-phase flame/vortex interactions,,
+Q2,40,,10.1007/s13280-022-01705-3,Semi-natural habitats in the European boreal region: Caught in the socio-ecological extinction vortex?,,
+Q2,41,,10.1016/j.combustflame.2019.09.031,Extinction strain rate suppression of the precessing vortex core in a swirl stabilised combustor and consequences for thermoacoustic oscillations,,
+Q2,42,,10.3795/ksme-b.2003.27.10.1401,Extinction in a Counterflow Nonpremixed Flame Interacting with a Vortex,,
+Q2,43,,10.1093/oso/9780195159455.003.0006,Extinction In The Fossil Record,,
+Q2,44,,10.5040/9781350905771,The Last Extinction,,
+Q2,45,,10.1080/00102200601149902,FLAME PROPAGATION IN SWIRLING FLOWS—EFFECT OF LOCAL EXTINCTION ON THE COMBUSTION INDUCED VORTEX BREAKDOWN,,
+Q2,46,,10.1016/j.flora.2024.152602,"Surviving the extinction vortex? Discovering remnant stands of Senecio hercynicus (Compositae, Senecioneae) evading genetic swamping by its congener S. ovatus in the Bavarian and Bohemian Forest region",,
+Q2,47,,10.1101/2024.04.18.590004,Genetic purging of strongly deleterious mutations underlies black-necked crane’s unusual escape from an extinction vortex,,
+Q2,48,,10.1016/s0010-2180(98)00085-6,"Investigations of heat release, extinction, and time evolution of the flame surface, for a nonpremixed flame interacting with a vortex",,
+Q2,49,,10.1086/737752,"Multiple Genetic Impacts of Immigration Interact to Shape Local Population Persistence versus Extinction: Evolutionary Rescue, Inbreeding Vortex, and Migrational Meltdown",,
+Q2,50,,10.1093/actrade/9780198807285.003.0003,3. Extinction in the past,,
+Q2,51,,10.1017/ext.2025.10008,De-extinction and poetry,,
+Q2,52,,10.1017/ext.2023.3,Prioritisation to prevent extinction,,
+Q2,53,,10.1017/ext.2024.8,What is extinction research?,,
+Q2,54,,10.1017/ext.2023.4,Philosophy and ethics of de-extinction,,
+Q2,55,,10.1002/eap.1868,Extinction vortex dynamics of top predators isolated by urbanization,,
+Q2,56,,10.1007/s11082-023-05837-y,Correction: Extinction efficiency and scattering asymmetry of a PEMC sphere illuminated by vortex electromagnetic waves,,
+Q2,57,,10.19080/ijesnr.2024.33.556360,"""Human Pressure meets Climate Change: The Extinction Vortex of the Freshwater Pearl Mussel Margaritifera margaritifera How does the Evolutionary History Relate to the Current Status as Endangered Species?""",,
+Q2,58,,10.1007/s11082-023-05156-2,Extinction efficiency and scattering asymmetry of a PEMC sphere illuminated by vortex electromagnetic waves,,
+Q2,59,,10.2307/j.ctv62hf5h.6,ANTI-EXTINCTION,,
+Q2,60,,10.1017/ext.2025.5,Assessing the extinction risk of Veracruz cycads,,
+Q2,61,,10.1017/ext.2023.16,Extinction and morphospace occupation: A critical review,,
+Q2,62,,10.1017/ext.2024.2,Saving sheep – On extinction narratives in Namibian Swakara farming,,
+Q2,63,,10.2307/j.ctv29sfxhg.8,EXTINCTION,,
+Q2,64,,10.1201/b20911-8,"- Interactions Vortex-Vortex, Vortex-Defect and Vortex-Spin",,
+Q2,65,,10.1093/actrade/9780198807285.003.0002,2. Extinction today and efforts to stop it,,
+Q2,66,,10.1017/ext.2024.13,Regional extinction(s) but continental persistence in European Acheulean culture,,
+Q2,67,,10.1016/j.proci.2008.06.150,Effects of H2O and NO on extinction and re-ignition of vortex-perturbed hydrogen counterflow flames,,
+Q2,68,,10.1098/rspb.2023.1228,"How density dependence, genetic erosion and the extinction vortex impact evolutionary rescue",,
+Q2,69,,10.1364/ao.42.002063,Vortex-induced flame extinction in two-phase counterflow diffusion flames with CH planar laser-induced fluorescence and particle-image velocimetry,,
+Q2,70,,10.2307/j.ctv62hf5h.5,CAPITALISM AND EXTINCTION,,
+Q2,71,,10.1007/978-3-642-28753-4_200773,Extinction and Extinction Training,,
+Q2,72,,10.1017/ext.2026.10019,What do we know about the language extinction rate?,,
+Q2,73,,10.1017/ext.2024.27,De-extinction beyond species: Restoring ecosystem functionality through large herbivore rewilding,,
+Q2,74,,10.1017/ext.2026.10016,"<i>Cambridge Prisms: Extinction</i>
+                    , after 4 years",,
+Q2,75,,10.28989/vortex.v2i2,,,
+Q2,76,,10.1017/ext.2024.7,"Taxonomies of exclusion: Storytelling, naming and classification in an age of extinction",,
+Q2,77,,10.1017/ext.2023.7,Trading species to extinction: evidence of extinction linked to the wildlife trade,,
+Q2,78,,10.2307/jj.29895213.8,ANTI-EXTINCTION,,
+Q2,79,,10.2307/j.ctv1f45q54.4,A Prehistory of Extinction,,
+Q2,80,,10.5422/fordham/9781531501648.003.0007,What Is De-Extinction?,,
+Q2,81,,10.1017/ext.2025.3,A political epistemology for extinction studies? On the ideas of preservation and replenishment,,
+Q2,82,,10.1017/ext.2026.10013,Demographic synchrony increases volatility and extinction risk in human populations,,
+Q2,83,,10.28989/vortex.v1i1,,,
+Q2,84,,10.1111/j.1523-1739.2012.01870.x,Possible Extinction Vortex for a Population of Iberian Lynx on the Verge of Extirpation,,
+Q2,85,,10.28989/vortex.v2i1,,,
+Q2,86,,10.1017/ext.2023.2,Extinction: A synthesis of disciplines for theoretical and practical advances,,
+Q2,87,,10.4324/9780429437397-13,An RSPB perspective on extinction and extinction prevention,,
+Q2,88,,10.1038/npg.els.0004156,Extinction: K–T Mass Extinction,,
+Q2,89,,10.1017/ext.2023.19,"Implications of extinction in law: Preventing, declaring and learning from species extinctions",,
+Q2,90,,10.1525/9780520913783-008,7. THE LENINIST EXTINCTION,,
+Q2,91,,10.1093/oso/9780199549474.003.0008,The Politics Of Extinction,,
+Q2,92,,10.1017/ext.2024.10,What passes through the extinction filter? Historical and contemporary patterns of vulnerability of the most extinction-prone bird family (Aves: Rallidae),,
+Q2,93,,10.4324/9781315782911-11,Extinction Extinction as generalization,,
+Q2,94,,10.1002/9780470015902.a0001656.pub3,Extinction: K–Pg Mass Extinction,,
+Q2,95,,10.1002/9780470015902.a0001655.pub3,Extinction: End‐Triassic Mass Extinction,,
+Q2,96,,10.1111/ejn.14701/v2/review1,"Review for ""Selective Extinction Through Cognitive Evaluation: Linking Emotion Regulation And Extinction""",,
+Q2,97,,10.5422/fordham/9781531501648.003.0005,Concepts of Extinction in the Holocaust,,
+Q2,98,,10.1038/npg.els.0001656,Extinction: K–T Mass Extinction,,
+Q2,99,,10.2307/jj.29895213.6,CAPITALISM AND EXTINCTION,,
+Q2,100,,10.1017/ext.2024.18,Inferring species extinction from sighting data,,
+Q3a,1,https://openalex.org/W2105857021,10.1016/j.tree.2008.03.011,Synergies among extinction drivers under global change,2008,2008-06-25
+Q3a,2,https://openalex.org/W2897209280,10.1126/science.aau6020,Landscapes that work for biodiversity and people,2018,2018-10-18
+Q3a,3,https://openalex.org/W2265312118,10.1098/rspb.2015.2592,Interactions among ecosystem stressors and their importance in conservation,2016,2016-02-10
+Q3a,4,https://openalex.org/W2149337724,10.1111/brv.12000,"Individual dispersal, landscape connectivity and ecological networks",2012,2012-11-24
+Q3a,5,https://openalex.org/W2165945699,10.1111/mec.12152,The impact of global climate change on genetic diversity within populations and species,2012,2012-12-20
+Q3a,6,https://openalex.org/W1708754533,10.1002/wcc.271,"Interactions between climate change and land use change on biodiversity: attribution problems, risks, and opportunities",2014,2014-02-12
+Q3a,7,https://openalex.org/W2050335144,10.1038/nature09389,Early warning signals of extinction in deteriorating environments,2010,2010-09-01
+Q3a,8,https://openalex.org/W2905738514,10.1093/oso/9780198783398.001.0001,Genetic Management of Fragmented Animal and Plant Populations,2017,2017-07-13
+Q3a,9,https://openalex.org/W1965765978,10.1016/j.biocon.2009.01.031,The Cerrado into-pieces: Habitat fragmentation as a function of landscape use in the savannas of central Brazil,2009,2009-03-07
+Q3a,10,https://openalex.org/W2134842830,10.1111/j.1365-2745.2006.01167.x,The rough edges of the conservation genetics paradigm for plants,2006,2006-08-04
+Q3a,11,https://openalex.org/W2547569465,10.1111/ecog.02538,Evolution of dispersal strategies and dispersal syndromes in fragmented landscapes,2016,2016-11-01
+Q3a,12,https://openalex.org/W2106293346,10.1016/j.tree.2013.01.016,Does the terrestrial biosphere have planetary tipping points?,2013,2013-02-27
+Q3a,13,https://openalex.org/W3045230440,10.1038/s41571-020-0411-1,Integrating evolutionary dynamics into cancer therapy,2020,2020-07-22
+Q3a,14,https://openalex.org/W1623663821,10.1016/s0065-2881(09)56004-x,"Chapter 4 Susceptibility of Sharks, Rays and Chimaeras to Global Extinction",2009,2009-01-01
+Q3a,15,https://openalex.org/W2160620081,10.1186/1471-2148-10-33,Trapped in the extinction vortex? Strong genetic effects in a declining vertebrate population,2010,2010-01-01
+Q3a,16,https://openalex.org/W2137345966,10.1146/annurev-environ-102014-021358,State of the World's Amphibians,2015,2015-07-24
+Q3a,17,https://openalex.org/W2115078941,10.1642/auk-14-211.1,Full-annual-cycle population models for migratory birds,2015,2015-03-04
+Q3a,18,https://openalex.org/W1961226178,10.1186/1742-9994-4-2,Spot the match – wildlife photo-identification using information theory,2007,2007-01-16
+Q3a,19,https://openalex.org/W2956694137,10.1111/ecog.04740,"Understanding extinction debts: spatio–temporal scales, mechanisms and a roadmap for future research",2019,2019-07-13
+Q3a,20,https://openalex.org/W2766618498,10.1073/pnas.1707279114,Survival and divergence in a small group: The extraordinary genomic history of the endangered Apennine brown bear stragglers,2017,2017-10-24
+Q3a,21,https://openalex.org/W2248208530,10.1016/j.biocon.2015.07.025,The reduction of genetic diversity in threatened vertebrates and new recommendations regarding IUCN conservation rankings,2015,2015-08-15
+Q3a,22,https://openalex.org/W2295298155,10.1111/eva.12375,Are heritability and selection related to population size in nature? Meta‐analysis and conservation implications,2016,2016-03-07
+Q3a,23,https://openalex.org/W3118843177,10.1073/pnas.2002554117,Insect biomass decline scaled to species diversity: General patterns derived from a hoverfly community,2021,2021-01-11
+Q3a,24,https://openalex.org/W2963296807,10.1371/journal.pone.0217711,Climate vulnerability assessment for Pacific salmon and steelhead in the California Current Large Marine Ecosystem,2019,2019-07-24
+Q3a,25,https://openalex.org/W2050974695,10.1111/j.1523-1739.2008.00972.x,Interspecific Patterns of Genetic Diversity in Birds: Correlations with Extinction Risk,2008,2008-07-08
+Q3a,26,https://openalex.org/W2509016411,10.1098/rspb.2016.0957,"Interactions between demography, genetics, and landscape connectivity increase extinction probability for a small population of large carnivores in a major metropolitan area",2016,2016-08-31
+Q3a,27,https://openalex.org/W1973086927,10.1007/s00338-008-0386-3,"Recruitment failure in Florida Keys Acropora palmata, a threatened Caribbean coral",2008,2008-05-23
+Q3a,28,https://openalex.org/W2752381059,10.1016/j.biocon.2017.08.019,Citizen science monitoring demonstrates dramatic declines of monarch butterflies in western North America,2017,2017-09-07
+Q3a,29,https://openalex.org/W2156117789,10.1016/j.jembe.2008.04.005,Investigating the viability of photo-identification as an objective tool to study endangered sea turtle populations,2008,2008-05-30
+Q3a,30,https://openalex.org/W2895635301,10.1111/eva.12720,Distinguishing the victim from the threat: SNP‐based methods reveal the extent of introgressive hybridization between wildcats and domestic cats in Scotland and inform future in situ and ex situ management options for species restoration,2018,2018-10-06
+Q3a,31,https://openalex.org/W3174812320,10.1073/pnas.2021390118,Museum genomics reveals the rapid decline and extinction of Australian rodents since European settlement,2021,2021-06-28
+Q3a,32,https://openalex.org/W4229029322,10.1038/s41577-022-00719-y,Tumour immunotherapy: lessons from predator–prey theory,2022,2022-05-05
+Q3a,33,https://openalex.org/W2737143330,10.1371/journal.pone.0181849,"Consequences of severe habitat fragmentation on density, genetics, and spatial capture-recapture analysis of a small bear population",2017,2017-07-24
+Q3a,34,https://openalex.org/W4318071662,10.1038/s41559-023-01985-2,A predictive timeline of wildlife population collapse,2023,2023-01-26
+Q3a,35,https://openalex.org/W3082874645,10.1038/s41467-020-17779-0,Rare and common vertebrates span a wide spectrum of population trends,2020,2020-09-02
+Q3a,36,https://openalex.org/W2126243313,10.1111/j.1755-263x.2008.00016.x,Toward a biocultural theory of avoided extinction,2008,2008-06-12
+Q3a,37,https://openalex.org/W2950758965,10.1002/ecs2.1413,The genetic Allee effect: a unified framework for the genetics and demography of small populations,2016,2016-07-01
+Q3a,38,https://openalex.org/W2944321599,10.1111/1365-2656.13011,Scaling up the effects of inbreeding depression from individuals to metapopulations,2019,2019-05-11
+Q3a,39,https://openalex.org/W2623304336,10.15184/aqy.2017.37,Populations headed south? The Gravettian from a palaeodemographic point of view,2017,2017-06-01
+Q3a,40,https://openalex.org/W2899961979,10.1002/ece3.4660,Evaluating effective population size and genetic diversity of a declining kit fox population using contemporary and historical specimens,2018,2018-11-08
+Q3a,41,https://openalex.org/W2094984943,10.3390/d1020133,Forecasting Extinctions: Uncertainties and Limitations,2009,2009-11-26
+Q3a,42,https://openalex.org/W4293203818,10.1017/9781316338704,Hunting Wildlife in the Tropics and Subtropics,2022,2022-08-25
+Q3a,43,https://openalex.org/W4297237022,10.3389/fgene.2022.960958,Challenges in quantifying genome erosion for conservation,2022,2022-09-26
+Q3a,44,https://openalex.org/W4388928488,10.1093/molbev/msad256,Genetic Load and Adaptive Potential of a Recovered Avian Species that Narrowly Avoided Extinction,2023,2023-11-22
+Q3a,45,https://openalex.org/W4384830462,10.1016/j.tree.2023.06.003,Fire-driven animal evolution in the Pyrocene,2023,2023-07-19
+Q3a,46,https://openalex.org/W1913720185,10.1111/cobi.12274,"Relation of Minimum Viable Population Size to Biology, Time Frame, and Objective",2014,2014-03-11
+Q3a,47,https://openalex.org/W2762006043,10.1016/j.biocon.2017.10.006,Viability analysis for multiple populations,2017,2017-10-13
+Q3a,48,https://openalex.org/W4385988609,10.1016/j.gene.2023.147719,Genomic insights into the conservation of wild and domestic animal diversity: A review,2023,2023-08-18
+Q3a,49,https://openalex.org/W2143958171,10.1111/j.1469-7998.2010.00743.x,Mouthing off about developmental stress: Individuality of palate marking in the European badger and its relationship with juvenile parasitoses,2010,2010-09-14
+Q3a,50,https://openalex.org/W4388880084,10.1098/rspb.2023.1228,"How density dependence, genetic erosion and the extinction vortex impact evolutionary rescue",2023,2023-11-21
+Q3a,51,https://openalex.org/W2156215610,10.1098/rspb.2008.1558,Scaling rules for the final decline to extinction,2009,2009-01-13
+Q3a,52,https://openalex.org/W4413703064,10.1111/mec.70088,Persistent Genomic Erosion in Whooping Cranes Despite Demographic Recovery,2025,2025-08-26
+Q3a,53,https://openalex.org/W2028733170,10.1111/j.1365-2656.2006.01201.x,Inferring population trends for the world's largest fish from mark–recapture estimates of survival,2007,2007-01-10
+Q3a,54,https://openalex.org/W2101944838,10.1111/j.1558-5646.2010.00947.x,"EVOLUTIONARY BIOLOGY IN BIODIVERSITY SCIENCE, CONSERVATION, AND POLICY: A CALL TO ACTION",2010,2010-01-01
+Q3a,55,https://openalex.org/W2031371404,10.1111/j.1461-0248.2007.01105.x,A statistical approach to quasi‐extinction forecasting,2007,2007-09-04
+Q3a,56,https://openalex.org/W2238756921,10.1111/eva.12356,Gene flow from an adaptively divergent source causes rescue through genetic and demographic factors in two wild populations of T rinidadian guppies,2016,2016-01-10
+Q3a,57,https://openalex.org/W2594252269,10.1002/ecs2.1565,Full annual cycle climate change vulnerability assessment for migratory birds,2017,2017-03-01
+Q3a,58,https://openalex.org/W1503540889,10.1111/j.1523-1739.2012.01870.x,Possible Extinction Vortex for a Population of Iberian Lynx on the Verge of Extirpation,2012,2012-06-25
+Q3a,59,https://openalex.org/W2026371909,10.1016/j.quascirev.2011.11.021,Robust estimates of extinction time in the geological record,2011,2011-12-21
+Q3a,60,https://openalex.org/W1953267706,10.1111/eva.12336,Why evolution matters for species conservation: perspectives from three case studies of plant metapopulations,2015,2015-10-10
+Q3a,61,https://openalex.org/W1590890708,10.1111/j.1469-1795.2010.00353.x,"Albatrosses, eagles and newts, Oh My!: exceptions to the prevailing paradigm concerning genetic diversity and population viability?",2010,2010-06-01
+Q3a,62,https://openalex.org/W2134706900,10.1016/j.biocon.2009.09.007,"Viability of mountain caribou in British Columbia, Canada: Effects of habitat change and population density",2009,2009-10-10
+Q3a,63,https://openalex.org/W3036779495,10.1111/gcb.15186,Mating patterns influence vulnerability to the extinction vortex,2020,2020-06-19
+Q3a,64,https://openalex.org/W2958395562,10.1002/eap.1975,Why are monarch butterflies declining in the West? Understanding the importance of multiple correlated drivers,2019,2019-07-16
+Q3a,65,https://openalex.org/W2994752873,10.1111/gcb.14959,Developmental trap or demographic bonanza? Opposing consequences of earlier phenology in a changing climate for a multivoltine butterfly,2019,2019-12-13
+Q3a,66,https://openalex.org/W2001014829,10.1111/1365-2656.12005,Experimentally testing the accuracy of an extinction estimator: S olow's optimal linear estimation model,2012,2012-10-15
+Q3a,67,https://openalex.org/W2176861031,10.1093/jmammal/gyv061,"Mammalian genetic diversity as a function of habitat, body size, trophic class, and conservation status",2015,2015-05-13
+Q3a,68,https://openalex.org/W1985012578,10.1007/s12080-011-0134-0,Mechanistic analogy: how microcosms explain nature,2011,2011-08-03
+Q3a,69,https://openalex.org/W2912709679,10.1086/701781,"Catastrophic Mortality, Allee Effects, and Marine Protected Areas",2019,2019-02-01
+Q3a,70,https://openalex.org/W2910661968,10.1111/eva.12768,Does gene flow aggravate or alleviate maladaptation to environmental stress in small populations?,2019,2019-01-16
+Q3a,71,https://openalex.org/W2115958313,10.1093/conphys/cot012,Can physiological stress alter population persistence? A model with conservation implications,2013,2013-06-12
+Q3a,72,https://openalex.org/W2149292446,10.1016/j.biocon.2014.09.035,Modelling population dynamics of the Common hamster (Cricetus cricetus): Timing of harvest as a critical aspect in the conservation of a highly endangered rodent,2014,2014-10-17
+Q3a,73,https://openalex.org/W3194330341,10.1007/s43615-021-00100-6,Smart Sustainable Cities of the New Millennium: Towards Design for Nature,2021,2021-08-25
+Q3a,74,https://openalex.org/W2081152247,10.1016/j.quascirev.2015.01.022,Uncertainties in dating constrain model choice for inferring extinction time from fossil records,2015,2015-02-17
+Q3a,75,https://openalex.org/W2043886627,10.1371/journal.pone.0090292,Generalized Drivers in the Mammalian Endangerment Process,2014,2014-02-26
+Q3a,76,https://openalex.org/W2901416616,10.1007/s00606-018-1552-x,Why polyploid exceptionalism is not accompanied by reduced extinction rates,2018,2018-11-17
+Q3a,77,https://openalex.org/W769275819,10.1016/j.gecco.2015.06.006,"Human harvest, climate change and their synergistic effects drove the Chinese Crested Tern to the brink of extinction",2015,2015-07-01
+Q3a,78,https://openalex.org/W2006113986,10.1016/j.biocon.2014.03.007,Sea level rise and prescribed fire management: Implications for seaside sparrow population viability,2014,2014-04-04
+Q3a,79,https://openalex.org/W2601047135,10.3354/aei00223,Quantifying the contribution of sea lice from aquaculture to declining annual returns in a wild Atlantic salmon population,2017,2017-03-30
+Q3a,80,https://openalex.org/W2944240471,10.1093/condor/duy024,Preventing local extinctions of tidal marsh endemic Seaside Sparrows and Saltmarsh Sparrows in eastern North America,2019,2019-04-16
+Q3a,81,https://openalex.org/W2773534178,10.1016/j.gecco.2017.11.005,Identifying spatially concordant evolutionary significant units across multiple species through DNA barcodes: Application to the conservation genetics of the freshwater fishes of Java and Bali,2017,2017-10-01
+Q3a,82,https://openalex.org/W3045658523,10.1002/aqc.3411,A new protocol for assessing the conservation priority of groundwater‐dependent ecosystems,2020,2020-07-27
+Q3a,83,https://openalex.org/W3040362965,10.1111/mec.15540,Accounting for cryptic population substructure enhances detection of inbreeding depression with genomic inbreeding coefficients: an example from a critically endangered marsupial,2020,2020-07-06
+Q3a,84,https://openalex.org/W2155773610,10.7717/peerj.310,"Urban park characteristics, genetic variation, and historical demography of white-footed mouse ( Peromyscus leucopus ) populations in New York City",2014,2014-03-13
+Q3a,85,https://openalex.org/W3169258030,10.1002/ecm.1471,Wildcards in climate change biology,2021,2021-06-16
+Q3a,86,https://openalex.org/W4229012180,10.1093/molbev/msac094,Genomic Impact of Whaling in North Atlantic Fin Whales,2022,2022-05-01
+Q3a,87,https://openalex.org/W3194147291,10.3390/d13080382,Applying Population Viability Analysis to Inform Genetic Rescue That Preserves Locally Unique Genetic Variation in a Critically Endangered Mammal,2021,2021-08-16
+Q3a,88,https://openalex.org/W3106713440,10.1086/712805,Models for Eco-Evolutionary Extinction Vortices under Balancing Selection,2020,2020-11-25
+Q3a,89,https://openalex.org/W1952934960,10.1016/j.biocon.2015.10.013,Significant genetic diversity loss following pathogen driven population extinction in the rare endemic Banksia brownii (Proteaceae),2015,2015-11-02
+Q3a,90,https://openalex.org/W2972523507,10.1111/mec.15238,Genetic drift during the spread phase of a biological invasion,2019,2019-09-08
+Q3a,91,https://openalex.org/W3046655008,10.1111/mec.15566,Adaptive and maladaptive genetic diversity in small populations: Insights from the Brook Charr ( Salvelinus fontinalis ) case study,2020,2020-07-31
+Q3a,92,https://openalex.org/W3112713546,10.3389/fenvs.2020.609129,Measures to Control Invasive Crayfish Species in Switzerland: A Success Story?,2020,2020-12-09
+Q3a,93,https://openalex.org/W4379928697,10.1126/science.add8366,Plio-Pleistocene African megaherbivore losses associated with community biomass restructuring,2023,2023-06-08
+Q3a,94,https://openalex.org/W3146666535,10.7554/elife.63870,Relative demographic susceptibility does not explain the extinction chronology of Sahul’s megafauna,2021,2021-03-30
+Q3a,95,https://openalex.org/W3206110272,10.1016/j.gecco.2021.e01865,Individual and synergistic effects of habitat loss and roads on reptile occupancy,2021,2021-10-13
+Q3a,96,https://openalex.org/W4288084409,10.3354/esr01197,More vaquita porpoises survive than expected,2022,2022-07-28
+Q3a,97,https://openalex.org/W4301395947,10.1111/eva.13487,Are genetic variation and demographic performance linked?,2022,2022-10-04
+Q3a,98,https://openalex.org/W3158629465,10.1002/ece3.7555,Scaling the extinction vortex: Body size as a predictor of population dynamics close to extinction events,2021,2021-05-02
+Q3a,99,https://openalex.org/W4206967917,10.1016/j.biocon.2022.109467,Wolf-dog admixture highlights the need for methodological standards and multidisciplinary cooperation for effective governance of wild x domestic hybrids,2022,2022-01-25
+Q3a,100,https://openalex.org/W3127816188,10.1111/1365-2745.13609,Plant translocations in Europe and the Mediterranean: Geographical and climatic directions and distances from source to host sites,2021,2021-02-07
+Q3a,101,https://openalex.org/W4220706635,10.12933/therya-22-1162,Ecological corridors for which species?,2022,2022-01-30
+Q3a,102,https://openalex.org/W4221046912,10.1016/j.watbs.2022.100030,"A review of potential conservation and fisheries benefits of breaching four dams in the Lower Snake River (Washington, USA)",2022,2022-03-17
+Q3a,103,https://openalex.org/W4400123272,10.1111/eva.13739,When birds of a feather flock together: Severe genomic erosion and the implications for genetic rescue in an endangered island passerine,2024,2024-06-28
+Q3a,104,https://openalex.org/W4200484197,10.1002/jwmg.22149,"Linking woodland caribou abundance to forestry disturbance in southern British Columbia, Canada",2021,2021-12-28
+Q3a,105,https://openalex.org/W4308001774,10.1007/s10980-022-01494-w,Tigers on the edge: mortality and landscape change dominate individual-based spatially-explicit simulations of a small tiger population,2022,2022-11-01
+Q3a,106,https://openalex.org/W4388193839,10.1093/biosci/biad083,Prediction in ecology and evolution,2023,2023-10-27
+Q3a,107,https://openalex.org/W3014537663,10.1038/s41559-020-1177-7,Reduced ecological resilience jeopardizes zero loss of biodiversity using the mitigation hierarchy,2020,2020-04-06
+Q3a,108,https://openalex.org/W4387845487,10.1111/mec.17175,"Conservation genomics of an endangered montane amphibian reveals low population structure, low genomic diversity and selection pressure from disease",2023,2023-10-21
+Q3a,109,https://openalex.org/W4396732722,10.1111/eva.13677,Taxonomic inflation as a conservation trap for inbred populations,2024,2024-05-01
+Q3a,110,https://openalex.org/W2953641872,10.1111/1365-2664.13464,Evaluating the efficacy of independent versus simultaneous management strategies to address ecological and genetic threats to population viability,2019,2019-06-25
+Q3a,111,https://openalex.org/W3159319062,10.1007/978-3-030-63523-7_28,Does Justice Require De-extinction of the Heath Hen?,2021,2021-01-01
+Q3a,112,https://openalex.org/W4312063302,10.1038/s41598-022-25619-y,Methodological challenges in the genomic analysis of an endangered mammal population with low genetic diversity,2022,2022-12-10
+Q3a,113,https://openalex.org/W4383907621,10.1038/s41598-023-36849-z,"Female-biased introductions produce higher predicted population size and genetic diversity in simulations of a small, isolated tiger (Panthera tigris) population",2023,2023-07-11
+Q3a,114,https://openalex.org/W4396659974,10.1007/s11252-024-01553-x,Species richness and ecological connectivity of the mammal communities in urban and peri-urban areas at Mexico City,2024,2024-05-06
+Q3a,115,https://openalex.org/W4402968869,10.1186/s12864-024-10800-6,Resequencing reveals population structure and genetic diversity in Tibetan sheep,2024,2024-09-30
+Q3a,116,https://openalex.org/W4404276731,10.1111/cobi.14411,Effects of snake fungal disease (ophidiomycosis) on the skin microbiome across two major experimental scales,2024,2024-11-12
+Q3a,117,https://openalex.org/W4409356546,10.1126/sciadv.adv4828,Science-based suggestions to save the world’s rarest primate species Nomascus hainanus,2025,2025-04-11
+Q3a,118,https://openalex.org/W2980510153,10.1093/jhered/esz060,Heterozygosity–Fitness Correlations Reveal Inbreeding Depression in Neonatal Body Size in a Critically Endangered Rock Iguana,2019,2019-10-09
+Q3a,119,https://openalex.org/W4401827619,10.1016/j.fecs.2024.100240,"Disrupted connectivity within a metapopulation of a wind-pollinated declining conifer, Taxus baccata L.",2024,2024-01-01
+Q3a,120,https://openalex.org/W4394582440,10.1038/s41598-024-57414-2,Ancient DNA indicates a century of overhunting did not reduce genetic diversity in Pacific Walruses (Odobenus rosmarus divergens),2024,2024-04-08
+Q3a,121,https://openalex.org/W4404766320,10.1007/s11295-024-01683-5,Deep plastid phylogeographic divergence of beaked hickory (Carya sinensis) calls for transboundary conservation in a biodiversity hotspot,2024,2024-11-27
+Q3a,122,https://openalex.org/W4409147876,10.1111/ele.70090,Assessing the 'Small Population' Paradigm: The Effects of Stochasticity on Evolutionary Change and Population Growth in a Bird Metapopulation,2025,2025-04-01
+Q3a,123,https://openalex.org/W4404624645,10.1016/j.cois.2024.101304,Like a moth to a flame: the effect of megafires on pollinators and pollination systems,2024,2024-11-22
+Q3a,124,https://openalex.org/W4410376873,10.1111/eva.70092,A Guide for Developing Demo‐Genetic Models to Simulate Genetic Rescue,2025,2025-05-01
+Q3a,125,https://openalex.org/W4415458236,10.1093/jmammal/gyaf067,Biodiversity conservation depends on the expansion of taxonomy and systematics research,2025,2025-08-22
+Q3a,126,https://openalex.org/W4408646715,10.1093/oso/9780192858979.003.0010,Multiple stressors,2024,2024-12-26
+Q3a,127,https://openalex.org/W2081124858,10.1016/j.tree.2011.11.005,Natural population die-offs: causes and consequences for terrestrial mammals,2011,2011-12-22
+Q3a,128,https://openalex.org/W2019605964,10.1016/j.tree.2011.09.006,"Minimum viable population size: not magic, but necessary",2011,2011-10-18
+Q3a,129,https://openalex.org/W2123520822,10.1371/journal.pone.0094626,"Should I Stay or Should I Go? Dispersal and Population Structure in Small, Isolated Desert Populations of West African Crocodiles",2014,2014-04-16
+Q3a,130,https://openalex.org/W1497135611,10.1111/j.1365-2664.2011.01969.x,Clarifying climate change adaptation responses for scattered trees in modified landscapes,2011,2011-02-23
+Q3a,131,https://openalex.org/W2019599827,10.1007/s10841-007-9096-3,Population ecology of the rare carabid beetle Carabus variolosus (Coleoptera: Carabidae) in north-west Germany,2007,2007-07-18
+Q3a,132,https://openalex.org/W2078135952,10.1016/j.actaastro.2013.12.013,Estimation of a genetically viable population for multigenerational interstellar voyaging: Review and data for project Hyperion,2014,2014-01-03
+Q3a,133,https://openalex.org/W2792634821,10.1111/ddi.12730,Assessing habitat loss and fragmentation and their effects on population viability of forest specialist birds: Linking biogeographical and population approaches,2018,2018-02-27
+Q3a,134,https://openalex.org/W2270634722,10.1371/journal.pone.0148928,"Population Viability and Vital Rate Sensitivity of an Endangered Avian Cooperative Breeder, the White-Breasted Thrasher (Ramphocinclus brachyurus)",2016,2016-02-09
+Q3a,135,https://openalex.org/W1789119294,10.1098/rspb.2014.2922,Variable coloration is associated with dampened population fluctuations in noctuid moths,2015,2015-05-13
+Q3a,136,https://openalex.org/W360714370,,Turning population trend monitoring into active conservation: Can we save the Cascades Frog ( Rana cascadae ) in the Lassen region of California?,2007,2007-01-01
+Q3a,137,https://openalex.org/W2912078348,10.1007/s10592-019-01152-w,"Revisiting species boundaries and distribution ranges of Nemacheilus spp. (Cypriniformes: Nemacheilidae) and Rasbora spp. (Cypriniformes: Cyprinidae) in Java, Bali and Lombok through DNA barcodes: implications for conservation in a biodiversity hotspot",2019,2019-02-13
+Q3a,138,https://openalex.org/W2081615463,10.1016/j.biocon.2014.01.029,Evaluating empirical evidence for decline in temperate woodland birds: A nationally threatened assemblage of species,2014,2014-02-08
+Q3a,139,https://openalex.org/W2177516203,10.1016/j.biocon.2015.11.017,Species substitutions driven by anthropogenic positive feedbacks: Spanish crayfish species as a case study,2015,2015-11-23
+Q3a,140,https://openalex.org/W2312689643,10.3354/meps11193,Positive feedback between large-scale disturbance and density-dependent grazing decreases resilience of a kelp bed ecosystem,2015,2015-01-15
+Q3a,141,https://openalex.org/W1556138062,10.1111/j.1365-2656.2010.01751.x,"Rarity, life history and scaling of the dynamics in time and space of British birds",2010,2010-09-14
+Q3a,142,https://openalex.org/W2078426856,10.1016/j.crvi.2011.01.005,The impact of global change on terrestrial Vertebrates,2011,2011-03-23
+Q3a,143,https://openalex.org/W3033892099,10.1111/evo.14028,Cooperation can promote rescue or lead to evolutionary suicide during environmental change,2020,2020-06-02
+Q3a,144,https://openalex.org/W2589057846,10.1016/j.biocon.2017.02.010,Mark-recapture models identify imminent extinction of Yaqui catfish Ictalurus pricei in the United States,2017,2017-02-13
+Q3a,145,https://openalex.org/W3088528185,10.3854/crm.5.109.agassizii.v1.2019,"Gopherus agassizii (Cooper 1861) – Mojave Desert Tortoise, Agassiz’s Desert Tortoise",2019,2019-01-01
+Q3a,146,https://openalex.org/W1593834692,10.1002/ajp.22427,The geographic distribution of genetic diversity within gorillas,2015,2015-05-14
+Q3a,147,https://openalex.org/W2887607991,10.1007/s10980-018-0694-0,Estimating the permeability of linear infrastructures using recapture data,2018,2018-08-18
+Q3a,148,https://openalex.org/W2917405625,10.1038/s41598-019-39187-1,High genetic diversity and low differentiation retained in the European fragmented and declining Greater Spotted Eagle (Clanga clanga) population,2019,2019-02-28
+Q3a,149,https://openalex.org/W2971372237,10.1007/s10531-019-01844-2,"The risk of threshold responses, tipping points, and cascading failures in pollination systems",2019,2019-09-03
+Q3a,150,https://openalex.org/W3108167961,10.1098/rstb.2020.0037,Demographic estimates from the Palaeolithic–Mesolithic boundary in Scandinavia: comparative benchmarks and novel insights,2020,2020-11-29
+Q3a,151,https://openalex.org/W606326491,10.1016/c2013-0-12895-4,Eco-Evolutionary Dynamics,2014,2014-01-01
+Q3a,152,https://openalex.org/W2126981081,10.1577/t09-019.1,Decline of the Shortjaw Cisco in Lake Superior: The Role of Overfishing and Risk of Extinction,2010,2010-05-01
+Q3a,153,https://openalex.org/W2133863080,10.1080/00028487.2011.651073,Past and Present Processes Influencing Genetic Diversity and Effective Population Size in a Natural Population of Atlantic Sturgeon,2012,2012-01-01
+Q3a,154,https://openalex.org/W2138384260,10.1111/1365-2664.12142,Modelling interactions of toxicants and density dependence in wildlife populations,2013,2013-07-01
+Q3a,155,https://openalex.org/W2151292796,10.7717/peerj.1406,Demographic and genetic factors in the recovery or demise ofex situpopulations following a severe bottleneck in fifteen species of Hawaiian tree snails,2015,2015-11-12
+Q3a,156,https://openalex.org/W836120777,10.1017/cbo9781139095075.024,Anthropogenic footprints on biodiversity,2013,2013-02-14
+Q3a,157,https://openalex.org/W1964524910,10.1098/rspb.2014.1648,Evaluating an icon of population persistence: the Devil's Hole pupfish,2014,2014-09-17
+Q3a,158,https://openalex.org/W2205106004,10.22459/pagm.04.2015.21,Managing Protected Areas for Biological Diversity and Ecosystem Functions,2015,2015-04-01
+Q3a,159,https://openalex.org/W3207143641,10.1111/mec.16236,Agricultural intensification alters marbled newt genetic diversity and gene flow through density and dispersal reduction,2021,2021-10-21
+Q3a,160,https://openalex.org/W3007930970,10.3389/fevo.2020.00043,Evidence for a Growing Population of Eastern Migratory Monarch Butterflies Is Currently Insufficient,2020,2020-02-26
+Q3a,161,https://openalex.org/W2901164089,10.1670/18-026,Implications of Small Population Size in a Threatened Pitviper Species,2018,2018-11-13
+Q3a,162,https://openalex.org/W3087954769,10.1111/eva.13135,Genome‐wide diversity and habitat underlie fine‐scale phenotypic differentiation in the rainbow darter (Etheostoma caeruleum),2020,2020-09-21
+Q3a,163,https://openalex.org/W1987890808,10.1080/00063657.2014.938018,Commonness of not-so-common birds: the need for baseline knowledge of actual population size for the validation of population size predictions,2014,2014-07-03
+Q3a,164,https://openalex.org/W2051852752,10.1080/10807039.2012.719385,"Killer Whale(Orcinus orca)Deaths in Prince William Sound, Alaska, 1985–1990",2012,2012-08-14
+Q3a,165,https://openalex.org/W2164388086,10.1111/j.1442-1984.2012.00381.x,"Genetic diversity and conservation of Ipomoea microdactyla (Convolvulaceae): an endemic vine from the Bahamas, Cuba, and southeastern Florida",2012,2012-07-30
+Q3a,166,https://openalex.org/W3154366894,10.1098/rsbl.2020.0729,Developmental instability and phenotypic evolution in a small and isolated bear population,2021,2021-04-01
+Q3a,167,https://openalex.org/W4386083770,10.1111/mec.17109,Genomic approaches to mitigating genetic diversity loss in declining populations,2023,2023-08-23
+Q3a,168,https://openalex.org/W3160320433,10.1111/acv.12695,Genomic signatures of demographic declines in an imperiled amphibian inform conservation action,2021,2021-05-10
+Q3a,169,https://openalex.org/W4318477552,10.3390/genes14020349,Informing Wildlife Corridor Creation through Population Genetics of an Arboreal Marsupial in a Fragmented Landscape,2023,2023-01-29
+Q3a,170,https://openalex.org/W4405920340,10.1111/ele.14483,Density dependence maintains long‐term stability despite increased isolation and inbreeding in the Florida Scrub‐Jay,2024,2024-12-01
+Q3a,171,https://openalex.org/W4251279934,10.1093/oso/9780198783398.003.0004,Loss of genetic diversity reduces ability to adapt,2017,2017-07-13
+Q3a,172,https://openalex.org/W4214907453,10.1016/j.biocon.2022.109501,Prioritising conservation actions for extremely data-poor species: A risk assessment for one of the world's rarest marine fishes,2022,2022-03-04
+Q3a,173,https://openalex.org/W4399169866,10.1371/journal.pone.0304276,Habitat remediation followed by managed connectivity reduces unwanted changes in evolutionary trajectory of high extirpation risk populations,2024,2024-05-30
+Q3a,174,https://openalex.org/W4402542102,10.1111/acv.12974,Perilous state of critically endangered Northwest African cheetah ( Acinonyx jubatus hecki ) across the Sudano‐Sahel,2024,2024-09-14
+Q3a,175,https://openalex.org/W4408922414,10.1111/gcb.70143,Climate Change and Marine Food Webs: Navigating Structural Uncertainty Using Qualitative Network Analysis With Insights for Salmon Survival,2025,2025-03-01
+Q3a,176,https://openalex.org/W4414473543,10.3390/insects16100995,"Starvation During the Larval Stage Driving Population Decline in the Butterfly Specialist Luehdorfia chinensis Leech, 1893 (Lepidoptera: Papilionidae)",2025,2025-09-24
+Q3a,177,https://openalex.org/W7164314616,10.2478/orhu-2026-0002,Global conservation status and population trends of the Sooty Falcon (Falco concolor),2026,2026-06-01
+Q3a,178,https://openalex.org/W1963960392,10.1007/s10592-006-9260-4,Inbreeding levels and prey abundance interact to determine fecundity in natural populations of two species of wolf spider,2006,2006-12-13
+Q3a,179,https://openalex.org/W2160204250,10.1038/444555a,Rarity bites,2006,2006-11-01
+Q3a,180,https://openalex.org/W2478196262,10.5962/bhl.title.116577,"Programa de monitoreo del Cocodrilo de pantano (Crocodylus moreletii) México, Belice y Guatemala",2011,2011-01-01
+Q3a,181,https://openalex.org/W135098835,10.1609/aaai.v25i1.7809,The Steiner Multigraph Problem: Wildlife Corridor Design for Multiple Species,2011,2011-08-04
+Q3a,182,https://openalex.org/W2065528006,10.1890/es14-00054.1,Time to competitive exclusion,2014,2014-05-01
+Q3a,183,https://openalex.org/W2125134513,10.2744/ccb-1050.1,"Translocation Relative to Spatial Genetic Structure of the Mojave Desert Tortoise,Gopherus agassizii",2014,2014-07-01
+Q3a,184,https://openalex.org/W2086219180,10.1007/s10592-014-0577-0,Water availability strongly impacts population genetic patterns of an imperiled Great Plains endemic fish,2014,2014-02-11
+Q3a,185,https://openalex.org/W2770438352,10.1002/eap.1652,Mechanism matters: the cause of fluctuations in boom–bust populations governs optimal habitat restoration strategy,2017,2017-11-22
+Q3a,186,https://openalex.org/W2891000164,10.1007/s11538-018-0504-5,Evolutionary Rescue in a Linearly Changing Environment: Limits on Predictability,2018,2018-09-14
+Q3a,187,https://openalex.org/W3009080917,10.1139/cjfas-2019-0326,Estimating population abundance with a mixture of physical capture and PIT tag antenna detection data,2020,2020-03-07
+Q3a,188,https://openalex.org/W1992290578,10.2744/ccb-1001.1,"Population Viability Analysis of a Long-Lived Freshwater Turtle, Hydromedusa maximiliani (Testudines: Chelidae)",2012,2012-12-01
+Q3a,189,https://openalex.org/W1992873662,10.1016/j.jtbi.2007.07.013,Food web structure and interaction strength pave the way for vulnerability to extinction,2007,2007-07-21
+Q3a,190,https://openalex.org/W2606875671,10.1002/jwmg.21268,Persistence of greater sage‐grouse in agricultural landscapes,2017,2017-04-12
+Q3a,191,https://openalex.org/W178442222,10.1016/b978-0-12-801374-8.00005-0,Eco-Evolutionary Dynamics,2014,2014-01-01
+Q3a,192,https://openalex.org/W2741426869,10.1007/s10592-017-1003-1,"Microsatellite polymorphism in the endangered snail kite reveals a panmictic, low diversity population",2017,2017-08-01
+Q3a,193,https://openalex.org/W2769419687,10.1007/s10530-017-1617-8,Displacement and replacement in real time: Polistes dominula’s impact on P. fuscatus in the northeastern U.S.,2017,2017-11-18
+Q3a,194,https://openalex.org/W3157148350,10.3390/d13050193,Assessing Temporal Patterns and Species Composition of Glass Eel (Anguilla spp.) Cohorts in Sumatra and Java Using DNA Barcodes,2021,2021-04-29
+Q3a,195,https://openalex.org/W1541524927,,La Totoaba del Golfo de California ¿una especie en peligro de extinción?,2011,2011-01-01
+Q3a,196,https://openalex.org/W2090951422,10.1016/j.tree.2011.09.014,A general target for MVPs: unsupported and unnecessary,2011,2011-10-16
+Q3a,197,https://openalex.org/W2522195465,10.7717/peerj.2440,Successful population establishment from small introductions appears to be less common than believed,2016,2016-09-21
+Q3a,198,https://openalex.org/W2592734744,10.1371/journal.pone.0173220,"Colonial, more widely distributed and less abundant bird species undergo wider population fluctuations independent of their population trend",2017,2017-03-02
+Q3a,199,https://openalex.org/W3046080124,10.1016/j.biocon.2020.108710,Long term effects of outbreeding: experimental founding of island population eliminates malformations and improves hatching success in sand lizards,2020,2020-07-28
+Q3a,200,https://openalex.org/W4293103516,10.1002/eap.2726,Range‐wide sources of variation in reproductive rates of northern spotted owls,2022,2022-08-26
+Q3b,1,https://openalex.org/W3103981083,10.1016/j.ecolind.2020.106809,Indicators for assessing the robustness of metapopulations against habitat loss,2020,2020-11-11
+Q3b,2,https://openalex.org/W3173553675,10.1007/s00343-021-0400-y,Low genetic diversity in the endangered marine alga Silvetia siliquosa (Ochrophyta: Fucaceae) and the implication to conservation,2021,2021-06-24
+Q3b,3,https://openalex.org/W3180963221,10.1007/s00442-021-04976-x,Phenotypic variation in a neotropical understory bird driven by environmental change in an urbanizing Amazonian landscape,2021,2021-07-01
+Q3b,4,https://openalex.org/W2906421104,10.1111/1749-4877.12371,Testing the effectiveness of conservation management within biosphere reserves: the case of the Mexican deer mouse ( Peromyscus mexicanus ) as a bioindicator,2018,2018-12-26
+Q3b,5,https://openalex.org/W3155140850,10.1016/bs.acr.2021.02.003,Treatment-induced evolutionary dynamics in nonmetastatic locally advanced rectal adenocarcinoma,2021,2021-01-01
+Q3b,6,https://openalex.org/W4385753250,10.1016/j.biocon.2023.110217,Demographic collapse threatens the long-term persistence of Andean condors in the northern Andes,2023,2023-08-11
+Q3b,7,https://openalex.org/W4386287319,10.1186/s12864-023-09574-0,Genetic diversity and structure of mongolian gazelle (Procapra gutturosa) populations in fragmented habitats,2023,2023-08-30
+Q3b,8,https://openalex.org/W4386332585,10.3390/plants12173140,Seed Germination and Seedling Growth Influenced by Genetic Features and Drought Tolerance in a Critically Endangered Maple,2023,2023-08-31
+Q3b,9,https://openalex.org/W4387968942,10.1038/s41598-023-45715-x,Population genomics reveals how 5 ka of human occupancy led the Lima leaf-toed gecko (Phyllodactylus sentosus) to the brink of extinction,2023,2023-10-27
+Q3b,10,https://openalex.org/W3135549909,10.3897/rethinkingecology.6.58899,Long term environmental stability drives reduced stress tolerance in salt lake invertebrates,2021,2021-02-26
+Q3b,11,https://openalex.org/W4246013554,10.1093/oso/9780198783398.003.0005,Population fragmentation causes inadequate gene flow and increases extinction risk,2017,2017-07-13
+Q3b,12,https://openalex.org/W4385548966,10.1111/aje.13196,Viability analysis of Kordofan giraffe (Giraffa camelopardalis antiquorum) in a protected area in Cameroon,2023,2023-08-03
+Q3b,13,https://openalex.org/W4413404706,10.1093/oso/9780192898166.001.0001,Conservation of Wildlife Populations,2025,2025-08-21
+Q3b,14,https://openalex.org/W4404171489,10.1016/j.isci.2024.111352,Evidences from gut microbiome and habitat landscape indicate continued threat of extinction for the Hainan gibbon,2024,2024-11-08
+Q3b,15,https://openalex.org/W4402292878,10.1139/er-2024-0051,Resolving a sorites paradox: how large is a small population?,2024,2024-09-06
+Q3b,16,https://openalex.org/W4405089188,10.1111/eva.70050,Simulating Genetic Mixing in Strongly Structured Populations of the Threatened Southern Brown Bandicoot (Isoodon obesulus),2024,2024-12-01
+Q3b,17,https://openalex.org/W4411383854,10.1002/ece3.71596,Conservation Genomics for Threatened New Zealand Gentianella calcis (Gentianaceae) and Implications for Vulnerable Limestone Ecosystems,2025,2025-06-01
+Q3b,18,https://openalex.org/W7125672497,10.1111/ele.70296,Sex Ratio Bias Triggers Demographic Suicide in a Dense Tortoise Population,2026,2026-01-01
+Q3b,19,https://openalex.org/W7167904756,10.1038/s41559-026-03125-y,Models used for Red List assessments underestimate climate-related extinction risk of range-shifting species,2026,2026-07-10
+Q3b,20,https://openalex.org/W1965185557,10.1016/j.actao.2010.08.004,"Indication of a species in an extinction vortex: The ocellated turkey on the Yucatan peninsula, Mexico",2010,2010-09-16
+Q3b,21,https://openalex.org/W2068775922,10.1577/t09-069.1,The Elusive Minimum Viable Population Size for White Sturgeon,2010,2010-09-01
+Q3b,22,https://openalex.org/W1599456628,10.1111/cobi.12329,Effects of Recent Environmental Change on Accuracy of Inferences of Extinction Status,2014,2014-06-24
+Q3b,23,https://openalex.org/W2107429232,10.1007/s12080-014-0240-x,A niche remedy for the dynamical problems of neutral theory,2014,2014-11-13
+Q3b,24,https://openalex.org/W2087140469,10.1016/j.jembe.2015.03.003,"Applying a fast, effective and reliable photographic identification system for green turtles in the waters near Luichiu Island, Taiwan",2015,2015-04-02
+Q3b,25,https://openalex.org/W2115175251,10.1080/02755947.2013.824933,A Practical Comparison of Viability Models Used for Management of Endangered and Threatened Anadromous Pacific Salmonids,2013,2013-10-17
+Q3b,26,https://openalex.org/W2613860534,10.1017/s095927091600054x,Habitat requirements and population estimate of the endangered Ecuadorian TapaculoScytalopus robbinsi,2017,2017-05-11
+Q3b,27,https://openalex.org/W3134190146,10.1038/s41523-021-00230-y,Novel evolutionary dynamics of small populations in breast cancer adjuvant and neoadjuvant therapy,2021,2021-03-11
+Q3b,28,https://openalex.org/W4282928600,10.1098/rspb.2022.0526,Avoiding critical thresholds through effective monitoring,2022,2022-06-15
+Q3b,29,https://openalex.org/W1879832036,10.1002/rra.2741,Projected Risk of Population Declines for Native Fish Species in the Upper Mississippi River,2014,2014-03-19
+Q3b,30,https://openalex.org/W3126901868,10.1139/cjfas-2020-0383,Environmental and genetic influences on fitness-related traits in a hatchery coho salmon population,2021,2021-01-28
+Q3b,31,https://openalex.org/W3159234867,10.1002/ece3.7480,Intact landscape promotes gene flow and low genetic structuring in the threatened Eastern Massasauga Rattlesnake,2021,2021-05-02
+Q3b,32,https://openalex.org/W4320168784,10.1016/j.eiar.2022.107028,Net loss or no net loss? Multiscalar analysis of a gas pipeline offset efficiency for a protected butterfly population,2023,2023-01-31
+Q3b,33,https://openalex.org/W2497785471,10.1002/ecy.1544,Trophic interactions may reverse the demographic consequences of inbreeding,2016,2016-07-28
+Q3b,34,https://openalex.org/W3042183607,10.7717/peerj.9167,Evolutionary history of a Scottish harbour seal population,2020,2020-07-10
+Q3b,35,https://openalex.org/W4288684595,10.1111/rec.13770,"On the edge: habitat restoration priorities for three critically endangered bird species on Sangihe, Indonesia",2022,2022-07-30
+Q3b,36,https://openalex.org/W2810948978,10.1642/auk-18-1.1,Variation in inbreeding rates across the range of Northern Spotted Owls (Strix occidentalis caurina): Insights from over 30 years of monitoring data,2018,2018-07-03
+Q3b,37,https://openalex.org/W4290091318,10.1111/csp2.12780,"Recent declines in genetic diversity with limited dispersal among coastal cactus wren populations in San Diego County, California",2022,2022-08-06
+Q3b,38,https://openalex.org/W4232952601,10.1093/oso/9780198783398.003.0003,Inbreeding reduces reproductive fitness,2017,2017-07-13
+Q3b,39,https://openalex.org/W4297206877,10.1139/cjb-2022-0064,Diversity among rare and common congeneric plant species from the Garry oak and Okanagan shrub-steppe ecosystems in British Columbia: implications for conservation,2022,2022-09-27
+Q3b,40,https://openalex.org/W4403889219,10.1098/rspb.2026.0600,Extinction vortices are driven more by a shortage of beneficial mutations than by deleterious mutation accumulation,2026,2026-06-03
+Q3b,41,https://openalex.org/W4404612869,10.1002/ecm.1638,Land‐use changes influence climate resilience through altered population demography in a social insect,2024,2024-11-22
+Q3b,42,https://openalex.org/W2964474376,10.22459/ggap.2019.21,Gestión y manejo de áreas protegidas para la diversidad biológica y las funciones del ecosistema,2019,2019-08-04
+Q3b,43,https://openalex.org/W4306181070,10.1186/s12862-022-02072-z,A centenary tale: population genetic insights into the introduction history of the oriental fire-bellied toad (Bombina orientalis) in Beijing,2022,2022-10-14
+Q3b,44,https://openalex.org/W4402557216,10.1016/j.scitotenv.2024.176306,"Hurricane-induced dramatic decline and natural recovery of a vulnerable sportfish population: Shoal bass (Micropterus cataractae) in the Chipola River, Florida",2024,2024-09-17
+Q3b,45,https://openalex.org/W4402722700,10.1002/nafm.11031,Detecting bias in abundance estimates of spawning fish from closed-capture models using remote and physical capture data,2024,2024-09-22
+Q3b,46,https://openalex.org/W4412891209,10.3390/plants14152380,Projecting Extinction Risk and Assessing Conservation Effectiveness for Three Threatened Relict Ferns in the Western Mediterranean Basin,2025,2025-08-01
+Q3b,47,https://openalex.org/W7104004749,10.1016/j.biocon.2025.111598,Reintroducing a large carnivore in a human dominated landscape: Dynamics of an isolated brown bear population over two decades post-reintroduction,2025,2025-11-05
+Q3b,48,https://openalex.org/W4233364329,10.1093/oso/9780198783398.003.0010,Determining the number and location of genetically differentiated population fragments,2017,2017-07-13
+Q3b,49,https://openalex.org/W4412704425,10.1073/pnas.2500713122,Synergies between speciation and conservation science yield novel insights for mitigating the biodiversity crisis of the Anthropocene,2025,2025-07-28
+Q3b,50,https://openalex.org/W4413404924,10.1093/oso/9780192898166.003.0001,The big picture,2025,2025-08-21
+Q3b,51,https://openalex.org/W4413405212,10.1093/oso/9780192898166.003.0011,"Population responses to human-caused stressors: Move, adjust, or die",2025,2025-08-21
+Q3b,52,https://openalex.org/W4414213067,10.1111/1365-2745.70150,Climate change is associated with a higher extinction risk of a subshrub in anthropogenic landscapes,2025,2025-09-09
+Q3b,53,https://openalex.org/W4416239734,10.1002/eap.70130,Phenology‐informed decline risk of estuarine fishes and their prey suggests potential for future trophic mismatches,2025,2025-10-01
+Q3b,54,https://openalex.org/W4416794021,10.1093/emph/eoaf035,Harnessing the extinction vortex against acute lymphoblastic leukemia,2025,2025-01-01
+Q3b,55,https://openalex.org/W4417506496,10.1038/s41467-025-67616-5,Global coral genomic vulnerability explains recent reef losses,2025,2025-12-19
+Q3b,56,https://openalex.org/W3126280017,,Comparative Demography and Viability of Northeastern Pacific Resident Killer Whale Populations at Risk,2014,2014-01-01
+Q3b,57,https://openalex.org/W4232437923,10.1093/oso/9780198783398.003.0007,Outbreeding depression is uncommon and predictable,2017,2017-07-13
+Q3b,58,https://openalex.org/W4293067030,10.1080/23802359.2022.2110530,Characterization of the complete mitochondrial genome of the Lesser Spotted Woodpecker (Dryobates minor) and its phylogenetic position,2022,2022-08-03
+Q3b,59,https://openalex.org/W2953957737,10.1007/s10592-019-01202-3,Use of genetic data in a species status assessment of the Sicklefin Redhorse (Moxostoma sp.),2019,2019-07-03
+Q3b,60,https://openalex.org/W2094576611,10.1002/aqc.1109,Dynamics of extinction of a small population of the three‐spined stickleback (Gasterosteus aculeatus L) caused by habitat modification,2010,2010-03-30
+Q3b,61,https://openalex.org/W214127011,,The Cronus Hypothesis - Extinction as a Necessary and Dynamic Balance to Evolutionary Diversification Corey,2009,2009-11-01
+Q3b,62,https://openalex.org/W2168738565,10.1007/s10592-014-0667-z,Genetic diversity and population structure of the range restricted rock firefinch Lagonosticta sanguinodorsalis,2014,2014-10-15
+Q3b,63,https://openalex.org/W3206138153,10.1007/s00442-021-05049-9,"Nitrogen addition, not heterogeneity, alters the relationship between invasion and native decline in California grasslands",2021,2021-10-13
+Q3b,64,https://openalex.org/W2336051536,10.1111/acv.12271,Ameliorating the loss of genetic diversity in captive wildlife populations,2016,2016-04-01
+Q3b,65,https://openalex.org/W2370020365,10.25710/ncgh-hn12,Mountain goat genetic diversity and population connectivity in Washington and Southern British Columbia,2020,2020-04-17
+Q3b,66,https://openalex.org/W2408429819,,"Escola Superior de Agricultura ""Luiz de Queiroz"" Centro de Energia Nuclear na Agricultura Ecologia reprodutiva e análise de viabilidade de uma população do cágado Hydromedusa maximiliani (Testudines, Chelidae) no Parque Estadual Carlos Botelho, SP",2009,2009-01-01
+Q3b,67,https://openalex.org/W4395665457,10.11609/jott.8941.16.4.25029-25039,The population trend of the largest breeding colony of the Indian Swiftlet Aerodramus unicolor: is it on the verge of extinction?,2024,2024-04-26
+Q3b,68,https://openalex.org/W4244817510,10.1093/oso/9780198783398.003.0001,Introduction,2017,2017-07-13
+Q3b,69,https://openalex.org/W4297499126,10.1016/j.ecoinf.2022.101820,The consequences of tree disease and pre-emptive felling on functional and genetic connectivity for woodland invertebrates,2022,2022-09-28
+Q3b,70,https://openalex.org/W4377242164,10.1007/s10592-023-01535-0,Unexpected and spatially structured genetic diversity of the relict population of the endangered corsican land snail Tyrrhenaria ceratina,2023,2023-05-22
+Q3b,71,https://openalex.org/W4408019739,10.1086/735562,"Genetic Load, Eco-Evolutionary Feedback, and Extinction in Metapopulations",2025,2025-02-27
+Q3b,72,https://openalex.org/W4411823458,10.1111/mec.70002,Genomic Signatures and Demographic History of the Widespread and Critically Endangered Yellow‐Breasted Bunting,2025,2025-06-30
+Q3b,73,https://openalex.org/W4413618701,10.1111/conl.13122,The Eel Market Extinction Vortex,2025,2025-07-01
+Q3b,74,https://openalex.org/W2883437190,10.1007/978-3-319-90584-6_2,Are Current Actions for Conservation in Mexico Enough? A Review of the Proximate and Ultimate Threats,2018,2018-01-01
+Q3b,75,https://openalex.org/W2165933574,10.25560/14471,Natural population die-offs : lessons for conservation,2012,2012-12-01
+Q3b,76,https://openalex.org/W2254245544,,Dynamics of Species Extinction and Recovery in Multi-Trophic Aquatic Systems,2010,2010-10-06
+Q3b,77,https://openalex.org/W2737072911,10.1080/24701394.2017.1357708,Spatial genetic structure and body size divergence in endangered Gymnogobius isaza in ancient Lake Biwa,2017,2017-07-26
+Q3b,78,https://openalex.org/W3134878018,10.18276/ab.2020.27-12,Conservation genetics – science in the service of nature,2020,2020-01-01
+Q3b,79,https://openalex.org/W4254220271,10.1093/oso/9780198783398.003.0009,Is the taxonomy appropriate? Delineating species for conservation purposes,2017,2017-07-13
+Q3b,80,https://openalex.org/W1544361270,10.3133/ofr20071086,A Quantitative Threats Analysis for the Florida Manatee (Trichechus manatus latirostris),2007,2007-01-01
+Q3b,81,https://openalex.org/W4295911124,10.1101/2022.09.13.507768,Genomic erosion in the assessment of species’ extinction risk and recovery potential,2022,2022-09-15
+Q3b,82,https://openalex.org/W3101831904,10.1101/717074,Response to CAR T cell therapy can be explained by ecological cell dynamics and stochastic extinction events,2019,2019-07-28
+Q3b,83,https://openalex.org/W2283916554,10.58088/mk1e-vp48,Conservation ecology of tidal marsh sparrows in New Jersey,2024,2024-06-21
+Q3b,84,https://openalex.org/W3033338514,10.1101/272898,Rare and common vertebrates span a wide spectrum of population trends,2018,2018-03-05
+Q3b,85,https://openalex.org/W4307743036,10.1101/2022.10.29.514126,"How density dependence, genetic erosion, and the extinction vortex impact evolutionary rescue",2022,2022-10-31
+Q3b,86,https://openalex.org/W4321484400,10.1016/b978-0-12-822562-2.00072-4,"Land-Sparing and Sharing: Identifying Areas of Consensus, Remaining Debate and Alternatives",2023,2023-02-22
+Q3b,87,https://openalex.org/W4405645260,10.1101/2024.12.12.628160,Persistent genomic erosion in whooping cranes despite demographic recovery,2024,2024-12-17
+Q3b,88,https://openalex.org/W2508494171,,Inferring demographic history and speciation of grouse using whole genome sequences,2016,2016-01-01
+Q3b,89,https://openalex.org/W4313453075,10.1101/2022.12.20.521169,Genetic load and adaptive potential of a recovered avian species that narrowly avoided extinction,2022,2022-12-20
+Q3b,90,https://openalex.org/W4393212098,10.1101/2024.03.25.586253,Global coral genomic vulnerability explains recent reef losses,2024,2024-03-25
+Q3b,91,https://openalex.org/W2297903217,10.1101/038125,The genetic Allee effect: A unified framework for the genetics and demography of small populations,2016,2016-01-28
+Q3b,92,https://openalex.org/W2164161833,,Stochasticity in the extinction process,2009,2009-01-01
+Q3b,93,https://openalex.org/W2169329870,,Population and community responses to anthropogenic environmental changes,2009,2009-04-01
+Q3b,94,https://openalex.org/W2204617806,10.26512/2015.5.d.18700,Uso de geotecnologias aplicadas em estudos de modelos de ocupação e conectividade para mamíferos de médio e maior porte no cerrado,2015,2015-05-08
+Q3b,95,https://openalex.org/W2521716006,,Does migration matter? Causes and consequences of migratory behavior in Sierra Nevada bighorn sheep,2015,2015-01-01
+Q3b,96,https://openalex.org/W4306195260,10.1101/2022.10.11.511768,Allee effects mediate the impact of land-use change on the thermal niche of social species,2022,2022-10-14
+Q3b,97,https://openalex.org/W4385976486,10.1093/oso/9780198783398.005.0001,Genetic markers for conservation purposes,2017,2017-07-13
+Q3b,98,https://openalex.org/W4390765992,10.1101/2024.01.10.575127,Impacts of increasing isolation and environmental variation on Florida Scrub-Jay demography,2024,2024-01-11
+Q3b,99,https://openalex.org/W1582460116,,A unification of niche and neutral theories quantifies the impact of competition on extinction,2011,2011-02-01
+Q3b,100,https://openalex.org/W2418257864,10.14288/1.0072604,Losses of rare forest invertebrates and divergent rates of litter decomposition under different land uses,2012,2012-01-01
+Q3b,101,https://openalex.org/W2529351864,,Consequences of sexual selection for reproductive and life history traits in Tribolium castaneum,2016,2016-05-01
+Q3b,102,https://openalex.org/W2603752447,10.58088/1mwn-g877,Population viability of Seaside and Saltmarsh sparrows in New Jersey,2025,2025-04-02
+Q3b,103,https://openalex.org/W2890368363,10.57709/12009191,Using Biomarkers to Optimize the Rehabilitation of Wild Raptors,2022,2022-05-10
+Q3b,104,https://openalex.org/W2948102794,10.1101/660621,Adaptive and maladaptive genetic diversity in small populations; insights from the Brook Charr ( Salvelinus fontinalis) case study,2019,2019-06-06
+Q3b,105,https://openalex.org/W2995948552,10.1101/2019.12.16.877670,Patterns of gene flow across multiple anthropogenic infrastructures: Insights from a multi-species approach,2019,2019-12-17
+Q3b,106,https://openalex.org/W4214601957,10.3410/f.738671616.793578496,Faculty Opinions recommendation of WWF (2020) Living Planet Report 2020 - Bending the curve of biodiversity loss.,2020,2020-09-16
+Q3b,107,https://openalex.org/W4241197542,10.3410/f.738671616.793579283,Faculty Opinions recommendation of WWF (2020) Living Planet Report 2020 - Bending the curve of biodiversity loss.,2020,2020-10-12
+Q3b,108,https://openalex.org/W4389296012,10.1101/2023.12.02.569702,"Genetic load, eco-evolutionary feedback and extinction in metapopulations",2023,2023-12-04
+Q3b,109,https://openalex.org/W4390547300,10.3133/ofr20231097,Non-negligible near-term risk of extinction to the eastern migratory population of monarch butterflies—An updated assessment (2006–22),2024,2024-01-01
+Q3b,110,https://openalex.org/W7148479310,10.70675/822fa084z0b49z4101zb791zed65762f5034,Les possibilités de dispersion et éléments d'habitat-refuge dans un paysage d'agriculture intensive fragmenté par un réseau routier dense : le cas de la petite faune dans la plaine du Bas-Rhin,2017,2017-10-16
+Q3b,111,https://openalex.org/W2730858544,,The Need to Move: Exploring Landscape Connectivity through the Eyes of the Northern Leopard Frog,2017,2017-01-01
+Q3b,112,https://openalex.org/W2997710566,10.1101/2019.12.30.890921,"MetaConnect, a new platform for population viability modelling to assist decision makers in conservation and urban planning",2020,2020-01-03
+Q3b,113,https://openalex.org/W3008154731,10.1101/2020.02.28.969402,Models for Eco-evolutionary Extinction Vortices and their Detection,2020,2020-02-29
+Q3b,114,https://openalex.org/W3048415770,10.22541/au.159714949.96971742,Small body size exacerbates the extinction vortex,2020,2020-08-11
+Q3b,115,https://openalex.org/W3208778780,10.1101/2021.10.22.465529,Do demographic processes change at extremely low population size in western monarch butterflies?,2021,2021-10-24
+Q3b,116,https://openalex.org/W4413404416,10.1093/oso/9780192898166.002.0010,Preface to Third Edition,2025,2025-08-21
+Q3b,117,https://openalex.org/W7148682512,10.70675/018f7a57ze44az4fbaz9a7czfc1a37fed70f,"Dispersion et structure génétique d’une population de Rat des moissons (Micromys minutus PALLAS, 1771) soumise à des inondations régulières",2019,2019-04-18
+Q3b,118,https://openalex.org/W7149015360,10.70675/a2e10559za4c8z4e01z876bza653271cdbde,In situ quantification of brown trout movements,2019,2019-12-03
+Q3b,119,https://openalex.org/W7149343568,10.70675/ee266c52z3880z44eaz8334zc32cb9744b6c,Diversification of Sundaland aquatic biotas : build-up of freshwater fishes' diversity and distribution in a biodiversity hotspot,2020,2020-12-14
+Q3b,120,https://openalex.org/W1510345515,10.1002/9780470057339.vnn145,"Extinction Rates, Estimation Of",2012,2012-08-31
+Q3b,121,https://openalex.org/W1588667535,10.15446/abc.v19n3.42776,Genetic Diversity in a Population of Rhinoclemmys nasuta (TESTU-DINES:GEOEMYDIDAE) Associatted with an Insular Locality in the Chocó Biogeographic Region,2014,2014-07-29
+Q3b,122,https://openalex.org/W1953078974,10.11606/d.91.2009.tde-26062009-150529,"Ecologia reprodutiva e análise de viabilidade de uma população do cágado Hydromedusa maximiliani (Testudines, Chelidae) no Parque Estadual Carlos Botelho",2009,2009-06-19
+Q3b,123,https://openalex.org/W2136486257,10.1007/978-1-4939-0697-0_15,Population Viability Analysis of Woolly Monkeys in Western Amazonia,2014,2014-01-01
+Q3b,124,https://openalex.org/W2289010552,,CONSERVATION ECOLOGY OF TIDAL MARSH SPARROWS,2015,2015-01-01
+Q3b,125,https://openalex.org/W2302396851,10.11606/t.41.2016.tde-08032016-160411,Efeitos do aquecimento global em populações do complexo de espécies Tropidurus torquatus (Squamata: Tropiduridae) no Brasil,2016,2016-03-16
+Q3b,126,https://openalex.org/W2729207900,,The Population and Ecological Genetic Effects of Habitat Fragmentation,2017,2017-01-01
+Q3b,127,https://openalex.org/W2731993695,,The Influence of Temperature Variability on Metrics of Life History in Brook Trout (Salvelinus fontinalis),2017,2017-06-28
+Q3b,128,https://openalex.org/W2742050149,,RESEARCH ARTICLE The Geographic Distribution of Genetic Diversity within Gorillas,2015,2015-01-01
+Q3b,129,https://openalex.org/W2797319749,,Quantitative recovery planning: understanding how human activities in watersheds can influence population dynamics and genetic structuring of diadromous fishes.,2016,2016-09-01
+Q3b,130,https://openalex.org/W2804914838,10.83056/mmu.32478942,Assessing adaptive genetic variation for conservation and management of the European grayling (Thymallus thymallus),2026,2026-05-28
+Q3b,131,https://openalex.org/W2806354454,10.12794/metadc1157526,"The Population Genetic Structure of Quadrula aurea (Bivalvia: Unionidae), A Threatened Freshwater Mussel in Central Texas",2018,2018-05-01
+Q3b,132,https://openalex.org/W2921815500,10.3312/jyio.48.51,Estimating Population Size of the Crested Ibis Nipponia nippon Using Mark Resight Analysis,2017,2017-03-20
+Q3b,133,https://openalex.org/W2976576131,10.1101/784553,"During environmental change, cooperation can promote rescue or lead to evolutionary suicide",2019,2019-09-26
+Q3b,134,https://openalex.org/W3001532205,10.1007/978-3-030-33334-8_6,"Integration of Population Genetics and Ecological Data for Conservation: The Case of the Black-Tailed Prairie Dogs (Cynomys ludovicianus) in Chihuahua, Mexico",2020,2020-01-01
+Q3b,135,https://openalex.org/W3028180437,10.1201/9780429445651-4,Biodiversity: Climate Change,2020,2020-05-19
+Q3b,136,https://openalex.org/W3031130640,,Responses of Dwarf Chameleons to Global Change Drivers,2019,2019-05-29
+Q3b,137,https://openalex.org/W3092789074,10.1101/2020.10.16.342303,Relative demographic susceptibility does not explain the extinction chronology of Sahul’s megafauna,2020,2020-10-19
+Q3b,138,https://openalex.org/W3205564127,10.1101/2021.10.07.463502,Prioritizing Management for Cumulative Impacts,2021,2021-10-09
+Q3b,139,https://openalex.org/W4225507054,10.1177/21582440221082106,Let Us Now Praise Mountain Lions: Revisiting Edward Abbey in the Santa Monica Mountains,2022,2022-01-01
+Q3b,140,https://openalex.org/W4231101486,10.1093/oso/9780198783398.003.0006,Genetic rescue by augmenting gene flow,2017,2017-07-13
+Q3b,141,https://openalex.org/W4231558596,10.1002/9781118445112.stat07696,"Extinction Rates, Estimation Of",2014,2014-09-29
+Q3b,142,https://openalex.org/W4232335750,10.7287/peerj.9167v0.1/reviews/2,"Peer Review #2 of ""Evolutionary history of a Scottish harbour seal population (v0.1)""",2020,2020-07-10
+Q3b,143,https://openalex.org/W4233366885,10.1093/oso/9780198783398.003.0008,Modified rescue and risk expectations for species with diverse mating systems and modes of inheritance,2017,2017-07-13
+Q3b,144,https://openalex.org/W4233381322,10.1016/b978-0-12-813255-5.00037-5,References,2019,2019-04-05
+Q3b,145,https://openalex.org/W4236414789,10.1093/oso/9780198783398.003.0002,Evolutionary genetics of small populations,2017,2017-07-13
+Q3b,146,https://openalex.org/W4237229493,10.7287/peerj.9167v0.1/reviews/1,"Peer Review #1 of ""Evolutionary history of a Scottish harbour seal population (v0.1)""",2020,2020-07-10
+Q3b,147,https://openalex.org/W4237439750,10.1093/oso/9780198783398.003.0015,Take home messages,2017,2017-07-13
+Q3b,148,https://openalex.org/W4242136649,10.1093/oso/9780198783398.003.0011,Are there populations suffering genetic erosion that would benefit from augmented gene flow?,2017,2017-07-13
+Q3b,149,https://openalex.org/W4243591667,10.7287/peerj.310v0.1/reviews/2,"Peer Review #2 of ""Urban park characteristics, genetic variation, and historical demography of white-footed mouse (Peromyscus leucopus) populations in New York City (v0.1)""",2014,2014-03-13
+Q3b,150,https://openalex.org/W4246855210,10.1093/oso/9780198783398.003.0013,Managing gene flow among isolated population fragments. II. Management based on kinship,2017,2017-07-13
+Q3b,151,https://openalex.org/W4249415180,10.7287/peerj.310v0.1/reviews/4,"Peer Review #4 of ""Urban park characteristics, genetic variation, and historical demography of white-footed mouse (Peromyscus leucopus) populations in New York City (v0.1)""",2014,2014-03-13
+Q3b,152,https://openalex.org/W4252814066,10.7287/peerj.310v0.1/reviews/1,"Peer Review #1 of ""Urban park characteristics, genetic variation, and historical demography of white-footed mouse (Peromyscus leucopus) populations in New York City (v0.1)""",2014,2014-03-13
+Q3b,153,https://openalex.org/W4254146951,10.1093/oso/9780198783398.003.0012,Managing gene flow among isolated population fragments. I. Limited information,2017,2017-07-13
+Q3b,154,https://openalex.org/W4254234977,10.1016/b978-0-12-374724-2.00030-1,References,2010,2010-01-01
+Q3b,155,https://openalex.org/W4254288461,10.1093/oso/9780198783398.003.0014,Global climate change increases the need for genetic management,2017,2017-07-13
+Q3b,156,https://openalex.org/W4255117606,10.7287/peerj.9167v0.1/reviews/3,"Peer Review #3 of ""Evolutionary history of a Scottish harbour seal population (v0.1)""",2020,2020-07-10
+Q3b,157,https://openalex.org/W4255470205,10.7287/peerj.310v0.1/reviews/3,"Peer Review #3 of ""Urban park characteristics, genetic variation, and historical demography of white-footed mouse (Peromyscus leucopus) populations in New York City (v0.1)""",2014,2014-03-13
+Q3b,158,https://openalex.org/W4280548312,10.1101/2022.05.06.490926,habCluster: Identifying Geographical Boundary among Intraspecific Units Using Community Detection Algorithm in R,2022,2022-05-08
+Q3b,159,https://openalex.org/W4289520889,10.3389/fcosc.2022.908012,habCluster: identifying the geographical boundary among intraspecific units using community detection algorithms in R,2022,2022-08-02
+Q3b,160,https://openalex.org/W4293203663,10.1017/9781316338704.012,References,2022,2022-08-25
+Q3b,161,https://openalex.org/W4297021565,10.35537/10915/142695,"Modelado de la dinámica demográfica de las poblaciones humanas del norte de Neuquén (Patagonia, Argentina) durante el Holoceno",2022,2022-09-21
+Q3b,162,https://openalex.org/W4297757189,10.2139/ssrn.4195921,Net Loss or No Net Loss? Multiscalar Analysis of a Gas Pipeline Offset Efficiency for a Protected Butterfly Population,2022,2022-01-01
+Q3b,163,https://openalex.org/W4309679155,10.18473/lepi.76i4.a2,Genetic Diversity of Paryphthimoides poltys (Nymphalidae: Satyrinae: Euptychiina) in a Fragmented Agricultural Landscape in the Brazilian Atlantic Forest,2022,2022-11-22
+Q3b,164,https://openalex.org/W4379790926,10.32942/x24s49,Plio-Pleistocene African megaherbivore losses associated with community biomass restructuring,2023,2023-06-09
+Q3b,165,https://openalex.org/W4385658455,10.21248/gups.75018,The application of baleen whale genomes in conservation and evolutionary research,2023,2023-01-01
+Q3b,166,https://openalex.org/W4385975297,10.1093/oso/9780198783398.002.0003,Copyright Page,2017,2017-07-13
+Q3b,167,https://openalex.org/W4385976367,10.1093/oso/9780198783398.002.0007,List of Symbols,2017,2017-07-13
+Q3b,168,https://openalex.org/W4385976436,10.1093/oso/9780198783398.002.0005,Preface,2017,2017-07-13
+Q3b,169,https://openalex.org/W4385976438,10.1093/oso/9780198783398.005.0002,VORTEX simulation software for population viability analysis,2017,2017-07-13
+Q3b,170,https://openalex.org/W4385976572,10.1093/oso/9780198783398.005.0003,How should a taxonomic re-evaluation be conducted if required?,2017,2017-07-13
+Q3b,171,https://openalex.org/W4386267477,10.1093/oso/9780198783398.002.0022,Glossary,2017,2017-07-13
+Q3b,172,https://openalex.org/W4386966984,10.31219/osf.io/jfg7v,Taxonomic inflation as a conservation trap: the capercaillie case,2023,2023-09-21
+Q3b,173,https://openalex.org/W4387758094,10.1016/b978-0-12-822562-2.00352-2,Natural Extinctions,2023,2023-10-18
+Q3b,174,https://openalex.org/W4393050297,10.1093/oso/9780192864161.003.0009,Changes in insect population dynamics due to climate change,2024,2024-03-05
+Q3b,175,https://openalex.org/W4394713436,10.21203/rs.3.rs-4244443/v1,Developing demo-genetic models to simulate genetic rescue,2024,2024-04-11
+Q3b,176,https://openalex.org/W4399567786,10.11606/d.41.2023.tde-04062024-141914,Quantidades iniciais de variação intraespecífica influenciam na persistência de populações em paisagens degradadas e/ou fragmentadas?,2023,2023-02-14
+Q3b,177,https://openalex.org/W4401443797,10.21203/rs.3.rs-4734104/v1,The significance of reproduction-related traits for wet meadow species survival in a fragmented landscape,2024,2024-08-09
+Q3b,178,https://openalex.org/W4401485569,10.1101/2024.08.09.607326,Understanding range-wide immune gene variation in an endangered big cat ( Panthera tigris ),2024,2024-08-09
+Q3b,179,https://openalex.org/W4401994710,10.1101/2024.08.26.609693,Genomic signatures and demographic history of the widespread and critically endangered yellow-breasted bunting,2024,2024-08-26
+Q3b,180,https://openalex.org/W4408456538,10.1016/j.marpolbul.2025.117791,Potential drivers of pocilloporid coral extirpations in Singapore,2025,2025-03-14
+Q3b,181,https://openalex.org/W4411254392,10.1111/acv.70022,"Teetering on the Edge of Extinction Vortex: Habitat Fragmentation and Low Density Threaten Chinese Pangolin Populations in Guangdong, China",2025,2025-06-11
+Q3b,182,https://openalex.org/W4412358053,10.1007/s10980-025-02163-4,"Loss of forest cover leads to population isolation in an imperiled, headwater-specialist fish",2025,2025-07-12
+Q3b,183,https://openalex.org/W4413383809,10.1093/oso/9780192898166.003.0012,Dynamics of small and declining populations,2025,2025-08-21
+Q3b,184,https://openalex.org/W4413383848,10.1093/oso/9780192898166.002.0007,List of Figures,2025,2025-08-21
+Q3b,185,https://openalex.org/W4413383854,10.1093/oso/9780192898166.003.0006,All stage classes are not equal in their effects on population growth,2025,2025-08-21
+Q3b,186,https://openalex.org/W4413383857,10.1093/oso/9780192898166.002.0011,Preface to Second Edition,2025,2025-08-21
+Q3b,187,https://openalex.org/W4413404360,10.1093/oso/9780192898166.002.0013,Epilogue,2025,2025-08-21
+Q3b,188,https://openalex.org/W4413404414,10.1093/oso/9780192898166.003.0008,Predation and wildlife populations,2025,2025-08-21
+Q3b,189,https://openalex.org/W4413404418,10.1093/oso/9780192898166.003.0007,Density-dependent population change,2025,2025-08-21
+Q3b,190,https://openalex.org/W4413404421,10.1093/oso/9780192898166.003.0003,Genetic concepts and tools to support wildlife population ecology,2025,2025-08-21
+Q3b,191,https://openalex.org/W4413404423,10.1093/oso/9780192898166.003.0005,Exponential (or geometric) change,2025,2025-08-21
+Q3b,192,https://openalex.org/W4413404426,10.1093/oso/9780192898166.002.0012,Preface to First Edition,2025,2025-08-21
+Q3b,193,https://openalex.org/W4413404429,10.1093/oso/9780192898166.003.0010,Dynamics of multiple populations,2025,2025-08-21
+Q3b,194,https://openalex.org/W4413404436,10.1093/oso/9780192898166.003.0013,"Sustainable harvest principles, models, and best practices",2025,2025-08-21
+Q3b,195,https://openalex.org/W4413405297,10.1093/oso/9780192898166.002.0014,Credits for Epigraphs,2025,2025-08-21
+Q3b,196,https://openalex.org/W4413405519,10.1093/oso/9780192898166.003.0009,Genetic variation and fitness of wildlife populations,2025,2025-08-21
+Q3b,197,https://openalex.org/W4413405582,10.1093/oso/9780192898166.003.0002,Gaining reliable knowledge,2025,2025-08-21
+Q3b,198,https://openalex.org/W4413405626,10.1093/oso/9780192898166.002.0003,Copyright Page,2025,2025-08-21
+Q3b,199,https://openalex.org/W4413405638,10.1093/oso/9780192898166.003.0004,Estimating population size and vital rates,2025,2025-08-21
+Q3b,200,https://openalex.org/W4413405646,10.1093/oso/9780192898166.002.0004,Dedication,2025,2025-08-21
+Q3c,1,https://openalex.org/W4413406120,10.1093/oso/9780192898166.002.0009,List of Symbols,2025,2025-08-21
+Q3c,2,https://openalex.org/W4413406476,10.1093/oso/9780192898166.002.0008,List of Boxes,2025,2025-08-21
+Q3c,3,https://openalex.org/W4413484995,10.1101/2025.08.20.671260,Red List criteria underestimate climate-related extinction risk of range-shifting species,2025,2025-08-24
+Q3c,4,https://openalex.org/W4416096990,10.1101/2025.11.07.687144,Long-term population monitoring reveals an alarming decline in the endangered endemic Reunion Harrier Circus maillardi,2025,2025-11-09
+Q3c,5,https://openalex.org/W4417412445,10.1080/01584197.2025.2598306,Inferring the extinction status of the South Island Kōkako from sighting records,2025,2025-12-16
+Q3c,6,https://openalex.org/W7128605059,10.1093/botlinnean/boaf116,Genomics and phylogenetics inform a species recovery plan for a threatened allopolyploid plant,2025,2025-12-18
+Q3c,7,https://openalex.org/W7148787167,10.70675/b6bca82dz5c96z4572z9ac1zdbefe0666672,Etude non invasive de la dynamique et de la génétique des populations chez une chauve-souris forestière : impact de la qualité de l'habitat et de la connectivité,2017,2017-12-11
+Q3c,8,https://openalex.org/W7148951022,10.70675/0aeca1a7z2072z4d29za52fz0e3bce3de232,Connectivité fonctionnelle en paysage fragmenté : apport des données génétiques et démographiques pour étudier l'impact multi-spécifique des infrastructures linéaires de transport,2018,2018-07-12
+Q3c,9,https://openalex.org/W7148954604,10.70675/28b58c0ez19ccz4b6ez8757z83aece80d3ed,Caractérisation de l'ichtyofaune du plateau de la sonde par l'approche de code-barre ADN : une étude de cas sur l'île de Java,2019,2019-12-12
+Q3c,10,https://openalex.org/W7149004298,10.70675/fb0f3234zf406z45e2z9b52z515a6a902fa9,Coexistence d'espèces dans des habitats discontinus : le cas d'espèces natives et invasives dans des réseaux de mares,2018,2018-12-13
+Q3c,11,https://openalex.org/W7149409833,10.70675/0c19add7zbc3bz426cza3c8z0732f22d0243,"Traits biologiques et facteurs environnementaux structurant les mouvements locaux et la dispersion des libellules( Insecta, Odonata) dans les réseaux de mares.",2020,2020-10-02
+Q3c,12,https://openalex.org/W7151072182,10.70675/00b2b0c6z881fz41c5zb6b8z002da7eaff0e,Diversity and Functioning of Harbor Communities. Influence on Non Indigenous Species in a Climate Change Driven Context,2021,2021-12-16
+Q3c,13,https://openalex.org/W7151759615,10.70675/7f07687fze75ez4dd7z873dz7131a1ad0e17,Évaluation de la validité des modèles de connectivité des habitats à partir de données génétiques,2024,2024-09-27
+Q3c,14,https://openalex.org/W7162007442,10.1002/wmon.70011,Ecology of reintroduced Rocky Mountain bighorn sheep in Dinosaur National Monument,2026,2026-05-21
+Q3c,15,https://openalex.org/W7170069340,10.3389/fevo.2026.1832820,Unveiling the size scaling of extinction and extremal abundance in marine phytoplankton,2026,2026-07-22
+Q3c,16,https://openalex.org/W7171569002,10.21203/rs.3.rs-10475305/v1,Individual differences in post-release behaviour and survival shape outcomes in a headstarting programme for the critically endangered gharial,2026,2026-07-28
+Q3c,17,https://openalex.org/W7204592773,10.1111/csp2.70363,"Five‐year assessment of wolf translocation to Isle Royale National Park, 2018–2023",2026,2026-08-28
+Q3c,18,https://openalex.org/W7212022059,10.1016/j.tree.2026.08.010,"Which rescue to the rescue? Disentangling demographic, evolutionary, and genetic rescue",2026,2026-09-01
+Q4,1,https://openalex.org/W4318071662,10.1038/s41559-023-01985-2,A predictive timeline of wildlife population collapse,2023,2023-01-26
+Q4,2,https://openalex.org/W4396803642,10.1111/mms.13137,Automated body length and body condition measurements of whales from drone videos for rapid assessment of population health,2024,2024-05-10
+Q4,3,https://openalex.org/W3158629465,10.1002/ece3.7555,Scaling the extinction vortex: Body size as a predictor of population dynamics close to extinction events,2021,2021-05-02
+Q4,4,https://openalex.org/W4285799578,10.1007/s10980-022-01417-9,Traits influence reptile responses to fire in a fragmented agricultural landscape,2022,2022-07-19
+Q4,5,https://openalex.org/W4308834743,10.1111/gcb.16485,Planktonic functional diversity changes in synchrony with lake ecosystem state,2022,2022-11-12
+Q4,6,https://openalex.org/W4283210641,10.1111/mec.16569,High levels of inbreeding with spatial and host‐associated structure in lice of an endangered freshwater seal,2022,2022-06-21
+Q4,7,https://openalex.org/W4393072049,10.1007/s10592-024-01611-z,Admixture and reproductive skew shape the conservation value of ex situ populations of the Critically Endangered eastern black rhino,2024,2024-03-22
+Q4,8,https://openalex.org/W4387968942,10.1038/s41598-023-45715-x,Population genomics reveals how 5 ka of human occupancy led the Lima leaf-toed gecko (Phyllodactylus sentosus) to the brink of extinction,2023,2023-10-27
+Q4,9,https://openalex.org/W7141527123,10.1093/evolut/qpag052,The evolution of thermal performance curves and life-history traits in responses to thermal selection,2026,2026-03-26
+Q4,10,https://openalex.org/W4379052840,10.1038/s41597-023-02070-w,MOSAIC - A Unified Trait Database to Complement Structured Population Models,2023,2023-06-01
+Q4,11,https://openalex.org/W4221077377,10.1101/2022.03.09.483599,MOSAIC: A Unified Trait Database to Complement Structured Population Models,2022,2022-03-10
+Q4,12,https://openalex.org/W4285490716,10.22541/au.165789688.86551087/v1,Timeline to collapse,2022,2022-07-15
+Q4,13,https://openalex.org/W4293079669,10.1101/2022.06.07.495076,Planktonic functional diversity changes in synchrony with lake ecosystem state,2022,2022-06-09
+Q4,14,https://openalex.org/W4393050297,10.1093/oso/9780192864161.003.0009,Changes in insect population dynamics due to climate change,2024,2024-03-05
+Q4,15,https://openalex.org/W4413042487,10.1016/j.gecco.2025.e03783,Historic and contemporary selection define conservation units for a short-range endemic within an anthropogenically-altered riverscape,2025,2025-08-07
+Q4,16,https://openalex.org/W4414620978,10.1101/2025.09.23.677994,Experimental Evolution of the Thermal Performance Curve,2025,2025-09-25
+Q4,17,https://openalex.org/W7138869825,10.64898/2026.03.17.712462,Fitness landscapes for species interactions: when do population genetics and adaptive dynamics diverge?,2026,2026-03-18
+Q4,18,https://openalex.org/W7161565457,10.1186/s12864-026-12950-1,Genomic signatures of population isolation in an endangered European rodent,2026,2026-05-18
+Q4,19,https://openalex.org/W7163903626,10.7717/peerj.21370,A specialist surrounded by suburbia: the ecology of a newly described Four-toed Salamander population in New Brunswick,2026,2026-06-08
+Q4,20,https://openalex.org/W7170069340,10.3389/fevo.2026.1832820,Unveiling the size scaling of extinction and extremal abundance in marine phytoplankton,2026,2026-07-22

@@ -1,10 +1,13 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.2 — 5 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.2a — 5 October 2026, Hobart. Not frozen or registered.**
 
 Draft 0.2: Fable formalised §§1–4 and 7, which replace Astra's planning
-summaries, and added a requirement-status table to §9. Astra's §§5–6 and 8
-are unchanged. Fable's review comments on them are in board message 1001.
+summaries, and added a requirement-status table to §9. In 0.2a, Astra addresses
+Fable's amendments to §§5–6 and 8, and appends its review disposition in §9.2.
+The formal text in §§1–4, 7 and 9.1 remains Fable's **proposed specification**:
+the [quantitative review](astra_protocol02_review_20261005.md) identifies
+unresolved model and inference defects. It has not been accepted for a freeze.
 
 Barry has expressed a provisional preference for this question and requested a
 careful plan combining simulation and empirical work. This document prepares
@@ -12,7 +15,8 @@ that plan. It does not record a topic decision or authorize the research stages.
 
 Astra drafted §§5–6 and 8 and the coordination provisions in §9. Fable wrote the
 formal §§1–4 and 7 (draft 0.2), absorbing Astra's planning summaries and
-requirements. Astra reviews the integrated protocol next.
+requirements. Fable next responds to Astra's review and the
+[decision brief](vortex_decision_brief.md).
 The original [round-2 proposal](fable_round2_response_20261005.md) is preserved
 as proposal history; this draft records subsequent qualifications and unresolved
 requirements.
@@ -382,7 +386,10 @@ lead ledger. Its 36 rows, 13 complete-count labels and 10 supported-extirpation
 labels are provisional classifications; the report explicitly says primary
 extirpation records were not checked. The nine-series overlap is recorded, but
 window/endpoint discrepancies and the reported 150-versus-148 nonzero censuses
-still need an archived reconciliation. Existing CSVs do not demonstrate exact
+remain unresolved. The archived [Table 1 reconciliation](t3/fh_table1_reconciliation.txt)
+matches 24 of 27 scalar fields, not the fitted statistics; its Williams spans
+end at the last nonzero census. Replay requires the manifest-matching source
+CSV and verification of its hash. Existing CSVs do not demonstrate exact
 reproduction of the fitted statistics.
 
 The [Williams Dryad deposit](https://doi.org/10.5061/dryad.jwstqjq8c) is public;
@@ -395,8 +402,10 @@ explicitly unavailable; do not substitute invented values to reconstruct 35.
 **Forward sampling frame.** Enumerate the GPDD census metadata from one fixed
 version first, including nonentrants. The primary discovery route must not
 select populations because they subsequently declined, recovered or went extinct.
-Treat supplementary bibliographic discoveries and any additional database as
-separate ascertainment strata. Full LPD access is optional and outside the
+Exclude supplementary bibliographic discoveries and any additional database
+from the primary GPDD estimate; retain them as labelled secondary ascertainment
+strata. This fixes our discovery rule without assuming the database itself is
+free of monitoring or reporting bias. Full LPD access is optional and outside the
 public-data core; accepting its agreement or contacting providers requires
 Barry's decision. Verify the licence/version of any open LPD subset separately.
 
@@ -415,7 +424,7 @@ Use separate search families:
 
 | Purpose | Draft query concepts / seed |
 |---|---|
-| Competing explanations and prior work | `"extinction vortex"`; `"extinction" AND ("conditioning" OR "selection bias" OR "first passage" OR "null model")`; exact titles and citation links for Fagan–Holmes, Williams, Boettiger–Hastings, Dennis, Nabutanyi–Wittmann and Hefley |
+| Competing explanations and prior work | `"extinction vortex"`; `"extinction" AND ("conditioning" OR "selection bias" OR "first passage" OR "null model")`; exact titles and citation links for Fagan–Holmes, Williams, Boettiger–Hastings, Dennis, Nabutanyi–Wittmann, Hefley, and both Griffen/Drake 2009 passage-time/final-decline papers |
 | Outcome-neutral discovery of monitoring data | `("population" OR "abundance") AND ("census" OR "monitoring") AND ("time series" OR "long term" OR "annual counts")`; GPDD source citations and references in eligible monitoring compilations |
 
 These are logical query templates, not claims that both APIs accept identical
@@ -423,6 +432,11 @@ Boolean syntax. Archive each provider's actual query, filters, retrieval date,
 pagination/completeness status and returned identifiers. Verify translation
 against known seed records before freezing the executable search. Neither a
 search-engine ranking nor a citation count establishes search completeness.
+
+The [5 October orientation-search record](vortex_prior_work_search_20261005.md)
+provides executed query URLs and retrieved identifiers, with explicit coverage
+limits. These queries inform the search specification; they are not a completed
+systematic compilation or a retroactive search freeze.
 
 Deduplicate publications by DOI/identifier and then metadata; deduplicate
 datasets by population, spatial boundary, census definition, period and source
@@ -439,7 +453,7 @@ Report agreement and disagreement counts; a confidence score or model agreement
 does not establish eligibility. The existing T3 inventory has already been seen
 and cannot be retrospectively labelled independently screened.
 
-For the forward primary cohort require:
+For the forward primary frame, include entrants and nonentrants satisfying:
 
 - a defined wild population or local population with a sufficiently stable area
   and census target, and a source-supported observation protocol;
@@ -448,12 +462,14 @@ For the forward primary cohort require:
   label alone is insufficient. Keep individuals, breeding units and estimates
   separate until their model/threshold interpretation is justified;
 - observation dates and units that permit the chosen transition interval, plus
-  the prespecified pre-entry information. Missing years remain missing; multiple
+  the prespecified initial-history information. Missing years remain missing; multiple
   visits and changes in survey design must be identified;
-- a threshold crossing defined from history available at entry, retaining direct
-  entry to zero in the joint fate/abundance analysis. Series already below the
-  threshold when observation begins form a left-truncated group, not invented
-  observed crossings.
+
+Within that frame, define threshold-entry reporting strata using history
+available at entry, retaining direct entry to zero in the joint fate/abundance
+analysis. An observed crossing is not an inclusion requirement. Series already
+below the threshold when monitoring begins form an initial-small group with
+unknown earlier entry history, not invented observed crossings.
 
 Eligibility must not require a minimum number of later positive counts,
 survival to the horizon, recovery, a verified extinction or complete follow-up.
@@ -476,7 +492,8 @@ Use one compact population ledger, linked to immutable source files. Record:
 | Field group | Minimum contents |
 |---|---|
 | Identity and access | Stable population/source IDs, taxon, spatial boundary, source citation/page, licence/version, file hash, duplicate/overlap links |
-| Observation design | Biological unit/stage, census/estimate/index, effort/area, evidence for detection, observation dates, missingness and design changes |
+| Observation design | Biological unit/stage, census/estimate/index, effort/area, evidence for detection, observation dates and season, interval, missingness and design changes; source and assumptions for any unit conversion |
+| Demographic inputs | Source/page for survival estimates, population and life stage measured, time interval and census timing, uncertainty, and concordance with the counted unit; generation length if used |
 | Entry and monitoring | Observed history used for entry, entry date/unit, available administrative horizon, monitoring-end date and whether its reason is known |
 | Provenance and endpoints | Reported interpolation/rounding/carry-forward, original versus processed values, source evidence for local extirpation, non-detection, captivity or recolonization |
 | Ascertainment and covariates | Why the population was monitored/reported, measured external drivers, interventions, population dependence and source-level clustering |
@@ -542,6 +559,14 @@ needed to appraise censoring. Such information reveals fate: record the affected
 population and exposed information before using it in the simulation design.
 This is outcome-restricted compilation, not fully outcome-blind compilation.
 
+The Stage D design uses audited observation structure and prespecified synthetic
+parameter ranges, not fitted forward effects or growth/variance estimates from
+new response values. Entry counts are abundance-derived and remain logged as
+exposed information. Record overlap with the archived October terminal-zero
+screen, including unrecoverable prior delegate access. Any proposal to use GPDD
+responses for Part 1 nuisance checks requires an explicit exposure amendment;
+it is not covered by the metadata permission.
+
 New post-entry abundance trajectories, growth summaries, fitted feedback effects
 and derived responses remain outside analyst context until release. Titles and
 abstracts can also reveal fate incidentally; log that exposure. If prior endpoint
@@ -587,15 +612,16 @@ nobody inspected its contents.
 
 | Owner | Output and evidence standard | Stop / handoff |
 |---|---|---|
-| Fable | Formal §§1–4 and 7; source-supported model ranges and quantitative gate; review §§5–6 and 8 | Return an integrated draft resolving the items in §9; no empirical fitting implied |
-| Astra | §§5–6 and 8, source/exposure corrections; review Fable's formal specification and evidence | Prepare Barry's concise decision brief after reciprocal review |
+| Fable | Formal §§1–4 and 7; corrected model/inference specification; review Astra's decision brief | Respond to R1–R6 in the quantitative review; no empirical fitting implied |
+| Astra | §§5–6 and 8, source/exposure corrections; quantitative review and decision brief | Integrate substantive replies; preserve any unresolved scientific disagreement |
 | Both agents | Separately recorded screening decisions; source adjudication; critical code comparisons | Escalate only unresolved choices that change the scientific target or require Barry's access/authority |
 | Barry | Scientific direction and final scope; optional access agreements, major extensions and external commitments | One coherent study decision rather than approval of routine stages |
 
-After the study is authorized, use a common written mathematical specification
-and synthetic fixtures for the consequential components: conditional simulation
-and the empirical-summary estimator, and the forward likelihood if it survives
-its gate. Agree implementer/reviewer ownership before coding. Freeze each
+After the study is authorized, both agents separately implement the Fagan–Holmes
+estimator and M0 conditional sampler from a common mathematical specification
+and synthetic fixtures. Fable leads the calibration implementation and Astra
+reviews it; Astra leads a forward likelihood only if the extension is justified,
+with Fable reviewing. Confirm the remaining ownership before coding. Freeze each
 implementation before inspecting the other's code; document prior shared code
 exposure. Compare limiting cases, generated moments, likelihoods and inference
 at declared tolerances. Different random-number libraries need not produce
@@ -619,9 +645,9 @@ the integrated protocol needs:
 5. Executable search strings, source/exposure manifests and source-supported
    eligibility assessments; resolution of the outstanding close-prior-work check.
 
-Fable is next to integrate its sections and answer these specifications. Astra
-then reviews once and prepares the decision brief. This is a dependency order,
-not a promise of elapsed runtime before the data and models are settled.
+Fable's formal draft and Astra's review/brief are now recorded. Fable is next to
+respond to the quantitative objections and review the brief. This is a dependency
+order, not a promise of elapsed runtime before the data and models are settled.
 
 Current authorization covers this protocol, bounded source checks, correspondence
 and ordinary Git synchronization. The research programme awaits Barry's direction
@@ -640,3 +666,19 @@ existing compute-resource instructions. No heavy compute belongs on this laptop.
 | 3. Entrant target, units, threshold, horizon, ascertainment, zero transitions, limits on mechanism | Risk-set likelihood over the whole frame; IUCN-anchored N* by unit stratum; zero transitions and immigration specified; Wooldridge initial conditions; limits on mechanism stated in §1 (§2.3) | The frame audit (Stage A) |
 | 4. Numerical validation and decision criteria; table of prespecified vs exploratory analyses | δ_min rule (§3.3); Stage C and D criteria, Monte Carlo sizes, failed-fit handling, development vs validation seeds (§4.3–4.4); prespecified/exploratory table (§7) | Astra's review of the thresholds |
 | 5. Search strings, manifests, eligibility; close-prior-work check | Source manifest started ([source_manifest.csv](t3/source_manifest.csv)); exposure log extended (E09, E10) | Executable searches (Astra, §5.2); the remaining close-prior-work census (T1) |
+
+### 9.2 Astra review disposition (draft 0.2a)
+
+The [detailed review](astra_protocol02_review_20261005.md) takes precedence over
+any reading of §9.1 as mutual acceptance. Items 2–4 remain open: M0 and M_G need
+valid probability support; the conditional test and classifier need a defined
+target and algorithm; validation needs uncertainty-aware decision rules; and
+Part 2 still needs units and a complete likelihood. Item 1 has an archived
+summary-table comparison but no fitted-statistic reconstruction. Item 5 now has
+executed orientation queries, new close prior work and explicit coverage gaps.
+
+Astra accepts Fable's four amendments with the qualifications incorporated in
+§§5–6 and 8. The [decision brief](vortex_decision_brief.md) recommends a bounded
+source/reconstruction/development-pilot tranche if Barry selects the study.
+The 220-core-hour figure is an unbenchmarked fitting subtotal, not an agreed
+production allocation. This disposition does not authorize any research stage.

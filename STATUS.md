@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 5 October 2026, 14:20 Hobart (AEDT), by Fable.
+Updated: 5 October 2026, 14:47 Hobart (AEDT), by Astra.
 
 **Stage:** proposed; vortex protocol preparation. The research design is not
 frozen and research execution has not been authorized.
@@ -11,14 +11,17 @@ His exact words are quoted in discussion 70, message 990, and in
 [Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
 not a topic selection.
 
-**Next response:** Astra. Astra should:
+**Next response:** Fable. Fable should:
 
-- review the integrated [working protocol draft 0.2](notes/vortex_protocol.md),
-  in which Fable formalised §§1–4 and 7 and added §9.1;
-- accept or reject Fable's four amendments to §§5–6 and 8 (board message 1001);
-- prepare the concise decision brief for Barry.
+- respond to R1–R6 in [Astra's quantitative review](notes/astra_protocol02_review_20261005.md)
+  of draft 0.2, especially valid model support and the conditional test;
+- review the [decision brief](notes/vortex_decision_brief.md)
+  ([two-page PDF](notes/vortex_decision_brief_20261005.pdf));
+- revise the formal specification with the smallest defensible first pilot.
 
-No decision is requested from Barry until the brief is ready.
+The brief is prepared as Astra's recommendation, pending Fable's review. No
+execution decision is requested from Barry yet. Draft 0.2a records the review
+disposition and accepted procedural amendments; it is not a frozen protocol.
 
 ## Completed by Astra
 
@@ -43,14 +46,34 @@ No decision is requested from Barry until the brief is ready.
   summaries for Fable's formal sections. No stage is frozen.
 - Checked the inventory and GPDD counting mechanics with a read-only delegate,
   and obtained a methodological review of the corrected specification. The
-  inventory labels are provisional; no archived script demonstrates exact
-  Fagan–Holmes reconstruction. GPDD follow-up counts are observations, not years.
+  inventory labels are provisional; the later archived Table 1 check does not
+  demonstrate fitted-statistic reconstruction. GPDD follow-up counts are
+  observations, not years.
 - Verified the Williams Dryad API's CC0 licence declaration and consulted the
   official PRISMA-P, PRISMA-S and PRISMA-EcoEvo guidance. No new empirical fit
   or forward-outcome extraction was run.
 - Posted 994 (allocation and stage-order response) and 999 (concrete draft,
   methodological specifications and handoff). Checked local document links,
   exposure-log structure and protocol coherence.
+- Reviewed draft 0.2, board 1001, the reconciliation script/output and source
+  manifest. A separate mathematical audit identified invalid model support,
+  unresolved calibration/classification targets, weak validation gates and an
+  incomplete cost estimate. The review gives bounded repairs, not empirical
+  findings about feedback.
+- Accepted Fable's four procedural amendments with unit, ascertainment and
+  exposure qualifications in §§5–6 and 8. Formal §§1–4, 7 and Fable's §9.1 are
+  preserved as proposed text; §9.2 records the unresolved review findings.
+- Extended the bounded prior-work check, adding the Griffen/Drake 2009
+  final-decline and passage-time papers. Archived executed query URLs and 938
+  returned metadata records in the [search record](notes/vortex_prior_work_search_20261005.md)
+  and [identifier ledger](notes/vortex_prior_work_records_20261005.csv).
+  Retrieval is not systematic screening; novelty remains provisional.
+- Prepared and visually checked the two-page decision brief. Its recommendation
+  is a source/reconstruction/development-pilot tranche if Barry selects the study;
+  it does not endorse a 220-core-hour production allocation.
+- Posted 1027 (quantitative objections) and 1028 (brief, amendments and handoff),
+  read the contiguous updates and acknowledged through 1028. No new empirical
+  fit, GPDD trajectory extraction or heavy computation was run.
 
 ## Completed by Fable
 
@@ -95,23 +118,24 @@ No decision is requested from Barry until the brief is ready.
 
 ## Pending
 
-1. Astra reviews protocol draft 0.2, rules on Fable's four amendments to
-   §§5–6 and 8, and drafts the two-page brief. Fable reviews the brief.
-2. Proposed asks for Barry:
-   - authorise Stages A–C as the public-data core, with D–E conditional on
-     their gates;
-   - allocate `deep-server` time for Stage C (about 220 core-hours);
-   - confirm he is comfortable with a critique close to his own work;
-   - optionally, decide on the LPD data agreement and do a manual browser
-     download of the *Daphnia* data.
-3. Novelty stays provisional until the T1 close-prior-work census (Astra) is
-   complete.
-4. Stage order, once authorized:
-   - freeze the search, eligibility and Stage A metadata audit;
-   - Stage B reconstruction;
-   - Stage C validation, then the Part 1 empirical comparison;
-   - Stage D gate on the audited frame structure;
-   - Stage E only if the gate passes.
+1. Fable responds to the quantitative review and reviews the brief. Astra
+   integrates substantive replies and preserves unresolved disagreements.
+2. The concrete study decision to bring Barry is whether to select the question
+   and authorize the bounded first tranche. The earlier proposed request for
+   220 core-hours is not supported by an end-to-end benchmark. Optional access
+   agreements and downloads are not prerequisites for this decision.
+3. Complete the named close-prior-work checks and the frozen search during
+   Stage A if authorized. Final Nabutanyi–Wittmann text and Drake–Griffen 2009
+   passage-time methods remain unverified; the current orientation search is
+   not a completed systematic review.
+4. Proposed execution order, subject to Barry's direction:
+   - source/metadata audit and published-estimator reconstruction;
+   - small synthetic development pilot, valid generator checks and full-pipeline
+     timing;
+   - corrected analysis/validation freeze, then production Stage C validation
+     and empirical comparison only if the specified conditions hold;
+   - D/E only after a verified frame, complete forward model and identification
+     gate. New forward responses remain restricted.
 
 The empirical Part 1 comparison plus simulation is the minimum contribution;
 Part 2 is conditional. A failed gate does not become evidence of absent feedback.
@@ -120,9 +144,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **999**; exhausted `through`: **999**.
-- Explicit acknowledgement: through message **999** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=999`.
+- Last full retrieval `next_after`: **1028**; exhausted `through`: **1028**.
+- Explicit acknowledgement: through message **1028** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1028`.
 
 ## Correspondence checkpoint for this Fable task
 
