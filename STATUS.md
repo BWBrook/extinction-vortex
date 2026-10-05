@@ -1,21 +1,26 @@
 # Current state
 
-Updated: 5 October 2026, 13:00 Hobart (AEDT), by Fable.
+Updated: 5 October 2026, 13:25 Hobart (AEDT), by Astra.
 
-**Stage:** proposed; setup and topic ideation. No research topic, design or
-scientific claim has been approved.
+**Stage:** proposed; vortex protocol preparation. The research design is not
+frozen and research execution has not been authorized.
 
-**Barry, 5 October, in chat to Fable:** a provisional preference for the vortex
+**Barry, 5 October, in chat to both agents:** a provisional preference for the vortex
 idea, together with a request for a careful, PRISMA-style pre-registered plan.
 His exact words are quoted in discussion 70, message 990, and in
 [Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
 not a topic selection.
 
-**Next response:** Astra. Astra should accept or contest:
+**Next response:** Fable. Fable should:
 
-- the corrected Fable-1 question and minimal specification (988);
-- the T3 data and eligibility report and the T2 statement (989);
-- the pre-registration plan, section allocation and stage order (990).
+- formalize §§1–4 and 7 of [the working protocol](notes/vortex_protocol.md),
+  resolving its listed estimand, calibration and validation specifications;
+- review Astra's §§5–6 and 8 and the [exposure log](notes/vortex_exposure_log.csv);
+- answer the proposed metadata-before-power stage order and the qualification
+  of preliminary inventory labels, reconstruction and outcome exposure.
+
+The draft handoff and remaining methodological specifications are in discussion
+70, messages 994 and 999.
 
 No decision is requested from Barry yet.
 
@@ -35,8 +40,21 @@ No decision is requested from Barry yet.
 - Posted procedural/allocation response 956, methodological objections 958,
   and portfolio response 959. Preserved both original slates and Fable's checks.
 - Provisional disposition: revised Fable-1 first, Fable-2 an independent
-  fallback, Astra-C reserve; park Astra-A/B and Fable-3. Fable has not yet
-  responded to this revised assessment.
+  fallback, Astra-C reserve; park Astra-A/B and Fable-3. Fable's round-2 reply
+  accepts the earlier methodological objections and continuation rules.
+- Read and acknowledged 988–990, accepted the section allocation, and drafted
+  the protocol's compilation, exposure and roles sections, with planning
+  summaries for Fable's formal sections. No stage is frozen.
+- Checked the inventory and GPDD counting mechanics with a read-only delegate,
+  and obtained a methodological review of the corrected specification. The
+  inventory labels are provisional; no archived script demonstrates exact
+  Fagan–Holmes reconstruction. GPDD follow-up counts are observations, not years.
+- Verified the Williams Dryad API's CC0 licence declaration and consulted the
+  official PRISMA-P, PRISMA-S and PRISMA-EcoEvo guidance. No new empirical fit
+  or forward-outcome extraction was run.
+- Posted 994 (allocation and stage-order response) and 999 (concrete draft,
+  methodological specifications and handoff). Checked local document links,
+  exposure-log structure and protocol coherence.
 
 ## Completed by Fable
 
@@ -68,31 +86,30 @@ No decision is requested from Barry yet.
 
 ## Pending
 
-1. Astra responds to 988–990.
-2. If agreed, draft `notes/vortex_protocol.md`. Proposed split: Fable writes
-   §§1–4 and 7 (aims, estimands, generative models, simulation validation and
-   gates, analysis plan). Astra writes §§5–6 and 8 (PRISMA compilation,
-   exposure log and sealing, roles and independent implementation). Each
-   reviews the other's sections.
-3. Astra drafts the two-page brief summarising the protocol, the fallbacks
-   (Fable-2, Astra-C) and the questions only Barry can answer (LPD data
-   agreement, his comfort with a critique near his own work, importance, the
-   founder-size module). Fable reviews it. Barry then selects, redirects or
-   rejects; rename the repo once the topic is clear.
-4. Proposed stage order, once a topic is authorised:
-   - reproduce the published numbers;
-   - run the Part 1 matched nulls and confusion matrix;
-   - run the Part 2 synthetic identifiability and power gate;
-   - only if the gate passes, run the PRISMA compilation and a sealed forward
-     analysis.
+1. Fable integrates its formal sections into the existing working protocol and
+   reviews Astra's sections. Resolve the finite specification list in §9.
+2. Astra reviews the integrated protocol and drafts the two-page brief. Barry
+   can then select, redirect or reject the concrete study. Full LPD access and
+   a founder-size module remain optional; the public-data core does not depend
+   on those decisions.
+3. Proposed stage order, once the study is authorized:
+   - freeze the search/eligibility specification and audit metadata/structure;
+   - reconstruct the published empirical analyses, recording discrepancies;
+   - freeze and run calibrated Part 1 simulations and observed comparisons;
+   - validate the Part 2 estimator at the audited sampling structure;
+   - only if its prespecified gate passes, release additional post-entry
+     responses for the frozen forward analysis.
+
+The empirical Part 1 comparison plus simulation is the minimum contribution;
+Part 2 is conditional. A failed gate does not become evidence of absent feedback.
 
 ## Correspondence checkpoint for this Astra task
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **959**; exhausted `through`: **959**.
-- Explicit acknowledgement: through message **959** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=959`.
+- Last full retrieval `next_after`: **999**; exhausted `through`: **999**.
+- Explicit acknowledgement: through message **999** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=999`.
 
 ## Correspondence checkpoint for this Fable task
 

@@ -53,8 +53,12 @@ Assess candidates qualitatively on scientific importance, defensible novelty,
 discriminating evidence, feasible execution and value of a null or contrary
 result. Do not turn subjective scores into spurious quantitative precision.
 
-The immediate endpoint is a topic decision brief. No substantive analysis or
-production compute is required to complete the setup and initial ideation.
+Barry's 5 October preference makes the vortex proposal the current focus for
+protocol development. The [working protocol](notes/vortex_protocol.md) combines
+an empirical reanalysis with simulation validation and a conditional forward
+extension. It is a draft, not a frozen registration. The immediate endpoint is
+an integrated protocol and concise topic decision brief; research execution
+follows that decision.
 
 ## How the collaboration will be assessed
 
@@ -87,6 +91,10 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
+- [The working vortex protocol](notes/vortex_protocol.md) contains Astra's
+  compilation, exposure and roles sections plus planning summaries for Fable
+  to formalize. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
+  known outcomes, computational access and reported limits on inspection.
 
 The referenced Mac folder was not present at the expected path during setup;
 Astra established it and synchronized the initial commit with the WSL checkout.
