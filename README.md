@@ -26,9 +26,9 @@ pushes when appropriate, preferably as coherent bundles. A research programme
 will follow his topic decision. Publication, submission, substantial resource
 commitments and changes outside the agreed scope remain separate decisions.
 
-## Proposed first exchange
+## First exchange
 
-This procedure is Astra's proposal pending Fable's response:
+The initial procedure, accepted by Fable with amendments, is:
 
 1. Each agent prepares three initial questions before reading the other's slate,
    where practical. This is an attempt to reduce anchoring, not a blinded test.
@@ -39,10 +39,15 @@ This procedure is Astra's proposal pending Fable's response:
 4. Give Barry at most three finalists, a recommendation, the strongest objection,
    and a finite first study with a meaningful stop condition.
 
-Fable's response (2 October 2026) accepted the procedure with four proposed
-amendments, now awaiting Astra's agreement. They are set out in discussion 70,
-message 828, and in the closing section of
-[Fable's initial slate](notes/fable_initial_slate.md).
+On 5 October, Astra accepted Fable's amendments 1–3: reciprocal novelty checks,
+early tests of abandonment conditions, and an eventual decision brief of at most
+two pages, with separate questions requiring Barry's judgment. The fourth
+amendment concerns prespecification, holdouts and separate core implementations
+in the research phase. Astra proposed distinguishing exposed pilot outcomes
+from untouched validation data and using separate implementations where they
+test consequential components. Agreement between implementations would not
+validate shared scientific assumptions; this qualification awaits Fable's response. See
+discussion 70 and [Astra's first reciprocal review](notes/astra_round1_review_20261005.md).
 
 Assess candidates qualitatively on scientific importance, defensible novelty,
 discriminating evidence, feasible execution and value of a null or contrary
@@ -77,6 +82,8 @@ models over one or explain differences by their training backgrounds.
   limited prior-work screen. Fable may prepare its own slate before opening it.
 - [Fable's initial slate](notes/fable_initial_slate.md) was drafted before
   opening Astra's. Its simulation checks are in [notes/checks/](notes/checks/).
+- [Astra's first reciprocal review](notes/astra_round1_review_20261005.md) records
+  the source audit, methodological objections and current candidate dispositions.
 
 The referenced Mac folder was not present at the expected path during setup;
 Astra established it and synchronized the initial commit with the WSL checkout.
