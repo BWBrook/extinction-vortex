@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 5 October 2026, 13:25 Hobart (AEDT), by Astra.
+Updated: 5 October 2026, 14:20 Hobart (AEDT), by Fable.
 
 **Stage:** proposed; vortex protocol preparation. The research design is not
 frozen and research execution has not been authorized.
@@ -11,18 +11,14 @@ His exact words are quoted in discussion 70, message 990, and in
 [Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
 not a topic selection.
 
-**Next response:** Fable. Fable should:
+**Next response:** Astra. Astra should:
 
-- formalize §§1–4 and 7 of [the working protocol](notes/vortex_protocol.md),
-  resolving its listed estimand, calibration and validation specifications;
-- review Astra's §§5–6 and 8 and the [exposure log](notes/vortex_exposure_log.csv);
-- answer the proposed metadata-before-power stage order and the qualification
-  of preliminary inventory labels, reconstruction and outcome exposure.
+- review the integrated [working protocol draft 0.2](notes/vortex_protocol.md),
+  in which Fable formalised §§1–4 and 7 and added §9.1;
+- accept or reject Fable's four amendments to §§5–6 and 8 (board message 1001);
+- prepare the concise decision brief for Barry.
 
-The draft handoff and remaining methodological specifications are in discussion
-70, messages 994 and 999.
-
-No decision is requested from Barry yet.
+No decision is requested from Barry until the brief is ready.
 
 ## Completed by Astra
 
@@ -83,22 +79,39 @@ No decision is requested from Barry yet.
     (Barry's input and plan).
   - `notes/checks/vortex_forward_design.py` is withdrawn as evidence: it is
     outcome-selected. It stays as a superseded pilot.
+- Protocol draft 0.2 (5 October): read 994 and 999. Formalised protocol §§1–4
+  and 7: questions and outcome rules, Part 1 and Part 2 estimands, generative
+  models, ABC calibration under matched selection, δ_min, Stage B–D criteria,
+  compute estimate, and a table of prespecified vs exploratory analyses. Added
+  a requirement-status table (§9.1).
+  - Archived the F&H Table 1 reconciliation
+    ([notes/t3/fh_table1_reconciliation.txt](notes/t3/fh_table1_reconciliation.txt)):
+    24 of 27 values match, with 3 discrepancies; 150 vs 148 censuses. This
+    corrects the round-2 claim that the values reproduced exactly.
+  - Added a [source manifest](notes/t3/source_manifest.csv), exposure rows E09
+    and E10, and an archive of the 2 October GPDD terminal-zero screen.
+  - Posted 1001: integration summary, resolution of 999's five
+    specifications, and review of §§5–6 and 8 with four amendments.
 
 ## Pending
 
-1. Fable integrates its formal sections into the existing working protocol and
-   reviews Astra's sections. Resolve the finite specification list in §9.
-2. Astra reviews the integrated protocol and drafts the two-page brief. Barry
-   can then select, redirect or reject the concrete study. Full LPD access and
-   a founder-size module remain optional; the public-data core does not depend
-   on those decisions.
-3. Proposed stage order, once the study is authorized:
-   - freeze the search/eligibility specification and audit metadata/structure;
-   - reconstruct the published empirical analyses, recording discrepancies;
-   - freeze and run calibrated Part 1 simulations and observed comparisons;
-   - validate the Part 2 estimator at the audited sampling structure;
-   - only if its prespecified gate passes, release additional post-entry
-     responses for the frozen forward analysis.
+1. Astra reviews protocol draft 0.2, rules on Fable's four amendments to
+   §§5–6 and 8, and drafts the two-page brief. Fable reviews the brief.
+2. Proposed asks for Barry:
+   - authorise Stages A–C as the public-data core, with D–E conditional on
+     their gates;
+   - allocate `deep-server` time for Stage C (about 220 core-hours);
+   - confirm he is comfortable with a critique close to his own work;
+   - optionally, decide on the LPD data agreement and do a manual browser
+     download of the *Daphnia* data.
+3. Novelty stays provisional until the T1 close-prior-work census (Astra) is
+   complete.
+4. Stage order, once authorized:
+   - freeze the search, eligibility and Stage A metadata audit;
+   - Stage B reconstruction;
+   - Stage C validation, then the Part 1 empirical comparison;
+   - Stage D gate on the audited frame structure;
+   - Stage E only if the gate passes.
 
 The empirical Part 1 comparison plus simulation is the minimum contribution;
 Part 2 is conditional. A failed gate does not become evidence of absent feedback.
@@ -114,11 +127,12 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 ## Correspondence checkpoint for this Fable task
 
 - Project: `project` (active view); discussion 70.
-- Read 826–827, posted 828–832; read 956–959, posted 988–990.
-- Last full retrieval `next_after`: **987**, a global boundary with no project
-  messages between 959 and 987. Fable's own posts run through 990.
-- Explicit acknowledgement: through message **990** in discussion 70.
-- Next retrieval: use `after=990` and omit `through`.
+- Read 826–827, posted 828–832; read 956–959, posted 988–990; read 994 and
+  999, posted 1001.
+- Last full retrieval `next_after`: **1000**, a global boundary. Fable's own
+  post is 1001.
+- Explicit acknowledgement: through message **1001** in discussion 70.
+- Next retrieval: use `after=1001` and omit `through`.
 
 ## Coordination note
 
