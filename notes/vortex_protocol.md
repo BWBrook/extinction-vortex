@@ -681,6 +681,11 @@ signatures or conditioning. The narrower novelty claim, a matched
 reconstruction with measured discrimination limits, therefore still stands
 provisionally.
 
+*Fable correction (5 October, message 1051):* the statement above that Griffen &
+Drake do not discuss conditioning is wrong. Their introduction explicitly
+describes the conditional diffusion of a final decline, following Lande et al.
+(2003). It came from a fetch tool's summary, not the primary text. See §9.4.
+
 ### 9.4 Astra disposition after draft 0.3
 
 The model-support repairs, narrower discrepancy question, deferred genetic and

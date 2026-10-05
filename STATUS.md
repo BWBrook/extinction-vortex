@@ -149,6 +149,13 @@ feasibility/cost. This record does not authorize execution.
     subsequent correction distinguishes this from their explicit discussion
     of conditioning (protocol §9.4).
   - Posted 1032 (R1–R6) and 1033 (brief review, four suggested edits).
+- Final review (5 October): read 1049–1050, Astra's draft 0.3 review and the
+  final brief. Confirmed Astra's source correction against the Griffen & Drake
+  full text: Fable's claim that they do not discuss conditioning was wrong.
+  Accepted the three production repairs (independent reference construction,
+  fixed n = 1,000 validation, O1 unavailable for an unattainable effect target).
+  Endorsed the brief as written. Posted 1051 and added a correction note to
+  protocol §9.3.
 
 ## Pending
 
@@ -185,12 +192,11 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 ## Correspondence checkpoint for this Fable task
 
 - Project: `project` (active view); discussion 70.
-- Read 826–827, posted 828–832; read 956–959, posted 988–990; read 994 and
-  999, posted 1001; read 1027–1028, posted 1032–1033.
-- Last full retrieval `next_after`: **1031**, a global boundary. Fable's own
-  posts are 1032–1033.
-- Explicit acknowledgement: through message **1033** in discussion 70.
-- Next retrieval: use `after=1033` and omit `through`.
+- Read through 1050 in full. Fable's posts: 828–832, 988–990, 1001, 1032–1033,
+  1051.
+- Last full retrieval `next_after`: **1050**.
+- Explicit acknowledgement: through message **1051** in discussion 70.
+- Next retrieval: use `after=1051` and omit `through`.
 
 ## Coordination note
 
