@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 5 October 2026, 15:35 Hobart (AEDT), by Fable.
+Updated: 5 October 2026, 16:51 Hobart (AEDT), by Astra.
 
 **Stage:** proposed; vortex protocol preparation. The research design is not
 frozen and research execution has not been authorized.
@@ -11,16 +11,18 @@ His exact words are quoted in discussion 70, message 990, and in
 [Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
 not a topic selection.
 
-**Next response:** Astra. Astra should:
+**Next response:** Barry's scientific choice. The
+[two-page brief](notes/vortex_decision_brief_20261005.pdf) is finalized after
+Fable's review. Astra recommends selecting the question and authorizing source
+checks, reconstruction and the capped local feasibility pilot described there.
+Fable endorses the direction; Astra's final refinements and remaining technical
+requirements are in [the draft 0.3 review](notes/astra_protocol03_review_20261005.md)
+and protocol §9.4. The production design is not frozen.
 
-- check [protocol draft 0.3](notes/vortex_protocol.md) (revised §§1–4 and 7,
-  new §9.3) against review items R1–R6; Fable's account is in message 1032;
-- adopt or decline Fable's four suggested edits to the
-  [decision brief](notes/vortex_decision_brief.md) (message 1033);
-- send Barry the brief once both agents are content.
-
-The decision for Barry will be whether to select the question and authorize the
-bounded first tranche. No execution decision is requested yet.
+The first-tranche proposal excludes the 400-dataset screen, large banks,
+empirical p-values, remote production and access agreements. If Barry selects
+it, the agents handle the specified development tasks and bring back measured
+feasibility/cost. This record does not authorize execution.
 
 ## Completed by Astra
 
@@ -73,6 +75,21 @@ bounded first tranche. No execution decision is requested yet.
 - Posted 1027 (quantitative objections) and 1028 (brief, amendments and handoff),
   read the contiguous updates and acknowledged through 1028. No new empirical
   fit, GPDD trajectory extraction or heavy computation was run.
+- Reviewed draft 0.3 and messages 1032–1033. Verified the fixed-sample
+  validation arithmetic and identified the unadjusted optional-look issue.
+  Recorded remaining Monte Carlo-reference, effect-target and scenario/unit
+  specifications as development tasks before production, with a bounded
+  independent methodological check.
+- A read-only delegate verified raw worktree/Git-blob hashes, exact replay of
+  the archived reconciliation, and checksum refusal on a changed temporary
+  input. Six zero-inclusive window lengths match; fitted statistics remain
+  unreconstructed. Exposure row E12 records the access.
+- Corrected the claim that Griffen–Drake 2009 omit conditioning against their
+  primary introduction. Qualified publication, outcome-probability and general
+  sample-size promises. Finalized the two-page brief with explicit pilot caps;
+  no research simulation or empirical fit was run in this review.
+- Posted 1049 (review closure and source correction) and 1050 (final brief and
+  capped first-tranche proposal); read and acknowledged through 1050.
 
 ## Completed by Fable
 
@@ -118,7 +135,7 @@ bounded first tranche. No execution decision is requested yet.
   the brief. Accepted R1–R6 and revised §§1–4 and 7:
   - valid M0 (survival and recruitment sampled directly) and a β-scale M_A;
     M_G deferred;
-  - a named conditional prior-predictive test with a fully specified ABC
+  - a named conditional prior-predictive test with a proposed ABC
     algorithm, cross-fitted validation and two priors;
   - Clopper–Pearson validation criteria, with V-fail taking precedence;
   - discrepancy-only Part 1, with the classifier removed;
@@ -128,26 +145,27 @@ bounded first tranche. No execution decision is requested yet.
   - Stored the Williams CC0 input in `data/raw/williams2021/`. The
     reconciliation now checks the input hash and reports both window
     conventions: 6 of 9 F&H windows match.
-  - Verified that Griffen & Drake 2009 cite F&H only for log-scaling.
+  - Reported that Griffen & Drake 2009 cite F&H for log-scaling; Astra's
+    subsequent correction distinguishes this from their explicit discussion
+    of conditioning (protocol §9.4).
   - Posted 1032 (R1–R6) and 1033 (brief review, four suggested edits).
 
 ## Pending
 
-1. Astra checks draft 0.3 against R1–R6, decides on Fable's brief edits, and
-   integrates or preserves any remaining disagreement before the brief goes to
-   Barry.
-2. The concrete study decision to bring Barry is whether to select the question
-   and authorize the bounded first tranche. The earlier proposed request for
-   220 core-hours is not supported by an end-to-end benchmark. Optional access
-   agreements and downloads are not prerequisites for this decision.
+1. Barry selects this question and authorizes the bounded first tranche, or
+   redirects the project. The brief contains the concrete proposed scope.
+2. If selected, the agents complete the source/reconstruction/pilot work under
+   the stated caps and resolve the remaining production specifications.
+   The 220-core-hour figure remains withdrawn. A larger allocation follows a
+   measured estimate; optional access agreements are not prerequisites.
 3. Complete the named close-prior-work checks and the frozen search during
    Stage A if authorized. Final Nabutanyi–Wittmann text and Drake–Griffen 2009
    passage-time methods remain unverified; the current orientation search is
    not a completed systematic review.
 4. Proposed execution order, subject to Barry's direction:
    - source/metadata audit and published-estimator reconstruction;
-   - small synthetic development pilot, valid generator checks and full-pipeline
-     timing;
+   - capped synthetic feasibility pilot, valid generator checks and component
+     timing; record what could not be established within the cap;
    - corrected analysis/validation freeze, then production Stage C validation
      and empirical comparison only if the specified conditions hold;
    - D/E only after a verified frame, complete forward model and identification
@@ -160,9 +178,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1028**; exhausted `through`: **1028**.
-- Explicit acknowledgement: through message **1028** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1028`.
+- Last full retrieval `next_after`: **1050**; exhausted `through`: **1050**.
+- Explicit acknowledgement: through message **1050** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1050`.
 
 ## Correspondence checkpoint for this Fable task
 

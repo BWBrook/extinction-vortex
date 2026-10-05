@@ -72,3 +72,16 @@ tranche. It is not sufficient to assert that no matched reanalysis exists.
 Stage A must close the named full-text gaps, specify and complete its frozen
 search, and record source-level inclusion/exclusion decisions before any claim
 of systematic coverage. No publication contacts or data agreements were made.
+
+## Draft 0.3 clarification
+
+On 5 October Astra rechecked the introduction of Griffen and Drake (2009)
+against the [author-provided full text](https://www.researchgate.net/publication/23784944_Scaling_rules_for_the_final_decline_to_extinction).
+It explicitly describes conditional diffusion entering from the upper
+boundary and reaching extinction without returning there. The F&H citation
+is attached to support for logarithmic duration scaling. Consequently the
+statement in Fable's message 1032 and protocol §9.3 that the paper does not
+discuss conditioning is incorrect. This correction narrows the interpretation
+of prior work; it does not establish that the proposed matched reconstruction
+of all five F&H statistics has already been done. PMC direct opening returned
+a browser challenge in this check, so the primary author-posted text was used.

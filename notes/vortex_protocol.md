@@ -1,6 +1,12 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.3 — 5 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.3a — 5 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.3a: Astra completed the [bounded review](astra_protocol03_review_20261005.md)
+and finalized the [decision brief](vortex_decision_brief.md) after Fable's
+review. Section 9.4 records the remaining production requirements and defines
+the smaller first tranche recommended to Barry. The formal production text in
+§§1–4 and 7 remains proposed; its outstanding points are not freeze-ready.
 
 Draft 0.3: Fable revised §§1–4 and 7 in response to Astra's review (R1–R6) and
 added §9.3. Astra's 0.2a changes to §§5–6, 8 and 9.2 are unchanged. The
@@ -9,9 +15,8 @@ history below is kept.
 Draft 0.2: Fable formalised §§1–4 and 7, which replace Astra's planning
 summaries, and added a requirement-status table to §9. In 0.2a, Astra addresses
 Fable's amendments to §§5–6 and 8, and appends its review disposition in §9.2.
-The formal text in §§1–4, 7 and 9.1 remains Fable's **proposed specification**:
-the [quantitative review](astra_protocol02_review_20261005.md) identifies
-unresolved model and inference defects. It has not been accepted for a freeze.
+The [draft 0.2 quantitative review](astra_protocol02_review_20261005.md)
+records the defects that prompted revision; §9.4 gives their current status.
 
 Barry has expressed a provisional preference for this question and requested a
 careful plan combining simulation and empirical work. This document prepares
@@ -19,8 +24,8 @@ that plan. It does not record a topic decision or authorize the research stages.
 
 Astra drafted §§5–6 and 8 and the coordination provisions in §9. Fable wrote the
 formal §§1–4 and 7 (draft 0.2), absorbing Astra's planning summaries and
-requirements. Fable next responds to Astra's review and the
-[decision brief](vortex_decision_brief.md).
+requirements. Barry's topic and first-tranche decision is next; the agents
+will handle the remaining development tasks if that tranche is authorized.
 The original [round-2 proposal](fable_round2_response_20261005.md) is preserved
 as proposal history; this draft records subsequent qualifications and unresolved
 requirements.
@@ -361,10 +366,12 @@ labels are provisional classifications; the report explicitly says primary
 extirpation records were not checked. The nine-series overlap is recorded, but
 window/endpoint discrepancies and the reported 150-versus-148 nonzero censuses
 remain unresolved. The archived [Table 1 reconciliation](t3/fh_table1_reconciliation.txt)
-matches 24 of 27 scalar fields, not the fitted statistics; its Williams spans
-end at the last nonzero census. Replay requires the manifest-matching source
-CSV and verification of its hash. Existing CSVs do not demonstrate exact
-reproduction of the fitted statistics.
+matches 24 of 27 scalar fields, not the fitted statistics. It now reports both
+last-nonzero and zero-census window conventions: six of nine window lengths
+match under the latter convention. The CC0 source is archived in
+`data/raw/williams2021/`; the replay checks its hash. Wild dog, marmot and
+crane windows still differ. Existing CSVs do not demonstrate exact reproduction
+of the fitted statistics.
 
 The [Williams Dryad deposit](https://doi.org/10.5061/dryad.jwstqjq8c) is public;
 Astra checked the repository API's CC0 licence declaration on 5 October 2026
@@ -615,9 +622,9 @@ the integrated protocol needs:
 5. Executable search strings, source/exposure manifests and source-supported
    eligibility assessments; resolution of the outstanding close-prior-work check.
 
-Fable's formal draft and Astra's review/brief are now recorded. Fable is next to
-respond to the quantitative objections and review the brief. This is a dependency
-order, not a promise of elapsed runtime before the data and models are settled.
+Fable's formal revision and brief review, and Astra's response, are recorded.
+Barry's topic and bounded-tranche decision is next. This is a dependency order,
+not a promise of elapsed runtime before the data and models are settled.
 
 Current authorization covers this protocol, bounded source checks, correspondence
 and ordinary Git synchronization. The research programme awaits Barry's direction
@@ -673,3 +680,45 @@ the logarithmic scaling of decline duration. They do not discuss vortex
 signatures or conditioning. The narrower novelty claim, a matched
 reconstruction with measured discrimination limits, therefore still stands
 provisionally.
+
+### 9.4 Astra disposition after draft 0.3
+
+The model-support repairs, narrower discrepancy question, deferred genetic and
+forward analyses, improved validation framework and byte-preserved input make
+a bounded feasibility tranche defensible. They do not make production ready.
+The [draft 0.3 review](astra_protocol03_review_20261005.md) records the evidence
+and the remaining agent tasks:
+
+1. Make the discrepancy reference and Monte Carlo ranks valid; define ties,
+   finite-bank approximation and any sequential stopping formula explicitly.
+2. Use a fixed validation size or adjust confidence bounds for both looks.
+   The unadjusted 1,000-to-1,200 extension does not preserve §4.3's guarantee.
+3. Make O1 unavailable when the stated effect target is unattainable. A
+   fallback effect can support descriptive sensitivity only.
+4. Finish the matched windows, survival/census-unit mapping, comparator
+   parameter ranges and complete scenario/cost inventory before freezing.
+
+**First tranche recommended to Barry.** Source/metadata checks, independent
+published-estimator reconstruction and a genuinely small synthetic feasibility
+pilot. For the pilot: one worker, at most 2 GiB resident memory and 30 aggregate
+CPU-minutes; stop earlier at 10,000 candidate trajectories per population or
+20 complete nine-population estimator fits. Counts and CPU budget include the
+separate implementations together. These caps do not promise successful
+calibration. The 400-dataset screen in §4.1, the large banks in §3.4 and the
+effect-grid production in §3.3 are outside this first tranche. Report measured
+acceptance, failures, memory and extrapolated cost before proposing larger
+runs. No empirical p-values, remote production or new access agreements are
+included.
+
+**Source correction to §9.3.** Griffen and Drake (2009), introduction, explicitly
+describe a conditional diffusion process for final decline. They cite F&H for
+logarithmic duration scaling; the assertion that they do not discuss
+conditioning is incorrect. The candidate novelty remains the specific matched
+reanalysis and its measured limits, subject to the bounded search's open gaps.
+See the [source record](vortex_prior_work_search_20261005.md).
+
+Astra adopts Fable's requested updates for draft 0.3, realistic outcomes and
+resources, with that literature correction. Neither the most likely outcome,
+a publishable paper, nor a general sample-size requirement has been established.
+The brief is ready for Barry's scientific choice; this disposition authorizes
+no research stage.

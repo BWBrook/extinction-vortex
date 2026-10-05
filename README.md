@@ -61,10 +61,12 @@ an integrated protocol and concise topic decision brief; research execution
 follows that decision.
 
 The [two-page decision brief](notes/vortex_decision_brief_20261005.pdf)
-([editable source](notes/vortex_decision_brief.md)) is now prepared as Astra's
-recommendation, pending Fable's review. Its first tranche is reconstruction and
-a bounded method-development pilot. The [quantitative review](notes/astra_protocol02_review_20261005.md)
-records the model/inference repairs needed before a production analysis freeze.
+([editable source](notes/vortex_decision_brief.md)) is finalized after Fable's
+review. Astra recommends selecting the question and authorizing source checks,
+reconstruction and a capped local feasibility pilot. The
+[draft 0.3 review](notes/astra_protocol03_review_20261005.md) records the remaining
+inference and validation work before a production freeze. Barry's decision is
+next; no research tranche is authorized by the brief.
 
 ## How the collaboration will be assessed
 
@@ -97,7 +99,7 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
-- [The working vortex protocol](notes/vortex_protocol.md), draft 0.2a, contains
+- [The working vortex protocol](notes/vortex_protocol.md), draft 0.3a, contains
   Fable's proposed formal core, Astra's compilation/exposure/roles sections,
   and the outstanding review disposition. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
   known outcomes, computational access and reported limits on inspection.

@@ -1,55 +1,56 @@
 ---
-title: "Vortex signatures: proposed first study"
+title: "Vortex signatures and a proposed first study"
 subtitle: "Decision brief for Barry W. Brook"
-date: "5 October 2026 · Astra recommendation, pending Fable review"
+date: "5 October 2026 · Astra recommendation after Fable review"
 fontsize: 11pt
 papersize: a4
 geometry: margin=20mm
 colorlinks: true
 ---
 
-**Recommendation.** Keep the vortex question as the leading candidate. Start,
-if selected, with a bounded reconstruction and method-development phase. The
-quantitative protocol needs repair before an empirical test or production
-simulation campaign can be frozen. This brief proposes scope; it does not record
-your authorization.
+**Recommendation.** Select the vortex question and authorize the bounded first
+tranche on page 2: source checks, reconstruction and a small computational
+feasibility pilot. Fable supports this direction. Draft 0.3 addresses the major
+model defects, but the production test still needs development and validation.
+This brief proposes the decision; it does not record your authorization.
 
-**Scientific question.** Do the terminal trajectories reported by Fagan and
-Holmes (2006), and subsequently Williams et al. (2021), distinguish feedback
-that reduces expected growth at small abundance from stochastic paths selected
-because they ended in extinction, external deterioration and observation error?
+**Scientific question.** Do the terminal-trajectory statistics reported by
+Fagan and Holmes (2006), and subsequently Williams et al. (2021), depart from
+a matched no-feedback model once extinction-based selection is reproduced?
+How often would feedback, external deterioration or observation error produce
+such departures?
 
-The minimum study combines a real-data reconstruction with simulation tests of
-what those summaries can distinguish. A forward GPDD analysis is an optional
-extension. A valid result could show conditional compatibility, a departure
-needing explanation, or insufficient discrimination. None alone establishes
-the absence or presence of genetic feedback in wild populations.
+The minimum completed study combines empirical reanalysis with simulation
+estimates of detection and false-alarm rates. Its primary case is the nine
+Fagan–Holmes populations; verified Williams complete-count series provide a
+secondary comparison. The first analysis cannot identify which mechanism
+caused a departure. Genetic modelling and the forward GPDD analysis are parked.
 
-**What could be new.** The matched reanalysis and its measured discrimination
-limits. Conditioning and stochastic final-decline patterns are established:
-[Griffen and Drake (2009)](https://doi.org/10.1098/rspb.2008.1558) combine theory,
-simulation and laboratory data; [Boettiger and Hastings (2012)](https://doi.org/10.1098/rspb.2012.2085)
-show selection effects in early-warning signals; [Hefley et al. (2016)](https://doi.org/10.1111/ele.12671)
-show that environmental deterioration can confound inference about density
-dependence. No directly equivalent matched reanalysis was identified in our
-bounded checks. Novelty remains provisional, with specific close-prior-work
-and access gaps recorded.
+**What could be new.** A matched reconstruction of the published estimators,
+with measured limits on their interpretation. [Griffen and Drake (2009)](https://doi.org/10.1098/rspb.2008.1558)
+explicitly study conditional final declines and cite Fagan–Holmes for
+logarithmic duration scaling. Conditioning itself is established prior work.
+Our bounded search has not identified the same five-statistic matched
+reanalysis, but novelty remains provisional. The final Nabutanyi–Wittmann
+paper and Drake–Griffen's separate 2009 passage-time methods still need checking.
 
-**What the data presently support.** The public Williams deposit contains
-versions of the nine Fagan–Holmes terrestrial series. The archived reconciliation
-matches 24 of 27 summary-table fields, with 150 versus 148 nonzero censuses;
-it has not reproduced the fitted statistics. Windows, endpoint conventions and
-one turtle discrepancy remain unresolved. Williams's accessible subset is
-reported as 31 of 35 series; mixed census types need separate observation
-models. The inventory's 13 complete-count and 10 supported-extirpation labels
-remain provisional. No final eligible forward-cohort size is established.
+**Data readiness.** The public CC0 Williams input is archived with verified
+checksums. Replaying the summary comparison gives 24 of 27 fields matching;
+six of nine window lengths agree when the zero census is included. Wild dog,
+marmot and crane windows, other table discrepancies, and 150 versus 148 nonzero
+censuses remain unresolved. None of this reproduces the fitted statistics.
+Williams's census-unit and extirpation classifications still require source checks.
 
-**Why draft 0.2 needs another methodological pass.** Its priors permit negative
-recruitment, its genetic recurrence can exceed the valid inbreeding range, and
-its conditional test and classifier are not yet fully specified. The proposed
-4–16 false alarms in 200 simulations is a useful screening calculation, not
-evidence that the error rate is close enough to 5%. We should resolve these
-issues ourselves before asking you to commit substantial compute.
+**Realistic outcomes.** The full study could find a departure needing
+explanation, conditional compatibility with demonstrable power, or insufficient
+discrimination. We cannot yet rank their probabilities. Compatibility requires
+validated false-alarm control and a lower 95% power bound of at least 70% for
+an attainable, stated effect; it would not establish absent feedback.
+
+A reproducible reconstruction and a credible account of the nine-population
+design's limits could support a short methods paper. Publication is contingent
+on the results being informative. This design alone will not establish how many
+extinctions future studies need; that requires a separate sample-size analysis.
 
 \newpage
 
@@ -59,40 +60,41 @@ issues ourselves before asking you to commit substantial compute.
 |---|---|
 | Source and metadata audit | Verify the public inputs, windows, census units, endpoint evidence and closest prior work. Stop or narrow the claim if the required observations cannot be supported. |
 | Published-analysis reconstruction | Independently implement the Fagan–Holmes estimator and compare with published precision. Preserve discrepancies; label a reconstructed estimand if exact reproduction is impossible. |
-| Small synthetic development pilot | Implement a valid null, one feedback alternative and an external-decline comparator; specify conditioning and independent calibration. Test probability-model invariants, acceptance, estimator stability and total runtime. Stop before production if these fail. |
+| Small synthetic development pilot | Check the null and feedback generators; benchmark selection acceptance, estimator stability, memory and total cost. Specify the calibration repairs and comparator scenarios. Stop at the limits below and report what remains untested. |
 
-The eventual public-data core remains reconstruction **plus** calibrated
-simulation and empirical comparison. Before production, the agents would freeze
-the corrected model, effect targets, confidence-bound validation criteria,
-exposure record, code and measured resource estimate. Failed validation means
-insufficient identification. Scientific redirection returns to you; routine
-implementation remains with the agents.
+**Resource limit for this tranche.** Public data, one local worker, at most
+2 GiB memory for the pilot and 30 aggregate CPU-minutes of synthetic development.
+Stop earlier at 10,000 candidate trajectories per population or 20 complete
+nine-population estimator fits. These are ceilings, not promised sample sizes.
+The 400-dataset development screen and large accepted-trajectory banks in
+draft 0.3 are outside this tranche. Source reading and reconstruction accompany
+the capped pilot; no access agreement or provider contact is required.
 
-**Resources.** The quoted 220 core-hours counts assumed fitting time but omits
-major simulation and selection costs; it is not a defensible allocation yet.
-Benchmark within the laptop limits, then size larger runs for `deep-server`
-under the existing compute policy. No production run has been launched.
+**Before production.** The agents must settle census windows and model units,
+define an attainable effect target, ensure that the Monte Carlo comparison is
+valid, remove or correctly adjust the optional validation extension, and freeze
+the scenario list and decision rules. The fixed 1,000-dataset false-alarm and
+300-dataset power calculations check out; the proposed repeat-at-1,200 rule
+does not retain the stated confidence guarantee. These are agent tasks.
 
-**Optional work.** Keep the Living Planet Database agreement, provider contact,
-translocation module and *Daphnia* data acquisition outside this first tranche.
-None is needed to establish an empirical core. Part 2 first needs a verified
-frame, defensible units and a complete likelihood. IUCN's threshold concerns
-mature individuals; a simple 50-individual/25-territory conversion is not yet
-justified. Known *Daphnia* treatments can test sensitivity to external forcing,
-but do not establish that every other feedback is absent.
+The tranche ends with a reconstruction report, executable checks and a measured
+estimate for larger runs. The earlier 220-core-hour figure is withdrawn.
+Production would require your allocation for a suitable remote host after the
+method is ready. Failed calibration or an unattainable effect target prevents
+an informative-compatibility claim. No empirical p-value is part of this tranche.
 
-**Division of work.** Fable next repairs the formal specification and reviews
-this brief. Astra maintains the source/exposure record and reviews the revised
-inference. Once authorized, both separately implement the critical estimator
-and null sampler from one agreed specification. Your role is to choose the
-scientific direction and scope. The critique's target is what terminal abundance
-summaries identify; it need not challenge the broader evidence for genetic or
-Allee effects, including work you co-authored.
+**Division of work.** Fable leads calibration development; Astra leads the
+source/exposure record and reviews inference. Once authorized, both implement
+the critical estimator and null sampler separately from one agreed
+specification. Additional data agreements, translocation work, *Daphnia*
+acquisition and Part 2 require later decisions. The scientific target remains
+what terminal abundance summaries identify, with no presumption against the
+broader evidence for genetic or Allee effects.
 
-**Decision to bring back after Fable's review:** whether to select this question
-and authorize the bounded first tranche above. No access agreement, browser
-download or production-compute commitment is needed for that choice.
+**Your decision:** select this question and authorize the bounded first tranche,
+or redirect the project. The agents handle the routine methodological work
+within the selected scope.
 
 Supporting records: [working protocol](vortex_protocol.md),
-[Astra's detailed review](astra_protocol02_review_20261005.md), and
+[draft 0.3 review](astra_protocol03_review_20261005.md), and
 [prior-work search record](vortex_prior_work_search_20261005.md).
