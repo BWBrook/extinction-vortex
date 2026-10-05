@@ -12,11 +12,16 @@ Definitions used for the three F&H columns (our reading of the table headings):
   final    = last non-zero census before the first zero.
 Consecutive available censuses are used; missing years are reported, not filled.
 
-Run: python3 fh_table1_reconciliation.py /path/to/population_data.csv
+Run from the repo root: python3 notes/t3/fh_table1_reconciliation.py
+(default input: data/raw/williams2021/population_data.csv, CC0; its SHA-256 is
+checked against notes/t3/source_manifest.csv before any value is read).
 """
 import csv
+import hashlib
 import sys
 from pathlib import Path
+
+DEFAULT_INPUT = Path("data/raw/williams2021/population_data.csv")
 
 PAIRS = {  # F&H id -> Williams id
     "FH01": "14", "FH02": "15", "FH03": "6", "FH04": "20", "FH05": "21",
@@ -52,31 +57,42 @@ def summarise(years, values):
     }
 
 
+def verify_hash(path, here):
+    manifest = {r["file"]: r["sha256"] for r in csv.DictReader(open(here / "source_manifest.csv", newline="", encoding="utf-8"))}
+    digest = hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    if digest != manifest.get(Path(path).name):
+        sys.exit("input hash %s does not match source_manifest.csv; refusing to run" % digest)
+    return digest
+
+
 def main(path):
     here = Path(__file__).resolve().parent
+    print("input sha256 verified:", verify_hash(path, here))
     fh = {r["fh_id"]: r for r in csv.DictReader(open(here / "fh_table1.csv", newline="", encoding="utf-8"))}
     rows = {r["ID"]: r for r in csv.DictReader(open(path, newline="", encoding="utf-8"))}
     year_cols = [c for c in next(iter(rows.values())) if c.isdigit()]
     total = 0
-    print("fh_id W  years(FH/W first-to-last-nonzero) n_nonzero  increase(FH/W)  start(FH/W)  final(FH/W)  missing_years")
+    print("fh_id W  years FH / W(first..last nonzero) / W(first..zero census)  n_nonzero  increase(FH/W)  start(FH/W)  final(FH/W)  missing_years")
     for fh_id, w_id in PAIRS.items():
         r = rows[w_id]
         vals = [None if r[c] in ("NULL", "") else float(r[c]) for c in year_cols]
         s = summarise([int(c) for c in year_cols], vals)
         f = fh[fh_id]
         w_years = s["last_nonzero_year"] - s["first_year"] + 1
+        w_years_zero = s["zero_year"] - s["first_year"] + 1
         total += s["n_nonzero"]
         trio = [(leading_int(f["smallest_pop_from_which_increase"]), s["increase"]),
                 (leading_int(f["pop_at_final_decline_start"]), s["start"]),
                 (leading_int(f["final_pop_before_extinction"]), s["final"])]
         cells = ["%s/%s%s" % (a, "NA" if b is None else int(b), "" if (b is not None and a == int(b)) else " *")
                  for a, b in trio]
-        print("%s %-3s %2s/%-2d %4d-%d  %3d        %-14s %-12s %-12s %s" % (
+        print("%s %-3s %2s / %2d (%d-%d) / %2d (to %d)   %3d        %-14s %-12s %-12s %s" % (
             fh_id, w_id, f["years_monitored_FH"], w_years, s["first_year"], s["last_nonzero_year"],
-            s["n_nonzero"], cells[0], cells[1], cells[2], s["missing_years"] or "-"))
-    print("total non-zero censuses in Williams series for the nine populations: %d (F&H text: 148)" % total)
+            w_years_zero, s["zero_year"], s["n_nonzero"], cells[0], cells[1], cells[2], s["missing_years"] or "-"))
+    print("total non-zero censuses in Williams series for the nine populations: %d (F&H text: 148;"
+          " comparable only once each F&H window is settled)" % total)
     print("'*' marks a mismatch between F&H Table 1 and the value recomputed from the Williams series.")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_INPUT)

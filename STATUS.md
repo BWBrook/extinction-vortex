@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 5 October 2026, 14:47 Hobart (AEDT), by Astra.
+Updated: 5 October 2026, 15:35 Hobart (AEDT), by Fable.
 
 **Stage:** proposed; vortex protocol preparation. The research design is not
 frozen and research execution has not been authorized.
@@ -11,17 +11,16 @@ His exact words are quoted in discussion 70, message 990, and in
 [Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
 not a topic selection.
 
-**Next response:** Fable. Fable should:
+**Next response:** Astra. Astra should:
 
-- respond to R1–R6 in [Astra's quantitative review](notes/astra_protocol02_review_20261005.md)
-  of draft 0.2, especially valid model support and the conditional test;
-- review the [decision brief](notes/vortex_decision_brief.md)
-  ([two-page PDF](notes/vortex_decision_brief_20261005.pdf));
-- revise the formal specification with the smallest defensible first pilot.
+- check [protocol draft 0.3](notes/vortex_protocol.md) (revised §§1–4 and 7,
+  new §9.3) against review items R1–R6; Fable's account is in message 1032;
+- adopt or decline Fable's four suggested edits to the
+  [decision brief](notes/vortex_decision_brief.md) (message 1033);
+- send Barry the brief once both agents are content.
 
-The brief is prepared as Astra's recommendation, pending Fable's review. No
-execution decision is requested from Barry yet. Draft 0.2a records the review
-disposition and accepted procedural amendments; it is not a frozen protocol.
+The decision for Barry will be whether to select the question and authorize the
+bounded first tranche. No execution decision is requested yet.
 
 ## Completed by Astra
 
@@ -115,11 +114,28 @@ disposition and accepted procedural amendments; it is not a frozen protocol.
     and E10, and an archive of the 2 October GPDD terminal-zero screen.
   - Posted 1001: integration summary, resolution of 999's five
     specifications, and review of §§5–6 and 8 with four amendments.
+- Draft 0.3 (5 October): read 1027 and 1028, Astra's quantitative review and
+  the brief. Accepted R1–R6 and revised §§1–4 and 7:
+  - valid M0 (survival and recruitment sampled directly) and a β-scale M_A;
+    M_G deferred;
+  - a named conditional prior-predictive test with a fully specified ABC
+    algorithm, cross-fitted validation and two priors;
+  - Clopper–Pearson validation criteria, with V-fail taking precedence;
+  - discrepancy-only Part 1, with the classifier removed;
+  - Stage B judged at published precision; the compute figure replaced by a
+    benchmark plan with sequential p-values;
+  - Part 2 parked with its open items listed.
+  - Stored the Williams CC0 input in `data/raw/williams2021/`. The
+    reconciliation now checks the input hash and reports both window
+    conventions: 6 of 9 F&H windows match.
+  - Verified that Griffen & Drake 2009 cite F&H only for log-scaling.
+  - Posted 1032 (R1–R6) and 1033 (brief review, four suggested edits).
 
 ## Pending
 
-1. Fable responds to the quantitative review and reviews the brief. Astra
-   integrates substantive replies and preserves unresolved disagreements.
+1. Astra checks draft 0.3 against R1–R6, decides on Fable's brief edits, and
+   integrates or preserves any remaining disagreement before the brief goes to
+   Barry.
 2. The concrete study decision to bring Barry is whether to select the question
    and authorize the bounded first tranche. The earlier proposed request for
    220 core-hours is not supported by an end-to-end benchmark. Optional access
@@ -152,11 +168,11 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70.
 - Read 826–827, posted 828–832; read 956–959, posted 988–990; read 994 and
-  999, posted 1001.
-- Last full retrieval `next_after`: **1000**, a global boundary. Fable's own
-  post is 1001.
-- Explicit acknowledgement: through message **1001** in discussion 70.
-- Next retrieval: use `after=1001` and omit `through`.
+  999, posted 1001; read 1027–1028, posted 1032–1033.
+- Last full retrieval `next_after`: **1031**, a global boundary. Fable's own
+  posts are 1032–1033.
+- Explicit acknowledgement: through message **1033** in discussion 70.
+- Next retrieval: use `after=1033` and omit `through`.
 
 ## Coordination note
 

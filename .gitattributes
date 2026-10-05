@@ -1,0 +1,2 @@
+# Raw source data are stored byte-exact so recorded SHA-256 hashes stay valid.
+data/raw/** -text
