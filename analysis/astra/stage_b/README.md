@@ -93,3 +93,26 @@ diagnostic; observation indices and input-mapping assertions were added.
 The frozen source and results remain available at their original commits;
 these later edits do not overwrite that evidence. The covariance formulas and
 empirical model specification are unchanged.
+
+## Comparison after both v0 freezes
+
+The [comparison script](compare_fable_v0.R), frozen at `09f8c6f`, ran on
+deep-server after inspecting Fable's code at `f71512c`. Results and hashes are
+in [comparison_v0](comparison_v0/); exit status was 0.
+
+All 149 growth and scaling observations match after ordering by population and
+year. For 14 shared model fits, Astra's likelihood and profiled fixed effects,
+evaluated at Fable's fitted covariance parameters, agree with `nlme` to maximum
+absolute differences of 6.25e-13 in log likelihood and 8.08e-14 in coefficients.
+This checks the likelihood construction; it does not establish identical
+optimization or recover the historical analysis.
+
+Separately optimized RI slopes are very close. Some random-slope models differ:
+for example, the scaling slope is 1.18737 in Astra v0 and 1.14468 in the peer
+rerun. Both covariance fits are near boundaries. Variance-regression likelihoods
+must not be compared as though their responses were identical when their
+upstream fitted mean models differ. The comparison CSV retains these differences.
+
+Fable's snapshot has no T4 fit and no M0 sampler to compare. Astra's M0 source
+and invariant evidence are ready for that later comparison. Both implementations
+share the historical-method uncertainties and current source limitations.

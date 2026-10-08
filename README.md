@@ -1,8 +1,10 @@
-# Project (working name)
+# Extinction-vortex selection study (working name)
 
 A joint scientific project led by Barry W. Brook, with Astra (OpenAI, through
 Codex) and Fable (Anthropic, through Claude) as advisors, critics, reviewers and
-implementers. **The research topic has not been selected.**
+implementers. **Barry selected the extinction-vortex question and authorized
+the first execution tranche on 8 October 2026.** The production design is not
+frozen and empirical conditional-null tests have not begun.
 
 Setup began on **2 October 2026, Hobart time**. The launch prompt describes the
 frontier-model experiment as of September 2026; records use actual activity dates.
@@ -12,19 +14,19 @@ frontier-model experiment as of September 2026; records use actual activity date
 Produce novel, useful and defensible science with a light touch of human input.
 Barry's attention is scarce. The agents should handle routine work, disagree
 productively, and bring him decisions where scientific judgment changes the
-direction. Topic selection is the first such decision. Work allocation between
+direction. Topic selection was the first such decision. Work allocation between
 Astra and Fable is by mutual consent.
 
-The project may draw on ecology, conservation, extinction, global change or
-related modelling. Barry's [UTAS profile](https://discover.utas.edu.au/Barry.Brook)
-provides background on his population ecology, conservation and computational
-research. This is a starting point for ideas, not a restriction to one method or
-a requirement that the scientific topic concern AI.
+The selected study asks how much of the observed pattern in extinction-bound
+population trajectories can arise under matched outcome selection without
+abundance-dependent demographic feedback. The initial slates preserve the wider
+ecological and modelling questions considered before selection.
 
-Barry has authorized repository setup, ideation, correspondence, and commits and
-pushes when appropriate, preferably as coherent bundles. A research programme
-will follow his topic decision. Publication, submission, substantial resource
-commitments and changes outside the agreed scope remain separate decisions.
+Barry has authorized setup, correspondence, bundled commits and pushes, and the
+source/reconstruction/development tranche. His 8 October instruction sends
+serious compute to deep-server in tmux; the earlier numerical laptop-pilot cap
+does not constrain that authorized remote development. Publication, submission
+and changes outside the agreed study remain separate decisions.
 
 ## First exchange
 
@@ -53,20 +55,33 @@ Assess candidates qualitatively on scientific importance, defensible novelty,
 discriminating evidence, feasible execution and value of a null or contrary
 result. Do not turn subjective scores into spurious quantitative precision.
 
-Barry's 5 October preference makes the vortex proposal the current focus for
-protocol development. The [working protocol](notes/vortex_protocol.md) combines
-an empirical reanalysis with simulation validation and a conditional forward
-extension. It is a draft, not a frozen registration. The immediate endpoint is
-an integrated protocol and concise topic decision brief; research execution
-follows that decision.
+Barry's 5 October preference made the vortex proposal the focus for protocol
+development. The [working protocol](notes/vortex_protocol.md) combines an
+empirical reanalysis with simulation validation and a conditional forward
+extension. It remains a draft; Part 2 and the genetic extension are parked.
 
 The [two-page decision brief](notes/vortex_decision_brief_20261005.pdf)
-([editable source](notes/vortex_decision_brief.md)) is finalized after Fable's
-review. Astra recommends selecting the question and authorizing source checks,
-reconstruction and a capped local feasibility pilot. The
-[draft 0.3 review](notes/astra_protocol03_review_20261005.md) records the remaining
-inference and validation work before a production freeze. Barry's decision is
-next; no research tranche is authorized by the brief.
+([editable source](notes/vortex_decision_brief.md)) preserves the proposal Barry
+approved on 8 October, with his later compute clarification. The
+[draft 0.3 review](notes/astra_protocol03_review_20261005.md) records the accepted
+repairs needed before production. Fable owns the next formal protocol revision.
+
+## First execution results
+
+Astra froze its [estimator and null sampler](analysis/astra/stage_b/README.md)
+before opening Fable's code, then ran 54 declared reconstruction fits on
+deep-server. Synthetic likelihood, empirical-Bayes and generator checks passed.
+The [post-freeze comparison](analysis/astra/stage_b/comparison_v0/) confirms
+matching inputs and likelihood calculations between implementations.
+**Stage B has not passed:** no declared candidate reproduces all four published
+slopes at their stated precision; scaling and T5 remain unresolved.
+
+The [source audit](notes/astra_source_audit_20261008.md) resolves the crane's
+final-count convention and verifies the official winter sequence, identifies
+three wild-dog fills absent from the author-distributed data, and records
+unresolved census and survival-prior mappings. Raw values are preserved.
+The next task is Fable's review and protocol 0.4, including these limitations
+and the agreed validation repairs. No empirical p-values precede that freeze.
 
 ## How the collaboration will be assessed
 
@@ -86,8 +101,9 @@ models over one or explain differences by their training backgrounds.
 - Canonical shared checkout: `/Users/bwbrook/papers/project` on the Mac mini.
 - Astra's current WSL checkout: `/home/bwbrook/papers/project`.
 - Correspondence section: `project`; launch discussion: **70**.
-- No GitHub or publication remote is configured at setup. The temporary folder
-  name can change after topic selection.
+- No GitHub or publication remote is configured. The agents agreed the proposed
+  name `extinction-vortex-selection`; existing paths remain during the active
+  handoff, pending a coordinated move.
 - [STATUS.md](STATUS.md) records whose response is next and retrieval checkpoints.
 - [AGENTS.md](AGENTS.md) records the operating instructions for both agents.
 - [Astra's initial slate](notes/astra_initial_slate.md) contains proposals and a

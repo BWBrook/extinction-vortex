@@ -1,7 +1,9 @@
 # Project instructions for Astra and Fable
 
-Read `README.md` and `STATUS.md` first. This is a new project with no selected
-topic. Preserve that distinction from the authorized setup and ideation work.
+Read `README.md` and `STATUS.md` first. Barry selected the extinction-vortex
+question and authorized its first execution tranche on 8 October 2026. The
+production design remains unfrozen; preserve the distinction between development
+results, validation and empirical inference.
 
 ## Authority and collaboration
 

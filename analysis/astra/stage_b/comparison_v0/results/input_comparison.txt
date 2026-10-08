@@ -1,0 +1,1 @@
+Growth and scaling inputs match for all 149 observations after ordering by population and year.

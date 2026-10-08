@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 8 October 2026, 16:28 Hobart (AEDT), by Fable (board participant now "Claude").
+Updated: 8 October 2026, 17:27 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -16,19 +16,26 @@ serious on `deep-server` in tmux.
 sample beyond the canonical nine. Its target size should come from the Phase I
 discriminability results.
 
-**Next.** Both agents start the first tranche under the split proposed in 1131:
-- separate F&H estimator and M0 sampler implementations, each frozen before
-  comparison;
-- Astra leads the source audit;
-- Fable leads calibration development and protocol draft 0.4 (repairs from
-  1049/1051).
+**Next response: Fable.** Review Astra's frozen estimator/M0 implementation and
+source audit, then incorporate the unresolved estimator, census and prior
+mappings into protocol draft 0.4. Fable retains ownership of calibration and the
+formal protocol; Astra retains source-audit and implementation follow-up.
+
+**Astra execution bundle (8 October):** source freeze `418a5ff`, result freeze
+`e1afca1`, both preceding Fable-code inspection. All 54 declared fits ran on
+deep-server; synthetic likelihood/EB and M0 invariant checks passed. The
+post-freeze comparison matches all 149 input observations and Gaussian
+likelihoods at matching covariance parameters to 6.3e-13. **Stage B has not
+passed:** no candidate recovers all four rounded slopes, and scaling/T5 remain
+unresolved. See [reconstruction](analysis/astra/stage_b/README.md) and
+[source audit](notes/astra_source_audit_20261008.md).
 
 **Stage B v0 (Fable), frozen 8 October:** see `analysis/fable/stage_b/` and
 board message 1139. Astra should freeze its own independent implementation
 before opening those files.
 
-Astra should confirm or contest the 1131 reading and the proposed repo name
-`extinction-vortex-selection`. The Q&A behind the approval (novelty, approach,
+Astra accepted the 1131 allocation and proposed name `extinction-vortex-selection`
+in 1144; existing paths remain during the active handoff. The Q&A behind the approval (novelty, approach,
 Phase II) is recorded in
 [notes/vortex_study_summary_20261008.md](notes/vortex_study_summary_20261008.md)
 (board message 1132).
@@ -99,6 +106,25 @@ Phase II) is recorded in
   no research simulation or empirical fit was run in this review.
 - Posted 1049 (review closure and source correction) and 1050 (final brief and
   capped first-tranche proposal); read and acknowledged through 1050.
+- On 8 October, caught up through the approval and Fable's first reconstruction,
+  accepted the allocation in 1144, and recorded the pre-fit specification and
+  prior exposure to Fable's reported numbers. The separate implementation was
+  not result-blind.
+- Implemented profiled Gaussian marginal ML and the unstructured M0 sampler;
+  froze code, ran 54 declared fits on deep-server in tmux, froze all results,
+  then opened Fable's code. Source/input hashes and exit status were retained.
+  A read-only audit found no fatal mathematical defect; a nonconvergence guard
+  and provenance assertions were added after the freeze and tested.
+- Compared 14 common models: shared inputs match and likelihood/GLS calculations
+  agree at matching covariance parameters. Independently optimized results can
+  differ near covariance boundaries. No historical-estimator equivalence or
+  empirical feedback conclusion is claimed.
+- Verified the primary crane table and wild-dog data, audited all nine census
+  mappings, and excluded the same-trajectory crow survival estimate as an
+  independent prior. Original windows, some annual-statistic definitions and
+  literature-prior centres remain unresolved. Exposure rows E14–E17 record the
+  access. No forward GPDD outcomes or empirical conditional-null p-values were
+  generated.
 
 ## Completed by Fable
 
@@ -168,24 +194,24 @@ Phase II) is recorded in
 
 ## Pending
 
-1. Barry selects this question and authorizes the bounded first tranche, or
-   redirects the project. The brief contains the concrete proposed scope.
-2. If selected, the agents complete the source/reconstruction/pilot work under
-   the stated caps and resolve the remaining production specifications.
-   The 220-core-hour figure remains withdrawn. A larger allocation follows a
-   measured estimate; optional access agreements are not prerequisites.
-3. Complete the named close-prior-work checks and the frozen search during
-   Stage A if authorized. Final Nabutanyi–Wittmann text and Drake–Griffen 2009
-   passage-time methods remain unverified; the current orientation search is
-   not a completed systematic review.
-4. Proposed execution order, subject to Barry's direction:
-   - source/metadata audit and published-estimator reconstruction;
-   - capped synthetic feasibility pilot, valid generator checks and component
-     timing; record what could not be established within the cap;
-   - corrected analysis/validation freeze, then production Stage C validation
-     and empirical comparison only if the specified conditions hold;
-   - D/E only after a verified frame, complete forward model and identification
-     gate. New forward responses remain restricted.
+1. Fable reviews this execution bundle, freezes its M0 implementation for
+   comparison, and prepares protocol 0.4 with the accepted inference repairs
+   and the newly documented source/estimator limitations.
+2. Resolve the historical input/estimator question in a bounded source pass:
+   original windows and interpolation, exact census classes, covariance and
+   residual conventions, and Method 3/T5. Stage B remains unpassed. Replacing
+   the historical reconstruction target with a newly defined estimator would
+   require an explicit scientific amendment, not a silent workaround.
+3. Develop synthetic calibration, record acceptance rates and component costs,
+   and retain all failed feasibility checks. Serious work runs on deep-server
+   in tmux. The 220-core-hour proposal remains withdrawn; production resources
+   follow a measured design. Empirical tests follow the specified validation
+   freeze, which has not occurred.
+4. Complete the named close-prior-work checks and the frozen Stage A search.
+   Final Nabutanyi–Wittmann text and Drake–Griffen 2009 passage-time methods
+   remain unverified; the orientation search is not a completed systematic
+   review. Phase II's additional-series search is a suggestion, not a commitment.
+5. Part 2, genetic extensions and new forward-response access remain parked.
 
 The empirical Part 1 comparison plus simulation is the minimum contribution;
 Part 2 is conditional. A failed gate does not become evidence of absent feedback.
@@ -194,9 +220,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1050**; exhausted `through`: **1050**.
-- Explicit acknowledgement: through message **1050** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1050`.
+- Last full retrieval `next_after`: **1153**; exhausted `through`: **1153**.
+- Explicit acknowledgement: through actual message **1144** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1153`.
 
 ## Correspondence checkpoint for this Fable task
 

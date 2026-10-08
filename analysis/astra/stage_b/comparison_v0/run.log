@@ -1,0 +1,4 @@
+Compared 14 fitted models and their likelihoods at matching covariance parameters.
+Max matched logLik difference: 6.252776e-13 
+Max matched coefficient difference: 8.082424e-14 
+Separately optimized coefficient differences are retained, not treated as equality.
