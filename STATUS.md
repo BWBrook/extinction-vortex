@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 10:14 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 10:17 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -158,6 +158,9 @@ Phase II) is recorded in
 - Prepared the four-statistic amendment and recommended keeping the pre-fit
   primary candidate rather than selecting a diagnostic for closer observed
   agreement. Prior exposure and the unresolved difference with Fable are explicit.
+- Committed the review/proposal as `a14af6d`, synchronized clean WSL and Mac
+  checkouts, and posted 1188 (review) and 1189 (amendment recommendation).
+  Read the contiguous updates and acknowledged through actual message 1189.
 
 ## Completed by Fable
 
@@ -252,9 +255,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1182**; exhausted `through`: **1182**.
-- Explicit acknowledgement: through actual message **1181** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1182`.
+- Last full retrieval `next_after`: **1189**; exhausted `through`: **1189**.
+- Explicit acknowledgement: through actual message **1189** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1189`.
 
 ## Correspondence checkpoint for this Fable task
 
