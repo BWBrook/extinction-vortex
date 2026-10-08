@@ -1,0 +1,109 @@
+2026-10-08T17:05:46+1100 RIRS_AR1/growth_sge0 
+n = 149 ; logLik = -102.3548 ; phi = -0.2742956 ; convergence = 0 
+2026-10-08T17:05:47+1100 RIRS_AR1/variance_refit_sge0/conditional 
+n = 149 ; logLik = -165.4538 ; phi = -0.1190201 ; convergence = 0 
+2026-10-08T17:05:49+1100 RIRS_AR1/variance_refit_sge0/marginal 
+n = 149 ; logLik = -164.8318 ; phi = -0.1103027 ; convergence = 0 
+2026-10-08T17:05:50+1100 RIRS_AR1/growth_sge1 
+n = 140 ; logLik = -29.12958 ; phi = -0.2084154 ; convergence = 0 
+2026-10-08T17:05:51+1100 RIRS_AR1/variance_refit_sge1/conditional 
+n = 140 ; logLik = 63.21277 ; phi = -0.1758751 ; convergence = 0 
+2026-10-08T17:05:53+1100 RIRS_AR1/variance_refit_sge1/marginal 
+n = 140 ; logLik = 52.0842 ; phi = -0.2061835 ; convergence = 0 
+2026-10-08T17:05:54+1100 RIRS_AR1/growth_sge2 
+n = 131 ; logLik = -26.99781 ; phi = -0.1512849 ; convergence = 0 
+2026-10-08T17:05:56+1100 RIRS_AR1/variance_refit_sge2/conditional 
+n = 131 ; logLik = 64.57642 ; phi = -0.2434879 ; convergence = 0 
+2026-10-08T17:05:57+1100 RIRS_AR1/variance_refit_sge2/marginal 
+n = 131 ; logLik = 48.81251 ; phi = -0.2793477 ; convergence = 0 
+2026-10-08T17:05:59+1100 RIRS_AR1/variance_subset_sge1/conditional 
+n = 140 ; logLik = 41.34039 ; phi = -0.1640389 ; convergence = 0 
+2026-10-08T17:06:00+1100 RIRS_AR1/variance_subset_sge2/conditional 
+n = 131 ; logLik = 42.46793 ; phi = -0.276626 ; convergence = 0 
+2026-10-08T17:06:01+1100 RIRS_AR1/variance_subset_sge1/marginal 
+n = 140 ; logLik = 39.54885 ; phi = -0.1594324 ; convergence = 0 
+2026-10-08T17:06:03+1100 RIRS_AR1/variance_subset_sge2/marginal 
+n = 131 ; logLik = 40.5488 ; phi = -0.2735378 ; convergence = 0 
+2026-10-08T17:06:04+1100 RIRS_AR1/scaling 
+n = 149 ; logLik = -219.1191 ; phi = 0.9902843 ; convergence = 0 
+2026-10-08T17:06:05+1100 RIRS_AR1/period_additive 
+n = 149 ; logLik = -212.9654 ; phi = 0.989428 ; convergence = 0 
+2026-10-08T17:06:07+1100 RIRS_AR1/period_interaction 
+n = 149 ; logLik = -212.9463 ; phi = 0.9894065 ; convergence = 0 
+2026-10-08T17:06:08+1100 RIRS_AR1/period_separate_early 
+n = 68 ; logLik = -104.6165 ; phi = 0.9586915 ; convergence = 0 
+2026-10-08T17:06:09+1100 RIRS_AR1/period_separate_late 
+n = 81 ; logLik = -116.4121 ; phi = 0.9543638 ; convergence = 0 
+2026-10-08T17:06:10+1100 RI_AR1/growth_sge0 
+n = 149 ; logLik = -102.3648 ; phi = -0.2693351 ; convergence = 0 
+2026-10-08T17:06:11+1100 RI_AR1/variance_refit_sge0/conditional 
+n = 149 ; logLik = -166.0876 ; phi = -0.05964591 ; convergence = 0 
+2026-10-08T17:06:11+1100 RI_AR1/variance_refit_sge0/marginal 
+n = 149 ; logLik = -166.0876 ; phi = -0.05964591 ; convergence = 0 
+2026-10-08T17:06:11+1100 RI_AR1/growth_sge1 
+n = 140 ; logLik = -30.20536 ; phi = -0.1657289 ; convergence = 0 
+2026-10-08T17:06:12+1100 RI_AR1/variance_refit_sge1/conditional 
+n = 140 ; logLik = 46.75529 ; phi = -0.1140233 ; convergence = 0 
+2026-10-08T17:06:12+1100 RI_AR1/variance_refit_sge1/marginal 
+n = 140 ; logLik = 46.75529 ; phi = -0.1140233 ; convergence = 0 
+2026-10-08T17:06:12+1100 RI_AR1/growth_sge2 
+n = 131 ; logLik = -28.00718 ; phi = -0.1258526 ; convergence = 0 
+2026-10-08T17:06:13+1100 RI_AR1/variance_refit_sge2/conditional 
+n = 131 ; logLik = 43.89144 ; phi = -0.2075399 ; convergence = 0 
+2026-10-08T17:06:13+1100 RI_AR1/variance_refit_sge2/marginal 
+n = 131 ; logLik = 43.89144 ; phi = -0.2075399 ; convergence = 0 
+2026-10-08T17:06:13+1100 RI_AR1/variance_subset_sge1/conditional 
+n = 140 ; logLik = 36.62811 ; phi = -0.1023492 ; convergence = 0 
+2026-10-08T17:06:14+1100 RI_AR1/variance_subset_sge2/conditional 
+n = 131 ; logLik = 37.91965 ; phi = -0.2458666 ; convergence = 0 
+2026-10-08T17:06:14+1100 RI_AR1/variance_subset_sge1/marginal 
+n = 140 ; logLik = 36.62811 ; phi = -0.1023492 ; convergence = 0 
+2026-10-08T17:06:14+1100 RI_AR1/variance_subset_sge2/marginal 
+n = 131 ; logLik = 37.91965 ; phi = -0.2458665 ; convergence = 0 
+2026-10-08T17:06:14+1100 RI_AR1/scaling 
+n = 149 ; logLik = -219.1399 ; phi = 0.9903172 ; convergence = 0 
+2026-10-08T17:06:15+1100 RI_AR1/period_additive 
+n = 149 ; logLik = -212.9654 ; phi = 0.9894276 ; convergence = 0 
+2026-10-08T17:06:15+1100 RI_AR1/period_interaction 
+n = 149 ; logLik = -212.9463 ; phi = 0.989406 ; convergence = 0 
+2026-10-08T17:06:16+1100 RI_AR1/period_separate_early 
+n = 68 ; logLik = -104.6165 ; phi = 0.9586883 ; convergence = 0 
+2026-10-08T17:06:16+1100 RI_AR1/period_separate_late 
+n = 81 ; logLik = -117.0649 ; phi = 0.9537841 ; convergence = 0 
+2026-10-08T17:06:17+1100 RIRS_IID/growth_sge0 
+n = 149 ; logLik = -104.7145 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:17+1100 RIRS_IID/variance_refit_sge0/conditional 
+n = 149 ; logLik = -157.8776 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:18+1100 RIRS_IID/variance_refit_sge0/marginal 
+n = 149 ; logLik = -157.8776 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:18+1100 RIRS_IID/growth_sge1 
+n = 140 ; logLik = -31.8368 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:19+1100 RIRS_IID/variance_refit_sge1/conditional 
+n = 140 ; logLik = 55.12392 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:20+1100 RIRS_IID/variance_refit_sge1/marginal 
+n = 140 ; logLik = 49.07654 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:20+1100 RIRS_IID/growth_sge2 
+n = 131 ; logLik = -28.16062 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:21+1100 RIRS_IID/variance_refit_sge2/conditional 
+n = 131 ; logLik = 61.41218 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:22+1100 RIRS_IID/variance_refit_sge2/marginal 
+n = 131 ; logLik = 46.12899 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:23+1100 RIRS_IID/variance_subset_sge1/conditional 
+n = 140 ; logLik = 30.40418 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:24+1100 RIRS_IID/variance_subset_sge2/conditional 
+n = 131 ; logLik = 31.6952 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:24+1100 RIRS_IID/variance_subset_sge1/marginal 
+n = 140 ; logLik = 30.40412 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:25+1100 RIRS_IID/variance_subset_sge2/marginal 
+n = 131 ; logLik = 31.69513 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:26+1100 RIRS_IID/scaling 
+n = 149 ; logLik = -395.6816 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:27+1100 RIRS_IID/period_additive 
+n = 149 ; logLik = -335.0101 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:27+1100 RIRS_IID/period_interaction 
+n = 149 ; logLik = -334.598 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:28+1100 RIRS_IID/period_separate_early 
+n = 68 ; logLik = -154.9118 ; phi = 0 ; convergence = 0 
+2026-10-08T17:06:28+1100 RIRS_IID/period_separate_late 
+n = 81 ; logLik = -166.6411 ; phi = 0 ; convergence = 0 
+Completed 54 fits; 0 failures.

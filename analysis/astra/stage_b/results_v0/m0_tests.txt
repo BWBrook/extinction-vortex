@@ -1,0 +1,9 @@
+ rho   n draws   expected   observed        mcse discrepancy_mcse
+ 1.0   1 30000  0.9366521  0.9373667 0.004176101       0.17111574
+ 1.0  20 30000 18.7330414 18.7319333 0.036306072      -0.03052020
+ 1.0 100 30000 93.6652070 93.4846000 0.162816523      -1.10926709
+ 0.5   1 30000  0.9366521  0.9364333 0.004137403      -0.05286813
+ 0.5  20 30000 18.7330414 18.7623000 0.033190946       0.88152347
+ 0.5 100 30000 93.6652070 93.8290333 0.147498666       1.11069698
+M0 support, zero absorption, expected growth, calendar schedule and endpoint tests passed.
+No literature prior, calibration bank, empirical p-value or production validation was run.

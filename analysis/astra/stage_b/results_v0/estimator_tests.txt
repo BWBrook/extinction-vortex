@@ -1,0 +1,3 @@
+intercept synthetic ML logLik difference: 8.533477e-06 
+intercept_slope synthetic ML logLik difference: 3.100709e-09 
+Dense likelihood, endpoint/time indexing, synthetic ML, residual and EB tests passed.
