@@ -48,6 +48,12 @@ does not state whether residuals include empirical-Bayes random effects, report
 both conditional and population-mean residuals explicitly. Do not use normalized
 or Pearson residuals without a source-supported amendment.
 
+Pre-fit clarification (8 October, before any Astra fit): also report the T4
+construction that subsets the squared T1 residuals without refitting its mean
+model. This is a separate declared diagnostic because the paper's description
+does not distinguish these two operations. No diagnostic becomes the historical
+estimator by matching a published number.
+
 For the scaling analysis, regress s on log(N). Report the population slope
 and empirical-Bayes slopes against the published rounded values. For Method 3,
 fit both a period main effect and a period-by-log(N) interaction, and fit the
