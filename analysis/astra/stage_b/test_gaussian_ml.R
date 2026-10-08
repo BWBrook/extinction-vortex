@@ -11,6 +11,30 @@ stopifnot(identical(series$growth$growth, zero$growth$growth))
 expect_error(make_series_data(c(2000, 2002, 2003), c(8, 4, 0), "gap"))
 expect_error(make_series_data(2000:2002, c(8, 4, 2), "unextinct"))
 
+# Pinned empirical mapping and cutoff membership, without fitting the data.
+d <- load_fh_data()
+stopifnot(identical(d$metadata$williams_id, c(14, 15, 6, 20, 21, 10, 4, 8, 9)),
+          identical(d$metadata$population, sprintf("FH%02d", 1:9)),
+          identical(d$metadata$endpoint_year, c(1992L, 2000L, 1982L, 1981L, 1990L, 2002L, 2003L, 1992L, 1992L)),
+          nrow(d$growth) == 149L, nrow(d$scaling) == 149L,
+          sum(d$growth$s >= 1) == 140L, sum(d$growth$s >= 2) == 131L,
+          all(d$growth$next_count[d$growth$s == 0] == 1),
+          identical(series$growth$observation_index, 2:4),
+          identical(series$scaling$observation_index, 1:3))
+
+# Exercise the runner's nonconvergence branch without running the batch.
+runner_expressions <- parse("analysis/astra/stage_b/run.R")
+is_fit_once <- vapply(runner_expressions, function(e)
+  is.call(e) && identical(e[[1L]], as.name("<-")) && identical(e[[2L]], as.name("fit_once")), logical(1))
+runner_env <- new.env(parent = globalenv())
+runner_env$fits <- list()
+runner_env$failures <- list()
+runner_env$fit_gaussian_ml <- function(...) list(n = 6, nll = 3, phi = 0.2,
+  diagnostics = list(convergence = 1L, message = "forced nonconvergence"))
+eval(runner_expressions[[which(is_fit_once)]], envir = runner_env)
+capture.output(invalid <- runner_env$fit_once("forced", NULL, "y", ~x, "x", "intercept", TRUE))
+stopifnot(is.null(invalid), length(runner_env$fits) == 1L, length(runner_env$failures) == 1L)
+
 # Profile objective checked against an independently assembled dense Gaussian.
 x <- c(-1, 0, 2, -2, 1, 3)
 y <- c(1.2, 0.3, 2.1, -1.1, 2.3, 4.0)

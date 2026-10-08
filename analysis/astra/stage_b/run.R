@@ -24,6 +24,11 @@ fit_once <- function(label, data, response, fixed, random_x, random, ar) {
   fits[[label]] <<- result
   cat("n =", result$n, "; logLik =", -result$nll, "; phi =", result$phi,
       "; convergence =", result$diagnostics$convergence, "\n")
+  if (result$diagnostics$convergence != 0L) {
+    failures[[label]] <<- paste("Nonconverged selected fit; dependent statistics skipped:", result$diagnostics$message)
+    cat("INVALID FOR DOWNSTREAM USE:", failures[[label]], "\n")
+    return(NULL)
+  }
   result
 }
 variants <- list(RIRS_AR1 = list("intercept_slope", TRUE),
@@ -91,4 +96,4 @@ write.csv(eb_table, file.path(out, "scaling_empirical_bayes.csv"), row.names = F
 writeLines(if (length(failures)) paste(names(failures), unlist(failures), sep = ": ") else "None", file.path(out, "failures.txt"))
 saveRDS(list(fits = fits, failures = failures, input_sha256 = d$input_sha256), file.path(out, "fits.rds"))
 capture.output(sessionInfo(), file = file.path(out, "sessionInfo.txt"))
-cat("Completed", length(fits), "fits;", length(failures), "failures.\n")
+cat("Archived", length(fits), "fits;", length(failures), "failed or nonconverged models.\n")

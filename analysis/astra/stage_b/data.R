@@ -24,10 +24,10 @@ make_series_data <- function(year, count, population) {
   adjusted <- count
   adjusted[length(count)] <- 1
   k <- seq_len(length(count) - 1L)
-  growth <- data.frame(population = population, year = year[k + 1L],
+  growth <- data.frame(population = population, year = year[k + 1L], observation_index = k + 1L,
     s = max(year) - year[k + 1L], previous_count = adjusted[k], next_count = adjusted[k + 1L],
     growth = log(adjusted[k + 1L] / adjusted[k]))
-  scaling <- data.frame(population = population, year = year[k], s = max(year) - year[k],
+  scaling <- data.frame(population = population, year = year[k], observation_index = k, s = max(year) - year[k],
                         count = count[k], log_count = log(count[k]))
   scaling$late <- as.integer(scaling$s <= 9)
   metadata <- data.frame(population = population, first_year = year[1L], endpoint_year = max(year),

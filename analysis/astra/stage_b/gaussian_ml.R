@@ -112,7 +112,7 @@ fit_gaussian_ml <- function(data, response, fixed, random_x, random = "intercept
   }
   evals <- eigen(fit$H, symmetric = TRUE, only.values = TRUE)$values
   fit$diagnostics <- list(convergence = best$convergence, message = best$message,
-    selected_start = best$start, nll_start_range = diff(range(values[is.finite(values)])),
+    selected_start = best$start, nll_start_range = diff(range(values[is.finite(values) & values < 1e99])),
     parameter_boundary = any(abs(best$par - lower) < 1e-4 | abs(best$par - upper) < 1e-4),
     ar_near_boundary = abs(fit$phi) > 0.99,
     random_near_singular = min(evals) < 1e-6 * max(1, max(evals)))

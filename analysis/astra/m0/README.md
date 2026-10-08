@@ -8,7 +8,8 @@ empirical series.
 `m0_step()` samples binomial survivors and Poisson recruits with a shared
 standard-normal annual environment. `rho = 0.5` gives the declared two-factor
 sensitivity. `simulate_m0()` propagates every calendar year and returns both
-the annual path and scheduled censuses. Selection uses the first **recorded**+census at or below one. There is no interpolation, calibration, rejection bank,
+the annual path and scheduled censuses. Selection uses the first **recorded**
+census at or below one. There is no interpolation, calibration, rejection bank,
 population cap, feedback term or empirical tail-probability calculation here.
 Numerical overflow is an error, not an extinction or a truncated trajectory.
 

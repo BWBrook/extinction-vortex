@@ -80,3 +80,16 @@ The source snapshot used here remains at
 `/data/codex/repos/extinction-vortex-selection-astra-20261008`; remote artifacts
 are at `/data/codex/artifacts/extinction-vortex-selection-astra-20261008-v0`.
 The script refuses to overwrite an existing artifact directory.
+
+## Post-freeze review repairs
+
+A read-only audit after the v0 result freeze found no fatal likelihood or
+generator error. It identified a runner guard: a selected fit with nonzero
+optimizer status could feed a subsequent variance fit. The current runner
+retains such a fit for diagnosis, marks it invalid and skips its descendants.
+All 54 archived v0 selections had status zero, so this guard changes none of
+their interpretation. The objective sentinel is excluded from the start-range
+diagnostic; observation indices and input-mapping assertions were added.
+The frozen source and results remain available at their original commits;
+these later edits do not overwrite that evidence. The covariance formulas and
+empirical model specification are unchanged.
