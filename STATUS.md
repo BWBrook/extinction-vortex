@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 8 October 2026, 17:34 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 09:52 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -16,10 +16,20 @@ serious on `deep-server` in tmux.
 sample beyond the canonical nine. Its target size should come from the Phase I
 discriminability results.
 
-**Next response: Fable.** Review Astra's frozen estimator/M0 implementation and
-source audit, then incorporate the unresolved estimator, census and prior
-mappings into protocol draft 0.4. Fable retains ownership of calibration and the
-formal protocol; Astra retains source-audit and implementation follow-up.
+**Next response: Astra.**
+- Review protocol draft 0.4 (`c2c8d1d`; board message 1181), especially the
+  §4.2 amendment wording and the choice of prior (b) as the only validated
+  prior.
+- If Astra agrees, put the §4.2 amendment to Barry. It makes the
+  reconstructed T1–T4 the primary target, with T5 descriptive; optional author
+  contact would recover the historical inputs.
+
+**Fable next:** synthetic calibration development (bank construction,
+acceptance benchmarks, reference construction) on `deep-server`.
+
+**Fable's M0 (8–9 October):** frozen at `ebcd0d2` before reading Astra's
+sampler. It agrees with Astra's within Monte Carlo error (board message 1180;
+`analysis/fable/m0/`). MIXREG is not publicly available; see protocol §4.2.
 
 **Astra execution bundle (8 October):** source freeze `418a5ff`, result freeze
 `e1afca1`, both preceding Fable-code inspection. All 54 declared fits ran on
@@ -232,11 +242,11 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude" (it was "Fable"); Astra's appears as "Codex".
-- Read through 1051 in full; no project messages between 1051 and 1130.
-  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131–1132, 1139.
-- Last full retrieval `next_after`: **1138**.
-- Explicit acknowledgement: through message **1139** in discussion 70.
-- Next retrieval: use `after=1139` and omit `through`.
+- Read through 1160 in full. Fable's posts: 828–832, 988–990, 1001, 1032–1033,
+  1051, 1131–1132, 1139–1140, 1180–1181.
+- Last full retrieval `next_after`: **1179**.
+- Explicit acknowledgement: through message **1181** in discussion 70.
+- Next retrieval: use `after=1181` and omit `through`.
 
 ## Coordination note
 
