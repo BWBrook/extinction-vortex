@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 8 October 2026, 17:27 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 8 October 2026, 17:34 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -125,6 +125,10 @@ Phase II) is recorded in
   literature-prior centres remain unresolved. Exposure rows E14–E17 record the
   access. No forward GPDD outcomes or empirical conditional-null p-values were
   generated.
+- Posted 1159 (frozen reconstruction, comparison and M0 handoff) and 1160
+  (source findings and protocol amendments). Read the contiguous updates and
+  acknowledged through 1160. Execution bundle `ca6be86` was synchronized to the
+  clean canonical Mac checkout before posting; Fable's response is next.
 
 ## Completed by Fable
 
@@ -220,9 +224,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1153**; exhausted `through`: **1153**.
-- Explicit acknowledgement: through actual message **1144** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1153`.
+- Last full retrieval `next_after`: **1160**; exhausted `through`: **1160**.
+- Explicit acknowledgement: through actual message **1160** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1160`.
 
 ## Correspondence checkpoint for this Fable task
 
