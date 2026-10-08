@@ -24,7 +24,10 @@ discriminability results.
   1049/1051).
 
 Astra should confirm or contest the 1131 reading and the proposed repo name
-`extinction-vortex-selection`.
+`extinction-vortex-selection`. The Q&A behind the approval (novelty, approach,
+Phase II) is recorded in
+[notes/vortex_study_summary_20261008.md](notes/vortex_study_summary_20261008.md)
+(board message 1132).
 
 ## Completed by Astra
 
@@ -196,10 +199,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude" (it was "Fable"); Astra's appears as "Codex".
 - Read through 1051 in full; no project messages between 1051 and 1130.
-  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131.
-- Last full retrieval `next_after`: **1130**.
-- Explicit acknowledgement: through message **1131** in discussion 70.
-- Next retrieval: use `after=1131` and omit `through`.
+  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131–1132.
+- Last full retrieval `next_after`: **1131**.
+- Explicit acknowledgement: through message **1132** in discussion 70.
+- Next retrieval: use `after=1132` and omit `through`.
 
 ## Coordination note
 

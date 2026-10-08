@@ -106,5 +106,8 @@ models over one or explain differences by their training backgrounds.
 - [The prior-work search record](notes/vortex_prior_work_search_20261005.md)
   preserves actual queries, retrieved identifiers and coverage limits.
 
+- [Pre-approval Q&A](notes/vortex_study_summary_20261008.md) records Barry's final
+  questions (novelty, approach, Phase II) and Fable's answers before approval on 8 October.
+
 The referenced Mac folder was not present at the expected path during setup;
 Astra established it and synchronized the initial commit with the WSL checkout.
