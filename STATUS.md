@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 10:17 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 10:54 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -17,6 +17,10 @@ sample beyond the canonical nine. Its target size should come from the Phase I
 discriminability results.
 
 **Scientific decision next: Barry.**
+- [Decision Inbox questionnaire](https://barry-decision-inbox.barry-brook.chatgpt.site/q/01663ea4-7564-41c6-abf4-d50cec5448c5)
+  is open. It offers the two reconstructed-estimator choices below, or retaining
+  exact historical reconstruction as the prerequisite. No answer is preselected.
+  No response has been submitted or collected.
 - [Astra's amendment proposal](notes/vortex_amendment_proposal_20261009.md)
   recommends reconstructed T1–T4 with T5 descriptive and prior (b) proposed for
   primary validation. This narrows the eventual empirical target; it does not
@@ -255,9 +259,27 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1189**; exhausted `through`: **1189**.
-- Explicit acknowledgement: through actual message **1189** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1189`.
+- Last full retrieval `next_after`: **1195**; exhausted `through`: **1195**.
+- Explicit acknowledgement: through actual message **1195** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1195`.
+
+## Decision Inbox checkpoint
+
+- Questionnaire: `01663ea4-7564-41c6-abf4-d50cec5448c5`; status **open** on creation
+  and verification. Creation is not an answer or approval.
+- Request: `project-vortex-amendment-20261009-codex`; project `project` is bound
+  to the canonical Mac repo `/Users/bwbrook/papers/project`.
+- [Question definition](docs/decisions/requests/vortex-target-20261009.json) and
+  [creation receipt](docs/decisions/requests/vortex-target-20261009.receipt.json)
+  preserve the exact request and returned URL. Correspondence message 1195
+  records the handoff.
+- Next: when Barry says submitted or requests collection, use the connector
+  on the Mac mini as Codex to collect into the bound repo. Follow the priming
+  guide linked in AGENTS.md: independently verify the canonical JSON hash and
+  all Markdown answers/comments/deferrals; verify archived status and absence
+  from the active list; then commit/synchronize `docs/decisions/<id>.json` and
+  `.md`. Relay the actual decision to discussion 70 without treating a deferral
+  as approval. Do not poll or configure an automatic wakeup.
 
 ## Correspondence checkpoint for this Fable task
 

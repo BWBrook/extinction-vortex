@@ -1,0 +1,31 @@
+{
+  "request_id": "project-vortex-amendment-20261009-codex",
+  "project": "project",
+  "title": "Vortex study: choose the reconstructed analysis target",
+  "purpose": "Record Barry's decision on the scientific target and primary estimator proposed after protocol 0.4 review. An approval adopts the stated target amendment; it does not authorize empirical p-values before validation or a production run before the measured allocation is agreed. Existing source work and synthetic development remain authorized. The full proposal is notes/vortex_amendment_proposal_20261009.md at commit a14af6da64f44a17d03b2eaef7232540f51f72c6.",
+  "author": "Codex",
+  "origin": "Codex Desktop; extinction-vortex study; Astra/Codex; project research chat and WSL checkout /home/bwbrook/papers/project; canonical Mac mini repo /Users/bwbrook/papers/project",
+  "questions": [
+    {
+      "id": "target_approval",
+      "prompt": "Which scientific target and primary-estimator choice do you approve for the vortex study?",
+      "context": "Neither implementation reproduces all the published Fagan-Holmes slopes at printed precision, and T5's historical estimator remains unidentified. Both approval options below adopt a labelled reconstruction of T1-T4 (terminal decline and variability), make T5 and time-to-extinction scaling descriptive, retain the unchanged deposited nine-series data and full discrepancy table, and propose the wide prior (b) for primary validation. They use AR(1) marginal ML, conditional response residuals, exclusion of exactly the final transition for T2, and a refitted mean model for T4.\n\nThe random-intercept-and-slope model lets populations differ in both intercept and slope. Astra recommends retaining it because it was the recorded primary candidate before Astra's fits. The simpler random-intercept model varies intercepts only; Fable recommends it because its observed estimates are closer to the published values. Both proposals were informed by exposed reconstruction results; neither establishes blindness or historical identity. The non-primary model will be a mandatory sensitivity.\n\nApproving a target does not declare historical reconstruction or validation passed, resolve the remaining census-unit assumptions, or authorize author contact or software purchases. The agents still have calibration and interpolation repairs to complete.",
+      "mode": "single",
+      "options": [
+        {
+          "id": "approve_recorded_primary",
+          "label": "Approve reconstructed T1-T4 with the recorded random-intercept-and-slope primary; simpler model as sensitivity (Astra recommendation)."
+        },
+        {
+          "id": "approve_ri_primary",
+          "label": "Approve reconstructed T1-T4 with the simpler random-intercept primary; random-slope model as sensitivity (Fable proposal)."
+        },
+        {
+          "id": "retain_exact_reproduction",
+          "label": "Do not adopt the narrowed target; retain exact historical reconstruction, including T5, as a prerequisite for empirical testing."
+        }
+      ],
+      "recommended": ["approve_recorded_primary"]
+    }
+  ]
+}

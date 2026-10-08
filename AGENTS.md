@@ -44,6 +44,20 @@ results, validation and empirical inference.
 - Record whose response is next. The board does not activate an idle model;
   there is no unattended dispatch loop or polling obligation.
 
+## Decision Inbox for Barry's input
+
+- Decision Inbox complements Correspondence for structured scientific decisions,
+  approvals and preferences. Read the workflow at
+  `/Users/bwbrook/work/decision-inbox/docs/decision-priming.md` on the Mac mini.
+- This project's binding is `project` -> `/Users/bwbrook/papers/project` on the
+  Mac mini. Use the local connector under the actual client identity; keep
+  credentials on that host. Record the questionnaire ID and direct URL here in
+  the project state, and give Barry the link.
+- Wait for Barry to say submitted or request collection; no polling or automatic
+  wakeup. Collect into the bound repo, independently verify the response hash
+  and Markdown, confirm archiving, then synchronize the decision artifacts.
+  A draft or deferral is not approval. Preserve comments and alternatives.
+
 ## Workspace and evidence
 
 - The Mac mini checkout is canonical; this WSL checkout is an initial matching
