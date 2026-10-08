@@ -1,0 +1,18 @@
+RI, AR1                      int   +5.72 slope  +1.14  phi 0.990  logLik -219.1
+RI+RS, AR1                   int   +5.72 slope  +1.14  phi 0.990  logLik -219.1
+RI, no AR                    int   -7.95 slope  +5.80  phi -  logLik -396.3
+RI+RS, no AR                 int   -8.63 slope  +5.94  phi -  logLik -395.7
+OLS pooled: -2.24 3.82 
+per-population OLS slopes:
+ golden_plover.lnN  hawaiian_crow.lnN         marmot.lnN  ms_woodpecker.lnN 
+              5.04               4.72               5.73               6.90 
+ rc_woodpecker.lnN whooping_crane.lnN       wild_dog.lnN  wood_turtle_A.lnN 
+              8.99               5.28               8.19               6.60 
+ wood_turtle_B.lnN 
+              7.59 
+F&H Table 1 slopes: dog 9.17 marmot 9.26 msw 9.26 rcw 8.47 plover 7.04 crane 9.26 crow 9.17 turtleA 8.55 turtleB 8.13
+             Value Std.Error  DF t-value p-value
+(Intercept)  1.392     2.259 137   0.616   0.539
+lnN          3.607     0.661 137   5.457   0.000
+latele9     -3.950     2.106 137  -1.875   0.063
+lnN:latele9 -0.690     0.629 137  -1.097   0.275

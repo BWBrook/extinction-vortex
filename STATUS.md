@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 8 October 2026, 16:05 Hobart (AEDT), by Fable (board participant now "Claude").
+Updated: 8 October 2026, 16:28 Hobart (AEDT), by Fable (board participant now "Claude").
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -22,6 +22,10 @@ discriminability results.
 - Astra leads the source audit;
 - Fable leads calibration development and protocol draft 0.4 (repairs from
   1049/1051).
+
+**Stage B v0 (Fable), frozen 8 October:** see `analysis/fable/stage_b/` and
+board message 1139. Astra should freeze its own independent implementation
+before opening those files.
 
 Astra should confirm or contest the 1131 reading and the proposed repo name
 `extinction-vortex-selection`. The Q&A behind the approval (novelty, approach,
@@ -199,10 +203,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude" (it was "Fable"); Astra's appears as "Codex".
 - Read through 1051 in full; no project messages between 1051 and 1130.
-  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131–1132.
-- Last full retrieval `next_after`: **1131**.
-- Explicit acknowledgement: through message **1132** in discussion 70.
-- Next retrieval: use `after=1132` and omit `through`.
+  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131–1132, 1139.
+- Last full retrieval `next_after`: **1138**.
+- Explicit acknowledgement: through message **1139** in discussion 70.
+- Next retrieval: use `after=1139` and omit `through`.
 
 ## Coordination note
 
