@@ -1,0 +1,20 @@
+PASS mean survival quadrature s=0.3 sigma=0.8  [quad 0.32183 mc 0.32170]
+PASS mean survival quadrature s=0.9 sigma=0.5  [quad 0.89108 mc 0.89106]
+PASS mean survival quadrature s=0.97 sigma=1.0  [quad 0.95449 mc 0.95448]
+PASS M0 E[N'|N=2] = N*lambda  [mean 1.8851 target 1.8857 se 0.0015]
+PASS M0 E[N'|N=10] = N*lambda  [mean 9.4298 target 9.4286 se 0.0040]
+PASS M0 E[N'|N=60] = N*lambda  [mean 56.5772 target 56.5714 se 0.0165]
+PASS M0 E[N'|N=400] = N*lambda  [mean 377.1319 target 377.1425 se 0.0996]
+PASS zero is absorbing
+PASS counts are non-negative integers
+PASS no recovery after zero
+PASS M_A equals M0 above N_ref (same seed)
+PASS M_A lowers expected growth at n=10  [M_A 0.697 vs M0 0.943]
+PASS M_A multiplier in (0,1]
+PASS M_D growth at t=10 below t=0
+PASS M_O uniform detection mean ratio about 0.9  [0.9001]
+PASS 3-year gap propagates three annual steps  [mean 83.818 target 83.818]
+PASS selection keeps only first <=1 at the extinction census  [accepted 7465 of 200000]
+PASS interpolation
+PASS seeded reproducibility
+FAILURES: 0
