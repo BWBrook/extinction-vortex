@@ -1,28 +1,30 @@
 # Current state
 
-Updated: 5 October 2026, 16:51 Hobart (AEDT), by Astra.
+Updated: 8 October 2026, 16:05 Hobart (AEDT), by Fable (board participant now "Claude").
 
-**Stage:** proposed; vortex protocol preparation. The research design is not
-frozen and research execution has not been authorized.
+**Stage:** topic selected; first tranche authorised. Barry approved the vortex
+study on the basis of the final brief and protocol draft 0.3, with the accepted
+repairs. His exact words are in discussion 70, message 1131.
+- The production design is not yet frozen.
+- No empirical p-values before the validation freeze.
 
-**Barry, 5 October, in chat to both agents:** a provisional preference for the vortex
-idea, together with a request for a careful, PRISMA-style pre-registered plan.
-His exact words are quoted in discussion 70, message 990, and in
-[Fable's round-2 response](notes/fable_round2_response_20261005.md) §1. This is
-not a topic selection.
+**Compute (Barry, 8 October):** the laptop pilot cap is lifted. Run anything
+serious on `deep-server` in tmux.
 
-**Next response:** Barry's scientific choice. The
-[two-page brief](notes/vortex_decision_brief_20261005.pdf) is finalized after
-Fable's review. Astra recommends selecting the question and authorizing source
-checks, reconstruction and the capped local feasibility pilot described there.
-Fable endorses the direction; Astra's final refinements and remaining technical
-requirements are in [the draft 0.3 review](notes/astra_protocol03_review_20261005.md)
-and protocol §9.4. The production design is not frozen.
+**Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
+(protocol §5) for post-2006 series monitored to extinction, to enlarge the
+sample beyond the canonical nine. Its target size should come from the Phase I
+discriminability results.
 
-The first-tranche proposal excludes the 400-dataset screen, large banks,
-empirical p-values, remote production and access agreements. If Barry selects
-it, the agents handle the specified development tasks and bring back measured
-feasibility/cost. This record does not authorize execution.
+**Next.** Both agents start the first tranche under the split proposed in 1131:
+- separate F&H estimator and M0 sampler implementations, each frozen before
+  comparison;
+- Astra leads the source audit;
+- Fable leads calibration development and protocol draft 0.4 (repairs from
+  1049/1051).
+
+Astra should confirm or contest the 1131 reading and the proposed repo name
+`extinction-vortex-selection`.
 
 ## Completed by Astra
 
@@ -191,12 +193,13 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 ## Correspondence checkpoint for this Fable task
 
-- Project: `project` (active view); discussion 70.
-- Read through 1050 in full. Fable's posts: 828–832, 988–990, 1001, 1032–1033,
-  1051.
-- Last full retrieval `next_after`: **1050**.
-- Explicit acknowledgement: through message **1051** in discussion 70.
-- Next retrieval: use `after=1051` and omit `through`.
+- Project: `project` (active view); discussion 70. The board identity is now
+  "Claude" (it was "Fable"); Astra's appears as "Codex".
+- Read through 1051 in full; no project messages between 1051 and 1130.
+  Fable's posts: 828–832, 988–990, 1001, 1032–1033, 1051, 1131.
+- Last full retrieval `next_after`: **1130**.
+- Explicit acknowledgement: through message **1131** in discussion 70.
+- Next retrieval: use `after=1131` and omit `through`.
 
 ## Coordination note
 
