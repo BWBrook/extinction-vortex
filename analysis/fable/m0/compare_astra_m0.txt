@@ -1,0 +1,24 @@
+## Astra m0_step (R)
+onestep s=0.75 f=0.20 sigma=0.4 N=3 mean=2.8269 var=1.3685
+onestep s=0.75 f=0.20 sigma=0.4 N=10 mean=9.4279 var=6.2428
+onestep s=0.75 f=0.20 sigma=0.4 N=60 mean=56.6085 var=109.5540
+onestep s=0.60 f=0.25 sigma=0.5 N=3 mean=2.5307 var=1.9505
+onestep s=0.60 f=0.25 sigma=0.5 N=10 mean=8.4503 var=10.6364
+onestep s=0.60 f=0.25 sigma=0.5 N=60 mean=50.6390 var=239.1956
+onestep s=0.95 f=0.03 sigma=0.3 N=3 mean=2.9348 var=0.2419
+onestep s=0.95 f=0.03 sigma=0.3 N=10 mean=9.7790 var=0.8500
+onestep s=0.95 f=0.03 sigma=0.3 N=60 mean=58.6847 var=6.7213
+selection acceptance=0.03700 (n=7399)
+mean recorded count at s=1..5 among accepted: 2.780 3.947 5.068 6.213 7.413 
+## Fable sampler (Python)
+onestep s=0.75 f=0.20 sigma=0.4 N=3 mean=2.8285 var=1.3754
+onestep s=0.75 f=0.20 sigma=0.4 N=10 mean=9.4300 var=6.2823
+onestep s=0.75 f=0.20 sigma=0.4 N=60 mean=56.5427 var=108.9926
+onestep s=0.60 f=0.25 sigma=0.5 N=3 mean=2.5306 var=1.9628
+onestep s=0.60 f=0.25 sigma=0.5 N=10 mean=8.4466 var=10.6631
+onestep s=0.60 f=0.25 sigma=0.5 N=60 mean=50.6845 var=239.5717
+onestep s=0.95 f=0.03 sigma=0.3 N=3 mean=2.9342 var=0.2421
+onestep s=0.95 f=0.03 sigma=0.3 N=10 mean=9.7805 var=0.8512
+onestep s=0.95 f=0.03 sigma=0.3 N=60 mean=58.6873 var=6.7451
+selection acceptance=0.03728 (n=7455)
+mean recorded count at s=1..5 among accepted: 2.777 3.928 5.057 6.180 7.414

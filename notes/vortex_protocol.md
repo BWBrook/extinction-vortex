@@ -1,6 +1,18 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.3a — 5 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.4 — 9 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.4 (Fable) incorporates three groups of changes into §§1–4 and 7, with a
+summary in §9.5:
+- the repairs accepted in 1049/1051;
+- Astra's source audit;
+- the Stage B results.
+
+**Requires Barry's decision:** the proposed amendment in §4.2. It sets the
+primary target to a labelled reconstruction of T1–T4 and removes T5 from the
+primary test.
+
+**Earlier drafts (history):** 0.3a — 5 October 2026.
 
 Draft 0.3a: Astra completed the [bounded review](astra_protocol03_review_20261005.md)
 and finalized the [decision brief](vortex_decision_brief.md) after Fable's
@@ -38,7 +50,7 @@ pre-analysis commitment supplies the prospective element; it is not an external
 registration or a claim of full PRISMA compliance. The study is an empirical
 reanalysis with simulation validation, not necessarily a meta-analysis.
 
-## 1. Scientific aims and minimum contribution — Fable formal draft 0.3
+## 1. Scientific aims and minimum contribution — Fable formal draft 0.4
 
 Draft 0.3 answers Astra's quantitative review (R1–R6). The main changes from
 draft 0.2:
@@ -51,8 +63,9 @@ draft 0.2:
 - The compute figure is replaced by a benchmark.
 
 **Q1 (primary, empirical).** Take the nine-population Fagan–Holmes (F&H)
-terrestrial sample. Are the observed values of the five published
-terminal-trajectory statistics T1–T5 (§2.1) compatible with their conditional
+terrestrial sample. Are the observed values of the terminal-trajectory
+statistics T1–T4 (§2.1; T5 descriptive, pending the §4.2 amendment)
+compatible with their conditional
 reference distribution under a population-matched no-feedback process M0
 (§3.1, §3.4)? The simulated data must pass through the same selection, census
 processing and estimator as the observed data.
@@ -87,7 +100,7 @@ that feedback is absent, and not a posterior probability of the null. O2 is not
 evidence of genetic or Allee feedback unless further, mechanism-specific
 evidence is added.
 
-## 2. Estimands and comparison populations — Fable formal draft 0.3
+## 2. Estimands and comparison populations — Fable formal draft 0.4
 
 ### 2.1 Part 1 design, statistics and target
 
@@ -99,11 +112,24 @@ For each population i, the design records:
 - the extinction census year, and hence L_i;
 - the published final-step convention, N_0 := 1.
 
-Six of the nine windows already match F&H in length when counted from the
-first census to the extinction census
-([reconciliation](t3/fh_table1_reconciliation.txt)). The wild dog (20 vs 23
-years), marmot (21 vs 20) and crane (16 vs 18) must be settled from the F&H
-text before freezing.
+**Windows.** The F&H windows cannot be recovered from the printed text. Their
+printed durations imply 146 non-terminal censuses, against the 148 stated in
+the text (Astra source audit). The windows are therefore fixed as follows:
+- **Primary:** the deposited Williams series up to the first census ≤ 1.
+- **Sensitivity:** the F&H-length variant (`analysis/fable/stage_b`), where
+  the deposited data allow it.
+- **Wild dog:** the deposited values for 1971, 1972 and 1978 are missing in the
+  author-distributed MARSS series. A sensitivity treats them as missing.
+- **Crane:** the deposited counts match the official Rocky Mountain flock
+  totals. Under rule E, the extinction census is 2002.
+
+**Census ledger.** The audit's per-population fields (census unit, age class,
+observation process, closure, intervention, study cluster) are carried as
+provisional attributes, per [the source audit](astra_source_audit_20261008.md).
+- The claim that all nine series are complete counts of individuals is
+  withdrawn.
+- Unit conflicts, such as the middle spotted woodpecker's individuals vs
+  pairs, stay unresolved. No conversion is made.
 
 The five statistics are those F&H published:
 
@@ -113,16 +139,22 @@ The five statistics are those F&H published:
 | T2 | T1 excluding the final transition | +0.011 |
 | T3 | slope of the squared T1 residuals on s | −0.047 |
 | T4 | T3 excluding the final transition | −0.012 |
-| T5 | period coefficient (s ≤ 9 vs s ≥ 10) in the regression of s on ln N_s | to be transcribed exactly |
+| T5 | period effect (s ≤ 9 vs s ≥ 10) in the regression of s on ln N_s | F&H print only z = 2.3 and two fitted curves; no single coefficient is reconstructable |
 
-T1–T5 are computed by the Stage B estimator (§4.2).
+T1–T4 are computed by the Stage B estimator (§4.2).
+- **Primary statistic set:** T1–T4, pending the §4.2 amendment.
+- **T5 and the time-to-extinction scaling model:** these leave the primary
+  test, but are reported descriptively. With AR(1) errors and s as the
+  response, the scaling model degenerates (φ → 0.99). Neither implementation
+  reproduces F&H's published slope of 9.1.
 
 **Target.** The conditional prior-predictive tail probability
 
 > p_joint = P( D(T^rep) ≥ D(T^obs) | C^rep = C^obs, selection S, M0, prior π ).
 
-- D is the Mahalanobis distance of the vector (T1, …, T5) from its
-  reference-distribution mean, using the reference covariance.
+- D is the Mahalanobis distance of the vector (T1, …, T4) from a mean and
+  covariance estimated on an independent *training* set of replicates (§3.4,
+  step 4). Its tail probability is then computed on a separate *test* set.
 - C is the vector of per-population calibration summaries (§3.4).
 
 Properties of this target:
@@ -135,7 +167,8 @@ Properties of this target:
 - This is not Bayarri and Berger's partial posterior predictive p-value, and
   §4.3 is a false-alarm experiment, not simulation-based calibration of
   posterior ranks. The 0.2 labels are withdrawn.
-- p_joint depends on the prior, so §3.4 specifies two priors.
+- p_joint depends on the prior. Prior (b) is primary and the only validated
+  prior; see §3.4.
 
 Per-statistic tail probabilities p_k are secondary.
 
@@ -162,7 +195,7 @@ Part 2 is not specified enough for any gate. These items are open:
 
 Part 2 re-enters only by a dated amendment, after the first tranche.
 
-## 3. Generative models and calibration — Fable formal draft 0.3
+## 3. Generative models and calibration — Fable formal draft 0.4
 
 ### 3.1 Null M0: a valid demographic model
 
@@ -189,10 +222,21 @@ Part 2 re-enters only by a dated amendment, after the first tranche.
     to within Monte Carlo error;
   - absorption at zero;
   - exact replication of each census schedule and of rule E.
-- **Scope.** All nine F&H series are counts of individuals (the crane series
-  is a peak winter count). Pair and territory units, and age structure with
-  delayed recruitment, are misspecification checks for later work, not
-  first-tranche models.
+- **Scope.** The survival parameter is survival *of the census class*. It is
+  not automatically an adult-survival estimate.
+  - The census classes in the ledger (§2.1) are provisional: all-age counts,
+    breeding units, peak winter counts.
+  - The unstructured model is therefore an approximation. Stage-structured
+    recruitment, and conversion between pairs and individuals, are
+    misspecification checks for later work.
+- **Implementation status.** M0 has been implemented twice: Astra in R
+  (`analysis/astra/m0/`) and Fable in Python (`analysis/fable/m0/`). Both
+  froze before comparison. They agree within Monte Carlo error on one-step
+  means and variances in nine configurations, on selection acceptance (0.0370
+  vs 0.0373) and on terminal profiles
+  ([comparison](../analysis/fable/m0/compare_astra_m0.txt)).
+  - The two-factor ρ = 0.5 sensitivity exists only in Astra's implementation
+    so far.
 
 ### 3.2 Alternatives and mixtures
 
@@ -220,8 +264,11 @@ starting from N = 20) by at least 0.10 (absolute) over M0. It is evaluated at
 the median calibrated M0 parameters.
 - **If M0's probability exceeds 0.85,** restart from N = 50.
 - **If no β ≤ β_max reaches the target,** where β_max is the value that sets
-  g(10) = 0.1, use β_max/2 and report that no decision-relevant effect is
-  definable at these parameters.
+  g(10) = 0.1, then **O1 is unavailable**. β_max/2 may be reported only as a
+  descriptive sensitivity.
+- **Frozen search.** A grid of β in steps of Δ10 = 0.025, evaluated at the
+  medians of the calibrated M0 libraries under prior (b), pooled across the
+  nine populations.
 - **Computation.** 10^5 runs per grid value, done once at Stage C before
   validation.
 
@@ -245,42 +292,59 @@ the median calibrated M0 parameters.
 3. **Library.** The K = 2,000 bank runs nearest to c_obs,i, each from a
    distinct parameter draw. The K-th distance must be ≤ 0.25 standardised
    units; otherwise enlarge the bank, or record a calibration failure.
-4. **Reference distribution.**
-   - Build R = 10,000 replicate datasets, each taking one library run per
-     population independently, and apply the Stage B estimator.
-   - Estimate the covariance from the replicates, with Ledoit–Wolf shrinkage
-     if it is ill-conditioned.
-   - p_joint = (1 + #{D^rep ≥ D^obs}) / (R + 1).
-   - Monte Carlo stability: repeat with a fresh seed and an independent bank
-     half. A change of more than 0.01 triggers a larger R or bank.
+4. **Reference distribution** (repair 1, 1049/1051).
+   - **Two independent replicate sets.** Draw R_train = 10,000 and
+     R_test = 10,000 replicate datasets independently. Each takes one library
+     run per population and is passed through the Stage B estimator.
+   - **Training set.** Supplies the mean and covariance of T. Use Ledoit–Wolf
+     shrinkage if the condition number exceeds 10^6.
+   - **Test set.** D is computed for the test replicates and for the
+     observation with the *same* training estimates. Both are independent of
+     the training set, so they are exchangeable under exact conditioning.
+   - **Tail probability.** p_joint = (1 + #{D^test ≥ D^obs}) / (R_test + 1).
+     Ties are broken uniformly at random.
+   - **Feature failures.** A calibration summary with zero bank MAD for a
+     population is dropped for that population and recorded. An undefined
+     autocorrelation (constant changes) is set to 0 and flagged.
+   - **Finite bank.** The reference is conditional on the frozen bank.
+     Stability check: a second, independent bank with a fresh seed. A change
+     in p_joint of more than 0.01 triggers a larger bank.
+   - **Fixed replicate counts.** The replicate counts are fixed. No sequential
+     stopping is used.
 5. **Priors.**
 
-   | Prior | Survival | Recruitment, environment |
-   |---|---|---|
-   | (a) literature-anchored | logit s_i ~ N(logit s_lit, 0.5²), with s_lit from the §5.4 ledger | log f_i ~ U(log 0.01, log 2); σ_i ~ U(0.02, 1.0) |
-   | (b) wide | logit s_i ~ N(0, 1.5²) | as (a) |
+   | Prior | Status | Survival | Recruitment, environment |
+   |---|---|---|---|
+   | (b) wide | **primary, and the only validated prior** | logit s_i ~ N(0, 1.5²) | log f_i ~ U(log 0.01, log 2); σ_i ~ U(0.02, 1.0) |
+   | (a) literature-anchored | secondary and unvalidated; built only for populations whose ledger supports a census-class-matched survival source | logit s_i ~ N(logit s_lit, 0.5²) | as (b) |
 
-   Report both priors. If they lead to different outcome labels, report
-   *prior-sensitive*.
+   Rules for prior (a):
+   - Estimates fitted to the same trajectory are excluded as priors. Example:
+     the crow plan's 79.8%, per the source audit.
+   - Where prior (a) is reported and its outcome label differs from prior
+     (b)'s, report *prior-sensitive*.
 
-## 4. Stages, outputs and decision rules — Fable formal draft 0.3
+## 4. Stages, outputs and decision rules — Fable formal draft 0.4
 
 ### 4.1 First tranche (to be authorised by Barry, if selected)
 
 This is Astra's proposed tranche, with concrete exit criteria:
 1. **Source and metadata audit.**
    - Settle the three F&H windows, the endpoint evidence and the units.
-   - Transcribe T5.
+   - Transcribe T5. Done: F&H print no single coefficient, so T5 is
+     descriptive (§2.1).
    - Build the survival ledger.
    - Close the named prior-work gaps (final Nabutanyi–Wittmann text; Drake &
      Griffen 2009 methods).
 2. **Stage B reconstruction.**
    - Both agents implement the F&H estimator independently from §2.1.
-   - Pass: T1–T5 reproduced at published precision, which for T1–T4 means
+   - Pass: T1–T4 reproduced at published precision. Status: not passed; see
+     §4.2. At published precision this means
      |Δ| ≤ 0.0005 (three decimals).
    - If that fails: a labelled *reconstructed estimand* with a discrepancy
      table. Never adjust dates, endpoints or values to obtain agreement.
-3. **Development pilot** (synthetic only, within the laptop limits).
+3. **Development pilot** (synthetic only). The laptop limits no longer apply:
+   since Barry's 8 October note, serious runs go to `deep-server` in tmux.
    - Implement M0, M_A, M_D and M_O and pass the §3.1 invariant tests.
    - Measure, per population, the acceptance rate of the exact selection S,
      simulation throughput, estimator fit time and failure rate, and memory.
@@ -293,18 +357,62 @@ This is Astra's proposed tranche, with concrete exit criteria:
 Production validation (§4.3) and the empirical test follow only with a
 measured cost estimate and Barry's allocation.
 
-### 4.2 Stage B criterion
+### 4.2 Stage B: status and proposed amendment
 
-As in item 2 of §4.1. The 0.2 tolerance of 0.005 is withdrawn as too loose:
-it is about half of the published T2 slope.
+**Criterion.** As in §4.1 item 2. The 0.2 tolerance of 0.005 was withdrawn as
+too loose; it is about half of the published T2 slope.
+
+**Status: not passed.** Two implementations, frozen independently, share all
+149 inputs. Their likelihoods agree to 10^-12 at matching covariance
+parameters.
+
+| Statistic | Published | Random intercept only (closest) | Random intercept and slope |
+|---|---:|---:|---:|
+| T1 | 0.034 | 0.03344 | 0.03368 |
+| T2 | 0.011 | 0.01123 | 0.01308 |
+| T3 | −0.047 | −0.04787 | −0.04318 |
+| T4 | −0.012 | −0.01185 | −0.00907 |
+
+- With a random intercept only, T2 and T4 are within ±0.0005 of the published
+  values; T1 misses by 0.0006 and T3 by 0.0009.
+- The scaling model and T5 are not reproduced.
+- Sources: `analysis/astra/stage_b/README.md` and `analysis/fable/stage_b/`.
+
+**Bounded check of the historical estimator (Fable, 9 October).** Hedeker's
+MIXREG is no longer publicly distributed: it is absorbed into the commercial
+SuperMix. The F&H input files are unpublished. Identifying the historical
+estimator exactly therefore needs one of:
+1. contact with the authors (Holmes, Fagan) or with Hedeker;
+2. a SuperMix licence.
+
+Both are Barry's decisions.
+
+**Proposed amendment, for Barry's decision.**
+- **Primary target.** A labelled *reconstructed estimand*: T1–T4 computed by
+  the documented reconstruction (random-intercept multilevel regression, AR(1)
+  errors, marginal ML) on the deposited data. Random intercept plus slope is a
+  sensitivity. Random intercept only is pre-specified as primary because it
+  reproduces the published T1–T4 most closely. That is a reconstruction
+  criterion, chosen before any test outcome is known.
+- **T5.** Removed from the primary test.
+- **Validity.** The test applies the same estimator to the observed and the
+  simulated data, so the inference stays valid for the reconstructed
+  statistics.
+- **What changes.** The scientific claim becomes "F&H's vortex statistics, as
+  reconstructed", not the exact published numbers. The discrepancies above
+  (all ≤ 0.002 for T1–T4) are reported alongside.
+- **Optional, in parallel.** If Barry wishes, he could contact the authors for
+  the original inputs. If those were recovered and identified the historical
+  estimator, the target would revert to it by dated amendment.
 
 ### 4.3 Production validation (on frozen code, before the empirical p-values)
 
-- **Independence.** The synthetic "observed" datasets never come from the
-  library used to test them. Each population's bank is split into halves; the
-  observed data come from one half and the library from the other, and the
-  halves are then swapped. Boundary scenarios draw fresh trajectories at fixed
-  parameter values.
+- **Independence** (repair 1). Each population has one frozen reference bank.
+  Synthetic "observed" datasets are *fresh* trajectories:
+  - drawn from the prior and then selected, for the prior-predictive scenario;
+  - drawn at fixed parameter values, for the boundary scenarios.
+
+  They never come from the bank. Folds are not swapped or pooled.
 - **Type I error.** Four M0 scenarios:
   - prior-predictive;
   - three nuisance corners: high σ; low survival; short L, using the shortest
@@ -315,8 +423,9 @@ it is about half of the published T2 slope.
   four), which means at most 60 rejections in 1,000.
   - A true 5% test passes with probability 0.93; a true 6.5% test with 0.29; a
     true 8% test with about 0.01.
-  - If a scenario fails at 1,000, extend it once to 1,200 (pass if ≤ 75). If it
-    still fails, or the budget is exhausted, the result is V-fail.
+  - **Fixed n = 1,000, with no extension** (repair 2). A scenario with more
+    than 60 rejections means V-fail. The family is the four null scenarios
+    under the primary prior (b).
 - **Power.** 300 datasets under M_A at β_min (prior-predictive nuisances). The
   O1 label requires a lower one-sided 95% Clopper–Pearson bound ≥ 0.70, which
   means at least 224 detections in 300. True power of 0.80 passes with
@@ -342,10 +451,11 @@ costs.
 - **Banks.** These are one-off costs, set by the acceptance rates.
 - **Benchmark.** The pilot measures fit time t_fit and acceptance rates, and
   sets R_v (between 1,000 and 2,000).
-- **Sequential p-values.** Validation p-values use Besag–Clifford sequential
-  Monte Carlo tests (Besag & Clifford 1991, doi:10.2307/2337256). Each test
-  stops at 20 exceedances or at R_v replicates. This keeps the tests valid
-  while cutting fits for the many clearly non-significant datasets.
+- **No sequential p-values.** The Besag–Clifford proposal is withdrawn
+  (repair 1). Each validation dataset uses fixed R_v,train = R_v,test = 1,000
+  replicates.
+- **Compute (Barry, 8 October).** Serious runs go to `deep-server` in tmux.
+  The laptop cap no longer applies.
 - **If the published estimator is too slow,** the pilot evaluates a
   decomposable surrogate (pooled GLS with fixed AR(1)). An amendment then
   states which estimator defines T for the test. The published estimator
@@ -557,17 +667,19 @@ outcomes. An independent extractor may mechanically split files, but its access
 and summaries must also be logged. A checksum shows file identity, not that
 nobody inspected its contents.
 
-## 7. Analysis and reporting plan — Fable formal draft 0.3
+## 7. Analysis and reporting plan — Fable formal draft 0.4
 
 **Prespecified vs exploratory analyses.**
 
 | Analysis | Status |
 |---|---|
-| Q1: p_joint on T1–T5 under priors (a) and (b), with the validation results and outcome labels of §1 | Prespecified, **primary** |
+| Q1: p_joint on T1–T4 (the reconstructed estimand, §4.2) under prior (b), with the validation results and outcome labels of §1 | Prespecified, **primary**; pending Barry's §4.2 decision |
+| Prior (a), where the ledger supports it | Prespecified secondary; unvalidated |
+| T5 and the scaling model: published F&H curves set beside our diagnostic fits | Descriptive only |
 | Q2: discriminability rates (§4.3) | Prespecified, **primary** |
-| Each p_k (Holm-adjusted across the five) | Prespecified, secondary |
+| Each p_k (Holm-adjusted across the four) | Prespecified, secondary |
 | Williams statistics on complete-count series confirmed by the audit (Q3) | Prespecified, secondary |
-| Sensitivity: exact endpoint vs the study's inclusion window; rule E (≤ 1 vs 0); separate environmental factors; leave-one-population-out across all nine; runs of identical counts treated as missing except the first, where provenance is uncertain | Prespecified, reported regardless of result |
+| Sensitivity: exact endpoint vs the study's inclusion window; rule E (≤ 1 vs 0); separate environmental factors; leave-one-population-out across all nine; turtles A and B left out together (shared study cluster); the crane excluded (experimental flock with intervention history); the wild dog's three deposited fills treated as missing; random intercept plus slope estimator; F&H-length windows; runs of identical counts treated as missing except the first, where provenance is uncertain | Prespecified, reported regardless of result |
 | *Daphnia* (if the data are obtained): the Q1 pipeline applied to the deteriorating replicates. A departure is a diagnostic to investigate with the controls, not proof of error, since the known food reduction does not rule out concurrent feedback. | Prespecified diagnostic, conditional on access |
 | Part 2; M_G; the founder-size module; the 2016 LPD subset; anything not listed here | Exploratory, or parked until a dated amendment |
 
@@ -727,3 +839,38 @@ resources, with that literature correction. Neither the most likely outcome,
 a publishable paper, nor a general sample-size requirement has been established.
 The brief is ready for Barry's scientific choice; this disposition authorizes
 no research stage.
+
+### 9.5 Fable draft 0.4 (9 October): what changed
+
+**Accepted repairs (1049/1051).**
+- An independent training/test reference for D, and a frozen bank with fresh
+  outer trajectories (§3.4, §4.3).
+- Fixed n = 1,000 validation, with no extension (§4.3).
+- O1 unavailable when β_min is unattainable; a frozen effect search (§3.3).
+- Besag–Clifford sequential p-values withdrawn.
+
+**Astra source audit (1160).**
+- Census ledger fields kept separate; the "all complete individual counts"
+  claim withdrawn (§2.1, §3.1).
+- Same-trajectory survival excluded as a prior; prior (a) secondary and
+  unvalidated (§3.4).
+- Shared-cluster sensitivity for the two turtles, crane-intervention
+  sensitivity, and wild-dog fill sensitivity (§7).
+
+**Stage B (1159; Fable's 1139).**
+- Recorded as not passed.
+- MIXREG is not publicly available.
+- Proposed amendment for Barry: the reconstructed T1–T4 become the primary
+  target and T5 becomes descriptive (§4.2).
+
+**M0.**
+- Two independent implementations, frozen and then compared; they agree
+  within Monte Carlo error (§3.1).
+
+**Still open.**
+- Barry's decision on §4.2.
+- Survival-source mapping for prior (a).
+- The census-unit conflicts.
+- Comparator parameter ranges for M_D and M_O.
+- The full scenario and cost inventory after the pilot benchmark.
+- Synthetic calibration development, which is Fable's next task.
