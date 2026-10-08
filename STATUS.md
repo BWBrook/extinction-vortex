@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 09:52 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 9 October 2026, 10:14 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -16,20 +16,29 @@ serious on `deep-server` in tmux.
 sample beyond the canonical nine. Its target size should come from the Phase I
 discriminability results.
 
-**Next response: Astra.**
-- Review protocol draft 0.4 (`c2c8d1d`; board message 1181), especially the
-  §4.2 amendment wording and the choice of prior (b) as the only validated
-  prior.
-- If Astra agrees, put the §4.2 amendment to Barry. It makes the
-  reconstructed T1–T4 the primary target, with T5 descriptive; optional author
-  contact would recover the historical inputs.
+**Scientific decision next: Barry.**
+- [Astra's amendment proposal](notes/vortex_amendment_proposal_20261009.md)
+  recommends reconstructed T1–T4 with T5 descriptive and prior (b) proposed for
+  primary validation. This narrows the eventual empirical target; it does not
+  turn the failed historical reconstruction into a pass.
+- One disagreement is preserved: Fable proposed RI as primary because its
+  observed estimates were closest; Astra recommends retaining the recorded
+  pre-fit random-slope candidate, with RI as a mandatory sensitivity. Neither
+  choice identifies the historical estimator or makes the analysis blind.
 
-**Fable next:** synthetic calibration development (bank construction,
-acceptance benchmarks, reference construction) on `deep-server`.
+**Fable next:** respond to [Astra's 0.4 review](notes/astra_protocol04_review_20261009.md),
+repair the formal calibration specifications and adjacent-gap interpolation,
+and continue synthetic development on `deep-server`. Freeze the same full
+procedure for validation and empirical use. No primary prior has yet passed
+production validation.
 
 **Fable's M0 (8–9 October):** frozen at `ebcd0d2` before reading Astra's
 sampler. It agrees with Astra's within Monte Carlo error (board message 1180;
-`analysis/fable/m0/`). MIXREG is not publicly available; see protocol §4.2.
+`analysis/fable/m0/`). Astra reran all 19 invariant checks successfully and
+found a separate adjacent-gap interpolation defect; the completed M0 comparison
+did not use interpolation. Historical MIXREG was not recovered in the bounded
+search; current evidence does not establish universal unavailability or that a
+licence would recover the historical inputs/settings.
 
 **Astra execution bundle (8 October):** source freeze `418a5ff`, result freeze
 `e1afca1`, both preceding Fable-code inspection. All 54 declared fits ran on
@@ -139,6 +148,16 @@ Phase II) is recorded in
   (source findings and protocol amendments). Read the contiguous updates and
   acknowledged through 1160. Execution bundle `ca6be86` was synchronized to the
   clean canonical Mac checkout before posting; Fable's response is next.
+- On 9 October, read 1180–1181 and protocol 0.4. Reviewed the finite-bank
+  calibration argument with a read-only mathematical delegate; identified
+  mismatched validation/empirical replicate counts, post-result bank enlargement
+  and undefined failure contributions to the fixed-denominator gates.
+- Inspected Fable's frozen M0 and comparison code; all 19 invariant tests passed
+  on replay. A targeted consecutive-interpolation check failed and is recorded
+  for Fable's repair. No new empirical fits or conditional-null tests were run.
+- Prepared the four-statistic amendment and recommended keeping the pre-fit
+  primary candidate rather than selecting a diagnostic for closer observed
+  agreement. Prior exposure and the unresolved difference with Fable are explicit.
 
 ## Completed by Fable
 
@@ -208,14 +227,13 @@ Phase II) is recorded in
 
 ## Pending
 
-1. Fable reviews this execution bundle, freezes its M0 implementation for
-   comparison, and prepares protocol 0.4 with the accepted inference repairs
-   and the newly documented source/estimator limitations.
-2. Resolve the historical input/estimator question in a bounded source pass:
-   original windows and interpolation, exact census classes, covariance and
-   residual conventions, and Method 3/T5. Stage B remains unpassed. Replacing
-   the historical reconstruction target with a newly defined estimator would
-   require an explicit scientific amendment, not a silent workaround.
+1. Barry considers the four-statistic target amendment. Fable responds to
+   Astra's estimator-choice recommendation and repairs the formal 0.4 text;
+   the review records which statements are not yet supported by validation.
+2. Retain the unresolved historical input/estimator and census-class questions.
+   Do not infer software unavailability from failed retrieval or silently change
+   raw values, interpolation or annual-increment definitions. Stage B remains
+   unpassed, even if a reconstructed target is adopted.
 3. Develop synthetic calibration, record acceptance rates and component costs,
    and retain all failed feasibility checks. Serious work runs on deep-server
    in tmux. The 220-core-hour proposal remains withdrawn; production resources
@@ -234,9 +252,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1160**; exhausted `through`: **1160**.
-- Explicit acknowledgement: through actual message **1160** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1160`.
+- Last full retrieval `next_after`: **1182**; exhausted `through`: **1182**.
+- Explicit acknowledgement: through actual message **1181** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1182`.
 
 ## Correspondence checkpoint for this Fable task
 

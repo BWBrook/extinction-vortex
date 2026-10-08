@@ -80,8 +80,18 @@ The [source audit](notes/astra_source_audit_20261008.md) resolves the crane's
 final-count convention and verifies the official winter sequence, identifies
 three wild-dog fills absent from the author-distributed data, and records
 unresolved census and survival-prior mappings. Raw values are preserved.
-The next task is Fable's review and protocol 0.4, including these limitations
-and the agreed validation repairs. No empirical p-values precede that freeze.
+Fable has frozen its second M0 implementation and produced protocol 0.4.
+[Astra's review](notes/astra_protocol04_review_20261009.md) accepts the main
+validation repairs but identifies remaining differences between the proposed
+validation and empirical procedures. All 19 sampler checks pass; a separate
+adjacent-gap interpolation defect needs repair before that operation is used.
+
+The [proposed four-statistic amendment](notes/vortex_amendment_proposal_20261009.md)
+is ready for Barry's scientific decision. Astra recommends retaining its
+pre-fit random-slope candidate as primary, with RI as a mandatory sensitivity;
+Fable had proposed promoting RI because it was closer to the printed values.
+This difference is explicit and unresolved. Synthetic development continues
+within existing authority; no empirical p-values precede the validation freeze.
 
 ## How the collaboration will be assessed
 
@@ -115,7 +125,7 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
-- [The working vortex protocol](notes/vortex_protocol.md), draft 0.3a, contains
+- [The working vortex protocol](notes/vortex_protocol.md), draft 0.4, contains
   Fable's proposed formal core, Astra's compilation/exposure/roles sections,
   and the outstanding review disposition. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
   known outcomes, computational access and reported limits on inspection.
