@@ -1,6 +1,19 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.6 — 9 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.7 — 9 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.7 (Fable) responds to Astra's 0.6 review (1226/1228); §9.8 lists the
+changes:
+- the discrimination screen, scored with fixed denominators;
+- an outer-C coverage check;
+- a proposed k-NN library with 10× banks;
+- a narrowed candidate conclusion, with the Student-t comparator retired;
+- the capped target A;
+- consolidated seed, fallback and failure text.
+
+The choice of null remains **proposed** until Barry decides it (§3.1).
+
+**Working draft 0.6 — 9 October 2026, Hobart (history).**
 
 Draft 0.6 (Fable) responds to Astra's 0.5 review (1212/1214); §9.7 lists the
 changes:
@@ -200,7 +213,13 @@ multilevel model with AR(1) errors, fitted by marginal ML.
 
 **Target.** The conditional prior-predictive tail probability
 
-> p_joint = P( D(T^rep) ≥ D(T^obs) | C^rep = C^obs, selection S, M0, prior π ).
+> p_joint = P( D(T^rep) ≥ D(T^obs) | C^rep = C^obs, selection S, cap event A, M0, prior π ).
+
+- A (draft 0.7, Astra 0.6 review §4): no count and no Poisson rate exceeds
+  10^9 before the recorded endpoint. Bank and outer simulations apply it
+  identically. The target is defined conditional on S and A; overall overflow
+  of 0–3.3% does not bound A's effect on the selected law, and no claim is
+  made about the uncapped law.
 
 - D is the Mahalanobis distance of the vector (T1, …, T4) from a mean and
   covariance estimated on an independent *training* set of replicates (§3.4,
@@ -272,9 +291,11 @@ direct feedback" means three things:
 1. Given the parameters θ and the exogenous environmental state (z_t and any
    catastrophe indicator B_t), each individual's survival probability and
    expected recruitment do not depend on N_t.
-2. The environmental process evolves independently of N.
-3. Under plain M0 (iid z_t), this implies that E[N_{t+1} | N_t, θ] / N_t does
-   not depend on abundance.
+2. The environmental transition law excludes N: z_t and B_t are generated
+   without reference to abundance. This does not make z and N statistically
+   independent; N_t carries information about past z (Astra 0.6 review).
+3. In the plain Gaussian iid case (fixed θ, unselected paths),
+   E[N_{t+1} | N_t, θ] / N_t does not depend on abundance.
 
 With an autocorrelated environment (ρ > 0), N_t carries information about the
 latent z_t. The conditional mean given N_t alone can then vary with N_t
@@ -343,20 +364,47 @@ environmental model as the null in use.
 > ([`compare_nulls_v1/NOTE.md`](../analysis/fable/calibration/compare_nulls_v1/NOTE.md);
 > deep-server, 2×10^7 draws per population and variant, common cap and
 > selection).
-> - Plain M0 (iid) and the heavy-tailed variant are **infeasible** for both
->   turtles under the 10^9-draw cap.
-> - AR alone fails the red-cockaded woodpecker's step variance (0.2nd
->   percentile).
-> - Catastrophes alone fail the turtles' ACF (99.7th) and are borderline on
->   draws.
-> - **Only ar_cat is feasible for all nine**, with every summary between the
->   2.0 and 96.5 percentiles and at most 3 × 1.1×10^8 draws.
+> - Corrected in 0.7 (Astra 1228). Under the rule 3 × upper requirement
+>   ≤ 10^9 draws: iid, AR, catastrophes-only and heavy each fit 7/9
+>   populations; AR fails for the wild dog (1.23×10^9) and turtle B
+>   (1.31×10^9), catastrophes-only for both turtles (up to 3.31×10^9).
+> - **Only ar_cat fits all nine** (largest 3.37×10^8 draws), with every
+>   summary between the 2.0 and 96.5 percentiles.
+> - This is planning feasibility around the observed C among the candidates
+>   actually implemented. It is not outer-dataset coverage and not evidence
+>   that the populations need catastrophes or AR.
+> - **The heavy comparator is retired as evidence.** For a standardised
+>   Student-t with finite ν, E[exp(σZ)] is infinite, so its recruitment has
+>   infinite mean before the cap; it is not a finite-mean match to the
+>   Gaussian model, and AR plus continuous heavy tails was not tested.
 >
-> The proposal is therefore ar_cat as primary, with plain M0 as a mandatory
-> sensitivity (reported, possibly indeterminate for the turtles). This is a
-> scientific choice for Barry, after the bounded discrimination check
-> (`run_discrimination.sh`, running 9 October).
+> The proposal is therefore ar_cat as primary, an explicitly model-dependent
+> no-feedback null, with plain M0 as a mandatory sensitivity (reported,
+> possibly indeterminate for the turtles). This is a scientific choice for
+> Barry; the discrimination screen and outer-C coverage check are summarised
+> below.
 >
+> *0.7 discrimination screen*
+> ([`discrimination_v1/NOTE.md`](../analysis/fable/calibration/discrimination_v1/NOTE.md);
+> synthetic only; 30 outer datasets per arm; 2×10^8 banks; M_A at Δ10 = 0.5,
+> a development effect, not β_min).
+>
+> | Arm | Procedure outcome (fixed denominator) | Raw p < 0.05 (diagnostic) |
+> |---|---|---:|
+> | iid null | 7/30 count against the null gate; all 7 are calibration shortfalls | 0/30 |
+> | ar_cat null | 9/30 against the gate: 8 shortfalls, 1 rejection | 1/30 |
+> | iid M_A | 20/30 detections | 29/30 |
+> | ar_cat M_A | 14/30 detections | 21/30 |
+>
+> - At this bank size, calibration shortfalls dominate. The fix proposed is
+>   in §3.4 step 3, with the coverage evidence in
+>   [`coverage_v1/NOTE.md`](../analysis/fable/calibration/coverage_v1/NOTE.md).
+> - The raw-p diagnostic shows the trade-off for the choice of null. An AR
+>   environment with catastrophes absorbs part of what Allee feedback does to
+>   T1–T4: at this effect, 0.97 [0.83, 1.00] against the iid null vs 0.70
+>   [0.51, 0.85] against ar_cat.
+> - Fit failures: none in 240,120 datasets.
+
 > *Scope.* This change is adaptive: it was chosen after exposure to C. With
 > catastrophes in the null, a terminal crash counts as non-feedback. The study
 > then tests whether vortex statistics exceed demographic, environmental and
@@ -378,8 +426,9 @@ environmental model as the null in use.
   - z_t ~ N(0, 1): one environmental factor shared by survival and
     recruitment.
   - Sensitivity: separate factors with correlation 0.5.
-- **Expected per-capita growth.** It is E[s_t] + f_i, computed by numerical
-  integration, and does not depend on abundance.
+- **Expected per-capita growth** (plain Gaussian iid case, fixed θ,
+  unselected). It is E[s_t] + f_i, computed by numerical integration, and
+  does not depend on abundance.
 - **Invariant tests,** passed before any use:
   - support (survival in (0, 1), counts ≥ 0);
   - the identity E[N_{t+1} | N_t] = N_t(E[s_t] + f_i), checked by simulation
@@ -444,10 +493,8 @@ the median calibrated M0 parameters.
 1. **Bank.** For each population, draw parameters from the prior π and simulate
    M0 from N_i,first with the observed schedule. Keep the runs that satisfy S
    exactly: rule E is met first at the observed extinction census.
-   - Target: at least 2 × 10^5 kept runs per population, within a budget of
-     J_max = 10^8 draws.
-   - A population that cannot reach the target fails calibration, and the
-     outcome becomes indeterminate.
+   - Bank size J_i and its cap follow the single rule in step 3 (the 0.4
+     target of 2 × 10^5 kept runs within 10^8 draws is withdrawn).
 2. **Calibration summaries C_i.** Three summaries, standardised by their median
    absolute deviation (MAD) within the bank:
    - the mean squared one-step log change, excluding the final transition;
@@ -458,6 +505,51 @@ the median calibrated M0 parameters.
    conditionally (§2.1).
 3. **Library.** The K = 2,000 bank runs nearest to c_obs,i, each from a
    distinct parameter draw.
+
+   > **Proposed in 0.7 (pending Astra's review): a k-NN library and 10×
+   > banks.** This replaces the hard tolerance and the 0.6 bank rule below.
+   > - **Library.** The K = 2,000 nearest runs, with no hard tolerance. This
+   >   is rejection ABC with a fixed number of accepted simulations: Beaumont,
+   >   Zhang & Balding (2002, doi:10.1093/genetics/162.4.2025); k-NN analysis
+   >   in Biau, Cérou & Guyader (2015, doi:10.1214/13-AIHP590).
+   >   - Each population's K-th neighbour distance is recorded and reported.
+   >     It is a diagnostic and never labels a trial.
+   >   - The shortfall branch disappears.
+   > - **Bank size.** J_i = 2 × 10^9 draws per population, which is 10× the
+   >   development banks.
+   >   - J_i and the seeds are frozen before validation; bank files keep the
+   >     draw indices, parameters, seed and overflow count.
+   >   - Cost: about 33 core-hours and 11 GB per null variant on deep-server.
+   > - **Evidence**
+   >   ([`coverage_v1/NOTE.md`](../analysis/fable/calibration/coverage_v1/NOTE.md)).
+   >   With the hard tolerance of 1.0:
+   >   - 2 × 10^8 banks leave 31–33% of fresh null outer datasets short in at
+   >     least one population;
+   >   - 10× banks would leave 4.5–4.9% short, and 100× about 0.5%;
+   >   - under the fixed-denominator rule, every shortfall consumes the null
+   >     budget.
+   >
+   >   With the k-NN library at 10× (ar_cat null), the realised radius has
+   >   these quantiles:
+   >
+   >   | Quantile | 0.50 | 0.95 | 0.99 |
+   >   |---|---:|---:|---:|
+   >   | Radius | 0.35 | 0.99 | 1.60 |
+   >
+   >   §4.3 then measures the realised false-alarm rate of exactly this
+   >   procedure, including sparse-region approximation.
+   > - **Why the 0.6 rule is withdrawn.** The observed-C Clopper–Pearson
+   >   planning rule was only approximate, because MAD comes from the same bank
+   >   (Astra 0.6 review §3), and it did not address outer-C coverage.
+   > - **Consequence for the plain-M0 sensitivity.** Under k-NN, plain M0
+   >   returns a p-value for the turtles even though their observed C lies in
+   >   the tail of that bank. That p-value is reported with its K-th neighbour
+   >   distance and is not interpreted where the distance is large.
+   > - **Alternative, if a guard is preferred.** Keep a hard cap of 3.0 with
+   >   10× banks. Null shortfalls would then be 0.13–0.17%, and M_A shortfalls
+   >   about 0.3% (ar_cat).
+
+   *0.6 text (superseded if the proposal is adopted):*
    - **Tolerance.** At most 1.0 standardised (MAD) units. The development scan
      showed that 0.25 is infeasible.
    - **Bank size** (0.6 rule; replaces "3 × the scan's estimate").
@@ -482,13 +574,16 @@ the median calibrated M0 parameters.
    - **Training set.** Supplies the mean and covariance of T. Use Ledoit–Wolf
      shrinkage if the condition number exceeds 10^6.
    - **Test set.** D is computed for the test replicates and for the
-     observation with the *same* training estimates. Both are independent of
-     the training set, so they are exchangeable under exact conditioning.
+     observation with the *same* training estimates. Exchangeability of the
+     observation and test replicates holds only in the ideal case of §2.1;
+     with the ABC neighbourhood and a finite bank it is approximate, and §4.3
+     measures the realised rejection rate.
    - **Tail probability.** p_joint = (1 + #{D^test ≥ D^obs}) / (R_test + 1).
      Ties count as exceedances, per the executable rule in §2.1.
    - **Feature failures.** A calibration summary with zero bank MAD for a
      population is dropped for that population and recorded. An undefined
-     autocorrelation (constant changes) is set to 0 and flagged.
+     autocorrelation (constant changes) is set to 0 and flagged. (0.7: the code
+     sets these but does not yet record the flags; required before freeze.)
    - **Finite bank.** The reference is conditional on the frozen bank.
      - Stability check: a second, independent frozen bank, specified before
        validation. Its result is **descriptive only**.
@@ -504,8 +599,19 @@ the median calibrated M0 parameters.
      - If a test replicate fails, report p-value bounds treating failures as
        most and least extreme. If those bounds straddle 0.05, neither O1 nor
        O2 is available.
-     - Fallback fitting is frozen before validation: an alternative optimiser
-       (nlminb), then new starting values.
+     - Fallback fitting (frozen in 0.7 as implemented): optim, then nlminb;
+       no further restarts. The new-start step is dropped: none of the
+       240,120 development datasets in the discrimination screen (9 October;
+       four nlme fits each) failed after the fallback. Fallback use itself
+       is not yet recorded.
+     - Training replicates whose fit fails are excluded from the mean and
+       covariance and counted. Observed, training and test fit failures all
+       count toward the §4.3 stop rule (> 2% in a scenario).
+     - Each trial records one outcome: reject, accept, or indeterminate
+       (calibration shortfall, observed-fit failure, unusable training
+       covariance, straddling bounds). The diagnostic p ignoring these is
+       archived separately and never labels a trial
+       (`e2e_benchmark.py`, `score_discrimination.py`).
    - **Fixed replicate counts.** No sequential stopping is used.
 5. **Priors.**
 
@@ -658,8 +764,8 @@ The proposal text follows, corrected where noted.
 - **Scope of validation.** Validation covers the frozen procedure, bank,
   design and scenario distributions, against the 8% ceiling. It does not
   certify secondary or sensitivity tests, or prior (a).
-- **Development vs validation seeds.** Seeds 1–999 are for development. Final
-  validation uses seeds ≥ 10^6, run once on frozen code.
+- **Development vs validation seeds.** Development streams are listed in
+  §4.4. Final validation uses seeds 9 × 10^12 + i, run once on frozen code.
 
 ### 4.4 Compute
 
@@ -697,9 +803,12 @@ costs.
   2,000.
 - **No sequential p-values.** The Besag–Clifford proposal is withdrawn
   (repair 1).
-- **Seeds.** Development seeds used so far are 20261002–20261015 and
-  20261014000–20261014044. Final validation seeds are reserved at
-  9 × 10^12 + i, disjoint from all of these.
+- **Seeds.** Development seeds used so far: 20261002–20261018;
+  20261014000–20261014044 (comparison banks); 20261014100–20261014117
+  (2 × 10^8 discrimination banks); 2026101800–2026101835 (outer-C coverage
+  tasks). The discrimination arms reused 20261016 (null) and 20261017 (M_A)
+  for both variants. Final validation seeds are reserved at 9 × 10^12 + i,
+  disjoint from all of these.
 - **Compute (Barry, 8 October).** Serious runs go to `deep-server` in tmux.
   The laptop cap no longer applies.
 - **If the published estimator is too slow,** the pilot evaluates a
@@ -1182,4 +1291,56 @@ Responses to Astra's 0.5 review (1212/1214):
 - Barry's decision on the primary null;
 - β_min under the chosen null;
 - the final scenario and cost inventory with production bank sizes;
+- the census-unit conflicts.
+
+### 9.8 Fable draft 0.7 (9 October): what changed
+
+Responses to Astra's 0.6 review (1226/1228):
+- **Discrimination screen, completed and scored** (`discrimination_v1/`).
+  - All 4 × 30 trials completed.
+  - Each trial is classified with fixed denominators, from recomputed
+    full-precision bounds. The recomputation matches the logged p in all 120.
+  - Shortfalls count against the null gate and as nondetections.
+  - Raw p is kept as a diagnostic only.
+- **Outer-C coverage** (`coverage_v1/`), with 20,000 fresh outer datasets per
+  scenario.
+  - The hard tolerance needs about 100× banks.
+  - Proposal: a k-NN library with 10× banks (§3.4 step 3; pending Astra).
+- **Candidate conclusion narrowed** (§3.1, `compare_nulls_v1/NOTE.md`).
+  - The comparison table is corrected: AR and catastrophes-only each fit 7/9.
+  - Ar_cat is the only implemented candidate meeting the observed-C
+    planning rule.
+  - This is not evidence that catastrophes or AR are needed.
+  - The Student-t comparator is retired: its recruitment has infinite mean
+    before the cap.
+- **H0 wording.** The environmental transition law excludes N, which is not
+  statistical independence. The abundance-independent mean is now labelled
+  as the plain Gaussian iid, fixed-θ, unselected case.
+- **Capped target.** The target conditions on S and on the cap event A
+  (§2.1).
+- **Consolidation.**
+  - The 2×10^5 / 10^8 bank target is removed.
+  - Test-set exchangeability is deferred to §2.1.
+  - Development seeds are listed and the old seed ranges removed.
+  - Fallback fitting is frozen as implemented: optim, then nlminb, no
+    restarts.
+  - A training-failure policy and per-trial outcome categories are stated.
+  - Recording of the feature-failure flags is still to be implemented.
+- **Code.**
+  - `e2e_benchmark.py` now classifies each trial's outcome, catches an
+    unusable covariance, and checkpoints rows to `e2e_rows.jsonl`.
+  - The driver waits on each PID and verifies row counts.
+  - Re-run against modified copies of Astra's mocked probes, these give
+    `indet_calib`, `indet_cov` and a failing driver status. Astra's
+    unmodified probe now stops on the renamed `p` field.
+
+**Open:**
+- Astra's review of the k-NN proposal;
+- Barry's decision on the primary null (one Decision Inbox question, prepared
+  by Astra);
+- β_min under the chosen null;
+- frozen numeric values for the null corner scenarios;
+- production banks at 2×10^9;
+- the final scenario and cost inventory;
+- feature-flag recording and fallback-use recording;
 - the census-unit conflicts.

@@ -1,0 +1,8 @@
+{
+ "draws_per_task": 200000000,
+ "chunk": 1000000,
+ "procs": 18,
+ "cap": 1000000000,
+ "base_seed": 20261014,
+ "wall_seconds": 1304.1
+}

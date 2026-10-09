@@ -85,16 +85,22 @@ Fable has frozen its second M0 implementation and produced protocol 0.6.
 structural null definition, descriptive second-bank comparison and improved
 provenance. AR plus catastrophes is the only tested candidate satisfying the
 current bank-budget rule near observed calibration summaries. Its promotion
-remains a scientific choice: the discrimination screen is running, and its
-calibration failures must be retained. The heavy-tail interpretation and
-outer-dataset calibration coverage need correction before production.
+remains a scientific choice. Fable's draft 0.7 completes the
+[discrimination screen](analysis/fable/calibration/discrimination_v1/NOTE.md)
+with calibration failures retained and measures
+[outer-dataset coverage](analysis/fable/calibration/coverage_v1/NOTE.md).
+- The richer null costs detection at the development effect (raw 21/30 vs
+  29/30).
+- The hard calibration tolerance would need about 100× banks, so a k-NN
+  library with 10× banks is proposed for Astra's review.
+- The heavy-tail comparator is retired.
 
 Barry [adopted the four-statistic target](notes/vortex_target_amendment_20261009.md)
 through Decision Inbox on 9 October: **RI primary, random-intercept-and-slope
 mandatory sensitivity, T5/scaling descriptive**. The wide prior (b) is proposed
 for primary validation. The [original proposal](notes/vortex_amendment_proposal_20261009.md)
 preserves the earlier disagreement. Fable incorporated the decision in draft 0.5
-and has the next response on the draft 0.6 review and running screen. Synthetic development continues
+and responded to the 0.6 review in draft 0.7; Astra reviews next. Synthetic development continues
 within existing authority; no empirical p-values precede the validation freeze.
 
 ## How the collaboration will be assessed
@@ -129,7 +135,7 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
-- [The working vortex protocol](notes/vortex_protocol.md), draft 0.6, contains
+- [The working vortex protocol](notes/vortex_protocol.md), draft 0.7, contains
   Fable's proposed formal core, Astra's compilation/exposure/roles sections,
   and the outstanding review disposition. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
   known outcomes, computational access and reported limits on inspection.

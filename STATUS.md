@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 13:07 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 14:40 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -83,17 +83,33 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 - Exact benchmark source was recovered from deep-server and its archived hash
   verified. No empirical test or new population simulation was run by Astra.
 
-**Running on deep-server:** tmux `fable_disc` (`/data/fable/vortex/compare_nulls_20261009T013137Z/disc_20261009T014241Z`). This is the bounded
-discrimination check: iid vs ar_cat, each null vs M_A at Δ10 = 0.5,
-30 synthetic datasets per arm. At 13:06 AEDT, the 18 bank tasks had finished
-(1,304 seconds), and iid outer fits were running. Fable owns completion and
-posts the complete results; no final discrimination report is available yet.
+**Protocol draft 0.7 (Fable), responding to the 0.6 review.**
+- **Discrimination screen complete** ([note](analysis/fable/calibration/discrimination_v1/NOTE.md)).
+  All 4 × 30 synthetic trials ran and were scored with fixed denominators.
+  - With 2×10^8 banks, calibration shortfalls make 23–43% of trials
+    indeterminate, which breaks the null gate for either null.
+  - Raw-p diagnostic under M_A at Δ10 = 0.5: 29/30 detections against the
+    iid null and 21/30 against ar_cat. Null arms: 0/30 and 1/30.
+  - No fit failures in 240,120 datasets.
+- **Outer-C coverage** ([note](analysis/fable/calibration/coverage_v1/NOTE.md)),
+  20,000 fresh outer datasets per scenario.
+  - At tolerance 1.0, all-nine coverage is 0.67–0.69 under the nulls at 1×.
+    About 100× banks would be needed to hold shortfalls near 0.5%.
+  - Proposal (§3.4, pending Astra): a k-NN library with 2×10^9-draw banks
+    and no shortfall branch. Its realised radius at 10× is ≤ 0.99 for 95% of
+    null datasets.
+- **Corrections.** The candidate conclusion is narrowed: ar_cat is the only
+  implemented candidate meeting the observed-C rule, which is not evidence
+  that catastrophes are needed. The Student-t comparator is retired. The
+  capped target A, the H0 wording and the seed and failure text are
+  consolidated.
+- **Code.** The e2e outcome classification, covariance catch and row
+  checkpointing are repaired; the driver now waits on each PID.
 
-**Next response: Fable.** Report all four arms with indeterminates retained,
-repair the outcome/failure handling, narrow the comparison conclusion and
-check outer-C library coverage before expensive further fitting. Astra then
-reviews the evidence for a single primary-null Decision Inbox question.
-No new question is open now. A candidate choice can precede final validation.
+**Next response: Codex.** Review the 0.7 package, especially the k-NN
+proposal. If ar_cat remains the candidate, prepare the single Decision Inbox
+question on the primary null, with the observed trade-off. No question is open
+now.
 
 No validation and no empirical p-values have been run.
 
@@ -281,12 +297,24 @@ No validation and no empirical p-values have been run.
   Endorsed the brief as written. Posted 1051 and added a correction note to
   protocol §9.3.
 
+- 9 October, draft 0.7.
+  - Completed and scored the four-arm discrimination screen.
+  - Ran the outer-C coverage check, archived in `discrimination_v1/` and
+    `coverage_v1/`.
+  - Proposed a k-NN library with 10× banks.
+  - Corrected and narrowed the null comparison, and retired the Student-t
+    comparator.
+  - Stated the capped target, and consolidated the H0, seed, fallback and
+    failure text.
+  - Repaired e2e failure handling and the driver.
+  - Added exposure row E23. Read 1226–1228.
+
 ## Pending
 
-1. Fable completes the running development screen and addresses the draft 0.6
-   review, especially complete outcome accounting and outer-C coverage. The
-   adopted RI amendment is incorporated. A primary-null question follows a
-   reviewable candidate comparison; no new decision is awaiting Barry now.
+1. Astra reviews draft 0.7: the discrimination screen, outer-C coverage and
+   the k-NN library proposal. The primary-null Decision Inbox question
+   follows; no decision is awaiting Barry now. After that: β_min, frozen
+   corner scenarios, production banks and the cost inventory.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -340,10 +368,11 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1214 in full. Fable's latest posts: 1206 and 1218.
-- Last full retrieval `next_after`: **1217**.
-- Explicit acknowledgement: through message **1218** in discussion 70.
-- Next retrieval: use `after=1218` and omit `through`.
+- Read through 1228 in full. Fable's latest posts: 1218, 1222 and the 0.7
+  handoff.
+- Last full retrieval `next_after`: **1232**.
+- Explicit acknowledgement: through message **1228** in discussion 70.
+- Next retrieval: use `after=1232` and omit `through`.
 
 ## Coordination note
 

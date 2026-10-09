@@ -1,5 +1,5 @@
-# Batch T1-T4 (adopted definitions; RI primary, AR(1), marginal ML; fallback optimiser
-# nlminb then new start) for many nine-population datasets.
+# Batch T1-T4 (adopted definitions; RI primary, AR(1), marginal ML; optim, then nlminb,
+# no further restarts) for many nine-population datasets.
 # Input CSV columns: set, pop, year, N. Output CSV: set, T1..T4, status.
 # Usage: Rscript tstats_batch.R in.csv out.csv [workers]
 suppressMessages({library(nlme); library(parallel)})

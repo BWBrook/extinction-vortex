@@ -28,23 +28,35 @@ The variants are those defined in `bank.py`: iid, ar, cat, ar_cat and heavy.
 - under the 0.6 rule, 3 × `draws_for_K2000_upper` must stay within the
   10^9 cap.
 
-**Findings.**
+**Findings** (corrected 9 October after Astra's re-evaluation, 1228; the
+first version misapplied the rule to AR and catastrophes and quoted
+3 × the upper requirement loosely). Rule: 3 × `draws_for_K2000_upper` ≤ 10^9.
 
-| Variant | Result | Most demanding population |
-|---|---|---|
-| iid | **Infeasible** for both turtles. ACF at the 99.6–99.7th percentile; red-cockaded woodpecker msq at the 0.2nd percentile. | Turtle B: 3 × 7.3×10^9 |
-| heavy | Indistinguishable from iid, so continuous heavy tails do not help. | Turtle B: 3 × 5.2×10^9 |
-| ar | Fixes the turtles' ACF (95–96th percentile) but not the woodpecker's msq (0.2nd). Feasible, but woodpecker msq stays extreme. | Turtle B: 3 × 4.4×10^8 |
-| cat | Helps the woodpecker's msq (1.8th percentile) but not the turtles' ACF (99.7th). Borderline: turtle B needs 3 × 1.1×10^9. | Turtle B: 3 × 1.1×10^9 |
-| **ar_cat** | **Feasible for all nine.** Every percentile lies between 2.0 and 96.5. | Turtle B: 3 × 1.1×10^8 |
+| Variant | Within the cap | Largest requirement (3 × upper), raw draws | Notes |
+|---|---:|---|---|
+| iid | 7/9 | turtle B 2.19×10^10; turtle A 5.48×10^9 | Turtles' ACF at the 99.6–99.7th percentile; red-cockaded woodpecker msq at the 0.2nd. |
+| ar | 7/9 | turtle B 1.31×10^9; wild dog 1.23×10^9 | Turtles' ACF fixed (95–96th); woodpecker msq still at the 0.2nd. |
+| cat | 7/9 | turtle B 3.31×10^9; turtle A 2.57×10^9 | Woodpecker msq improved (1.8th); turtles' ACF not (99.7th). |
+| **ar_cat** | **9/9** | 3.37×10^8 | Every percentile between 2.0 and 96.5. |
+| heavy | 7/9 | turtle B 1.57×10^10; turtle A 5.70×10^9 | **Retired as evidence** (below). |
 
 Overflow rates are 0–3.3% under every variant; the wild dog is the highest,
 because it starts at 77.
 
+**Heavy comparator retired.** For a standardised Student-t Z with finite ν and
+σ > 0, E[exp(σZ)] is infinite, so `f·exp(σZ − σ²/2)` has infinite mean
+recruitment before the cap; the Gaussian centring does not normalise it, and
+the cap then changes the sampled law (Astra 1228). The comparison is not a
+finite-mean match to the Gaussian model, and it is not evidence against
+continuous heavy tails. AR plus continuous heavy tails was not tested.
+
 **Interpretation, development only.**
-- The turtle series need an autocorrelated environment.
-- The woodpecker and turtle step variances, together with the terminal drops,
-  need catastrophes.
+- Among the five exploratory candidates actually implemented, only ar_cat
+  meets the observed-C planning rule. This is planning feasibility around the
+  observed summaries, not outer-dataset coverage (see `../discrimination_v1/`)
+  and not evidence that the populations require catastrophes or an AR
+  environment: AR plus a finite-mean continuous heavy tail is untested, and
+  the priors are exploratory.
 - Neither feature is feedback. All five variants satisfy the structural H0
   in protocol §3.1.
 - These comparisons used the observed calibration summaries (exposure row E20)

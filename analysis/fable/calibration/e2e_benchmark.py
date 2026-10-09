@@ -7,6 +7,12 @@ tolerance -> R_train and R_test replicate datasets -> T1-T4 in R (tstats_batch.R
 training mean/covariance (Ledoit-Wolf shrinkage if ill-conditioned) -> D -> p with the
 conservative tie rule. Component timings, shortfalls and fit failures are recorded.
 
+Each trial gets a procedural outcome under the fixed-denominator rules (protocol §4.3):
+reject / accept, or indeterminate (calibration shortfall, observed-fit failure, unusable
+training covariance, or test-fit bounds straddling ALPHA). The raw p (lower bound, ignoring
+shortfalls) is kept only as a diagnostic. Rows are appended to e2e_rows.jsonl as each trial
+completes, so an aborted arm keeps its finished trials.
+
 Usage: python e2e_benchmark.py BANKDIR VARIANT OUTDIR N_OUTER [R] [K] [TOL] [R_WORKERS] [BETA_OUTER] [SEED]
 BETA_OUTER > 0 generates the outer datasets under M_A (feedback) on the same environment
 variant; the reference banks are always the no-feedback null of that variant.
@@ -17,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from bank import designs, calib_features, simulate_chunk
 
 SEED = 20261015                          # development stream (disjoint from final >= 10**9)
+ALPHA = 0.05
 
 
 def fresh_selected(design, variant, rng, beta=0.0):
@@ -37,6 +44,43 @@ def ledoit_wolf(X):
     b2 = sum(((np.outer(x, x) - S) ** 2).sum() for x in Xc) / n ** 2
     b2 = min(b2, d2)
     return (b2 / d2) * F + (1 - b2 / d2) * S if d2 > 0 else S
+
+
+def p_bounds(M, R):
+    """D and both p bounds from stacked T1-T4 rows: observed, R training, R test."""
+    obs, train, test = M[0], M[1:R + 1], M[R + 1:2 * R + 1]
+    ok = ~np.isnan(train).any(axis=1)
+    out = {"train_fail": int((~ok).sum()), "test_fail": int(np.isnan(test).any(axis=1).sum())}
+    if np.isnan(obs).any():
+        return out | {"status": "obsfit"}
+    mu = train[ok].mean(axis=0)
+    S = np.cov(train[ok].T)
+    try:
+        cond = np.linalg.cond(S)
+        out["cond"] = float(cond)
+        if not cond <= 1e6:
+            S = ledoit_wolf(train[ok])
+        Si = np.linalg.inv(S)
+    except np.linalg.LinAlgError:
+        return out | {"status": "cov"}
+    D = lambda X: np.einsum("ij,jk,ik->i", X - mu, Si, X - mu)
+    dt = D(test); d_obs = float(D(obs[None, :])[0])
+    if not np.isfinite(d_obs):
+        return out | {"status": "cov"}
+    fails = ~np.isfinite(dt)
+    exceed = int((dt[~fails] >= d_obs).sum())
+    return out | {"status": "ok", "D_obs": d_obs, "p_lo": (1 + exceed) / (R + 1),
+                  "p_hi": (1 + exceed + int(fails.sum())) / (R + 1)}
+
+
+def outcome(shortfall, s):
+    if shortfall:
+        return "indet_calib"
+    if s["status"] != "ok":
+        return "indet_" + s["status"]
+    if s["p_hi"] < ALPHA:
+        return "reject"
+    return "accept" if s["p_lo"] >= ALPHA else "indet_straddle"
 
 
 def main():
@@ -98,25 +142,15 @@ def main():
         T = np.genfromtxt(path_out, delimiter=",", names=True)
         tk["fit_failures"] = int(np.nansum(T["failed"]))
         M = np.column_stack([T["T1"], T["T2"], T["T3"], T["T4"]])
-        obsT, train, test = M[0], M[1:R + 1], M[R + 1:]
-        ok_tr = ~np.isnan(train).any(axis=1)
-        mu = train[ok_tr].mean(axis=0)
-        S = np.cov(train[ok_tr].T)
-        if np.linalg.cond(S) > 1e6:
-            S = ledoit_wolf(train[ok_tr])
-        Si = np.linalg.inv(S)
-        D = lambda X: np.einsum("ij,jk,ik->i", X - mu, Si, X - mu)
-        if np.isnan(obsT).any():
-            tk["p"] = "indeterminate"
-        else:
-            dt = D(test); d_obs = D(obsT[None, :])[0]
-            fails = np.isnan(dt)
-            exceed = (dt[~fails] >= d_obs).sum()
-            tk["p"] = (1 + exceed) / (R + 1)
-            tk["p_bounds"] = f"{(1 + exceed) / (R + 1):.4f}-{(1 + exceed + fails.sum()) / (R + 1):.4f}"
-        tk["T_obs"] = json.dumps([round(float(v), 5) for v in obsT])
+        sc = p_bounds(M, R)
+        tk |= {x: sc[x] for x in ("train_fail", "test_fail", "cond", "D_obs", "p_lo", "p_hi") if x in sc}
+        tk["p_diagnostic"] = sc.get("p_lo", "indeterminate")
+        tk["outcome"] = outcome(tk["shortfall"], sc)
+        tk["T_obs"] = json.dumps([round(float(v), 5) for v in M[0]])
         os.remove(path_in)
         rows.append(tk)
+        with open(os.path.join(outdir, "e2e_rows.jsonl"), "a") as fh:
+            fh.write(json.dumps(tk) + "\n")
         print(json.dumps(tk), flush=True)
     meta = {"variant": variant, "R_train": R, "R_test": R, "K": K, "tol": tol, "r_workers": workers,
             "seed": seed, "beta_outer": beta_outer, "t_load_banks": round(t_load, 1), "total_seconds": round(time.time() - t0, 1)}

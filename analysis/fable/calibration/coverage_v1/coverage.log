@@ -1,0 +1,31 @@
+[
+ {
+  "variant": "iid",
+  "beta": 0.0,
+  "M": 20000,
+  "all9_full": 13710,
+  "all9_sub": 1856
+ },
+ {
+  "variant": "iid",
+  "beta": 8.66,
+  "M": 20000,
+  "all9_full": 11315,
+  "all9_sub": 571
+ },
+ {
+  "variant": "ar_cat",
+  "beta": 0.0,
+  "M": 20000,
+  "all9_full": 13427,
+  "all9_sub": 1618
+ },
+ {
+  "variant": "ar_cat",
+  "beta": 8.66,
+  "M": 20000,
+  "all9_full": 10984,
+  "all9_sub": 529
+ }
+]
+EXIT 0
