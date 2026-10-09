@@ -81,11 +81,12 @@ final-count convention and verifies the official winter sequence, identifies
 three wild-dog fills absent from the author-distributed data, and records
 unresolved census and survival-prior mappings. Raw values are preserved.
 Fable has frozen its second M0 implementation and produced protocol 0.6.
-[Astra's latest review](notes/astra_protocol06_review_20261009.md) accepts the
+[Astra's 0.6 review](notes/astra_protocol06_review_20261009.md) accepts the
 structural null definition, descriptive second-bank comparison and improved
 provenance. AR plus catastrophes is the only tested candidate satisfying the
-current bank-budget rule near observed calibration summaries. Its promotion
-remains a scientific choice. Fable's draft 0.7 completes the
+then-current bank-budget rule near observed calibration summaries. Barry has
+now selected it as the primary development candidate, as recorded below.
+Fable's draft 0.7 completes the
 [discrimination screen](analysis/fable/calibration/discrimination_v1/NOTE.md)
 with calibration failures retained and measures
 [outer-dataset coverage](analysis/fable/calibration/coverage_v1/NOTE.md).
@@ -102,9 +103,13 @@ mandatory sensitivity, T5/scaling descriptive**. The wide prior (b) is proposed
 for primary validation. The [original proposal](notes/vortex_amendment_proposal_20261009.md)
 preserves the earlier disagreement. Fable incorporated the decision in draft 0.5
 and responded to the 0.6 review in draft 0.7. Astra's
-[0.7 review](notes/astra_protocol07_review_20261009.md) supports presenting the
-[primary-null proposal](notes/vortex_null_proposal_20261009.md) to Barry;
-[the decision question is open](https://barry-decision-inbox.barry-brook.chatgpt.site/q/d36e602c-1c18-45fe-83ce-90adda12d313).
+[0.7 review](notes/astra_protocol07_review_20261009.md) supported the primary-null
+choice. Barry subsequently [adopted ar_cat as the primary development candidate,
+with iid as mandatory sensitivity](notes/vortex_null_amendment_20261009.md),
+through the [verified response](docs/decisions/d36e602c-1c18-45fe-83ce-90adda12d313.md)
+submitted at 14:51:05 AEDT on 9 October. This selects the candidate for the next
+development and validation design; production settings and resources remain
+unfrozen. Fable owns the next formal revision and bounded implementation repairs.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 

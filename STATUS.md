@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 14:44 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 14:57 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -28,6 +28,15 @@ discriminability results.
   T5/scaling as descriptive, prior (b) proposed for primary validation, and the
   retained validation/source/production limits. Historical reconstruction
   remains unpassed; the analysis is an exposed reanalysis.
+
+**Primary-null development candidate adopted by Barry, 9 October, 14:51:05 AEDT.**
+- [Verified response](docs/decisions/d36e602c-1c18-45fe-83ce-90adda12d313.md):
+  **ar_cat primary development candidate; iid mandatory sensitivity**
+  (`approve_ar_cat_primary`). No comments, alternatives or deferral.
+- [Adopted null amendment](notes/vortex_null_amendment_20261009.md) records the
+  scope. This selects the model for the next development and validation design;
+  it does not freeze production or pass validation. Beta_min, numeric scenarios,
+  final settings and measured resources remain to be settled.
 
 **Protocol draft 0.5 (Fable, `5c2d1f2`; board message 1206).**
 - Applies Barry's adopted target and several of Astra's 0.4 repairs; competing
@@ -108,8 +117,8 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 
 **Astra review of 0.7:** [findings](notes/astra_protocol07_review_20261009.md).
 - Accepts ar_cat and fixed-K nearest-neighbour calibration as development
-  candidates, with iid mandatory sensitivity. Barry's primary-null choice is
-  pending; no production or validation freeze is implied.
+  candidates, with iid mandatory sensitivity. Barry subsequently adopted the
+  primary-null choice above; no production or validation freeze is implied.
 - All 120 raw remote statistic files match their archived hashes and contain
   exactly 2,001 ordered, finite rows with zero failure flags. The four-arm
   summaries reconcile. Tiny fixtures confirm the three previous repairs.
@@ -122,17 +131,19 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   radius-stratified validation diagnostics. Scenario-average control is not
   uniform control throughout C-space.
 
-**Next response: Barry**, through the
-[primary-null Decision Inbox question](https://barry-decision-inbox.barry-brook.chatgpt.site/q/d36e602c-1c18-45fe-83ce-90adda12d313).
-[Concrete proposal](notes/vortex_null_proposal_20261009.md): ar_cat primary
-(recommended), or retain iid primary; the other model is a mandatory sensitivity.
-Fable retains the routine code/formal-protocol repairs while the choice is open.
-Correspondence 1253 records the handoff. No questionnaire polling or automatic wakeup.
+**Next response: Fable.** Incorporate Barry's adopted ar_cat-primary choice,
+complete the bounded code/formal-protocol repairs from review 1253, and present
+the concrete validation design and measured costs for Astra's review.
+Correspondence 1255 records the verified decision and handoff. No questionnaire
+is outstanding for Barry in this project; no polling or automatic wakeup.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
+- Collected and independently verified Barry's primary-null response, archived
+  the form, preserved immutable response files at `07c233e`, and relayed the
+  exact choice in 1255. Updated the adopted amendment and active project record.
 - Reviewed 0.7 at `5ace89e`, acknowledged 1247 and posted the development
   acceptance and implementation handoff in 1253. Verified all raw statistic
   hashes/shapes read-only; no simulation or empirical fit. Created the single
@@ -333,11 +344,11 @@ No validation and no empirical p-values have been run.
 
 ## Pending
 
-1. Barry chooses the primary-null development candidate in Decision Inbox.
-   Fable makes the bounded code and formal-wording repairs from the 0.7 review;
-   Astra reviews the resulting validation design. Then: β_min, numeric corner
-   scenarios, production banks and the measured cost inventory. Candidate
-   selection need not await completion of those production checks.
+1. Fable incorporates the adopted ar_cat primary and iid sensitivity, and makes
+   the bounded code/formal-wording repairs from the 0.7 review. Prepare β_min,
+   numeric corner scenarios, production-bank design and measured costs for
+   Astra's review before the final validation freeze. The primary-null
+   candidate choice itself is settled.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -360,20 +371,30 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1253**; exhausted `through`: **1253**.
-- Explicit acknowledgement: through actual message **1253** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1253`.
+- Last full retrieval `next_after`: **1255**; exhausted `through`: **1255**.
+- Explicit acknowledgement: through actual message **1255** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1255`.
 
 ## Decision Inbox checkpoint
 
-**Open primary-null question:** `d36e602c-1c18-45fe-83ce-90adda12d313`.
-- [Direct question](https://barry-decision-inbox.barry-brook.chatgpt.site/q/d36e602c-1c18-45fe-83ce-90adda12d313);
-  request `project-vortex-primary-null-20261009-codex`.
+**Primary-null question (collected and archived):**
+`d36e602c-1c18-45fe-83ce-90adda12d313`.
+- Request `project-vortex-primary-null-20261009-codex`; submitted
+  `2026-10-09T03:51:05.102Z`; collected `2026-10-09T03:55:15.285Z`.
 - [Definition](docs/decisions/requests/vortex-primary-null-20261009.json) and
-  [receipt](docs/decisions/requests/vortex-primary-null-20261009.receipt.json).
-- One question, ar_cat primary recommended versus iid primary retained; the
-  other model is mandatory sensitivity. Recommendation is not a response.
-- Waiting for Barry to say submitted or request collection. No polling.
+  [creation receipt](docs/decisions/requests/vortex-primary-null-20261009.receipt.json)
+  preserve the original request and returned URL; the receipt's open status is
+  historical.
+- [Response JSON](docs/decisions/d36e602c-1c18-45fe-83ce-90adda12d313.json) and
+  [Markdown](docs/decisions/d36e602c-1c18-45fe-83ce-90adda12d313.md) are immutable,
+  committed first on the canonical Mac at `07c233e`, then fast-forwarded to WSL.
+- Independently verified canonical SHA-256
+  `047051b91c4955b788decdb6d32131222e3366389f87e2b25df84bb656bffc86`, equality to
+  the original definition, full Markdown question/context/options/selection,
+  and empty comments/alternatives with no deferral. Archived listing includes
+  collection time; the active project listing is empty with no further pages.
+- Decision: `approve_ar_cat_primary`, relayed in Correspondence 1255 and
+  adopted above. No questionnaire remains open in this project. No polling.
 
 **Earlier target question (completed):**
 
