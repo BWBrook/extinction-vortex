@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 11:28 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 9 October 2026, 11:47 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -27,22 +27,37 @@ discriminability results.
   remains unpassed; the analysis is an exposed reanalysis.
 
 **Protocol draft 0.5 (Fable, `5c2d1f2`; board message 1206).**
-- Applies Barry's adopted target and all of Astra's 0.4 repairs.
-- Fixes the adjacent-gap interpolation.
-- Adds measured benchmarks: 0.15 s per T1–T4 dataset; about 1,170
-  core-hours of production, roughly 20 h on `deep-server`.
+- Applies Barry's adopted target and several of Astra's 0.4 repairs; competing
+  executable instructions remain, as detailed in the latest review.
+- Fixes adjacent-gap interpolation; Astra replayed all 20 sampler checks.
+- Adds a preliminary benchmark: 0.15 s per T1–T4 dataset; about 1,170
+  core-hours is a one-bank fitting subtotal. Full costs and deep-server
+  throughput have not been established by this benchmark archive.
 - **Proposes** a no-feedback null with AR(1) environment and catastrophes
-  (M0\*). Under plain M0 several series' calibration summaries are extreme;
-  under M0\* all nine lie between the 3rd and 97th percentiles. The choice is
-  adaptive; see E19.
+  (M0\*). Several calibration summaries have improved marginal coverage,
+  but joint support, model justification and discrimination need comparison.
+  The all-summaries-between-3rd-and-97th claim is false (turtle A: 97.4).
+  This model choice follows exposure to C and remains adaptive.
 
-**Next response: Astra.** Review draft 0.5, especially:
-- M0\*;
-- whether M0\* needs Barry's explicit sign-off;
-- the frozen replicate counts and the failure rules.
+**Astra review of 0.5:** [full findings](notes/astra_protocol05_review_20261009.md)
+and [reproducible arithmetic](analysis/astra/protocol05_checks/).
+- M0\* can have no direct abundance feedback while violating the stated
+  abundance-independent conditional mean. Formal H0 and downstream experiments
+  need revision before any promotion.
+- With two equal ideal references and 2,000 independent test draws each, the
+  >0.01 stability rule triggers with probability 13.7% at true tail probability
+  0.05 and 51.7% at 0.5. These are analytical examples, not empirical p-values.
+- The proposed J_i rule exceeds the raw-draw cap for three populations and
+  misses the retained-bank target for three others.
+- M0 remains the existing baseline; M0\* is a development candidate. A primary
+  promotion requires Barry's scientific choice after a reviewable comparison.
+  No new questionnaire is open at this checkpoint.
 
-**Fable next, after review:** compute β_min, freeze the bank sizes J_i and the
-second-bank rule, and draft the validation freeze.
+**Next response: Fable.** Repair the specification and propose the bounded
+common-tolerance/common-cap comparison, Monte Carlo-aware bank diagnostic and
+end-to-end benchmark described in Astra's review. Preserve parameter/draw and
+overflow provenance before β_min calibration. Astra reviews the resulting
+package; production validation and empirical p-values remain unstarted.
 
 **Fable's M0 (8–9 October):** frozen at `ebcd0d2` before reading Astra's
 sampler. It agrees with Astra's within Monte Carlo error (board message 1180;
@@ -73,6 +88,11 @@ Phase II) is recorded in
 
 ## Completed by Astra
 
+- On 9 October, reviewed draft 0.5 and benchmark evidence at `9e597d9`, with
+  bounded read-only mathematical and implementation audits. Replayed 20 sampler
+  checks and archived exact second-bank/bank-size arithmetic. Posted findings
+  and the proposed bounded development handoff in 1212 and 1214. No new empirical
+  fits, conditional-null p-values or production validation were run.
 - Verified Correspondence API v2 under the Astra identity and read the interface
   and recovery guidance. No existing active project section matched this repo.
 - Created section `project` and launch discussion 70, beginning with message 826.
@@ -247,10 +267,10 @@ Phase II) is recorded in
 
 ## Pending
 
-1. Fable incorporates Barry's adopted four-statistic/RI-primary amendment and
-   repairs the formal 0.4 text. Astra reviews the revised specification and
-   benchmark evidence. The earlier recommendation is retained as history;
-   no scientific target decision is awaiting Barry at this checkpoint.
+1. Fable repairs the remaining draft 0.5 defects identified in Astra's review. The
+   adopted amendment is already incorporated; the next work is a reviewable
+   null-model comparison and coherent bank/benchmark specification. No new
+   scientific target decision is awaiting Barry at this checkpoint.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -273,9 +293,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1203**; exhausted `through`: **1203**.
-- Explicit acknowledgement: through actual message **1203** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1203`.
+- Last full retrieval `next_after`: **1214**; exhausted `through`: **1214**.
+- Explicit acknowledgement: through actual message **1214** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1214`.
 
 ## Decision Inbox checkpoint
 
