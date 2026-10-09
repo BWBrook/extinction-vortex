@@ -2,7 +2,7 @@
 
 All runs here are synthetic, under prior (b). The only empirical quantities
 used are the observed calibration summaries C for the nine deposited series
-(exposure row E19). Not computed: T1–T4 null comparisons, p-values and
+(exposure row E20). Not computed: T1–T4 null comparisons, p-values and
 validation draws.
 
 | Script | Output | Finding |

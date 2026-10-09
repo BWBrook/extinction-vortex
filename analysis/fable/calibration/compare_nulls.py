@@ -10,7 +10,7 @@ Provenance: per task, the draw-index range, seed, accepted count and overflow co
 written to the provenance CSV; selected-run parameters are saved in an .npz bank file.
 Synthetic draws only; c_obs is the exposure already logged (E20).
 
-Usage: python compare_nulls.py OUTDIR DRAWS_PER_TASK [CHUNK] [PROCS]
+Usage: python compare_nulls.py OUTDIR DRAWS_PER_TASK [CHUNK] [PROCS] [VARIANTS (comma list)] [SEED_OFFSET]
 """
 import os, sys, time, json
 import numpy as np
@@ -95,9 +95,11 @@ def main():
     outdir, draws = sys.argv[1], int(sys.argv[2])
     chunk = int(sys.argv[3]) if len(sys.argv) > 3 else 500_000
     procs = int(sys.argv[4]) if len(sys.argv) > 4 else 8
+    variants = sys.argv[5].split(",") if len(sys.argv) > 5 else list(VARIANTS)
+    offset = int(sys.argv[6]) if len(sys.argv) > 6 else 0
     os.makedirs(outdir, exist_ok=True)
-    jobs = [(outdir, v, name, draws, chunk, i) for i, (v, name) in
-            enumerate((v, n) for v in VARIANTS for n in designs())]
+    jobs = [(outdir, v, name, draws, chunk, offset + i) for i, (v, name) in
+            enumerate((v, n) for v in variants for n in designs())]
     t0 = time.time()
     with Pool(procs) as pool:
         res = pool.map(task, jobs)
