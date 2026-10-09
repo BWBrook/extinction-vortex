@@ -18,7 +18,7 @@ independently of N. Variants:
 The catastrophe prior is exploratory: Reed et al. (2003) report ~14% die-off occurrence
 per generation; generation lengths of >= 3 years give annual rates of about <= 0.05.
 """
-import csv, hashlib
+import csv, hashlib, json, os
 import numpy as np
 
 INPUT = "data/raw/williams2021/population_data.csv"
@@ -119,3 +119,21 @@ def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0):
             alive &= N > 1
     selected = alive & (rec[:, -1] <= 1) & ~overflow
     return rec, p, overflow, selected
+
+
+def load_bank(bankdir, variant, name):
+    """Concatenate the shards of one population's bank (build_bank.py layout), checking each
+    shard's seed and draw count against bank_meta.json."""
+    meta = json.load(open(os.path.join(bankdir, "bank_meta.json")))
+    tasks = sorted((t for t in meta["tasks"] if t["variant"] == variant and t["population"] == name),
+                   key=lambda t: t["shard"])
+    assert [t["shard"] for t in tasks] == list(range(meta["shards"])), f"incomplete bank {variant}/{name}"
+    parts = []
+    for t in tasks:
+        z = np.load(os.path.join(bankdir, f"bank_{variant}_{name}_s{t['shard']:03d}.npz"))
+        assert int(z["seed"]) == t["seed"] and int(z["draws"]) == meta["shard_draws"]
+        parts.append(z)
+    out = {k: np.concatenate([z[k] for z in parts]) for k in ("rec", "draw_id") + PARAM_NAMES}
+    out["draws"] = meta["shards"] * meta["shard_draws"]
+    out["overflow"] = sum(int(z["overflow"]) for z in parts)
+    return out
