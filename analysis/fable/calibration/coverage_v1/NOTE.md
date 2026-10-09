@@ -86,17 +86,24 @@ consistent with these measured 1× values.
    at every bank size, so under a hard tolerance part of the feedback signal
    becomes indeterminate rather than detected.
 4. **k-NN library: K nearest runs, no hard tolerance.** This removes the
-   shortfall branch altogether. The library's realised radius at 10× (largest
-   across the nine, ar_cat null) has these quantiles:
+   shortfall branch altogether. The library's **projected** radius at 10×
+   (largest across the nine, ar_cat null) has these quantiles:
 
    | Quantile | 0.50 | 0.90 | 0.95 | 0.99 | 0.999 |
    |---|---:|---:|---:|---:|---:|
    | Radius | 0.35 | 0.74 | 0.99 | 1.60 | 3.84 |
 
    For 95% of outer datasets that is at least as tight as the current
-   tolerance of 1.0, with a modest looseness in the tail. Validation (§4.3)
-   then measures the realised false-alarm rate of exactly this procedure,
-   including any approximation error in sparse regions.
+   tolerance of 1.0, with a modest looseness in the tail. These are
+   projections from the existing bank's 200th-neighbour distances. Their CP
+   intervals are conditional on that bank and on the projection, and they
+   omit variation in a future bank and its MAD (Astra 1253). Actual radii are
+   to be measured in the constructed 10× banks.
+
+   Validation (§4.3) then measures the false-alarm rate of the frozen
+   procedure, averaged over its scenarios. Removing the cutoff does not remove
+   approximation error in rare C regions; the protocol adds radius-stratified
+   diagnostics for that.
 
 This is development evidence under development seeds. The protocol proposal it
 supports is in §3.4 (draft 0.7) and awaits Astra's review.

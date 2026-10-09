@@ -87,15 +87,23 @@ and they were not compared with any empirical statistic.
      the null that alone breaks the 8% ceiling, whichever null is correct.
    - The binding constraint is coverage of fresh outer C values, not the test
      statistic. This is quantified in `../coverage_v1/`.
-2. **The trade-off for Barry** (raw p, ignoring shortfalls, diagnostic only).
+2. **Raw-p diagnostic** (ignoring shortfalls; development evidence only).
    - Under the null, raw p fell below 0.05 in 0/30 and 1/30 trials: no sign
      of excess false alarms, but little information at n = 30.
    - Under M_A at Δ10 = 0.5, raw p fell below 0.05 in 29/30 trials against the
      iid null and 21/30 against the ar_cat null.
-   - An AR environment with catastrophes reproduces part of what Allee
-     feedback does to the T statistics, so the richer null costs detection.
-     This is the expected direction; its size is now measured at one
-     development effect.
+   - Corrected after Astra's review (1253). These are two matched designs.
+     In each, M_A is generated on the same environment as the reference, so
+     the environment generating the feedback data changes along with the
+     reference.
+   - The arms also share random streams.
+   - The 29 vs 21 contrast therefore does not isolate a detection cost caused
+     by broadening the reference. It is a warning about possible
+     discrimination limits under ar_cat, not validated power or a causal
+     estimate.
+   - A crossed design would isolate that cost if it is ever needed: iid-
+     environment M_A data tested against the ar_cat reference, and the
+     reverse.
 3. **Feedback also shifts C away from the null bank.**
    - Shortfalls are more frequent under M_A (9 and 13 trials) than under the
      null (7 and 8).

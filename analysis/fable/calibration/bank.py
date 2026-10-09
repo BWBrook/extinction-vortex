@@ -45,6 +45,13 @@ def designs():
     return out
 
 
+def constant_changes(rec):
+    """Rows whose non-final log changes are all equal: calib_features sets their lag-1
+    autocorrelation to 0, and the protocol requires that flag to be recorded."""
+    d = np.diff(np.log(rec[:, :-1]), axis=1)
+    return ((d - d.mean(axis=1, keepdims=True)) ** 2).sum(axis=1) == 0
+
+
 def calib_features(rec):
     """Non-final one-step log changes: mean square, lag-1 autocorrelation (0 if constant,
     flagged by the caller), fraction of increases."""
@@ -81,11 +88,14 @@ def innovations(p, n, rng):
     return e
 
 
-def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0):
+def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0, fixed=None):
     """Simulate n prior draws for one design; returns (rec, params, overflow_mask, selected_mask).
-    beta > 0 applies the M_A feedback multiplier g(N) = exp(-beta (1/N - 1/n_ref)) for 0<N<n_ref."""
+    beta > 0 applies the M_A feedback multiplier g(N) = exp(-beta (1/N - 1/n_ref)) for 0<N<n_ref.
+    fixed maps parameter names to values that replace the prior draws (fixed-parameter scenarios)."""
     years = design["years"]; L = len(years); n0 = int(design["counts"][0])
     p = draw_params(variant, n, rng)
+    for k, v in (fixed or {}).items():
+        p[k] = np.full(n, float(v))
     lgs = np.log(p["s"] / (1 - p["s"]))
     N = np.full(n, n0, dtype=np.int64)
     z = innovations(p, n, rng)

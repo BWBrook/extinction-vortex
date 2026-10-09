@@ -13,9 +13,11 @@ end-to-end runs (E23).
 | `bank_rho_scan.py` | `bank_rho_scan.txt` | Adding an AR(1) environment improves autocorrelation but not step variance. |
 | `bank_catastrophe_scan.py` | `bank_catastrophe_scan.txt` | Adding catastrophes as well (M0\*) improves marginal coverage. The original "3rd–97th percentile" claim was false (turtle A ACF 97.4); superseded by `compare_nulls_v1/`. |
 | `compare_nulls.py` | `compare_nulls_v1/` | Common-footing comparison of five nulls (2×10^7 draws each). Only ar_cat meets the observed-C planning rule for all nine; the Student-t comparator is retired as evidence (infinite-mean recruitment). |
-| `e2e_benchmark.py`, `tstats_batch.R` | `e2e_v1/` | End-to-end procedure on synthetic outer datasets; each trial now gets a fixed-denominator outcome. |
-| `run_discrimination.sh`, `score_discrimination.py` | `discrimination_v1/` | iid vs ar_cat, null and M_A (Δ10 = 0.5), 30 trials per arm, 2×10^8 banks. Calibration shortfalls make 23–43% of trials indeterminate. |
-| `outer_coverage.py`, `coverage_summary.py` | `coverage_v1/` | All-nine library coverage for fresh outer datasets, with bank-size projections. |
+| `e2e_benchmark.py`, `tstats_batch.R` | `e2e_v1/` (hard-tolerance version) | End-to-end procedure on synthetic outer datasets. Current version: k-NN library, fixed-denominator outcome per trial, output contract v2. |
+| `run_discrimination.sh` (commit `14f974b`), `score_discrimination.py` (contract v1) | `discrimination_v1/` | iid vs ar_cat, null and M_A (Δ10 = 0.5), 30 trials per arm, 2×10^8 banks. Calibration shortfalls make 23–43% of trials indeterminate. |
+| `outer_coverage.py`, `coverage_summary.py` (commit `5ace89e`) | `coverage_v1/` | All-nine hard-tolerance coverage for fresh outer datasets, with bank-size projections. Current versions report k-NN radii for sharded banks and scenario lists. |
+| `build_bank.py` | deep-server `banks10x_*` | Sharded 2×10^9-draw development banks (ar_cat, iid); `bank.load_bank` checks the shards. |
+| `effect_target.py`, `run_dev_design.sh` | `dev_design_v1/` | β_min and corner scenarios under ar_cat; radii in the 10× banks; measured end-to-end cost. |
 | `make_synthetic_sets.py`, `time_estimator.R` | `time_estimator.txt` | T1–T4 cost 0.15 s per nine-population dataset, with no failures in 20. |
 
 Run from the repo root, for example:
