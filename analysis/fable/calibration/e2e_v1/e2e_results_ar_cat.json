@@ -1,0 +1,41 @@
+{
+ "meta": {
+  "variant": "ar_cat",
+  "R_train": 2000,
+  "R_test": 2000,
+  "K": 2000,
+  "tol": 1.0,
+  "r_workers": "16",
+  "seed": 20261015,
+  "t_load_banks": 3.0,
+  "total_seconds": 156.4
+ },
+ "outer": [
+  {
+   "outer": 0,
+   "t_outer_sim": 6.945866823196411,
+   "t_library": 0.3227074146270752,
+   "shortfall": "ms_woodpecker;rc_woodpecker;wood_turtle_A;wood_turtle_B",
+   "max_lib_dist": "{\"wild_dog\": 0.387, \"marmot\": 0.515, \"ms_woodpecker\": 1.245, \"rc_woodpecker\": 1.974, \"golden_plover\": 0.418, \"whooping_crane\": 0.705, \"hawaiian_crow\": 0.39, \"wood_turtle_A\": 1.098, \"wood_turtle_B\": 1.006}",
+   "t_write": 1.0063188076019287,
+   "t_fits": 68.69550943374634,
+   "fit_failures": 0,
+   "p": 0.9190404797601199,
+   "p_bounds": "0.9190-0.9190",
+   "T_obs": "[0.01678, 0.00251, -0.01538, -0.00469]"
+  },
+  {
+   "outer": 1,
+   "t_outer_sim": 6.80974006652832,
+   "t_library": 0.31366491317749023,
+   "shortfall": "marmot;ms_woodpecker;rc_woodpecker;whooping_crane",
+   "max_lib_dist": "{\"wild_dog\": 0.377, \"marmot\": 1.305, \"ms_woodpecker\": 1.312, \"rc_woodpecker\": 1.053, \"golden_plover\": 0.463, \"whooping_crane\": 1.002, \"hawaiian_crow\": 0.5, \"wood_turtle_A\": 0.739, \"wood_turtle_B\": 0.626}",
+   "t_write": 1.0005297660827637,
+   "t_fits": 68.34926152229309,
+   "fit_failures": 0,
+   "p": 0.23788105947026486,
+   "p_bounds": "0.2379-0.2379",
+   "T_obs": "[0.01728, 2e-05, -0.02787, -0.01292]"
+  }
+ ]
+}

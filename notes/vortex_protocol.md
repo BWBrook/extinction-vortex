@@ -1,6 +1,22 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.5 — 9 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.6 — 9 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.6 (Fable) responds to Astra's 0.5 review (1212/1214); §9.7 lists the
+changes:
+- a structural H0;
+- corrected catastrophe priors and rationale;
+- a heavy-tailed comparator;
+- a common-footing comparison of candidate nulls on deep-server;
+- a single bank-sizing rule with a cap;
+- the second-bank check made descriptive;
+- contradictions removed;
+- reserved final seeds;
+- an end-to-end benchmark.
+
+The choice of null remains **proposed** until Barry decides it (§3.1).
+
+**Working draft 0.5 — 9 October 2026, Hobart (history).**
 
 Draft 0.5 (Fable) applies five groups of changes; §9.6 summarises them:
 - Barry's adopted target: reconstructed T1–T4, with the random-intercept model
@@ -62,7 +78,7 @@ pre-analysis commitment supplies the prospective element; it is not an external
 registration or a claim of full PRISMA compliance. The study is an empirical
 reanalysis with simulation validation, not necessarily a meta-analysis.
 
-## 1. Scientific aims and minimum contribution — Fable formal draft 0.5
+## 1. Scientific aims and minimum contribution — Fable formal draft 0.6
 
 Draft 0.3 answers Astra's quantitative review (R1–R6). The main changes from
 draft 0.2:
@@ -112,7 +128,7 @@ that feedback is absent, and not a posterior probability of the null. O2 is not
 evidence of genetic or Allee feedback unless further, mechanism-specific
 evidence is added.
 
-## 2. Estimands and comparison populations — Fable formal draft 0.5
+## 2. Estimands and comparison populations — Fable formal draft 0.6
 
 ### 2.1 Part 1 design, statistics and target
 
@@ -192,12 +208,16 @@ multilevel model with AR(1) errors, fitted by marginal ML.
 - C is the vector of per-population calibration summaries (§3.4).
 
 Properties of this target:
-- If the data come from M0's prior predictive and conditioning on C is
-  exact, then given C the observed and replicate T are exchangeable, so
-  p_joint is uniform.
-- The ABC neighbourhood only approximates that conditioning. Validation
-  (§4.3) therefore measures the procedure's actual false-alarm rate, under
-  draws from the prior and at fixed nuisance values on the boundary.
+- **Ideal case only.** Suppose the data came from the null's prior predictive
+  under S, conditioning on C were exact, and the reference were the exact
+  conditional law rather than a finite bank. Then the observed and replicate
+  T would be exchangeable given C, and the conservative rank p-value below
+  would be valid. It is not claimed to be exactly uniform: ties and
+  discreteness make it conservative.
+- **What is implemented differs** in two ways: the ABC neighbourhood and the
+  finite bank. Validation (§4.3) therefore measures the frozen procedure's
+  actual false-alarm rate, under draws from the prior and at fixed boundary
+  nuisance values.
 - This is not Bayarri and Berger's partial posterior predictive p-value, and
   §4.3 is a false-alarm experiment, not simulation-based calibration of
   posterior ranks. The 0.2 labels are withdrawn.
@@ -243,27 +263,61 @@ Part 2 is not specified enough for any gate. These items are open:
 
 Part 2 re-enters only by a dated amendment, after the first tranche.
 
-## 3. Generative models and calibration — Fable formal draft 0.5
+## 3. Generative models and calibration — Fable formal draft 0.6
 
 ### 3.1 Null M0: a valid demographic model
 
-> **Proposed change (draft 0.5; pending Astra's review).** Make the primary
+**Structural H0 (draft 0.6, replacing the conditional-mean wording).** "No
+direct feedback" means three things:
+1. Given the parameters θ and the exogenous environmental state (z_t and any
+   catastrophe indicator B_t), each individual's survival probability and
+   expected recruitment do not depend on N_t.
+2. The environmental process evolves independently of N.
+3. Under plain M0 (iid z_t), this implies that E[N_{t+1} | N_t, θ] / N_t does
+   not depend on abundance.
+
+With an autocorrelated environment (ρ > 0), N_t carries information about the
+latent z_t. The conditional mean given N_t alone can then vary with N_t
+without any feedback (Astra review of 0.5). The structural definition is the
+one the test targets.
+
+Feedback means vital rates that depend directly on N_t, given the
+environment. It includes demographic Allee mechanisms (the M_A alternative)
+as well as genetic ones. M_A and β_min are always defined on top of the same
+environmental model as the null in use.
+
+> **Proposed change (draft 0.5; pending Astra's review; revised in 0.6).** Make the primary
 > no-feedback null **M0\***: M0 below, plus two additions.
 > 1. An AR(1) environment, z_t = ρ·z_{t−1} + √(1−ρ²)·ε_t.
 > 2. Density-independent catastrophes. Each year, with probability p_c, a
 >    catastrophe multiplies survival and recruitment by (1 − δ).
 >
-> Priors: ρ ~ U(0, 0.9); p_c ~ U(0, 0.15) per year; δ ~ U(0.5, 0.99).
-> Trajectories exceeding 10^9 are rejected and counted (overflow rule).
+> Priors in 0.6 (exploratory): ρ ~ U(0, 0.9); p_c ~ U(0, 0.05) per year;
+> δ ~ U(0.5, 0.95). This revises 0.5's U(0, 0.15) and U(0.5, 0.99).
+> - Reed et al. report a die-off occurrence of about 14% *per generation*.
+>   With generation lengths of 3 years or more, that is an annual rate of
+>   about 0.05 or less, so the prior is a bounded exploratory choice, not an
+>   estimate.
+> - The overflow rule (reject and count trajectories above 10^9) applies
+>   identically to every variant, including plain M0.
 >
 > *Rationale.*
-> - Shaffer (1981, doi:10.2307/1308256) lists demographic, environmental,
->   catastrophic and genetic sources of small-population risk. Only the genetic
->   source is feedback, so a no-feedback null should include the other three
->   (see also Lande 1993, doi:10.1086/285580).
-> - Vertebrate die-offs of at least 50% occur with appreciable frequency (Reed
->   et al. 2003, doi:10.1017/s1367943003003147). Expected per-capita growth
->   stays independent of abundance, so the approved definition of H0 holds.
+> - **Shaffer.** Shaffer (1981, doi:10.2307/1308256) lists demographic,
+>   environmental, catastrophic and genetic sources of small-population risk.
+>   Catastrophes and environmental variation act on vital rates without
+>   abundance feedback, which supports *considering* them in a no-feedback
+>   null. Feedback is not only genetic, though: demographic Allee effects
+>   (M_A) are feedback too.
+> - **Lande.** Lande (1993, doi:10.1086/285580) supports modelling
+>   catastrophes alongside demographic and environmental stochasticity. He
+>   does not supply these particular priors.
+> - **Reed et al.** Reed et al. (2003, doi:10.1017/s1367943003003147) report
+>   frequent die-offs. They also read die-offs as the tail of a continuous
+>   distribution of population change, which is contrary evidence for a
+>   separately identified catastrophe mechanism. Draft 0.6 therefore also
+>   compares a heavy-tailed continuous environment ("heavy": standardised
+>   Student-t, ν ~ U(2.5, 30)).
+> - **H0.** The structural H0 above holds for every variant.
 >
 > *Development evidence.* These are synthetic banks under prior (b); the
 > observed calibration summaries C were exposed, but no T1–T4 null comparison
@@ -275,12 +329,33 @@ Part 2 re-enters only by a dated amendment, after the first tranche.
 >   - the turtles' lag-1 autocorrelation is at the 99.6–99.7th percentile;
 >   - at a calibration tolerance of 0.5, banks of 10^8 to more than 4 × 10^9
 >     draws would be needed.
-> - **M0\*.** Every series lies between the 3rd and 97th percentiles on each
->   summary (the crow's "0" is a discrete minimum under a strict-inequality
->   percentile). At tolerance 1.0, banks need 2.4 × 10^6 to 5.7 × 10^7 draws.
+> - **M0\* (0.5 scan).** Marginal coverage improved, but the 0.5 claim that
+>   every series lies between the 3rd and 97th percentiles was **false**:
+>   turtle A's ACF sat at 97.4. Joint support was thin, with only 70–109
+>   tolerance-1 hits in 2 × 10^6 draws for the dog and turtles. The 0.6
+>   common-footing comparison replaces this evidence; see the comparison note
+>   below.
 > - Several series end in a single large drop: wild dog 26 → 0, red-cockaded
 >   woodpecker 10 → 0, turtle B 8 → 0, turtle A 6 → 0. That is typical of
 >   catastrophes.
+>
+> *0.6 common-footing comparison*
+> ([`compare_nulls_v1/NOTE.md`](../analysis/fable/calibration/compare_nulls_v1/NOTE.md);
+> deep-server, 2×10^7 draws per population and variant, common cap and
+> selection).
+> - Plain M0 (iid) and the heavy-tailed variant are **infeasible** for both
+>   turtles under the 10^9-draw cap.
+> - AR alone fails the red-cockaded woodpecker's step variance (0.2nd
+>   percentile).
+> - Catastrophes alone fail the turtles' ACF (99.7th) and are borderline on
+>   draws.
+> - **Only ar_cat is feasible for all nine**, with every summary between the
+>   2.0 and 96.5 percentiles and at most 3 × 1.1×10^8 draws.
+>
+> The proposal is therefore ar_cat as primary, with plain M0 as a mandatory
+> sensitivity (reported, possibly indeterminate for the turtles). This is a
+> scientific choice for Barry, after the bounded discrimination check
+> (`run_discrimination.sh`, running 9 October).
 >
 > *Scope.* This change is adaptive: it was chosen after exposure to C. With
 > catastrophes in the null, a terminal crash counts as non-feedback. The study
@@ -385,8 +460,16 @@ the median calibrated M0 parameters.
    distinct parameter draw.
    - **Tolerance.** At most 1.0 standardised (MAD) units. The development scan
      showed that 0.25 is infeasible.
-   - **Bank size.** J_i is set in development as 3 × the scan's estimated
-     requirement under the adopted null, and frozen before validation.
+   - **Bank size** (0.6 rule; replaces "3 × the scan's estimate").
+     - J_i is chosen in development so that the lower 95% Clopper–Pearson
+       bound on the expected number of bank runs within tolerance of c_obs,i
+       is at least 3K = 6,000. Overflow and selection follow the common rules.
+     - There is a hard cap of J_max = 10^9 draws per population. If the target
+       cannot be reached within the cap, calibration for that population is
+       *infeasible*, and every dataset that depends on it is indeterminate.
+     - J_i and the bank seeds are frozen before validation.
+     - Every bank file keeps the draw indices, parameters, seed and overflow
+       count.
    - **Shortfall.** If fewer than K runs fall within tolerance, the dataset is
      indeterminate. There is no enlargement triggered by p-values (Astra review
      §1).
@@ -402,16 +485,19 @@ the median calibrated M0 parameters.
      observation with the *same* training estimates. Both are independent of
      the training set, so they are exchangeable under exact conditioning.
    - **Tail probability.** p_joint = (1 + #{D^test ≥ D^obs}) / (R_test + 1).
-     Ties are broken uniformly at random.
+     Ties count as exceedances, per the executable rule in §2.1.
    - **Feature failures.** A calibration summary with zero bank MAD for a
      population is dropped for that population and recorded. An undefined
      autocorrelation (constant changes) is set to 0 and flagged.
    - **Finite bank.** The reference is conditional on the frozen bank.
      - Stability check: a second, independent frozen bank, specified before
-       validation.
-     - A change in p_joint of more than 0.01 makes the result *indeterminate*,
-       or requires a documented amendment with revalidation. It never triggers
-       more computation until the result stabilises.
+       validation. Its result is **descriptive only**.
+     - A difference between the two p_joint values is reported with its
+       Monte Carlo context. It does not change any label and triggers no
+       further computation.
+     - The 0.5 "> 0.01 ⇒ indeterminate" rule is withdrawn. With R_test = 2,000
+       it fires on Monte Carlo noise alone with probability 0.137 at p = 0.05,
+       and about 0.5 at p = 0.5 (Astra, 1212).
    - **Failures.**
      - If the training distance cannot be built (e.g., a singular covariance
        after shrinkage), the dataset is *indeterminate*.
@@ -434,10 +520,11 @@ the median calibrated M0 parameters.
    Rules for prior (a):
    - Estimates fitted to the same trajectory are excluded as priors. Example:
      the crow plan's 79.8%, per the source audit.
-   - Where prior (a) is reported and its outcome label differs from prior
-     (b)'s, report *prior-sensitive*.
+   - Where prior (a) is reported, its numerical p_joint is shown beside prior
+     (b)'s. A material difference is described as prior sensitivity. Prior
+     (a) never receives an outcome label.
 
-## 4. Stages, outputs and decision rules — Fable formal draft 0.5
+## 4. Stages, outputs and decision rules — Fable formal draft 0.6
 
 ### 4.1 First tranche (to be authorised by Barry, if selected)
 
@@ -590,9 +677,14 @@ costs.
   - Alternatives: 10 × 300 = 3,000. These are M_A at β_min and at 2·β_min;
     M_D linear, accelerating and step; M_O low-n and uniform; and M_A + M_D in
     each of the three M_D forms.
-  - Total: 7,000 × 600 s = 4.2 × 10^6 s ≈ 1,170 core-hours, about 20 h on 60
-    cores. Banks, effect calibration and the empirical analysis together add
-    under 2%.
+  - Total: the 0.5 estimate of 1,170 core-hours is withdrawn. It was a
+    one-bank fitting subtotal (Astra, 1214).
+  - **Measured end to end on deep-server**
+    ([`e2e_v1/NOTE.md`](../analysis/fable/calibration/e2e_v1/NOTE.md)): about
+    1,100 core-seconds per outer dataset (0.27 s per T1–T4 dataset). For 7,000
+    outer datasets that is about 2,100 core-hours, roughly 36 h on 60 cores.
+  - Banks must be about 10× the v1 size, to keep library tolerance shortfalls
+    off synthetic outer datasets.
   - Mandatory sensitivities run on empirical data only, and are reported
     unvalidated.
 - **Earlier text, superseded by the inventory above.** Production cost is
@@ -600,11 +692,14 @@ costs.
   - (stale: superseded by the 7,000-dataset inventory above)
   - the empirical test: 2 × 10^4 fits.
 - **Banks.** These are one-off costs, set by the acceptance rates.
-- **Benchmark.** The pilot measures fit time t_fit and acceptance rates, and
-  sets R_v (between 1,000 and 2,000).
+- **Replicate counts.** The 0.4 "R_v" lines are superseded. Every
+  validation and empirical dataset uses the same frozen R_train = R_test =
+  2,000.
 - **No sequential p-values.** The Besag–Clifford proposal is withdrawn
-  (repair 1). Each validation dataset uses fixed R_v,train = R_v,test = 1,000
-  replicates.
+  (repair 1).
+- **Seeds.** Development seeds used so far are 20261002–20261015 and
+  20261014000–20261014044. Final validation seeds are reserved at
+  9 × 10^12 + i, disjoint from all of these.
 - **Compute (Barry, 8 October).** Serious runs go to `deep-server` in tmux.
   The laptop cap no longer applies.
 - **If the published estimator is too slow,** the pilot evaluates a
@@ -818,13 +913,13 @@ outcomes. An independent extractor may mechanically split files, but its access
 and summaries must also be logged. A checksum shows file identity, not that
 nobody inspected its contents.
 
-## 7. Analysis and reporting plan — Fable formal draft 0.5
+## 7. Analysis and reporting plan — Fable formal draft 0.6
 
 **Prespecified vs exploratory analyses.**
 
 | Analysis | Status |
 |---|---|
-| Q1: p_joint on T1–T4 (the reconstructed estimand, §4.2) under prior (b), with the validation results and outcome labels of §1 | Prespecified, **primary**; pending Barry's §4.2 decision |
+| Q1: p_joint on T1–T4 (the reconstructed estimand, §4.2) under prior (b), with the validation results and outcome labels of §1 | Prespecified, **primary**; target adopted by Barry on 9 October |
 | Prior (a), where the ledger supports it | Prespecified secondary; unvalidated |
 | T5 and the scaling model: published F&H curves set beside our diagnostic fits | Descriptive only |
 | Q2: discriminability rates (§4.3) | Prespecified, **primary** |
@@ -1059,3 +1154,32 @@ no research stage.
 - freezing the J_i bank sizes;
 - the second-bank specification;
 - the validation freeze itself.
+
+### 9.7 Fable draft 0.6 (9 October): what changed
+
+Responses to Astra's 0.5 review (1212/1214):
+- **Structural H0.** Defined as no direct feedback, given the environment.
+  The conditional-mean wording is retired, and feedback explicitly includes
+  Allee mechanisms.
+- **Catastrophes.** Priors corrected to p_c ~ U(0, 0.05) and
+  δ ~ U(0.5, 0.95), with a per-generation derivation; the rationale is
+  narrowed; a heavy-tailed comparator is added.
+- **Common-footing comparison** of five nulls (iid, ar, cat, ar_cat, heavy):
+  same cap and selection, with provenance. Only ar_cat is feasible for all
+  nine.
+- **Bank-sizing rule.** Lower Clopper–Pearson bound of at least 3K within
+  tolerance, capped at 10^9 draws, with provenance kept.
+- **Second bank.** Now descriptive only; the 0.01 rule is withdrawn.
+- **Contradictions removed:** the R_v lines, the tie rule, labels for prior
+  (a), and the exact-uniformity claim.
+- **Seeds.** Final validation seeds reserved at 9×10^12 + i.
+- **E19/E20.** My exposure row renumbered to E20.
+- **End-to-end benchmark.** About 2,100 core-hours, and banks must be about
+  10× larger.
+
+**Open:**
+- the bounded discrimination check, running on deep-server;
+- Barry's decision on the primary null;
+- β_min under the chosen null;
+- the final scenario and cost inventory with production bank sizes;
+- the census-unit conflicts.
