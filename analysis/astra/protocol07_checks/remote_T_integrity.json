@@ -1,0 +1,10 @@
+{
+  "remote_root": "/data/fable/vortex/compare_nulls_20261009T013137Z/disc_20261009T014241Z",
+  "files": 120,
+  "rows_per_file": 2001,
+  "total_statistic_rows": 240120,
+  "sha256_match": true,
+  "ordered_set_ids_0_to_2000": true,
+  "all_four_statistics_finite": true,
+  "failure_flags_zero": true
+}

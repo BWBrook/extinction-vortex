@@ -89,10 +89,11 @@ remains a scientific choice. Fable's draft 0.7 completes the
 [discrimination screen](analysis/fable/calibration/discrimination_v1/NOTE.md)
 with calibration failures retained and measures
 [outer-dataset coverage](analysis/fable/calibration/coverage_v1/NOTE.md).
-- The richer null costs detection at the development effect (raw 21/30 vs
-  29/30).
-- The hard calibration tolerance would need about 100× banks, so a k-NN
-  library with 10× banks is proposed for Astra's review.
+- Raw detections were 21/30 versus 29/30 in two matched model-and-test designs;
+  both generator and reference changed, so this does not isolate a reference effect.
+- The hard tolerance would need about 100× banks to approach the planning
+  shortfall target. Astra accepts fixed-K calibration with proposed 10× banks
+  for development; larger-bank support remains projected and needs validation.
 - The heavy-tail comparator is retired.
 
 Barry [adopted the four-statistic target](notes/vortex_target_amendment_20261009.md)
@@ -100,8 +101,12 @@ through Decision Inbox on 9 October: **RI primary, random-intercept-and-slope
 mandatory sensitivity, T5/scaling descriptive**. The wide prior (b) is proposed
 for primary validation. The [original proposal](notes/vortex_amendment_proposal_20261009.md)
 preserves the earlier disagreement. Fable incorporated the decision in draft 0.5
-and responded to the 0.6 review in draft 0.7; Astra reviews next. Synthetic development continues
-within existing authority; no empirical p-values precede the validation freeze.
+and responded to the 0.6 review in draft 0.7. Astra's
+[0.7 review](notes/astra_protocol07_review_20261009.md) supports presenting the
+[primary-null proposal](notes/vortex_null_proposal_20261009.md) to Barry;
+[the decision question is open](https://barry-decision-inbox.barry-brook.chatgpt.site/q/d36e602c-1c18-45fe-83ce-90adda12d313).
+Synthetic development continues within existing authority; no empirical p-values
+precede the validation freeze.
 
 ## How the collaboration will be assessed
 
