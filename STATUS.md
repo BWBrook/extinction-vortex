@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 11:47 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 12:45 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -53,38 +53,25 @@ and [reproducible arithmetic](analysis/astra/protocol05_checks/).
   promotion requires Barry's scientific choice after a reviewable comparison.
   No new questionnaire is open at this checkpoint.
 
-**Next response: Fable.** Repair the specification and propose the bounded
-common-tolerance/common-cap comparison, Monte Carlo-aware bank diagnostic and
-end-to-end benchmark described in Astra's review. Preserve parameter/draw and
-overflow provenance before β_min calibration. Astra reviews the resulting
-package; production validation and empirical p-values remain unstarted.
+**Protocol draft 0.6 (Fable, `05df1b6`; board message 1218).** Responds to
+Astra's 0.5 review.
+- Structural H0, corrected catastrophe priors, a heavy-tailed comparator.
+- One capped bank-sizing rule; the second-bank check is descriptive only;
+  contradictions removed; final seeds reserved; exposure row renumbered E20.
+- **Common-footing comparison of five nulls** (deep-server): only AR +
+  catastrophes (ar_cat) is calibration-feasible for all nine.
+- **End-to-end benchmark:** about 1,100 core-seconds per outer dataset, so
+  about 2,100 core-hours for validation. Banks must be about 10× larger.
 
-**Fable's M0 (8–9 October):** frozen at `ebcd0d2` before reading Astra's
-sampler. It agrees with Astra's within Monte Carlo error (board message 1180;
-`analysis/fable/m0/`). Astra reran all 19 invariant checks successfully and
-found a separate adjacent-gap interpolation defect; the completed M0 comparison
-did not use interpolation. Historical MIXREG was not recovered in the bounded
-search; current evidence does not establish universal unavailability or that a
-licence would recover the historical inputs/settings.
+**Running on deep-server:** tmux `fable_disc` (`/data/fable/vortex/compare_nulls_20261009T013137Z/disc_20261009T014241Z`). This is the bounded
+discrimination check: iid vs ar_cat, each null vs M_A at Δ10 = 0.5,
+30 synthetic datasets per arm. Fable posts the results.
 
-**Astra execution bundle (8 October):** source freeze `418a5ff`, result freeze
-`e1afca1`, both preceding Fable-code inspection. All 54 declared fits ran on
-deep-server; synthetic likelihood/EB and M0 invariant checks passed. The
-post-freeze comparison matches all 149 input observations and Gaussian
-likelihoods at matching covariance parameters to 6.3e-13. **Stage B has not
-passed:** no candidate recovers all four rounded slopes, and scaling/T5 remain
-unresolved. See [reconstruction](analysis/astra/stage_b/README.md) and
-[source audit](notes/astra_source_audit_20261008.md).
+**Next response: Astra.** Review draft 0.6 and the comparison. Then, with
+Fable's discrimination results, decide whether a single Decision Inbox
+question on promoting ar_cat to primary goes to Barry.
 
-**Stage B v0 (Fable), frozen 8 October:** see `analysis/fable/stage_b/` and
-board message 1139. Astra should freeze its own independent implementation
-before opening those files.
-
-Astra accepted the 1131 allocation and proposed name `extinction-vortex-selection`
-in 1144; existing paths remain during the active handoff. The Q&A behind the approval (novelty, approach,
-Phase II) is recorded in
-[notes/vortex_study_summary_20261008.md](notes/vortex_study_summary_20261008.md)
-(board message 1132).
+No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
@@ -324,10 +311,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1203 in full. Fable's latest posts: 1180–1181 and 1206.
-- Last full retrieval `next_after`: **1205**.
-- Explicit acknowledgement: through message **1206** in discussion 70.
-- Next retrieval: use `after=1206` and omit `through`.
+- Read through 1214 in full. Fable's latest posts: 1206 and 1218.
+- Last full retrieval `next_after`: **1217**.
+- Explicit acknowledgement: through message **1218** in discussion 70.
+- Next retrieval: use `after=1218` and omit `through`.
 
 ## Coordination note
 
