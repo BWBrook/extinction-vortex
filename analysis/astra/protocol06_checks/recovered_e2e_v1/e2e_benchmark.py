@@ -1,0 +1,123 @@
+"""End-to-end development benchmark of the frozen-procedure candidate (protocol §3.4/§4.3),
+on SYNTHETIC outer datasets only (no empirical T1-T4, no empirical p-value).
+
+Per outer dataset: fresh selected trajectories (one per population, independent of the
+bank) -> calibration summaries -> per-population library of K nearest bank runs within the
+tolerance -> R_train and R_test replicate datasets -> T1-T4 in R (tstats_batch.R) ->
+training mean/covariance (Ledoit-Wolf shrinkage if ill-conditioned) -> D -> p with the
+conservative tie rule. Component timings, shortfalls and fit failures are recorded.
+
+Usage: python e2e_benchmark.py BANKDIR VARIANT OUTDIR N_OUTER [R] [K] [TOL] [R_WORKERS]
+"""
+import os, sys, time, json, subprocess, csv
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from bank import designs, calib_features, simulate_chunk
+
+SEED = 20261015                          # development stream (disjoint from final >= 10**9)
+
+
+def fresh_selected(design, variant, rng):
+    while True:
+        rec, p, over, sel = simulate_chunk(design, variant, 200_000, rng)
+        if sel.any():
+            return rec[np.flatnonzero(sel)[0]]
+
+
+def ledoit_wolf(X):
+    """Ledoit-Wolf shrinkage towards scaled identity (standard formula)."""
+    n, p = X.shape
+    Xc = X - X.mean(axis=0)
+    S = Xc.T @ Xc / n
+    mu = np.trace(S) / p
+    F = mu * np.eye(p)
+    d2 = ((S - F) ** 2).sum()
+    b2 = sum(((np.outer(x, x) - S) ** 2).sum() for x in Xc) / n ** 2
+    b2 = min(b2, d2)
+    return (b2 / d2) * F + (1 - b2 / d2) * S if d2 > 0 else S
+
+
+def main():
+    bankdir, variant, outdir, n_outer = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
+    R = int(sys.argv[5]) if len(sys.argv) > 5 else 2000
+    K = int(sys.argv[6]) if len(sys.argv) > 6 else 2000
+    tol = float(sys.argv[7]) if len(sys.argv) > 7 else 1.0
+    workers = sys.argv[8] if len(sys.argv) > 8 else "16"
+    os.makedirs(outdir, exist_ok=True)
+    rng = np.random.default_rng(SEED)
+    des = designs()
+    t0 = time.time()
+    banks = {}
+    for name in des:
+        b = np.load(os.path.join(bankdir, f"bank_{variant}_{name}.npz"))
+        c = calib_features(b["rec"])
+        mad = np.median(np.abs(c - np.median(c, axis=0)), axis=0)
+        banks[name] = (b["rec"], c, np.where(mad > 0, mad, np.nan))
+    t_load = time.time() - t0
+    rows = []
+    here = os.path.dirname(os.path.abspath(__file__))
+    for k in range(n_outer):
+        tk = {"outer": k}
+        t = time.time()
+        obs = {name: fresh_selected(d, variant, rng) for name, d in des.items()}
+        tk["t_outer_sim"] = time.time() - t
+        t = time.time()
+        libs, shortfall, maxd = {}, [], {}
+        for name, (rec, c, mad) in banks.items():
+            cobs = calib_features(obs[name][None, :])[0]
+            dist = np.sqrt(np.nansum(((c - cobs) / mad) ** 2, axis=1))
+            order = np.argsort(dist)[:K]
+            maxd[name] = float(dist[order[-1]])
+            if maxd[name] > tol:
+                shortfall.append(name)
+            libs[name] = rec[order]
+        tk["t_library"] = time.time() - t
+        tk["shortfall"] = ";".join(shortfall)
+        tk["max_lib_dist"] = json.dumps({n: round(v, 3) for n, v in maxd.items()})
+        t = time.time()
+        path_in = os.path.join(outdir, f"sets_{k}.csv")
+        with open(path_in, "w", newline="") as fh:
+            w = csv.writer(fh); w.writerow(["set", "pop", "year", "N"])
+            for name, d in des.items():
+                for y, v in zip(d["years"], obs[name]):
+                    w.writerow([0, name, y, int(v)])
+            for r in range(1, 2 * R + 1):
+                for name, d in des.items():
+                    traj = libs[name][rng.integers(K)]
+                    for y, v in zip(d["years"], traj):
+                        w.writerow([r, name, y, int(v)])
+        tk["t_write"] = time.time() - t
+        t = time.time()
+        path_out = os.path.join(outdir, f"T_{k}.csv")
+        subprocess.run(["Rscript", os.path.join(here, "tstats_batch.R"), path_in, path_out, workers], check=True)
+        tk["t_fits"] = time.time() - t
+        T = np.genfromtxt(path_out, delimiter=",", names=True)
+        tk["fit_failures"] = int(np.nansum(T["failed"]))
+        M = np.column_stack([T["T1"], T["T2"], T["T3"], T["T4"]])
+        obsT, train, test = M[0], M[1:R + 1], M[R + 1:]
+        ok_tr = ~np.isnan(train).any(axis=1)
+        mu = train[ok_tr].mean(axis=0)
+        S = np.cov(train[ok_tr].T)
+        if np.linalg.cond(S) > 1e6:
+            S = ledoit_wolf(train[ok_tr])
+        Si = np.linalg.inv(S)
+        D = lambda X: np.einsum("ij,jk,ik->i", X - mu, Si, X - mu)
+        if np.isnan(obsT).any():
+            tk["p"] = "indeterminate"
+        else:
+            dt = D(test); d_obs = D(obsT[None, :])[0]
+            fails = np.isnan(dt)
+            exceed = (dt[~fails] >= d_obs).sum()
+            tk["p"] = (1 + exceed) / (R + 1)
+            tk["p_bounds"] = f"{(1 + exceed) / (R + 1):.4f}-{(1 + exceed + fails.sum()) / (R + 1):.4f}"
+        tk["T_obs"] = json.dumps([round(float(v), 5) for v in obsT])
+        os.remove(path_in)
+        rows.append(tk)
+        print(json.dumps(tk), flush=True)
+    meta = {"variant": variant, "R_train": R, "R_test": R, "K": K, "tol": tol, "r_workers": workers,
+            "seed": SEED, "t_load_banks": round(t_load, 1), "total_seconds": round(time.time() - t0, 1)}
+    json.dump({"meta": meta, "outer": rows}, open(os.path.join(outdir, "e2e_results.json"), "w"), indent=1)
+
+
+if __name__ == "__main__":
+    main()

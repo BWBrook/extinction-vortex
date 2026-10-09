@@ -1,0 +1,8 @@
+Known-defect reproduction only: no simulation, real R fit, or remote access.
+candidate_source=analysis/fable/calibration/e2e_benchmark.py
+candidate_sha256=062a92b2594f5c2aaddaa156f9b4626d2fc194987ac60ccc9b87d2752fe3f56c
+numpy_version=1.26.4
+{"p": 0.1111111111111111, "results_json_created": true, "scenario": "shortfall", "shortfall": "fixture"}
+{"exception_message": "Singular matrix", "exception_type": "LinAlgError", "results_json_created": false, "scenario": "singular_training"}
+{"child_exit_codes": [7, 9], "driver_exit_code": 0, "scenario": "bare_wait", "stdout": ["bare_wait_status=0", "reached_DONE=1"]}
+Reproduced all 3 known defects. Exit 0 records reproduction, not validation.

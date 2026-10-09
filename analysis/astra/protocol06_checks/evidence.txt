@@ -1,0 +1,27 @@
+Reviewed repository snapshot: 1813bfc
+Comparison: 45 unique variant/population rows; no new draws.
+Rule evaluated: 3 * archived upper draw requirement <= 1e9.
+iid: 7/9 within cap; maximum 21,853,305,454
+  exceeds cap: wood_turtle_A, 5,482,461,160 draws
+  exceeds cap: wood_turtle_B, 21,853,305,454 draws
+ar: 7/9 within cap; maximum 1,314,155,872
+  exceeds cap: wild_dog, 1,228,604,808 draws
+  exceeds cap: wood_turtle_B, 1,314,155,872 draws
+cat: 7/9 within cap; maximum 3,310,301,025
+  exceeds cap: wood_turtle_A, 2,571,786,044 draws
+  exceeds cap: wood_turtle_B, 3,310,301,025 draws
+ar_cat: 9/9 within cap; maximum 337,029,621
+heavy: 7/9 within cap; maximum 15,678,218,766
+  exceeds cap: wood_turtle_A, 5,697,194,318 draws
+  exceeds cap: wood_turtle_B, 15,678,218,766 draws
+
+Archived e2e_v1: classify tolerance shortfalls before interpreting diagnostic p.
+iid, outer 0: no recorded calibration/fit failure; diagnostic p=0.888556; fit failures=0
+iid, outer 1: indeterminate (calibration shortfall); diagnostic p=0.664168; fit failures=0
+ar_cat, outer 0: indeterminate (calibration shortfall); diagnostic p=0.919040; fit failures=0
+ar_cat, outer 1: indeterminate (calibration shortfall); diagnostic p=0.237881; fit failures=0
+Three of four synthetic outer trials contribute null failures under the specified rule.
+This is a reclassification of four development trials, not a validation rejection-rate estimate.
+
+Recovered e2e_v1 source matches archived SHA-256: dc6e72fd21be9fb2065ded874669e5a18e56f88e31f7c6ba706449891f8e371d
+Source was recovered from the original deep-server run directory; it was an uncommitted overlay.

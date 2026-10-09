@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 12:45 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 9 October 2026, 13:07 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -10,6 +10,9 @@ repairs. His exact words are in discussion 70, message 1131.
 
 **Compute (Barry, 8 October):** the laptop pilot cap is lifted. Run anything
 serious on `deep-server` in tmux.
+Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
+message 1222. This is a later resource option; this project has not submitted a
+PBS job or measured throughput there. Development remains on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -55,26 +58,52 @@ and [reproducible arithmetic](analysis/astra/protocol05_checks/).
 
 **Protocol draft 0.6 (Fable, `05df1b6`; board message 1218).** Responds to
 Astra's 0.5 review.
-- Structural H0, corrected catastrophe priors, a heavy-tailed comparator.
-- One capped bank-sizing rule; the second-bank check is descriptive only;
-  contradictions removed; final seeds reserved; exposure row renumbered E20.
-- **Common-footing comparison of five nulls** (deep-server): only AR +
-  catastrophes (ar_cat) is calibration-feasible for all nine.
-- **End-to-end benchmark:** about 1,100 core-seconds per outer dataset, so
-  about 2,100 core-hours for validation. Banks must be about 10× larger.
+- Structural H0 and exploratory catastrophe priors; a Student-t comparator.
+- The second-bank check is descriptive; final seeds are reserved and Fable's
+  exposure row is now E20. Some older competing instructions remain.
+- **Five-null comparison** (deep-server): only AR + catastrophes (ar_cat)
+  satisfies the new bank-budget rule near observed C for all nine. This does
+  not establish coverage of fresh outer C or necessity of catastrophes.
+- **End-to-end benchmark:** approximately 1,100 worker-seconds per outer dataset,
+  inferred from sixteen workers times fitting wall time, giving a roughly
+  2,100-core-hour planning estimate. A tenfold bank increase is a proposed remedy
+  for calibration shortfalls, not an established coverage guarantee.
+
+**Astra review of 0.6:** [findings](notes/astra_protocol06_review_20261009.md)
+and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
+- Accepts the structural H0, descriptive second-bank rule and provenance repairs.
+- Three of four archived synthetic benchmark trials are indeterminate under
+  the calibration rule despite numeric diagnostic p-values. The running screen
+  must retain these failures and check all arm counts before interpretation.
+- Tiny mocked fixtures reproduce unhandled singular covariance and a driver
+  that can report completion after background failures.
+- The unbounded Student-t exponential recruitment has infinite marginal mean;
+  the Gaussian centring is not appropriate. The current comparison does not
+  test AR plus continuous heavy tails or show that catastrophes are necessary.
+- Exact benchmark source was recovered from deep-server and its archived hash
+  verified. No empirical test or new population simulation was run by Astra.
 
 **Running on deep-server:** tmux `fable_disc` (`/data/fable/vortex/compare_nulls_20261009T013137Z/disc_20261009T014241Z`). This is the bounded
 discrimination check: iid vs ar_cat, each null vs M_A at Δ10 = 0.5,
-30 synthetic datasets per arm. Fable posts the results.
+30 synthetic datasets per arm. At 13:06 AEDT, the 18 bank tasks had finished
+(1,304 seconds), and iid outer fits were running. Fable owns completion and
+posts the complete results; no final discrimination report is available yet.
 
-**Next response: Astra.** Review draft 0.6 and the comparison. Then, with
-Fable's discrimination results, decide whether a single Decision Inbox
-question on promoting ar_cat to primary goes to Barry.
+**Next response: Fable.** Report all four arms with indeterminates retained,
+repair the outcome/failure handling, narrow the comparison conclusion and
+check outer-C library coverage before expensive further fitting. Astra then
+reviews the evidence for a single primary-null Decision Inbox question.
+No new question is open now. A candidate choice can precede final validation.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
+- Reviewed 0.6 at `1813bfc`, acknowledged 1218/1222 and posted the early warning
+  and full repair handoff in 1226/1228. Archived deterministic feasibility
+  arithmetic and tiny mocked failure probes, and recovered the exact uncommitted
+  e2e_v1 source by its existing SHA-256. The live screen was inspected read-only;
+  no jobs were changed or additional population simulations dispatched.
 - On 9 October, reviewed draft 0.5 and benchmark evidence at `9e597d9`, with
   bounded read-only mathematical and implementation audits. Replayed 20 sampler
   checks and archived exact second-bank/bank-size arithmetic. Posted findings
@@ -254,10 +283,10 @@ No validation and no empirical p-values have been run.
 
 ## Pending
 
-1. Fable repairs the remaining draft 0.5 defects identified in Astra's review. The
-   adopted amendment is already incorporated; the next work is a reviewable
-   null-model comparison and coherent bank/benchmark specification. No new
-   scientific target decision is awaiting Barry at this checkpoint.
+1. Fable completes the running development screen and addresses the draft 0.6
+   review, especially complete outcome accounting and outer-C coverage. The
+   adopted RI amendment is incorporated. A primary-null question follows a
+   reviewable candidate comparison; no new decision is awaiting Barry now.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -280,9 +309,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1214**; exhausted `through`: **1214**.
-- Explicit acknowledgement: through actual message **1214** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1214`.
+- Last full retrieval `next_after`: **1228**; exhausted `through`: **1228**.
+- Explicit acknowledgement: through actual message **1228** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1228`.
 
 ## Decision Inbox checkpoint
 
