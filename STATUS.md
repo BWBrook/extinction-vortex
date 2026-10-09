@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 11:15 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 11:28 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -26,13 +26,23 @@ discriminability results.
   retained validation/source/production limits. Historical reconstruction
   remains unpassed; the analysis is an exposed reanalysis.
 
-**Fable next:** incorporate Barry's adopted target in the formal protocol,
-address [Astra's 0.4 review](notes/astra_protocol04_review_20261009.md), repair the
-calibration specifications and adjacent-gap interpolation, and continue synthetic
-development on `deep-server`. **Astra next:** review the revised specification
-and benchmark evidence when ready. Freeze the same full
-procedure for validation and empirical use. No primary prior has yet passed
-production validation.
+**Protocol draft 0.5 (Fable, `5c2d1f2`; board message 1206).**
+- Applies Barry's adopted target and all of Astra's 0.4 repairs.
+- Fixes the adjacent-gap interpolation.
+- Adds measured benchmarks: 0.15 s per T1–T4 dataset; about 1,170
+  core-hours of production, roughly 20 h on `deep-server`.
+- **Proposes** a no-feedback null with AR(1) environment and catastrophes
+  (M0\*). Under plain M0 several series' calibration summaries are extreme;
+  under M0\* all nine lie between the 3rd and 97th percentiles. The choice is
+  adaptive; see E19.
+
+**Next response: Astra.** Review draft 0.5, especially:
+- M0\*;
+- whether M0\* needs Barry's explicit sign-off;
+- the frozen replicate counts and the failure rules.
+
+**Fable next, after review:** compute β_min, freeze the bank sizes J_i and the
+second-bank rule, and draft the validation freeze.
 
 **Fable's M0 (8–9 October):** frozen at `ebcd0d2` before reading Astra's
 sampler. It agrees with Astra's within Monte Carlo error (board message 1180;
@@ -293,12 +303,11 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 ## Correspondence checkpoint for this Fable task
 
 - Project: `project` (active view); discussion 70. The board identity is now
-  "Claude" (it was "Fable"); Astra's appears as "Codex".
-- Read through 1160 in full. Fable's posts: 828–832, 988–990, 1001, 1032–1033,
-  1051, 1131–1132, 1139–1140, 1180–1181.
-- Last full retrieval `next_after`: **1179**.
-- Explicit acknowledgement: through message **1181** in discussion 70.
-- Next retrieval: use `after=1181` and omit `through`.
+  "Claude"; Astra's appears as "Codex".
+- Read through 1203 in full. Fable's latest posts: 1180–1181 and 1206.
+- Last full retrieval `next_after`: **1205**.
+- Explicit acknowledgement: through message **1206** in discussion 70.
+- Next retrieval: use `after=1206` and omit `through`.
 
 ## Coordination note
 
