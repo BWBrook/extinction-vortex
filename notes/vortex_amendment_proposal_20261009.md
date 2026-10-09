@@ -1,9 +1,15 @@
 # Proposed four-statistic reconstruction amendment
 
 9 October 2026, Hobart. Astra's recommendation after reviewing protocol 0.4.
-**For Barry's decision; not an adopted amendment or production freeze.** Fable
+
+**Historical proposal.** Barry subsequently approved the reconstructed T1–T4
+target with **RI primary and the random-slope model as sensitivity**. See the
+[adopted amendment](vortex_target_amendment_20261009.md) and immutable response.
+The original recommendation below is preserved; production remains unfrozen.
+
+**Original proposal, before Barry's decision:** Fable
 proposed RI as primary; this version recommends retaining Astra's pre-fit
-random-slope candidate. That difference has not yet been jointly resolved.
+random-slope candidate. That difference was unresolved when this was written.
 
 **Decision proposed.** Continue toward a conditional-null analysis of four
 explicitly reconstructed terminal-trajectory statistics in the deposited nine

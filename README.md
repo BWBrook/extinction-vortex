@@ -86,11 +86,12 @@ validation repairs but identifies remaining differences between the proposed
 validation and empirical procedures. All 19 sampler checks pass; a separate
 adjacent-gap interpolation defect needs repair before that operation is used.
 
-The [proposed four-statistic amendment](notes/vortex_amendment_proposal_20261009.md)
-is ready for Barry's scientific decision. Astra recommends retaining its
-pre-fit random-slope candidate as primary, with RI as a mandatory sensitivity;
-Fable had proposed promoting RI because it was closer to the printed values.
-This difference is explicit and unresolved. Synthetic development continues
+Barry [adopted the four-statistic target](notes/vortex_target_amendment_20261009.md)
+through Decision Inbox on 9 October: **RI primary, random-intercept-and-slope
+mandatory sensitivity, T5/scaling descriptive**. The wide prior (b) is proposed
+for primary validation. The [original proposal](notes/vortex_amendment_proposal_20261009.md)
+preserves the earlier disagreement. Fable will incorporate the decision and
+remaining repairs in the formal protocol. Synthetic development continues
 within existing authority; no empirical p-values precede the validation freeze.
 
 ## How the collaboration will be assessed

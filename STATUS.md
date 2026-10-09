@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 10:54 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 9 October 2026, 11:15 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -16,23 +16,21 @@ serious on `deep-server` in tmux.
 sample beyond the canonical nine. Its target size should come from the Phase I
 discriminability results.
 
-**Scientific decision next: Barry.**
-- [Decision Inbox questionnaire](https://barry-decision-inbox.barry-brook.chatgpt.site/q/01663ea4-7564-41c6-abf4-d50cec5448c5)
-  is open. It offers the two reconstructed-estimator choices below, or retaining
-  exact historical reconstruction as the prerequisite. No answer is preselected.
-  No response has been submitted or collected.
-- [Astra's amendment proposal](notes/vortex_amendment_proposal_20261009.md)
-  recommends reconstructed T1–T4 with T5 descriptive and prior (b) proposed for
-  primary validation. This narrows the eventual empirical target; it does not
-  turn the failed historical reconstruction into a pass.
-- One disagreement is preserved: Fable proposed RI as primary because its
-  observed estimates were closest; Astra recommends retaining the recorded
-  pre-fit random-slope candidate, with RI as a mandatory sensitivity. Neither
-  choice identifies the historical estimator or makes the analysis blind.
+**Scientific target adopted by Barry, 9 October, 11:06:47 AEDT.**
+- [Verified Decision Inbox response](docs/decisions/01663ea4-7564-41c6-abf4-d50cec5448c5.md):
+  **reconstructed T1–T4, simpler random-intercept primary, random-slope model as
+  mandatory sensitivity** (`approve_ri_primary`). No comments, alternatives or
+  deferral. The primary-model disagreement is resolved by Barry's choice.
+- [The adopted amendment](notes/vortex_target_amendment_20261009.md) records
+  T5/scaling as descriptive, prior (b) proposed for primary validation, and the
+  retained validation/source/production limits. Historical reconstruction
+  remains unpassed; the analysis is an exposed reanalysis.
 
-**Fable next:** respond to [Astra's 0.4 review](notes/astra_protocol04_review_20261009.md),
-repair the formal calibration specifications and adjacent-gap interpolation,
-and continue synthetic development on `deep-server`. Freeze the same full
+**Fable next:** incorporate Barry's adopted target in the formal protocol,
+address [Astra's 0.4 review](notes/astra_protocol04_review_20261009.md), repair the
+calibration specifications and adjacent-gap interpolation, and continue synthetic
+development on `deep-server`. **Astra next:** review the revised specification
+and benchmark evidence when ready. Freeze the same full
 procedure for validation and empirical use. No primary prior has yet passed
 production validation.
 
@@ -165,6 +163,11 @@ Phase II) is recorded in
 - Committed the review/proposal as `a14af6d`, synchronized clean WSL and Mac
   checkouts, and posted 1188 (review) and 1189 (amendment recommendation).
   Read the contiguous updates and acknowledged through actual message 1189.
+- Created the Decision Inbox questionnaire at Barry's request, then collected
+  his submitted `approve_ri_primary` decision. Independently verified the hash,
+  complete answer rendering and archived/active status; committed the immutable
+  response on the canonical Mac and synchronized it into WSL. Recorded the
+  adopted amendment and relayed the exact decision in message 1203.
 
 ## Completed by Fable
 
@@ -234,9 +237,10 @@ Phase II) is recorded in
 
 ## Pending
 
-1. Barry considers the four-statistic target amendment. Fable responds to
-   Astra's estimator-choice recommendation and repairs the formal 0.4 text;
-   the review records which statements are not yet supported by validation.
+1. Fable incorporates Barry's adopted four-statistic/RI-primary amendment and
+   repairs the formal 0.4 text. Astra reviews the revised specification and
+   benchmark evidence. The earlier recommendation is retained as history;
+   no scientific target decision is awaiting Barry at this checkpoint.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -259,27 +263,32 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1195**; exhausted `through`: **1195**.
-- Explicit acknowledgement: through actual message **1195** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1195`.
+- Last full retrieval `next_after`: **1203**; exhausted `through`: **1203**.
+- Explicit acknowledgement: through actual message **1203** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1203`.
 
 ## Decision Inbox checkpoint
 
-- Questionnaire: `01663ea4-7564-41c6-abf4-d50cec5448c5`; status **open** on creation
-  and verification. Creation is not an answer or approval.
+- Questionnaire: `01663ea4-7564-41c6-abf4-d50cec5448c5`; **collected and archived**.
+  Submitted `2026-10-09T00:06:47.788Z`; collected `2026-10-09T00:11:08.058Z`.
 - Request: `project-vortex-amendment-20261009-codex`; project `project` is bound
   to the canonical Mac repo `/Users/bwbrook/papers/project`.
 - [Question definition](docs/decisions/requests/vortex-target-20261009.json) and
   [creation receipt](docs/decisions/requests/vortex-target-20261009.receipt.json)
   preserve the exact request and returned URL. Correspondence message 1195
-  records the handoff.
-- Next: when Barry says submitted or requests collection, use the connector
-  on the Mac mini as Codex to collect into the bound repo. Follow the priming
-  guide linked in AGENTS.md: independently verify the canonical JSON hash and
-  all Markdown answers/comments/deferrals; verify archived status and absence
-  from the active list; then commit/synchronize `docs/decisions/<id>.json` and
-  `.md`. Relay the actual decision to discussion 70 without treating a deferral
-  as approval. Do not poll or configure an automatic wakeup.
+  records creation; its open status is historical.
+- [Response JSON](docs/decisions/01663ea4-7564-41c6-abf4-d50cec5448c5.json) and
+  [Markdown](docs/decisions/01663ea4-7564-41c6-abf4-d50cec5448c5.md) are immutable
+  submitted records, committed first on the canonical Mac as `d613e6c` and
+  fast-forwarded into WSL.
+- Independently verified canonical SHA-256
+  `6175e7b828a0f636d7e219ea5dc534b55a043f4631d7eb4c1d6d12f061ccd33c`, equality to
+  the original question definition, all Markdown selections and empty
+  comments/alternatives, and absence of deferral. Archived listing includes the
+  form with collection time; active project listing is empty, no further pages.
+- Decision: `approve_ri_primary`, as recorded above and relayed in Correspondence
+  message 1203. No polling or automatic
+  wakeup. A changed decision requires a new questionnaire/request ID.
 
 ## Correspondence checkpoint for this Fable task
 
