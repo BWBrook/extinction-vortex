@@ -106,7 +106,12 @@ def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0):
             logit = lgs[idx] + p["sigma"][idx] * z[idx] + np.log(g)
             st = mult[idx] / (1 + np.exp(-logit))
             ft = mult[idx] * g * p["f"][idx] * np.exp(p["sigma"][idx] * z[idx] - p["sigma"][idx] ** 2 / 2)
-            N[idx] = rng.binomial(N[idx], st) + rng.poisson(N[idx] * ft)
+            lam = N[idx] * ft
+            bad = ~np.isfinite(lam) | (lam > CAP)       # rate overflow counts as overflow
+            if bad.any():
+                overflow[idx[bad]] = True; alive[idx[bad]] = False; N[idx[bad]] = 0
+                ok = ~bad; idx, st, lam = idx[ok], st[ok], lam[ok]
+            N[idx] = rng.binomial(N[idx], st) + rng.poisson(lam)
             big = N > CAP
             overflow |= big; alive &= ~big; N[big] = 0
         rec[:, j] = N
