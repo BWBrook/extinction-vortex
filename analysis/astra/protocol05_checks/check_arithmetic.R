@@ -7,7 +7,7 @@ cat("R: ", R.version.string, "\n", sep = "")
 n <- 2000L
 threshold <- 0.01
 count_gap <- floor(threshold * (n + 1)) + 1L
-cat("\nIndependent equal-probability binomial test references; count gap >=", count_gap, "\n")
+cat("\nIndependent equal-probability binomial test references; count gap >= ", count_gap, "\n", sep = "")
 probability <- function(p) {
   k <- 0:n
   2 * sum(dbinom(k, n, p) * pbinom(k - count_gap, n, p))
@@ -18,8 +18,8 @@ print(data.frame(true_tail_probability = p,
       row.names = FALSE)
 cat("These are conditional examples with fixed true tail probabilities, not an overall null rejection rate.\n")
 cat("Training/covariance estimation and actual bank differences are omitted.\n")
-cat("\nZero failures in 20 trials: one-sided exact 95% upper bound =",
-    1 - 0.05^(1 / 20), "\n")
+cat("\nZero failures in 20 trials: one-sided exact 95% upper bound = ",
+    1 - 0.05^(1 / 20), "\n", sep = "")
 
 archive <- "analysis/fable/calibration/bank_catastrophe_scan.txt"
 rows <- strsplit(trimws(readLines(archive)[-(1:2)]), "[[:space:]]+")
@@ -39,6 +39,6 @@ bank <- do.call(rbind, lapply(rows, function(x) {
 }))
 cat("\nBank-size arithmetic from rounded archived requirements; 2,000,000 raw draws each:\n")
 print(bank, row.names = FALSE)
-cat("\nOne-bank estimator subtotal (core-hours):", 7000 * 4000 * 0.15 / 3600, "\n")
-cat("Ideal wall-hours at 60 fully occupied cores:", 7000 * 4000 * 0.15 / 3600 / 60, "\n")
+cat("\nOne-bank estimator subtotal (core-hours): ", 7000 * 4000 * 0.15 / 3600, "\n", sep = "")
+cat("Ideal wall-hours at 60 fully occupied cores: ", 7000 * 4000 * 0.15 / 3600 / 60, "\n", sep = "")
 cat("Excludes second-bank repetition, calibration, fallback fitting, I/O and parallel overhead.\n")

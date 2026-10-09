@@ -1,7 +1,7 @@
 Reviewed source commit: 9e597d9d0b86bdca580bcc1d142f2533237e4c36
 R: R version 4.6.1 (2026-06-24)
 
-Independent equal-probability binomial test references; count gap >= 21 
+Independent equal-probability binomial test references; count gap >= 21
  true_tail_probability probability_abs_p_difference_gt_001
                   0.05                        0.1368206086
                   0.25                        0.4541085359
@@ -9,7 +9,7 @@ Independent equal-probability binomial test references; count gap >= 21
 These are conditional examples with fixed true tail probabilities, not an overall null rejection rate.
 Training/covariance estimation and actual bank differences are omitted.
 
-Zero failures in 20 trials: one-sided exact 95% upper bound = 0.1391083407 
+Zero failures in 20 trials: one-sided exact 95% upper bound = 0.1391083407
 
 Bank-size arithmetic from rounded archived requirements; 2,000,000 raw draws each:
      population accepted raw_draws_3J expected_selected_3J exceeds_1e8_cap misses_2e5_selected recovered_joint_hits
@@ -23,6 +23,6 @@ Bank-size arithmetic from rounded archived requirements; 2,000,000 raw draws eac
   wood_turtle_A    16117    171300000          1380421.050            TRUE               FALSE                   70
   wood_turtle_B    17474    141300000          1234538.100            TRUE               FALSE                   85
 
-One-bank estimator subtotal (core-hours): 1166.666667 
-Ideal wall-hours at 60 fully occupied cores: 19.44444444 
+One-bank estimator subtotal (core-hours): 1166.666667
+Ideal wall-hours at 60 fully occupied cores: 19.44444444
 Excludes second-bank repetition, calibration, fallback fitting, I/O and parallel overhead.
