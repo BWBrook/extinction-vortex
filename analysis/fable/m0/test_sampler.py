@@ -82,6 +82,9 @@ check("selection keeps only first <=1 at the extinction census", ok, f"accepted 
 # 9. Interpolation replicates a linear fill between neighbours
 r = np.array([[10.0, 99.0, 30.0]])
 check("interpolation", np.allclose(interpolate(r, [2000, 2001, 2002], [2001]), [[10, 20, 30]]))
+r2 = np.array([[77.0, 999.0, 999.0, 43.0]])                 # adjacent gaps (Astra's 1188 case)
+check("adjacent-gap joint interpolation",
+      np.allclose(interpolate(r2, [1970, 1971, 1972, 1973], [1971, 1972]), [[77, 77 - 34 / 3, 77 - 68 / 3, 43]]))
 
 # 10. Reproducibility
 a = simulate(50, list(range(10)), gen, np.random.default_rng(7), 100)

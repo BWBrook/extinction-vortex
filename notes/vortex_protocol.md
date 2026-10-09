@@ -1,6 +1,18 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.4 — 9 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.5 — 9 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.5 (Fable) applies five groups of changes; §9.6 summarises them:
+- Barry's adopted target: reconstructed T1–T4, with the random-intercept model
+  primary and the random-slope model a mandatory sensitivity (Decision Inbox,
+  9 October 11:06 AEDT, `docs/decisions/01663ea4-…`);
+- Astra's 0.4 review repairs (1188);
+- the interpolation fix;
+- measured development benchmarks;
+- a **proposed** extension of the no-feedback null to include catastrophes.
+  This is pending Astra's review (§3.1).
+
+**Working draft 0.4 — 9 October 2026, Hobart (history).**
 
 Draft 0.4 (Fable) incorporates three groups of changes into §§1–4 and 7, with a
 summary in §9.5:
@@ -50,7 +62,7 @@ pre-analysis commitment supplies the prospective element; it is not an external
 registration or a claim of full PRISMA compliance. The study is an empirical
 reanalysis with simulation validation, not necessarily a meta-analysis.
 
-## 1. Scientific aims and minimum contribution — Fable formal draft 0.4
+## 1. Scientific aims and minimum contribution — Fable formal draft 0.5
 
 Draft 0.3 answers Astra's quantitative review (R1–R6). The main changes from
 draft 0.2:
@@ -64,7 +76,7 @@ draft 0.2:
 
 **Q1 (primary, empirical).** Take the nine-population Fagan–Holmes (F&H)
 terrestrial sample. Are the observed values of the terminal-trajectory
-statistics T1–T4 (§2.1; T5 descriptive, pending the §4.2 amendment)
+statistics T1–T4 (§2.1; T5 descriptive, per the §4.2 amendment adopted by Barry)
 compatible with their conditional
 reference distribution under a population-matched no-feedback process M0
 (§3.1, §3.4)? The simulated data must pass through the same selection, census
@@ -100,7 +112,7 @@ that feedback is absent, and not a posterior probability of the null. O2 is not
 evidence of genetic or Allee feedback unless further, mechanism-specific
 evidence is added.
 
-## 2. Estimands and comparison populations — Fable formal draft 0.4
+## 2. Estimands and comparison populations — Fable formal draft 0.5
 
 ### 2.1 Part 1 design, statistics and target
 
@@ -122,6 +134,18 @@ the text (Astra source audit). The windows are therefore fixed as follows:
   author-distributed MARSS series. A sensitivity treats them as missing.
 - **Crane:** the deposited counts match the official Rocky Mountain flock
   totals. Under rule E, the extinction census is 2002.
+- **Missing years** (Astra review §6).
+  - A census gap is never annualised. A log change spanning a gap is excluded
+    from D.
+  - AR(1) uses the integer s positions, so a gap is a lag greater than one.
+  - The observed and simulated series are treated identically.
+  - The primary deposited data have no gaps.
+  - The wild-dog fill sensitivity treats 1971, 1972 and 1978 as missing in both
+    observed and simulated data.
+  - A secondary fill sensitivity re-creates the fills in simulated data. It uses
+    joint linear interpolation between genuinely observed neighbours; the
+    sampler bug is repaired (§3.1). The historical fill and rounding rule is
+    unverified.
 
 **Census ledger.** The audit's per-population fields (census unit, age class,
 observation process, closure, intervention, study cluster) are carried as
@@ -141,8 +165,18 @@ The five statistics are those F&H published:
 | T4 | T3 excluding the final transition | −0.012 |
 | T5 | period effect (s ≤ 9 vs s ≥ 10) in the regression of s on ln N_s | F&H print only z = 2.3 and two fitted curves; no single coefficient is reconstructable |
 
-T1–T4 are computed by the Stage B estimator (§4.2).
-- **Primary statistic set:** T1–T4, pending the §4.2 amendment.
+T1–T4 are computed by the adopted estimator (§4.2): a random-intercept
+multilevel model with AR(1) errors, fitted by marginal ML.
+- **Definitions** (adopted): D_s = ln(N_s/N_{s+1}), with the endpoint count
+  replaced by 1 for log growth only.
+  - T1 is the slope of D on s.
+  - T2 refits D ~ s on exactly the non-final transitions (s ≥ 1).
+  - T3 is the slope on s of the squared *conditional* response residuals from
+    the T1 model.
+  - T4 refits the mean model on s ≥ 1, then regresses its squared conditional
+    residuals on s.
+- **Primary statistic set:** T1–T4, adopted by Barry on 9 October. The
+  random-intercept-and-slope model is a mandatory sensitivity.
 - **T5 and the time-to-extinction scaling model:** these leave the primary
   test, but are reported descriptively. With AR(1) errors and s as the
   response, the scaling model degenerates (φ → 0.99). Neither implementation
@@ -167,8 +201,22 @@ Properties of this target:
 - This is not Bayarri and Berger's partial posterior predictive p-value, and
   §4.3 is a false-alarm experiment, not simulation-based calibration of
   posterior ranks. The 0.2 labels are withdrawn.
-- p_joint depends on the prior. Prior (b) is primary and the only validated
-  prior; see §3.4.
+- p_joint depends on the prior. Prior (b) is the prior *proposed for primary
+  validation*; no prior has yet passed validation (§3.4).
+- **What the implemented procedure is.** An approximate finite-bank ABC
+  procedure.
+  - With exact conditioning, the observation and the test replicates would be
+    exchangeable.
+  - In practice, the replicates follow the frozen bank's empirical law, and the
+    observation follows the population law. Matching C does not remove that
+    difference.
+  - Validity is therefore claimed only as measured by §4.3: for the frozen
+    procedure, the frozen bank or banks, the design, and the scenario
+    distributions, against the 8% rejection ceiling. This is not exact 5% size,
+    and not uniform control across all nuisance values.
+- **Executable tie rule.** p_joint = (1 + #{D^test ≥ D^obs}) / (R_test + 1):
+  every tie counts as an exceedance (conservative). This replaces "ties broken
+  at random".
 
 Per-statistic tail probabilities p_k are secondary.
 
@@ -195,9 +243,50 @@ Part 2 is not specified enough for any gate. These items are open:
 
 Part 2 re-enters only by a dated amendment, after the first tranche.
 
-## 3. Generative models and calibration — Fable formal draft 0.4
+## 3. Generative models and calibration — Fable formal draft 0.5
 
 ### 3.1 Null M0: a valid demographic model
+
+> **Proposed change (draft 0.5; pending Astra's review).** Make the primary
+> no-feedback null **M0\***: M0 below, plus two additions.
+> 1. An AR(1) environment, z_t = ρ·z_{t−1} + √(1−ρ²)·ε_t.
+> 2. Density-independent catastrophes. Each year, with probability p_c, a
+>    catastrophe multiplies survival and recruitment by (1 − δ).
+>
+> Priors: ρ ~ U(0, 0.9); p_c ~ U(0, 0.15) per year; δ ~ U(0.5, 0.99).
+> Trajectories exceeding 10^9 are rejected and counted (overflow rule).
+>
+> *Rationale.*
+> - Shaffer (1981, doi:10.2307/1308256) lists demographic, environmental,
+>   catastrophic and genetic sources of small-population risk. Only the genetic
+>   source is feedback, so a no-feedback null should include the other three
+>   (see also Lande 1993, doi:10.1086/285580).
+> - Vertebrate die-offs of at least 50% occur with appreciable frequency (Reed
+>   et al. 2003, doi:10.1017/s1367943003003147). Expected per-capita growth
+>   stays independent of abundance, so the approved definition of H0 holds.
+>
+> *Development evidence.* These are synthetic banks under prior (b); the
+> observed calibration summaries C were exposed, but no T1–T4 null comparison
+> was run (`analysis/fable/calibration/`).
+> - **Plain M0.** Selected runs rarely resemble the pre-terminal behaviour of
+>   several series:
+>   - the red-cockaded woodpecker's mean squared step is at the 0.2nd
+>     percentile, and turtle B's at the 0.6th;
+>   - the turtles' lag-1 autocorrelation is at the 99.6–99.7th percentile;
+>   - at a calibration tolerance of 0.5, banks of 10^8 to more than 4 × 10^9
+>     draws would be needed.
+> - **M0\*.** Every series lies between the 3rd and 97th percentiles on each
+>   summary (the crow's "0" is a discrete minimum under a strict-inequality
+>   percentile). At tolerance 1.0, banks need 2.4 × 10^6 to 5.7 × 10^7 draws.
+> - Several series end in a single large drop: wild dog 26 → 0, red-cockaded
+>   woodpecker 10 → 0, turtle B 8 → 0, turtle A 6 → 0. That is typical of
+>   catastrophes.
+>
+> *Scope.* This change is adaptive: it was chosen after exposure to C. With
+> catastrophes in the null, a terminal crash counts as non-feedback. The study
+> then tests whether vortex statistics exceed demographic, environmental and
+> catastrophic risk. Plain M0 is retained as a mandatory sensitivity. Barry is
+> informed; Astra reviews before any freeze.
 
 - **Census and interval.** An annual census of all individuals at a fixed
   season, after recruitment. The model runs annually through missing years;
@@ -237,6 +326,9 @@ Part 2 re-enters only by a dated amendment, after the first tranche.
   ([comparison](../analysis/fable/m0/compare_astra_m0.txt)).
   - The two-factor ρ = 0.5 sensitivity exists only in Astra's implementation
     so far.
+- **Interpolation repair (9 October).** Adjacent gaps are now filled jointly
+  between genuinely observed neighbours. Astra's [77, 999, 999, 43] case gives
+  [77, 65.67, 54.33, 43], and a regression test is added (20/20 pass).
 
 ### 3.2 Alternatives and mixtures
 
@@ -290,12 +382,20 @@ the median calibrated M0 parameters.
    They are not independent of T, which is why the target is defined
    conditionally (§2.1).
 3. **Library.** The K = 2,000 bank runs nearest to c_obs,i, each from a
-   distinct parameter draw. The K-th distance must be ≤ 0.25 standardised
-   units; otherwise enlarge the bank, or record a calibration failure.
+   distinct parameter draw.
+   - **Tolerance.** At most 1.0 standardised (MAD) units. The development scan
+     showed that 0.25 is infeasible.
+   - **Bank size.** J_i is set in development as 3 × the scan's estimated
+     requirement under the adopted null, and frozen before validation.
+   - **Shortfall.** If fewer than K runs fall within tolerance, the dataset is
+     indeterminate. There is no enlargement triggered by p-values (Astra review
+     §1).
 4. **Reference distribution** (repair 1, 1049/1051).
-   - **Two independent replicate sets.** Draw R_train = 10,000 and
-     R_test = 10,000 replicate datasets independently. Each takes one library
-     run per population and is passed through the Stage B estimator.
+   - **Two independent replicate sets.** R_train = R_test = 2,000, chosen from
+     the benchmark. The **same counts are frozen** for both validation and the
+     empirical analysis (Astra review §1). Each replicate dataset takes one
+     library run per population and is passed through the adopted estimator.
+     At about 0.15 s per dataset, that is 600 s per analysed dataset.
    - **Training set.** Supplies the mean and covariance of T. Use Ledoit–Wolf
      shrinkage if the condition number exceeds 10^6.
    - **Test set.** D is computed for the test replicates and for the
@@ -307,16 +407,29 @@ the median calibrated M0 parameters.
      population is dropped for that population and recorded. An undefined
      autocorrelation (constant changes) is set to 0 and flagged.
    - **Finite bank.** The reference is conditional on the frozen bank.
-     Stability check: a second, independent bank with a fresh seed. A change
-     in p_joint of more than 0.01 triggers a larger bank.
-   - **Fixed replicate counts.** The replicate counts are fixed. No sequential
-     stopping is used.
+     - Stability check: a second, independent frozen bank, specified before
+       validation.
+     - A change in p_joint of more than 0.01 makes the result *indeterminate*,
+       or requires a documented amendment with revalidation. It never triggers
+       more computation until the result stabilises.
+   - **Failures.**
+     - If the training distance cannot be built (e.g., a singular covariance
+       after shrinkage), the dataset is *indeterminate*.
+     - If a test replicate fails, report p-value bounds treating failures as
+       most and least extreme. If those bounds straddle 0.05, neither O1 nor
+       O2 is available.
+     - Fallback fitting is frozen before validation: an alternative optimiser
+       (nlminb), then new starting values.
+   - **Fixed replicate counts.** No sequential stopping is used.
 5. **Priors.**
 
    | Prior | Status | Survival | Recruitment, environment |
    |---|---|---|---|
-   | (b) wide | **primary, and the only validated prior** | logit s_i ~ N(0, 1.5²) | log f_i ~ U(log 0.01, log 2); σ_i ~ U(0.02, 1.0) |
-   | (a) literature-anchored | secondary and unvalidated; built only for populations whose ledger supports a census-class-matched survival source | logit s_i ~ N(logit s_lit, 0.5²) | as (b) |
+   | (b) wide | proposed for primary validation; not yet validated | logit s_i ~ N(0, 1.5²) | log f_i ~ U(log 0.01, log 2); σ_i ~ U(0.02, 1.0); plus the M0\* parameters of §3.1 if adopted |
+   | (a) literature-anchored | an unvalidated numerical sensitivity, built only where the ledger supports a census-class-matched survival source | logit s_i ~ N(logit s_lit, 0.5²) | as (b) |
+
+   Prior (a) cannot borrow prior (b)'s power gate and cannot receive O1 or O2
+   labels.
 
    Rules for prior (a):
    - Estimates fitted to the same trajectory are excluded as priors. Example:
@@ -324,7 +437,7 @@ the median calibrated M0 parameters.
    - Where prior (a) is reported and its outcome label differs from prior
      (b)'s, report *prior-sensitive*.
 
-## 4. Stages, outputs and decision rules — Fable formal draft 0.4
+## 4. Stages, outputs and decision rules — Fable formal draft 0.5
 
 ### 4.1 First tranche (to be authorised by Barry, if selected)
 
@@ -378,29 +491,43 @@ parameters.
 - The scaling model and T5 are not reproduced.
 - Sources: `analysis/astra/stage_b/README.md` and `analysis/fable/stage_b/`.
 
-**Bounded check of the historical estimator (Fable, 9 October).** Hedeker's
-MIXREG is no longer publicly distributed: it is absorbed into the commercial
-SuperMix. The F&H input files are unpublished. Identifying the historical
+**Bounded check of the historical estimator (Fable and Astra, 9 October).**
+MIXREG was not recovered in our bounded search. The interface developer's
+2017 page still describes free distribution, and SuperMix is its commercial
+successor (Astra review §7). A licence alone would not recover F&H's input
+windows, settings or residual convention, and those input files are
+unpublished. Identifying the historical
 estimator exactly therefore needs one of:
 1. contact with the authors (Holmes, Fagan) or with Hedeker;
 2. a SuperMix licence.
 
 Both are Barry's decisions.
 
-**Proposed amendment, for Barry's decision.**
+**Adopted amendment (Barry, 9 October 2026, 11:06 AEDT;
+`docs/decisions/01663ea4-7564-41c6-abf4-d50cec5448c5.md`).**
+- Barry chose `approve_ri_primary`: reconstructed T1–T4; random-intercept
+  primary; random-slope sensitivity.
+- Astra had recommended the random-slope model as primary; that view is
+  preserved as development history.
+
+The proposal text follows, corrected where noted.
 - **Primary target.** A labelled *reconstructed estimand*: T1–T4 computed by
   the documented reconstruction (random-intercept multilevel regression, AR(1)
   errors, marginal ML) on the deposited data. Random intercept plus slope is a
   sensitivity. Random intercept only is pre-specified as primary because it
-  reproduces the published T1–T4 most closely. That is a reconstruction
-  criterion, chosen before any test outcome is known.
+  reproduces the published T1–T4 most closely.
+  - *Correction:* the choice was made after the reconstruction results were
+    inspected, but before any conditional-null p-value or final validation.
+  - Fixed-procedure validation does not validate the adaptive history of
+    choosing the procedure.
 - **T5.** Removed from the primary test.
 - **Validity.** The test applies the same estimator to the observed and the
   simulated data, so the inference stays valid for the reconstructed
   statistics.
 - **What changes.** The scientific claim becomes "F&H's vortex statistics, as
-  reconstructed", not the exact published numbers. The discrepancies above
-  (all ≤ 0.002 for T1–T4) are reported alongside.
+  reconstructed", not the exact published numbers. The full discrepancy table
+  is reported alongside: random intercept, at most 0.0009; random intercept
+  and slope, at most 0.0038.
 - **Optional, in parallel.** If Barry wishes, he could contact the authors for
   the original inputs. If those were recovered and identified the historical
   estimator, the target would revert to it by dated amendment.
@@ -433,10 +560,17 @@ Both are Barry's decisions.
 - **Discriminability.** 300 datasets each for M_A at 2·β_min, the three M_D
   forms, M_O, and the M_A + M_D mixtures. Detection rates are reported with
   exact intervals. These are descriptive only and are not a gate.
-- **Failed fits.** Refit with an alternative optimiser and new starting values.
-  A failure rate above 2% in any scenario stops validation pending a
-  documented estimator revision. Report p-value bounds that treat failures as
-  most and least extreme.
+- **Failures inside fixed denominators** (Astra review §3). All 1,000 null
+  trials and all 300 power trials are retained.
+  - An unresolved outer trial (calibration shortfall, indeterminate distance,
+    or straddling bounds) counts as a **rejection** for the null upper bound,
+    and as a **nondetection** for the power lower bound.
+  - Difficult datasets are never dropped or replaced.
+  - Separately, a fit-failure rate above 2% in any scenario stops validation,
+    pending a documented estimator revision.
+- **Scope of validation.** Validation covers the frozen procedure, bank,
+  design and scenario distributions, against the 8% ceiling. It does not
+  certify secondary or sensitivity tests, or prior (a).
 - **Development vs validation seeds.** Seeds 1–999 are for development. Final
   validation uses seeds ≥ 10^6, run once on frozen code.
 
@@ -444,9 +578,26 @@ Both are Barry's decisions.
 
 The 220-core-hour figure is withdrawn: it omitted simulation and selection
 costs.
-- **Main term.** Production cost is dominated by estimator fits:
-  - validation: 4 null scenarios × up to 1,200 datasets, plus 6 alternative
-    scenarios × 300 datasets, each with R_v replicate fits;
+- **Measured benchmark (9 October).** Measured with
+  `analysis/fable/calibration/time_estimator.txt` and the bank scans:
+  - T1–T4 cost 0.15 s per nine-population dataset (four nlme fits), with no
+    failures in 20 synthetic datasets;
+  - bank simulation runs at about 4 × 10^5 prior draws per second per core;
+  - `deep-server` has 64 cores and 125 GB of RAM.
+- **Inventory under the frozen counts** (R_train = R_test = 2,000, so 600 s per
+  analysed dataset).
+  - Null scenarios: 4 × 1,000 = 4,000 outer datasets.
+  - Alternatives: 10 × 300 = 3,000. These are M_A at β_min and at 2·β_min;
+    M_D linear, accelerating and step; M_O low-n and uniform; and M_A + M_D in
+    each of the three M_D forms.
+  - Total: 7,000 × 600 s = 4.2 × 10^6 s ≈ 1,170 core-hours, about 20 h on 60
+    cores. Banks, effect calibration and the empirical analysis together add
+    under 2%.
+  - Mandatory sensitivities run on empirical data only, and are reported
+    unvalidated.
+- **Earlier text, superseded by the inventory above.** Production cost is
+  dominated by estimator fits:
+  - (stale: superseded by the 7,000-dataset inventory above)
   - the empirical test: 2 × 10^4 fits.
 - **Banks.** These are one-off costs, set by the acceptance rates.
 - **Benchmark.** The pilot measures fit time t_fit and acceptance rates, and
@@ -667,7 +818,7 @@ outcomes. An independent extractor may mechanically split files, but its access
 and summaries must also be logged. A checksum shows file identity, not that
 nobody inspected its contents.
 
-## 7. Analysis and reporting plan — Fable formal draft 0.4
+## 7. Analysis and reporting plan — Fable formal draft 0.5
 
 **Prespecified vs exploratory analyses.**
 
@@ -681,6 +832,9 @@ nobody inspected its contents.
 | Williams statistics on complete-count series confirmed by the audit (Q3) | Prespecified, secondary |
 | Sensitivity: exact endpoint vs the study's inclusion window; rule E (≤ 1 vs 0); separate environmental factors; leave-one-population-out across all nine; turtles A and B left out together (shared study cluster); the crane excluded (experimental flock with intervention history); the wild dog's three deposited fills treated as missing; random intercept plus slope estimator; F&H-length windows; runs of identical counts treated as missing except the first, where provenance is uncertain | Prespecified, reported regardless of result |
 | *Daphnia* (if the data are obtained): the Q1 pipeline applied to the deteriorating replicates. A departure is a diagnostic to investigate with the controls, not proof of error, since the known food reduction does not rule out concurrent feedback. | Prespecified diagnostic, conditional on access |
+| Plain M0 (no catastrophes, ρ = 0), if M0\* is adopted | Mandatory sensitivity; reported unvalidated |
+| Random-intercept-and-slope estimator (Barry's decision) | Mandatory sensitivity; reported unvalidated |
+| Per-population calibration adequacy: the percentile of c_obs within the selected prior predictive, for each summary | Prespecified diagnostic, reported for all nine |
 | Part 2; M_G; the founder-size module; the 2016 LPD subset; anything not listed here | Exploratory, or parked until a dated amendment |
 
 **Data handling.**
@@ -874,3 +1028,34 @@ no research stage.
 - Comparator parameter ranges for M_D and M_O.
 - The full scenario and cost inventory after the pilot benchmark.
 - Synthetic calibration development, which is Fable's next task.
+
+### 9.6 Fable draft 0.5 (9 October): what changed
+
+- **Barry's adopted target.** Recorded in §2.1 and §4.2, with corrected timing
+  wording and the full discrepancy table.
+- **Astra's 0.4 repairs.**
+  - One frozen procedure, R_train = R_test = 2,000, for both validation and
+    the empirical analysis.
+  - Banks sized and frozen in development, with no enlargement triggered by
+    p-values.
+  - Failures kept inside fixed denominators, and indeterminate outcomes.
+  - Finite-bank ABC scope stated, against the 8% ceiling.
+  - An executable tie rule.
+  - Prior (b) is now "proposed for primary validation"; prior (a) is an
+    unvalidated sensitivity.
+  - Missing-year handling.
+  - Software wording: "not recovered in our bounded search".
+- **Interpolation.** The adjacent-gap fix is in, with a test.
+- **Benchmarks.** Measured bank and estimator costs give a production
+  inventory of about 1,170 core-hours, about 20 h on `deep-server`.
+- **Proposed null extension M0\*** (catastrophes plus AR(1) environment). This
+  needs Astra's review, and its adaptive origin is recorded. Barry is informed
+  in chat.
+
+**Still open:**
+- the M0\* decision;
+- the final β_min computation;
+- the census-unit conflicts and prior (a) sources;
+- freezing the J_i bank sizes;
+- the second-bank specification;
+- the validation freeze itself.

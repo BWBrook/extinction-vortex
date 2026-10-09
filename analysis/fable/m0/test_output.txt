@@ -16,5 +16,6 @@ PASS M_O uniform detection mean ratio about 0.9  [0.9001]
 PASS 3-year gap propagates three annual steps  [mean 83.818 target 83.818]
 PASS selection keeps only first <=1 at the extinction census  [accepted 7465 of 200000]
 PASS interpolation
+PASS adjacent-gap joint interpolation
 PASS seeded reproducibility
 FAILURES: 0

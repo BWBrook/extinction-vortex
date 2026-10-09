@@ -1,0 +1,11 @@
+prior (b) draws per population: 200000
+population        L  N_first  accepted  a        q(|C-c_obs|<=0.25)  J for K=2000   seconds
+wild_dog         23      77      1259  0.00630  0.0000                       inf      0.8
+marmot           20      33      1367  0.00683  0.0007                     4e+08      0.6
+ms_woodpecker    16      22      1990  0.00995  0.0000                       inf      0.4
+rc_woodpecker    14      30      2764  0.01382  0.0004                     4e+08      0.4
+golden_plover    18      85      2197  0.01098  0.0005                     4e+08      0.5
+whooping_crane   17      31      1905  0.00953  0.0000                       inf      0.4
+hawaiian_crow    12      12      2861  0.01431  0.0084                  1.67e+07      0.3
+wood_turtle_A    19      36      1547  0.00773  0.0000                       inf      0.5
+wood_turtle_B    19      48      1674  0.00837  0.0000                       inf      0.5

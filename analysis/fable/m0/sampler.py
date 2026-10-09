@@ -109,12 +109,17 @@ def select_exact(rec, ext_index):
 
 
 def interpolate(rec, census_years, interp_years):
-    """Replicate documented interpolations: replace each listed census by the linear
-    interpolation of its recorded neighbours (applied identically to observed data)."""
+    """Replace each listed census by linear interpolation (in years, unrounded) between
+    the nearest censuses that are NOT themselves being filled, so adjacent gaps are
+    filled jointly from genuine observations. Used only for fill sensitivities; the
+    historical fill rule is unverified."""
     years = list(census_years)
+    fill = set(interp_years)
     out = rec.copy()
     for y in interp_years:
         j = years.index(y)
-        w = (years[j] - years[j - 1]) / (years[j + 1] - years[j - 1])
-        out[:, j] = (1 - w) * out[:, j - 1] + w * out[:, j + 1]
+        lo = max(k for k in range(j) if years[k] not in fill)
+        hi = min(k for k in range(j + 1, len(years)) if years[k] not in fill)
+        w = (years[j] - years[lo]) / (years[hi] - years[lo])
+        out[:, j] = (1 - w) * rec[:, lo] + w * rec[:, hi]
     return out
