@@ -8,7 +8,9 @@ Input contracts (FORMAT):
       set, T1-T4, failed. A shortfall makes the trial indet_calib.
   v2  k-NN runs (current e2e_benchmark.py): ARM/e2e_rows.jsonl and ARM/e2e_meta.json; the
       logged p_lo, p_hi and outcome must match the recomputation exactly.
-Malformed T files (not exactly sets 0..2R in order) are indet_malformed in both formats.
+Malformed T files (ragged, or not exactly sets 0..2R in order) are indet_malformed in both
+formats. The intended arms and trial count come from the command line, so an absent arm,
+results file or checkpoint, or an unparseable row, leaves those trials `missing`.
 
 Null gate: every non-accept counts as a rejection. Power: only `reject` is a detection.
 
@@ -24,19 +26,33 @@ OUTCOMES = ("reject", "accept", "indet_calib", "indet_malformed", "indet_obsfit"
 
 
 def read_T_v1(path, R):
-    T = np.genfromtxt(path, delimiter=",", names=True)
+    try:
+        T = np.genfromtxt(path, delimiter=",", names=True)
+    except ValueError:
+        return None
     if T.ndim != 1 or len(T) != 2 * R + 1 or not np.array_equal(T["set"], np.arange(2 * R + 1)):
         return None
     return np.column_stack([T["T1"], T["T2"], T["T3"], T["T4"]])
 
 
 def load_arm(fmt, rundir, arm):
+    """R and the logged rows by outer index; (None, {}) when the arm's records are absent."""
+    d = os.path.join(rundir, arm)
     if fmt == "v1":
-        res = json.load(open(os.path.join(rundir, arm, "e2e_results.json")))
+        if not os.path.exists(os.path.join(d, "e2e_results.json")):
+            return None, {}
+        res = json.load(open(os.path.join(d, "e2e_results.json")))
         return res["meta"]["R_train"], {r["outer"]: r for r in res["outer"]}
-    meta = json.load(open(os.path.join(rundir, arm, "e2e_meta.json")))
-    rows = [json.loads(x) for x in open(os.path.join(rundir, arm, "e2e_rows.jsonl"))]
-    return meta["R_train"], {r["outer"]: r for r in rows}
+    if not (os.path.exists(os.path.join(d, "e2e_meta.json")) and os.path.exists(os.path.join(d, "e2e_rows.jsonl"))):
+        return None, {}
+    rows = {}
+    for line in open(os.path.join(d, "e2e_rows.jsonl")):
+        try:
+            r = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        rows[r["outer"]] = r
+    return json.load(open(os.path.join(d, "e2e_meta.json")))["R_train"], rows
 
 
 def main():
@@ -69,6 +85,8 @@ def main():
             oc = outcome(s, shortfall)
             if s["status"] == "ok" and abs(s["p_lo"] - (lg["p"] if fmt == "v1" else lg["p_lo"])) > 1e-12:
                 raise SystemExit(f"{arm} outer {k}: recomputed p_lo {s['p_lo']} differs from the log")
+            if fmt == "v2" and s["status"] == "ok" and abs(s["p_hi"] - lg["p_hi"]) > 1e-12:
+                raise SystemExit(f"{arm} outer {k}: recomputed p_hi {s['p_hi']} differs from the log")
             if fmt == "v2" and oc != lg["outcome"]:
                 raise SystemExit(f"{arm} outer {k}: recomputed outcome {oc} != logged {lg['outcome']}")
             row["outcome"] = oc; counts[oc] += 1; rows.append(row)

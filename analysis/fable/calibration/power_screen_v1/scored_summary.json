@@ -1,0 +1,72 @@
+{
+ "null": {
+  "reject": 1,
+  "accept": 29,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 1,
+  "null_gate_count": 1,
+  "detections": 1
+ },
+ "betamin": {
+  "reject": 1,
+  "accept": 29,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 1,
+  "null_gate_count": 1,
+  "detections": 1
+ },
+ "beta2min": {
+  "reject": 2,
+  "accept": 28,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 2,
+  "null_gate_count": 2,
+  "detections": 2
+ },
+ "d10_0.3": {
+  "reject": 8,
+  "accept": 22,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 8,
+  "null_gate_count": 8,
+  "detections": 8
+ },
+ "d10_0.5": {
+  "reject": 18,
+  "accept": 12,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 18,
+  "null_gate_count": 18,
+  "detections": 18
+ }
+}

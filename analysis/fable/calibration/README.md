@@ -17,7 +17,8 @@ end-to-end runs (E23).
 | `run_discrimination.sh` (commit `14f974b`), `score_discrimination.py` (contract v1) | `discrimination_v1/` | iid vs ar_cat, null and M_A (Δ10 = 0.5), 30 trials per arm, 2×10^8 banks. Calibration shortfalls make 23–43% of trials indeterminate. |
 | `outer_coverage.py`, `coverage_summary.py` (commit `5ace89e`) | `coverage_v1/` | All-nine hard-tolerance coverage for fresh outer datasets, with bank-size projections. Current versions report k-NN radii for sharded banks and scenario lists. |
 | `build_bank.py` | deep-server `banks10x_*` | Sharded 2×10^9-draw development banks (ar_cat, iid); `bank.load_bank` checks the shards. |
-| `effect_target.py`, `run_dev_design.sh` | `dev_design_v1/` | β_min and corner scenarios under ar_cat; radii in the 10× banks; measured end-to-end cost. |
+| `effect_target.py`, `run_dev_design.sh`, `empirical_position.py` | `dev_design_v1/` | β_min (Δ10 = 0.075) and corner scenarios under ar_cat; measured radii in the 10× banks; empirical position (ar_cat 64th, iid 97th percentile); measured cost. |
+| `run_power_screen.sh`, `score_discrimination.py` (contract v2) | `power_screen_v1/` | ar_cat k-NN at production counts: detections 1/30 (null), 1/30 (β_min), 2/30 (2·β_min), 8/30 (Δ10 = 0.3), 18/30 (Δ10 = 0.5). |
 | `make_synthetic_sets.py`, `time_estimator.R` | `time_estimator.txt` | T1–T4 cost 0.15 s per nine-population dataset, with no failures in 20. |
 
 Run from the repo root, for example:

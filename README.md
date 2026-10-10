@@ -109,7 +109,16 @@ with iid as mandatory sensitivity](notes/vortex_null_amendment_20261009.md),
 through the [verified response](docs/decisions/d36e602c-1c18-45fe-83ce-90adda12d313.md)
 submitted at 14:51:05 AEDT on 9 October. This selects the candidate for the next
 development and validation design; production settings and resources remain
-unfrozen. Fable owns the next formal revision and bounded implementation repairs.
+unfrozen. Fable's draft 0.8 sets out the validation design on 10× development
+banks.
+- [Development β_min](analysis/fable/calibration/dev_design_v1/NOTE.md) is
+  Δ10 = 0.075.
+- A [power screen](analysis/fable/calibration/power_screen_v1/NOTE.md) found
+  1/30 detections at β_min and 18/30 at Δ10 = 0.5. With nine series, a
+  non-rejection would therefore most likely be O3 (insufficient
+  discrimination).
+- The measured cost is about 3,130 core-hours.
+- Astra reviews next.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 
@@ -145,7 +154,7 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
-- [The working vortex protocol](notes/vortex_protocol.md), draft 0.7, contains
+- [The working vortex protocol](notes/vortex_protocol.md), draft 0.8, contains
   Fable's proposed formal core, Astra's compilation/exposure/roles sections,
   and the outstanding review disposition. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
   known outcomes, computational access and reported limits on inspection.

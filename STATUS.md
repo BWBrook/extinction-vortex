@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 16:43 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 10 October 2026, 18:15 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -156,10 +156,31 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   throughput suggests roughly 70 hours for 7,300 trials before banks/overheads,
   rather than the nominal-core projection of 45 hours. Both are planning figures.
 
-**Next response: Fable.** Complete the formal protocol/results handoff and the
-bounded repairs in 1313/1314, then present the concrete validation design and
-measured costs for Astra's review. Barry's primary-null decision remains settled;
-no new author question is raised by this precheck. No polling or automatic wakeup.
+**Protocol draft 0.8 (Fable): validation design and measured costs.**
+- **Adopted null recorded.** The k-NN library is the development algorithm,
+  with radius-stratified diagnostics and a fitted-parameter predictive stress
+  check (selection and parameter-retention rules stated).
+- **Repairs.** All of the 1253 and 1313 repairs are made: ragged, absent and
+  missing inputs; bank-shard integrity; p_hi verification; the
+  training-failure rule; fallback logging.
+- **Results.**
+  - 10× development banks: [dev_design_v1](analysis/fable/calibration/dev_design_v1/NOTE.md).
+  - Measured radii match the projection; the empirical radius is typical
+    (64th percentile) under ar_cat and in the tail (97th) under iid.
+  - Development β_min is Δ10 = 0.075.
+  - Numeric corners are proposed; strong environment replaces short L.
+- **Power screen**: [power_screen_v1](analysis/fable/calibration/power_screen_v1/NOTE.md).
+  - Detections were 1/30 at β_min, 8/30 at Δ10 = 0.3 and 18/30 at 0.5.
+  - The effect target is retained; O3 is the likely outcome and a detection
+    curve is added.
+- **Measured cost.** About 3,130 core-hours: 0.38 core-hours per trial,
+  measured all-in over 150 trials. Roughly 75 hours on deep-server.
+- **Still to do.** The M_D and M_O generators are not yet implemented.
+
+**Next response: Codex.** Review draft 0.8: the design, the repairs, the
+numeric corners, the stress-check specification and the cost inventory. No
+question is open for Barry. Barry's primary-null and RI decisions stay
+settled.
 
 No validation and no empirical p-values have been run.
 
@@ -370,13 +391,26 @@ No validation and no empirical p-values have been run.
   - Repaired e2e failure handling and the driver.
   - Added exposure row E23. Read 1226–1228.
 
+- 10 October, draft 0.8.
+  - Built 10× ar_cat and iid development banks (77.5 core-hours) and measured
+    library radii.
+  - Computed the development β_min, the corners and the empirical position.
+  - Ran a 150-trial power screen at production counts.
+  - Repaired the scorer, input and bank guards from 1313.
+  - Wrote the protocol's design, stress-check and cost sections.
+  - Exposure row E25. Read 1309–1314.
+
 ## Pending
 
-1. Fable completes the 0.8 handoff and remaining input/bank/scorer guards from
-   the precheck. Specify the predictive stress check and full cost inventory;
-   present the effect target, numeric corners and production-bank design for
-   Astra's final review before validation. Retain the current low-power evidence
-   and settled primary-null choice; no effect retuning to obtain O1.
+1. Astra reviews draft 0.8. Then Fable:
+   - implements M_D and M_O (d and k priors, and the observation-selection
+     interaction);
+   - builds the production banks with frozen seeds;
+   - recomputes β_min and the corners on those banks;
+   - measures corner cost.
+
+   The validation freeze follows. The low-power evidence is retained, and the
+   effect is not retuned to obtain O1.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -452,11 +486,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1228 in full. Fable's latest posts: 1218, 1222 and the 0.7
-  handoff.
-- Last full retrieval `next_after`: **1232**.
-- Explicit acknowledgement: through message **1228** in discussion 70.
-- Next retrieval: use `after=1232` and omit `through`.
+- Read through 1314 in full. Fable's latest posts: 1247 and the 0.8 handoff.
+- Last full retrieval `next_after`: **1321**.
+- Explicit acknowledgement: through message **1314** in discussion 70.
+- Next retrieval: use `after=1321` and omit `through`.
 
 ## Coordination note
 

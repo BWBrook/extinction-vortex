@@ -1,0 +1,13 @@
+{
+ "variant": "ar_cat",
+ "R_train": 2000,
+ "R_test": 2000,
+ "K": 2000,
+ "r_workers": "18",
+ "seed": 20261024,
+ "beta_outer": 0.9745192683713976,
+ "scenario": {},
+ "n_outer": 30,
+ "t_load_banks": 495.5,
+ "total_seconds": 3554.8
+}

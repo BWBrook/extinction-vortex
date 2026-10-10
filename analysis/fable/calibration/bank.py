@@ -133,15 +133,20 @@ def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0, fixed=None):
 
 def load_bank(bankdir, variant, name):
     """Concatenate the shards of one population's bank (build_bank.py layout), checking each
-    shard's seed and draw count against bank_meta.json."""
+    shard against bank_meta.json (seed, draws, selected count) and its own fields (equal
+    lengths, strictly increasing global draw indices within the shard's range)."""
     meta = json.load(open(os.path.join(bankdir, "bank_meta.json")))
     tasks = sorted((t for t in meta["tasks"] if t["variant"] == variant and t["population"] == name),
                    key=lambda t: t["shard"])
     assert [t["shard"] for t in tasks] == list(range(meta["shards"])), f"incomplete bank {variant}/{name}"
     parts = []
     for t in tasks:
-        z = np.load(os.path.join(bankdir, f"bank_{variant}_{name}_s{t['shard']:03d}.npz"))
+        z = dict(np.load(os.path.join(bankdir, f"bank_{variant}_{name}_s{t['shard']:03d}.npz")))
+        n, ids, lo = len(z["rec"]), z["draw_id"], t["shard"] * meta["shard_draws"]
         assert int(z["seed"]) == t["seed"] and int(z["draws"]) == meta["shard_draws"]
+        assert n == t["selected"] and all(len(z[k]) == n for k in ("draw_id",) + PARAM_NAMES)
+        assert n == 0 or (ids[0] >= lo and ids[-1] < lo + meta["shard_draws"] and (np.diff(ids) > 0).all())
+        assert not parts or z["rec"].shape[1] == parts[0]["rec"].shape[1]
         parts.append(z)
     out = {k: np.concatenate([z[k] for z in parts]) for k in ("rec", "draw_id") + PARAM_NAMES}
     out["draws"] = meta["shards"] * meta["shard_draws"]

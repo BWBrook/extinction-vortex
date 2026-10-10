@@ -55,7 +55,10 @@ def ledoit_wolf(X):
 def read_T(path, R):
     """T1-T4 matrix, failure flags and fallback counts from tstats_batch.R output, or None
     unless the file holds exactly the sets 0..2R in order."""
-    T = np.genfromtxt(path, delimiter=",", names=True)
+    try:
+        T = np.genfromtxt(path, delimiter=",", names=True)
+    except ValueError:
+        return None
     need = ("set", "T1", "T2", "T3", "T4", "failed", "fallback")
     if T.ndim != 1 or any(c not in (T.dtype.names or ()) for c in need):
         return None

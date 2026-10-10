@@ -1,6 +1,20 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.7 — 9 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.8 — 10 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.8 (Fable) incorporates Barry's adoption of ar_cat as the primary
+development null (iid a mandatory sensitivity) and Astra's 0.7 review
+(1253/1255); §9.9 lists the changes:
+- the k-NN library as the development algorithm, with radius-stratified
+  diagnostics and a local stress check;
+- input guards, a training-failure rule, fallback logging and recorded
+  feature flags;
+- 10× development banks with measured library radii;
+- the development β_min and numeric corner scenarios under ar_cat;
+- a measured cost inventory;
+- a bounded power screen.
+
+**Working draft 0.7 — 9 October 2026, Hobart (history).**
 
 Draft 0.7 (Fable) responds to Astra's 0.6 review (1226/1228); §9.8 lists the
 changes:
@@ -307,7 +321,23 @@ environment. It includes demographic Allee mechanisms (the M_A alternative)
 as well as genetic ones. M_A and β_min are always defined on top of the same
 environmental model as the null in use.
 
-> **Proposed change (draft 0.5; pending Astra's review; revised in 0.6).** Make the primary
+**Adopted primary development null (Barry, 9 October 2026, 14:51 AEDT;
+Decision Inbox `d36e602c`, option `approve_ar_cat_primary`;
+[amendment](vortex_null_amendment_20261009.md)).**
+- **Primary:** ar_cat (M0\* below). Plain iid M0 is a mandatory, labelled
+  sensitivity.
+- **Scope.** This selects the candidate for the next development and
+  validation design. It freezes no priors, β_min, scenarios, banks or
+  production settings, and it does not declare the procedure calibrated.
+- **What the choice does and does not claim.** The choice follows exposure to
+  C and to synthetic development results. It does not validate the
+  exploratory priors or show that catastrophes are needed. A rejection would
+  concern this specified model; a non-rejection would not establish absent
+  feedback.
+
+The history of the proposal and its evidence follows.
+
+> **Proposal (draft 0.5, revised in 0.6–0.7; adopted 9 October).** Make the primary
 > no-feedback null **M0\***: M0 below, plus two additions.
 > 1. An AR(1) environment, z_t = ρ·z_{t−1} + √(1−ρ²)·ε_t.
 > 2. Density-independent catastrophes. Each year, with probability p_c, a
@@ -399,10 +429,13 @@ environmental model as the null in use.
 > - At this bank size, calibration shortfalls dominate. The fix proposed is
 >   in §3.4 step 3, with the coverage evidence in
 >   [`coverage_v1/NOTE.md`](../analysis/fable/calibration/coverage_v1/NOTE.md).
-> - The raw-p diagnostic shows the trade-off for the choice of null. An AR
->   environment with catastrophes absorbs part of what Allee feedback does to
->   T1–T4: at this effect, 0.97 [0.83, 1.00] against the iid null vs 0.70
->   [0.51, 0.85] against ar_cat.
+> - Raw-p diagnostic under M_A: 0.97 [0.83, 1.00] with the iid design vs 0.70
+>   [0.51, 0.85] with ar_cat.
+>   - These are two *matched* designs. The feedback-generating environment
+>     changes together with the reference, and the arms share random streams.
+>   - So the contrast does not isolate a detection cost of broadening the
+>     reference (Astra 1253). It is a warning about possible discrimination
+>     limits, not validated power.
 > - Fit failures: none in 240,120 datasets.
 
 > *Scope.* This change is adaptive: it was chosen after exposure to C. With
@@ -487,6 +520,33 @@ the median calibrated M0 parameters.
   nine populations.
 - **Computation.** 10^5 runs per grid value, done once at Stage C before
   validation.
+- **Under the adopted ar_cat null** (0.8). M_A and M0 share the ar_cat
+  environment, the medians are those of the k-NN libraries at the observed C,
+  and the median parameters include ρ, p_c and δ.
+- **Development value** (10× development banks; `dev_design_v1/`; recomputed
+  on the frozen banks).
+  - Baseline: P(E within 10 years from N = 20) = 0.422 under the null, so
+    N0 = 20.
+  - **β_min = 0.975, i.e. Δ10 = 0.075**, with an increase of +0.130. Δ10 =
+    0.05 gives +0.087.
+  - That is g(10) = 0.925, a multiplier on the survival odds and the
+    recruitment rate. Feedback this weak qualifies because the calibrated
+    populations sit near the absorbing boundary.
+  - **Development power** ([`power_screen_v1/`](../analysis/fable/calibration/power_screen_v1/NOTE.md);
+    30 trials per arm, production counts, 10× banks):
+
+    | Arm | Null | β_min | 2·β_min | Δ10 = 0.3 | Δ10 = 0.5 |
+    |---|---:|---:|---:|---:|---:|
+    | Detections | 1/30 | **1/30** | 2/30 | 8/30 | 18/30 |
+
+    - If the frozen power gate fails as these figures indicate, an empirical
+      non-rejection is **O3**. A validated empirical rejection can still be
+      **O2**.
+  - **The effect target is retained.** The risk-defined β_min stays as
+    pre-registered. Validation reports a detection curve at β_min, 2·β_min,
+    Δ10 = 0.3 and Δ10 = 0.5, descriptively, alongside the power gate.
+  - Changing the target after seeing power would be an adaptive amendment for
+    Barry, and is not proposed (Codex 1311/1313 concur).
 
 ### 3.4 Conditional calibration algorithm
 
@@ -503,68 +563,75 @@ the median calibrated M0 parameters.
 
    They are not independent of T, which is why the target is defined
    conditionally (§2.1).
-3. **Library.** The K = 2,000 bank runs nearest to c_obs,i, each from a
-   distinct parameter draw.
-
-   > **Proposed in 0.7 (pending Astra's review): a k-NN library and 10×
-   > banks.** This replaces the hard tolerance and the 0.6 bank rule below.
-   > - **Library.** The K = 2,000 nearest runs, with no hard tolerance. This
-   >   is rejection ABC with a fixed number of accepted simulations: Beaumont,
-   >   Zhang & Balding (2002, doi:10.1093/genetics/162.4.2025); k-NN analysis
-   >   in Biau, Cérou & Guyader (2015, doi:10.1214/13-AIHP590).
-   >   - Each population's K-th neighbour distance is recorded and reported.
-   >     It is a diagnostic and never labels a trial.
-   >   - The shortfall branch disappears.
-   > - **Bank size.** J_i = 2 × 10^9 draws per population, which is 10× the
-   >   development banks.
-   >   - J_i and the seeds are frozen before validation; bank files keep the
-   >     draw indices, parameters, seed and overflow count.
-   >   - Cost: about 33 core-hours and 11 GB per null variant on deep-server.
-   > - **Evidence**
-   >   ([`coverage_v1/NOTE.md`](../analysis/fable/calibration/coverage_v1/NOTE.md)).
-   >   With the hard tolerance of 1.0:
-   >   - 2 × 10^8 banks leave 31–33% of fresh null outer datasets short in at
-   >     least one population;
-   >   - 10× banks would leave 4.5–4.9% short, and 100× about 0.5%;
-   >   - under the fixed-denominator rule, every shortfall consumes the null
-   >     budget.
-   >
-   >   With the k-NN library at 10× (ar_cat null), the realised radius has
-   >   these quantiles:
-   >
-   >   | Quantile | 0.50 | 0.95 | 0.99 |
-   >   |---|---:|---:|---:|
-   >   | Radius | 0.35 | 0.99 | 1.60 |
-   >
-   >   §4.3 then measures the realised false-alarm rate of exactly this
-   >   procedure, including sparse-region approximation.
-   > - **Why the 0.6 rule is withdrawn.** The observed-C Clopper–Pearson
-   >   planning rule was only approximate, because MAD comes from the same bank
-   >   (Astra 0.6 review §3), and it did not address outer-C coverage.
-   > - **Consequence for the plain-M0 sensitivity.** Under k-NN, plain M0
-   >   returns a p-value for the turtles even though their observed C lies in
-   >   the tail of that bank. That p-value is reported with its K-th neighbour
-   >   distance and is not interpreted where the distance is large.
-   > - **Alternative, if a guard is preferred.** Keep a hard cap of 3.0 with
-   >   10× banks. Null shortfalls would then be 0.13–0.17%, and M_A shortfalls
-   >   about 0.3% (ar_cat).
-
-   *0.6 text (superseded if the proposal is adopted):*
-   - **Tolerance.** At most 1.0 standardised (MAD) units. The development scan
-     showed that 0.25 is infeasible.
-   - **Bank size** (0.6 rule; replaces "3 × the scan's estimate").
-     - J_i is chosen in development so that the lower 95% Clopper–Pearson
-       bound on the expected number of bank runs within tolerance of c_obs,i
-       is at least 3K = 6,000. Overflow and selection follow the common rules.
-     - There is a hard cap of J_max = 10^9 draws per population. If the target
-       cannot be reached within the cap, calibration for that population is
-       *infeasible*, and every dataset that depends on it is indeterminate.
-     - J_i and the bank seeds are frozen before validation.
-     - Every bank file keeps the draw indices, parameters, seed and overflow
-       count.
-   - **Shortfall.** If fewer than K runs fall within tolerance, the dataset is
-     indeterminate. There is no enlargement triggered by p-values (Astra review
-     §1).
+3. **Library: k-NN** (proposed in 0.7; accepted for development by Astra,
+   1253). This replaces the 0.6 hard tolerance and observed-C bank rule.
+   - **Library.** The K = 2,000 bank runs nearest to c_obs,i in MAD-scaled
+     summary space, with no distance cutoff.
+     - This is rejection ABC with a fixed number of accepted simulations
+       (Beaumont, Zhang & Balding 2002, doi:10.1093/genetics/162.4.2025).
+     - It is the nearest-neighbour algorithm analysed by Biau, Cérou &
+       Guyader (2015, doi:10.1214/13-AIHP590, Algorithm 2). Their
+       consistency results need K → ∞ and K/N → 0 under extra assumptions.
+       They certify neither a finite K = 2,000 bank nor this test's
+       false-alarm rate.
+   - **Bank.** Each population's frozen bank must hold at least K valid
+     selected runs. The code refuses a smaller bank.
+     - Development target: J_i = 2 × 10^9 draws per population, which is 10×
+       the development banks.
+     - J_i and the seeds are frozen before validation. Bank files keep draw
+       indices, parameters, seed and overflow count.
+   - **Recorded per trial and population** (diagnostics only; never labels):
+     - the K-th neighbour distance;
+     - features dropped for zero bank MAD;
+     - observed series with constant changes (ACF set to 0).
+   - **Approximation error remains** (Astra 1253). Removing distance
+     abstention does not remove conditional approximation error, and §4.3's
+     scenario-average 8% control is not a guarantee throughout C-space.
+     Hence:
+     - **Radius-stratified diagnostics, predeclared.** Each validation trial
+       is binned by its largest K-th neighbour distance across the nine, at
+       the quintiles of the prior-predictive null scenario's distribution.
+       Rejection rates with exact intervals are reported per bin, for every
+       null scenario.
+     - **Empirical position.** Before interpreting the empirical test, report
+       the empirical largest K-th neighbour distance against those bins.
+       - Development values, from C only, in the 10× development banks:
+         ar_cat 0.433 (turtle B), at the 64th percentile of the null
+         prior-predictive distribution; iid 1.073 (turtle B), at the 97th.
+       - So the primary analysis has a typical radius, and the iid
+         sensitivity lies in the tail (`dev_design_v1/`).
+       - A typical radius does not by itself establish local conditional
+         calibration (Codex 1313).
+     - **Fitted-parameter predictive stress check, always run.** This is not
+       conditional on the empirical position or p-value. It does not enforce
+       C locality, so it is not a local calibration check.
+       - **Datasets.** 300 fresh outer datasets. For each population, a
+         parameter vector is drawn uniformly from its empirical library.
+       - **Selection.** That vector is *retained* while trajectories are
+         simulated until the exact matched selection S and the cap event A
+         hold. After 10^6 unsuccessful draws, the vector is recorded as
+         unselectable and a new one is drawn; such redraws are counted.
+       - **Recorded.** Each dataset's K-th neighbour distances. Each dataset
+         is tested with the frozen procedure, and the rejection rate is
+         reported with an exact interval.
+       - It is descriptive, not a gate. An empirical case in a poorly
+         represented region is reported as a limitation.
+     - No extra radius gate is added. Support is never excluded after seeing
+       a p-value.
+   - **Evidence**
+     ([`coverage_v1/NOTE.md`](../analysis/fable/calibration/coverage_v1/NOTE.md)).
+     - Under the withdrawn hard tolerance of 1.0, 2 × 10^8 banks leave 31–33%
+       of fresh null outer datasets short in at least one population; 10×
+       banks would leave 4.5–4.9% short, and 100× about 0.5%.
+     - The **projected** k-NN radius at 10× (ar_cat null; quantiles 0.50 /
+       0.95 / 0.99) is 0.35 / 0.99 / 1.60. It is projected from the current
+       bank's 200th-neighbour distances and omits variation in a future bank
+       and its MAD.
+     - Actual radii are measured in the constructed banks (§9.9).
+   - **Plain-M0 sensitivity.** Under k-NN it returns a p-value for the
+     turtles even though their observed C lies in the tail of the iid bank.
+     It is reported with its K-th neighbour distances and labelled
+     accordingly.
 4. **Reference distribution** (repair 1, 1049/1051).
    - **Two independent replicate sets.** R_train = R_test = 2,000, chosen from
      the benchmark. The **same counts are frozen** for both validation and the
@@ -582,8 +649,8 @@ the median calibrated M0 parameters.
      Ties count as exceedances, per the executable rule in §2.1.
    - **Feature failures.** A calibration summary with zero bank MAD for a
      population is dropped for that population and recorded. An undefined
-     autocorrelation (constant changes) is set to 0 and flagged. (0.7: the code
-     sets these but does not yet record the flags; required before freeze.)
+     autocorrelation (constant changes) is set to 0 and flagged. Both flags are
+     recorded per trial (0.8).
    - **Finite bank.** The reference is conditional on the frozen bank.
      - Stability check: a second, independent frozen bank, specified before
        validation. Its result is **descriptive only**.
@@ -602,16 +669,26 @@ the median calibrated M0 parameters.
      - Fallback fitting (frozen in 0.7 as implemented): optim, then nlminb;
        no further restarts. The new-start step is dropped: none of the
        240,120 development datasets in the discrimination screen (9 October;
-       four nlme fits each) failed after the fallback. Fallback use itself
-       is not yet recorded.
-     - Training replicates whose fit fails are excluded from the mean and
-       covariance and counted. Observed, training and test fit failures all
-       count toward the §4.3 stop rule (> 2% in a scenario).
-     - Each trial records one outcome: reject, accept, or indeterminate
-       (calibration shortfall, observed-fit failure, unusable training
-       covariance, straddling bounds). The diagnostic p ignoring these is
-       archived separately and never labels a trial
-       (`e2e_benchmark.py`, `score_discrimination.py`).
+       four nlme fits each) failed after the fallback. From 0.8 the number of
+       fits needing the fallback is recorded per dataset.
+     - **Training failures.** Failed training replicates are excluded from the
+       mean and covariance and counted.
+       - Minimum valid sample: if more than 2% of the R_train fits fail
+         (more than 40 of 2,000), the trial is indeterminate (`indet_train`).
+       - Otherwise the covariance rule applies: Ledoit–Wolf shrinkage if the
+         condition number exceeds 10^6, and an unusable matrix after shrinkage
+         is `indet_cov`.
+       - Observed, training and test failures all count toward the §4.3 stop
+         rule (> 2% in a scenario).
+     - **Malformed fit output.** A T1–T4 file that does not hold exactly the
+       sets 0…2R in order is `indet_malformed`.
+     - **Outcome per trial.** reject; accept; or indeterminate (`indet_malformed`,
+       `indet_obsfit`, `indet_train`, `indet_cov`, `indet_straddle`).
+       - The diagnostic p, which ignores these, is archived separately and
+         never labels a trial.
+       - Code: `e2e_benchmark.py`. The `score_discrimination.py` contract v1
+         covers the archived hard-tolerance runs; contract v2 covers the
+         current runs.
    - **Fixed replicate counts.** No sequential stopping is used.
 5. **Priors.**
 
@@ -733,10 +810,20 @@ The proposal text follows, corrected where noted.
   - drawn at fixed parameter values, for the boundary scenarios.
 
   They never come from the bank. Folds are not swapped or pooled.
-- **Type I error.** Four M0 scenarios:
+- **Type I error.** Four scenarios under the adopted null (ar_cat):
   - prior-predictive;
-  - three nuisance corners: high σ; low survival; short L, using the shortest
-    observed window.
+  - three fixed-parameter nuisance corners (numeric values proposed in 0.8,
+    pending Astra's review). Each population is fixed at the component-wise
+    medians of its library at the observed C, except:
+    - **high σ:** σ at that library's 90th percentile;
+    - **low survival:** s at its 10th percentile;
+    - **strong environment:** ρ and p_c at their 90th percentiles.
+  - **Strong environment replaces "short L".** The nine designs are fixed in
+    this study, so a shortened-window scenario would validate a design that
+    is never analysed. The strong-environment corner probes the nuisance
+    dimensions that ar_cat adds instead.
+  - Values and selection rates: `analysis/fable/calibration/dev_design_v1/`
+    (§9.9). They are frozen with the banks.
 
   Each gets 1,000 datasets. It passes if the one-sided upper 98.75%
   Clopper–Pearson bound on its rejection rate is ≤ 0.08 (Bonferroni across the
@@ -755,15 +842,24 @@ The proposal text follows, corrected where noted.
   exact intervals. These are descriptive only and are not a gate.
 - **Failures inside fixed denominators** (Astra review §3). All 1,000 null
   trials and all 300 power trials are retained.
-  - An unresolved outer trial (calibration shortfall, indeterminate distance,
-    or straddling bounds) counts as a **rejection** for the null upper bound,
-    and as a **nondetection** for the power lower bound.
+  - An unresolved outer trial counts as a **rejection** for the null upper
+    bound, and as a **nondetection** for the power lower bound. Unresolved
+    means any indeterminate outcome in §3.4 step 4: malformed output,
+    observed-fit failure, training failures above 2%, unusable covariance,
+    or straddling bounds.
   - Difficult datasets are never dropped or replaced.
   - Separately, a fit-failure rate above 2% in any scenario stops validation,
     pending a documented estimator revision.
+- **Radius strata and the fitted-parameter predictive stress check** (§3.4
+  step 3). Rejection rates per radius quintile are predeclared for every null
+  scenario. The stress check (300 datasets) runs once, after the freeze,
+  alongside the empirical test. Both are descriptive.
+- **Detection curve** (§3.3). M_A at Δ10 = 0.3 and 0.5 is added to the
+  alternatives, 300 datasets each and descriptive, adding about 230
+  core-hours.
 - **Scope of validation.** Validation covers the frozen procedure, bank,
   design and scenario distributions, against the 8% ceiling. It does not
-  certify secondary or sensitivity tests, or prior (a).
+  certify secondary or sensitivity tests, the iid sensitivity, or prior (a).
 - **Development vs validation seeds.** Development streams are listed in
   §4.4. Final validation uses seeds 9 × 10^12 + i, run once on frozen code.
 
@@ -777,37 +873,58 @@ costs.
     failures in 20 synthetic datasets;
   - bank simulation runs at about 4 × 10^5 prior draws per second per core;
   - `deep-server` has 64 cores and 125 GB of RAM.
-- **Inventory under the frozen counts** (R_train = R_test = 2,000, so 600 s per
-  analysed dataset).
-  - Null scenarios: 4 × 1,000 = 4,000 outer datasets.
-  - Alternatives: 10 × 300 = 3,000. These are M_A at β_min and at 2·β_min;
-    M_D linear, accelerating and step; M_O low-n and uniform; and M_A + M_D in
-    each of the three M_D forms.
-  - Total: the 0.5 estimate of 1,170 core-hours is withdrawn. It was a
-    one-bank fitting subtotal (Astra, 1214).
-  - **Measured end to end on deep-server**
-    ([`e2e_v1/NOTE.md`](../analysis/fable/calibration/e2e_v1/NOTE.md)): about
-    1,100 core-seconds per outer dataset (0.27 s per T1–T4 dataset). For 7,000
-    outer datasets that is about 2,100 core-hours, roughly 36 h on 60 cores.
-  - Banks must be about 10× the v1 size, to keep library tolerance shortfalls
-    off synthetic outer datasets.
-  - Mandatory sensitivities run on empirical data only, and are reported
+- **Measured inventory (0.8; 10× banks, k-NN library, R_train = R_test =
+  K = 2,000)**
+  ([`dev_design_v1/NOTE.md`](../analysis/fable/calibration/dev_design_v1/NOTE.md)).
+  - **Per trial:** 1,370 CPU-seconds (0.38 core-hours), all-in. This is
+    measured process CPU time over the 150-trial power screen, including five
+    setups. The 4-trial cost run's derived 1,154 CPU-seconds per trial assumed
+    single-core setup.
+  - **Memory:** 28 GB resident per process, which holds the banks.
+  - **Banks:** 77.5 core-hours measured for 2 × 10^9 draws per population for
+    ar_cat and iid together; 17 GB on disk.
+
+  | Component | Datasets | Core-hours |
+  |---|---:|---:|
+  | Null scenarios (4 × 1,000) | 4,000 | 1,522 |
+  | Alternatives (10 × 300): M_A at β_min and 2·β_min; M_D linear, accelerating and step; M_O low-n and uniform; M_A + M_D in each M_D form | 3,000 | 1,142 |
+  | Detection curve: M_A at Δ10 = 0.3 and 0.5 (2 × 300; proposed in 0.8) | 600 | 228 |
+  | Fitted-parameter predictive stress check (§3.4) | 300 | 114 |
+  | Empirical primary, RI+slope and iid sensitivities, second-bank stability | about 5 | about 5 |
+  | Banks: production ar_cat, second ar_cat stability bank, iid sensitivity bank | — | about 120 |
+  | **Total** | about 7,905 | **about 3,130** |
+
+  - **Wall time on deep-server.** The power screen's observed throughput was
+    about 105 trials per hour (three concurrent processes × 18 workers), so
+    roughly 75 hours plus banks. This is a small-pilot projection. Kunanyi is a
+    later option and needs Barry to open a TPAC Jumpbox.
+  - **Not yet measured:** the corners, and the M_D and M_O generators, which
+    are not yet implemented. Their cost is assumed equal to M_A's.
+  - Mandatory sensitivities run on empirical data only and are reported
     unvalidated.
-- **Earlier text, superseded by the inventory above.** Production cost is
-  dominated by estimator fits:
-  - (stale: superseded by the 7,000-dataset inventory above)
-  - the empirical test: 2 × 10^4 fits.
-- **Banks.** These are one-off costs, set by the acceptance rates.
+- **Earlier estimates withdrawn:**
+  - the 220 core-hour figure;
+  - the 0.5 subtotal of 1,170 core-hours;
+  - the 0.6 inferred estimate of 2,100 core-hours, which used worker count ×
+    wall time;
+  - the 0.8 cost-run figure of 2,420 core-hours, which used a derived
+    per-trial cost.
 - **Replicate counts.** The 0.4 "R_v" lines are superseded. Every
   validation and empirical dataset uses the same frozen R_train = R_test =
   2,000.
 - **No sequential p-values.** The Besag–Clifford proposal is withdrawn
   (repair 1).
-- **Seeds.** Development seeds used so far: 20261002–20261018;
-  20261014000–20261014044 (comparison banks); 20261014100–20261014117
-  (2 × 10^8 discrimination banks); 2026101800–2026101835 (outer-C coverage
-  tasks). The discrimination arms reused 20261016 (null) and 20261017 (M_A)
-  for both variants. Final validation seeds are reserved at 9 × 10^12 + i,
+- **Seeds.** Development seeds used so far:
+  - 20261002–20261027;
+  - 20261014000–20261014044 (comparison banks);
+  - 20261014100–20261014117 (2 × 10^8 discrimination banks);
+  - 2026101800–2026101835 (outer-C coverage, v1);
+  - 20261019000–20261019359 (10× bank shards);
+  - 2026102100–2026102117 (radius coverage, 10× banks).
+
+  The discrimination arms reused 20261016 (null) and 20261017 (M_A) for both
+  variants. The 0.8 runs used 20261020 (effect target), 20261022 (cost run)
+  and 20261023–20261027 (power-screen arms). Final validation seeds are reserved at 9 × 10^12 + i,
   disjoint from all of these.
 - **Compute (Barry, 8 October).** Serious runs go to `deep-server` in tmux.
   The laptop cap no longer applies.
@@ -1344,3 +1461,55 @@ Responses to Astra's 0.6 review (1226/1228):
 - the final scenario and cost inventory;
 - feature-flag recording and fallback-use recording;
 - the census-unit conflicts.
+
+### 9.9 Fable draft 0.8 (9–10 October): what changed
+
+Incorporates Barry's adoption of ar_cat as the primary development null, with
+iid as a mandatory sensitivity (Decision Inbox `d36e602c`), and responds to
+Astra's 0.7 review and 0.8 pre-check (1253, 1255, 1311, 1313, 1314).
+- **Adopted null recorded** (§3.1), with its scope: no freeze, no
+  calibration claim, and no claim that catastrophes are necessary.
+- **The k-NN library is the development algorithm** (§3.4 step 3).
+  - At least K valid runs per bank; recorded K-th distances and flags.
+  - Radius-stratified validation diagnostics; the empirical position
+    reported.
+  - A fitted-parameter predictive stress check, with explicit endpoint
+    selection and parameter retention.
+  - No extra radius gate.
+- **Matched-design wording** (§3.1, `discrimination_v1/`): the 29 vs 21
+  contrast does not isolate a cost of broadening the reference. "Projected"
+  replaces "realised" for the 0.7 radii.
+- **Failure rules** (§3.4 step 4, §4.3).
+  - `indet_malformed`, including ragged files; `indet_train` (more than 2% of
+    training fits failed); fallback use recorded.
+  - Absent arms, results or checkpoints score as missing.
+  - The scorer verifies p_lo, p_hi and outcome.
+  - `load_bank` checks selected counts, field lengths and strictly
+    increasing in-range draw IDs.
+- **10× development banks** (`dev_design_v1/`). The measured radii confirm
+  the 0.7 projection.
+- **Development β_min under ar_cat:** Δ10 = 0.075 (β = 0.975), with an
+  increase of +0.130 in 10-year risk from N = 20.
+- **Numeric corners** (§4.3). Library medians, with σ at the 90th percentile,
+  s at the 10th, or ρ and p_c at the 90th. Strong environment replaces
+  short L.
+- **Development power screen** (`power_screen_v1/`): detections at null /
+  β_min / 2·β_min / Δ10 = 0.3 / Δ10 = 0.5 were 1 / 1 / 2 / 8 / 18 out of 30.
+  - O1 is very likely unattainable with nine series.
+  - The effect target is retained, a detection curve is added, and O3 is the
+    pre-registered consequence of a failed power gate.
+- **Measured cost inventory** (§4.4): about 3,130 core-hours and roughly 75
+  hours on deep-server, at 0.38 core-hours per trial measured all-in.
+- **Exposure:** row E25.
+
+**Open:**
+- Astra's review of 0.8;
+- implementing M_D and M_O, including priors for d and k and the
+  observation-selection interaction;
+- production banks with frozen seeds;
+- recomputing β_min and the corners on them;
+- measuring corner cost;
+- the validation freeze;
+- the census-unit conflicts;
+- Phase II scoping, which the power screen now motivates.
+

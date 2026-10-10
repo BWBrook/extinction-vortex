@@ -1,0 +1,3626 @@
+{
+ "variants": [
+  "ar_cat",
+  "iid"
+ ],
+ "populations": [
+  "wild_dog",
+  "marmot",
+  "ms_woodpecker",
+  "rc_woodpecker",
+  "golden_plover",
+  "whooping_crane",
+  "hawaiian_crow",
+  "wood_turtle_A",
+  "wood_turtle_B"
+ ],
+ "shards": 20,
+ "shard_draws": 100000000,
+ "base_seed": 20261019,
+ "cap": 1000000000,
+ "chunk": 500000,
+ "numpy": "1.26.4",
+ "wall_seconds": 7218.7,
+ "tasks": [
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 0,
+   "seed": 20261019000,
+   "draws": 100000000,
+   "selected": 673961,
+   "overflow": 2803214,
+   "seconds": 1003.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 1,
+   "seed": 20261019001,
+   "draws": 100000000,
+   "selected": 672808,
+   "overflow": 2800357,
+   "seconds": 998.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 2,
+   "seed": 20261019002,
+   "draws": 100000000,
+   "selected": 672819,
+   "overflow": 2801271,
+   "seconds": 1006.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 3,
+   "seed": 20261019003,
+   "draws": 100000000,
+   "selected": 673248,
+   "overflow": 2802332,
+   "seconds": 1065.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 4,
+   "seed": 20261019004,
+   "draws": 100000000,
+   "selected": 673626,
+   "overflow": 2803865,
+   "seconds": 961.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 5,
+   "seed": 20261019005,
+   "draws": 100000000,
+   "selected": 672746,
+   "overflow": 2801939,
+   "seconds": 979.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 6,
+   "seed": 20261019006,
+   "draws": 100000000,
+   "selected": 672812,
+   "overflow": 2800401,
+   "seconds": 956.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 7,
+   "seed": 20261019007,
+   "draws": 100000000,
+   "selected": 673193,
+   "overflow": 2800348,
+   "seconds": 1071.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 8,
+   "seed": 20261019008,
+   "draws": 100000000,
+   "selected": 673144,
+   "overflow": 2801738,
+   "seconds": 1045.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 9,
+   "seed": 20261019009,
+   "draws": 100000000,
+   "selected": 671947,
+   "overflow": 2801273,
+   "seconds": 1027.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 10,
+   "seed": 20261019010,
+   "draws": 100000000,
+   "selected": 672283,
+   "overflow": 2800176,
+   "seconds": 1021.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 11,
+   "seed": 20261019011,
+   "draws": 100000000,
+   "selected": 672550,
+   "overflow": 2799587,
+   "seconds": 979.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 12,
+   "seed": 20261019012,
+   "draws": 100000000,
+   "selected": 671395,
+   "overflow": 2801015,
+   "seconds": 953.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 13,
+   "seed": 20261019013,
+   "draws": 100000000,
+   "selected": 673205,
+   "overflow": 2801805,
+   "seconds": 986.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 14,
+   "seed": 20261019014,
+   "draws": 100000000,
+   "selected": 673280,
+   "overflow": 2801371,
+   "seconds": 1028.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 15,
+   "seed": 20261019015,
+   "draws": 100000000,
+   "selected": 673345,
+   "overflow": 2800565,
+   "seconds": 970.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 16,
+   "seed": 20261019016,
+   "draws": 100000000,
+   "selected": 672510,
+   "overflow": 2803631,
+   "seconds": 969.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 17,
+   "seed": 20261019017,
+   "draws": 100000000,
+   "selected": 673754,
+   "overflow": 2800929,
+   "seconds": 943.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 18,
+   "seed": 20261019018,
+   "draws": 100000000,
+   "selected": 672882,
+   "overflow": 2801729,
+   "seconds": 887.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wild_dog",
+   "shard": 19,
+   "seed": 20261019019,
+   "draws": 100000000,
+   "selected": 672047,
+   "overflow": 2800507,
+   "seconds": 960.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 0,
+   "seed": 20261019020,
+   "draws": 100000000,
+   "selected": 726907,
+   "overflow": 969220,
+   "seconds": 864.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 1,
+   "seed": 20261019021,
+   "draws": 100000000,
+   "selected": 727945,
+   "overflow": 967809,
+   "seconds": 840.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 2,
+   "seed": 20261019022,
+   "draws": 100000000,
+   "selected": 726631,
+   "overflow": 968458,
+   "seconds": 795.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 3,
+   "seed": 20261019023,
+   "draws": 100000000,
+   "selected": 726495,
+   "overflow": 969642,
+   "seconds": 851.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 4,
+   "seed": 20261019024,
+   "draws": 100000000,
+   "selected": 728518,
+   "overflow": 970718,
+   "seconds": 827.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 5,
+   "seed": 20261019025,
+   "draws": 100000000,
+   "selected": 727039,
+   "overflow": 969923,
+   "seconds": 824.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 6,
+   "seed": 20261019026,
+   "draws": 100000000,
+   "selected": 726835,
+   "overflow": 970524,
+   "seconds": 857.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 7,
+   "seed": 20261019027,
+   "draws": 100000000,
+   "selected": 725557,
+   "overflow": 970919,
+   "seconds": 814.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 8,
+   "seed": 20261019028,
+   "draws": 100000000,
+   "selected": 726190,
+   "overflow": 970381,
+   "seconds": 780.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 9,
+   "seed": 20261019029,
+   "draws": 100000000,
+   "selected": 727550,
+   "overflow": 969908,
+   "seconds": 865.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 10,
+   "seed": 20261019030,
+   "draws": 100000000,
+   "selected": 725629,
+   "overflow": 970736,
+   "seconds": 849.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 11,
+   "seed": 20261019031,
+   "draws": 100000000,
+   "selected": 726659,
+   "overflow": 971058,
+   "seconds": 831.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 12,
+   "seed": 20261019032,
+   "draws": 100000000,
+   "selected": 728432,
+   "overflow": 970847,
+   "seconds": 820.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 13,
+   "seed": 20261019033,
+   "draws": 100000000,
+   "selected": 728178,
+   "overflow": 968649,
+   "seconds": 878.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 14,
+   "seed": 20261019034,
+   "draws": 100000000,
+   "selected": 727649,
+   "overflow": 969469,
+   "seconds": 857.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 15,
+   "seed": 20261019035,
+   "draws": 100000000,
+   "selected": 729131,
+   "overflow": 971782,
+   "seconds": 827.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 16,
+   "seed": 20261019036,
+   "draws": 100000000,
+   "selected": 726642,
+   "overflow": 969578,
+   "seconds": 844.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 17,
+   "seed": 20261019037,
+   "draws": 100000000,
+   "selected": 726207,
+   "overflow": 969951,
+   "seconds": 823.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 18,
+   "seed": 20261019038,
+   "draws": 100000000,
+   "selected": 727066,
+   "overflow": 971245,
+   "seconds": 848.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "marmot",
+   "shard": 19,
+   "seed": 20261019039,
+   "draws": 100000000,
+   "selected": 725649,
+   "overflow": 970191,
+   "seconds": 875.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 0,
+   "seed": 20261019040,
+   "draws": 100000000,
+   "selected": 1016356,
+   "overflow": 126068,
+   "seconds": 536.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 1,
+   "seed": 20261019041,
+   "draws": 100000000,
+   "selected": 1016553,
+   "overflow": 126249,
+   "seconds": 692.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 2,
+   "seed": 20261019042,
+   "draws": 100000000,
+   "selected": 1018041,
+   "overflow": 126410,
+   "seconds": 664.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 3,
+   "seed": 20261019043,
+   "draws": 100000000,
+   "selected": 1017377,
+   "overflow": 126366,
+   "seconds": 653.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 4,
+   "seed": 20261019044,
+   "draws": 100000000,
+   "selected": 1016326,
+   "overflow": 126888,
+   "seconds": 705.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 5,
+   "seed": 20261019045,
+   "draws": 100000000,
+   "selected": 1016094,
+   "overflow": 126198,
+   "seconds": 665.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 6,
+   "seed": 20261019046,
+   "draws": 100000000,
+   "selected": 1015990,
+   "overflow": 126399,
+   "seconds": 696.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 7,
+   "seed": 20261019047,
+   "draws": 100000000,
+   "selected": 1016250,
+   "overflow": 126022,
+   "seconds": 662.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 8,
+   "seed": 20261019048,
+   "draws": 100000000,
+   "selected": 1015608,
+   "overflow": 126616,
+   "seconds": 647.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 9,
+   "seed": 20261019049,
+   "draws": 100000000,
+   "selected": 1015515,
+   "overflow": 126316,
+   "seconds": 683.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 10,
+   "seed": 20261019050,
+   "draws": 100000000,
+   "selected": 1014992,
+   "overflow": 126850,
+   "seconds": 697.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 11,
+   "seed": 20261019051,
+   "draws": 100000000,
+   "selected": 1016514,
+   "overflow": 126253,
+   "seconds": 717.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 12,
+   "seed": 20261019052,
+   "draws": 100000000,
+   "selected": 1016228,
+   "overflow": 125678,
+   "seconds": 653.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 13,
+   "seed": 20261019053,
+   "draws": 100000000,
+   "selected": 1015671,
+   "overflow": 126417,
+   "seconds": 632.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 14,
+   "seed": 20261019054,
+   "draws": 100000000,
+   "selected": 1015652,
+   "overflow": 126623,
+   "seconds": 538.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 15,
+   "seed": 20261019055,
+   "draws": 100000000,
+   "selected": 1016912,
+   "overflow": 125842,
+   "seconds": 656.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 16,
+   "seed": 20261019056,
+   "draws": 100000000,
+   "selected": 1015749,
+   "overflow": 126949,
+   "seconds": 661.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 17,
+   "seed": 20261019057,
+   "draws": 100000000,
+   "selected": 1016454,
+   "overflow": 127127,
+   "seconds": 663.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 18,
+   "seed": 20261019058,
+   "draws": 100000000,
+   "selected": 1016927,
+   "overflow": 126144,
+   "seconds": 644.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "ms_woodpecker",
+   "shard": 19,
+   "seed": 20261019059,
+   "draws": 100000000,
+   "selected": 1015817,
+   "overflow": 126025,
+   "seconds": 643.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 0,
+   "seed": 20261019060,
+   "draws": 100000000,
+   "selected": 1436591,
+   "overflow": 57074,
+   "seconds": 606.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 1,
+   "seed": 20261019061,
+   "draws": 100000000,
+   "selected": 1436485,
+   "overflow": 57489,
+   "seconds": 639.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 2,
+   "seed": 20261019062,
+   "draws": 100000000,
+   "selected": 1434830,
+   "overflow": 57163,
+   "seconds": 616.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 3,
+   "seed": 20261019063,
+   "draws": 100000000,
+   "selected": 1436565,
+   "overflow": 57144,
+   "seconds": 611.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 4,
+   "seed": 20261019064,
+   "draws": 100000000,
+   "selected": 1436019,
+   "overflow": 57145,
+   "seconds": 618.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 5,
+   "seed": 20261019065,
+   "draws": 100000000,
+   "selected": 1435486,
+   "overflow": 57293,
+   "seconds": 614.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 6,
+   "seed": 20261019066,
+   "draws": 100000000,
+   "selected": 1435366,
+   "overflow": 56953,
+   "seconds": 609.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 7,
+   "seed": 20261019067,
+   "draws": 100000000,
+   "selected": 1434932,
+   "overflow": 57310,
+   "seconds": 607.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 8,
+   "seed": 20261019068,
+   "draws": 100000000,
+   "selected": 1434105,
+   "overflow": 57539,
+   "seconds": 552.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 9,
+   "seed": 20261019069,
+   "draws": 100000000,
+   "selected": 1433760,
+   "overflow": 57536,
+   "seconds": 477.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 10,
+   "seed": 20261019070,
+   "draws": 100000000,
+   "selected": 1435052,
+   "overflow": 57211,
+   "seconds": 612.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 11,
+   "seed": 20261019071,
+   "draws": 100000000,
+   "selected": 1434696,
+   "overflow": 57564,
+   "seconds": 614.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 12,
+   "seed": 20261019072,
+   "draws": 100000000,
+   "selected": 1433594,
+   "overflow": 57528,
+   "seconds": 640.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 13,
+   "seed": 20261019073,
+   "draws": 100000000,
+   "selected": 1436297,
+   "overflow": 57317,
+   "seconds": 685.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 14,
+   "seed": 20261019074,
+   "draws": 100000000,
+   "selected": 1435717,
+   "overflow": 57541,
+   "seconds": 625.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 15,
+   "seed": 20261019075,
+   "draws": 100000000,
+   "selected": 1434402,
+   "overflow": 56662,
+   "seconds": 692.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 16,
+   "seed": 20261019076,
+   "draws": 100000000,
+   "selected": 1434986,
+   "overflow": 57431,
+   "seconds": 523.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 17,
+   "seed": 20261019077,
+   "draws": 100000000,
+   "selected": 1435710,
+   "overflow": 57703,
+   "seconds": 620.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 18,
+   "seed": 20261019078,
+   "draws": 100000000,
+   "selected": 1434679,
+   "overflow": 57166,
+   "seconds": 694.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "rc_woodpecker",
+   "shard": 19,
+   "seed": 20261019079,
+   "draws": 100000000,
+   "selected": 1433404,
+   "overflow": 57358,
+   "seconds": 621.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 0,
+   "seed": 20261019080,
+   "draws": 100000000,
+   "selected": 1101655,
+   "overflow": 673480,
+   "seconds": 665.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 1,
+   "seed": 20261019081,
+   "draws": 100000000,
+   "selected": 1101783,
+   "overflow": 671693,
+   "seconds": 611.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 2,
+   "seed": 20261019082,
+   "draws": 100000000,
+   "selected": 1102667,
+   "overflow": 672008,
+   "seconds": 604.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 3,
+   "seed": 20261019083,
+   "draws": 100000000,
+   "selected": 1101450,
+   "overflow": 671437,
+   "seconds": 1280.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 4,
+   "seed": 20261019084,
+   "draws": 100000000,
+   "selected": 1101006,
+   "overflow": 671600,
+   "seconds": 758.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 5,
+   "seed": 20261019085,
+   "draws": 100000000,
+   "selected": 1101183,
+   "overflow": 673550,
+   "seconds": 849.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 6,
+   "seed": 20261019086,
+   "draws": 100000000,
+   "selected": 1101263,
+   "overflow": 670866,
+   "seconds": 835.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 7,
+   "seed": 20261019087,
+   "draws": 100000000,
+   "selected": 1102207,
+   "overflow": 671805,
+   "seconds": 944.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 8,
+   "seed": 20261019088,
+   "draws": 100000000,
+   "selected": 1101243,
+   "overflow": 671355,
+   "seconds": 849.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 9,
+   "seed": 20261019089,
+   "draws": 100000000,
+   "selected": 1102124,
+   "overflow": 671914,
+   "seconds": 857.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 10,
+   "seed": 20261019090,
+   "draws": 100000000,
+   "selected": 1101823,
+   "overflow": 671516,
+   "seconds": 839.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 11,
+   "seed": 20261019091,
+   "draws": 100000000,
+   "selected": 1100104,
+   "overflow": 671175,
+   "seconds": 928.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 12,
+   "seed": 20261019092,
+   "draws": 100000000,
+   "selected": 1100237,
+   "overflow": 671480,
+   "seconds": 926.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 13,
+   "seed": 20261019093,
+   "draws": 100000000,
+   "selected": 1101384,
+   "overflow": 671436,
+   "seconds": 840.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 14,
+   "seed": 20261019094,
+   "draws": 100000000,
+   "selected": 1101116,
+   "overflow": 672464,
+   "seconds": 855.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 15,
+   "seed": 20261019095,
+   "draws": 100000000,
+   "selected": 1101355,
+   "overflow": 670995,
+   "seconds": 947.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 16,
+   "seed": 20261019096,
+   "draws": 100000000,
+   "selected": 1102193,
+   "overflow": 670820,
+   "seconds": 964.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 17,
+   "seed": 20261019097,
+   "draws": 100000000,
+   "selected": 1103181,
+   "overflow": 672267,
+   "seconds": 961.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 18,
+   "seed": 20261019098,
+   "draws": 100000000,
+   "selected": 1102060,
+   "overflow": 671291,
+   "seconds": 833.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "golden_plover",
+   "shard": 19,
+   "seed": 20261019099,
+   "draws": 100000000,
+   "selected": 1102816,
+   "overflow": 671595,
+   "seconds": 802.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 0,
+   "seed": 20261019100,
+   "draws": 100000000,
+   "selected": 989041,
+   "overflow": 236707,
+   "seconds": 690.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 1,
+   "seed": 20261019101,
+   "draws": 100000000,
+   "selected": 989070,
+   "overflow": 236103,
+   "seconds": 817.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 2,
+   "seed": 20261019102,
+   "draws": 100000000,
+   "selected": 989521,
+   "overflow": 235964,
+   "seconds": 735.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 3,
+   "seed": 20261019103,
+   "draws": 100000000,
+   "selected": 989352,
+   "overflow": 236209,
+   "seconds": 753.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 4,
+   "seed": 20261019104,
+   "draws": 100000000,
+   "selected": 988945,
+   "overflow": 236026,
+   "seconds": 785.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 5,
+   "seed": 20261019105,
+   "draws": 100000000,
+   "selected": 990621,
+   "overflow": 237136,
+   "seconds": 750.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 6,
+   "seed": 20261019106,
+   "draws": 100000000,
+   "selected": 988508,
+   "overflow": 235491,
+   "seconds": 749.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 7,
+   "seed": 20261019107,
+   "draws": 100000000,
+   "selected": 988792,
+   "overflow": 236023,
+   "seconds": 736.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 8,
+   "seed": 20261019108,
+   "draws": 100000000,
+   "selected": 991167,
+   "overflow": 236816,
+   "seconds": 742.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 9,
+   "seed": 20261019109,
+   "draws": 100000000,
+   "selected": 989540,
+   "overflow": 236764,
+   "seconds": 735.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 10,
+   "seed": 20261019110,
+   "draws": 100000000,
+   "selected": 988773,
+   "overflow": 235714,
+   "seconds": 819.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 11,
+   "seed": 20261019111,
+   "draws": 100000000,
+   "selected": 988544,
+   "overflow": 236075,
+   "seconds": 734.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 12,
+   "seed": 20261019112,
+   "draws": 100000000,
+   "selected": 989589,
+   "overflow": 236282,
+   "seconds": 737.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 13,
+   "seed": 20261019113,
+   "draws": 100000000,
+   "selected": 990033,
+   "overflow": 235404,
+   "seconds": 777.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 14,
+   "seed": 20261019114,
+   "draws": 100000000,
+   "selected": 990372,
+   "overflow": 235221,
+   "seconds": 823.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 15,
+   "seed": 20261019115,
+   "draws": 100000000,
+   "selected": 989514,
+   "overflow": 235916,
+   "seconds": 738.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 16,
+   "seed": 20261019116,
+   "draws": 100000000,
+   "selected": 988978,
+   "overflow": 236437,
+   "seconds": 664.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 17,
+   "seed": 20261019117,
+   "draws": 100000000,
+   "selected": 989394,
+   "overflow": 235857,
+   "seconds": 561.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 18,
+   "seed": 20261019118,
+   "draws": 100000000,
+   "selected": 991366,
+   "overflow": 236522,
+   "seconds": 838.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "whooping_crane",
+   "shard": 19,
+   "seed": 20261019119,
+   "draws": 100000000,
+   "selected": 989912,
+   "overflow": 235735,
+   "seconds": 838.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 0,
+   "seed": 20261019120,
+   "draws": 100000000,
+   "selected": 1493091,
+   "overflow": 12016,
+   "seconds": 387.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 1,
+   "seed": 20261019121,
+   "draws": 100000000,
+   "selected": 1493083,
+   "overflow": 12188,
+   "seconds": 459.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 2,
+   "seed": 20261019122,
+   "draws": 100000000,
+   "selected": 1495065,
+   "overflow": 12351,
+   "seconds": 496.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 3,
+   "seed": 20261019123,
+   "draws": 100000000,
+   "selected": 1493414,
+   "overflow": 12247,
+   "seconds": 507.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 4,
+   "seed": 20261019124,
+   "draws": 100000000,
+   "selected": 1494569,
+   "overflow": 12286,
+   "seconds": 508.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 5,
+   "seed": 20261019125,
+   "draws": 100000000,
+   "selected": 1495469,
+   "overflow": 12250,
+   "seconds": 357.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 6,
+   "seed": 20261019126,
+   "draws": 100000000,
+   "selected": 1494452,
+   "overflow": 12140,
+   "seconds": 505.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 7,
+   "seed": 20261019127,
+   "draws": 100000000,
+   "selected": 1495355,
+   "overflow": 12312,
+   "seconds": 501.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 8,
+   "seed": 20261019128,
+   "draws": 100000000,
+   "selected": 1494970,
+   "overflow": 12214,
+   "seconds": 502.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 9,
+   "seed": 20261019129,
+   "draws": 100000000,
+   "selected": 1497269,
+   "overflow": 12203,
+   "seconds": 509.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 10,
+   "seed": 20261019130,
+   "draws": 100000000,
+   "selected": 1494432,
+   "overflow": 12162,
+   "seconds": 445.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 11,
+   "seed": 20261019131,
+   "draws": 100000000,
+   "selected": 1495646,
+   "overflow": 12183,
+   "seconds": 500.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 12,
+   "seed": 20261019132,
+   "draws": 100000000,
+   "selected": 1493755,
+   "overflow": 12306,
+   "seconds": 503.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 13,
+   "seed": 20261019133,
+   "draws": 100000000,
+   "selected": 1496052,
+   "overflow": 12321,
+   "seconds": 499.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 14,
+   "seed": 20261019134,
+   "draws": 100000000,
+   "selected": 1495889,
+   "overflow": 12168,
+   "seconds": 502.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 15,
+   "seed": 20261019135,
+   "draws": 100000000,
+   "selected": 1494777,
+   "overflow": 12251,
+   "seconds": 476.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 16,
+   "seed": 20261019136,
+   "draws": 100000000,
+   "selected": 1492945,
+   "overflow": 12234,
+   "seconds": 506.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 17,
+   "seed": 20261019137,
+   "draws": 100000000,
+   "selected": 1494719,
+   "overflow": 12199,
+   "seconds": 502.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 18,
+   "seed": 20261019138,
+   "draws": 100000000,
+   "selected": 1493651,
+   "overflow": 12016,
+   "seconds": 508.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "hawaiian_crow",
+   "shard": 19,
+   "seed": 20261019139,
+   "draws": 100000000,
+   "selected": 1493693,
+   "overflow": 12193,
+   "seconds": 514.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 0,
+   "seed": 20261019140,
+   "draws": 100000000,
+   "selected": 825489,
+   "overflow": 679537,
+   "seconds": 791.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 1,
+   "seed": 20261019141,
+   "draws": 100000000,
+   "selected": 823450,
+   "overflow": 677929,
+   "seconds": 943.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 2,
+   "seed": 20261019142,
+   "draws": 100000000,
+   "selected": 824534,
+   "overflow": 678305,
+   "seconds": 754.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 3,
+   "seed": 20261019143,
+   "draws": 100000000,
+   "selected": 824295,
+   "overflow": 676885,
+   "seconds": 799.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 4,
+   "seed": 20261019144,
+   "draws": 100000000,
+   "selected": 824949,
+   "overflow": 678299,
+   "seconds": 810.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 5,
+   "seed": 20261019145,
+   "draws": 100000000,
+   "selected": 824107,
+   "overflow": 678162,
+   "seconds": 967.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 6,
+   "seed": 20261019146,
+   "draws": 100000000,
+   "selected": 823226,
+   "overflow": 678308,
+   "seconds": 611.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 7,
+   "seed": 20261019147,
+   "draws": 100000000,
+   "selected": 822725,
+   "overflow": 676824,
+   "seconds": 835.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 8,
+   "seed": 20261019148,
+   "draws": 100000000,
+   "selected": 822763,
+   "overflow": 677285,
+   "seconds": 906.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 9,
+   "seed": 20261019149,
+   "draws": 100000000,
+   "selected": 825229,
+   "overflow": 677481,
+   "seconds": 764.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 10,
+   "seed": 20261019150,
+   "draws": 100000000,
+   "selected": 825128,
+   "overflow": 677529,
+   "seconds": 962.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 11,
+   "seed": 20261019151,
+   "draws": 100000000,
+   "selected": 824495,
+   "overflow": 679203,
+   "seconds": 891.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 12,
+   "seed": 20261019152,
+   "draws": 100000000,
+   "selected": 825884,
+   "overflow": 677060,
+   "seconds": 884.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 13,
+   "seed": 20261019153,
+   "draws": 100000000,
+   "selected": 825233,
+   "overflow": 678018,
+   "seconds": 918.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 14,
+   "seed": 20261019154,
+   "draws": 100000000,
+   "selected": 824908,
+   "overflow": 676968,
+   "seconds": 815.4
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 15,
+   "seed": 20261019155,
+   "draws": 100000000,
+   "selected": 825132,
+   "overflow": 677234,
+   "seconds": 969.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 16,
+   "seed": 20261019156,
+   "draws": 100000000,
+   "selected": 823135,
+   "overflow": 678385,
+   "seconds": 941.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 17,
+   "seed": 20261019157,
+   "draws": 100000000,
+   "selected": 823762,
+   "overflow": 679106,
+   "seconds": 918.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 18,
+   "seed": 20261019158,
+   "draws": 100000000,
+   "selected": 824237,
+   "overflow": 677614,
+   "seconds": 950.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_A",
+   "shard": 19,
+   "seed": 20261019159,
+   "draws": 100000000,
+   "selected": 824480,
+   "overflow": 677232,
+   "seconds": 953.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 0,
+   "seed": 20261019160,
+   "draws": 100000000,
+   "selected": 883165,
+   "overflow": 777220,
+   "seconds": 875.3
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 1,
+   "seed": 20261019161,
+   "draws": 100000000,
+   "selected": 882660,
+   "overflow": 778936,
+   "seconds": 1021.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 2,
+   "seed": 20261019162,
+   "draws": 100000000,
+   "selected": 886053,
+   "overflow": 780111,
+   "seconds": 813.9
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 3,
+   "seed": 20261019163,
+   "draws": 100000000,
+   "selected": 882615,
+   "overflow": 779218,
+   "seconds": 926.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 4,
+   "seed": 20261019164,
+   "draws": 100000000,
+   "selected": 882346,
+   "overflow": 777871,
+   "seconds": 866.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 5,
+   "seed": 20261019165,
+   "draws": 100000000,
+   "selected": 884146,
+   "overflow": 780534,
+   "seconds": 932.8
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 6,
+   "seed": 20261019166,
+   "draws": 100000000,
+   "selected": 884572,
+   "overflow": 779575,
+   "seconds": 956.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 7,
+   "seed": 20261019167,
+   "draws": 100000000,
+   "selected": 883546,
+   "overflow": 779162,
+   "seconds": 786.7
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 8,
+   "seed": 20261019168,
+   "draws": 100000000,
+   "selected": 883764,
+   "overflow": 778799,
+   "seconds": 913.6
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 9,
+   "seed": 20261019169,
+   "draws": 100000000,
+   "selected": 883080,
+   "overflow": 780317,
+   "seconds": 721.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 10,
+   "seed": 20261019170,
+   "draws": 100000000,
+   "selected": 883048,
+   "overflow": 780406,
+   "seconds": 840.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 11,
+   "seed": 20261019171,
+   "draws": 100000000,
+   "selected": 884749,
+   "overflow": 781238,
+   "seconds": 751.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 12,
+   "seed": 20261019172,
+   "draws": 100000000,
+   "selected": 884573,
+   "overflow": 781485,
+   "seconds": 872.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 13,
+   "seed": 20261019173,
+   "draws": 100000000,
+   "selected": 883535,
+   "overflow": 779567,
+   "seconds": 827.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 14,
+   "seed": 20261019174,
+   "draws": 100000000,
+   "selected": 882882,
+   "overflow": 780502,
+   "seconds": 915.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 15,
+   "seed": 20261019175,
+   "draws": 100000000,
+   "selected": 885136,
+   "overflow": 780546,
+   "seconds": 871.0
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 16,
+   "seed": 20261019176,
+   "draws": 100000000,
+   "selected": 884400,
+   "overflow": 781022,
+   "seconds": 825.5
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 17,
+   "seed": 20261019177,
+   "draws": 100000000,
+   "selected": 882052,
+   "overflow": 780078,
+   "seconds": 746.2
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 18,
+   "seed": 20261019178,
+   "draws": 100000000,
+   "selected": 883933,
+   "overflow": 778687,
+   "seconds": 828.1
+  },
+  {
+   "variant": "ar_cat",
+   "population": "wood_turtle_B",
+   "shard": 19,
+   "seed": 20261019179,
+   "draws": 100000000,
+   "selected": 883500,
+   "overflow": 779849,
+   "seconds": 906.5
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 0,
+   "seed": 20261019180,
+   "draws": 100000000,
+   "selected": 639452,
+   "overflow": 2824314,
+   "seconds": 903.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 1,
+   "seed": 20261019181,
+   "draws": 100000000,
+   "selected": 638292,
+   "overflow": 2826319,
+   "seconds": 1197.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 2,
+   "seed": 20261019182,
+   "draws": 100000000,
+   "selected": 637781,
+   "overflow": 2826425,
+   "seconds": 1062.3
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 3,
+   "seed": 20261019183,
+   "draws": 100000000,
+   "selected": 638941,
+   "overflow": 2827112,
+   "seconds": 1109.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 4,
+   "seed": 20261019184,
+   "draws": 100000000,
+   "selected": 638585,
+   "overflow": 2824880,
+   "seconds": 1012.4
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 5,
+   "seed": 20261019185,
+   "draws": 100000000,
+   "selected": 639045,
+   "overflow": 2825958,
+   "seconds": 1178.3
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 6,
+   "seed": 20261019186,
+   "draws": 100000000,
+   "selected": 637924,
+   "overflow": 2825416,
+   "seconds": 994.2
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 7,
+   "seed": 20261019187,
+   "draws": 100000000,
+   "selected": 638123,
+   "overflow": 2827595,
+   "seconds": 1010.4
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 8,
+   "seed": 20261019188,
+   "draws": 100000000,
+   "selected": 638168,
+   "overflow": 2825593,
+   "seconds": 1096.6
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 9,
+   "seed": 20261019189,
+   "draws": 100000000,
+   "selected": 638326,
+   "overflow": 2825510,
+   "seconds": 1046.2
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 10,
+   "seed": 20261019190,
+   "draws": 100000000,
+   "selected": 636614,
+   "overflow": 2826336,
+   "seconds": 1090.7
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 11,
+   "seed": 20261019191,
+   "draws": 100000000,
+   "selected": 638727,
+   "overflow": 2826851,
+   "seconds": 1122.9
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 12,
+   "seed": 20261019192,
+   "draws": 100000000,
+   "selected": 638895,
+   "overflow": 2828965,
+   "seconds": 1360.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 13,
+   "seed": 20261019193,
+   "draws": 100000000,
+   "selected": 638980,
+   "overflow": 2828640,
+   "seconds": 952.8
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 14,
+   "seed": 20261019194,
+   "draws": 100000000,
+   "selected": 637151,
+   "overflow": 2826712,
+   "seconds": 1191.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 15,
+   "seed": 20261019195,
+   "draws": 100000000,
+   "selected": 637941,
+   "overflow": 2827260,
+   "seconds": 1065.2
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 16,
+   "seed": 20261019196,
+   "draws": 100000000,
+   "selected": 638031,
+   "overflow": 2823543,
+   "seconds": 1145.1
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 17,
+   "seed": 20261019197,
+   "draws": 100000000,
+   "selected": 637391,
+   "overflow": 2827411,
+   "seconds": 891.7
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 18,
+   "seed": 20261019198,
+   "draws": 100000000,
+   "selected": 639389,
+   "overflow": 2826477,
+   "seconds": 1045.6
+  },
+  {
+   "variant": "iid",
+   "population": "wild_dog",
+   "shard": 19,
+   "seed": 20261019199,
+   "draws": 100000000,
+   "selected": 638579,
+   "overflow": 2824636,
+   "seconds": 1076.9
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 0,
+   "seed": 20261019200,
+   "draws": 100000000,
+   "selected": 688550,
+   "overflow": 768104,
+   "seconds": 980.2
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 1,
+   "seed": 20261019201,
+   "draws": 100000000,
+   "selected": 688993,
+   "overflow": 766765,
+   "seconds": 1196.5
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 2,
+   "seed": 20261019202,
+   "draws": 100000000,
+   "selected": 687881,
+   "overflow": 767579,
+   "seconds": 857.6
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 3,
+   "seed": 20261019203,
+   "draws": 100000000,
+   "selected": 690347,
+   "overflow": 766852,
+   "seconds": 741.6
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 4,
+   "seed": 20261019204,
+   "draws": 100000000,
+   "selected": 689017,
+   "overflow": 766918,
+   "seconds": 839.4
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 5,
+   "seed": 20261019205,
+   "draws": 100000000,
+   "selected": 687457,
+   "overflow": 768020,
+   "seconds": 833.3
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 6,
+   "seed": 20261019206,
+   "draws": 100000000,
+   "selected": 685979,
+   "overflow": 768565,
+   "seconds": 891.7
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 7,
+   "seed": 20261019207,
+   "draws": 100000000,
+   "selected": 687714,
+   "overflow": 768277,
+   "seconds": 1071.1
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 8,
+   "seed": 20261019208,
+   "draws": 100000000,
+   "selected": 686792,
+   "overflow": 767336,
+   "seconds": 833.4
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 9,
+   "seed": 20261019209,
+   "draws": 100000000,
+   "selected": 686574,
+   "overflow": 767043,
+   "seconds": 822.2
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 10,
+   "seed": 20261019210,
+   "draws": 100000000,
+   "selected": 687198,
+   "overflow": 768282,
+   "seconds": 811.5
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 11,
+   "seed": 20261019211,
+   "draws": 100000000,
+   "selected": 688316,
+   "overflow": 768791,
+   "seconds": 795.2
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 12,
+   "seed": 20261019212,
+   "draws": 100000000,
+   "selected": 687430,
+   "overflow": 768313,
+   "seconds": 840.5
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 13,
+   "seed": 20261019213,
+   "draws": 100000000,
+   "selected": 686950,
+   "overflow": 767145,
+   "seconds": 807.3
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 14,
+   "seed": 20261019214,
+   "draws": 100000000,
+   "selected": 688153,
+   "overflow": 767194,
+   "seconds": 897.2
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 15,
+   "seed": 20261019215,
+   "draws": 100000000,
+   "selected": 688795,
+   "overflow": 768122,
+   "seconds": 895.4
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 16,
+   "seed": 20261019216,
+   "draws": 100000000,
+   "selected": 689428,
+   "overflow": 767769,
+   "seconds": 923.3
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 17,
+   "seed": 20261019217,
+   "draws": 100000000,
+   "selected": 688020,
+   "overflow": 768493,
+   "seconds": 961.9
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 18,
+   "seed": 20261019218,
+   "draws": 100000000,
+   "selected": 688292,
+   "overflow": 769603,
+   "seconds": 832.8
+  },
+  {
+   "variant": "iid",
+   "population": "marmot",
+   "shard": 19,
+   "seed": 20261019219,
+   "draws": 100000000,
+   "selected": 689546,
+   "overflow": 768129,
+   "seconds": 931.0
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 0,
+   "seed": 20261019220,
+   "draws": 100000000,
+   "selected": 963227,
+   "overflow": 5468,
+   "seconds": 665.4
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 1,
+   "seed": 20261019221,
+   "draws": 100000000,
+   "selected": 962421,
+   "overflow": 5639,
+   "seconds": 603.5
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 2,
+   "seed": 20261019222,
+   "draws": 100000000,
+   "selected": 962138,
+   "overflow": 5690,
+   "seconds": 704.5
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 3,
+   "seed": 20261019223,
+   "draws": 100000000,
+   "selected": 964632,
+   "overflow": 5685,
+   "seconds": 611.0
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 4,
+   "seed": 20261019224,
+   "draws": 100000000,
+   "selected": 964605,
+   "overflow": 5650,
+   "seconds": 661.6
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 5,
+   "seed": 20261019225,
+   "draws": 100000000,
+   "selected": 962924,
+   "overflow": 5651,
+   "seconds": 666.3
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 6,
+   "seed": 20261019226,
+   "draws": 100000000,
+   "selected": 963195,
+   "overflow": 5681,
+   "seconds": 703.1
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 7,
+   "seed": 20261019227,
+   "draws": 100000000,
+   "selected": 962940,
+   "overflow": 5747,
+   "seconds": 509.0
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 8,
+   "seed": 20261019228,
+   "draws": 100000000,
+   "selected": 963304,
+   "overflow": 5623,
+   "seconds": 669.1
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 9,
+   "seed": 20261019229,
+   "draws": 100000000,
+   "selected": 965035,
+   "overflow": 5685,
+   "seconds": 659.2
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 10,
+   "seed": 20261019230,
+   "draws": 100000000,
+   "selected": 962310,
+   "overflow": 5743,
+   "seconds": 699.3
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 11,
+   "seed": 20261019231,
+   "draws": 100000000,
+   "selected": 965323,
+   "overflow": 5712,
+   "seconds": 991.6
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 12,
+   "seed": 20261019232,
+   "draws": 100000000,
+   "selected": 964635,
+   "overflow": 5705,
+   "seconds": 737.7
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 13,
+   "seed": 20261019233,
+   "draws": 100000000,
+   "selected": 964189,
+   "overflow": 5661,
+   "seconds": 915.6
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 14,
+   "seed": 20261019234,
+   "draws": 100000000,
+   "selected": 964073,
+   "overflow": 5690,
+   "seconds": 770.5
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 15,
+   "seed": 20261019235,
+   "draws": 100000000,
+   "selected": 963784,
+   "overflow": 5675,
+   "seconds": 658.5
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 16,
+   "seed": 20261019236,
+   "draws": 100000000,
+   "selected": 963449,
+   "overflow": 5587,
+   "seconds": 680.6
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 17,
+   "seed": 20261019237,
+   "draws": 100000000,
+   "selected": 964541,
+   "overflow": 5661,
+   "seconds": 940.4
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 18,
+   "seed": 20261019238,
+   "draws": 100000000,
+   "selected": 962429,
+   "overflow": 5795,
+   "seconds": 747.9
+  },
+  {
+   "variant": "iid",
+   "population": "ms_woodpecker",
+   "shard": 19,
+   "seed": 20261019239,
+   "draws": 100000000,
+   "selected": 965400,
+   "overflow": 5553,
+   "seconds": 665.2
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 0,
+   "seed": 20261019240,
+   "draws": 100000000,
+   "selected": 1371838,
+   "overflow": 431,
+   "seconds": 522.7
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 1,
+   "seed": 20261019241,
+   "draws": 100000000,
+   "selected": 1369931,
+   "overflow": 438,
+   "seconds": 733.7
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 2,
+   "seed": 20261019242,
+   "draws": 100000000,
+   "selected": 1370013,
+   "overflow": 416,
+   "seconds": 652.4
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 3,
+   "seed": 20261019243,
+   "draws": 100000000,
+   "selected": 1370225,
+   "overflow": 424,
+   "seconds": 684.7
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 4,
+   "seed": 20261019244,
+   "draws": 100000000,
+   "selected": 1370821,
+   "overflow": 476,
+   "seconds": 616.4
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 5,
+   "seed": 20261019245,
+   "draws": 100000000,
+   "selected": 1370574,
+   "overflow": 456,
+   "seconds": 537.5
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 6,
+   "seed": 20261019246,
+   "draws": 100000000,
+   "selected": 1374107,
+   "overflow": 436,
+   "seconds": 644.6
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 7,
+   "seed": 20261019247,
+   "draws": 100000000,
+   "selected": 1370417,
+   "overflow": 441,
+   "seconds": 680.4
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 8,
+   "seed": 20261019248,
+   "draws": 100000000,
+   "selected": 1372190,
+   "overflow": 422,
+   "seconds": 622.8
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 9,
+   "seed": 20261019249,
+   "draws": 100000000,
+   "selected": 1370702,
+   "overflow": 435,
+   "seconds": 576.2
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 10,
+   "seed": 20261019250,
+   "draws": 100000000,
+   "selected": 1371703,
+   "overflow": 477,
+   "seconds": 705.6
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 11,
+   "seed": 20261019251,
+   "draws": 100000000,
+   "selected": 1374875,
+   "overflow": 405,
+   "seconds": 643.8
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 12,
+   "seed": 20261019252,
+   "draws": 100000000,
+   "selected": 1369801,
+   "overflow": 417,
+   "seconds": 647.1
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 13,
+   "seed": 20261019253,
+   "draws": 100000000,
+   "selected": 1370195,
+   "overflow": 464,
+   "seconds": 653.5
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 14,
+   "seed": 20261019254,
+   "draws": 100000000,
+   "selected": 1371092,
+   "overflow": 409,
+   "seconds": 652.8
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 15,
+   "seed": 20261019255,
+   "draws": 100000000,
+   "selected": 1370478,
+   "overflow": 450,
+   "seconds": 603.0
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 16,
+   "seed": 20261019256,
+   "draws": 100000000,
+   "selected": 1371196,
+   "overflow": 451,
+   "seconds": 676.1
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 17,
+   "seed": 20261019257,
+   "draws": 100000000,
+   "selected": 1372429,
+   "overflow": 396,
+   "seconds": 642.5
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 18,
+   "seed": 20261019258,
+   "draws": 100000000,
+   "selected": 1371720,
+   "overflow": 401,
+   "seconds": 685.6
+  },
+  {
+   "variant": "iid",
+   "population": "rc_woodpecker",
+   "shard": 19,
+   "seed": 20261019259,
+   "draws": 100000000,
+   "selected": 1371410,
+   "overflow": 444,
+   "seconds": 688.1
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 0,
+   "seed": 20261019260,
+   "draws": 100000000,
+   "selected": 1049096,
+   "overflow": 422946,
+   "seconds": 1059.4
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 1,
+   "seed": 20261019261,
+   "draws": 100000000,
+   "selected": 1050908,
+   "overflow": 423908,
+   "seconds": 856.7
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 2,
+   "seed": 20261019262,
+   "draws": 100000000,
+   "selected": 1049503,
+   "overflow": 423745,
+   "seconds": 787.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 3,
+   "seed": 20261019263,
+   "draws": 100000000,
+   "selected": 1050604,
+   "overflow": 424057,
+   "seconds": 712.1
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 4,
+   "seed": 20261019264,
+   "draws": 100000000,
+   "selected": 1050693,
+   "overflow": 423540,
+   "seconds": 762.7
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 5,
+   "seed": 20261019265,
+   "draws": 100000000,
+   "selected": 1050176,
+   "overflow": 423839,
+   "seconds": 868.0
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 6,
+   "seed": 20261019266,
+   "draws": 100000000,
+   "selected": 1050139,
+   "overflow": 423265,
+   "seconds": 753.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 7,
+   "seed": 20261019267,
+   "draws": 100000000,
+   "selected": 1048083,
+   "overflow": 423656,
+   "seconds": 825.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 8,
+   "seed": 20261019268,
+   "draws": 100000000,
+   "selected": 1050877,
+   "overflow": 423352,
+   "seconds": 972.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 9,
+   "seed": 20261019269,
+   "draws": 100000000,
+   "selected": 1050099,
+   "overflow": 422299,
+   "seconds": 804.2
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 10,
+   "seed": 20261019270,
+   "draws": 100000000,
+   "selected": 1048387,
+   "overflow": 422857,
+   "seconds": 931.7
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 11,
+   "seed": 20261019271,
+   "draws": 100000000,
+   "selected": 1050897,
+   "overflow": 422373,
+   "seconds": 903.8
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 12,
+   "seed": 20261019272,
+   "draws": 100000000,
+   "selected": 1050182,
+   "overflow": 423447,
+   "seconds": 779.7
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 13,
+   "seed": 20261019273,
+   "draws": 100000000,
+   "selected": 1050168,
+   "overflow": 422881,
+   "seconds": 824.0
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 14,
+   "seed": 20261019274,
+   "draws": 100000000,
+   "selected": 1049893,
+   "overflow": 423592,
+   "seconds": 854.0
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 15,
+   "seed": 20261019275,
+   "draws": 100000000,
+   "selected": 1049461,
+   "overflow": 423850,
+   "seconds": 805.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 16,
+   "seed": 20261019276,
+   "draws": 100000000,
+   "selected": 1049940,
+   "overflow": 423881,
+   "seconds": 827.1
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 17,
+   "seed": 20261019277,
+   "draws": 100000000,
+   "selected": 1050889,
+   "overflow": 424074,
+   "seconds": 825.9
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 18,
+   "seed": 20261019278,
+   "draws": 100000000,
+   "selected": 1048771,
+   "overflow": 422715,
+   "seconds": 870.5
+  },
+  {
+   "variant": "iid",
+   "population": "golden_plover",
+   "shard": 19,
+   "seed": 20261019279,
+   "draws": 100000000,
+   "selected": 1050267,
+   "overflow": 423143,
+   "seconds": 882.2
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 0,
+   "seed": 20261019280,
+   "draws": 100000000,
+   "selected": 942137,
+   "overflow": 38750,
+   "seconds": 718.7
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 1,
+   "seed": 20261019281,
+   "draws": 100000000,
+   "selected": 937639,
+   "overflow": 39238,
+   "seconds": 624.3
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 2,
+   "seed": 20261019282,
+   "draws": 100000000,
+   "selected": 938350,
+   "overflow": 39156,
+   "seconds": 770.2
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 3,
+   "seed": 20261019283,
+   "draws": 100000000,
+   "selected": 940472,
+   "overflow": 38862,
+   "seconds": 779.7
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 4,
+   "seed": 20261019284,
+   "draws": 100000000,
+   "selected": 939974,
+   "overflow": 39282,
+   "seconds": 790.6
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 5,
+   "seed": 20261019285,
+   "draws": 100000000,
+   "selected": 940959,
+   "overflow": 39363,
+   "seconds": 802.5
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 6,
+   "seed": 20261019286,
+   "draws": 100000000,
+   "selected": 938667,
+   "overflow": 39125,
+   "seconds": 1061.4
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 7,
+   "seed": 20261019287,
+   "draws": 100000000,
+   "selected": 939283,
+   "overflow": 38749,
+   "seconds": 787.7
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 8,
+   "seed": 20261019288,
+   "draws": 100000000,
+   "selected": 938641,
+   "overflow": 39254,
+   "seconds": 738.9
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 9,
+   "seed": 20261019289,
+   "draws": 100000000,
+   "selected": 941310,
+   "overflow": 39300,
+   "seconds": 847.2
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 10,
+   "seed": 20261019290,
+   "draws": 100000000,
+   "selected": 940597,
+   "overflow": 38959,
+   "seconds": 749.8
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 11,
+   "seed": 20261019291,
+   "draws": 100000000,
+   "selected": 937917,
+   "overflow": 39341,
+   "seconds": 741.4
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 12,
+   "seed": 20261019292,
+   "draws": 100000000,
+   "selected": 939955,
+   "overflow": 39015,
+   "seconds": 801.2
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 13,
+   "seed": 20261019293,
+   "draws": 100000000,
+   "selected": 938694,
+   "overflow": 39133,
+   "seconds": 658.5
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 14,
+   "seed": 20261019294,
+   "draws": 100000000,
+   "selected": 939308,
+   "overflow": 38902,
+   "seconds": 809.4
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 15,
+   "seed": 20261019295,
+   "draws": 100000000,
+   "selected": 939143,
+   "overflow": 39015,
+   "seconds": 818.1
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 16,
+   "seed": 20261019296,
+   "draws": 100000000,
+   "selected": 939076,
+   "overflow": 39061,
+   "seconds": 848.7
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 17,
+   "seed": 20261019297,
+   "draws": 100000000,
+   "selected": 940256,
+   "overflow": 39254,
+   "seconds": 924.2
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 18,
+   "seed": 20261019298,
+   "draws": 100000000,
+   "selected": 939464,
+   "overflow": 39170,
+   "seconds": 810.4
+  },
+  {
+   "variant": "iid",
+   "population": "whooping_crane",
+   "shard": 19,
+   "seed": 20261019299,
+   "draws": 100000000,
+   "selected": 939806,
+   "overflow": 39072,
+   "seconds": 749.2
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 0,
+   "seed": 20261019300,
+   "draws": 100000000,
+   "selected": 1422798,
+   "overflow": 1,
+   "seconds": 467.7
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 1,
+   "seed": 20261019301,
+   "draws": 100000000,
+   "selected": 1421646,
+   "overflow": 3,
+   "seconds": 508.0
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 2,
+   "seed": 20261019302,
+   "draws": 100000000,
+   "selected": 1420199,
+   "overflow": 1,
+   "seconds": 448.8
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 3,
+   "seed": 20261019303,
+   "draws": 100000000,
+   "selected": 1424088,
+   "overflow": 2,
+   "seconds": 435.3
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 4,
+   "seed": 20261019304,
+   "draws": 100000000,
+   "selected": 1422403,
+   "overflow": 0,
+   "seconds": 420.7
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 5,
+   "seed": 20261019305,
+   "draws": 100000000,
+   "selected": 1422329,
+   "overflow": 1,
+   "seconds": 717.6
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 6,
+   "seed": 20261019306,
+   "draws": 100000000,
+   "selected": 1421500,
+   "overflow": 3,
+   "seconds": 484.0
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 7,
+   "seed": 20261019307,
+   "draws": 100000000,
+   "selected": 1422521,
+   "overflow": 1,
+   "seconds": 510.1
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 8,
+   "seed": 20261019308,
+   "draws": 100000000,
+   "selected": 1423320,
+   "overflow": 3,
+   "seconds": 569.8
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 9,
+   "seed": 20261019309,
+   "draws": 100000000,
+   "selected": 1421146,
+   "overflow": 3,
+   "seconds": 485.7
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 10,
+   "seed": 20261019310,
+   "draws": 100000000,
+   "selected": 1420915,
+   "overflow": 2,
+   "seconds": 491.3
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 11,
+   "seed": 20261019311,
+   "draws": 100000000,
+   "selected": 1420785,
+   "overflow": 1,
+   "seconds": 489.1
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 12,
+   "seed": 20261019312,
+   "draws": 100000000,
+   "selected": 1420558,
+   "overflow": 1,
+   "seconds": 485.6
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 13,
+   "seed": 20261019313,
+   "draws": 100000000,
+   "selected": 1421309,
+   "overflow": 3,
+   "seconds": 475.0
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 14,
+   "seed": 20261019314,
+   "draws": 100000000,
+   "selected": 1423407,
+   "overflow": 3,
+   "seconds": 480.4
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 15,
+   "seed": 20261019315,
+   "draws": 100000000,
+   "selected": 1422508,
+   "overflow": 1,
+   "seconds": 532.1
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 16,
+   "seed": 20261019316,
+   "draws": 100000000,
+   "selected": 1422729,
+   "overflow": 0,
+   "seconds": 567.9
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 17,
+   "seed": 20261019317,
+   "draws": 100000000,
+   "selected": 1420085,
+   "overflow": 3,
+   "seconds": 486.0
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 18,
+   "seed": 20261019318,
+   "draws": 100000000,
+   "selected": 1423807,
+   "overflow": 2,
+   "seconds": 525.1
+  },
+  {
+   "variant": "iid",
+   "population": "hawaiian_crow",
+   "shard": 19,
+   "seed": 20261019319,
+   "draws": 100000000,
+   "selected": 1421296,
+   "overflow": 3,
+   "seconds": 524.3
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 0,
+   "seed": 20261019320,
+   "draws": 100000000,
+   "selected": 781205,
+   "overflow": 444943,
+   "seconds": 1037.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 1,
+   "seed": 20261019321,
+   "draws": 100000000,
+   "selected": 781956,
+   "overflow": 445986,
+   "seconds": 801.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 2,
+   "seed": 20261019322,
+   "draws": 100000000,
+   "selected": 781122,
+   "overflow": 446132,
+   "seconds": 1001.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 3,
+   "seed": 20261019323,
+   "draws": 100000000,
+   "selected": 781528,
+   "overflow": 446172,
+   "seconds": 813.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 4,
+   "seed": 20261019324,
+   "draws": 100000000,
+   "selected": 782152,
+   "overflow": 445397,
+   "seconds": 873.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 5,
+   "seed": 20261019325,
+   "draws": 100000000,
+   "selected": 782767,
+   "overflow": 445726,
+   "seconds": 682.7
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 6,
+   "seed": 20261019326,
+   "draws": 100000000,
+   "selected": 781329,
+   "overflow": 445581,
+   "seconds": 760.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 7,
+   "seed": 20261019327,
+   "draws": 100000000,
+   "selected": 782179,
+   "overflow": 445699,
+   "seconds": 852.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 8,
+   "seed": 20261019328,
+   "draws": 100000000,
+   "selected": 781699,
+   "overflow": 446608,
+   "seconds": 785.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 9,
+   "seed": 20261019329,
+   "draws": 100000000,
+   "selected": 781518,
+   "overflow": 445238,
+   "seconds": 831.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 10,
+   "seed": 20261019330,
+   "draws": 100000000,
+   "selected": 781763,
+   "overflow": 446128,
+   "seconds": 837.4
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 11,
+   "seed": 20261019331,
+   "draws": 100000000,
+   "selected": 780339,
+   "overflow": 445677,
+   "seconds": 779.0
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 12,
+   "seed": 20261019332,
+   "draws": 100000000,
+   "selected": 782206,
+   "overflow": 446021,
+   "seconds": 848.3
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 13,
+   "seed": 20261019333,
+   "draws": 100000000,
+   "selected": 780765,
+   "overflow": 446190,
+   "seconds": 744.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 14,
+   "seed": 20261019334,
+   "draws": 100000000,
+   "selected": 782001,
+   "overflow": 446162,
+   "seconds": 861.7
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 15,
+   "seed": 20261019335,
+   "draws": 100000000,
+   "selected": 779930,
+   "overflow": 445720,
+   "seconds": 727.5
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 16,
+   "seed": 20261019336,
+   "draws": 100000000,
+   "selected": 782561,
+   "overflow": 445434,
+   "seconds": 837.2
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 17,
+   "seed": 20261019337,
+   "draws": 100000000,
+   "selected": 780421,
+   "overflow": 445068,
+   "seconds": 734.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 18,
+   "seed": 20261019338,
+   "draws": 100000000,
+   "selected": 781917,
+   "overflow": 446353,
+   "seconds": 778.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_A",
+   "shard": 19,
+   "seed": 20261019339,
+   "draws": 100000000,
+   "selected": 781955,
+   "overflow": 445704,
+   "seconds": 808.7
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 0,
+   "seed": 20261019340,
+   "draws": 100000000,
+   "selected": 840198,
+   "overflow": 549558,
+   "seconds": 852.0
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 1,
+   "seed": 20261019341,
+   "draws": 100000000,
+   "selected": 838475,
+   "overflow": 550619,
+   "seconds": 892.3
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 2,
+   "seed": 20261019342,
+   "draws": 100000000,
+   "selected": 840891,
+   "overflow": 551284,
+   "seconds": 816.0
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 3,
+   "seed": 20261019343,
+   "draws": 100000000,
+   "selected": 839754,
+   "overflow": 550236,
+   "seconds": 782.4
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 4,
+   "seed": 20261019344,
+   "draws": 100000000,
+   "selected": 837792,
+   "overflow": 550989,
+   "seconds": 818.3
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 5,
+   "seed": 20261019345,
+   "draws": 100000000,
+   "selected": 840433,
+   "overflow": 551562,
+   "seconds": 789.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 6,
+   "seed": 20261019346,
+   "draws": 100000000,
+   "selected": 839533,
+   "overflow": 550283,
+   "seconds": 692.7
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 7,
+   "seed": 20261019347,
+   "draws": 100000000,
+   "selected": 838520,
+   "overflow": 551049,
+   "seconds": 747.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 8,
+   "seed": 20261019348,
+   "draws": 100000000,
+   "selected": 839832,
+   "overflow": 550848,
+   "seconds": 735.8
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 9,
+   "seed": 20261019349,
+   "draws": 100000000,
+   "selected": 838367,
+   "overflow": 551827,
+   "seconds": 727.6
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 10,
+   "seed": 20261019350,
+   "draws": 100000000,
+   "selected": 840348,
+   "overflow": 550453,
+   "seconds": 803.6
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 11,
+   "seed": 20261019351,
+   "draws": 100000000,
+   "selected": 838430,
+   "overflow": 550608,
+   "seconds": 653.7
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 12,
+   "seed": 20261019352,
+   "draws": 100000000,
+   "selected": 838404,
+   "overflow": 550661,
+   "seconds": 712.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 13,
+   "seed": 20261019353,
+   "draws": 100000000,
+   "selected": 838159,
+   "overflow": 551735,
+   "seconds": 710.2
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 14,
+   "seed": 20261019354,
+   "draws": 100000000,
+   "selected": 837641,
+   "overflow": 550349,
+   "seconds": 670.9
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 15,
+   "seed": 20261019355,
+   "draws": 100000000,
+   "selected": 839557,
+   "overflow": 551460,
+   "seconds": 711.4
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 16,
+   "seed": 20261019356,
+   "draws": 100000000,
+   "selected": 839748,
+   "overflow": 552269,
+   "seconds": 662.5
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 17,
+   "seed": 20261019357,
+   "draws": 100000000,
+   "selected": 836929,
+   "overflow": 550330,
+   "seconds": 686.1
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 18,
+   "seed": 20261019358,
+   "draws": 100000000,
+   "selected": 839344,
+   "overflow": 550698,
+   "seconds": 733.4
+  },
+  {
+   "variant": "iid",
+   "population": "wood_turtle_B",
+   "shard": 19,
+   "seed": 20261019359,
+   "draws": 100000000,
+   "selected": 838663,
+   "overflow": 550789,
+   "seconds": 673.9
+  }
+ ]
+}

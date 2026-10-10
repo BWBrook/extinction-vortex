@@ -1,0 +1,18 @@
+{
+ "variant": "iid",
+ "K": 2000,
+ "kth_dist": {
+  "wild_dog": 0.5042659877871024,
+  "marmot": 0.17696904750136966,
+  "ms_woodpecker": 0.2286226328031084,
+  "rc_woodpecker": 0.4202030487446869,
+  "golden_plover": 0.06252065054520656,
+  "whooping_crane": 0.12826132855526504,
+  "hawaiian_crow": 0.023128980158199607,
+  "wood_turtle_A": 0.9126655697050535,
+  "wood_turtle_B": 1.0732559491333942
+ },
+ "largest": 1.0732559491333942,
+ "scenario": "iid_null",
+ "share_at_or_below": 0.96915
+}
