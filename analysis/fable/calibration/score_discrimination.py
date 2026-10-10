@@ -83,10 +83,11 @@ def main():
             if isinstance(diag, float) and diag < ALPHA:
                 raw_reject += 1
             oc = outcome(s, shortfall)
-            if s["status"] == "ok" and abs(s["p_lo"] - (lg["p"] if fmt == "v1" else lg["p_lo"])) > 1e-12:
-                raise SystemExit(f"{arm} outer {k}: recomputed p_lo {s['p_lo']} differs from the log")
-            if fmt == "v2" and s["status"] == "ok" and abs(s["p_hi"] - lg["p_hi"]) > 1e-12:
-                raise SystemExit(f"{arm} outer {k}: recomputed p_hi {s['p_hi']} differs from the log")
+            if s["status"] == "ok":
+                logged = {"p_lo": lg["p"]} if fmt == "v1" else {"p_lo": lg.get("p_lo"), "p_hi": lg.get("p_hi")}
+                for key, v in logged.items():
+                    if not (isinstance(v, float) and np.isfinite(v)) or abs(s[key] - v) > 1e-12:
+                        raise SystemExit(f"{arm} outer {k}: recomputed {key} {s[key]} does not match logged {v!r}")
             if fmt == "v2" and oc != lg["outcome"]:
                 raise SystemExit(f"{arm} outer {k}: recomputed outcome {oc} != logged {lg['outcome']}")
             row["outcome"] = oc; counts[oc] += 1; rows.append(row)

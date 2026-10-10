@@ -28,6 +28,8 @@ POPS = {"wild_dog": "14", "marmot": "15", "ms_woodpecker": "6", "rc_woodpecker":
         "wood_turtle_A": "8", "wood_turtle_B": "9"}
 CAP = 10 ** 9
 VARIANTS = ("iid", "ar", "cat", "ar_cat", "heavy")
+DETECT = {"lown": lambda n: 1 - 0.3 * np.exp(-n / 10.0),        # M_O detection laws (§3.2)
+          "uniform": lambda n: np.full(np.shape(n), 0.9)}
 PARAM_NAMES = ("s", "f", "sigma", "rho", "p_c", "delta", "nu")
 
 
@@ -88,34 +90,65 @@ def innovations(p, n, rng):
     return e
 
 
-def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0, fixed=None):
+def drift_offset(form, shift, tau, t, span):
+    """M_D downward shift of the environmental mean at annual step t (1..span): linear
+    shift*t/span (= d*t), accelerating shift*(t/span)^2 (= d*t^2/span), or a step of size
+    shift from step tau onwards; shift is the end-of-series shift in units of z."""
+    if form == "linear":
+        return shift * t / span
+    if form == "accel":
+        return shift * (t / span) ** 2
+    return np.where(t >= tau, shift, 0.0)
+
+
+def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0, fixed=None, drift=None, detect=None):
     """Simulate n prior draws for one design; returns (rec, params, overflow_mask, selected_mask).
-    beta > 0 applies the M_A feedback multiplier g(N) = exp(-beta (1/N - 1/n_ref)) for 0<N<n_ref.
-    fixed maps parameter names to values that replace the prior draws (fixed-parameter scenarios)."""
+    beta > 0 applies the M_A feedback multiplier g(N) = exp(-beta (1/N - 1/n_ref)) for 0<N<n_ref
+    to the survival odds and the recruitment rate.
+    fixed maps parameter names to values that replace the prior draws (fixed-parameter scenarios).
+    drift = {"form": "linear"|"accel"|"step", "hi": h} applies M_D: z - m(t) enters both vital
+    rates, with end-of-series shift ~ U(0, h) and, for a step, its year ~ U{1..span}; h = 0
+    draws nothing and reproduces the null exactly.
+    detect (a detection law n -> p) applies M_O: latent N0 = round(n0 / p(n0)); the recorded
+    first count stays n0; later recorded counts are Binomial(N, p(N)) from a generator spawned
+    off rng, so the latent stream is unchanged; rec holds recorded counts, params["latent"] the
+    latent ones, and selection uses the recorded counts only.
+    Selection S: the first recorded count <= 1 falls at the final census; overflowed runs
+    (cap event A) are excluded."""
     years = design["years"]; L = len(years); n0 = int(design["counts"][0])
+    span = years[-1] - years[0]
     p = draw_params(variant, n, rng)
     for k, v in (fixed or {}).items():
         p[k] = np.full(n, float(v))
+    if drift is not None:
+        p["md_shift"] = rng.uniform(0.0, drift["hi"], n) if drift["hi"] > 0 else np.zeros(n)
+        p["md_tau"] = (rng.integers(1, span + 1, n) if drift["form"] == "step" and drift["hi"] > 0
+                       else np.full(n, span + 1))
     lgs = np.log(p["s"] / (1 - p["s"]))
-    N = np.full(n, n0, dtype=np.int64)
+    N = np.full(n, n0 if detect is None else int(round(n0 / float(detect(n0)))), dtype=np.int64)
     z = innovations(p, n, rng)
-    rec = np.empty((n, L)); rec[:, 0] = n0
+    rec = np.empty((n, L)); rec[:, 0] = N
     alive = np.ones(n, bool); overflow = np.zeros(n, bool)
     first = True
+    t = 0
     for j in range(1, L):
         for _ in range(years[j] - years[j - 1]):
             if not first:
                 z = p["rho"] * z + np.sqrt(1 - p["rho"] ** 2) * innovations(p, n, rng)
             first = False
+            t += 1
             mult = np.where(rng.random(n) < p["p_c"], 1 - p["delta"], 1.0)
             idx = np.flatnonzero(alive)
             g = np.ones(idx.size)
             if beta > 0:
                 small = (N[idx] > 0) & (N[idx] < n_ref)
                 g[small] = np.exp(-beta * (1.0 / N[idx][small] - 1.0 / n_ref))
-            logit = lgs[idx] + p["sigma"][idx] * z[idx] + np.log(g)
+            ze = z[idx]
+            if drift is not None:
+                ze = ze - drift_offset(drift["form"], p["md_shift"][idx], p["md_tau"][idx], t, span)
+            logit = lgs[idx] + p["sigma"][idx] * ze + np.log(g)
             st = mult[idx] / (1 + np.exp(-logit))
-            ft = mult[idx] * g * p["f"][idx] * np.exp(p["sigma"][idx] * z[idx] - p["sigma"][idx] ** 2 / 2)
+            ft = mult[idx] * g * p["f"][idx] * np.exp(p["sigma"][idx] * ze - p["sigma"][idx] ** 2 / 2)
             lam = N[idx] * ft
             bad = ~np.isfinite(lam) | (lam > CAP)       # rate overflow counts as overflow
             if bad.any():
@@ -127,7 +160,12 @@ def simulate_chunk(design, variant, n, rng, beta=0.0, n_ref=50.0, fixed=None):
         rec[:, j] = N
         if j < L - 1:
             alive &= N > 1
-    selected = alive & (rec[:, -1] <= 1) & ~overflow
+    if detect is not None:
+        p["latent"] = rec
+        obs_rng = rng.spawn(1)[0]
+        rec = rec.copy(); rec[:, 0] = n0
+        rec[:, 1:] = obs_rng.binomial(p["latent"][:, 1:].astype(np.int64), detect(p["latent"][:, 1:]))
+    selected = (rec[:, 1:-1] > 1).all(axis=1) & (rec[:, -1] <= 1) & ~overflow
     return rec, p, overflow, selected
 
 

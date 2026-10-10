@@ -18,25 +18,31 @@ indet_straddle. Every bank must hold at least K selected runs.
 
 Usage: python e2e_benchmark.py BANKDIR VARIANT OUTDIR N_OUTER R K R_WORKERS SEED [BETA_OUTER] [SCENARIO_JSON]
 BETA_OUTER > 0 generates the outer datasets under M_A on the same environment variant; the
-reference is always that variant's no-feedback bank. SCENARIO_JSON maps each population to
-fixed parameter values for a fixed-parameter scenario (otherwise prior-predictive).
+reference is always that variant's no-feedback bank. SCENARIO_JSON (optional) is an object
+with any of: "fixed" (population -> fixed parameter values; otherwise prior-predictive),
+"drift" (M_D: {"form": "linear"|"accel"|"step", "hi": end-shift upper bound}) and "detect"
+(M_O: "lown" or "uniform"). Under M_O the outer series are the recorded counts and each
+trial also records the latent final counts.
 """
 import os, sys, time, json, subprocess, csv
 import numpy as np
 from scipy.spatial import cKDTree
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from bank import designs, calib_features, constant_changes, simulate_chunk, load_bank
+from bank import designs, calib_features, constant_changes, simulate_chunk, load_bank, DETECT
 
 ALPHA = 0.05
 TRAIN_FAIL_MAX = 0.02
 FEATURES = ("msq", "acf", "inc")
 
 
-def fresh_selected(design, variant, rng, beta=0.0, fixed=None):
+def fresh_selected(design, variant, rng, beta=0.0, fixed=None, drift=None, detect=None):
+    """First selected trajectory (recorded counts) and its latent counts (None unless M_O)."""
     while True:
-        rec, p, over, sel = simulate_chunk(design, variant, 200_000, rng, beta=beta, fixed=fixed)
+        rec, p, over, sel = simulate_chunk(design, variant, 200_000, rng, beta=beta, fixed=fixed,
+                                           drift=drift, detect=detect)
         if sel.any():
-            return rec[np.flatnonzero(sel)[0]]
+            i = np.flatnonzero(sel)[0]
+            return rec[i], (p["latent"][i] if detect is not None else None)
 
 
 def ledoit_wolf(X):
@@ -142,7 +148,12 @@ def main():
     for k in range(n_outer):
         tk = {"outer": k}
         t = time.time()
-        obs = {n: fresh_selected(d, variant, rng, beta_outer, scenario.get(n)) for n, d in des.items()}
+        det = DETECT[scenario["detect"]] if "detect" in scenario else None
+        draws = {n: fresh_selected(d, variant, rng, beta_outer, scenario.get("fixed", {}).get(n),
+                                   scenario.get("drift"), det) for n, d in des.items()}
+        obs = {n: v[0] for n, v in draws.items()}
+        if det is not None:
+            tk["latent_final"] = json.dumps({n: int(v[1][-1]) for n, v in draws.items()})
         tk["t_outer_sim"] = time.time() - t
         t = time.time()
         libs, kth = {}, {}
