@@ -1,0 +1,412 @@
+{
+  "reviewed_commit": "f74f4f7c1c5e72dbae854eaa6cef93abdeafa8ec",
+  "comparison_commit": "fb28d8a11953b18f65652aff506e7b71fa4cf330",
+  "time_hobart": "2026-10-10T19:41:37.812327+11:00",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "source_sha256": {
+    "f74f4f7:analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "f74f4f7:analysis/fable/calibration/e2e_benchmark.py": "49ec389fe9b85b20535981c69f9a4bffa0d9e0561246772beb8311bc5922da52",
+    "f74f4f7:analysis/fable/calibration/score_discrimination.py": "613b1a33d60055e04f1339543e4a6d1bbf5b4125f7fe7e8757c57d7c0dac7954",
+    "f74f4f7:analysis/fable/calibration/test_bank.py": "435bf8eeac4d38df0d8ee4c2dc042a559efeecded2d2f683fe46fe1aaa9c13e7",
+    "fb28d8a:analysis/fable/calibration/bank.py": "ce21bccc7cfb544b158928f9dbde28d901113d681a9ec1a9e27b8df9aea37f1e",
+    "f74f4f7:data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+  },
+  "elapsed_seconds": 2.924,
+  "checks": [
+    {
+      "check": "unchanged null and M_A: 36 configurations x 2000 draws",
+      "pass": true,
+      "details": [
+        {
+          "population": "wild_dog",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wild_dog",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "wild_dog",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wild_dog",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "marmot",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "marmot",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "marmot",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "marmot",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "ms_woodpecker",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "ms_woodpecker",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "ms_woodpecker",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "ms_woodpecker",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "rc_woodpecker",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "rc_woodpecker",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "rc_woodpecker",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "rc_woodpecker",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "golden_plover",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "golden_plover",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "golden_plover",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "golden_plover",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "whooping_crane",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "whooping_crane",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "whooping_crane",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "whooping_crane",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "hawaiian_crow",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "hawaiian_crow",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "hawaiian_crow",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "hawaiian_crow",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_A",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_A",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_A",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_A",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_B",
+          "variant": "iid",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_B",
+          "variant": "iid",
+          "beta": 0.9745192683713976,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_B",
+          "variant": "ar_cat",
+          "beta": 0.0,
+          "equal": true
+        },
+        {
+          "population": "wood_turtle_B",
+          "variant": "ar_cat",
+          "beta": 0.9745192683713976,
+          "equal": true
+        }
+      ]
+    },
+    {
+      "check": "existing limiting tests at 5000 draws per simulation",
+      "pass": true,
+      "details": {
+        "stdout": "PASS M_D linear hi=0 equals ar_cat (wood_turtle_B)\nPASS M_D accel hi=0 equals ar_cat (wood_turtle_B)\nPASS M_D step hi=0 equals ar_cat (wood_turtle_B)\nPASS M_D linear hi=0 equals ar_cat (hawaiian_crow)\nPASS M_D accel hi=0 equals ar_cat (hawaiian_crow)\nPASS M_D step hi=0 equals ar_cat (hawaiian_crow)\nPASS M_D linear hi=0 equals ar_cat (wild_dog)\nPASS M_D accel hi=0 equals ar_cat (wild_dog)\nPASS M_D step hi=0 equals ar_cat (wild_dog)\nPASS M_A+M_D beta=0 equals M_D linear\nPASS M_A+M_D beta=0 equals M_D accel\nPASS M_A+M_D beta=0 equals M_D step\nPASS M_O p=1 equals ar_cat (wood_turtle_B)\nPASS M_O p=1 equals ar_cat (hawaiian_crow)\nPASS M_O p=1 equals ar_cat (wild_dog)\nPASS M_O lown: recorded <= latent\nPASS M_O lown: first recorded = n0, latent start  [latent N0 85]\nPASS M_O lown: selection on recorded counts\nPASS M_O lown: some selected paths are latently extant at the endpoint  [23 of 42]\nPASS M_O uniform: recorded <= latent\nPASS M_O uniform: first recorded = n0, latent start  [latent N0 94]\nPASS M_O uniform: selection on recorded counts\nPASS M_O uniform: some selected paths are latently extant at the endpoint  [10 of 58]\nPASS drift linear = d*t\nPASS drift accel = d*t^2/span\nPASS drift step\nPASS M_D raises the matched-extinction selection rate  [null 0.0088, M_D 0.0136]\nPASS M_D step provenance\nFAILURES: 0\n",
+        "stderr": "",
+        "count_replacements": {
+          "40000": 5000,
+          "200000": 5000
+        }
+      }
+    },
+    {
+      "check": "actual annual M_D and mixture vital rates, AR state and gap propagation",
+      "pass": true,
+      "details": [
+        {
+          "form": "linear",
+          "beta": 0.0,
+          "correct": true
+        },
+        {
+          "form": "linear",
+          "beta": 0.9745192683713976,
+          "correct": true
+        },
+        {
+          "form": "accel",
+          "beta": 0.0,
+          "correct": true
+        },
+        {
+          "form": "accel",
+          "beta": 0.9745192683713976,
+          "correct": true
+        },
+        {
+          "form": "step",
+          "beta": 0.0,
+          "correct": true
+        },
+        {
+          "form": "step",
+          "beta": 0.9745192683713976,
+          "correct": true
+        }
+      ]
+    },
+    {
+      "check": "M_O latent path and main RNG unchanged at its specified latent initial count",
+      "pass": true,
+      "details": [
+        {
+          "law": "lown",
+          "equal": true,
+          "selected": 60,
+          "selected_latently_extant": 27
+        },
+        {
+          "law": "uniform",
+          "equal": true,
+          "selected": 56,
+          "selected_latently_extant": 11
+        }
+      ]
+    },
+    {
+      "check": "v1 scorer retains all three rows (no bounds-loop shadow)",
+      "pass": true,
+      "details": {
+        "summary": {
+          "v1": {
+            "reject": 0,
+            "accept": 3,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 0,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 0,
+            "detections": 0
+          }
+        },
+        "stderr": ""
+      }
+    },
+    {
+      "check": "v1 rejects logged NaN p on second row",
+      "pass": true,
+      "details": {
+        "stderr": "v1 outer 1: recomputed p_lo 0.09523809523809523 does not match logged nan\n"
+      }
+    },
+    {
+      "check": "v2 scorer retains all three rows (no bounds-loop shadow)",
+      "pass": true,
+      "details": {
+        "summary": {
+          "v2": {
+            "reject": 0,
+            "accept": 3,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 0,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 0,
+            "detections": 0
+          }
+        },
+        "stderr": ""
+      }
+    },
+    {
+      "check": "v2 rejects logged NaN p_lo on second row",
+      "pass": true,
+      "details": {
+        "stderr": "v2 outer 1: recomputed p_lo 0.09523809523809523 does not match logged nan\n"
+      }
+    },
+    {
+      "check": "v2 rejects logged NaN p_hi on second row",
+      "pass": true,
+      "details": {
+        "stderr": "v2 outer 1: recomputed p_hi 0.09523809523809523 does not match logged nan\n"
+      }
+    },
+    {
+      "check": "provenance gap reproduced: M_D draw discarded at e2e boundary",
+      "pass": true,
+      "details": {
+        "available_md_shift": 0.8,
+        "available_md_tau": 3,
+        "returned": [
+          [
+            20,
+            6,
+            1
+          ],
+          null
+        ]
+      }
+    },
+    {
+      "check": "M_O full selected latent path returned to main",
+      "pass": true,
+      "details": {
+        "note": "main writes only latent_final at lines 155-156; this probe does not run main or R"
+      }
+    }
+  ],
+  "scope": "Immutable git-show copies; max 5000 paths per call; no R, banks, remote work, or archived raw-statistic replay.",
+  "finding": {
+    "severity": "medium",
+    "file": "analysis/fable/calibration/e2e_benchmark.py",
+    "lines": [
+      38,
+      45,
+      152,
+      156,
+      194
+    ],
+    "description": "M_D md_shift/md_tau are only transient simulator arrays and discarded by fresh_selected; M_O full latent counts are transient and only endpoint is persisted. Protocol lines 531 and 542 say kept per draw. Persist selected draw metadata before validation or narrow the contract explicitly."
+  }
+}

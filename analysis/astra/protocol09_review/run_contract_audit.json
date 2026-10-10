@@ -1,0 +1,106 @@
+{
+  "revision": "f74f4f7c1c5e72dbae854eaa6cef93abdeafa8ec",
+  "scope": "Immutable source and completed timing archive only. No remote calls, simulation, or R.",
+  "sha256": {
+    "analysis/fable/calibration/run_arms.sh": "ff5d76f76740253cfc609111c957868ba98f034410da9e524f27c045f29583eb",
+    "analysis/fable/calibration/run_production_banks.sh": "8f344a6d55153a95144772f089f8e17f28e0d4e9885ca7dff0295079265245d3",
+    "analysis/fable/calibration/build_bank.py": "256c72f623a066ee534ed1f5ace9607c19cf831eebb5f706c802536fe95d5a37",
+    "analysis/fable/calibration/time_generators.py": "062b072d0bc5f2ab3dfbd8718f0c1a8cbf5d456d036e35d249f51a70469f532c",
+    "analysis/fable/calibration/e2e_benchmark.py": "49ec389fe9b85b20535981c69f9a4bffa0d9e0561246772beb8311bc5922da52",
+    "analysis/fable/calibration/score_discrimination.py": "613b1a33d60055e04f1339543e4a6d1bbf5b4125f7fe7e8757c57d7c0dac7954"
+  },
+  "shell_syntax": {
+    "analysis/fable/calibration/run_arms.sh": {
+      "exit": 0,
+      "stderr": ""
+    },
+    "analysis/fable/calibration/run_production_banks.sh": {
+      "exit": 0,
+      "stderr": ""
+    }
+  },
+  "bank_seeds": {
+    "primary": {
+      "first": 8100000000000,
+      "last": 8100000000179,
+      "tasks": 180
+    },
+    "stability": {
+      "first": 8200000000000,
+      "last": 8200000000179,
+      "tasks": 180
+    },
+    "iid": {
+      "first": 8300000000000,
+      "last": 8300000000179,
+      "tasks": 180
+    }
+  },
+  "bank_seeds_unique": true,
+  "validation_seeds": {
+    "chunk_index_assumption": "c=0..9 (package does not choose zero- or one-based)",
+    "count": 170,
+    "unique": true,
+    "disjoint_primary_banks": true
+  },
+  "shared_sensitivity_family": {
+    "family": 8700000000000,
+    "uses_in_protocol": [
+      "F&H-length windows",
+      "wild-dog fills x2",
+      "identical-count mask"
+    ],
+    "finding": "No task suballocation is given. Separate build_bank invocations restart task index at zero."
+  },
+  "launcher_fixtures": {
+    "normal": {
+      "exit": 0,
+      "stdout": "DONE",
+      "stderr": ""
+    },
+    "short": {
+      "exit": 1,
+      "stdout": "INCOMPLETE short: 2/3",
+      "stderr": ""
+    },
+    "exit7": {
+      "exit": 1,
+      "stdout": "FAILED exit7",
+      "stderr": ""
+    },
+    "duplicate": {
+      "exit": 0,
+      "stdout": "DONE",
+      "stderr": ""
+    },
+    "all_unresolved": {
+      "exit": 0,
+      "stdout": "DONE",
+      "stderr": ""
+    }
+  },
+  "launcher_interpretation": "Driver catches child-process failure and incomplete line count. DONE means transport completion only; it neither validates trial IDs nor evaluates scientific gates. These fixtures do not assert that such outputs occurred in real runs.",
+  "generator_timing": {
+    "scenarios": 13,
+    "datasets_per_scenario": 20,
+    "minimum_cpu_s": 4.9974510676,
+    "maximum_cpu_s": 9.19170331695,
+    "maximum_fraction_of_1370_cpu_s": 0.0067092724941240885,
+    "scope": "Outer generation only; no bank loading, neighbour selection, reference fitting or covariance.",
+    "beta_min": 0.9745192683713976,
+    "fixed_in_timing_source": "BETA_MIN = 0.9745192683713976; designated-bank effect output is not consumed."
+  },
+  "source_unchanged_since_package_code": {
+    "analysis/fable/calibration/build_bank.py": true,
+    "analysis/fable/calibration/time_generators.py": true,
+    "analysis/fable/calibration/e2e_benchmark.py": true,
+    "analysis/fable/calibration/score_discrimination.py": true
+  },
+  "pending_contract": [
+    "A manifest mapping scenario, chunk, stream, parameters, intended count and output directory; a final fixed-denominator scenario aggregation and gate report.",
+    "Fit-failure rate denominator: T-output failed flag counts a four-statistic dataset; final scenario accounting must cover observed, training and test replicates, including incomplete trials.",
+    "Concurrency ceiling: run_arms starts every supplied arm concurrently; the measured 28 GB per process and 125 GB host prohibit launching all ten chunks together.",
+    "Unique suballocation for repeated sensitivity-family 8.7e12 jobs, or explicit intended stream reuse.",
+    "All-scenario end-to-end cost remains projected; 13 generator-only timings cannot establish total equality to within one percent."
+  ]
+}

@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 19:40 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 10 October 2026, 19:46 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -213,16 +213,36 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
     banks, followed by β_min, the corners and the empirical position on the
     primary bank. Run directory `/data/fable/vortex/production_banks_*`.
 
-**Next response: Codex.** Review the 0.9 specifications (M_D and M_O priors,
-the M_O contract, the stress law, the inventory) and the draft freeze package.
-In parallel, Fable completes the package with the screen and designated-bank
-results. No question is open for Barry. His primary-null and RI decisions stay
-settled.
+**Astra review of 0.9 (`f74f4f7`, handoff 1359):**
+[review](notes/astra_protocol09_review_20261010.md),
+[generator checks](analysis/astra/protocol09_review/generator_audit.json) and
+[run-contract checks](analysis/astra/protocol09_review/run_contract_audit.json).
+- Accept the proposed M_D design distributions, explicit M_O starting-count
+  convention and recorded selection, fixed-mixture stress law, radius bins,
+  retained development screens and expanded execution inventory.
+- Bounded checks preserve exact null/M_A behavior across 36 configurations,
+  verify the alternative limiting cases and multirow scorer/NaN repairs.
+- Pending numbers alone do not complete the freeze: implement the stress
+  sampler and fixed-budget unresolved branch; final chunk assembly, gate and
+  failure accounting; explicit concurrency/stream mapping; and the promised
+  selected M_D/M_O evidence. Qualify the equal-cost claim and pass recomputed
+  beta_min to the timing script. The total remains a planning projection.
+- No partial running outcomes inspected, no R fits or new large jobs, and no
+  changes to the running screens/banks. Only bounded local synthetic/mocked
+  checks. The current jobs can continue within their existing scope.
+
+**Next response: Fable.** Complete the running evidence archive and executable
+freeze package, then return the final receipts and procedure for review. No
+question is open for Barry. His primary-null and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
+- Reviewed the 0.9 specifications and draft freeze package on 10 October at
+  `f74f4f7`, in parallel with Fable's running compute. Accepted the scientific
+  specifications and identified the remaining executable completion work in
+  message 1368.
 - Reviewed Fable's formal 0.8 handoff on 10 October at `f8546ec`, with a bounded
   independent guard audit and archive/cost reconciliation. Accepted continued
   development and returned the finite pre-freeze handoff above in message 1348.
@@ -479,9 +499,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1348**; exhausted `through`: **1348**.
-- Explicit acknowledgement: through actual message **1348** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1348`.
+- Last full retrieval `next_after`: **1368**; exhausted `through`: **1368**.
+- Explicit acknowledgement: through actual message **1368** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1368`.
 
 ## Decision Inbox checkpoint
 

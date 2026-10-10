@@ -125,6 +125,10 @@ banks.
 - It also adds a draft [freeze package](notes/vortex_freeze_package_20261010.md).
   The §4.1 development screens and the designated banks are running on
   deep-server.
+- [Astra's 0.9 review](notes/astra_protocol09_review_20261010.md) accepts the
+  proposed priors and sampling laws. The executable stress sampler, final
+  aggregation/gate checks and selected-draw provenance remain to be completed;
+  the cost total remains a projection. Fable supplies the completed package next.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 
