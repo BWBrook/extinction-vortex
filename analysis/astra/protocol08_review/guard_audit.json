@@ -1,0 +1,642 @@
+{
+  "commit": "f8546ecdfc3d95f2c7ad8837f463a34576122e29",
+  "source_sha256": {
+    "analysis/fable/calibration/bank.py": "ce21bccc7cfb544b158928f9dbde28d901113d681a9ec1a9e27b8df9aea37f1e",
+    "analysis/fable/calibration/e2e_benchmark.py": "63e4267db24b73058abc83008699e485a53f51dacd41e188fbfaac97fd8fca14",
+    "analysis/fable/calibration/score_discrimination.py": "b28cf8a047641ea9ce92ba57b2a92a0063b698aa88795dc3f807a992ab16192a"
+  },
+  "timestamp_hobart": "2026-10-10T18:34:15.654257+11:00",
+  "python": "/home/bwbrook/papers/dsipa-dev/.venv/bin/python",
+  "numpy": "2.3.5",
+  "scipy": "1.16.3",
+  "scope": "tiny mocked statistics and bank shards; no population simulation, R, remote access, empirical test or source changes",
+  "checks": [
+    {
+      "name": "v2_ragged_T_classified",
+      "passed": true
+    },
+    {
+      "name": "v1_ragged_T_classified",
+      "passed": true
+    },
+    {
+      "name": "v1_valid_and_fixed_denominators",
+      "passed": true,
+      "result": {
+        "ok": true,
+        "summary": {
+          "present": {
+            "reject": 0,
+            "accept": 1,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 2,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 2,
+            "detections": 0
+          },
+          "absent": {
+            "reject": 0,
+            "accept": 0,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 3,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 3,
+            "detections": 0
+          }
+        },
+        "rows": [
+          {
+            "arm": "present",
+            "outer": "0",
+            "outcome": "accept",
+            "shortfall": "",
+            "raw_p": "0.1111111111111111",
+            "p_lo": "0.1111111111111111",
+            "p_hi": "0.3333333333333333",
+            "D_obs": "710.6017979510575",
+            "train_fail": "0",
+            "test_fail": "2",
+            "fallback": "",
+            "cond": "7.114220334462232",
+            "dist": "0.2"
+          },
+          {
+            "arm": "present",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "present",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "0",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "v1_ragged_scorer",
+      "passed": true,
+      "result": {
+        "ok": true,
+        "summary": {
+          "present": {
+            "reject": 0,
+            "accept": 0,
+            "indet_calib": 0,
+            "indet_malformed": 1,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 2,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 3,
+            "detections": 0
+          }
+        },
+        "rows": [
+          {
+            "arm": "present",
+            "outer": "0",
+            "outcome": "indet_malformed",
+            "shortfall": "",
+            "raw_p": "0.1111111111111111",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": "0.2"
+          },
+          {
+            "arm": "present",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "present",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2_valid_and_fixed_denominators",
+      "passed": true,
+      "result": {
+        "ok": true,
+        "summary": {
+          "present": {
+            "reject": 0,
+            "accept": 1,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 2,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 2,
+            "detections": 0
+          },
+          "metadata_only": {
+            "reject": 0,
+            "accept": 0,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 3,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 3,
+            "detections": 0
+          },
+          "absent": {
+            "reject": 0,
+            "accept": 0,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 3,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 3,
+            "detections": 0
+          }
+        },
+        "rows": [
+          {
+            "arm": "present",
+            "outer": "0",
+            "outcome": "accept",
+            "shortfall": "",
+            "raw_p": "0.1111111111111111",
+            "p_lo": "0.1111111111111111",
+            "p_hi": "0.3333333333333333",
+            "D_obs": "710.6017979510575",
+            "train_fail": "0",
+            "test_fail": "2",
+            "fallback": "0",
+            "cond": "7.114220334462232",
+            "dist": "{}"
+          },
+          {
+            "arm": "present",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "present",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "metadata_only",
+            "outer": "0",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "metadata_only",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "metadata_only",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "0",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "absent",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2_p_hi_finite_mismatch",
+      "passed": true,
+      "expectation": "reject mismatch",
+      "result": {
+        "ok": false,
+        "exception": "SystemExit",
+        "message": "present outer 0: recomputed p_hi 0.3333333333333333 differs from the log"
+      }
+    },
+    {
+      "name": "v2_p_hi_nan",
+      "passed": true,
+      "expectation": "reproduce residual: NaN accepted",
+      "result": {
+        "ok": true,
+        "summary": {
+          "present": {
+            "reject": 0,
+            "accept": 1,
+            "indet_calib": 0,
+            "indet_malformed": 0,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 2,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 2,
+            "detections": 0
+          }
+        },
+        "rows": [
+          {
+            "arm": "present",
+            "outer": "0",
+            "outcome": "accept",
+            "shortfall": "",
+            "raw_p": "0.1111111111111111",
+            "p_lo": "0.1111111111111111",
+            "p_hi": "0.3333333333333333",
+            "D_obs": "710.6017979510575",
+            "train_fail": "0",
+            "test_fail": "2",
+            "fallback": "0",
+            "cond": "7.114220334462232",
+            "dist": "{}"
+          },
+          {
+            "arm": "present",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "present",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2_ragged_scorer",
+      "passed": true,
+      "result": {
+        "ok": true,
+        "summary": {
+          "present": {
+            "reject": 0,
+            "accept": 0,
+            "indet_calib": 0,
+            "indet_malformed": 1,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 2,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 3,
+            "detections": 0
+          }
+        },
+        "rows": [
+          {
+            "arm": "present",
+            "outer": "0",
+            "outcome": "indet_malformed",
+            "shortfall": "",
+            "raw_p": "indeterminate",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "0",
+            "cond": "",
+            "dist": "{}"
+          },
+          {
+            "arm": "present",
+            "outer": "1",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          },
+          {
+            "arm": "present",
+            "outer": "2",
+            "outcome": "missing",
+            "shortfall": "",
+            "raw_p": "",
+            "p_lo": "",
+            "p_hi": "",
+            "D_obs": "",
+            "train_fail": "",
+            "test_fail": "",
+            "fallback": "",
+            "cond": "",
+            "dist": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "bank_valid",
+      "passed": true,
+      "accepted": true
+    },
+    {
+      "name": "bank_duplicate_ids",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_decreasing_ids",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_below_range_ids",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_above_range_ids",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_selected_count",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_parameter_length",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_id_length",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_trajectory_width",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_seed",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_draw_count",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    },
+    {
+      "name": "bank_missing_shard",
+      "passed": true,
+      "accepted": false,
+      "exception": "AssertionError"
+    }
+  ],
+  "all_expected_behaviors_observed": true,
+  "residual": {
+    "severity": "P2",
+    "file": "analysis/fable/calibration/score_discrimination.py",
+    "lines": [
+      86,
+      89
+    ],
+    "finding": "Non-finite logged p_hi (JSON NaN) bypasses abs-difference > tolerance; scorer exits successfully although recomputed p_hi is finite. Same comparison pattern applies to p_lo."
+  }
+}

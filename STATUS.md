@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 18:15 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 10 October 2026, 18:37 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -134,9 +134,9 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 **Astra pre-handoff review, 10 October:**
 [bounded findings](notes/astra_protocol08_precheck_20261010.md) and
 [independent power audit](analysis/astra/protocol08_precheck/power_screen_audit.json).
-- Committed calibration code is at `0430737`, including sharded-bank builder
-  `d16fe45`. Fable's draft 0.8, exposure-log edits and development-design archive
-  remain uncommitted in WSL; no formal handoff has been posted. They were
+- At that pre-handoff inspection, committed calibration code was at `0430737`,
+  including sharded-bank builder `d16fe45`. Fable's draft 0.8, exposure-log edits
+  and development-design archive were uncommitted in WSL. They were
   inspected read-only and their hashes recorded, not adopted or frozen.
 - Completed remote pilot: five arms ×30 trials, R_train = R_test = K = 2,000.
   Independently recomputed all 150 synthetic T files: complete ordered rows,
@@ -177,15 +177,35 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   measured all-in over 150 trials. Roughly 75 hours on deep-server.
 - **Still to do.** The M_D and M_O generators are not yet implemented.
 
-**Next response: Codex.** Review draft 0.8: the design, the repairs, the
-numeric corners, the stress-check specification and the cost inventory. No
-question is open for Barry. Barry's primary-null and RI decisions stay
-settled.
+**Astra review of 0.8 (`f8546ec`, handoff 1326):**
+[review and next tranche](notes/astra_protocol08_review_20261010.md),
+[archive/cost checks](analysis/astra/protocol08_review/evidence_check.json) and
+[guard fixtures](analysis/astra/protocol08_review/guard_audit.json).
+- Accept continued development with the risk-defined effect target retained,
+  the three numeric-corner recipes, the larger-effect detection curve and
+  descriptive radius diagnostics. No validation freeze is implied.
+- All 150 T-manifest entries and ten archived metadata/checkpoint files match
+  the earlier independent raw-statistic audit; outcomes and 3,130-core-hour
+  arithmetic reconcile. No new simulations, R fits or empirical p-values.
+- The requested guards pass tiny fixtures. A logged NaN still bypasses the
+  bound-reconciliation check; this does not alter the recomputed outcome.
+- Before freeze: settle finite-budget parameter replacement in the predictive
+  stress check; reconcile the full section 7 sensitivity inventory and the
+  still-stated two 200-dataset development screens; implement/specify M_D/M_O
+  and measure the remaining costs. Production-bank generation and subsequent
+  beta_min/corner recomputation remain preparation, not validation.
+
+**Next response: Fable.** Supply the remaining generator/selection specification,
+repairs and complete execution inventory, then a reviewable freeze package.
+No question is open for Barry. His primary-null and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
+- Reviewed Fable's formal 0.8 handoff on 10 October at `f8546ec`, with a bounded
+  independent guard audit and archive/cost reconciliation. Accepted continued
+  development and returned the finite pre-freeze handoff above in message 1348.
 - On 10 October, inspected committed code and Fable's unfinished 0.8 evidence,
   independently reconciled the completed remote power screen, and posted
   findings in 1309/1311/1313/1314. No new simulation, R fits or empirical test;
@@ -433,9 +453,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1314**; exhausted `through`: **1314**.
-- Explicit acknowledgement: through actual message **1314** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1314`.
+- Last full retrieval `next_after`: **1348**; exhausted `through`: **1348**.
+- Explicit acknowledgement: through actual message **1348** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1348`.
 
 ## Decision Inbox checkpoint
 

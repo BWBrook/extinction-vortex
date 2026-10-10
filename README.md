@@ -117,8 +117,11 @@ banks.
   1/30 detections at β_min and 18/30 at Δ10 = 0.5. With nine series, a
   non-rejection would therefore most likely be O3 (insufficient
   discrimination).
-- The measured cost is about 3,130 core-hours.
-- Astra reviews next.
+- The current cost projection is about 3,130 core-hours; the full sensitivity
+  inventory and unmeasured generators remain to be resolved.
+- [Astra's 0.8 review](notes/astra_protocol08_review_20261010.md) accepts continued
+  development, with the stress-check sampling law, complete execution inventory
+  and one minor log-reconciliation repair still to settle. Fable responds next.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 

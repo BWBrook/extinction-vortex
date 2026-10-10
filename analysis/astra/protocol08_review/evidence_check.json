@@ -1,0 +1,81 @@
+{
+  "reviewed_commit": "f8546ecdfc3d95f2c7ad8837f463a34576122e29",
+  "scope": "Archive identity, fixed trial counts, cost arithmetic and analytic retry-cap examples only.",
+  "local_archive_files_matching_prior_audit": {
+    "null/e2e_meta.json": "da38f88292600835ff4e6b963dbc5cabf59573c134c22df9e94fecf08a26218d",
+    "null/e2e_rows.jsonl": "d312ae3d9a4dccc8c683ed3f50b44dedc60bf03ef301806c611c5f13d3a4dd66",
+    "betamin/e2e_meta.json": "12157339846907f0534cf2274ea5772a2a70993dbf0a5792321933f37ac32b3f",
+    "betamin/e2e_rows.jsonl": "3cb2ccad9f181fe5ac02ccc2308b1ff32352e3bb91e9d3a1ef0193c927ac92fc",
+    "beta2min/e2e_meta.json": "ece282c2d4f275a2e5580a7f37eee68cd518a8373fb4759ab3207421ee0dff84",
+    "beta2min/e2e_rows.jsonl": "fcaee5d6dea44b616f62334cde5d8126f43c25ca04be2bd2e97dea2c283b1e24",
+    "d10_0.3/e2e_meta.json": "30a60e1ec92e85b24f777baed3d681d03ff4fee10e1ea69c3bbf94142ee49c98",
+    "d10_0.3/e2e_rows.jsonl": "4894c04b3e7b5f76f529292b9cf3b766f28654a67f10816608810c7b06701bb9",
+    "d10_0.5/e2e_meta.json": "ca007a6bd64237c9ec9bdb4dc6ba8708fb93c4647ad421a23070f057ce6f3210",
+    "d10_0.5/e2e_rows.jsonl": "8bd4517a56aba7d24d8b47abe63cda88679530cdfce8f8e53698237a597760ce"
+  },
+  "T_manifest_entries_matching_prior_raw_audit": 150,
+  "outcomes": {
+    "null": {
+      "accept": 29,
+      "reject": 1
+    },
+    "betamin": {
+      "accept": 29,
+      "reject": 1
+    },
+    "beta2min": {
+      "accept": 28,
+      "reject": 2
+    },
+    "d10_0.3": {
+      "reject": 8,
+      "accept": 22
+    },
+    "d10_0.5": {
+      "reject": 18,
+      "accept": 12
+    }
+  },
+  "cpu_seconds": 205439.56,
+  "core_hours_per_trial": 0.38044362962962963,
+  "cost_inventory": {
+    "null_4000": 1521.7745185185186,
+    "alternatives_3000": 1141.330888888889,
+    "detection_curve_600": 228.26617777777778,
+    "predictive_stress_300": 114.13308888888889,
+    "empirical_placeholder": 5,
+    "banks_placeholder": 120,
+    "total_core_hours": 3130.504674074074
+  },
+  "projected_7900_trial_hours_at_prior_observed_throughput": 75.26456790123456,
+  "retry_cap": {
+    "draws_per_theta": 1000000,
+    "examples": [
+      {
+        "p_selection": 1e-05,
+        "p_success_by_cap": 0.9999546023401924
+      },
+      {
+        "p_selection": 1e-06,
+        "p_success_by_cap": 0.632120742768355
+      },
+      {
+        "p_selection": 1e-07,
+        "p_success_by_cap": 0.09516258648822781
+      }
+    ],
+    "completed_theta_weight": "q(theta) proportional to 1-(1-p_selection(theta))^M"
+  },
+  "input_hashes": {
+    "analysis/astra/protocol08_precheck/power_screen_audit.json": "d0f1aa4e84696cd59aa84f77fc6161dde416c76c20faf0ff2ede2b08c0734e3e",
+    "analysis/fable/calibration/power_screen_v1/T_sha256.txt": "c72efb03d9c12d83d93c1f6f8b5a423d84507cd0f2bb97db278f477b4877da28",
+    "analysis/fable/calibration/power_screen_v1/scored_summary.json": "4902a7c4d06d02c1b4aae3bcc3e172435131897104a8fe645fef1b1b52635795",
+    "analysis/fable/calibration/power_screen_v1/resources.txt": "9146d2a41cdc414446a735adf424c66feceaed77438afc684b2d8b417210751d"
+  },
+  "limitations": [
+    "No new raw T file retrieval or refitting.",
+    "No independent replay of bank generation or coverage arrays.",
+    "Sensitivity subtotal is a placeholder, not a complete section 7 execution manifest.",
+    "Retry probabilities are hypothetical analytic examples, not measured library frequencies."
+  ]
+}
