@@ -21,7 +21,7 @@ end-to-end runs (E23).
 | `run_power_screen.sh` (commit `f8546ec`), `score_discrimination.py` (contract v2) | `power_screen_v1/` | ar_cat k-NN at production counts: detections 1/30 (null), 1/30 (β_min), 2/30 (2·β_min), 8/30 (Δ10 = 0.3), 18/30 (Δ10 = 0.5). |
 | `test_bank.py`, `time_generators.py` | `alt_check_v1/` | M_D and M_O generators: 28 limiting-case checks; scenario plumbing; generation cost 5–9 CPU-s per dataset, negligible against fitting. |
 | `run_arms.sh` | `dev_screen200_v1/` | The §4.1 development screens at production counts: 5/200 null rejections, 5/200 at β_min; no stop rule triggered. |
-| `run_production_banks.sh` | deep-server `production_banks_*` (queued) | Designated primary, stability and iid banks (seed families 8.1, 8.2, 8.3 × 10^12); β_min, corners and empirical position recomputed. |
+| `run_production_banks.sh` | `freeze_v1/` | Designated primary, stability and iid banks (seed families 8.1, 8.2, 8.3 × 10^12); β_min (Δ10 = 0.075), corners and empirical position recomputed; final manifest, stress sets, receipts. |
 | `make_manifest.py`, `validate.py`, `run_validation.sh`, `collect_validation.py`, `test_validation.py` | (validation, after freeze) | Executable validation: 17 blocks × 10 chunks; at most three bank-holding slots; pooled gates on full denominators; 19 mocked-fit checks. |
 | `empirical_q1.py` | (empirical, after validation) | Guarded Q1 entry point; refuses to run without a passing validation summary for the same manifest; never run. |
 | `make_synthetic_sets.py`, `time_estimator.R` | `time_estimator.txt` | T1–T4 cost 0.15 s per nine-population dataset, with no failures in 20. |

@@ -1,0 +1,1991 @@
+{
+ "bankdir": "/data/fable/vortex/production_banks_20261010T081726Z/bank_primary",
+ "variant": "ar_cat",
+ "R": 2000,
+ "K": 2000,
+ "workers": 18,
+ "budget": 1000000,
+ "root": "/data/fable/vortex/validation_v1",
+ "code_commit": "49f65cec2a28bdf53a0548d3e1b0979c63a81875",
+ "effect_json": "/data/fable/vortex/production_banks_20261010T081726Z/effect/effect_target_ar_cat.json",
+ "beta_min": 0.9745192683713976,
+ "stress_sets": "/data/fable/vortex/production_banks_20261010T081726Z/stress_sets.json",
+ "scenarios": [
+  {
+   "block": 1,
+   "name": "null_prior_predictive",
+   "beta": 0.0,
+   "spec": {},
+   "n_trials": 1000,
+   "role": "null",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000001000000,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c00",
+     "trial_ids": [
+      0,
+      100
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000001000001,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c01",
+     "trial_ids": [
+      100,
+      200
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000001000002,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c02",
+     "trial_ids": [
+      200,
+      300
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000001000003,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c03",
+     "trial_ids": [
+      300,
+      400
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000001000004,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c04",
+     "trial_ids": [
+      400,
+      500
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000001000005,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c05",
+     "trial_ids": [
+      500,
+      600
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000001000006,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c06",
+     "trial_ids": [
+      600,
+      700
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000001000007,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c07",
+     "trial_ids": [
+      700,
+      800
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000001000008,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c08",
+     "trial_ids": [
+      800,
+      900
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000001000009,
+     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c09",
+     "trial_ids": [
+      900,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "block": 2,
+   "name": "null_high_sigma",
+   "beta": 0.0,
+   "spec": {
+    "fixed": {
+     "wild_dog": {
+      "s": 0.5917216184424436,
+      "f": 0.3444692580710904,
+      "sigma": 0.8665579241198161,
+      "rho": 0.2530165516105658,
+      "p_c": 0.028857161912735352,
+      "delta": 0.704243946108463
+     },
+     "marmot": {
+      "s": 0.5253689152367913,
+      "f": 0.42687506407559833,
+      "sigma": 0.8804894608777608,
+      "rho": 0.2796084721459133,
+      "p_c": 0.02774705488540408,
+      "delta": 0.7304355263042515
+     },
+     "ms_woodpecker": {
+      "s": 0.6711474196637401,
+      "f": 0.23089572419129156,
+      "sigma": 0.8680021543828731,
+      "rho": 0.4511069238211668,
+      "p_c": 0.02766714801103979,
+      "delta": 0.7621100931469272
+     },
+     "rc_woodpecker": {
+      "s": 0.7807111639891995,
+      "f": 0.11485929041611936,
+      "sigma": 0.8808240440359784,
+      "rho": 0.44148994962088584,
+      "p_c": 0.032306146627163676,
+      "delta": 0.83637503617618
+     },
+     "golden_plover": {
+      "s": 0.6187637893276728,
+      "f": 0.1945477800471018,
+      "sigma": 0.8665352379994055,
+      "rho": 0.3791731560214311,
+      "p_c": 0.02285755716328417,
+      "delta": 0.7068993959678314
+     },
+     "whooping_crane": {
+      "s": 0.8243030174363273,
+      "f": 0.0375903639796841,
+      "sigma": 0.9069066369802901,
+      "rho": 0.42698539444875233,
+      "p_c": 0.029759468677367867,
+      "delta": 0.686964602333886
+     },
+     "hawaiian_crow": {
+      "s": 0.802495246360619,
+      "f": 0.024792925421833416,
+      "sigma": 0.8487855440436435,
+      "rho": 0.46686800345055435,
+      "p_c": 0.022921422535478415,
+      "delta": 0.7103520240859873
+     },
+     "wood_turtle_A": {
+      "s": 0.7434664536614434,
+      "f": 0.14466300817749084,
+      "sigma": 0.93439996508461,
+      "rho": 0.7183272818220459,
+      "p_c": 0.02688386022237938,
+      "delta": 0.7972544378162475
+     },
+     "wood_turtle_B": {
+      "s": 0.803471289207198,
+      "f": 0.1011335415226888,
+      "sigma": 0.928052515321717,
+      "rho": 0.6812656745629,
+      "p_c": 0.02986014953645116,
+      "delta": 0.8445889983167174
+     }
+    }
+   },
+   "n_trials": 1000,
+   "role": "null",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000002000000,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c00",
+     "trial_ids": [
+      0,
+      100
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000002000001,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c01",
+     "trial_ids": [
+      100,
+      200
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000002000002,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c02",
+     "trial_ids": [
+      200,
+      300
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000002000003,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c03",
+     "trial_ids": [
+      300,
+      400
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000002000004,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c04",
+     "trial_ids": [
+      400,
+      500
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000002000005,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c05",
+     "trial_ids": [
+      500,
+      600
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000002000006,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c06",
+     "trial_ids": [
+      600,
+      700
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000002000007,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c07",
+     "trial_ids": [
+      700,
+      800
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000002000008,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c08",
+     "trial_ids": [
+      800,
+      900
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000002000009,
+     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c09",
+     "trial_ids": [
+      900,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "block": 3,
+   "name": "null_low_s",
+   "beta": 0.0,
+   "spec": {
+    "fixed": {
+     "wild_dog": {
+      "s": 0.2029542526439443,
+      "f": 0.3444692580710904,
+      "sigma": 0.47621568122045604,
+      "rho": 0.2530165516105658,
+      "p_c": 0.028857161912735352,
+      "delta": 0.704243946108463
+     },
+     "marmot": {
+      "s": 0.15893044467586,
+      "f": 0.42687506407559833,
+      "sigma": 0.5303075938611455,
+      "rho": 0.2796084721459133,
+      "p_c": 0.02774705488540408,
+      "delta": 0.7304355263042515
+     },
+     "ms_woodpecker": {
+      "s": 0.3364812094773059,
+      "f": 0.23089572419129156,
+      "sigma": 0.43114053632793436,
+      "rho": 0.4511069238211668,
+      "p_c": 0.02766714801103979,
+      "delta": 0.7621100931469272
+     },
+     "rc_woodpecker": {
+      "s": 0.5460676783909437,
+      "f": 0.11485929041611936,
+      "sigma": 0.4368079020629566,
+      "rho": 0.44148994962088584,
+      "p_c": 0.032306146627163676,
+      "delta": 0.83637503617618
+     },
+     "golden_plover": {
+      "s": 0.2896198450507895,
+      "f": 0.1945477800471018,
+      "sigma": 0.39357808189596577,
+      "rho": 0.3791731560214311,
+      "p_c": 0.02285755716328417,
+      "delta": 0.7068993959678314
+     },
+     "whooping_crane": {
+      "s": 0.6642045703306855,
+      "f": 0.0375903639796841,
+      "sigma": 0.5031308741380096,
+      "rho": 0.42698539444875233,
+      "p_c": 0.029759468677367867,
+      "delta": 0.686964602333886
+     },
+     "hawaiian_crow": {
+      "s": 0.6973439239284186,
+      "f": 0.024792925421833416,
+      "sigma": 0.40010423344162216,
+      "rho": 0.46686800345055435,
+      "p_c": 0.022921422535478415,
+      "delta": 0.7103520240859873
+     },
+     "wood_turtle_A": {
+      "s": 0.4625553440439784,
+      "f": 0.14466300817749084,
+      "sigma": 0.641598965460592,
+      "rho": 0.7183272818220459,
+      "p_c": 0.02688386022237938,
+      "delta": 0.7972544378162475
+     },
+     "wood_turtle_B": {
+      "s": 0.5984088512831884,
+      "f": 0.1011335415226888,
+      "sigma": 0.6349240784606961,
+      "rho": 0.6812656745629,
+      "p_c": 0.02986014953645116,
+      "delta": 0.8445889983167174
+     }
+    }
+   },
+   "n_trials": 1000,
+   "role": "null",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000003000000,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c00",
+     "trial_ids": [
+      0,
+      100
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000003000001,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c01",
+     "trial_ids": [
+      100,
+      200
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000003000002,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c02",
+     "trial_ids": [
+      200,
+      300
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000003000003,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c03",
+     "trial_ids": [
+      300,
+      400
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000003000004,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c04",
+     "trial_ids": [
+      400,
+      500
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000003000005,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c05",
+     "trial_ids": [
+      500,
+      600
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000003000006,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c06",
+     "trial_ids": [
+      600,
+      700
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000003000007,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c07",
+     "trial_ids": [
+      700,
+      800
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000003000008,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c08",
+     "trial_ids": [
+      800,
+      900
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000003000009,
+     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c09",
+     "trial_ids": [
+      900,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "block": 4,
+   "name": "null_strong_env",
+   "beta": 0.0,
+   "spec": {
+    "fixed": {
+     "wild_dog": {
+      "s": 0.5917216184424436,
+      "f": 0.3444692580710904,
+      "sigma": 0.47621568122045604,
+      "rho": 0.710556919750488,
+      "p_c": 0.045901215114488414,
+      "delta": 0.704243946108463
+     },
+     "marmot": {
+      "s": 0.5253689152367913,
+      "f": 0.42687506407559833,
+      "sigma": 0.5303075938611455,
+      "rho": 0.7353584908394704,
+      "p_c": 0.045750330021305886,
+      "delta": 0.7304355263042515
+     },
+     "ms_woodpecker": {
+      "s": 0.6711474196637401,
+      "f": 0.23089572419129156,
+      "sigma": 0.43114053632793436,
+      "rho": 0.807031587770324,
+      "p_c": 0.04533389743641558,
+      "delta": 0.7621100931469272
+     },
+     "rc_woodpecker": {
+      "s": 0.7807111639891995,
+      "f": 0.11485929041611936,
+      "sigma": 0.4368079020629566,
+      "rho": 0.813643745076593,
+      "p_c": 0.04712824811358725,
+      "delta": 0.83637503617618
+     },
+     "golden_plover": {
+      "s": 0.6187637893276728,
+      "f": 0.1945477800471018,
+      "sigma": 0.39357808189596577,
+      "rho": 0.7778193037856441,
+      "p_c": 0.04383128184192183,
+      "delta": 0.7068993959678314
+     },
+     "whooping_crane": {
+      "s": 0.8243030174363273,
+      "f": 0.0375903639796841,
+      "sigma": 0.5031308741380096,
+      "rho": 0.7996983489931824,
+      "p_c": 0.04621277201830598,
+      "delta": 0.686964602333886
+     },
+     "hawaiian_crow": {
+      "s": 0.802495246360619,
+      "f": 0.024792925421833416,
+      "sigma": 0.40010423344162216,
+      "rho": 0.8119271560473171,
+      "p_c": 0.043662815913203284,
+      "delta": 0.7103520240859873
+     },
+     "wood_turtle_A": {
+      "s": 0.7434664536614434,
+      "f": 0.14466300817749084,
+      "sigma": 0.641598965460592,
+      "rho": 0.8688569130889718,
+      "p_c": 0.045367808079978006,
+      "delta": 0.7972544378162475
+     },
+     "wood_turtle_B": {
+      "s": 0.803471289207198,
+      "f": 0.1011335415226888,
+      "sigma": 0.6349240784606961,
+      "rho": 0.8610556118336412,
+      "p_c": 0.046255763019292025,
+      "delta": 0.8445889983167174
+     }
+    }
+   },
+   "n_trials": 1000,
+   "role": "null",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000004000000,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c00",
+     "trial_ids": [
+      0,
+      100
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000004000001,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c01",
+     "trial_ids": [
+      100,
+      200
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000004000002,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c02",
+     "trial_ids": [
+      200,
+      300
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000004000003,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c03",
+     "trial_ids": [
+      300,
+      400
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000004000004,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c04",
+     "trial_ids": [
+      400,
+      500
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000004000005,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c05",
+     "trial_ids": [
+      500,
+      600
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000004000006,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c06",
+     "trial_ids": [
+      600,
+      700
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000004000007,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c07",
+     "trial_ids": [
+      700,
+      800
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000004000008,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c08",
+     "trial_ids": [
+      800,
+      900
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000004000009,
+     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c09",
+     "trial_ids": [
+      900,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "block": 5,
+   "name": "MA_betamin",
+   "beta": 0.9745192683713976,
+   "spec": {},
+   "n_trials": 300,
+   "role": "power",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000005000000,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000005000001,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000005000002,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000005000003,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000005000004,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000005000005,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000005000006,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000005000007,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000005000008,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000005000009,
+     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 6,
+   "name": "MA_2betamin",
+   "beta": 1.9490385367427951,
+   "spec": {},
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000006000000,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000006000001,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000006000002,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000006000003,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000006000004,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000006000005,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000006000006,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000006000007,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000006000008,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000006000009,
+     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 7,
+   "name": "MD_linear",
+   "beta": 0.0,
+   "spec": {
+    "drift": {
+     "form": "linear",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000007000000,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000007000001,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000007000002,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000007000003,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000007000004,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000007000005,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000007000006,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000007000007,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000007000008,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000007000009,
+     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 8,
+   "name": "MD_accel",
+   "beta": 0.0,
+   "spec": {
+    "drift": {
+     "form": "accel",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000008000000,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000008000001,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000008000002,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000008000003,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000008000004,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000008000005,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000008000006,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000008000007,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000008000008,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000008000009,
+     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 9,
+   "name": "MD_step",
+   "beta": 0.0,
+   "spec": {
+    "drift": {
+     "form": "step",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000009000000,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000009000001,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000009000002,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000009000003,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000009000004,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000009000005,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000009000006,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000009000007,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000009000008,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000009000009,
+     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 10,
+   "name": "MO_lown",
+   "beta": 0.0,
+   "spec": {
+    "detect": "lown"
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000010000000,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000010000001,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000010000002,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000010000003,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000010000004,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000010000005,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000010000006,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000010000007,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000010000008,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000010000009,
+     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 11,
+   "name": "MO_uniform",
+   "beta": 0.0,
+   "spec": {
+    "detect": "uniform"
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000011000000,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000011000001,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000011000002,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000011000003,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000011000004,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000011000005,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000011000006,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000011000007,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000011000008,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000011000009,
+     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 12,
+   "name": "MA_MD_linear",
+   "beta": 0.9745192683713976,
+   "spec": {
+    "drift": {
+     "form": "linear",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000012000000,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000012000001,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000012000002,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000012000003,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000012000004,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000012000005,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000012000006,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000012000007,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000012000008,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000012000009,
+     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 13,
+   "name": "MA_MD_accel",
+   "beta": 0.9745192683713976,
+   "spec": {
+    "drift": {
+     "form": "accel",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000013000000,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000013000001,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000013000002,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000013000003,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000013000004,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000013000005,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000013000006,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000013000007,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000013000008,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000013000009,
+     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 14,
+   "name": "MA_MD_step",
+   "beta": 0.9745192683713976,
+   "spec": {
+    "drift": {
+     "form": "step",
+     "hi": 2.0
+    }
+   },
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000014000000,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000014000001,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000014000002,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000014000003,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000014000004,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000014000005,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000014000006,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000014000007,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000014000008,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000014000009,
+     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 15,
+   "name": "MA_d10_0.3",
+   "beta": 4.458436799234155,
+   "spec": {},
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000015000000,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000015000001,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000015000002,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000015000003,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000015000004,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000015000005,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000015000006,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000015000007,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000015000008,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000015000009,
+     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 16,
+   "name": "MA_d10_0.5",
+   "beta": 8.664339756999317,
+   "spec": {},
+   "n_trials": 300,
+   "role": "descriptive",
+   "stress": false,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000016000000,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000016000001,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000016000002,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000016000003,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000016000004,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000016000005,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000016000006,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000016000007,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000016000008,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000016000009,
+     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  },
+  {
+   "block": 17,
+   "name": "stress_fitted_parameters",
+   "beta": 0.0,
+   "spec": {},
+   "n_trials": 300,
+   "role": "stress",
+   "stress": true,
+   "chunks": [
+    {
+     "c": 0,
+     "seed": 9000017000000,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c00",
+     "trial_ids": [
+      0,
+      30
+     ]
+    },
+    {
+     "c": 1,
+     "seed": 9000017000001,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c01",
+     "trial_ids": [
+      30,
+      60
+     ]
+    },
+    {
+     "c": 2,
+     "seed": 9000017000002,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c02",
+     "trial_ids": [
+      60,
+      90
+     ]
+    },
+    {
+     "c": 3,
+     "seed": 9000017000003,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c03",
+     "trial_ids": [
+      90,
+      120
+     ]
+    },
+    {
+     "c": 4,
+     "seed": 9000017000004,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c04",
+     "trial_ids": [
+      120,
+      150
+     ]
+    },
+    {
+     "c": 5,
+     "seed": 9000017000005,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c05",
+     "trial_ids": [
+      150,
+      180
+     ]
+    },
+    {
+     "c": 6,
+     "seed": 9000017000006,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c06",
+     "trial_ids": [
+      180,
+      210
+     ]
+    },
+    {
+     "c": 7,
+     "seed": 9000017000007,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c07",
+     "trial_ids": [
+      210,
+      240
+     ]
+    },
+    {
+     "c": 8,
+     "seed": 9000017000008,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c08",
+     "trial_ids": [
+      240,
+      270
+     ]
+    },
+    {
+     "c": 9,
+     "seed": 9000017000009,
+     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c09",
+     "trial_ids": [
+      270,
+      300
+     ]
+    }
+   ]
+  }
+ ]
+}

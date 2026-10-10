@@ -1,0 +1,4 @@
+python 3.12.3 numpy 1.26.4 scipy 1.11.4
+R version 4.6.1 (2026-06-24) nlme 3.1.171 
+Linux 6.8.0-146-generic x86_64
+deep-server

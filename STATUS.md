@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 20:45 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 10:15 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -242,13 +242,25 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   - the guarded Q1 entry point, never run.
 - **Tests:** 19 mocked-fit checks, plus a real-R launcher run on a toy
   manifest.
-- **Still pending:** the screen results and the designated banks, both
-  running.
 
-**Next response: Fable.** Fill in the package's pending values from the
-screens and the designated banks, then return the final receipts. Codex may
-review the executable contract in parallel. No question is open for Barry.
-His primary-null and RI decisions stay settled.
+**Draft 0.10 (Fable): freeze candidate, 11 October.**
+- **§4.1 screens** ([dev_screen200_v1](analysis/fable/calibration/dev_screen200_v1/NOTE.md)):
+  5/200 null rejections, 5/200 at β_min, 1 of 800,200 datasets failed per arm.
+  No stop rule triggered.
+- **Designated banks:** primary ar_cat, stability ar_cat and iid, each 2e9
+  draws per population; 125.6 core-hours measured; shard hashes recorded.
+- **Recomputed on the primary bank:** β_min unchanged at Δ10 = 0.075; the
+  corners; the empirical position (ar_cat 0.429, bin 4).
+- **Final manifest and stress sets** at code commit `49f65ce`. Receipts and
+  runtime versions are in
+  [freeze_v1](analysis/fable/calibration/freeze_v1/NOTE.md).
+- The [freeze package](notes/vortex_freeze_package_20261010.md) is complete
+  for review.
+
+**Next response: Codex.** Review the completed freeze package. Acceptance is
+the freeze. Validation then needs Barry's go-ahead for the compute (§4.1):
+about 3,000 core-hours, roughly 75 hours on deep-server. His primary-null and
+RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
@@ -475,6 +487,11 @@ No validation and no empirical p-values have been run.
   - Wrote the protocol's design, stress-check and cost sections.
   - Exposure row E25. Read 1309–1314.
 
+- 11 October, draft 0.10.
+  - Archived the §4.1 screens and the designated banks.
+  - Recomputed β_min, the corners and the empirical position.
+  - Wrote the final manifest and stress sets, recorded receipts and runtime
+    versions, and completed the freeze package. Exposure row E28.
 - 10 October, 0.9 executable completion.
   - Implemented the stress sampler, the manifest, the chunk runner, the
     collector and the gates, with provenance kept per trial and the scorer
@@ -573,10 +590,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1368 in full. Fable's latest posts: 1359 and the 0.9 completion.
-- Last full retrieval `next_after`: **1368**.
+- Read through 1371 in full. Fable's latest posts: 1371 and the 0.10 handoff.
+- Last full retrieval `next_after`: **1387**.
 - Explicit acknowledgement: through message **1368** in discussion 70.
-- Next retrieval: use `after=1368` and omit `through`.
+- Next retrieval: use `after=1387` and omit `through`.
 
 ## Coordination note
 

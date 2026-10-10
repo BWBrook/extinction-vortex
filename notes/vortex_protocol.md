@@ -1,6 +1,14 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.9 — 10 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.10 (freeze candidate) — 11 October 2026, Hobart. Not frozen
+or registered.**
+
+Draft 0.10 (Fable) completes the [freeze package](vortex_freeze_package_20261010.md)
+with the designated banks and the values recomputed on them; §9.12 lists the
+changes. It freezes when Astra accepts the package. Validation then needs
+Barry's go-ahead for the compute (§4.1).
+
+**Working draft 0.9 — 10 October 2026, Hobart (history).**
 
 Draft 0.9 (Fable) responds to Astra's 0.8 review (1348); §9.10 lists the
 changes:
@@ -597,6 +605,8 @@ the median calibrated M0 parameters.
   - That is g(10) = 0.925, a multiplier on the survival odds and the
     recruitment rate. Feedback this weak qualifies because the calibrated
     populations sit near the absorbing boundary.
+  - **On the designated primary bank** (`freeze_v1/`): β_min = 0.974519,
+    Δ10 = 0.075, unchanged. The increase is +0.136, from 0.414 to 0.550.
   - **Development power** ([`power_screen_v1/`](../analysis/fable/calibration/power_screen_v1/NOTE.md);
     30 trials per arm, production counts, 10× banks):
 
@@ -672,6 +682,8 @@ the median calibrated M0 parameters.
          prior-predictive distribution; iid 1.073 (turtle B), at the 97th.
        - So the primary analysis has a typical radius, and the iid
          sensitivity lies in the tail (`dev_design_v1/`).
+       - On the designated banks (`freeze_v1/`): ar_cat 0.429, in bin 4;
+         iid 1.067.
        - A typical radius does not by itself establish local conditional
          calibration (Codex 1313).
      - **Fitted-parameter predictive stress check, always run.** This is not
@@ -933,8 +945,10 @@ The proposal text follows, corrected where noted.
     this study, so a shortened-window scenario would validate a design that
     is never analysed. The strong-environment corner probes the nuisance
     dimensions that ar_cat adds instead.
-  - Values and selection rates: `analysis/fable/calibration/dev_design_v1/`
-    (§9.9). They are frozen with the banks.
+  - Values and selection rates: development in
+    `analysis/fable/calibration/dev_design_v1/` (§9.9); recomputed on the
+    designated primary bank in `analysis/fable/calibration/freeze_v1/corners.json`.
+    The recomputed values are the ones frozen.
 
   Each gets 1,000 datasets. It passes if the one-sided upper 98.75%
   Clopper–Pearson bound on its rejection rate is ≤ 0.08 (Bonferroni across the
@@ -1779,4 +1793,28 @@ Responses to Astra's 0.9 review (1368):
     matched;
   - the M_O start is a plug-in convention;
   - β_min is risk-defined, not a demonstrated minimum detectable effect.
+
+### 9.12 Fable draft 0.10 (11 October): freeze candidate
+
+- **Designated banks built:** primary ar_cat (seeds 8.1 × 10^12 + task),
+  stability ar_cat (8.2 × 10^12) and iid (8.3 × 10^12).
+  - Each is 2 × 10^9 draws per population, with 12.8–29.9 million selected
+    runs per population.
+  - 125.6 core-hours measured; shard hashes recorded.
+- **Recomputed on the primary bank by the fixed recipes:**
+  - β_min, unchanged at Δ10 = 0.075;
+  - the numeric corners;
+  - the empirical K-th-neighbour position: ar_cat 0.429, bin 4; iid 1.067.
+- **Final manifest and stress sets written** (`freeze_v1/`): 17 blocks,
+  170 chunks, 7,900 trials, code commit `49f65ce`.
+- **Receipts and versions recorded.** Runtime versions are recorded.
+  `test_bank.py` passes 28/28 and `test_validation.py` 19/19 on the staged
+  freeze source. All source hashes match their commits.
+- **§4.1 screens complete** (`dev_screen200_v1/`): 5/200 null rejections,
+  5/200 at β_min, no stop rule triggered.
+- **Exposure:** row E28.
+
+**Open:**
+- Astra's acceptance of the package, which is the freeze;
+- Barry's go-ahead for the validation compute (§4.1).
 

@@ -1,0 +1,29 @@
+PASS M_D linear hi=0 equals ar_cat (wood_turtle_B)
+PASS M_D accel hi=0 equals ar_cat (wood_turtle_B)
+PASS M_D step hi=0 equals ar_cat (wood_turtle_B)
+PASS M_D linear hi=0 equals ar_cat (hawaiian_crow)
+PASS M_D accel hi=0 equals ar_cat (hawaiian_crow)
+PASS M_D step hi=0 equals ar_cat (hawaiian_crow)
+PASS M_D linear hi=0 equals ar_cat (wild_dog)
+PASS M_D accel hi=0 equals ar_cat (wild_dog)
+PASS M_D step hi=0 equals ar_cat (wild_dog)
+PASS M_A+M_D beta=0 equals M_D linear
+PASS M_A+M_D beta=0 equals M_D accel
+PASS M_A+M_D beta=0 equals M_D step
+PASS M_O p=1 equals ar_cat (wood_turtle_B)
+PASS M_O p=1 equals ar_cat (hawaiian_crow)
+PASS M_O p=1 equals ar_cat (wild_dog)
+PASS M_O lown: recorded <= latent
+PASS M_O lown: first recorded = n0, latent start  [latent N0 85]
+PASS M_O lown: selection on recorded counts
+PASS M_O lown: some selected paths are latently extant at the endpoint  [159 of 401]
+PASS M_O uniform: recorded <= latent
+PASS M_O uniform: first recorded = n0, latent start  [latent N0 94]
+PASS M_O uniform: selection on recorded counts
+PASS M_O uniform: some selected paths are latently extant at the endpoint  [94 of 420]
+PASS drift linear = d*t
+PASS drift accel = d*t^2/span
+PASS drift step
+PASS M_D raises the matched-extinction selection rate  [null 0.0103, M_D 0.0134]
+PASS M_D step provenance
+FAILURES: 0

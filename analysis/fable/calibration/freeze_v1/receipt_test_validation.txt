@@ -1,0 +1,20 @@
+PASS stress: one row per intended trial, no replacement
+PASS stress: budget failure is indet_sampling
+PASS stress: failed parameter set retained
+PASS stress: no fits for the failed trial
+PASS stress: successful trial uses the standard procedure
+PASS M_D provenance: shift and step time of the selected draw
+PASS M_O provenance: latent and recorded counts per population
+PASS collector: complete denominators
+PASS collector: fit-failure rate over observed+training+test datasets
+PASS collector: a missing trial stays in the denominator
+PASS collector: duplicate refused
+PASS collector: row outside the chunk refused
+PASS gates: 60/1000 passes and 61 fails the 0.08 upper bound
+PASS gates: 224/300 passes and 223 fails the 0.70 lower bound
+PASS observed path: given series are the outer dataset
+PASS empirical guard refuses: missing summary
+PASS empirical guard refuses: V-fail
+PASS empirical guard refuses: other manifest
+PASS empirical guard accepts a passing summary for the same manifest
+FAILURES: 0
