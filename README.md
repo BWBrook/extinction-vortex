@@ -117,11 +117,14 @@ banks.
   1/30 detections at β_min and 18/30 at Δ10 = 0.5. With nine series, a
   non-rejection would therefore most likely be O3 (insufficient
   discrimination).
-- The current cost projection is about 3,130 core-hours; the full sensitivity
-  inventory and unmeasured generators remain to be resolved.
 - [Astra's 0.8 review](notes/astra_protocol08_review_20261010.md) accepts continued
-  development, with the stress-check sampling law, complete execution inventory
-  and one minor log-reconciliation repair still to settle. Fable responds next.
+  development.
+- Draft 0.9 then adds the M_D and M_O generators with limiting-case tests, the
+  stress-check sampling law, and a full execution inventory of about 3,300
+  core-hours.
+- It also adds a draft [freeze package](notes/vortex_freeze_package_20261010.md).
+  The §4.1 development screens and the designated banks are running on
+  deep-server.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 
@@ -157,7 +160,7 @@ models over one or explain differences by their training backgrounds.
 - [Fable's round-2 response](notes/fable_round2_response_20261005.md) records the
   corrected vortex specification, the T3 data report ([notes/t3/](notes/t3/)),
   Barry's 5 October input and the proposed pre-registration plan.
-- [The working vortex protocol](notes/vortex_protocol.md), draft 0.8, contains
+- [The working vortex protocol](notes/vortex_protocol.md), draft 0.9, contains
   Fable's proposed formal core, Astra's compilation/exposure/roles sections,
   and the outstanding review disposition. Its [exposure log](notes/vortex_exposure_log.csv) distinguishes
   known outcomes, computational access and reported limits on inspection.

@@ -18,7 +18,10 @@ end-to-end runs (E23).
 | `outer_coverage.py`, `coverage_summary.py` (commit `5ace89e`) | `coverage_v1/` | All-nine hard-tolerance coverage for fresh outer datasets, with bank-size projections. Current versions report k-NN radii for sharded banks and scenario lists. |
 | `build_bank.py` | deep-server `banks10x_*` | Sharded 2×10^9-draw development banks (ar_cat, iid); `bank.load_bank` checks the shards. |
 | `effect_target.py`, `run_dev_design.sh`, `empirical_position.py` | `dev_design_v1/` | β_min (Δ10 = 0.075) and corner scenarios under ar_cat; measured radii in the 10× banks; empirical position (ar_cat 64th, iid 97th percentile); measured cost. |
-| `run_power_screen.sh`, `score_discrimination.py` (contract v2) | `power_screen_v1/` | ar_cat k-NN at production counts: detections 1/30 (null), 1/30 (β_min), 2/30 (2·β_min), 8/30 (Δ10 = 0.3), 18/30 (Δ10 = 0.5). |
+| `run_power_screen.sh` (commit `f8546ec`), `score_discrimination.py` (contract v2) | `power_screen_v1/` | ar_cat k-NN at production counts: detections 1/30 (null), 1/30 (β_min), 2/30 (2·β_min), 8/30 (Δ10 = 0.3), 18/30 (Δ10 = 0.5). |
+| `test_bank.py`, `time_generators.py` | `alt_check_v1/` | M_D and M_O generators: 28 limiting-case checks; scenario plumbing; generation cost 5–9 CPU-s per dataset, negligible against fitting. |
+| `run_arms.sh` | `dev_screen200_v1/` (running) | The §4.1 development screens: 200 under the ar_cat null and 200 at β_min, at production counts. |
+| `run_production_banks.sh` | deep-server `production_banks_*` (queued) | Designated primary, stability and iid banks (seed families 8.1, 8.2, 8.3 × 10^12); β_min, corners and empirical position recomputed. |
 | `make_synthetic_sets.py`, `time_estimator.R` | `time_estimator.txt` | T1–T4 cost 0.15 s per nine-population dataset, with no failures in 20. |
 
 Run from the repo root, for example:

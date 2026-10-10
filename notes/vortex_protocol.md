@@ -1,6 +1,19 @@
 # Vortex signatures, selection and feedback: staged study protocol
 
-**Working draft 0.8 — 10 October 2026, Hobart. Not frozen or registered.**
+**Working draft 0.9 — 10 October 2026, Hobart. Not frozen or registered.**
+
+Draft 0.9 (Fable) responds to Astra's 0.8 review (1348); §9.10 lists the
+changes:
+- executable M_D and M_O laws with limiting-case tests;
+- the stress check's fixed-mixture sampling law;
+- frozen radius bins;
+- the §4.1 development screens retained and running;
+- a complete execution inventory;
+- the scorer's finite-bound check;
+- designated banks queued;
+- a draft [freeze package](vortex_freeze_package_20261010.md).
+
+**Working draft 0.8 — 10 October 2026, Hobart (history).**
 
 Draft 0.8 (Fable) incorporates Barry's adoption of ar_cat as the primary
 development null (iid a mandatory sensitivity) and Astra's 0.7 review
@@ -497,6 +510,42 @@ The history of the proposal and its evidence follows.
 | M_A + M_D | feedback combined with each deterioration form | for discriminability only |
 | M_G (genetic) | **deferred** | see below |
 
+**Executable laws (0.9; `bank.simulate_chunk`, tests in `test_bank.py`).** All
+alternatives use the adopted ar_cat environment and prior (b) for the null
+parameters. Each is tested against the ar_cat null bank.
+- **M_A.** The vital-rate equations add log g(N) to the survival logit and
+  multiply the recruitment rate by g(N). So g multiplies the survival *odds*
+  and the recruitment rate.
+- **M_D.** Both vital rates use z_t − m(t), where t = 1, …, span counts annual
+  steps from the first census and span = last year − first year.
+  - **Forms:**
+    - linear: m = Δ·t/span, i.e. d·t with d = Δ/span;
+    - accelerating: m = Δ·(t/span)², i.e. d·t²/span;
+    - step: m = Δ·1{t ≥ τ}.
+  - **Priors (proposed):** the end-of-series shift Δ ~ U(0, 2) in units of the
+    environmental standard deviation; the step time τ ~ U{1, …, span}.
+  - "Calibrated like the other nuisances" means these are prior draws
+    followed by the exact selection S and the cap event A, as for the null
+    parameters. The recruitment centring −σ²/2 is unchanged, so a shift lowers
+    survival and recruitment together.
+  - The shift and step time are kept per draw. Δ = 0 draws nothing and
+    reproduces ar_cat exactly.
+- **M_O.** The latent population follows ar_cat.
+  - **Start:** the latent N0 is round(n0 / p(n0)); the recorded first count is
+    n0.
+  - **Recording:** later recorded counts are C_t ~ Binomial(N_t, p(N_t)),
+    drawn from a generator spawned off the main stream, so the latent stream is
+    unchanged.
+  - **Selection:** S is applied to the recorded counts only. The first
+    recorded count ≤ 1 must fall at the final census. Latent extinction is
+    *not* imposed, so a selected path may be latently extant.
+  - Latent counts are kept per draw, and each validation trial records the
+    latent endpoint.
+  - Laws: low-n, p(n) = 1 − 0.3·exp(−n/10); uniform, p = 0.9. With p ≡ 1
+    the generator reproduces ar_cat exactly.
+- **M_A + M_D.** β = β_min, combined with each M_D form at the M_D priors.
+  β = 0 reproduces the M_D component exactly.
+
 M_G re-enters only by amendment. Draft 0.2's recurrence was invalid: it can
 exceed one. A valid version needs:
 - the bounded recurrence F_{t+1} = 1 − (1 − F_t)(1 − 1/(2·N_e,t)), with
@@ -589,10 +638,17 @@ the median calibrated M0 parameters.
      scenario-average 8% control is not a guarantee throughout C-space.
      Hence:
      - **Radius-stratified diagnostics, predeclared.** Each validation trial
-       is binned by its largest K-th neighbour distance across the nine, at
-       the quintiles of the prior-predictive null scenario's distribution.
+       is binned by its largest K-th neighbour distance across the nine.
        Rejection rates with exact intervals are reported per bin, for every
        null scenario.
+       - **Bins (frozen in 0.9):** (0, 0.2050], (0.2050, 0.2956],
+         (0.2956, 0.4049], (0.4049, 0.5613], (0.5613, ∞).
+       - **Source:** quintiles of 20,000 C-only ar_cat null prior-predictive
+         outer datasets against the 10× development bank
+         (`dev_design_v1/coverage`). This is independent of every validation
+         draw and has no ties at the cut points.
+       - **Ties:** a distance equal to a cut point goes to the lower bin.
+       - The development empirical position, 0.433, falls in bin 4.
      - **Empirical position.** Before interpreting the empirical test, report
        the empirical largest K-th neighbour distance against those bins.
        - Development values, from C only, in the 10× development banks:
@@ -605,12 +661,19 @@ the median calibrated M0 parameters.
      - **Fitted-parameter predictive stress check, always run.** This is not
        conditional on the empirical position or p-value. It does not enforce
        C locality, so it is not a local calibration check.
-       - **Datasets.** 300 fresh outer datasets. For each population, a
-         parameter vector is drawn uniformly from its empirical library.
-       - **Selection.** That vector is *retained* while trajectories are
-         simulated until the exact matched selection S and the cap event A
-         hold. After 10^6 unsuccessful draws, the vector is recorded as
-         unselectable and a new one is drawn; such redraws are counted.
+       - **Datasets.** 300 intended outer datasets. Their parameter vectors
+         are drawn **once**, uniformly from each population's empirical
+         library (one per population per dataset), and retained.
+       - **Selection.** For each vector, trajectories are simulated until the
+         exact matched selection S and the cap event A hold, within a budget
+         of 10^6 draws.
+       - **Budget failures** (0.9, Astra 0.8 review).
+         - A failure leaves that intended dataset unresolved. It is not
+           replaced, so the uniform library mixture is preserved. A timeout
+           is not proof that the vector is unselectable.
+         - Unresolved datasets are reported with conservative descriptive
+           bounds: rejection rate with all unresolved counted as rejections,
+           and with all counted as non-rejections.
        - **Recorded.** Each dataset's K-th neighbour distances. Each dataset
          is tested with the frozen procedure, and the rejection rate is
          reported with an exact interval.
@@ -736,6 +799,13 @@ This is Astra's proposed tranche, with concrete exit criteria:
    - Stop before production if: a bank is infeasible; fits fail in more than
      2% of datasets; or the screen shows gross miscalibration (more than 30 of
      200 rejections).
+   - **Disposition (0.9).** The requirement is retained and run as specified,
+     not replaced by the 30-per-arm power screen.
+     - Setting: the adopted ar_cat null, the k-NN library, the 10×
+       development banks and production replicate counts.
+     - Seeds 20261028 (null) and 20261029 (β_min).
+     - Results: `analysis/fable/calibration/dev_screen200_v1/`. The stop
+       rule applies to the null screen.
 
 Production validation (§4.3) and the empirical test follow only with a
 measured cost estimate and Barry's allocation.
@@ -890,9 +960,9 @@ costs.
   | Alternatives (10 × 300): M_A at β_min and 2·β_min; M_D linear, accelerating and step; M_O low-n and uniform; M_A + M_D in each M_D form | 3,000 | 1,142 |
   | Detection curve: M_A at Δ10 = 0.3 and 0.5 (2 × 300; proposed in 0.8) | 600 | 228 |
   | Fitted-parameter predictive stress check (§3.4) | 300 | 114 |
-  | Empirical primary, RI+slope and iid sensitivities, second-bank stability | about 5 | about 5 |
+  | Empirical analyses and sensitivity banks (itemised in the §7 execution inventory) | about 25 | about 155–165 |
   | Banks: production ar_cat, second ar_cat stability bank, iid sensitivity bank | — | about 120 |
-  | **Total** | about 7,905 | **about 3,130** |
+  | **Total** | about 7,925 | **about 3,300** |
 
   - **Wall time on deep-server.** The power screen's observed throughput was
     about 105 trials per hour (three concurrent processes × 18 workers), so
@@ -1157,6 +1227,55 @@ nobody inspected its contents.
 | Random-intercept-and-slope estimator (Barry's decision) | Mandatory sensitivity; reported unvalidated |
 | Per-population calibration adequacy: the percentile of c_obs within the selected prior predictive, for each summary | Prespecified diagnostic, reported for all nine |
 | Part 2; M_G; the founder-size module; the 2016 LPD subset; anything not listed here | Exploratory, or parked until a dated amendment |
+
+**Execution inventory (0.9; Astra 0.8 review).**
+
+This links every promised analysis to its generator and reference, outer
+count, seed family and cost.
+- **Cost basis.** 0.38 core-hours per analysed dataset at R_train = R_test =
+  K = 2,000, measured all-in. One 2 × 10^9-draw bank costs about 4.3
+  core-hours per population.
+- **Seed families** (proposed; frozen with the banks):
+  - 8.1 × 10^12 + task: the primary ar_cat bank;
+  - 8.2 × 10^12 + task: the stability ar_cat bank;
+  - 8.3 × 10^12 + task: the iid bank;
+  - 8.4–8.8 × 10^12 + task: the sensitivity banks, one family each;
+  - 9 × 10^12 + 10^6·b + c: validation, for scenario block b and process
+    chunk c;
+  - 9.5 × 10^12 + a: the replicate streams of empirical analysis a.
+
+| Analysis (§) | Generator / reference | Bank | Datasets | Seeds | Core-hours |
+|---|---|---|---:|---|---:|
+| Validation, null scenarios: prior-predictive, high σ, low s, strong environment (§4.3) | ar_cat | primary (reused) | 4 × 1,000 | 9e12 blocks | 1,522 |
+| Validation, alternatives: M_A at β_min and 2·β_min; M_D × 3; M_O × 2; M_A + M_D × 3 (§4.3) | §3.2 laws vs the ar_cat reference | primary (reused) | 10 × 300 | 9e12 blocks | 1,142 |
+| Detection curve: M_A at Δ10 = 0.3 and 0.5 (§3.3) | M_A vs ar_cat | primary (reused) | 2 × 300 | 9e12 blocks | 228 |
+| Fitted-parameter predictive stress check (§3.4) | ar_cat at library parameters | primary (reused) | 300 | 9e12 block | 114 |
+| **Q1 empirical test**, with the p_k (Holm) from the same run | ar_cat | primary | 1 | 9.5e12 | 0.4 |
+| Second-bank stability (descriptive) | ar_cat | stability (new) | 1 | 8.2e12 / 9.5e12 | 39 + 0.4 |
+| Plain-M0 mandatory sensitivity | iid | iid (new) | 1 | 8.3e12 / 9.5e12 | 39 + 0.4 |
+| Random intercept + slope mandatory sensitivity | ar_cat; replicates refitted with that estimator | primary (reused) | 1 | 9.5e12 | about 1 (projected) |
+| Leave one population out (9), turtles together (1); crane exclusion = LOPO crane | ar_cat on 8 or 7 populations | primary (reused) | 10 | 9.5e12 | 4 |
+| Rule E = 0 (first census of 0) | ar_cat, selection changed | new, 9 populations | 1 | 8.4e12 / 9.5e12 | 39 + 0.4 |
+| Inclusion window instead of exact endpoint | ar_cat, selection changed | new, 9 populations | 1 | 8.5e12 / 9.5e12 | 39 + 0.4 |
+| Separate environmental factors (correlation 0.5) | ar_cat, two factors | new, 9 populations | 1 | 8.6e12 / 9.5e12 | 39 + 0.4 |
+| F&H-length windows (wild dog, marmot, crane; where the data allow) | ar_cat, design changed | new, 3 populations; others reused | 1 | 8.7e12 / 9.5e12 | 13 + 0.4 |
+| Wild-dog fills as missing; fills re-created in simulation | ar_cat, wild-dog design changed | new, wild dog only, × 2 | 2 | 8.7e12 / 9.5e12 | 9 + 0.8 |
+| Identical-count runs as missing except the first, where provenance is uncertain (currently the golden plover) | ar_cat, recorded-census mask | new, affected populations | 1 | 8.7e12 / 9.5e12 | 4–17 + 0.4 |
+| Prior (a), where the ledger supports it | ar_cat with the literature survival prior | new, supported populations | 1 | 8.8e12 / 9.5e12 | ≤ 39 + 0.4; **ledger-dependent** |
+| Per-population calibration adequacy (percentiles of c_obs) | ar_cat | primary (reused) | — | — | negligible |
+| Williams statistics on complete-count series (Q3, §2.2) | authors' code; no simulated reference | — | 31 series | — | negligible; **needs the archived code** |
+| *Daphnia* diagnostic | Q1 pipeline | new | — | — | **access-dependent** |
+| Production banks | primary ar_cat | new | — | 8.1e12 | 39 |
+
+**Totals.**
+- Validation: about 3,006 core-hours.
+- Empirical analyses (about 9 core-hours) and sensitivity banks (143–156):
+  about 155–165.
+- The primary, stability and iid banks: about 117.
+
+**Overall: about 3,300 core-hours**, excluding the conditional items. The
+sensitivity banks dominate the empirical side. All empirical analyses run
+only after the validation freeze.
 
 **Data handling.**
 - Missing years stay missing.
@@ -1512,4 +1631,40 @@ Astra's 0.7 review and 0.8 pre-check (1253, 1255, 1311, 1313, 1314).
 - the validation freeze;
 - the census-unit conflicts;
 - Phase II scoping, which the power screen now motivates.
+
+### 9.10 Fable draft 0.9 (10 October): what changed
+
+Responses to Astra's 0.8 review (1348):
+- **Stress-check sampling law** (major). Parameter sets are drawn once and
+  retained. A budget failure leaves its dataset unresolved, not replaced, and
+  is reported with conservative bounds.
+- **Execution inventory** (major). A §7 table covers every promised analysis:
+  generator, bank reuse or new bank, count, seed family and cost.
+  - Totals: about 3,300 core-hours.
+  - Ledger-, code- and access-dependent items are marked.
+  - The §4.1 development screens (200 under the null, 200 at β_min, with the
+    >30/200 stop) are retained and running, not replaced.
+- **Finite logged bounds** (minor). The scorer rejects non-finite logged p
+  bounds.
+  - Fixing this introduced a variable-shadowing bug (`afe9bca`) that scored
+    later trials as missing.
+  - The smoke test caught it before any production use, and `a31e5bc` fixes
+    it.
+- **M_D and M_O** (§3.2).
+  - Executable laws, with proposed priors Δ ~ U(0, 2) and step time ~ U.
+  - The M_O latent/recorded contract.
+  - The mixture at β_min.
+  - 28 limiting-case checks (`test_bank.py`).
+  - Generation cost is under 1% of fitting cost (`alt_check_v1/`).
+- **Radius bins frozen:** 0.2050 / 0.2956 / 0.4049 / 0.5613, with ties to the
+  lower bin. Source: the 20,000-dataset development sample.
+- **Designated banks queued** on deep-server after the screens, with seed
+  families 8.1, 8.2 and 8.3 × 10^12. β_min, the corners and the empirical
+  position are then recomputed by the fixed recipes.
+
+**Open:**
+- the screen results;
+- the designated-bank outputs;
+- Astra's review of the M_D and M_O priors and of the freeze package;
+- then the freeze.
 

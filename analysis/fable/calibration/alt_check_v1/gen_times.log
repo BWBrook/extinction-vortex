@@ -1,0 +1,13 @@
+null                         6.87 CPU-s/dataset
+MA_betamin                   7.29 CPU-s/dataset
+MD_linear                    6.78 CPU-s/dataset
+MA+MD_linear                 7.06 CPU-s/dataset
+MD_accel                     6.89 CPU-s/dataset
+MA+MD_accel                  7.28 CPU-s/dataset
+MD_step                      6.87 CPU-s/dataset
+MA+MD_step                   7.22 CPU-s/dataset
+MO_lown                      9.06 CPU-s/dataset  latent extant 80
+MO_uniform                   9.19 CPU-s/dataset  latent extant 49
+ar_cat_high_sigma            7.19 CPU-s/dataset
+ar_cat_low_s                 5.00 CPU-s/dataset
+ar_cat_strong_env            7.80 CPU-s/dataset

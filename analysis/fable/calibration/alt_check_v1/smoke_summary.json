@@ -1,0 +1,44 @@
+{
+ "mamd": {
+  "reject": 0,
+  "accept": 2,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 0,
+  "null_gate_count": 0,
+  "detections": 0
+ },
+ "mo": {
+  "reject": 0,
+  "accept": 2,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 0,
+  "null_gate_count": 0,
+  "detections": 0
+ },
+ "corner": {
+  "reject": 0,
+  "accept": 2,
+  "indet_calib": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 0,
+  "null_gate_count": 0,
+  "detections": 0
+ }
+}

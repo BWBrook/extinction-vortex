@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 18:37 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 10 October 2026, 19:40 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -195,9 +195,29 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   and measure the remaining costs. Production-bank generation and subsequent
   beta_min/corner recomputation remain preparation, not validation.
 
-**Next response: Fable.** Supply the remaining generator/selection specification,
-repairs and complete execution inventory, then a reviewable freeze package.
-No question is open for Barry. His primary-null and RI decisions stay settled.
+**Protocol draft 0.9 (Fable).** Responds to 1348.
+- **Done:**
+  - executable M_D and M_O with priors and 28 limiting-case checks
+    ([alt_check_v1](analysis/fable/calibration/alt_check_v1/NOTE.md));
+  - the fixed-mixture stress-check law;
+  - the §7 execution inventory, about 3,300 core-hours;
+  - the finite-bound scorer check, plus a fix for a shadowing bug it
+    introduced, which the smoke test caught;
+  - frozen radius bins;
+  - a draft [freeze package](notes/vortex_freeze_package_20261010.md).
+- **Running on deep-server:**
+  - tmux `fable_screen200`: the §4.1 screens, 200 under the null and 200 at
+    β_min. Run directory
+    `/data/fable/vortex/banks10x_20261009T041220Z/dev_screen200_v1`.
+  - Then tmux `fable_prodbanks`: the designated primary, stability and iid
+    banks, followed by β_min, the corners and the empirical position on the
+    primary bank. Run directory `/data/fable/vortex/production_banks_*`.
+
+**Next response: Codex.** Review the 0.9 specifications (M_D and M_O priors,
+the M_O contract, the stress law, the inventory) and the draft freeze package.
+In parallel, Fable completes the package with the screen and designated-bank
+results. No question is open for Barry. His primary-null and RI decisions stay
+settled.
 
 No validation and no empirical p-values have been run.
 
@@ -420,14 +440,20 @@ No validation and no empirical p-values have been run.
   - Wrote the protocol's design, stress-check and cost sections.
   - Exposure row E25. Read 1309–1314.
 
+- 10 October, draft 0.9.
+  - Implemented M_D and M_O with limiting-case tests.
+  - Repaired the stress law and the scorer (including the shadowing fix).
+  - Wrote the execution inventory, froze the radius bins and drafted the
+    freeze package.
+  - Launched the §4.1 screens and queued the designated banks.
+  - Read 1339–1348.
+
 ## Pending
 
-1. Astra reviews draft 0.8. Then Fable:
-   - implements M_D and M_O (d and k priors, and the observation-selection
-     interaction);
-   - builds the production banks with frozen seeds;
-   - recomputes β_min and the corners on those banks;
-   - measures corner cost.
+1. Fable completes the freeze package: the §4.1 screen results, the
+   designated banks, and β_min, the corners and the empirical position
+   recomputed. Astra reviews it together with the 0.9 M_D and M_O
+   specifications.
 
    The validation freeze follows. The low-power evidence is retained, and the
    effect is not retuned to obtain O1.
@@ -506,10 +532,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1314 in full. Fable's latest posts: 1247 and the 0.8 handoff.
-- Last full retrieval `next_after`: **1321**.
-- Explicit acknowledgement: through message **1314** in discussion 70.
-- Next retrieval: use `after=1321` and omit `through`.
+- Read through 1348 in full. Fable's latest posts: 1326 and the 0.9 handoff.
+- Last full retrieval `next_after`: **1355**.
+- Explicit acknowledgement: through message **1348** in discussion 70.
+- Next retrieval: use `after=1355` and omit `through`.
 
 ## Coordination note
 

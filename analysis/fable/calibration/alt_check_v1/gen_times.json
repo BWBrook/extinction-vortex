@@ -1,0 +1,242 @@
+{
+ "seed": 20261030,
+ "n_outer": 20,
+ "md_hi": 2.0,
+ "beta_min": 0.9745192683713976,
+ "results": [
+  {
+   "scenario": "null",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 6.8676576676,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0195582534499998,
+    "marmot": 0.8351228579999992,
+    "ms_woodpecker": 0.6675873819000001,
+    "rc_woodpecker": 0.6320836329999999,
+    "golden_plover": 0.8536360848000004,
+    "whooping_crane": 0.7273640282500005,
+    "hawaiian_crow": 0.4839644990000023,
+    "wood_turtle_A": 0.808578076549999,
+    "wood_turtle_B": 0.8396984295000001
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MA_betamin",
+   "beta": 0.9745192683713976,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.290336751850001,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0870294150500006,
+    "marmot": 0.8860885635499995,
+    "ms_woodpecker": 0.7055749572499991,
+    "rc_woodpecker": 0.6677321328500014,
+    "golden_plover": 0.9101837808499986,
+    "whooping_crane": 0.7746651433000018,
+    "hawaiian_crow": 0.5076317736500018,
+    "wood_turtle_A": 0.8596203557000012,
+    "wood_turtle_B": 0.8917445065999992
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MD_linear",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 6.7786541312,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0067689179500001,
+    "marmot": 0.8253359756999987,
+    "ms_woodpecker": 0.65987326215,
+    "rc_woodpecker": 0.6212197444999992,
+    "golden_plover": 0.8438840391500007,
+    "whooping_crane": 0.7164147025499998,
+    "hawaiian_crow": 0.4775468682999982,
+    "wood_turtle_A": 0.7986920549500006,
+    "wood_turtle_B": 0.82883674195
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MA+MD_linear",
+   "beta": 0.9745192683713976,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.0598356624,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0519612113,
+    "marmot": 0.8581849677000004,
+    "ms_woodpecker": 0.6830007663999991,
+    "rc_woodpecker": 0.647065111099999,
+    "golden_plover": 0.8838411198999996,
+    "whooping_crane": 0.7478539323000002,
+    "hawaiian_crow": 0.4883037357500012,
+    "wood_turtle_A": 0.8337095596500006,
+    "wood_turtle_B": 0.8658346515000005
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MD_accel",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 6.8910238951,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0255985485999992,
+    "marmot": 0.8397245636999999,
+    "ms_woodpecker": 0.6696476593500016,
+    "rc_woodpecker": 0.6407040497000015,
+    "golden_plover": 0.8563654396000011,
+    "whooping_crane": 0.7283577284499996,
+    "hawaiian_crow": 0.48423615184999996,
+    "wood_turtle_A": 0.8088740554499996,
+    "wood_turtle_B": 0.8374333433500001
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MA+MD_accel",
+   "beta": 0.9745192683713976,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.2766898686,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.085246971449999,
+    "marmot": 0.8837283428499999,
+    "ms_woodpecker": 0.7040722791500018,
+    "rc_woodpecker": 0.6657426279999992,
+    "golden_plover": 0.9078934448499989,
+    "whooping_crane": 0.7716628615999999,
+    "hawaiian_crow": 0.5050370181500031,
+    "wood_turtle_A": 0.8601207093999996,
+    "wood_turtle_B": 0.8931209919499986
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MD_step",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 6.869509740050001,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0202986203999984,
+    "marmot": 0.8353526754000006,
+    "ms_woodpecker": 0.6678834324000007,
+    "rc_woodpecker": 0.6347054114500006,
+    "golden_plover": 0.853965628850001,
+    "whooping_crane": 0.7261628801000024,
+    "hawaiian_crow": 0.4857917193999991,
+    "wood_turtle_A": 0.8064160230000011,
+    "wood_turtle_B": 0.8388648375500001
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MA+MD_step",
+   "beta": 0.9745192683713976,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.2192148221,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.0730221043500012,
+    "marmot": 0.876087685349999,
+    "ms_woodpecker": 0.7012995044499994,
+    "rc_woodpecker": 0.6649376944000004,
+    "golden_plover": 0.9009977179000005,
+    "whooping_crane": 0.7643301134500019,
+    "hawaiian_crow": 0.5022407124500006,
+    "wood_turtle_A": 0.8526370142999997,
+    "wood_turtle_B": 0.8835959401000018
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "MO_lown",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 9.055319977249999,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.3568180241999999,
+    "marmot": 1.1090253036999997,
+    "ms_woodpecker": 0.8969061160499985,
+    "rc_woodpecker": 0.8213818328500004,
+    "golden_plover": 1.097723535899998,
+    "whooping_crane": 0.9649712276000015,
+    "hawaiian_crow": 0.6503613508499992,
+    "wood_turtle_A": 1.0608606921500008,
+    "wood_turtle_B": 1.097126630150002
+   },
+   "latent_extant_at_endpoint": 80
+  },
+  {
+   "scenario": "MO_uniform",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 9.19170331695,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.3763493852999997,
+    "marmot": 1.1252042474499997,
+    "ms_woodpecker": 0.8966020671000017,
+    "rc_woodpecker": 0.8348873368999973,
+    "golden_plover": 1.1462236377499984,
+    "whooping_crane": 0.9743660338499998,
+    "hawaiian_crow": 0.6357618072500003,
+    "wood_turtle_A": 1.0797272885499996,
+    "wood_turtle_B": 1.1224645465500014
+   },
+   "latent_extant_at_endpoint": 49
+  },
+  {
+   "scenario": "ar_cat_high_sigma",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.190380482649999,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.116478975200002,
+    "marmot": 0.8724464568999994,
+    "ms_woodpecker": 0.7047910664000002,
+    "rc_woodpecker": 0.6804024046000003,
+    "golden_plover": 0.8641018975999983,
+    "whooping_crane": 0.721409723849998,
+    "hawaiian_crow": 0.4522526964500022,
+    "wood_turtle_A": 0.8652334568999992,
+    "wood_turtle_B": 0.9131800316999972
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "ar_cat_low_s",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 4.9974510676,
+   "cpu_s_per_pop": {
+    "wild_dog": 0.7194232071000005,
+    "marmot": 0.5361148992999983,
+    "ms_woodpecker": 0.4280419015999996,
+    "rc_woodpecker": 0.5138297400000006,
+    "golden_plover": 0.5526107468999999,
+    "whooping_crane": 0.5745244298499992,
+    "hawaiian_crow": 0.39796359749999954,
+    "wood_turtle_A": 0.5865894214999978,
+    "wood_turtle_B": 0.6882863234000007
+   },
+   "latent_extant_at_endpoint": null
+  },
+  {
+   "scenario": "ar_cat_strong_env",
+   "beta": 0.0,
+   "n_outer": 20,
+   "cpu_s_per_dataset": 7.8019931392499995,
+   "cpu_s_per_pop": {
+    "wild_dog": 1.3244086041499987,
+    "marmot": 1.021644072800001,
+    "ms_woodpecker": 0.7633617890000005,
+    "rc_woodpecker": 0.7009424965499994,
+    "golden_plover": 0.9722766430499998,
+    "whooping_crane": 0.7403174003500012,
+    "hawaiian_crow": 0.45649518430000235,
+    "wood_turtle_A": 0.8937841549500005,
+    "wood_turtle_B": 0.9286946660999996
+   },
+   "latent_extant_at_endpoint": null
+  }
+ ]
+}
