@@ -25,10 +25,12 @@ No empirical conditional-null p-value has been computed or inspected.
 | Calibration summaries | mean squared non-final log change; lag-1 ACF (0 if constant, flagged); fraction of increases; MAD-scaled within the bank; zero-MAD features dropped and flagged |
 | Library | k-NN, K = 2,000, no distance cutoff; bank ≥ K valid runs (code-enforced) |
 | Replicates | R_train = R_test = 2,000; Ledoit–Wolf if cond > 10^6; p = (1 + #{D_test ≥ D_obs}) / (R_test + 1) |
-| Outcomes | reject / accept / indeterminate (`indet_malformed`, `indet_obsfit`, `indet_train` (> 2% of training fits failed), `indet_cov`, `indet_straddle`); fixed denominators |
+| Outcomes | reject / accept / indeterminate (`indet_sampling` (no selected draw within 10^6 for some population; no fits; never replaced), `indet_malformed`, `indet_obsfit`, `indet_train` (> 2% of training fits failed), `indet_cov`, `indet_straddle`); fixed denominators |
+| Fit-failure accounting | numerator: datasets with any missing T1–T4 among the 2R + 1 per fitted trial (a missing or malformed T file counts all); sampling failures excluded and reported separately |
+| Provenance per trial | selected draw per population: parameters (including M_D shift and step time), recorded counts, latent counts under M_O; K-th distances; flags; fallback count |
 | Selection and cap | exact matched selection S on recorded counts; cap event A (counts and Poisson rates ≤ 10^9) |
 | Prior | (b): logit s ~ N(0, 1.5²); log f ~ U(log 0.01, log 2); σ ~ U(0.02, 1); ρ ~ U(0, 0.9); p_c ~ U(0, 0.05); δ ~ U(0.5, 0.95) |
-| Code | commit `a31e5bc` (`bank.py`, `e2e_benchmark.py`, `tstats_batch.R`, `score_discrimination.py` contract v2) |
+| Code | the commit carrying this package (`bank.py`, `e2e_benchmark.py`, `tstats_batch.R`, `score_discrimination.py` contract v3, `make_manifest.py`, `validate.py`, `collect_validation.py`, `run_validation.sh`, `empirical_q1.py`); runtime: Python 3 with NumPy 1.26.4 and SciPy 1.11.4, R with nlme, on deep-server |
 
 ## 3. Designated banks
 
@@ -60,9 +62,21 @@ These use the fixed recipes; the development values are in brackets.
 
 ## 6. Validation run definition and streams
 
-- **Per arm:** one e2e process per chunk of trials.
-- **Seed:** 9 × 10^12 + 10^6·b + c, for scenario block b and chunk c.
-- **Recorded:** every trial's row; failures stay in the denominators.
+**Executable.**
+- `make_manifest.py` writes the manifest and the stress parameter sets. The
+  sets are drawn once, with seed 9 × 10^12 + 17 × 10^6 + 999.
+- `run_validation.sh MANIFEST 3 OUT` runs `validate.py` in three slots, the
+  most the host's memory allows at about 28 GB each, then runs
+  `collect_validation.py`.
+- Each chunk directory holds its manifest entry, its rows and its T files.
+- `DONE` means the processes and the collector completed. The scientific
+  result is in the collector's JSON.
+
+**Streams and records.**
+- **Seed:** 9 × 10^12 + 10^6·b + c, for block b and chunk c: 170 distinct
+  streams.
+- **Recorded:** every trial's row, including indeterminate and sampling
+  failures, all on the intended denominators.
 
 | b | Scenario | Trials | Chunks |
 |---:|---|---:|---:|
@@ -73,7 +87,7 @@ These use the fixed recipes; the development values are in brackets.
 | 10–11 | M_O low-n and uniform | 2 × 300 | 10 × 30 each |
 | 12–14 | M_A (β_min) + M_D, each form | 3 × 300 | 10 × 30 each |
 | 15–16 | Detection curve: M_A at Δ10 = 0.3 and 0.5 | 2 × 300 | 10 × 30 each |
-| 17 | Fitted-parameter predictive stress check (parameter sets drawn once; budget failures unresolved) | 300 | 10 × 30 |
+| 17 | Fitted-parameter predictive stress check: its single execution point. Parameter sets are drawn once; budget failures are `indet_sampling`, not replaced | 300 | 10 × 30 |
 
 **Gates and labels:**
 - **Null scenarios:** pass if the upper 98.75% CP bound on the rejection rate
@@ -81,20 +95,29 @@ These use the fixed recipes; the development values are in brackets.
   counted as rejections.
 - **Power at β_min:** the O1 label needs ≥ 224/300. Development evidence
   (1/30) indicates it will fail, which makes a non-rejection O3.
-- **Stop rule:** a fit-failure rate above 2% in any scenario stops validation.
+- **Stop rule:** a fit-failure rate above 2% in any gating block (1–5) stops
+  validation. Descriptive blocks report their rate. Sampling failures are
+  counted separately.
 - **Descriptive only:** blocks 6–17.
 - **Cost:** about 3,006 core-hours; roughly 75 hours on deep-server (§4.4).
 
 ## 7. After validation (empirical, once)
 
-- The Q1 primary on the primary bank, then the §7 execution inventory in the
-  order listed. Replicate streams are 9.5 × 10^12 + a.
-- The stress check runs alongside, with the empirical radius position
-  reported first.
+- **Q1:** `empirical_q1.py MANIFEST SUMMARY OUT 1` on the primary bank.
+  - It refuses to run unless the collector's summary for this manifest shows
+    no V-fail and no fit stop.
+  - Before its p-value is read, the empirical radius position is reported
+    against the frozen bins.
+- **Then the §7 inventory**, with analysis IDs a = 1–22 and replicate streams
+  9.5 × 10^12 + a.
+- **Not yet implemented** (each implemented and frozen before its own run;
+  reported unvalidated): the per-statistic p_k; the sensitivity generators
+  and designs; the RI+slope replicate fitting; LOPO assembly.
 
 ## 8. Still open before freezing
 
-- Astra's review of this package and of the M_D and M_O priors.
+- Astra's review of the completed package. The M_D and M_O specifications
+  were accepted in the 0.9 review, with the stated scope limits.
 - The *pending* values above.
 - The §4.1 development screens: their results, and the >30/200 stop rule.
 - Unresolved limits, kept visible: source and census-unit conflicts; the F&H

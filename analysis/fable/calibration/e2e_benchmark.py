@@ -1,28 +1,30 @@
-"""End-to-end run of the development procedure (protocol §3.4/§4.3) on SYNTHETIC outer
-datasets only (no empirical T1-T4, no empirical p-value).
+"""End-to-end run of the development and validation procedure (protocol §3.4/§4.3) on
+SYNTHETIC outer datasets only (no empirical T1-T4, no empirical p-value).
 
 Per outer dataset: fresh selected trajectories (one per population, independent of the
-bank) -> calibration summaries -> per-population k-NN library (the K nearest bank runs in
-MAD-scaled summary space; no hard tolerance) -> R_train and R_test replicate datasets ->
-T1-T4 in R (tstats_batch.R) -> training mean/covariance (Ledoit-Wolf shrinkage if
-ill-conditioned) -> D -> p bounds with the conservative tie rule.
+bank, each within a budget of BUDGET draws) -> calibration summaries -> per-population k-NN
+library (the K nearest bank runs in MAD-scaled summary space; no hard tolerance) -> R_train
+and R_test replicate datasets -> T1-T4 in R (tstats_batch.R) -> training mean/covariance
+(Ledoit-Wolf shrinkage if ill-conditioned) -> D -> p bounds with the conservative tie rule.
 
 Output contract (one JSON object per trial, appended to e2e_rows.jsonl as it completes):
-outer, timings, kth_dist (per population), flags (zero-MAD features dropped per population;
-populations whose outer series has constant changes), fit_failures, fallback, train_fail,
+trial_id, outer (position in the chunk), selected (per population: the selected draw's
+parameters, recorded counts, latent counts under M_O, draws used), timings, kth_dist,
+flags (zero-MAD features dropped; populations whose outer series has constant changes),
+fit_failures (datasets with any missing T statistic, of 2R+1), fallback, train_fail,
 test_fail, cond, D_obs, p_lo, p_hi, p_diagnostic (= p_lo, or "indeterminate"), outcome,
 T_obs. Outcomes: reject (p_hi < ALPHA), accept (p_lo >= ALPHA), or indeterminate:
-indet_malformed (T file not 2R+1 ordered sets), indet_obsfit, indet_train (more than
-TRAIN_FAIL_MAX of the training fits failed), indet_cov (unusable training covariance),
-indet_straddle. Every bank must hold at least K selected runs.
+indet_sampling (a population found no selected trajectory within BUDGET draws; no fits,
+not replaced), indet_malformed (T file not 2R+1 ordered sets), indet_obsfit, indet_train
+(more than TRAIN_FAIL_MAX of the training fits failed), indet_cov (unusable training
+covariance), indet_straddle. Every bank must hold at least K selected runs.
 
 Usage: python e2e_benchmark.py BANKDIR VARIANT OUTDIR N_OUTER R K R_WORKERS SEED [BETA_OUTER] [SCENARIO_JSON]
 BETA_OUTER > 0 generates the outer datasets under M_A on the same environment variant; the
 reference is always that variant's no-feedback bank. SCENARIO_JSON (optional) is an object
 with any of: "fixed" (population -> fixed parameter values; otherwise prior-predictive),
 "drift" (M_D: {"form": "linear"|"accel"|"step", "hi": end-shift upper bound}) and "detect"
-(M_O: "lown" or "uniform"). Under M_O the outer series are the recorded counts and each
-trial also records the latent final counts.
+(M_O: "lown" or "uniform"). validate.py runs manifest-defined chunks through run_chunk.
 """
 import os, sys, time, json, subprocess, csv
 import numpy as np
@@ -33,16 +35,33 @@ from bank import designs, calib_features, constant_changes, simulate_chunk, load
 ALPHA = 0.05
 TRAIN_FAIL_MAX = 0.02
 FEATURES = ("msq", "acf", "inc")
+BUDGET = 10 ** 6            # draws per population trajectory before a sampling-budget failure
+GEN_CHUNK = 200_000
 
 
-def fresh_selected(design, variant, rng, beta=0.0, fixed=None, drift=None, detect=None):
-    """First selected trajectory (recorded counts) and its latent counts (None unless M_O)."""
-    while True:
-        rec, p, over, sel = simulate_chunk(design, variant, 200_000, rng, beta=beta, fixed=fixed,
+def fresh_selected(design, variant, rng, beta=0.0, fixed=None, drift=None, detect=None, budget=BUDGET):
+    """The first selected draw within `budget` draws, as {"recorded", "latent" (M_O only),
+    "params", "draws"}; None when the budget is exhausted."""
+    done = 0
+    while done < budget:
+        n = min(GEN_CHUNK, budget - done)
+        rec, p, over, sel = simulate_chunk(design, variant, n, rng, beta=beta, fixed=fixed,
                                            drift=drift, detect=detect)
+        done += n
         if sel.any():
             i = np.flatnonzero(sel)[0]
-            return rec[i], (p["latent"][i] if detect is not None else None)
+            out = {"recorded": rec[i].astype(int).tolist(), "draws": done,
+                   "params": {k: float(v[i]) for k, v in p.items()
+                              if k != "latent" and np.isfinite(v[i])}}
+            if detect is not None:
+                out["latent"] = p["latent"][i].astype(int).tolist()
+            return out
+    return None
+
+
+def run_fits(path_in, path_out, workers):
+    here = os.path.dirname(os.path.abspath(__file__))
+    subprocess.run(["Rscript", os.path.join(here, "tstats_batch.R"), path_in, path_out, str(workers)], check=True)
 
 
 def ledoit_wolf(X):
@@ -130,31 +149,36 @@ def knn_banks(bankdir, variant, des, K):
     return banks
 
 
-def main():
-    bankdir, variant, outdir, n_outer = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
-    R, K, workers, seed = int(sys.argv[5]), int(sys.argv[6]), sys.argv[7], int(sys.argv[8])
-    beta_outer = float(sys.argv[9]) if len(sys.argv) > 9 else 0.0
-    scenario = json.load(open(sys.argv[10])) if len(sys.argv) > 10 else {}
+def run_chunk(banks, des, variant, outdir, trial_ids, R, K, workers, seed, beta=0.0, spec=None,
+              stress=None, budget=BUDGET, observed=None):
+    """Run trials `trial_ids` in order from one generator seeded with `seed`, appending a row
+    per trial to OUTDIR/e2e_rows.jsonl. spec holds fixed/drift/detect; stress maps each trial
+    ID to its retained per-population parameter set (fixed-parameter stress check). observed
+    (population -> recorded counts) replaces generation for a single empirical trial."""
+    spec = spec or {}
     os.makedirs(outdir, exist_ok=True)
     rng = np.random.default_rng(seed)
-    des = designs()
-    t0 = time.time()
-    banks = knn_banks(bankdir, variant, des, K)
-    meta = {"variant": variant, "R_train": R, "R_test": R, "K": K, "r_workers": workers, "seed": seed,
-            "beta_outer": beta_outer, "scenario": scenario, "n_outer": n_outer,
-            "t_load_banks": round(time.time() - t0, 1)}
-    json.dump(meta, open(os.path.join(outdir, "e2e_meta.json"), "w"), indent=1)
-    here = os.path.dirname(os.path.abspath(__file__))
-    for k in range(n_outer):
-        tk = {"outer": k}
+    det = DETECT[spec["detect"]] if "detect" in spec else None
+    for k, tid in enumerate(trial_ids):
+        tk = {"trial_id": int(tid), "outer": k}
         t = time.time()
-        det = DETECT[scenario["detect"]] if "detect" in scenario else None
-        draws = {n: fresh_selected(d, variant, rng, beta_outer, scenario.get("fixed", {}).get(n),
-                                   scenario.get("drift"), det) for n, d in des.items()}
-        obs = {n: v[0] for n, v in draws.items()}
-        if det is not None:
-            tk["latent_final"] = json.dumps({n: int(v[1][-1]) for n, v in draws.items()})
+        fixed = stress[str(tid)] if stress is not None else spec.get("fixed", {})
+        if observed is not None:
+            draws = {n: {"recorded": [int(v) for v in observed[n]], "params": {}, "draws": 0} for n in des}
+        else:
+            draws = {n: fresh_selected(d, variant, rng, beta, fixed.get(n), spec.get("drift"), det, budget)
+                     for n, d in des.items()}
         tk["t_outer_sim"] = time.time() - t
+        tk["selected"] = draws
+        failed = [n for n, v in draws.items() if v is None]
+        if failed:
+            tk |= {"sampling_failed": failed, "fixed": {n: fixed.get(n) for n in failed},
+                   "p_diagnostic": "indeterminate", "outcome": "indet_sampling"}
+            with open(os.path.join(outdir, "e2e_rows.jsonl"), "a") as fh:
+                fh.write(json.dumps(tk) + "\n")
+            print(json.dumps({x: tk[x] for x in ("trial_id", "outcome", "sampling_failed")}), flush=True)
+            continue
+        obs = {n: np.array(v["recorded"]) for n, v in draws.items()}
         t = time.time()
         libs, kth = {}, {}
         for n, b in banks.items():
@@ -167,7 +191,7 @@ def main():
         tk["flags"] = json.dumps({"zero_mad_dropped": {n: b["dropped"] for n, b in banks.items() if b["dropped"]},
                                   "constant_changes": [n for n in des if constant_changes(obs[n][None, :])[0]]})
         t = time.time()
-        path_in = os.path.join(outdir, f"sets_{k}.csv")
+        path_in = os.path.join(outdir, f"sets_{tid}.csv")
         with open(path_in, "w", newline="") as fh:
             w = csv.writer(fh); w.writerow(["set", "pop", "year", "N"])
             for n, d in des.items():
@@ -180,8 +204,8 @@ def main():
                         w.writerow([r, n, y, int(v)])
         tk["t_write"] = time.time() - t
         t = time.time()
-        path_out = os.path.join(outdir, f"T_{k}.csv")
-        subprocess.run(["Rscript", os.path.join(here, "tstats_batch.R"), path_in, path_out, workers], check=True)
+        path_out = os.path.join(outdir, f"T_{tid}.csv")
+        run_fits(path_in, path_out, workers)
         tk["t_fits"] = time.time() - t
         T = read_T(path_out, R)
         sc = p_bounds(None if T is None else T[0], R)
@@ -194,7 +218,23 @@ def main():
         os.remove(path_in)
         with open(os.path.join(outdir, "e2e_rows.jsonl"), "a") as fh:
             fh.write(json.dumps(tk) + "\n")
-        print(json.dumps(tk), flush=True)
+        print(json.dumps({x: tk.get(x) for x in ("trial_id", "outcome", "p_lo", "kth_dist")}), flush=True)
+
+
+def main():
+    bankdir, variant, outdir, n_outer = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
+    R, K, workers, seed = int(sys.argv[5]), int(sys.argv[6]), sys.argv[7], int(sys.argv[8])
+    beta_outer = float(sys.argv[9]) if len(sys.argv) > 9 else 0.0
+    spec = json.load(open(sys.argv[10])) if len(sys.argv) > 10 else {}
+    os.makedirs(outdir, exist_ok=True)
+    des = designs()
+    t0 = time.time()
+    banks = knn_banks(bankdir, variant, des, K)
+    meta = {"variant": variant, "R_train": R, "R_test": R, "K": K, "r_workers": workers, "seed": seed,
+            "beta_outer": beta_outer, "scenario": spec, "n_outer": n_outer, "budget": BUDGET,
+            "t_load_banks": round(time.time() - t0, 1)}
+    json.dump(meta, open(os.path.join(outdir, "e2e_meta.json"), "w"), indent=1)
+    run_chunk(banks, des, variant, outdir, range(n_outer), R, K, workers, seed, beta_outer, spec)
     meta["total_seconds"] = round(time.time() - t0, 1)
     json.dump(meta, open(os.path.join(outdir, "e2e_meta.json"), "w"), indent=1)
 

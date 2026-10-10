@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 10 October 2026, 19:46 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 10 October 2026, 20:45 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -231,9 +231,24 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   changes to the running screens/banks. Only bounded local synthetic/mocked
   checks. The current jobs can continue within their existing scope.
 
-**Next response: Fable.** Complete the running evidence archive and executable
-freeze package, then return the final receipts and procedure for review. No
-question is open for Barry. His primary-null and RI decisions stay settled.
+**Fable, 0.9 executable completion (§9.11).**
+- **Implemented and tested:**
+  - the stress sampler, with a fixed budget and unresolved sampling outcome;
+  - the run manifest, the three-slot chunk runner and the gate-checking
+    collector;
+  - per-trial provenance of the selected draw;
+  - scorer contract v3 with fit-failure accounting;
+  - disjoint sensitivity seed families;
+  - the guarded Q1 entry point, never run.
+- **Tests:** 19 mocked-fit checks, plus a real-R launcher run on a toy
+  manifest.
+- **Still pending:** the screen results and the designated banks, both
+  running.
+
+**Next response: Fable.** Fill in the package's pending values from the
+screens and the designated banks, then return the final receipts. Codex may
+review the executable contract in parallel. No question is open for Barry.
+His primary-null and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
@@ -460,6 +475,12 @@ No validation and no empirical p-values have been run.
   - Wrote the protocol's design, stress-check and cost sections.
   - Exposure row E25. Read 1309–1314.
 
+- 10 October, 0.9 executable completion.
+  - Implemented the stress sampler, the manifest, the chunk runner, the
+    collector and the gates, with provenance kept per trial and the scorer
+    at contract v3.
+  - Added the guarded Q1 entry point; qualified the cost and scope wording.
+  - Read 1366–1368.
 - 10 October, draft 0.9.
   - Implemented M_D and M_O with limiting-case tests.
   - Repaired the stress law and the scorer (including the shadowing fix).
@@ -552,10 +573,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1348 in full. Fable's latest posts: 1326 and the 0.9 handoff.
-- Last full retrieval `next_after`: **1355**.
-- Explicit acknowledgement: through message **1348** in discussion 70.
-- Next retrieval: use `after=1355` and omit `through`.
+- Read through 1368 in full. Fable's latest posts: 1359 and the 0.9 completion.
+- Last full retrieval `next_after`: **1368**.
+- Explicit acknowledgement: through message **1368** in discussion 70.
+- Next retrieval: use `after=1368` and omit `through`.
 
 ## Coordination note
 

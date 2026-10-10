@@ -528,6 +528,13 @@ parameters. Each is tested against the ar_cat null bank.
     followed by the exact selection S and the cap event A, as for the null
     parameters. The recruitment centring −σ²/2 is unchanged, so a shift lowers
     survival and recruitment together.
+  - **These are design distributions,** not empirically estimated priors
+    (Astra 0.9 review), and selection changes them after S and A.
+  - **Equal Δ is not an equal effect.** The terminal multiplier on the
+    recruitment rate and the survival odds is exp(−σΔ), which depends on σ.
+    So equal Δ is not matched in vital-rate or risk effect across
+    populations, and Q2 rates describe these alternatives without making
+    them effect-matched competitors to M_A.
   - The shift and step time are kept per draw. Δ = 0 draws nothing and
     reproduces ar_cat exactly.
 - **M_O.** The latent population follows ar_cat.
@@ -543,6 +550,13 @@ parameters. Each is tested against the ar_cat null bank.
     latent endpoint.
   - Laws: low-n, p(n) = 1 − 0.3·exp(−n/10); uniform, p = 0.9. With p ≡ 1
     the generator reproduces ar_cat exactly.
+  - **Limitation.** The latent start is a plug-in scenario convention. It is
+    not exact conditioning of a latent-abundance model on an initial binomial
+    census.
+- **Provenance** (0.9). Every validation trial row keeps, for each
+  population, the selected draw's parameters (including the M_D shift and
+  step time), its recorded counts and, under M_O, its latent counts.
+  Rejected candidates are not kept.
 - **M_A + M_D.** β = β_min, combined with each M_D form at the M_D priors.
   β = 0 reproduces the M_D component exactly.
 
@@ -572,6 +586,8 @@ the median calibrated M0 parameters.
 - **Under the adopted ar_cat null** (0.8). M_A and M0 share the ar_cat
   environment, the medians are those of the k-NN libraries at the observed C,
   and the median parameters include ρ, p_c and δ.
+- **Scope.** β_min is the minimum *risk-defined* effect on the declared
+  grid. It is not a demonstrated minimum detectable effect.
 - **Development value** (10× development banks; `dev_design_v1/`; recomputed
   on the frozen banks).
   - Baseline: P(E within 10 years from N = 20) = 0.422 under the null, so
@@ -679,6 +695,12 @@ the median calibrated M0 parameters.
          reported with an exact interval.
        - It is descriptive, not a gate. An empirical case in a poorly
          represented region is reported as a limitation.
+       - **Single execution point:** validation block 17
+         (`make_manifest.py` draws and keeps the sets; seed
+         9 × 10^12 + 17 × 10^6 + 999).
+       - **Implementation:** a budget failure is the outcome `indet_sampling`.
+         It is recorded with the failed populations and their retained
+         parameter sets, gets no fits, and is never replaced.
      - No extra radius gate is added. Support is never excluded after seeing
        a p-value.
    - **Evidence**
@@ -745,8 +767,20 @@ the median calibrated M0 parameters.
          rule (> 2% in a scenario).
      - **Malformed fit output.** A T1–T4 file that does not hold exactly the
        sets 0…2R in order is `indet_malformed`.
-     - **Outcome per trial.** reject; accept; or indeterminate (`indet_malformed`,
-       `indet_obsfit`, `indet_train`, `indet_cov`, `indet_straddle`).
+     - **Outcome per trial.** reject; accept; or indeterminate
+       (`indet_sampling`, `indet_malformed`, `indet_obsfit`, `indet_train`,
+       `indet_cov`, `indet_straddle`).
+       - `indet_sampling` means no selected trajectory was found within
+         10^6 draws for some population. That is a sampling failure, not a
+         fit failure.
+     - **Fit-failure accounting.**
+       - The numerator counts datasets with any missing T1–T4 among the
+         observed, training and test datasets of each fitted trial
+         (2R + 1 = 4,001 per trial).
+       - A missing or malformed T file after sampling counts all 4,001 as
+         failed.
+       - Sampling failures are excluded from both numerator and denominator,
+         and reported separately.
        - The diagnostic p, which ignores these, is archived separately and
          never labels a trial.
        - Code: `e2e_benchmark.py`. The `score_discrimination.py` contract v1
@@ -918,12 +952,28 @@ The proposal text follows, corrected where noted.
     observed-fit failure, training failures above 2%, unusable covariance,
     or straddling bounds.
   - Difficult datasets are never dropped or replaced.
-  - Separately, a fit-failure rate above 2% in any scenario stops validation,
-    pending a documented estimator revision.
+  - Separately, a fit-failure rate above 2% stops validation, pending a
+    documented estimator revision. This applies in any *gating* scenario:
+    the four null scenarios and the power scenario. Descriptive blocks
+    (alternatives, detection curve, stress) report their rate.
 - **Radius strata and the fitted-parameter predictive stress check** (§3.4
   step 3). Rejection rates per radius quintile are predeclared for every null
-  scenario. The stress check (300 datasets) runs once, after the freeze,
-  alongside the empirical test. Both are descriptive.
+  scenario. The stress check (300 datasets) runs once, as validation block 17.
+  Both are descriptive.
+- **Executable contract** (0.9; freeze package §6).
+  - `make_manifest.py` writes 17 blocks × 10 chunks: seeds 9 × 10^12 +
+    10^6·b + c, contiguous trial IDs, one directory per chunk.
+  - `validate.py` runs the chunks; `run_validation.sh` caps concurrency at
+    three bank-holding processes. A chunk that is already complete is
+    skipped; a partial chunk stops its slot for a manual decision.
+  - `collect_validation.py` pools the chunks on the full intended
+    denominators. It retains missing trials and refuses duplicates and rows
+    outside a chunk.
+  - It evaluates the four null gates (≤ 60 of 1,000), the power gate
+    (≥ 224 of 300) and the fit stop, and reports the descriptive rates and
+    the stress bounds.
+  - Tested in `test_validation.py` with mocked fits, plus a real-R run of the
+    launcher on a toy manifest.
 - **Detection curve** (§3.3). M_A at Δ10 = 0.3 and 0.5 is added to the
   alternatives, 300 datasets each and descriptive, adding about 230
   core-hours.
@@ -1239,10 +1289,31 @@ count, seed family and cost.
   - 8.1 × 10^12 + task: the primary ar_cat bank;
   - 8.2 × 10^12 + task: the stability ar_cat bank;
   - 8.3 × 10^12 + task: the iid bank;
-  - 8.4–8.8 × 10^12 + task: the sensitivity banks, one family each;
+  - 8.4 × 10^12 (rule E = 0), 8.5 (inclusion window), 8.6 (separate
+    factors), 8.70 (F&H-length windows), 8.71 (wild-dog fills missing), 8.72
+    (fills re-created), 8.73 (identical-count runs), 8.8 (prior (a)), each
+    + task. These families are disjoint;
   - 9 × 10^12 + 10^6·b + c: validation, for scenario block b and process
     chunk c;
-  - 9.5 × 10^12 + a: the replicate streams of empirical analysis a.
+  - 9.5 × 10^12 + a: the replicate streams of empirical analysis a, where
+    a is: 1 Q1; 2 stability; 3 iid; 4 RI+slope; 5–13 LOPO in design order;
+    14 turtles together; 15 rule E = 0; 16 inclusion window; 17 separate
+    factors; 18 F&H windows; 19 fills missing; 20 fills re-created;
+    21 identical runs; 22 prior (a).
+- **Implementation status (0.9).**
+  - **Implemented and tested:** validation (all 17 blocks) and the Q1
+    entry point (`empirical_q1.py`). That entry point shares the validated
+    code path, refuses to run without a passing validation summary for the
+    same manifest, and has never been run.
+  - **Not implemented:**
+    - the per-statistic p_k (Holm);
+    - the sensitivity generators and designs (rule E = 0, inclusion window,
+      separate factors, windows, fills, identical runs, prior (a));
+    - the RI+slope replicate fitting;
+    - the LOPO dataset assembly.
+
+    Each is implemented and frozen after validation and before its own run.
+    Each is reported as an unvalidated sensitivity.
 
 | Analysis (§) | Generator / reference | Bank | Datasets | Seeds | Core-hours |
 |---|---|---|---:|---|---:|
@@ -1667,4 +1738,38 @@ Responses to Astra's 0.8 review (1348):
 - the designated-bank outputs;
 - Astra's review of the M_D and M_O priors and of the freeze package;
 - then the freeze.
+
+### 9.11 Fable, 0.9 executable completion (10 October)
+
+Responses to Astra's 0.9 review (1368):
+- **Stress sampler implemented.** `make_manifest.py` draws and keeps the
+  parameter sets. `fresh_selected` has a 10^6-draw budget, and a budget
+  failure is `indet_sampling`: it is recorded with the failed populations and
+  their retained parameter sets, gets no fits, and is never replaced.
+  Block 17 is its single execution point.
+- **Run manifest, chunk runner and collector.**
+  - `make_manifest.py`, `validate.py`, `run_validation.sh` (at most three
+    slots) and `collect_validation.py`.
+  - Full intended denominators: missing trials retained, duplicates and
+    out-of-chunk rows refused.
+  - The null, power and fit-stop gates. The fit stop applies to gating
+    blocks only; sampling failures are counted separately.
+  - Tests: `test_validation.py`, 19 checks with mocked fits, plus a real-R
+    launcher run on a toy manifest, whose rerun skips complete chunks and
+    reproduces the summary.
+- **Selected-draw provenance** is persisted per trial: parameters, M_D shift
+  and step time, recorded and latent counts.
+- **Scorer contract v3**, with fit-failure accounting defined. Contracts v1
+  and v2 still reproduce the archived runs exactly.
+- **Seed families** for the sensitivity banks are now disjoint, and the
+  empirical analysis IDs are fixed.
+- **Implementation status** is stated. The Q1 entry point
+  (`empirical_q1.py`) is guarded and has never been run.
+- **Scope wording** (Astra 0.9 review):
+  - the cost claim narrowed to generation only;
+  - `time_generators.py` takes the recomputed β_min;
+  - M_D distributions are design distributions, and equal Δ is not effect
+    matched;
+  - the M_O start is a plug-in convention;
+  - β_min is risk-defined, not a demonstrated minimum detectable effect.
 

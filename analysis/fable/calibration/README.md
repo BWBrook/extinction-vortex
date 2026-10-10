@@ -22,6 +22,8 @@ end-to-end runs (E23).
 | `test_bank.py`, `time_generators.py` | `alt_check_v1/` | M_D and M_O generators: 28 limiting-case checks; scenario plumbing; generation cost 5–9 CPU-s per dataset, negligible against fitting. |
 | `run_arms.sh` | `dev_screen200_v1/` (running) | The §4.1 development screens: 200 under the ar_cat null and 200 at β_min, at production counts. |
 | `run_production_banks.sh` | deep-server `production_banks_*` (queued) | Designated primary, stability and iid banks (seed families 8.1, 8.2, 8.3 × 10^12); β_min, corners and empirical position recomputed. |
+| `make_manifest.py`, `validate.py`, `run_validation.sh`, `collect_validation.py`, `test_validation.py` | (validation, after freeze) | Executable validation: 17 blocks × 10 chunks; at most three bank-holding slots; pooled gates on full denominators; 19 mocked-fit checks. |
+| `empirical_q1.py` | (empirical, after validation) | Guarded Q1 entry point; refuses to run without a passing validation summary for the same manifest; never run. |
 | `make_synthetic_sets.py`, `time_estimator.R` | `time_estimator.txt` | T1–T4 cost 0.15 s per nine-population dataset, with no failures in 20. |
 
 Run from the repo root, for example:

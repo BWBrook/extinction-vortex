@@ -56,10 +56,15 @@ mean of 20 datasets, seed family 20261030.
 | M_A + M_D linear / accelerating / step | 7.1 / 7.3 / 7.2 | low-s corner | 5.0 |
 | | | strong-environment corner | 7.8 |
 
-- **Generation is negligible.** It is under 1% of the 1,370 CPU-seconds per
-  analysed dataset.
-- **So the §4.4 inventory holds.** Its assumption that M_D, M_O and the
-  corners cost the same as M_A holds to within that margin.
+- **What this measures.** Only outer-dataset generation, which is cheap:
+  under 0.7% of the 1,370 CPU-seconds per analysed dataset.
+- **What it does not establish** (Astra 0.9 review). It does not show that
+  total cost is equal across scenarios to within 1%. A scenario's C changes
+  its reference libraries, and with them the optimiser and fallback cost of
+  fitting the 4,001 datasets.
+- **The §4.4 figure of about 3,300 core-hours therefore stays a projection.**
+  Scenario-dependent fitting cost is unmeasured.
+- The smoke arms in §2 are plumbing checks, not timings.
 - **The corners here** come from the development bank; they are recomputed on
   the primary bank.
 - **Latent-extant recorded extinctions** (out of 180 trajectories): 80 under
