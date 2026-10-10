@@ -840,6 +840,13 @@ This is Astra's proposed tranche, with concrete exit criteria:
      - Seeds 20261028 (null) and 20261029 (β_min).
      - Results: `analysis/fable/calibration/dev_screen200_v1/`. The stop
        rule applies to the null screen.
+     - **Outcome (10 October).**
+       - Null: 5/200 rejections (95% CI 0.008–0.057), no indeterminate
+         trials. The >30/200 stop is not triggered.
+       - β_min: 5/200 detections, the same as the null rate.
+       - Fit failures: 1 of 800,200 datasets per arm, so the 2% stop is not
+         triggered. No bank was infeasible.
+       - The §4.1 exit criteria are met.
 
 Production validation (§4.3) and the empirical test follow only with a
 measured cost estimate and Barry's allocation.

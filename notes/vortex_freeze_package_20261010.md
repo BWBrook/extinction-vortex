@@ -119,7 +119,9 @@ These use the fixed recipes; the development values are in brackets.
 - Astra's review of the completed package. The M_D and M_O specifications
   were accepted in the 0.9 review, with the stated scope limits.
 - The *pending* values above.
-- The §4.1 development screens: their results, and the >30/200 stop rule.
+- **§4.1 screens, done** (`dev_screen200_v1/`): 5/200 null rejections, 5/200
+  at β_min, 1 of 800,200 datasets failed per arm. No stop rule was
+  triggered.
 - Unresolved limits, kept visible: source and census-unit conflicts; the F&H
   windows for the wild dog, marmot and crane; whether the ledger supports
   prior (a); access to the Williams archived code and to *Daphnia*.

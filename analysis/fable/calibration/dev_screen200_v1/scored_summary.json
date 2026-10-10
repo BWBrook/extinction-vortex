@@ -1,0 +1,36 @@
+{
+ "null": {
+  "reject": 5,
+  "accept": 195,
+  "indet_calib": 0,
+  "indet_sampling": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 5,
+  "null_gate_count": 5,
+  "detections": 5,
+  "failed_datasets": 1,
+  "fitted_datasets": 800200
+ },
+ "betamin": {
+  "reject": 5,
+  "accept": 195,
+  "indet_calib": 0,
+  "indet_sampling": 0,
+  "indet_malformed": 0,
+  "indet_obsfit": 0,
+  "indet_train": 0,
+  "indet_cov": 0,
+  "indet_straddle": 0,
+  "missing": 0,
+  "raw_p_below_alpha": 5,
+  "null_gate_count": 5,
+  "detections": 5,
+  "failed_datasets": 1,
+  "fitted_datasets": 800200
+ }
+}
