@@ -1,0 +1,17 @@
+{
+  "reviewed_at": "2026-10-10T16:40:07.020494+11:00",
+  "base_commit": "0430737",
+  "status": "Fable working evidence; uncommitted and not a completed handoff",
+  "files": {
+    "notes/vortex_protocol.md": "4264c7a112f53d1475271f1f8e0b4738b2bba2a1907b2121388c6bcc39719d36",
+    "notes/vortex_exposure_log.csv": "843d2304f5399ca247fd6d898fc654d6c12df65f516b5de3d3bc5ba23d457824",
+    "analysis/fable/calibration/dev_design_v1/NOTE.md": "d56313790586cfe7b2bfc5778238d9daa41f0fb685ac4890462f140b083d607b",
+    "analysis/fable/calibration/dev_design_v1/effect_target_ar_cat.json": "1c16e56aabaf2685ddfec30f3d792bc1fae4dff2c478caed9872ca1cca8ef440",
+    "analysis/fable/calibration/dev_design_v1/scenarios.json": "4145008394719e6f8ae05c7aaa46c85cd5b2048cb697e9cdd8d81aaae46cb0d7",
+    "analysis/fable/calibration/dev_design_v1/coverage_summary.md": "8a898acd2206cff0f28feecd3f002ed7197386d90f18b714fe75feb63e7bc706",
+    "analysis/fable/calibration/dev_design_v1/e2e_cost_resources.txt": "b0523bb075fe9b930c3a65242534579e3472d991e165aae7056b8373edbae5c5",
+    "analysis/fable/calibration/dev_design_v1/e2e_cost_meta.json": "2a84af60f4c98c2907a585684525d6a416dd19259b78451aa49b0be21b1e290e",
+    "analysis/fable/calibration/dev_design_v1/bank_meta.json": "a3ef940140a479969cdaf558ab7c001176e12d87a52d4373c6c2e027d9872a97",
+    "analysis/fable/calibration/empirical_position.py": "392d8cb8f6651ff6409dcdc4f5f0b9297065c50ea81adc3082a6029ebe7c6dbc"
+  }
+}

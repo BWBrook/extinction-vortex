@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 9 October 2026, 14:57 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 10 October 2026, 16:43 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -131,16 +131,44 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   radius-stratified validation diagnostics. Scenario-average control is not
   uniform control throughout C-space.
 
-**Next response: Fable.** Incorporate Barry's adopted ar_cat-primary choice,
-complete the bounded code/formal-protocol repairs from review 1253, and present
-the concrete validation design and measured costs for Astra's review.
-Correspondence 1255 records the verified decision and handoff. No questionnaire
-is outstanding for Barry in this project; no polling or automatic wakeup.
+**Astra pre-handoff review, 10 October:**
+[bounded findings](notes/astra_protocol08_precheck_20261010.md) and
+[independent power audit](analysis/astra/protocol08_precheck/power_screen_audit.json).
+- Committed calibration code is at `0430737`, including sharded-bank builder
+  `d16fe45`. Fable's draft 0.8, exposure-log edits and development-design archive
+  remain uncommitted in WSL; no formal handoff has been posted. They were
+  inspected read-only and their hashes recorded, not adopted or frozen.
+- Completed remote pilot: five arms ×30 trials, R_train = R_test = K = 2,000.
+  Independently recomputed all 150 synthetic T files: complete ordered rows,
+  finite statistics, zero failures; both bounds/outcomes/fallback totals match.
+- Rejections: null 1/30; beta_min 1/30; 2 beta_min 2/30; Delta10 .3 8/30;
+  Delta10 .5 18/30. At beta_min the two-sided exact 95% interval is
+  0.00084–0.17217. This warns of low discrimination at the risk-defined effect;
+  it is development evidence, not validation or evidence of absent feedback.
+- The earlier output-contract and row-shape repairs pass. Three narrow guards
+  remain: malformed/absent-file classification; shard field-length, selected-
+  count and draw-ID integrity; and checking the logged upper p bound.
+- The effect recipe yields beta_min .974519 (Delta10 .075) in this development
+  bank. Retain the risk target and its consequences; changing it after power
+  inspection would need an explicit scientific amendment.
+- The draft's radius interpretation and proposed predictive stress check need
+  qualification. Complete the cost inventory; measured concurrent pilot
+  throughput suggests roughly 70 hours for 7,300 trials before banks/overheads,
+  rather than the nominal-core projection of 45 hours. Both are planning figures.
+
+**Next response: Fable.** Complete the formal protocol/results handoff and the
+bounded repairs in 1313/1314, then present the concrete validation design and
+measured costs for Astra's review. Barry's primary-null decision remains settled;
+no new author question is raised by this precheck. No polling or automatic wakeup.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
 
+- On 10 October, inspected committed code and Fable's unfinished 0.8 evidence,
+  independently reconciled the completed remote power screen, and posted
+  findings in 1309/1311/1313/1314. No new simulation, R fits or empirical test;
+  no peer working files or jobs changed. Preserved the poor-power result.
 - Collected and independently verified Barry's primary-null response, archived
   the form, preserved immutable response files at `07c233e`, and relayed the
   exact choice in 1255. Updated the adopted amendment and active project record.
@@ -344,11 +372,11 @@ No validation and no empirical p-values have been run.
 
 ## Pending
 
-1. Fable incorporates the adopted ar_cat primary and iid sensitivity, and makes
-   the bounded code/formal-wording repairs from the 0.7 review. Prepare β_min,
-   numeric corner scenarios, production-bank design and measured costs for
-   Astra's review before the final validation freeze. The primary-null
-   candidate choice itself is settled.
+1. Fable completes the 0.8 handoff and remaining input/bank/scorer guards from
+   the precheck. Specify the predictive stress check and full cost inventory;
+   present the effect target, numeric corners and production-bank design for
+   Astra's final review before validation. Retain the current low-power evidence
+   and settled primary-null choice; no effect retuning to obtain O1.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -371,9 +399,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1255**; exhausted `through`: **1255**.
-- Explicit acknowledgement: through actual message **1255** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1255`.
+- Last full retrieval `next_after`: **1314**; exhausted `through`: **1314**.
+- Explicit acknowledgement: through actual message **1314** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1314`.
 
 ## Decision Inbox checkpoint
 
