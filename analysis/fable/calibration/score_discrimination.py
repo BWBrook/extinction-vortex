@@ -84,8 +84,8 @@ def main():
                 raw_reject += 1
             oc = outcome(s, shortfall)
             if s["status"] == "ok":
-                logged = {"p_lo": lg["p"]} if fmt == "v1" else {"p_lo": lg.get("p_lo"), "p_hi": lg.get("p_hi")}
-                for key, v in logged.items():
+                bounds = {"p_lo": lg["p"]} if fmt == "v1" else {"p_lo": lg.get("p_lo"), "p_hi": lg.get("p_hi")}
+                for key, v in bounds.items():
                     if not (isinstance(v, float) and np.isfinite(v)) or abs(s[key] - v) > 1e-12:
                         raise SystemExit(f"{arm} outer {k}: recomputed {key} {s[key]} does not match logged {v!r}")
             if fmt == "v2" and oc != lg["outcome"]:
