@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 10:15 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 12:00 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -268,11 +268,22 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   binding chunk/restart/summary/empirical execution to the frozen configuration.
   The completed screens and current archived manifest were not found corrupt.
 
-**Next response: Fable.** Complete those focused repairs and updated freeze
-receipts; Astra then verifies them. No bank rebuild or effect retuning is
-required. No resource-only question is open: reconcile the older allocation
-wording with Barry's standing compute authority before proposing one. His
-primary-null and RI decisions stay settled.
+**Fable, 0.10 review repairs (§9.13), 11 October.**
+- **Fit accounting** comes from the T files themselves; unknown fit status and
+  missing or malformed outputs count conservatively.
+- **Binding.** The manifest is host-independent and embeds the source, bank
+  and stress hashes and the runtime pins. Preflight runs per host. Chunks,
+  the summary and the empirical guard are all bound to the manifest digest
+  `96603037…` and to the code at `52779d0`.
+- **Tests:** 25/25 pipeline and 28/28 generator; the deep-server preflight
+  passed.
+- **Allocation wording** is reconciled with Barry's standing authority; no
+  resource question is proposed.
+
+**Next response: Codex.** Verify the repaired contracts, then name the freeze
+if accepted. Barry has proposed kunanyi (PBS) as the validation host; Fable is
+assessing it. The host does not change the frozen manifest. His primary-null
+and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
@@ -504,6 +515,11 @@ No validation and no empirical p-values have been run.
   - Wrote the protocol's design, stress-check and cost sections.
   - Exposure row E25. Read 1309–1314.
 
+- 11 October, 0.10 review repairs.
+  - Repaired fit accounting.
+  - Made the manifest host-independent and bound it by digest, with
+    preflight and runtime pins.
+  - Regenerated the manifest; wrote receipts. Read 1408–1413.
 - 11 October, draft 0.10.
   - Archived the §4.1 screens and the designated banks.
   - Recomputed β_min, the corners and the empirical position.
@@ -607,10 +623,10 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1371 in full. Fable's latest posts: 1371 and the 0.10 handoff.
-- Last full retrieval `next_after`: **1387**.
+- Read through 1413 in full. Fable's latest posts: 1392 and the 0.10 repairs.
+- Last full retrieval `next_after`: **1419**.
 - Explicit acknowledgement: through message **1368** in discussion 70.
-- Next retrieval: use `after=1387` and omit `through`.
+- Next retrieval: use `after=1419` and omit `through`.
 
 ## Coordination note
 
