@@ -10,6 +10,8 @@ source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
 mkdir -p "$VBASE/Rlib"
 if ! Rscript -e 'quit(status = as.integer(packageVersion("nlme") != "3.1.171"))' 2>/dev/null; then
   Rscript -e 'lib <- Sys.getenv("R_LIBS_USER"); ok <- FALSE
+    if (!requireNamespace("lattice", quietly = TRUE))
+      install.packages("lattice", repos = "https://cloud.r-project.org", lib = lib)
     for (u in c("https://cloud.r-project.org/src/contrib/nlme_3.1-171.tar.gz",
                 "https://cloud.r-project.org/src/contrib/Archive/nlme/nlme_3.1-171.tar.gz")) {
       try(install.packages(u, repos = NULL, type = "source", lib = lib))
@@ -18,6 +20,6 @@ if ! Rscript -e 'quit(status = as.integer(packageVersion("nlme") != "3.1.171"))'
     }
     if (!ok) quit(status = 1)'
 fi
-Rscript -e 'stopifnot(packageVersion("nlme") == "3.1.171"); cat(R.version.string, "nlme", as.character(packageVersion("nlme")), "\n")'
+Rscript -e 'stopifnot(packageVersion("nlme") == "3.1.171"); cat(R.version.string, "nlme", as.character(packageVersion("nlme")), "lattice", as.character(packageVersion("lattice")), "\n")'
 
 python analysis/fable/calibration/preflight.py "$VBASE/validation_manifest.json" "$VBASE" "$VBASE/src"
