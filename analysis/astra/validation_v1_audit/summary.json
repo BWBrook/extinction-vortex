@@ -1,0 +1,1022 @@
+{
+  "method": "Independent NumPy covariance/solve/ranks; no production scorer imports.",
+  "manifest_sha256": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "summary_sha256": "c0eaf012ded16d79b82f894c76f13bd281a287660ef01581abe6d7a9949d1154",
+  "v_fail": true,
+  "fit_stop": false,
+  "power_pass": false,
+  "wall_seconds": 35.3,
+  "limits": [
+    "No refitting or resimulation.",
+    "Radius bins use the stored four-decimal distances.",
+    "Scoring verification does not establish statistical calibration or the cause of failure."
+  ],
+  "raw_score_json_sha256": "4ceaf364931c4a18179e2545d9ed506660a8e0e78b7969ba1a04464019992b70",
+  "raw_score_gzip_sha256": "cbdf10d782691d3b7a43a36584a86b2fe7952dc1137f083f5787cba229ca3bda",
+  "archive_sha256": "312d91e4f52b9e973a313f2242752ac013e35c827ef9d6a21a25c240f3a507f1",
+  "matched_archive_members": 8339,
+  "provenance_input_hashes_matched": 180,
+  "blocks": [
+    {
+      "block": 1,
+      "name": "null_prior_predictive",
+      "role": "null",
+      "n": 1000,
+      "reject": 46,
+      "accept": 954,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 4001000,
+      "fallbacks": 764143,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 226,
+          "reject": 12
+        },
+        {
+          "bin": 2,
+          "n": 191,
+          "reject": 8
+        },
+        {
+          "bin": 3,
+          "n": 195,
+          "reject": 13
+        },
+        {
+          "bin": 4,
+          "n": 219,
+          "reject": 10
+        },
+        {
+          "bin": 5,
+          "n": 169,
+          "reject": 3
+        }
+      ],
+      "pvalue_deciles": [
+        85,
+        81,
+        107,
+        93,
+        107,
+        99,
+        124,
+        98,
+        102,
+        104
+      ],
+      "shrinkage_count": 0,
+      "non_accepts": 46,
+      "null_upper_9875": 0.06312108683117444,
+      "null_pass": true
+    },
+    {
+      "block": 2,
+      "name": "null_high_sigma",
+      "role": "null",
+      "n": 1000,
+      "reject": 41,
+      "accept": 959,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 4001000,
+      "fallbacks": 403077,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 50,
+          "reject": 5
+        },
+        {
+          "bin": 2,
+          "n": 228,
+          "reject": 10
+        },
+        {
+          "bin": 3,
+          "n": 345,
+          "reject": 14
+        },
+        {
+          "bin": 4,
+          "n": 247,
+          "reject": 7
+        },
+        {
+          "bin": 5,
+          "n": 130,
+          "reject": 5
+        }
+      ],
+      "pvalue_deciles": [
+        82,
+        94,
+        105,
+        86,
+        95,
+        108,
+        83,
+        120,
+        112,
+        115
+      ],
+      "shrinkage_count": 0,
+      "non_accepts": 41,
+      "null_upper_9875": 0.05735633610189077,
+      "null_pass": true
+    },
+    {
+      "block": 3,
+      "name": "null_low_s",
+      "role": "null",
+      "n": 1000,
+      "reject": 148,
+      "accept": 852,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 4001000,
+      "fallbacks": 150699,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 250,
+          "reject": 33
+        },
+        {
+          "bin": 2,
+          "n": 318,
+          "reject": 43
+        },
+        {
+          "bin": 3,
+          "n": 241,
+          "reject": 40
+        },
+        {
+          "bin": 4,
+          "n": 133,
+          "reject": 18
+        },
+        {
+          "bin": 5,
+          "n": 58,
+          "reject": 14
+        }
+      ],
+      "pvalue_deciles": [
+        280,
+        202,
+        124,
+        84,
+        80,
+        59,
+        53,
+        57,
+        32,
+        29
+      ],
+      "shrinkage_count": 0,
+      "non_accepts": 148,
+      "null_upper_9875": 0.17497718396886122,
+      "null_pass": false
+    },
+    {
+      "block": 4,
+      "name": "null_strong_env",
+      "role": "null",
+      "n": 1000,
+      "reject": 30,
+      "accept": 970,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 4001000,
+      "fallbacks": 319384,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 185,
+          "reject": 7
+        },
+        {
+          "bin": 2,
+          "n": 280,
+          "reject": 7
+        },
+        {
+          "bin": 3,
+          "n": 252,
+          "reject": 10
+        },
+        {
+          "bin": 4,
+          "n": 191,
+          "reject": 5
+        },
+        {
+          "bin": 5,
+          "n": 92,
+          "reject": 1
+        }
+      ],
+      "pvalue_deciles": [
+        67,
+        103,
+        114,
+        91,
+        98,
+        120,
+        106,
+        99,
+        99,
+        103
+      ],
+      "shrinkage_count": 0,
+      "non_accepts": 30,
+      "null_upper_9875": 0.04446320598698138,
+      "null_pass": true
+    },
+    {
+      "block": 5,
+      "name": "MA_betamin",
+      "role": "power",
+      "n": 300,
+      "reject": 21,
+      "accept": 279,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 318233,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 70,
+          "reject": 5
+        },
+        {
+          "bin": 2,
+          "n": 51,
+          "reject": 2
+        },
+        {
+          "bin": 3,
+          "n": 60,
+          "reject": 7
+        },
+        {
+          "bin": 4,
+          "n": 66,
+          "reject": 5
+        },
+        {
+          "bin": 5,
+          "n": 53,
+          "reject": 2
+        }
+      ],
+      "pvalue_deciles": [
+        41,
+        42,
+        44,
+        21,
+        28,
+        23,
+        25,
+        25,
+        28,
+        23
+      ],
+      "shrinkage_count": 0,
+      "power_lower_95": 0.04738227046922893,
+      "power_pass": false
+    },
+    {
+      "block": 6,
+      "name": "MA_2betamin",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 25,
+      "accept": 275,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 343594,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 48,
+          "reject": 4
+        },
+        {
+          "bin": 2,
+          "n": 63,
+          "reject": 3
+        },
+        {
+          "bin": 3,
+          "n": 60,
+          "reject": 7
+        },
+        {
+          "bin": 4,
+          "n": 60,
+          "reject": 7
+        },
+        {
+          "bin": 5,
+          "n": 69,
+          "reject": 4
+        }
+      ],
+      "pvalue_deciles": [
+        57,
+        53,
+        37,
+        33,
+        22,
+        31,
+        23,
+        21,
+        11,
+        12
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 7,
+      "name": "MD_linear",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 16,
+      "accept": 284,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 563600,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 33,
+          "reject": 1
+        },
+        {
+          "bin": 2,
+          "n": 46,
+          "reject": 2
+        },
+        {
+          "bin": 3,
+          "n": 64,
+          "reject": 4
+        },
+        {
+          "bin": 4,
+          "n": 57,
+          "reject": 5
+        },
+        {
+          "bin": 5,
+          "n": 100,
+          "reject": 4
+        }
+      ],
+      "pvalue_deciles": [
+        43,
+        46,
+        26,
+        34,
+        18,
+        21,
+        41,
+        28,
+        22,
+        21
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 8,
+      "name": "MD_accel",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 26,
+      "accept": 274,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 556531,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 12,
+          "reject": 1
+        },
+        {
+          "bin": 2,
+          "n": 46,
+          "reject": 3
+        },
+        {
+          "bin": 3,
+          "n": 49,
+          "reject": 7
+        },
+        {
+          "bin": 4,
+          "n": 82,
+          "reject": 6
+        },
+        {
+          "bin": 5,
+          "n": 111,
+          "reject": 9
+        }
+      ],
+      "pvalue_deciles": [
+        62,
+        40,
+        36,
+        25,
+        29,
+        21,
+        23,
+        23,
+        23,
+        18
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 9,
+      "name": "MD_step",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 17,
+      "accept": 283,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 675211,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 32,
+          "reject": 2
+        },
+        {
+          "bin": 2,
+          "n": 48,
+          "reject": 1
+        },
+        {
+          "bin": 3,
+          "n": 40,
+          "reject": 3
+        },
+        {
+          "bin": 4,
+          "n": 48,
+          "reject": 4
+        },
+        {
+          "bin": 5,
+          "n": 132,
+          "reject": 7
+        }
+      ],
+      "pvalue_deciles": [
+        36,
+        31,
+        41,
+        23,
+        34,
+        31,
+        36,
+        19,
+        32,
+        17
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 10,
+      "name": "MO_lown",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 15,
+      "accept": 285,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 140405,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 25,
+          "reject": 2
+        },
+        {
+          "bin": 2,
+          "n": 49,
+          "reject": 3
+        },
+        {
+          "bin": 3,
+          "n": 54,
+          "reject": 5
+        },
+        {
+          "bin": 4,
+          "n": 68,
+          "reject": 3
+        },
+        {
+          "bin": 5,
+          "n": 104,
+          "reject": 2
+        }
+      ],
+      "pvalue_deciles": [
+        34,
+        24,
+        33,
+        29,
+        28,
+        29,
+        32,
+        23,
+        37,
+        31
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 11,
+      "name": "MO_uniform",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 17,
+      "accept": 283,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 156468,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 38,
+          "reject": 1
+        },
+        {
+          "bin": 2,
+          "n": 60,
+          "reject": 5
+        },
+        {
+          "bin": 3,
+          "n": 69,
+          "reject": 6
+        },
+        {
+          "bin": 4,
+          "n": 61,
+          "reject": 1
+        },
+        {
+          "bin": 5,
+          "n": 72,
+          "reject": 4
+        }
+      ],
+      "pvalue_deciles": [
+        30,
+        19,
+        26,
+        37,
+        30,
+        26,
+        30,
+        35,
+        37,
+        30
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 12,
+      "name": "MA_MD_linear",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 42,
+      "accept": 258,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 726291,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 17,
+          "reject": 3
+        },
+        {
+          "bin": 2,
+          "n": 39,
+          "reject": 10
+        },
+        {
+          "bin": 3,
+          "n": 58,
+          "reject": 7
+        },
+        {
+          "bin": 4,
+          "n": 78,
+          "reject": 11
+        },
+        {
+          "bin": 5,
+          "n": 108,
+          "reject": 11
+        }
+      ],
+      "pvalue_deciles": [
+        92,
+        64,
+        26,
+        32,
+        19,
+        19,
+        14,
+        15,
+        12,
+        7
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 13,
+      "name": "MA_MD_accel",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 40,
+      "accept": 260,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 819780,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 19,
+          "reject": 2
+        },
+        {
+          "bin": 2,
+          "n": 33,
+          "reject": 4
+        },
+        {
+          "bin": 3,
+          "n": 57,
+          "reject": 9
+        },
+        {
+          "bin": 4,
+          "n": 77,
+          "reject": 10
+        },
+        {
+          "bin": 5,
+          "n": 114,
+          "reject": 15
+        }
+      ],
+      "pvalue_deciles": [
+        81,
+        45,
+        43,
+        29,
+        29,
+        17,
+        21,
+        18,
+        7,
+        10
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 14,
+      "name": "MA_MD_step",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 28,
+      "accept": 272,
+      "unresolved": 0,
+      "failed_datasets": 1,
+      "fitted_datasets": 1200300,
+      "fallbacks": 791646,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 18,
+          "reject": 1
+        },
+        {
+          "bin": 2,
+          "n": 41,
+          "reject": 2
+        },
+        {
+          "bin": 3,
+          "n": 55,
+          "reject": 3
+        },
+        {
+          "bin": 4,
+          "n": 66,
+          "reject": 9
+        },
+        {
+          "bin": 5,
+          "n": 120,
+          "reject": 13
+        }
+      ],
+      "pvalue_deciles": [
+        59,
+        62,
+        45,
+        30,
+        23,
+        23,
+        15,
+        16,
+        17,
+        10
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 15,
+      "name": "MA_d10_0.3",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 118,
+      "accept": 182,
+      "unresolved": 0,
+      "failed_datasets": 2,
+      "fitted_datasets": 1200300,
+      "fallbacks": 610113,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 51,
+          "reject": 31
+        },
+        {
+          "bin": 2,
+          "n": 60,
+          "reject": 18
+        },
+        {
+          "bin": 3,
+          "n": 50,
+          "reject": 24
+        },
+        {
+          "bin": 4,
+          "n": 66,
+          "reject": 26
+        },
+        {
+          "bin": 5,
+          "n": 73,
+          "reject": 19
+        }
+      ],
+      "pvalue_deciles": [
+        178,
+        53,
+        30,
+        16,
+        9,
+        8,
+        2,
+        2,
+        1,
+        1
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 16,
+      "name": "MA_d10_0.5",
+      "role": "descriptive",
+      "n": 300,
+      "reject": 206,
+      "accept": 94,
+      "unresolved": 0,
+      "failed_datasets": 1,
+      "fitted_datasets": 1200300,
+      "fallbacks": 840268,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 25,
+          "reject": 22
+        },
+        {
+          "bin": 2,
+          "n": 46,
+          "reject": 41
+        },
+        {
+          "bin": 3,
+          "n": 60,
+          "reject": 38
+        },
+        {
+          "bin": 4,
+          "n": 75,
+          "reject": 51
+        },
+        {
+          "bin": 5,
+          "n": 94,
+          "reject": 54
+        }
+      ],
+      "pvalue_deciles": [
+        253,
+        32,
+        10,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "shrinkage_count": 0
+    },
+    {
+      "block": 17,
+      "name": "stress_fitted_parameters",
+      "role": "stress",
+      "n": 300,
+      "reject": 11,
+      "accept": 289,
+      "unresolved": 0,
+      "failed_datasets": 0,
+      "fitted_datasets": 1200300,
+      "fallbacks": 32946,
+      "flag_mismatches": 0,
+      "radius_strata_from_rounded_logged_distances": [
+        {
+          "bin": 1,
+          "n": 70,
+          "reject": 4
+        },
+        {
+          "bin": 2,
+          "n": 75,
+          "reject": 1
+        },
+        {
+          "bin": 3,
+          "n": 71,
+          "reject": 4
+        },
+        {
+          "bin": 4,
+          "n": 52,
+          "reject": 2
+        },
+        {
+          "bin": 5,
+          "n": 32,
+          "reject": 0
+        }
+      ],
+      "pvalue_deciles": [
+        28,
+        35,
+        20,
+        33,
+        32,
+        30,
+        42,
+        22,
+        31,
+        27
+      ],
+      "shrinkage_count": 0
+    }
+  ],
+  "total_trials": 7900,
+  "total_dataset_vectors": 31607900,
+  "failed_dataset_vectors": 4,
+  "diagnostics_status": "Post-hoc description of exposed v1 synthetic outputs; v2 development only.",
+  "null_block_diagnostics": [
+    {
+      "block": 1,
+      "name": "null_prior_predictive",
+      "mean_marginal_standardized_residual_T1_to_T4": [
+        0.003285220438796762,
+        0.023305165165053928,
+        0.03555014672320915,
+        0.017658381447956704
+      ],
+      "sd_marginal_standardized_residual_T1_to_T4": [
+        1.0053725706095562,
+        1.00503581618147,
+        0.9687067459698364,
+        0.9877506194542779
+      ],
+      "median_D_obs": 2.7881718975406597,
+      "max_covariance_condition": 988.3232266019753,
+      "p_below_0_1": 85,
+      "p_below_0_2": 166
+    },
+    {
+      "block": 2,
+      "name": "null_high_sigma",
+      "mean_marginal_standardized_residual_T1_to_T4": [
+        -0.0538739310799755,
+        -0.04039949794542278,
+        0.21658461283465097,
+        0.2315681061046245
+      ],
+      "sd_marginal_standardized_residual_T1_to_T4": [
+        1.0012758273224982,
+        0.9999667208979502,
+        0.9178760556377006,
+        0.8787363826247772
+      ],
+      "median_D_obs": 2.7493214154996126,
+      "max_covariance_condition": 661.323199524792,
+      "p_below_0_1": 82,
+      "p_below_0_2": 176
+    },
+    {
+      "block": 3,
+      "name": "null_low_s",
+      "mean_marginal_standardized_residual_T1_to_T4": [
+        -1.7605644874179995,
+        -1.580246209800747,
+        0.29318494341069473,
+        0.346095553918701
+      ],
+      "sd_marginal_standardized_residual_T1_to_T4": [
+        0.9151384306297193,
+        0.9279936397862057,
+        0.8642361376913381,
+        0.8024238977805144
+      ],
+      "median_D_obs": 5.477345495186789,
+      "max_covariance_condition": 631.786168522616,
+      "p_below_0_1": 280,
+      "p_below_0_2": 482
+    },
+    {
+      "block": 4,
+      "name": "null_strong_env",
+      "mean_marginal_standardized_residual_T1_to_T4": [
+        0.08083674999727901,
+        0.191750347753544,
+        0.17278521070280878,
+        -0.011133008223784286
+      ],
+      "sd_marginal_standardized_residual_T1_to_T4": [
+        0.9792276239305494,
+        1.002980695707895,
+        0.9293914523561381,
+        1.0826137362059052
+      ],
+      "median_D_obs": 2.8248637409534574,
+      "max_covariance_condition": 811.8976536374698,
+      "p_below_0_1": 67,
+      "p_below_0_2": 170
+    }
+  ]
+}

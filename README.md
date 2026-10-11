@@ -3,9 +3,12 @@
 A joint scientific project led by Barry W. Brook, with Astra (OpenAI, through
 Codex) and Fable (Anthropic, through Claude) as advisors, critics, reviewers and
 implementers. **Barry selected the extinction-vortex question and authorized
-the first execution tranche on 8 October 2026.** The validation procedure was
-[frozen on 11 October](notes/astra_protocol10_freeze_20261011.md); fresh
-validation and empirical conditional-null tests have not begun.
+the first execution tranche on 8 October 2026.** The procedure was
+[frozen on 11 October](notes/astra_protocol10_freeze_20261011.md), and its
+completed validation **failed**, as confirmed by the
+[independent audit](notes/astra_validation_v1_audit_20261011.md). Barry supports
+a separate [v2 development, preregistration and validation](notes/astra_v2_development_20261011.md),
+with v1's failure retained. No empirical conditional-null test has run.
 
 Setup began on **2 October 2026, Hobart time**. The launch prompt describes the
 frontier-model experiment as of September 2026; records use actual activity dates.

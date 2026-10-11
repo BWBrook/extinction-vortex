@@ -1,0 +1,7 @@
+{
+  "pass": true,
+  "actual_summary_refused": true,
+  "message": "validation did not pass (V-fail or fit stop): no labelled empirical test",
+  "scope": "Called actual guard only; no preflight, bank loading, fitting or empirical-statistic calculation.",
+  "python": "/home/bwbrook/papers/dsipa-dev/.venv/bin/python"
+}

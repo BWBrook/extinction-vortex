@@ -293,21 +293,46 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 - Block 3 (`null_low_s`) gave 148 rejections in 1,000, against at most 60
   allowed. The other three null blocks passed: 46, 41 and 30.
 - Power at β_min was 21 of 300, against at least 224 required.
-- All 7,900 trials resolved. The fit-failure rate was 0 in every block.
+- All 7,900 trials resolved. Fit failures were zero in all gating blocks;
+  four failed T vectors occurred in descriptive blocks 14–16 (corrected by
+  Astra's independent audit; the original machine summary was already correct).
 - The summary reproduces byte for byte on deep-server.
 - Under protocol §1 the empirical result can be reported only as *insufficient
   identification*, and `empirical_q1.py` refuses to run.
 - No empirical p-value has been computed.
 
-**Next response: Codex.** Independent audit of the retrieved outputs:
-- the tarball is on deep-server at `/data/fable/vortex/kunanyi_run1/`,
-  SHA-256 `312d91e4…`.
+**Astra completed the independent v1 audit, 11 October:**
+[findings](notes/astra_validation_v1_audit_20261011.md),
+[receipts](analysis/astra/validation_v1_audit/).
+- Independently rescored all 7,900 T files; every outcome and p-value bound
+  agrees. Verified the archive digest and all 8,339 extracted regular files.
+- Checked all 170 chunk configurations and all 9,000 selected low-survival
+  population trajectories. No block-specific configuration/scoring defect
+  explains V-fail. Reference membership was not retained, and no generation,
+  reference-draw or fitting replay was done.
+- The post-hoc T1/T2 location shifts give a diagnostic lead, but the radius
+  strata do not distinguish residual nuisance dependence from approximation.
+- The actual empirical guard refuses this summary before bank access.
 
-Then Barry decides how to proceed. Any revised procedure would be a new
-pre-registered version, with its own freeze and validation, and this V-fail
-must be reported.
+**Barry supports developing a separate v2**, in his 11 October Codex chat;
+the exact quote and bounded plan are in
+[the v2 brief](notes/astra_v2_development_20261011.md). Preserve v1 and its
+failure, develop at most two candidate procedures, then preregister/freeze
+the selected procedure before fresh validation. V1 outputs are exposed
+development evidence for v2, not a reusable untouched validation set.
+
+**Next response: Fable.** Accept or revise the proposed diagnostic/candidate
+tranche and correct the initial result note's all-block zero-failure wording.
+Fable retains implementation/execution ownership; Astra reviews the proposed
+v2 and evidence. Findings and handoff are in Correspondence **1526**. No
+specific replacement method is yet selected or frozen.
 
 ## Completed by Astra
+
+- 11 October, independently audited the completed v1 archive, reproduced all
+  gates, verified low-survival provenance and checked the empirical refusal.
+  Recorded Barry's v2 direction, a bounded development brief and exposure E30.
+  Findings and reproducible receipts are linked above.
 
 - 11 October, accepted the repaired scientific freeze in message 1450 after
   59 independent contract checks and package identity checks. Separately
@@ -567,19 +592,21 @@ must be reported.
 
 ## Pending
 
-1. Fable completes the PBS failure-status repair and host qualification/staging
-   for the accepted validation freeze. Source `52779d0` and manifest `96603037…`
-   are accepted. The low-power evidence is retained, and the effect is not
-   retuned to obtain O1.
+1. Fable responds to the completed v1 audit and proposed v2 diagnostic tranche.
+   The v1 freeze, execution and audit are complete: V-fail. Diagnose with the
+   archived evidence, compare at most two development candidates, and prepare
+   a separate prospective protocol/freeze before untouched v2 validation.
+   Retain the failed corner and low-power result; do not retune beta_min to
+   obtain O1 or silently loosen the null gate.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
    unpassed, even if a reconstructed target is adopted.
-3. Develop synthetic calibration, record acceptance rates and component costs,
-   and retain all failed feasibility checks. Serious work runs on deep-server
-   in tmux. The 220-core-hour proposal remains withdrawn; production resources
-   follow a measured design. Empirical tests follow the specified validation
-   freeze (now accepted) and its still-pending validation gates.
+3. Retain failed feasibility checks and measure any revised design's costs.
+   Serious work follows the standing remote-compute authority and measured
+   resource selection; the 220-core-hour proposal remains withdrawn. Empirical
+   tests remain blocked by v1's failed null gate. They would require a separately
+   frozen v2 procedure that passes its prospective validation rules.
 4. Complete the named close-prior-work checks and the frozen Stage A search.
    Final Nabutanyi–Wittmann text and Drake–Griffen 2009 passage-time methods
    remain unverified; the orientation search is not a completed systematic
@@ -593,9 +620,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1450**; exhausted `through`: **1450**.
-- Explicit acknowledgement: through actual message **1450** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1450`.
+- Last full retrieval `next_after`: **1525**; exhausted `through`: **1525**.
+- Explicit acknowledgement: through actual message **1524** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1525`.
 
 ## Decision Inbox checkpoint
 
