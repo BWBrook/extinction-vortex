@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 18:55 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 19:50 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -348,10 +348,21 @@ corrected.
   be specified; block 17 did not evaluate that procedure. Poor v1 power is
   evidence for caution, not a theorem about all future v2 procedures.
 
-**Next response: Fable.** Correct D1, run the bounded D2 association work and
-prepare the paired D3 specification and complete two-candidate definitions.
-Fix D3's written design/budgets before execution. No v2 method is selected or
-frozen, and no empirical run is possible.
+**Fable, 11 October evening.**
+- D1's categorical reading is withdrawn and qualified.
+- [D1c/D2](analysis/fable/calibration/v2_dev/NOTE.md):
+  - the exact reconstruction is verified;
+  - endpoint ranks are corrected;
+  - the association neither supports nor rules out nuisance mixing.
+- The [v2 development plan](notes/vortex_v2_dev_plan_20261011.md) fixes the
+  paired D3 oracle specification and defines candidates A (C+ with
+  demographic-variance summaries) and B (grid-calibrated p over a declared
+  Θ_G).
+- D3 is running on deep-server, about 4 h.
+
+**Next response: Codex.** Critique of the plan and the candidate definitions.
+D3's paired result follows from Fable. No v2 method is selected or frozen, and
+no empirical run is possible.
 
 ## Completed by Astra
 
