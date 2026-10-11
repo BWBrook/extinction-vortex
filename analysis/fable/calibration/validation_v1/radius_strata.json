@@ -1,0 +1,1780 @@
+{
+ "edges": [
+  0.205,
+  0.2956,
+  0.4049,
+  0.5613
+ ],
+ "tie_rule": "lower bin",
+ "radius": "max over populations of kth_dist",
+ "scenarios": [
+  {
+   "block": 1,
+   "name": "null_prior_predictive",
+   "role": "null",
+   "n": 1000,
+   "radius_quantiles_10_50_90": [
+    0.1596,
+    0.3386,
+    0.6856
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 226,
+     "reject": 12,
+     "rate": 0.0531
+    },
+    {
+     "bin": 2,
+     "n": 191,
+     "reject": 8,
+     "rate": 0.0419
+    },
+    {
+     "bin": 3,
+     "n": 195,
+     "reject": 13,
+     "rate": 0.0667
+    },
+    {
+     "bin": 4,
+     "n": 219,
+     "reject": 10,
+     "rate": 0.0457
+    },
+    {
+     "bin": 5,
+     "n": 169,
+     "reject": 3,
+     "rate": 0.0178
+    }
+   ],
+   "p_hi_deciles_counts": [
+    85,
+    81,
+    107,
+    93,
+    107,
+    99,
+    124,
+    98,
+    102,
+    104
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1116,
+    "marmot": 0.0965,
+    "ms_woodpecker": 0.0767,
+    "rc_woodpecker": 0.0592,
+    "golden_plover": 0.0753,
+    "whooping_crane": 0.0756,
+    "hawaiian_crow": 0.0547,
+    "wood_turtle_A": 0.0878,
+    "wood_turtle_B": 0.0857
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     158,
+     7
+    ],
+    "marmot": [
+     164,
+     7
+    ],
+    "ms_woodpecker": [
+     99,
+     4
+    ],
+    "rc_woodpecker": [
+     80,
+     4
+    ],
+    "golden_plover": [
+     101,
+     6
+    ],
+    "whooping_crane": [
+     105,
+     6
+    ],
+    "hawaiian_crow": [
+     60,
+     1
+    ],
+    "wood_turtle_A": [
+     118,
+     5
+    ],
+    "wood_turtle_B": [
+     115,
+     6
+    ]
+   }
+  },
+  {
+   "block": 2,
+   "name": "null_high_sigma",
+   "role": "null",
+   "n": 1000,
+   "radius_quantiles_10_50_90": [
+    0.2347,
+    0.3591,
+    0.5959
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 50,
+     "reject": 5,
+     "rate": 0.1
+    },
+    {
+     "bin": 2,
+     "n": 228,
+     "reject": 10,
+     "rate": 0.0439
+    },
+    {
+     "bin": 3,
+     "n": 345,
+     "reject": 14,
+     "rate": 0.0406
+    },
+    {
+     "bin": 4,
+     "n": 247,
+     "reject": 7,
+     "rate": 0.0283
+    },
+    {
+     "bin": 5,
+     "n": 130,
+     "reject": 5,
+     "rate": 0.0385
+    }
+   ],
+   "p_hi_deciles_counts": [
+    82,
+    94,
+    105,
+    86,
+    95,
+    108,
+    83,
+    120,
+    112,
+    115
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.2183,
+    "marmot": 0.2531,
+    "ms_woodpecker": 0.1212,
+    "rc_woodpecker": 0.0688,
+    "golden_plover": 0.1149,
+    "whooping_crane": 0.0585,
+    "hawaiian_crow": 0.0348,
+    "wood_turtle_A": 0.1243,
+    "wood_turtle_B": 0.1082
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     239,
+     7
+    ],
+    "marmot": [
+     418,
+     18
+    ],
+    "ms_woodpecker": [
+     68,
+     2
+    ],
+    "rc_woodpecker": [
+     26,
+     1
+    ],
+    "golden_plover": [
+     48,
+     3
+    ],
+    "whooping_crane": [
+     14,
+     2
+    ],
+    "hawaiian_crow": [
+     3,
+     1
+    ],
+    "wood_turtle_A": [
+     92,
+     2
+    ],
+    "wood_turtle_B": [
+     92,
+     5
+    ]
+   }
+  },
+  {
+   "block": 3,
+   "name": "null_low_s",
+   "role": "null",
+   "n": 1000,
+   "radius_quantiles_10_50_90": [
+    0.1689,
+    0.275,
+    0.5107
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 250,
+     "reject": 33,
+     "rate": 0.132
+    },
+    {
+     "bin": 2,
+     "n": 318,
+     "reject": 43,
+     "rate": 0.1352
+    },
+    {
+     "bin": 3,
+     "n": 241,
+     "reject": 40,
+     "rate": 0.166
+    },
+    {
+     "bin": 4,
+     "n": 133,
+     "reject": 18,
+     "rate": 0.1353
+    },
+    {
+     "bin": 5,
+     "n": 58,
+     "reject": 14,
+     "rate": 0.2414
+    }
+   ],
+   "p_hi_deciles_counts": [
+    280,
+    202,
+    124,
+    84,
+    80,
+    59,
+    53,
+    57,
+    32,
+    29
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1721,
+    "marmot": 0.1845,
+    "ms_woodpecker": 0.0963,
+    "rc_woodpecker": 0.0515,
+    "golden_plover": 0.0915,
+    "whooping_crane": 0.051,
+    "hawaiian_crow": 0.0278,
+    "wood_turtle_A": 0.1247,
+    "wood_turtle_B": 0.0889
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     273,
+     34
+    ],
+    "marmot": [
+     360,
+     58
+    ],
+    "ms_woodpecker": [
+     74,
+     11
+    ],
+    "rc_woodpecker": [
+     7,
+     1
+    ],
+    "golden_plover": [
+     44,
+     7
+    ],
+    "whooping_crane": [
+     12,
+     2
+    ],
+    "hawaiian_crow": [
+     4,
+     1
+    ],
+    "wood_turtle_A": [
+     156,
+     22
+    ],
+    "wood_turtle_B": [
+     70,
+     12
+    ]
+   }
+  },
+  {
+   "block": 4,
+   "name": "null_strong_env",
+   "role": "null",
+   "n": 1000,
+   "radius_quantiles_10_50_90": [
+    0.1772,
+    0.3118,
+    0.5525
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 185,
+     "reject": 7,
+     "rate": 0.0378
+    },
+    {
+     "bin": 2,
+     "n": 280,
+     "reject": 7,
+     "rate": 0.025
+    },
+    {
+     "bin": 3,
+     "n": 252,
+     "reject": 10,
+     "rate": 0.0397
+    },
+    {
+     "bin": 4,
+     "n": 191,
+     "reject": 5,
+     "rate": 0.0262
+    },
+    {
+     "bin": 5,
+     "n": 92,
+     "reject": 1,
+     "rate": 0.0109
+    }
+   ],
+   "p_hi_deciles_counts": [
+    67,
+    103,
+    114,
+    91,
+    98,
+    120,
+    106,
+    99,
+    99,
+    103
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1532,
+    "marmot": 0.177,
+    "ms_woodpecker": 0.0886,
+    "rc_woodpecker": 0.0638,
+    "golden_plover": 0.0746,
+    "whooping_crane": 0.0522,
+    "hawaiian_crow": 0.031,
+    "wood_turtle_A": 0.1096,
+    "wood_turtle_B": 0.1032
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     206,
+     7
+    ],
+    "marmot": [
+     300,
+     9
+    ],
+    "ms_woodpecker": [
+     75,
+     1
+    ],
+    "rc_woodpecker": [
+     62,
+     1
+    ],
+    "golden_plover": [
+     46,
+     3
+    ],
+    "whooping_crane": [
+     20,
+     0
+    ],
+    "hawaiian_crow": [
+     4,
+     0
+    ],
+    "wood_turtle_A": [
+     152,
+     6
+    ],
+    "wood_turtle_B": [
+     135,
+     3
+    ]
+   }
+  },
+  {
+   "block": 5,
+   "name": "MA_betamin",
+   "role": "power",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.1652,
+    0.3498,
+    0.6479
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 70,
+     "reject": 5,
+     "rate": 0.0714
+    },
+    {
+     "bin": 2,
+     "n": 51,
+     "reject": 2,
+     "rate": 0.0392
+    },
+    {
+     "bin": 3,
+     "n": 60,
+     "reject": 7,
+     "rate": 0.1167
+    },
+    {
+     "bin": 4,
+     "n": 66,
+     "reject": 5,
+     "rate": 0.0758
+    },
+    {
+     "bin": 5,
+     "n": 53,
+     "reject": 2,
+     "rate": 0.0377
+    }
+   ],
+   "p_hi_deciles_counts": [
+    41,
+    42,
+    44,
+    21,
+    28,
+    23,
+    25,
+    25,
+    28,
+    23
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.109,
+    "marmot": 0.0984,
+    "ms_woodpecker": 0.0683,
+    "rc_woodpecker": 0.0553,
+    "golden_plover": 0.0671,
+    "whooping_crane": 0.0732,
+    "hawaiian_crow": 0.0513,
+    "wood_turtle_A": 0.1024,
+    "wood_turtle_B": 0.0869
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     49,
+     5
+    ],
+    "marmot": [
+     40,
+     3
+    ],
+    "ms_woodpecker": [
+     35,
+     3
+    ],
+    "rc_woodpecker": [
+     27,
+     1
+    ],
+    "golden_plover": [
+     27,
+     1
+    ],
+    "whooping_crane": [
+     36,
+     3
+    ],
+    "hawaiian_crow": [
+     15,
+     1
+    ],
+    "wood_turtle_A": [
+     42,
+     3
+    ],
+    "wood_turtle_B": [
+     29,
+     1
+    ]
+   }
+  },
+  {
+   "block": 6,
+   "name": "MA_2betamin",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.1811,
+    0.3484,
+    0.7908
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 48,
+     "reject": 4,
+     "rate": 0.0833
+    },
+    {
+     "bin": 2,
+     "n": 63,
+     "reject": 3,
+     "rate": 0.0476
+    },
+    {
+     "bin": 3,
+     "n": 60,
+     "reject": 7,
+     "rate": 0.1167
+    },
+    {
+     "bin": 4,
+     "n": 60,
+     "reject": 7,
+     "rate": 0.1167
+    },
+    {
+     "bin": 5,
+     "n": 69,
+     "reject": 4,
+     "rate": 0.058
+    }
+   ],
+   "p_hi_deciles_counts": [
+    57,
+    53,
+    37,
+    33,
+    22,
+    31,
+    23,
+    21,
+    11,
+    12
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1159,
+    "marmot": 0.1014,
+    "ms_woodpecker": 0.0812,
+    "rc_woodpecker": 0.0515,
+    "golden_plover": 0.0793,
+    "whooping_crane": 0.0875,
+    "hawaiian_crow": 0.049,
+    "wood_turtle_A": 0.0916,
+    "wood_turtle_B": 0.0819
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     48,
+     1
+    ],
+    "marmot": [
+     48,
+     5
+    ],
+    "ms_woodpecker": [
+     37,
+     4
+    ],
+    "rc_woodpecker": [
+     12,
+     2
+    ],
+    "golden_plover": [
+     22,
+     0
+    ],
+    "whooping_crane": [
+     40,
+     2
+    ],
+    "hawaiian_crow": [
+     20,
+     4
+    ],
+    "wood_turtle_A": [
+     40,
+     3
+    ],
+    "wood_turtle_B": [
+     33,
+     4
+    ]
+   }
+  },
+  {
+   "block": 7,
+   "name": "MD_linear",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2016,
+    0.4198,
+    0.9292
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 33,
+     "reject": 1,
+     "rate": 0.0303
+    },
+    {
+     "bin": 2,
+     "n": 46,
+     "reject": 2,
+     "rate": 0.0435
+    },
+    {
+     "bin": 3,
+     "n": 64,
+     "reject": 4,
+     "rate": 0.0625
+    },
+    {
+     "bin": 4,
+     "n": 57,
+     "reject": 5,
+     "rate": 0.0877
+    },
+    {
+     "bin": 5,
+     "n": 100,
+     "reject": 4,
+     "rate": 0.04
+    }
+   ],
+   "p_hi_deciles_counts": [
+    43,
+    46,
+    26,
+    34,
+    18,
+    21,
+    41,
+    28,
+    22,
+    21
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1278,
+    "marmot": 0.1197,
+    "ms_woodpecker": 0.0869,
+    "rc_woodpecker": 0.0708,
+    "golden_plover": 0.0983,
+    "whooping_crane": 0.0955,
+    "hawaiian_crow": 0.0576,
+    "wood_turtle_A": 0.1076,
+    "wood_turtle_B": 0.1035
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     47,
+     1
+    ],
+    "marmot": [
+     33,
+     2
+    ],
+    "ms_woodpecker": [
+     28,
+     2
+    ],
+    "rc_woodpecker": [
+     27,
+     0
+    ],
+    "golden_plover": [
+     35,
+     1
+    ],
+    "whooping_crane": [
+     40,
+     3
+    ],
+    "hawaiian_crow": [
+     21,
+     2
+    ],
+    "wood_turtle_A": [
+     27,
+     3
+    ],
+    "wood_turtle_B": [
+     42,
+     2
+    ]
+   }
+  },
+  {
+   "block": 8,
+   "name": "MD_accel",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2383,
+    0.5046,
+    0.9294
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 12,
+     "reject": 1,
+     "rate": 0.0833
+    },
+    {
+     "bin": 2,
+     "n": 46,
+     "reject": 3,
+     "rate": 0.0652
+    },
+    {
+     "bin": 3,
+     "n": 49,
+     "reject": 7,
+     "rate": 0.1429
+    },
+    {
+     "bin": 4,
+     "n": 82,
+     "reject": 6,
+     "rate": 0.0732
+    },
+    {
+     "bin": 5,
+     "n": 111,
+     "reject": 9,
+     "rate": 0.0811
+    }
+   ],
+   "p_hi_deciles_counts": [
+    62,
+    40,
+    36,
+    25,
+    29,
+    21,
+    23,
+    23,
+    23,
+    18
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1355,
+    "marmot": 0.129,
+    "ms_woodpecker": 0.1016,
+    "rc_woodpecker": 0.0672,
+    "golden_plover": 0.0879,
+    "whooping_crane": 0.0875,
+    "hawaiian_crow": 0.065,
+    "wood_turtle_A": 0.1278,
+    "wood_turtle_B": 0.1138
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     47,
+     4
+    ],
+    "marmot": [
+     39,
+     6
+    ],
+    "ms_woodpecker": [
+     37,
+     2
+    ],
+    "rc_woodpecker": [
+     17,
+     1
+    ],
+    "golden_plover": [
+     31,
+     1
+    ],
+    "whooping_crane": [
+     29,
+     4
+    ],
+    "hawaiian_crow": [
+     20,
+     2
+    ],
+    "wood_turtle_A": [
+     38,
+     3
+    ],
+    "wood_turtle_B": [
+     42,
+     3
+    ]
+   }
+  },
+  {
+   "block": 9,
+   "name": "MD_step",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2029,
+    0.5097,
+    1.1627
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 32,
+     "reject": 2,
+     "rate": 0.0625
+    },
+    {
+     "bin": 2,
+     "n": 48,
+     "reject": 1,
+     "rate": 0.0208
+    },
+    {
+     "bin": 3,
+     "n": 40,
+     "reject": 3,
+     "rate": 0.075
+    },
+    {
+     "bin": 4,
+     "n": 48,
+     "reject": 4,
+     "rate": 0.0833
+    },
+    {
+     "bin": 5,
+     "n": 132,
+     "reject": 7,
+     "rate": 0.053
+    }
+   ],
+   "p_hi_deciles_counts": [
+    36,
+    31,
+    41,
+    23,
+    34,
+    31,
+    36,
+    19,
+    32,
+    17
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1128,
+    "marmot": 0.1235,
+    "ms_woodpecker": 0.089,
+    "rc_woodpecker": 0.0745,
+    "golden_plover": 0.1018,
+    "whooping_crane": 0.0877,
+    "hawaiian_crow": 0.0605,
+    "wood_turtle_A": 0.1055,
+    "wood_turtle_B": 0.1033
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     35,
+     2
+    ],
+    "marmot": [
+     47,
+     3
+    ],
+    "ms_woodpecker": [
+     31,
+     1
+    ],
+    "rc_woodpecker": [
+     29,
+     0
+    ],
+    "golden_plover": [
+     35,
+     4
+    ],
+    "whooping_crane": [
+     29,
+     4
+    ],
+    "hawaiian_crow": [
+     23,
+     0
+    ],
+    "wood_turtle_A": [
+     35,
+     2
+    ],
+    "wood_turtle_B": [
+     36,
+     1
+    ]
+   }
+  },
+  {
+   "block": 10,
+   "name": "MO_lown",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2155,
+    0.463,
+    0.9112
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 25,
+     "reject": 2,
+     "rate": 0.08
+    },
+    {
+     "bin": 2,
+     "n": 49,
+     "reject": 3,
+     "rate": 0.0612
+    },
+    {
+     "bin": 3,
+     "n": 54,
+     "reject": 5,
+     "rate": 0.0926
+    },
+    {
+     "bin": 4,
+     "n": 68,
+     "reject": 3,
+     "rate": 0.0441
+    },
+    {
+     "bin": 5,
+     "n": 104,
+     "reject": 2,
+     "rate": 0.0192
+    }
+   ],
+   "p_hi_deciles_counts": [
+    34,
+    24,
+    33,
+    29,
+    28,
+    29,
+    32,
+    23,
+    37,
+    31
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1275,
+    "marmot": 0.1359,
+    "ms_woodpecker": 0.1211,
+    "rc_woodpecker": 0.0758,
+    "golden_plover": 0.0949,
+    "whooping_crane": 0.1134,
+    "hawaiian_crow": 0.0795,
+    "wood_turtle_A": 0.1273,
+    "wood_turtle_B": 0.118
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     31,
+     2
+    ],
+    "marmot": [
+     42,
+     4
+    ],
+    "ms_woodpecker": [
+     40,
+     1
+    ],
+    "rc_woodpecker": [
+     19,
+     1
+    ],
+    "golden_plover": [
+     29,
+     0
+    ],
+    "whooping_crane": [
+     31,
+     0
+    ],
+    "hawaiian_crow": [
+     21,
+     0
+    ],
+    "wood_turtle_A": [
+     45,
+     3
+    ],
+    "wood_turtle_B": [
+     42,
+     4
+    ]
+   }
+  },
+  {
+   "block": 11,
+   "name": "MO_uniform",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.192,
+    0.3725,
+    0.7995
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 38,
+     "reject": 1,
+     "rate": 0.0263
+    },
+    {
+     "bin": 2,
+     "n": 60,
+     "reject": 5,
+     "rate": 0.0833
+    },
+    {
+     "bin": 3,
+     "n": 69,
+     "reject": 6,
+     "rate": 0.087
+    },
+    {
+     "bin": 4,
+     "n": 61,
+     "reject": 1,
+     "rate": 0.0164
+    },
+    {
+     "bin": 5,
+     "n": 72,
+     "reject": 4,
+     "rate": 0.0556
+    }
+   ],
+   "p_hi_deciles_counts": [
+    30,
+    19,
+    26,
+    37,
+    30,
+    26,
+    30,
+    35,
+    37,
+    30
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1338,
+    "marmot": 0.122,
+    "ms_woodpecker": 0.097,
+    "rc_woodpecker": 0.067,
+    "golden_plover": 0.084,
+    "whooping_crane": 0.0903,
+    "hawaiian_crow": 0.0711,
+    "wood_turtle_A": 0.1081,
+    "wood_turtle_B": 0.1013
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     51,
+     4
+    ],
+    "marmot": [
+     50,
+     2
+    ],
+    "ms_woodpecker": [
+     35,
+     3
+    ],
+    "rc_woodpecker": [
+     16,
+     1
+    ],
+    "golden_plover": [
+     24,
+     1
+    ],
+    "whooping_crane": [
+     31,
+     3
+    ],
+    "hawaiian_crow": [
+     15,
+     1
+    ],
+    "wood_turtle_A": [
+     42,
+     2
+    ],
+    "wood_turtle_B": [
+     36,
+     0
+    ]
+   }
+  },
+  {
+   "block": 12,
+   "name": "MA_MD_linear",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2269,
+    0.4871,
+    1.0139
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 17,
+     "reject": 3,
+     "rate": 0.1765
+    },
+    {
+     "bin": 2,
+     "n": 39,
+     "reject": 10,
+     "rate": 0.2564
+    },
+    {
+     "bin": 3,
+     "n": 58,
+     "reject": 7,
+     "rate": 0.1207
+    },
+    {
+     "bin": 4,
+     "n": 78,
+     "reject": 11,
+     "rate": 0.141
+    },
+    {
+     "bin": 5,
+     "n": 108,
+     "reject": 11,
+     "rate": 0.1019
+    }
+   ],
+   "p_hi_deciles_counts": [
+    92,
+    64,
+    26,
+    32,
+    19,
+    19,
+    14,
+    15,
+    12,
+    7
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1341,
+    "marmot": 0.13,
+    "ms_woodpecker": 0.0814,
+    "rc_woodpecker": 0.0716,
+    "golden_plover": 0.0913,
+    "whooping_crane": 0.0938,
+    "hawaiian_crow": 0.0594,
+    "wood_turtle_A": 0.1023,
+    "wood_turtle_B": 0.1076
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     40,
+     3
+    ],
+    "marmot": [
+     67,
+     12
+    ],
+    "ms_woodpecker": [
+     21,
+     5
+    ],
+    "rc_woodpecker": [
+     18,
+     1
+    ],
+    "golden_plover": [
+     31,
+     5
+    ],
+    "whooping_crane": [
+     30,
+     5
+    ],
+    "hawaiian_crow": [
+     22,
+     1
+    ],
+    "wood_turtle_A": [
+     35,
+     4
+    ],
+    "wood_turtle_B": [
+     36,
+     6
+    ]
+   }
+  },
+  {
+   "block": 13,
+   "name": "MA_MD_accel",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2477,
+    0.4975,
+    1.0464
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 19,
+     "reject": 2,
+     "rate": 0.1053
+    },
+    {
+     "bin": 2,
+     "n": 33,
+     "reject": 4,
+     "rate": 0.1212
+    },
+    {
+     "bin": 3,
+     "n": 57,
+     "reject": 9,
+     "rate": 0.1579
+    },
+    {
+     "bin": 4,
+     "n": 77,
+     "reject": 10,
+     "rate": 0.1299
+    },
+    {
+     "bin": 5,
+     "n": 114,
+     "reject": 15,
+     "rate": 0.1316
+    }
+   ],
+   "p_hi_deciles_counts": [
+    81,
+    45,
+    43,
+    29,
+    29,
+    17,
+    21,
+    18,
+    7,
+    10
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1519,
+    "marmot": 0.1279,
+    "ms_woodpecker": 0.0896,
+    "rc_woodpecker": 0.0697,
+    "golden_plover": 0.0925,
+    "whooping_crane": 0.0969,
+    "hawaiian_crow": 0.0738,
+    "wood_turtle_A": 0.1289,
+    "wood_turtle_B": 0.121
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     46,
+     5
+    ],
+    "marmot": [
+     33,
+     1
+    ],
+    "ms_woodpecker": [
+     28,
+     5
+    ],
+    "rc_woodpecker": [
+     31,
+     3
+    ],
+    "golden_plover": [
+     25,
+     6
+    ],
+    "whooping_crane": [
+     27,
+     7
+    ],
+    "hawaiian_crow": [
+     18,
+     2
+    ],
+    "wood_turtle_A": [
+     50,
+     8
+    ],
+    "wood_turtle_B": [
+     42,
+     3
+    ]
+   }
+  },
+  {
+   "block": 14,
+   "name": "MA_MD_step",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2401,
+    0.5046,
+    1.0959
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 18,
+     "reject": 1,
+     "rate": 0.0556
+    },
+    {
+     "bin": 2,
+     "n": 41,
+     "reject": 2,
+     "rate": 0.0488
+    },
+    {
+     "bin": 3,
+     "n": 55,
+     "reject": 3,
+     "rate": 0.0545
+    },
+    {
+     "bin": 4,
+     "n": 66,
+     "reject": 9,
+     "rate": 0.1364
+    },
+    {
+     "bin": 5,
+     "n": 120,
+     "reject": 13,
+     "rate": 0.1083
+    }
+   ],
+   "p_hi_deciles_counts": [
+    59,
+    62,
+    45,
+    30,
+    23,
+    23,
+    15,
+    16,
+    17,
+    10
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1351,
+    "marmot": 0.1316,
+    "ms_woodpecker": 0.0912,
+    "rc_woodpecker": 0.0645,
+    "golden_plover": 0.0902,
+    "whooping_crane": 0.0978,
+    "hawaiian_crow": 0.0745,
+    "wood_turtle_A": 0.1269,
+    "wood_turtle_B": 0.1026
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     40,
+     3
+    ],
+    "marmot": [
+     52,
+     6
+    ],
+    "ms_woodpecker": [
+     28,
+     4
+    ],
+    "rc_woodpecker": [
+     19,
+     2
+    ],
+    "golden_plover": [
+     30,
+     2
+    ],
+    "whooping_crane": [
+     24,
+     0
+    ],
+    "hawaiian_crow": [
+     21,
+     3
+    ],
+    "wood_turtle_A": [
+     44,
+     4
+    ],
+    "wood_turtle_B": [
+     42,
+     4
+    ]
+   }
+  },
+  {
+   "block": 15,
+   "name": "MA_d10_0.3",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.1842,
+    0.386,
+    0.7995
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 51,
+     "reject": 31,
+     "rate": 0.6078
+    },
+    {
+     "bin": 2,
+     "n": 60,
+     "reject": 18,
+     "rate": 0.3
+    },
+    {
+     "bin": 3,
+     "n": 50,
+     "reject": 24,
+     "rate": 0.48
+    },
+    {
+     "bin": 4,
+     "n": 66,
+     "reject": 26,
+     "rate": 0.3939
+    },
+    {
+     "bin": 5,
+     "n": 73,
+     "reject": 19,
+     "rate": 0.2603
+    }
+   ],
+   "p_hi_deciles_counts": [
+    178,
+    53,
+    30,
+    16,
+    9,
+    8,
+    2,
+    2,
+    1,
+    1
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1106,
+    "marmot": 0.1084,
+    "ms_woodpecker": 0.0849,
+    "rc_woodpecker": 0.0714,
+    "golden_plover": 0.0739,
+    "whooping_crane": 0.0798,
+    "hawaiian_crow": 0.0511,
+    "wood_turtle_A": 0.0962,
+    "wood_turtle_B": 0.0966
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     42,
+     11
+    ],
+    "marmot": [
+     41,
+     17
+    ],
+    "ms_woodpecker": [
+     39,
+     16
+    ],
+    "rc_woodpecker": [
+     28,
+     13
+    ],
+    "golden_plover": [
+     21,
+     7
+    ],
+    "whooping_crane": [
+     34,
+     11
+    ],
+    "hawaiian_crow": [
+     15,
+     7
+    ],
+    "wood_turtle_A": [
+     35,
+     16
+    ],
+    "wood_turtle_B": [
+     45,
+     20
+    ]
+   }
+  },
+  {
+   "block": 16,
+   "name": "MA_d10_0.5",
+   "role": "descriptive",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.2134,
+    0.436,
+    0.9078
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 25,
+     "reject": 22,
+     "rate": 0.88
+    },
+    {
+     "bin": 2,
+     "n": 46,
+     "reject": 41,
+     "rate": 0.8913
+    },
+    {
+     "bin": 3,
+     "n": 60,
+     "reject": 38,
+     "rate": 0.6333
+    },
+    {
+     "bin": 4,
+     "n": 75,
+     "reject": 51,
+     "rate": 0.68
+    },
+    {
+     "bin": 5,
+     "n": 94,
+     "reject": 54,
+     "rate": 0.5745
+    }
+   ],
+   "p_hi_deciles_counts": [
+    253,
+    32,
+    10,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1389,
+    "marmot": 0.1305,
+    "ms_woodpecker": 0.0989,
+    "rc_woodpecker": 0.0779,
+    "golden_plover": 0.0973,
+    "whooping_crane": 0.1129,
+    "hawaiian_crow": 0.0676,
+    "wood_turtle_A": 0.1213,
+    "wood_turtle_B": 0.1325
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     41,
+     27
+    ],
+    "marmot": [
+     47,
+     34
+    ],
+    "ms_woodpecker": [
+     33,
+     19
+    ],
+    "rc_woodpecker": [
+     24,
+     21
+    ],
+    "golden_plover": [
+     25,
+     17
+    ],
+    "whooping_crane": [
+     45,
+     35
+    ],
+    "hawaiian_crow": [
+     14,
+     8
+    ],
+    "wood_turtle_A": [
+     40,
+     26
+    ],
+    "wood_turtle_B": [
+     31,
+     19
+    ]
+   }
+  },
+  {
+   "block": 17,
+   "name": "stress_fitted_parameters",
+   "role": "stress",
+   "n": 300,
+   "radius_quantiles_10_50_90": [
+    0.1655,
+    0.3107,
+    0.5657
+   ],
+   "by_bin": [
+    {
+     "bin": 1,
+     "n": 70,
+     "reject": 4,
+     "rate": 0.0571
+    },
+    {
+     "bin": 2,
+     "n": 75,
+     "reject": 1,
+     "rate": 0.0133
+    },
+    {
+     "bin": 3,
+     "n": 71,
+     "reject": 4,
+     "rate": 0.0563
+    },
+    {
+     "bin": 4,
+     "n": 52,
+     "reject": 2,
+     "rate": 0.0385
+    },
+    {
+     "bin": 5,
+     "n": 32,
+     "reject": 0,
+     "rate": 0.0
+    }
+   ],
+   "p_hi_deciles_counts": [
+    28,
+    35,
+    20,
+    33,
+    32,
+    30,
+    42,
+    22,
+    31,
+    27
+   ],
+   "median_kth_by_population": {
+    "wild_dog": 0.1428,
+    "marmot": 0.1551,
+    "ms_woodpecker": 0.0889,
+    "rc_woodpecker": 0.0624,
+    "golden_plover": 0.0718,
+    "whooping_crane": 0.0563,
+    "hawaiian_crow": 0.0316,
+    "wood_turtle_A": 0.1005,
+    "wood_turtle_B": 0.0922
+   },
+   "reject_rate_by_argmax_population": {
+    "wild_dog": [
+     61,
+     3
+    ],
+    "marmot": [
+     83,
+     2
+    ],
+    "ms_woodpecker": [
+     27,
+     3
+    ],
+    "rc_woodpecker": [
+     23,
+     1
+    ],
+    "golden_plover": [
+     16,
+     0
+    ],
+    "whooping_crane": [
+     12,
+     0
+    ],
+    "hawaiian_crow": [
+     4,
+     0
+    ],
+    "wood_turtle_A": [
+     33,
+     0
+    ],
+    "wood_turtle_B": [
+     41,
+     2
+    ]
+   }
+  }
+ ]
+}

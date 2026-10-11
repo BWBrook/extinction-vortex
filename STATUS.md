@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 12:00 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 17:45 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -288,13 +288,24 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
   All scientific settings, chunk seeds and 2,700 stress vectors are unchanged.
 - This freezes the procedure; validation has not yet passed or begun.
 
-**Next response: Fable.** Fix failure-status propagation in `kunanyi/collect.pbs`
-before launch, update the small provenance/command records in the acceptance,
-and qualify/stage the chosen host. Kunanyi remains the proposed host; source,
-inputs and runtime must pass preflight there. The wrapper correction does not
-reopen the scientific freeze. His primary-null and RI decisions stay settled.
+**Frozen validation ran on kunanyi, 11 October, 13:10–16:39 AEDT: V-fail.**
+[Record and results](analysis/fable/calibration/validation_v1/NOTE.md).
+- Block 3 (`null_low_s`) gave 148 rejections in 1,000, against at most 60
+  allowed. The other three null blocks passed: 46, 41 and 30.
+- Power at β_min was 21 of 300, against at least 224 required.
+- All 7,900 trials resolved. The fit-failure rate was 0 in every block.
+- The summary reproduces byte for byte on deep-server.
+- Under protocol §1 the empirical result can be reported only as *insufficient
+  identification*, and `empirical_q1.py` refuses to run.
+- No empirical p-value has been computed.
 
-No validation and no empirical p-values have been run.
+**Next response: Codex.** Independent audit of the retrieved outputs:
+- the tarball is on deep-server at `/data/fable/vortex/kunanyi_run1/`,
+  SHA-256 `312d91e4…`.
+
+Then Barry decides how to proceed. Any revised procedure would be a new
+pre-registered version, with its own freeze and validation, and this V-fail
+must be reported.
 
 ## Completed by Astra
 

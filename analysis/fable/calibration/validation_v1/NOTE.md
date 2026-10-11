@@ -52,3 +52,76 @@ enforces, so it also runs on kunanyi.
   gates the results, packs `validation_v1.tar.gz` with its SHA-256, and emails
   Barry. It exits nonzero if collection, the summary or packing fails.
 - Results follow in this directory after retrieval.
+
+## Result (retrieved 11 October 2026, 17:30 AEDT)
+
+**V-fail.** The null gate failed in block 3 (`null_low_s`): 148 rejections in
+1,000, against at most 60 allowed (upper 98.75% bound 0.175). Under protocol
+§1 the empirical result can now be reported only as *insufficient
+identification*. `empirical_q1.py` refuses to run on this summary.
+
+**Run receipts.**
+- All 48 slot jobs finished with exit status 0, and their `.err` logs are
+  empty.
+- Collector 817526 finished with exit status 0 after 15 min 45 s. It wrote the
+  summary at 16:34 and the archive at 16:38 AEDT; Barry received its email.
+- `validation_v1.tar.gz` is 1.17 GB, SHA-256 `312d91e4…`.
+  - It was pulled to deep-server
+    `/data/fable/vortex/kunanyi_run1/` and the checksum verified.
+  - It is extracted in `extract/`, which holds the chunks, slot logs, collect
+    log and preflight receipt.
+- Re-running the frozen collector on deep-server, from the extracted chunks
+  with the staged `52779d0` source and the same manifest, gives a
+  byte-identical summary (SHA-256 `c0eaf012…`).
+- Summary binding:
+  - manifest digest `96603037…`, code commit `52779d0`;
+  - host n001.kunanyi;
+  - Python 3.11.7, NumPy 1.26.4, SciPy 1.11.4, R 4.3.3, nlme 3.1.171.
+- Every one of the 7,900 trials resolved:
+  - no missing rows;
+  - no indeterminate outcomes of any kind;
+  - a fit-failure rate of 0 in every block.
+
+**Gates** (`validation_summary.json`):
+
+| Block | Scenario | Role | Rejections / n | Result |
+|---|---|---|---|---|
+| 1 | null, prior predictive | null | 46 / 1000 | pass (upper bound 0.063) |
+| 2 | null, high σ | null | 41 / 1000 | pass (0.057) |
+| 3 | null, low s | null | **148 / 1000** | **fail (0.175)** |
+| 4 | null, strong environment | null | 30 / 1000 | pass (0.044) |
+| 5 | M_A at β_min | power | 21 / 300 | fail (lower bound 0.047; needs 224) |
+
+**Descriptive blocks** (detections out of 300, with exact 95% intervals):
+
+| Block | Scenario | Detections | Rate (95% CI) |
+|---|---|---|---|
+| 6 | M_A at 2·β_min | 25 | 0.083 (0.055–0.121) |
+| 7 | M_D linear | 16 | 0.053 |
+| 8 | M_D accelerating | 26 | 0.087 |
+| 9 | M_D step | 17 | 0.057 |
+| 10 | M_O, low-n detection | 15 | 0.050 |
+| 11 | M_O, uniform detection | 17 | 0.057 |
+| 12 | M_A + M_D linear | 42 | 0.140 |
+| 13 | M_A + M_D accelerating | 40 | 0.133 |
+| 14 | M_A + M_D step | 28 | 0.093 |
+| 15 | M_A, Δ10 = 0.3 | 118 | 0.393 (0.338–0.451) |
+| 16 | M_A, Δ10 = 0.5 | 206 | 0.687 (0.631–0.739) |
+| 17 | fitted-parameter stress check | 11 | 0.037 (0.018–0.065); no unresolved trials |
+
+**Radius strata** (predeclared, descriptive): `radius_strata.json`, computed
+by `radius_strata.py`. That script was written after retrieval; it applies the
+frozen bins (freeze package §5) to each trial's largest per-population K-th
+neighbour distance.
+
+In `null_low_s`, the excess is spread across all five bins: 33/250, 43/318,
+40/241, 18/133 and 14/58. The p-values pile up near zero: 280 of 1,000 fall
+below 0.1 and 482 below 0.2. The other null blocks have flat p-value deciles.
+
+A first reading, not yet audited: the excess does not come from thin library
+support at large radius. It points instead to the T1–T4 null distribution
+depending on survival s beyond what the calibration summaries C condition on.
+
+**Next:** Codex's independent audit. Any change to the procedure is a new
+pre-registered version with its own freeze and validation, and this V-fail
+must be reported.

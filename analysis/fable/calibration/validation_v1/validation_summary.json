@@ -1,0 +1,606 @@
+{
+ "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+ "code_commit": "52779d0",
+ "runtime": {
+  "python": "3.11.7",
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "nlme": "3.1.171"
+ },
+ "host": "n001.kunanyi",
+ "v_fail": true,
+ "fit_stop": false,
+ "power_gate_pass": false,
+ "labels_available": [],
+ "scenarios": [
+  {
+   "block": 1,
+   "name": "null_prior_predictive",
+   "role": "null",
+   "n": 1000,
+   "counts": {
+    "reject": 46,
+    "accept": 954,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 46,
+    "null_gate_count": 46,
+    "detections": 46
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 4001000,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "null_gate": {
+    "non_accepts": 46,
+    "max_allowed": 60,
+    "pass": true,
+    "upper_98.75": 0.06312
+   },
+   "fit_stop": false
+  },
+  {
+   "block": 2,
+   "name": "null_high_sigma",
+   "role": "null",
+   "n": 1000,
+   "counts": {
+    "reject": 41,
+    "accept": 959,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 41,
+    "null_gate_count": 41,
+    "detections": 41
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 4001000,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "null_gate": {
+    "non_accepts": 41,
+    "max_allowed": 60,
+    "pass": true,
+    "upper_98.75": 0.05736
+   },
+   "fit_stop": false
+  },
+  {
+   "block": 3,
+   "name": "null_low_s",
+   "role": "null",
+   "n": 1000,
+   "counts": {
+    "reject": 148,
+    "accept": 852,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 148,
+    "null_gate_count": 148,
+    "detections": 148
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 4001000,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "null_gate": {
+    "non_accepts": 148,
+    "max_allowed": 60,
+    "pass": false,
+    "upper_98.75": 0.17498
+   },
+   "fit_stop": false
+  },
+  {
+   "block": 4,
+   "name": "null_strong_env",
+   "role": "null",
+   "n": 1000,
+   "counts": {
+    "reject": 30,
+    "accept": 970,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 30,
+    "null_gate_count": 30,
+    "detections": 30
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 4001000,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "null_gate": {
+    "non_accepts": 30,
+    "max_allowed": 60,
+    "pass": true,
+    "upper_98.75": 0.04446
+   },
+   "fit_stop": false
+  },
+  {
+   "block": 5,
+   "name": "MA_betamin",
+   "role": "power",
+   "n": 300,
+   "counts": {
+    "reject": 21,
+    "accept": 279,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 21,
+    "null_gate_count": 21,
+    "detections": 21
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "power_gate": {
+    "detections": 21,
+    "min_required": 224,
+    "pass": false,
+    "lower_95": 0.04738
+   },
+   "fit_stop": false
+  },
+  {
+   "block": 6,
+   "name": "MA_2betamin",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 25,
+    "accept": 275,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 25,
+    "null_gate_count": 25,
+    "detections": 25
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    25,
+    300,
+    0.08333,
+    0.05465,
+    0.12056
+   ]
+  },
+  {
+   "block": 7,
+   "name": "MD_linear",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 16,
+    "accept": 284,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 16,
+    "null_gate_count": 16,
+    "detections": 16
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    16,
+    300,
+    0.05333,
+    0.03079,
+    0.08517
+   ]
+  },
+  {
+   "block": 8,
+   "name": "MD_accel",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 26,
+    "accept": 274,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 26,
+    "null_gate_count": 26,
+    "detections": 26
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    26,
+    300,
+    0.08667,
+    0.05739,
+    0.12441
+   ]
+  },
+  {
+   "block": 9,
+   "name": "MD_step",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 17,
+    "accept": 283,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 17,
+    "null_gate_count": 17,
+    "detections": 17
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    17,
+    300,
+    0.05667,
+    0.03335,
+    0.08918
+   ]
+  },
+  {
+   "block": 10,
+   "name": "MO_lown",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 15,
+    "accept": 285,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 15,
+    "null_gate_count": 15,
+    "detections": 15
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    15,
+    300,
+    0.05,
+    0.02825,
+    0.08113
+   ]
+  },
+  {
+   "block": 11,
+   "name": "MO_uniform",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 17,
+    "accept": 283,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 17,
+    "null_gate_count": 17,
+    "detections": 17
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    17,
+    300,
+    0.05667,
+    0.03335,
+    0.08918
+   ]
+  },
+  {
+   "block": 12,
+   "name": "MA_MD_linear",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 42,
+    "accept": 258,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 42,
+    "null_gate_count": 42,
+    "detections": 42
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    42,
+    300,
+    0.14,
+    0.1028,
+    0.18449
+   ]
+  },
+  {
+   "block": 13,
+   "name": "MA_MD_accel",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 40,
+    "accept": 260,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 40,
+    "null_gate_count": 40,
+    "detections": 40
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "detection": [
+    40,
+    300,
+    0.13333,
+    0.09699,
+    0.17711
+   ]
+  },
+  {
+   "block": 14,
+   "name": "MA_MD_step",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 28,
+    "accept": 272,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 28,
+    "null_gate_count": 28,
+    "detections": 28
+   },
+   "fit_failures": {
+    "failed_datasets": 1,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 8.331250520703157e-07
+   },
+   "detection": [
+    28,
+    300,
+    0.09333,
+    0.06292,
+    0.13206
+   ]
+  },
+  {
+   "block": 15,
+   "name": "MA_d10_0.3",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 118,
+    "accept": 182,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 118,
+    "null_gate_count": 118,
+    "detections": 118
+   },
+   "fit_failures": {
+    "failed_datasets": 2,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 1.6662501041406315e-06
+   },
+   "detection": [
+    118,
+    300,
+    0.39333,
+    0.33769,
+    0.45111
+   ]
+  },
+  {
+   "block": 16,
+   "name": "MA_d10_0.5",
+   "role": "descriptive",
+   "n": 300,
+   "counts": {
+    "reject": 206,
+    "accept": 94,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 206,
+    "null_gate_count": 206,
+    "detections": 206
+   },
+   "fit_failures": {
+    "failed_datasets": 1,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 8.331250520703157e-07
+   },
+   "detection": [
+    206,
+    300,
+    0.68667,
+    0.63085,
+    0.73875
+   ]
+  },
+  {
+   "block": 17,
+   "name": "stress_fitted_parameters",
+   "role": "stress",
+   "n": 300,
+   "counts": {
+    "reject": 11,
+    "accept": 289,
+    "indet_calib": 0,
+    "indet_sampling": 0,
+    "indet_malformed": 0,
+    "indet_obsfit": 0,
+    "indet_train": 0,
+    "indet_cov": 0,
+    "indet_straddle": 0,
+    "missing": 0,
+    "raw_p_below_alpha": 11,
+    "null_gate_count": 11,
+    "detections": 11
+   },
+   "fit_failures": {
+    "failed_datasets": 0,
+    "fitted_datasets": 1200300,
+    "flag_mismatches": 0,
+    "rate": 0.0
+   },
+   "stress_bounds": {
+    "unresolved": 0,
+    "lower": [
+     11,
+     300,
+     0.03667,
+     0.01844,
+     0.06466
+    ],
+    "upper": [
+     11,
+     300,
+     0.03667,
+     0.01844,
+     0.06466
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+ "host": "n001.kunanyi",
+ "checked_source": 12,
+ "checked_bank_shards": 181,
+ "runtime": {
+  "python": "3.11.7",
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "nlme": "3.1.171"
+ },
+ "time": "2026-10-11T13:10:13+1100"
+}
