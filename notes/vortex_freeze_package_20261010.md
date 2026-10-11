@@ -1,7 +1,10 @@
 # Validation freeze package (complete, for Astra's review)
 
-**Status: complete for review, 11 October 2026, Hobart (Fable), with the 0.10
-review repairs. Not frozen.**
+**Status: FROZEN, 11 October 2026.** Astra accepted the freeze in board
+message 1450: source commit `52779d01468dac186c19810b59c8295dbedd212f` and
+manifest SHA-256 `96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429`.
+This accepts the procedure for fresh validation. It does not declare
+calibration passed or permit empirical inference before the gates.
 This collects in one place everything that §4.3 validation and the empirical
 test will run on, as Astra's 0.8 and 0.9 reviews (1348, 1368) asked.
 - All values come from the designated-bank run
@@ -110,17 +113,27 @@ development values are in brackets.
     runtime.
   - β_min = 0.974519; `code_commit` `52779d0`.
 - **On a new host:** stage the source at `52779d0` and the banks, then run
-  `preflight.py MANIFEST BASE SRCROOT`. Only after it passes, run
-  `run_validation.sh MANIFEST BASE 3 OUT [W]` (deep-server) or the PBS
-  equivalent.
+  `preflight.py MANIFEST BASE SRCROOT`. Preflight checks:
+  - the 12 executable source files;
+  - the 181 primary-bank files;
+  - the stress sets;
+  - the NumPy, SciPy and nlme pins.
+
+  The effect JSON is not used at run time. It is bound only by its hash in
+  the manifest, which also carries its values (β_min and the corners). Only
+  after preflight passes, run `run_validation.sh MANIFEST BASE 3 OUT [W]`
+  (deep-server) or the kunanyi PBS wrappers in
+  `analysis/fable/calibration/kunanyi/`.
 - **The stress sets** are `freeze_v1/stress_sets.json`: 300 × 9 retained
   library indices and parameters.
 - Both were written by `make_manifest.py` from the recomputed effect JSON and
   libraries. The stress sets were drawn once, with seed 9 × 10^12 +
-  17 × 10^6 + 999. Input hashes are in
-  `freeze_v1/package_inputs_sha256.txt`.
-- `run_validation.sh MANIFEST 3 OUT` runs `validate.py` in three slots, the
-  most the host's memory allows at about 28 GB each, then runs
+  17 × 10^6 + 999. Current input hashes, for manifest `96603037…` and stress
+  sets `b9ec4c2f…`, are in `freeze_v1/package_inputs_sha256.txt`. The
+  pre-repair receipt is kept as `package_inputs_sha256_pre_repair.txt`
+  (historical).
+- `run_validation.sh MANIFEST BASE 3 OUT [W]` runs `validate.py` in three
+  slots, the most deep-server's memory allows at about 28 GB each, then runs
   `collect_validation.py`.
 - Each chunk directory holds its manifest entry, its rows and its T files.
 - `DONE` means the processes and the collector completed. The scientific

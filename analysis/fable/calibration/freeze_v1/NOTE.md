@@ -21,7 +21,9 @@ E28). No empirical T1–T4 or p-value has been computed.
 | `empirical_position_{ar_cat,iid}.json` | K-th-neighbour distances of the observed C (C only) |
 | `gen_times.json` | Generation timings for all 13 generator scenarios with the recomputed corners |
 | `validation_manifest.json`, `stress_sets.json` | The run definition: 17 blocks × 10 chunks, seeds, trial IDs, roles, the stress parameter sets |
-| `package_inputs_sha256.txt` | Hashes of the effect JSON, libraries, manifest, stress sets and corners |
+| `package_inputs_sha256.txt` | Current hashes of the frozen manifest (`96603037…`), stress sets (`b9ec4c2f…`), effect JSON, libraries and corners |
+| `package_inputs_sha256_pre_repair.txt` | Historical: the pre-repair manifest and stress receipt (`49f65ce`) |
+| `preflight_96603037ec050361.json` | deep-server preflight receipt for the frozen manifest |
 | `freeze_source_sha256.txt` | Staged freeze source; all 17 files match `49f65ce` |
 | `runtime_versions.txt` | Python, NumPy, SciPy, R, nlme and kernel versions |
 | `receipt_test_bank.txt`, `receipt_test_validation.txt` | 28/28 and 19/19 on the staged freeze source |
