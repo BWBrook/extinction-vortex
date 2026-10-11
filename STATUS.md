@@ -325,18 +325,40 @@ development evidence for v2, not a reusable untouched validation set.
 executes; Astra critiques. The v1 result note's fit-failure wording is
 corrected.
 - [Mechanism diagnostic 1](analysis/fable/calibration/v2_dev/NOTE.md) rebuilt
-  the v1 null neighbourhoods exactly.
+  the v1 null neighbourhoods using the declared code and bank. Its compact
+  receipt does not independently establish exact historical identity.
   - At the low-s corner, the library's s is strongly displaced (the true value
     ranks 0.09–0.33 within it).
   - The high-σ block is displaced as much in σ, yet passes.
-  - This points to nuisance non-identification by C along the
-    survival/growth direction, not finite-library error.
+  - Nuisance non-identification is a working hypothesis. The aggregate ranks
+    do not rule out finite-library error or isolate a survival/growth cause.
 
-**Next response: Codex.** Critique of diagnostic 1 and of the proposed oracle
-check and candidate pair (board). No v2 method is selected or frozen, and no
-empirical run is possible.
+**Astra reviewed D1 and the next experiments, 11 October:**
+[review](notes/astra_v2_diagnostic_review_20261011.md),
+[bounded checks](analysis/astra/v2_diagnostic_review/), Correspondence **1533**.
+- D1's trend is an endpoint summary; floating-point cancellation can break
+  mathematical ties in its ranks. Correct and version the diagnostic output;
+  the effect on actual D1 ranks is not yet measured.
+- D2 can proceed as a trial-level association diagnostic, not causal
+  attribution between survival and growth.
+- D3 should use 200 paired outer datasets against both frozen-v1 and oracle
+  references, with common C scaling, retained failures and a written budget.
+  An oracle improvement would not itself eliminate approximation error.
+- Candidate B is a plug-in sketch. Its full estimation/calibration rule must
+  be specified; block 17 did not evaluate that procedure. Poor v1 power is
+  evidence for caution, not a theorem about all future v2 procedures.
+
+**Next response: Fable.** Correct D1, run the bounded D2 association work and
+prepare the paired D3 specification and complete two-candidate definitions.
+Fix D3's written design/budgets before execution. No v2 method is selected or
+frozen, and no empirical run is possible.
 
 ## Completed by Astra
+
+- 11 October, reviewed v2 diagnostic 1 and Fable's D2/D3/candidate proposals.
+  Verified aggregate ranges and corner means; reproduced an endpoint-tie
+  arithmetic defect; returned a paired oracle design and plug-in-calibration
+  qualifications. No bank reload, new population simulations or model fits.
 
 - 11 October, independently audited the completed v1 archive, reproduced all
   gates, verified low-survival provenance and checked the empirical refusal.
@@ -601,9 +623,9 @@ empirical run is possible.
 
 ## Pending
 
-1. Fable responds to the completed v1 audit and proposed v2 diagnostic tranche.
-   The v1 freeze, execution and audit are complete: V-fail. Diagnose with the
-   archived evidence, compare at most two development candidates, and prepare
+1. Fable responds to the D1/D2/D3 review and completes the corrected diagnostic
+   and candidate specifications. The v1 freeze, execution and audit are
+   complete: V-fail. Compare at most two development candidates, and prepare
    a separate prospective protocol/freeze before untouched v2 validation.
    Retain the failed corner and low-power result; do not retune beta_min to
    obtain O1 or silently loosen the null gate.
@@ -629,9 +651,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1525**; exhausted `through`: **1525**.
-- Explicit acknowledgement: through actual message **1524** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1525`.
+- Last full retrieval `next_after`: **1530**; exhausted `through`: **1530**.
+- Explicit acknowledgement: through actual message **1530** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1530`.
 
 ## Decision Inbox checkpoint
 

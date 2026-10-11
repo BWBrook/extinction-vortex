@@ -1,0 +1,150 @@
+{
+  "reviewed_commit": "a60b266ddfd36ef395c25433937c2a4f8f925928",
+  "time_hobart": "2026-10-11T18:27:57.769321+11:00",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "2.3.5",
+  "scipy": "1.16.3",
+  "scope": "Local summary/source checks and deterministic arithmetic fixtures; no bank reload, new population simulation or fitting.",
+  "d1_source_sha256": "10c3c44e7267554dc6ac5064d3166ab8c2150608c7e917f453843b96abf67f9b",
+  "d1_summary_sha256": "aa699a369b2ba793f3f82f918b831331f1cf09b30b1ebfbda2c2a3f2ad70bfb6",
+  "manifest_sha256": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "frozen_source_hashes_match": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5"
+  },
+  "fixed_corner_mean_values_checked": 81,
+  "reported_rank_ranges_reproduced": {
+    "null_prior_predictive": {
+      "s_true_rank_in_lib": [
+        0.4873,
+        0.5128
+      ],
+      "sigma_true_rank_in_lib": [
+        0.4854,
+        0.5117
+      ],
+      "f_true_rank_in_lib": [
+        0.4803,
+        0.5193
+      ],
+      "trend_rank_mean": [
+        0.4771,
+        0.5204
+      ]
+    },
+    "null_high_sigma": {
+      "s_true_rank_in_lib": [
+        0.5973,
+        0.8032
+      ],
+      "sigma_true_rank_in_lib": [
+        0.7713,
+        0.9178
+      ],
+      "f_true_rank_in_lib": [
+        0.318,
+        0.3872
+      ],
+      "trend_rank_mean": [
+        0.4806,
+        0.523
+      ]
+    },
+    "null_low_s": {
+      "s_true_rank_in_lib": [
+        0.0912,
+        0.3267
+      ],
+      "sigma_true_rank_in_lib": [
+        0.2848,
+        0.5945
+      ],
+      "f_true_rank_in_lib": [
+        0.2642,
+        0.4951
+      ],
+      "trend_rank_mean": [
+        0.4571,
+        0.4978
+      ]
+    },
+    "null_strong_env": {
+      "s_true_rank_in_lib": [
+        0.3941,
+        0.6758
+      ],
+      "sigma_true_rank_in_lib": [
+        0.3448,
+        0.6206
+      ],
+      "f_true_rank_in_lib": [
+        0.3927,
+        0.6015
+      ],
+      "trend_rank_mean": [
+        0.4684,
+        0.5141
+      ]
+    }
+  },
+  "undefined_fields": [
+    "null_prior_predictive/hawaiian_crow/trend_z_mean",
+    "null_prior_predictive/hawaiian_crow/trend_z_mean_rejected",
+    "null_prior_predictive/hawaiian_crow/trend_z_mean_accepted",
+    "null_high_sigma/hawaiian_crow/trend_z_mean",
+    "null_high_sigma/hawaiian_crow/trend_z_mean_rejected",
+    "null_high_sigma/hawaiian_crow/trend_z_mean_accepted",
+    "null_low_s/hawaiian_crow/trend_z_mean",
+    "null_low_s/hawaiian_crow/trend_z_mean_rejected",
+    "null_low_s/hawaiian_crow/trend_z_mean_accepted",
+    "null_strong_env/hawaiian_crow/trend_z_mean",
+    "null_strong_env/hawaiian_crow/trend_z_mean_rejected",
+    "null_strong_env/hawaiian_crow/trend_z_mean_accepted"
+  ],
+  "strict_json_error": "NaN",
+  "trend_fixture": {
+    "n_paths": 343,
+    "initial": 20,
+    "penultimate": 2,
+    "length": 6,
+    "correct_midrank_for_every_path": 0.5,
+    "computed_distinct_trend_values": [
+      -0.5756462732485115,
+      -0.5756462732485114,
+      -0.5756462732485113
+    ],
+    "computed_lowest_path_midrank": 0.03206997084548105,
+    "lowest_path": [
+      20,
+      2,
+      30,
+      3,
+      2,
+      0
+    ],
+    "highest_path": [
+      20,
+      2,
+      3,
+      6,
+      2,
+      0
+    ],
+    "effect_on_actual_D1_ranks": "Not measured: per-trial libraries/ranks are not retained in D1 output."
+  },
+  "planning_illustration_only": {
+    "hypothetical_rejections": 10,
+    "n": 200,
+    "two_sided_95_CP": [
+      0.02423416547210855,
+      0.09002753770135137
+    ],
+    "one_sided_9875_upper_CP": 0.09625579944908458,
+    "note": "Illustrates uncertainty of a 200-trial diagnostic; not an observed result or a v2 gate."
+  },
+  "limitations": [
+    "Fixture runtime differs from the frozen v1 runtime.",
+    "Aggregate rank ranges do not verify per-trial matching or identify a mechanism.",
+    "This is not independent reconstruction of the large bank neighbourhoods."
+  ]
+}
