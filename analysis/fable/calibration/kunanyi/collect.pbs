@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N vortex_collect
+#PBS -q normal
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=04:00:00
+#PBS -M barry.brook@utas.edu.au
+#PBS -m ae
+# Runs after every slot job (afterany): assembles and gates the results, then packs the run
+# outputs with checksums for retrieval. qsub -v VBASE=... -W depend=afterany:ID:ID... collect.pbs
+set -eo pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+python analysis/fable/calibration/collect_validation.py "$VBASE/validation_manifest.json" "$VBASE" \
+  "$VBASE/validation_summary.json" > "$VBASE/collect.log" 2>&1 || echo "collector exit $?" >> "$VBASE/collect.log"
+cd "$VBASE"
+tar -czf validation_v1.tar.gz validation_v1 validation_summary.json collect.log slot_logs preflight_*.json 2>/dev/null || true
+sha256sum validation_v1.tar.gz > validation_v1.tar.gz.sha256

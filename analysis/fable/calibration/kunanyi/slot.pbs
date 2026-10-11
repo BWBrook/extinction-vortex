@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -N vortex_slot
+#PBS -q normal
+#PBS -l select=1:ncpus=28:mem=120gb
+#PBS -l walltime=12:00:00
+# One validation slot per node: validate.py loads the primary bank once (about 28 GB) and runs
+# its chunks with 27 R workers. qsub -v VBASE=...,SLOT=i,NSLOTS=n slot.pbs
+set -eo pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+python analysis/fable/calibration/validate.py "$VBASE/validation_manifest.json" "$VBASE" "$SLOT" "$NSLOTS" 27
