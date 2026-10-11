@@ -861,7 +861,10 @@ This is Astra's proposed tranche, with concrete exit criteria:
        - The §4.1 exit criteria are met.
 
 Production validation (§4.3) and the empirical test follow only with a
-measured cost estimate and Barry's allocation.
+measured cost estimate and Barry's allocation. (0.10 reconciliation: Barry's
+standing compute authority of 13 September covers routine allocation for
+authorised work, per Astra's 0.10 review. The host — deep-server or kunanyi —
+is operational and does not change the frozen manifest.)
 
 ### 4.2 Stage B: status and proposed amendment
 
@@ -1350,9 +1353,9 @@ count, seed family and cost.
 | Rule E = 0 (first census of 0) | ar_cat, selection changed | new, 9 populations | 1 | 8.4e12 / 9.5e12 | 39 + 0.4 |
 | Inclusion window instead of exact endpoint | ar_cat, selection changed | new, 9 populations | 1 | 8.5e12 / 9.5e12 | 39 + 0.4 |
 | Separate environmental factors (correlation 0.5) | ar_cat, two factors | new, 9 populations | 1 | 8.6e12 / 9.5e12 | 39 + 0.4 |
-| F&H-length windows (wild dog, marmot, crane; where the data allow) | ar_cat, design changed | new, 3 populations; others reused | 1 | 8.7e12 / 9.5e12 | 13 + 0.4 |
-| Wild-dog fills as missing; fills re-created in simulation | ar_cat, wild-dog design changed | new, wild dog only, × 2 | 2 | 8.7e12 / 9.5e12 | 9 + 0.8 |
-| Identical-count runs as missing except the first, where provenance is uncertain (currently the golden plover) | ar_cat, recorded-census mask | new, affected populations | 1 | 8.7e12 / 9.5e12 | 4–17 + 0.4 |
+| F&H-length windows (wild dog, marmot, crane; where the data allow) | ar_cat, design changed | new, 3 populations; others reused | 1 | 8.70e12 / 9.5e12 | 13 + 0.4 |
+| Wild-dog fills as missing; fills re-created in simulation | ar_cat, wild-dog design changed | new, wild dog only, × 2 | 2 | 8.71e12 and 8.72e12 / 9.5e12 | 9 + 0.8 |
+| Identical-count runs as missing except the first, where provenance is uncertain (currently the golden plover) | ar_cat, recorded-census mask | new, affected populations | 1 | 8.73e12 / 9.5e12 | 4–17 + 0.4 |
 | Prior (a), where the ledger supports it | ar_cat with the literature survival prior | new, supported populations | 1 | 8.8e12 / 9.5e12 | ≤ 39 + 0.4; **ledger-dependent** |
 | Per-population calibration adequacy (percentiles of c_obs) | ar_cat | primary (reused) | — | — | negligible |
 | Williams statistics on complete-count series (Q3, §2.2) | authors' code; no simulated reference | — | 31 series | — | negligible; **needs the archived code** |
@@ -1817,4 +1820,39 @@ Responses to Astra's 0.9 review (1368):
 **Open:**
 - Astra's acceptance of the package, which is the freeze;
 - Barry's go-ahead for the validation compute (§4.1).
+
+### 9.13 Fable, 0.10 review repairs (11 October)
+
+Responses to Astra's 0.10 review (1413):
+- **Fit accounting.**
+  - Failures are derived from T files (non-finite cells or flags) whether or
+    not the trial's row exists.
+  - Unknown fit status and missing or malformed files count all 2R + 1 as
+    failed. Only verified sampling failures are exempt.
+  - A malformed file after a logged row becomes `indet_malformed`, with its
+    `logged_outcome` kept, instead of aborting. Valid files still reconcile
+    strictly.
+- **Configuration binding.**
+  - The manifest is host-independent (paths relative to BASE). It embeds the
+    run-source, bank-shard, stress-set and effect hashes and pins NumPy,
+    SciPy and nlme.
+  - `preflight.py` verifies all of these on a host and writes a receipt,
+    which `validate.py` requires.
+  - Every chunk records the manifest digest and its settings. Restart and
+    collection refuse any mismatch, as well as overlapping chunks and rows
+    without metadata.
+  - The collector summary records the digest and the runtime. The empirical
+    guard checks the digest and the runtime and refuses a populated output
+    directory.
+- **Records.**
+  - The 125.6 core-hours are relabelled as the whole designated-bank package
+    run.
+  - The §7 sensitivity seed families are spelled out.
+  - The allocation wording is reconciled with Barry's standing authority.
+- **Regenerated manifest:** digest `96603037…`, code `52779d0`. The stress
+  sets are identical to the earlier draw.
+- **Receipts.** Deep-server preflight passed (12 sources, 181 bank files,
+  pins). `test_bank.py` passes 28/28 and `test_validation.py` 25/25 on the
+  staged source. A real-R launcher run on a reduced manifest completed, and
+  its rerun reproduced the summary exactly.
 

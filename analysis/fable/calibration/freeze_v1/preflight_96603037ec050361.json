@@ -1,0 +1,14 @@
+{
+ "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+ "host": "deep-server",
+ "checked_source": 12,
+ "checked_bank_shards": 181,
+ "runtime": {
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "R": "R version 4.6.1 (2026-06-24)",
+  "nlme": "3.1.171"
+ },
+ "time": "2026-10-11T11:38:15+1100"
+}

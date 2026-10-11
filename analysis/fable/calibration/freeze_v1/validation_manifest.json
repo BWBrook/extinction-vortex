@@ -1,15 +1,216 @@
 {
- "bankdir": "/data/fable/vortex/production_banks_20261010T081726Z/bank_primary",
  "variant": "ar_cat",
  "R": 2000,
  "K": 2000,
- "workers": 18,
  "budget": 1000000,
- "root": "/data/fable/vortex/validation_v1",
- "code_commit": "49f65cec2a28bdf53a0548d3e1b0979c63a81875",
- "effect_json": "/data/fable/vortex/production_banks_20261010T081726Z/effect/effect_target_ar_cat.json",
+ "code_commit": "52779d0",
+ "bankdir": "bank_primary",
+ "bank_sha256": {
+  "bank_ar_cat_golden_plover_s000.npz": "7f9574366d63319e157196d7f8703c71949a0f33dc0052cb813661a617e00edf",
+  "bank_ar_cat_golden_plover_s001.npz": "75628fe05db87a45879f297b625b10dd5b2ef6f6956cb810bf88c3afda379a6b",
+  "bank_ar_cat_golden_plover_s002.npz": "b5e488e72a6db14627ebd0d693b599eae040bfc1edc9bbfdadc829efe8e6d751",
+  "bank_ar_cat_golden_plover_s003.npz": "dc32dd01da39fc1c025e93d48827a3bb1790ebb7cfc101eee83b90700f4a4721",
+  "bank_ar_cat_golden_plover_s004.npz": "88e60451b26d5606fe7a4ec3047356203955c9f2a87a7a95083e6542793ac2af",
+  "bank_ar_cat_golden_plover_s005.npz": "2f5a92faf6343f533ad3b844d0c4e5a168136ce098f2b8ed7ed2bf01826e2c93",
+  "bank_ar_cat_golden_plover_s006.npz": "8b25893297a6abde19dc74a6f56624b5d7cb2cda0cffa154862edf1528bec47c",
+  "bank_ar_cat_golden_plover_s007.npz": "613a91c7e635c5c65898592e4e2d6b6ffb2c1c14db7a39e93852f0f8f6f5ee86",
+  "bank_ar_cat_golden_plover_s008.npz": "648ef81dd8d0bfcc8ce281108c24902c2c355601d5d35d312008dd8410b7952c",
+  "bank_ar_cat_golden_plover_s009.npz": "1066fbec32c16368d351ed325d814f8ad1f6f5e13f6709ae15c11b7aa8ff8960",
+  "bank_ar_cat_golden_plover_s010.npz": "3cc3fc30d82401714bcef59a5df39d18a5b8c55c24a8c2784f60ee2f5682dadf",
+  "bank_ar_cat_golden_plover_s011.npz": "d13348d09408588ea58ff8d50655921e2821a0897db7c600890130c68e57887a",
+  "bank_ar_cat_golden_plover_s012.npz": "f95ebe98b480f1c13fb892789d42791f33ed262f33c591cba9041cd53abd8d7b",
+  "bank_ar_cat_golden_plover_s013.npz": "a45fdff1090cd923cdc562f72639a18fb156f8fa644c95f7441b0c2487eef5b4",
+  "bank_ar_cat_golden_plover_s014.npz": "eb503ea7aef268b2dea76feec758698480ce27235930eac35f562ba3fc599c3b",
+  "bank_ar_cat_golden_plover_s015.npz": "8452a0976ee3b5e6f6ad8d0b602a15299823ec4facd05d671d4037e88f17bb98",
+  "bank_ar_cat_golden_plover_s016.npz": "10cdf24ed23ec4ae7cdbdae24ded13926d39d5877ddd97fab40fa74e3d6f5911",
+  "bank_ar_cat_golden_plover_s017.npz": "16ee82947cff3bc4bc134f4adc45e3370f1ef1afdd265e02799e64ffa9e441a3",
+  "bank_ar_cat_golden_plover_s018.npz": "2b00c6bb705029e6a5a3f4fd08c787cd569e0552b8027d62c6b1d7815b217560",
+  "bank_ar_cat_golden_plover_s019.npz": "848aa947720b2647c1ebe7c1b67c647a5a5c7f0bc75f590c1320c416778a5818",
+  "bank_ar_cat_hawaiian_crow_s000.npz": "ce57a9afb5463fa6241ac9e16edd75777e45615cbd2438935b2fee7553e261a1",
+  "bank_ar_cat_hawaiian_crow_s001.npz": "6c9f1f73d24acd7d447a7a25d08aae310644163302270204e08251762b0c3b60",
+  "bank_ar_cat_hawaiian_crow_s002.npz": "c1b16f6652ecbb4db63ec5d8835c17ad53b971cb8f3c02198d907e7ee2e77006",
+  "bank_ar_cat_hawaiian_crow_s003.npz": "5f0efcba6a6e91eeb55f402c8b081ae15996645dd002b4fb4fac45018800c3f2",
+  "bank_ar_cat_hawaiian_crow_s004.npz": "e42345e1853b2b864c19ec61c6a745e5258f2004243aedc2f5876f0596958b11",
+  "bank_ar_cat_hawaiian_crow_s005.npz": "6cf89677588d958816aae180be1178ba59f49a54070a74ff85c9dff21209411a",
+  "bank_ar_cat_hawaiian_crow_s006.npz": "5e39a8a29b0c820acc58a930530ee14f5a73abe4c07f88bce678d07b7c8c770c",
+  "bank_ar_cat_hawaiian_crow_s007.npz": "92e379685513b1bf9d410cc174c46e435828956fd9e53f007e08dbc5272ddc6a",
+  "bank_ar_cat_hawaiian_crow_s008.npz": "8a7e0b9ba18e2bb136bfbdedda1eccdcb656292d3bb20b846fa57bdbc2a1fff0",
+  "bank_ar_cat_hawaiian_crow_s009.npz": "d8bf367bb2bf522b7b69d691a99d511e41c4ebdf9d393a77ffa9e702b77d2ece",
+  "bank_ar_cat_hawaiian_crow_s010.npz": "b5a4e9f96b44d638f91c80ea59137ab019198b4153a323f25b6e7d946a2ab922",
+  "bank_ar_cat_hawaiian_crow_s011.npz": "9f2d2fcbf33cf793ecfba41c41d240d295ce004696f6591332bd8aec78215b92",
+  "bank_ar_cat_hawaiian_crow_s012.npz": "e340ea422553755a4f2f8eb52b974c136088b19bb8cdc52bf11906f741558cd6",
+  "bank_ar_cat_hawaiian_crow_s013.npz": "5e3fb9feb9e174dcb8e541a5c3464c86c4042dff1bca64cf54a335ffca0e9990",
+  "bank_ar_cat_hawaiian_crow_s014.npz": "28eee4073838f930ad36d64d7b44d193033a4fa02aadf3c0a358e8fe62e15926",
+  "bank_ar_cat_hawaiian_crow_s015.npz": "77d355de83caaad3fb2454547924a5641615dd7063fa29ef4d11a4d660fe4956",
+  "bank_ar_cat_hawaiian_crow_s016.npz": "b347f360e73604029b60805e06a087ddae2bd15ab972ca32af71a31a6132e801",
+  "bank_ar_cat_hawaiian_crow_s017.npz": "f1ba015b3c96a760c7cdd01057fc6ac063352cc6da49265e2fb9ac0f360e8b2f",
+  "bank_ar_cat_hawaiian_crow_s018.npz": "1e6bc0c8781879e851d2f278a3b7659d3629adda8d6254de27e243e7afa3b743",
+  "bank_ar_cat_hawaiian_crow_s019.npz": "a3b6ed7c71d35aa1567770663ae2795f1bf6be227ba8b809d9faa2f4d55c0897",
+  "bank_ar_cat_marmot_s000.npz": "687e7e526d82f4bbee75c12a7a343f147e0ca7959d9aad1c5291d480352ab66d",
+  "bank_ar_cat_marmot_s001.npz": "99c796befe82664de0ae2553aeb2483fe24f51a4f7096e9718dccea3a745ffd2",
+  "bank_ar_cat_marmot_s002.npz": "a6fe02eedeb5a9b59e5699c4e954a94a7ee23e5788ff1242ed7f0c4ddc7b5099",
+  "bank_ar_cat_marmot_s003.npz": "05a11d1de92cf0b78b1e59444786dac164fb9a3537201882fb7ad16c00705fe1",
+  "bank_ar_cat_marmot_s004.npz": "f3e54a8dd95dcd0c8eb2bac17977598d32e637674038bfa1411439d1b64245dc",
+  "bank_ar_cat_marmot_s005.npz": "b8418c40f64ddce0f15db2d9a96bc5d641264ce7177223571f054a802b2a0a4a",
+  "bank_ar_cat_marmot_s006.npz": "a79f076e113213e2eb541ac669c8f68c08f0ea358b9966f8c9374a738b296902",
+  "bank_ar_cat_marmot_s007.npz": "f00789987a14796d015bf169f6e11263dc97d2a070ed99e92faaa119e912d757",
+  "bank_ar_cat_marmot_s008.npz": "ff71ce8e9ad9fca8931af7abecaecbb582dbc50181abc97e0db2962eb13fdb73",
+  "bank_ar_cat_marmot_s009.npz": "b1ddef4c6582068d662d3fd3e74ed3bff7fa8ee7df689f31e7d1352a7de908da",
+  "bank_ar_cat_marmot_s010.npz": "3bc1602b9021e9c8c6eaab2727607ce4eaf4243c366a0b7424fde1d367c85e1a",
+  "bank_ar_cat_marmot_s011.npz": "977be736c8f766ba09d604e10222b8db086ec946eb145532721c53b42d653797",
+  "bank_ar_cat_marmot_s012.npz": "0d1db5d7936e06d8c2e25c49f9bb5b26373b0373056ef8cbd617aced2c9a3f98",
+  "bank_ar_cat_marmot_s013.npz": "bbe53e4cefaa036d1d29366fca16d0a025b3537e14f30d13aeea470bae6d8978",
+  "bank_ar_cat_marmot_s014.npz": "6f994099fb34d1bc8eb2c470aa7dcb17f99df710fc31112a2ee513d9edb32d38",
+  "bank_ar_cat_marmot_s015.npz": "4212d4e4383ec4c82df1fe6d28409ae6562586518c6fcc5aea5d2170c50c0855",
+  "bank_ar_cat_marmot_s016.npz": "4656d0f6d3e28bd725a8554987ef89bc341b3fa3ab36faf0b272bd98c92a2b6c",
+  "bank_ar_cat_marmot_s017.npz": "de04a2cd73a9e38a20c8bb4823748e4d9ea5ff9745ec1bd1f161b79a1071d261",
+  "bank_ar_cat_marmot_s018.npz": "fb076234fe818dac2483a694946b1ede3a52c6a175fdba9bd94b2b822e142821",
+  "bank_ar_cat_marmot_s019.npz": "af174cdbd225acb1b052094931e2ed23e70dae57c1ba86d51907bbfe5c0c5d00",
+  "bank_ar_cat_ms_woodpecker_s000.npz": "9e8d60f1621587c847e9890cb089de678f022d9fc6f200a2903aa3aaecb01f70",
+  "bank_ar_cat_ms_woodpecker_s001.npz": "c91c2fdecd54f17c817518eba80107adcf5d2fda951d9f6d2c24dd8eb597b216",
+  "bank_ar_cat_ms_woodpecker_s002.npz": "3719ecaeb2287f4309ce645d679e8e63bcc588e09fa431d5bdf5cd1030178c7c",
+  "bank_ar_cat_ms_woodpecker_s003.npz": "ed003acfafe0fc58f440bf5ee0fb41b0d9b0d7ff97eba09f02703e9bf75e2cc5",
+  "bank_ar_cat_ms_woodpecker_s004.npz": "339f1f06e6daa3c673e88be797653df7ac0389b5a5bc7d967a08a99078e2f0a1",
+  "bank_ar_cat_ms_woodpecker_s005.npz": "ea688e5dfa5094a37d6348121d06f29d5a9589470c3a0668fb522e13dacd62b2",
+  "bank_ar_cat_ms_woodpecker_s006.npz": "76f5c7493e925dfd6f1f80edabc47f51c9109d252b679bf38100b611c5f74000",
+  "bank_ar_cat_ms_woodpecker_s007.npz": "6a3a0d20a222c00069a5d93ce0700f4c11b1ae21360e08f503f1b6c21e7f429f",
+  "bank_ar_cat_ms_woodpecker_s008.npz": "e3598abe0905833102c928430c36f7c8d8ff4fe1b73c8ef6f4119da3e36a75ab",
+  "bank_ar_cat_ms_woodpecker_s009.npz": "953c4f0be0ba64660d3a0bb59964702f6d37099ac3d95a13d3e44b9ce235f7ef",
+  "bank_ar_cat_ms_woodpecker_s010.npz": "b3cc00f335db0c43a07d752328662b39f29a3e43e6ac7570f20421184ce0c938",
+  "bank_ar_cat_ms_woodpecker_s011.npz": "d32fe4095a8099a4ddfdef83ef65d3e6c30015f751cc5577c12dad76b0494632",
+  "bank_ar_cat_ms_woodpecker_s012.npz": "259b706e5470054d70fa19b4a2736fdbf21d7d3cc0373b278eb49819f3bc2f76",
+  "bank_ar_cat_ms_woodpecker_s013.npz": "10778c1f0949f1005391ddf9f82697c8a804a3a04e74b7a6853f61dca6bdc53f",
+  "bank_ar_cat_ms_woodpecker_s014.npz": "932594066dd62abe5e038e3c00b62f0ea9bad1b20c10e1652a1748fa77e32202",
+  "bank_ar_cat_ms_woodpecker_s015.npz": "6a5b2d593db32f28cde113eda14cffe270ca4d78942b694b02c24846cbeab0f2",
+  "bank_ar_cat_ms_woodpecker_s016.npz": "ece291b0e2291aa97582c7d74a820337e8f48b1df99f5ef2da7ad190f07ace0e",
+  "bank_ar_cat_ms_woodpecker_s017.npz": "9f951339901dcc49fd529733af49c4dee1dcaa05bf217b8a6891a515f536ca0e",
+  "bank_ar_cat_ms_woodpecker_s018.npz": "84947c8b0b21d8bc2f6a086fc5d95ae3d57e0ff35e9fe876a58154321d00154a",
+  "bank_ar_cat_ms_woodpecker_s019.npz": "556490d1b4664158e90dce543d7314fbf807ce9857aef6ea60e7a923bb19d24b",
+  "bank_ar_cat_rc_woodpecker_s000.npz": "e34d3c5bdc9a33809199d860e3fa32cabf92e8d50f4241bd23de3558a4bb422f",
+  "bank_ar_cat_rc_woodpecker_s001.npz": "f6059340563802ca3abc54be22dcbd9f8eb95a70ffa9e6f38262b166901ce4ba",
+  "bank_ar_cat_rc_woodpecker_s002.npz": "126f1c10a0cd31dbe2c9813147a3e615ba487066db7edc440b92c52f53c4cc3a",
+  "bank_ar_cat_rc_woodpecker_s003.npz": "eeec1d0ff9fb89385cd9f9020d535984eea4db0c01ca60493a7558f81b3f6f2c",
+  "bank_ar_cat_rc_woodpecker_s004.npz": "6a45ac5360a78ded46dda989869601991447bb2a526957676d6425067da33f89",
+  "bank_ar_cat_rc_woodpecker_s005.npz": "3330aee9c2ba6390c62e372c5ac71dd518243cccbee9fce0f04e1d9765dae8c7",
+  "bank_ar_cat_rc_woodpecker_s006.npz": "c45ab75a1798bb7d2c5db6d2077d0c66adb2dd25f1f67922ee086f17abf456cc",
+  "bank_ar_cat_rc_woodpecker_s007.npz": "940fbb86516b8462110e26f06ef7be71b8ae08c69c2e4eaf73d575920c3e7009",
+  "bank_ar_cat_rc_woodpecker_s008.npz": "d06d6a8aff6da07a7a8f825ae660cbb8785a4b7536e7491a666f11d015c1d589",
+  "bank_ar_cat_rc_woodpecker_s009.npz": "b7a52819ec486dedafb847f69dbd4cd6b67392765c899b931f7404b5a7c141c9",
+  "bank_ar_cat_rc_woodpecker_s010.npz": "b8558bf5a3037b0175e9701fef1a75f460b330cbbe9acfe7a146c2970e048529",
+  "bank_ar_cat_rc_woodpecker_s011.npz": "b7bca9571bf3f448d2e8fa7b3af87c75aa843a26ecd0637e2af53c529f76ade3",
+  "bank_ar_cat_rc_woodpecker_s012.npz": "e853d500ad397dcfaad9569e00ec2c1fab17ec8d31925672d3d0fd146ec1cb3a",
+  "bank_ar_cat_rc_woodpecker_s013.npz": "3078fa53f9ab6717c021ce9f3d6288ba9f1e44ccd527f949fc3428b0af8cbc6a",
+  "bank_ar_cat_rc_woodpecker_s014.npz": "8cb79254dbad46c715698f3a238ae7789974db570868b3d80fdba34b268f7468",
+  "bank_ar_cat_rc_woodpecker_s015.npz": "6feba541f5eacd45e7ff1ca6dafd3233aa4eef619fe5979d0ea4af7cb1b25d45",
+  "bank_ar_cat_rc_woodpecker_s016.npz": "925d8a47b2f19839ca72569f25e31428a267084176446360b012ca4c87bcf128",
+  "bank_ar_cat_rc_woodpecker_s017.npz": "4ae27cb3d99b81bf8ae552d88670c48a32779dd68598834a3ddeed9d6f55c344",
+  "bank_ar_cat_rc_woodpecker_s018.npz": "3626efe6c1e56d5ed9b0a3cea7c383286baa068a1e431dc98041a3f04f07f8fc",
+  "bank_ar_cat_rc_woodpecker_s019.npz": "9fe5e4d4e7b422a31a6acfccec6fd7b0d5407da668aef93d0b11265410194221",
+  "bank_ar_cat_whooping_crane_s000.npz": "abcd745aec0c7a981d246f0ad58bee320d8e214157d649835fd30dc5cbab0a4f",
+  "bank_ar_cat_whooping_crane_s001.npz": "bfe5c8468cf95baf1f229fe028455336a73afde1db5f22ae5b5a2f8d3a485d00",
+  "bank_ar_cat_whooping_crane_s002.npz": "2ef04726ff988bcfef4b190ae00511631fc127af294b6164ef38ea8c2b85a9e9",
+  "bank_ar_cat_whooping_crane_s003.npz": "a5c96a7f7f461834eb4396e468e6a96e4604b6ee1602e3ef65213809acd2e41d",
+  "bank_ar_cat_whooping_crane_s004.npz": "93593eb7fe0b975c1324f0253178b8faedc3b816a798652fed20e0b0f1d4edb3",
+  "bank_ar_cat_whooping_crane_s005.npz": "c4d927e14e6537a7751766062a87f70d43020d9756979d91acac871acdb2090a",
+  "bank_ar_cat_whooping_crane_s006.npz": "f5a6de0938b8723df69bddcdd6475f502a2e502a0c911976c2afa328a9868828",
+  "bank_ar_cat_whooping_crane_s007.npz": "75fa38ebf62ebd6bd3b947e8c6a486f97dc26ee1d8a1fb11ebd835852cf3b048",
+  "bank_ar_cat_whooping_crane_s008.npz": "9b5198165411147c04e6c92280ed1a51582328943ea77a6d94bd3a01e18f8e84",
+  "bank_ar_cat_whooping_crane_s009.npz": "cae42c11cde4a241746b4b0432953eac0b68651dea26a5e8e2816e185e2eaeae",
+  "bank_ar_cat_whooping_crane_s010.npz": "74f8b632c642be0f5af3d5f7035337fe853b23575b809001eda1c7a9744be708",
+  "bank_ar_cat_whooping_crane_s011.npz": "2cdd9d140057cdc9befbfd58b35f8d6159ede118f09617755d5418939c3b176b",
+  "bank_ar_cat_whooping_crane_s012.npz": "a881a45726ae4d87fe7afecd46b197c06c33ec22a453a2d2abc5a9bce7ce5c84",
+  "bank_ar_cat_whooping_crane_s013.npz": "5079bd39b977dd2e3f0cdd506ea56fd43b5fd5d2bafa8bd305984ca6fbee3df5",
+  "bank_ar_cat_whooping_crane_s014.npz": "0394b70c539905ad125ea3428c91da75b1e17fcb4c0c91c8c0d77f42263ede05",
+  "bank_ar_cat_whooping_crane_s015.npz": "d83ca44dda11cf67519005ad3b91be9541fe7a6c5161daa7b99f7fcc34def5f1",
+  "bank_ar_cat_whooping_crane_s016.npz": "8b26419d37ad0a6589a7e1d250789d881caec0102c7ebb08b58273a85dba2fd8",
+  "bank_ar_cat_whooping_crane_s017.npz": "223915f1e2a352e1e74fab4c4674f42cae68c3778bbe87c52c6e57cefb09bea9",
+  "bank_ar_cat_whooping_crane_s018.npz": "a802f27fefe9d5e4cfc1886af1bf8a436febd390d8fed8da414f2a6e7bb8868b",
+  "bank_ar_cat_whooping_crane_s019.npz": "88462eb7c9bb63195161fae98bb9903baaba3cbb2842203dfd57c42ddda44d6f",
+  "bank_ar_cat_wild_dog_s000.npz": "a63a26ed4558b86cd4cb5347d2279383db67f50ca54b2c3fc6f5f801d483a537",
+  "bank_ar_cat_wild_dog_s001.npz": "afc17ed4774f1f17475493af8add05903b78aada1157faa8b91d1620abc9831e",
+  "bank_ar_cat_wild_dog_s002.npz": "f42297ff3361b17d6f8ff6ce1dcc09a4930e969b1fd1fc00987360c4630c15aa",
+  "bank_ar_cat_wild_dog_s003.npz": "511b17d5ed5c79d5f88f3f3680dce2a1be3ba7012969af331a0ab310df97bd9d",
+  "bank_ar_cat_wild_dog_s004.npz": "aff7acdddfe73e849b5b8fa38af4558ef5fda005f972e42abc5975a6a4156bf7",
+  "bank_ar_cat_wild_dog_s005.npz": "2d2d4ffce0ec64364433ac03a9f33e1f71fba7cc3ddeb4889631ebfafbfac768",
+  "bank_ar_cat_wild_dog_s006.npz": "880498c951b6614ab3fc4e176acc11d83fc554f93c3a7aca790bf7c8e7fadfc9",
+  "bank_ar_cat_wild_dog_s007.npz": "16753550672d296edba0672e8ba3e2fa88cac5b3f3492117d4f5bb53d2f8e154",
+  "bank_ar_cat_wild_dog_s008.npz": "b60fcc07c2852e3efef0dd7126d2859b513d7dc8356faa3e8600f86026542c3c",
+  "bank_ar_cat_wild_dog_s009.npz": "ae30b12d66fa452ea3cb248c8d998c9ba8958d870b52aea08cd80840227b10c5",
+  "bank_ar_cat_wild_dog_s010.npz": "274c49654c5e446428d3920e8c6d0fb7f152eaaabc226b2b6de2f9292270b32c",
+  "bank_ar_cat_wild_dog_s011.npz": "9608159cdd3ac52e325b0bbb22046311afab9b5a389a880a09d66f67e7ac4716",
+  "bank_ar_cat_wild_dog_s012.npz": "404af7092a96ac005ae5fbf1423bdcf8fa3457234a644210a88b5424338b3400",
+  "bank_ar_cat_wild_dog_s013.npz": "4d592fa56df6ec80bb2848dd49ad4f54a8de9308f6a274e19c74eef77a7bba00",
+  "bank_ar_cat_wild_dog_s014.npz": "2d3cb1a572059145dc477447e7f1160efc61ef53e1c7952cb6ee0a9d40d11887",
+  "bank_ar_cat_wild_dog_s015.npz": "1bbeb17f647aa8ae3d20b5641529bc5622c992e6538700358bca4b5dff9d4fd9",
+  "bank_ar_cat_wild_dog_s016.npz": "b44e61c090685cf7e2aea4e00ca396870bf3620858d8c8bc79aeaaaa7d9d9d1c",
+  "bank_ar_cat_wild_dog_s017.npz": "280bd73388f599c3709d36db2b650f3a492fc6d4454d3448bd39d0a5fe693f46",
+  "bank_ar_cat_wild_dog_s018.npz": "49abd911163c703ca6f394225b2cb39530ba254624806e6095cfb32fb92518b0",
+  "bank_ar_cat_wild_dog_s019.npz": "40fdfe33f5a71d92080f0c40787c9d79e6f540210834cccd72d206cff867b6da",
+  "bank_ar_cat_wood_turtle_A_s000.npz": "cc1949e1a8b5279c10da2f51de97ac7886336f3461cfb7138b8c5caac25cd436",
+  "bank_ar_cat_wood_turtle_A_s001.npz": "a6e5411b20f916b2527a3921a5c68a4a11c5ac736a65059b135208f2c3538c96",
+  "bank_ar_cat_wood_turtle_A_s002.npz": "ccf2601f8b63cadfd0d0c0da833088f2fa24fc97bc4c0ad27699de29cc4b64d3",
+  "bank_ar_cat_wood_turtle_A_s003.npz": "e1e4be4e956a0e05e026e9dc758b014573f69a52fc9c4ef03ccf1c5525f70496",
+  "bank_ar_cat_wood_turtle_A_s004.npz": "e8489f980e1f1e5d9c6958b9e474716d37d32bbcba6e8897bcb0960f7804acf8",
+  "bank_ar_cat_wood_turtle_A_s005.npz": "9022b608ad593bad506e5520b0b0c8a6b835871a3b767a8d43011eb60629a29b",
+  "bank_ar_cat_wood_turtle_A_s006.npz": "c54212c7df36e7b0ff73dc990038937d8b6acd4ec603881f05a1702b4ef38144",
+  "bank_ar_cat_wood_turtle_A_s007.npz": "52e0df3cae3d71fb4b92600e104762942d96f3f798287a7eefbfae463eb9a09b",
+  "bank_ar_cat_wood_turtle_A_s008.npz": "05408d4866b5ddcf0e125f3c4b8ecf99fdf82660fc18b0d467e741c9f84b96bc",
+  "bank_ar_cat_wood_turtle_A_s009.npz": "2d90b19e66ccf7675e7a34dba1366999ce5350dbbbf52b3f9f7ffb7e510355e3",
+  "bank_ar_cat_wood_turtle_A_s010.npz": "8ce60b3f486565a15f9683b4a3dade04b6594638cfdfce44057d23b0d79bbad2",
+  "bank_ar_cat_wood_turtle_A_s011.npz": "857fc19c16ccd2b347b7770dc68ab09a75bf7622f06ebbf778ef1c93a94e5525",
+  "bank_ar_cat_wood_turtle_A_s012.npz": "c89f44f8050103fcc591400994515f4c93a23f11cafe0cf0fa7ee77dc20ab2d3",
+  "bank_ar_cat_wood_turtle_A_s013.npz": "c6f3047053b72c2e7ca72ec1d1b834edae5804bc8bbbcd5c2bb8287f8774d293",
+  "bank_ar_cat_wood_turtle_A_s014.npz": "e7a1743165ee2494e5125bca70bb0e58afa2dc91c3663a9ee1fdf97e8e659f75",
+  "bank_ar_cat_wood_turtle_A_s015.npz": "c190e0a90a15e639959d9db6952b7ff916a4ef1a1b5382c3bff48e2b3c9563c8",
+  "bank_ar_cat_wood_turtle_A_s016.npz": "7a9e7b102db4cfb1fd6c632b9311f1b2dd22264f3b74f692cc2b7ef1fe4ff9e1",
+  "bank_ar_cat_wood_turtle_A_s017.npz": "d325d9fd85f5f10fdcbe96d004bdab607b193447312fff2b86a6cd78bd575b63",
+  "bank_ar_cat_wood_turtle_A_s018.npz": "c80e2059a57ab41ab86c8669a069c99106985d3ed19203dfeabb0963fd7d8ff9",
+  "bank_ar_cat_wood_turtle_A_s019.npz": "6cd1b1109cc9cf8a38e93c2f5526290787d8dae77171bfdcdc81420096cd752c",
+  "bank_ar_cat_wood_turtle_B_s000.npz": "3e600b2674a4f7fb896793f4856ba42b6ae8ae33a35e3d37bf64c908640c8d0d",
+  "bank_ar_cat_wood_turtle_B_s001.npz": "5f8ac90dc92725e5622b9a754f968c21c637098840232a70d791625e27515ef9",
+  "bank_ar_cat_wood_turtle_B_s002.npz": "89f50948592ca7100029e5a5784a3484ee04f22bb1ccc76ea97d27919925c619",
+  "bank_ar_cat_wood_turtle_B_s003.npz": "728fe530ed9f1df7ef02e5aba24b5898f6334b07e7eb19c981993783ac2b1bec",
+  "bank_ar_cat_wood_turtle_B_s004.npz": "97eb334e778b30ee5e7051a142defa3102e4b933e5ed1a5238cfd02e09075842",
+  "bank_ar_cat_wood_turtle_B_s005.npz": "4ed617f143e66713f0a2951a69bb991be92b7848df79cad5dcede0053bd624d1",
+  "bank_ar_cat_wood_turtle_B_s006.npz": "42a8914ee65bf0c7e5eed4aa39c019ef15e7d53194573f0f16d8f19f9ed13ca5",
+  "bank_ar_cat_wood_turtle_B_s007.npz": "c34fa50729f7a038382c63388407ba4a45e30c8f5b4c332ca45d4e8b5c33b24b",
+  "bank_ar_cat_wood_turtle_B_s008.npz": "ab6816f701a978fca86cc3e0abe983e536b05cc75f20cc46669a90b117db3e53",
+  "bank_ar_cat_wood_turtle_B_s009.npz": "7caa629512994ba72cefd4bc12423c31747c4624edbbfc509419bab31580b188",
+  "bank_ar_cat_wood_turtle_B_s010.npz": "7d548e33ab02072549e5d7892f0f7d7e8685a958124421f0775fde6fdbad2296",
+  "bank_ar_cat_wood_turtle_B_s011.npz": "44fe917a9cba58284ec7ec51d5981f4428dff5651b57c24de07de3654056a9e1",
+  "bank_ar_cat_wood_turtle_B_s012.npz": "6d28cc3bbfd5b950e6c82a3efb880d666600cdd1bc7853c290656c996c9167be",
+  "bank_ar_cat_wood_turtle_B_s013.npz": "78450baeeef26521d5b597b22bcfe8cb16a6fa70367dbc06d8015f7688d6a3e9",
+  "bank_ar_cat_wood_turtle_B_s014.npz": "a52414e0ce13103b1e56d8d660ead013dae95368c11480cdb8a478cd8ea44591",
+  "bank_ar_cat_wood_turtle_B_s015.npz": "639a4a5e338fe43bf44148cc8b98a8d2bd79478e272435fad907994e6b319393",
+  "bank_ar_cat_wood_turtle_B_s016.npz": "6f2bd41022afd170572e76b9f935709e0218d310c962b045a55d4f2e5aa8fb52",
+  "bank_ar_cat_wood_turtle_B_s017.npz": "15c0fa5af354ead4f07b7ae7776b01129e80d684fa60b9bc16360bcaaa224dbf",
+  "bank_ar_cat_wood_turtle_B_s018.npz": "4a43124104562e82c6c40d594bc0acf7b85269ea12a4f975f2a41c6ca30dd3fd",
+  "bank_ar_cat_wood_turtle_B_s019.npz": "09f0899d9f95433ecf521df0764516f2bdecfa9704de0854fec088340668df9c",
+  "bank_meta.json": "68180fb9f3fa1392bb8418be2a3af008cdf46aaf2878cc9fbd7de476df76ff15"
+ },
+ "stress_sets": "stress_sets.json",
+ "stress_sets_sha256": "b9ec4c2f21c7367374992dfedbbbd8939987a6c1ba612d0381c6abbc9454e128",
+ "effect_sha256": "34e5c8f0cb945f9da95e3051241b1b5fadc53c8cc00073cd38e4b761d5aa090a",
+ "source_sha256": {
+  "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+  "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+  "analysis/fable/calibration/tstats_batch.R": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+  "analysis/fable/calibration/score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+  "analysis/fable/calibration/compare_nulls.py": "63304743048808cf214664c520e16a68ab90f85034f3eaf5a3794d3454460b6f",
+  "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+  "analysis/fable/calibration/preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4",
+  "analysis/fable/calibration/collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+  "analysis/fable/calibration/run_validation.sh": "425e016c3497eab71ecf3287703754c90f2f52bc2b32c9d03b6a0e6c3043c0af",
+  "analysis/fable/calibration/empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+  "analysis/fable/calibration/make_manifest.py": "3748feb4732a7a6cd0bef4ec3333929a2c5f5bfadf43843244f4187f98ea793a",
+  "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+ },
+ "runtime_pins": {
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "nlme": "3.1.171"
+ },
  "beta_min": 0.9745192683713976,
- "stress_sets": "/data/fable/vortex/production_banks_20261010T081726Z/stress_sets.json",
  "scenarios": [
   {
    "block": 1,
@@ -23,7 +224,7 @@
     {
      "c": 0,
      "seed": 9000001000000,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c00",
+     "dir": "validation_v1/b01_null_prior_predictive/c00",
      "trial_ids": [
       0,
       100
@@ -32,7 +233,7 @@
     {
      "c": 1,
      "seed": 9000001000001,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c01",
+     "dir": "validation_v1/b01_null_prior_predictive/c01",
      "trial_ids": [
       100,
       200
@@ -41,7 +242,7 @@
     {
      "c": 2,
      "seed": 9000001000002,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c02",
+     "dir": "validation_v1/b01_null_prior_predictive/c02",
      "trial_ids": [
       200,
       300
@@ -50,7 +251,7 @@
     {
      "c": 3,
      "seed": 9000001000003,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c03",
+     "dir": "validation_v1/b01_null_prior_predictive/c03",
      "trial_ids": [
       300,
       400
@@ -59,7 +260,7 @@
     {
      "c": 4,
      "seed": 9000001000004,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c04",
+     "dir": "validation_v1/b01_null_prior_predictive/c04",
      "trial_ids": [
       400,
       500
@@ -68,7 +269,7 @@
     {
      "c": 5,
      "seed": 9000001000005,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c05",
+     "dir": "validation_v1/b01_null_prior_predictive/c05",
      "trial_ids": [
       500,
       600
@@ -77,7 +278,7 @@
     {
      "c": 6,
      "seed": 9000001000006,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c06",
+     "dir": "validation_v1/b01_null_prior_predictive/c06",
      "trial_ids": [
       600,
       700
@@ -86,7 +287,7 @@
     {
      "c": 7,
      "seed": 9000001000007,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c07",
+     "dir": "validation_v1/b01_null_prior_predictive/c07",
      "trial_ids": [
       700,
       800
@@ -95,7 +296,7 @@
     {
      "c": 8,
      "seed": 9000001000008,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c08",
+     "dir": "validation_v1/b01_null_prior_predictive/c08",
      "trial_ids": [
       800,
       900
@@ -104,7 +305,7 @@
     {
      "c": 9,
      "seed": 9000001000009,
-     "dir": "/data/fable/vortex/validation_v1/b01_null_prior_predictive/c09",
+     "dir": "validation_v1/b01_null_prior_predictive/c09",
      "trial_ids": [
       900,
       1000
@@ -199,7 +400,7 @@
     {
      "c": 0,
      "seed": 9000002000000,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c00",
+     "dir": "validation_v1/b02_null_high_sigma/c00",
      "trial_ids": [
       0,
       100
@@ -208,7 +409,7 @@
     {
      "c": 1,
      "seed": 9000002000001,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c01",
+     "dir": "validation_v1/b02_null_high_sigma/c01",
      "trial_ids": [
       100,
       200
@@ -217,7 +418,7 @@
     {
      "c": 2,
      "seed": 9000002000002,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c02",
+     "dir": "validation_v1/b02_null_high_sigma/c02",
      "trial_ids": [
       200,
       300
@@ -226,7 +427,7 @@
     {
      "c": 3,
      "seed": 9000002000003,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c03",
+     "dir": "validation_v1/b02_null_high_sigma/c03",
      "trial_ids": [
       300,
       400
@@ -235,7 +436,7 @@
     {
      "c": 4,
      "seed": 9000002000004,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c04",
+     "dir": "validation_v1/b02_null_high_sigma/c04",
      "trial_ids": [
       400,
       500
@@ -244,7 +445,7 @@
     {
      "c": 5,
      "seed": 9000002000005,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c05",
+     "dir": "validation_v1/b02_null_high_sigma/c05",
      "trial_ids": [
       500,
       600
@@ -253,7 +454,7 @@
     {
      "c": 6,
      "seed": 9000002000006,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c06",
+     "dir": "validation_v1/b02_null_high_sigma/c06",
      "trial_ids": [
       600,
       700
@@ -262,7 +463,7 @@
     {
      "c": 7,
      "seed": 9000002000007,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c07",
+     "dir": "validation_v1/b02_null_high_sigma/c07",
      "trial_ids": [
       700,
       800
@@ -271,7 +472,7 @@
     {
      "c": 8,
      "seed": 9000002000008,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c08",
+     "dir": "validation_v1/b02_null_high_sigma/c08",
      "trial_ids": [
       800,
       900
@@ -280,7 +481,7 @@
     {
      "c": 9,
      "seed": 9000002000009,
-     "dir": "/data/fable/vortex/validation_v1/b02_null_high_sigma/c09",
+     "dir": "validation_v1/b02_null_high_sigma/c09",
      "trial_ids": [
       900,
       1000
@@ -375,7 +576,7 @@
     {
      "c": 0,
      "seed": 9000003000000,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c00",
+     "dir": "validation_v1/b03_null_low_s/c00",
      "trial_ids": [
       0,
       100
@@ -384,7 +585,7 @@
     {
      "c": 1,
      "seed": 9000003000001,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c01",
+     "dir": "validation_v1/b03_null_low_s/c01",
      "trial_ids": [
       100,
       200
@@ -393,7 +594,7 @@
     {
      "c": 2,
      "seed": 9000003000002,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c02",
+     "dir": "validation_v1/b03_null_low_s/c02",
      "trial_ids": [
       200,
       300
@@ -402,7 +603,7 @@
     {
      "c": 3,
      "seed": 9000003000003,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c03",
+     "dir": "validation_v1/b03_null_low_s/c03",
      "trial_ids": [
       300,
       400
@@ -411,7 +612,7 @@
     {
      "c": 4,
      "seed": 9000003000004,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c04",
+     "dir": "validation_v1/b03_null_low_s/c04",
      "trial_ids": [
       400,
       500
@@ -420,7 +621,7 @@
     {
      "c": 5,
      "seed": 9000003000005,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c05",
+     "dir": "validation_v1/b03_null_low_s/c05",
      "trial_ids": [
       500,
       600
@@ -429,7 +630,7 @@
     {
      "c": 6,
      "seed": 9000003000006,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c06",
+     "dir": "validation_v1/b03_null_low_s/c06",
      "trial_ids": [
       600,
       700
@@ -438,7 +639,7 @@
     {
      "c": 7,
      "seed": 9000003000007,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c07",
+     "dir": "validation_v1/b03_null_low_s/c07",
      "trial_ids": [
       700,
       800
@@ -447,7 +648,7 @@
     {
      "c": 8,
      "seed": 9000003000008,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c08",
+     "dir": "validation_v1/b03_null_low_s/c08",
      "trial_ids": [
       800,
       900
@@ -456,7 +657,7 @@
     {
      "c": 9,
      "seed": 9000003000009,
-     "dir": "/data/fable/vortex/validation_v1/b03_null_low_s/c09",
+     "dir": "validation_v1/b03_null_low_s/c09",
      "trial_ids": [
       900,
       1000
@@ -551,7 +752,7 @@
     {
      "c": 0,
      "seed": 9000004000000,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c00",
+     "dir": "validation_v1/b04_null_strong_env/c00",
      "trial_ids": [
       0,
       100
@@ -560,7 +761,7 @@
     {
      "c": 1,
      "seed": 9000004000001,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c01",
+     "dir": "validation_v1/b04_null_strong_env/c01",
      "trial_ids": [
       100,
       200
@@ -569,7 +770,7 @@
     {
      "c": 2,
      "seed": 9000004000002,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c02",
+     "dir": "validation_v1/b04_null_strong_env/c02",
      "trial_ids": [
       200,
       300
@@ -578,7 +779,7 @@
     {
      "c": 3,
      "seed": 9000004000003,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c03",
+     "dir": "validation_v1/b04_null_strong_env/c03",
      "trial_ids": [
       300,
       400
@@ -587,7 +788,7 @@
     {
      "c": 4,
      "seed": 9000004000004,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c04",
+     "dir": "validation_v1/b04_null_strong_env/c04",
      "trial_ids": [
       400,
       500
@@ -596,7 +797,7 @@
     {
      "c": 5,
      "seed": 9000004000005,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c05",
+     "dir": "validation_v1/b04_null_strong_env/c05",
      "trial_ids": [
       500,
       600
@@ -605,7 +806,7 @@
     {
      "c": 6,
      "seed": 9000004000006,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c06",
+     "dir": "validation_v1/b04_null_strong_env/c06",
      "trial_ids": [
       600,
       700
@@ -614,7 +815,7 @@
     {
      "c": 7,
      "seed": 9000004000007,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c07",
+     "dir": "validation_v1/b04_null_strong_env/c07",
      "trial_ids": [
       700,
       800
@@ -623,7 +824,7 @@
     {
      "c": 8,
      "seed": 9000004000008,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c08",
+     "dir": "validation_v1/b04_null_strong_env/c08",
      "trial_ids": [
       800,
       900
@@ -632,7 +833,7 @@
     {
      "c": 9,
      "seed": 9000004000009,
-     "dir": "/data/fable/vortex/validation_v1/b04_null_strong_env/c09",
+     "dir": "validation_v1/b04_null_strong_env/c09",
      "trial_ids": [
       900,
       1000
@@ -652,7 +853,7 @@
     {
      "c": 0,
      "seed": 9000005000000,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c00",
+     "dir": "validation_v1/b05_MA_betamin/c00",
      "trial_ids": [
       0,
       30
@@ -661,7 +862,7 @@
     {
      "c": 1,
      "seed": 9000005000001,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c01",
+     "dir": "validation_v1/b05_MA_betamin/c01",
      "trial_ids": [
       30,
       60
@@ -670,7 +871,7 @@
     {
      "c": 2,
      "seed": 9000005000002,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c02",
+     "dir": "validation_v1/b05_MA_betamin/c02",
      "trial_ids": [
       60,
       90
@@ -679,7 +880,7 @@
     {
      "c": 3,
      "seed": 9000005000003,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c03",
+     "dir": "validation_v1/b05_MA_betamin/c03",
      "trial_ids": [
       90,
       120
@@ -688,7 +889,7 @@
     {
      "c": 4,
      "seed": 9000005000004,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c04",
+     "dir": "validation_v1/b05_MA_betamin/c04",
      "trial_ids": [
       120,
       150
@@ -697,7 +898,7 @@
     {
      "c": 5,
      "seed": 9000005000005,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c05",
+     "dir": "validation_v1/b05_MA_betamin/c05",
      "trial_ids": [
       150,
       180
@@ -706,7 +907,7 @@
     {
      "c": 6,
      "seed": 9000005000006,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c06",
+     "dir": "validation_v1/b05_MA_betamin/c06",
      "trial_ids": [
       180,
       210
@@ -715,7 +916,7 @@
     {
      "c": 7,
      "seed": 9000005000007,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c07",
+     "dir": "validation_v1/b05_MA_betamin/c07",
      "trial_ids": [
       210,
       240
@@ -724,7 +925,7 @@
     {
      "c": 8,
      "seed": 9000005000008,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c08",
+     "dir": "validation_v1/b05_MA_betamin/c08",
      "trial_ids": [
       240,
       270
@@ -733,7 +934,7 @@
     {
      "c": 9,
      "seed": 9000005000009,
-     "dir": "/data/fable/vortex/validation_v1/b05_MA_betamin/c09",
+     "dir": "validation_v1/b05_MA_betamin/c09",
      "trial_ids": [
       270,
       300
@@ -753,7 +954,7 @@
     {
      "c": 0,
      "seed": 9000006000000,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c00",
+     "dir": "validation_v1/b06_MA_2betamin/c00",
      "trial_ids": [
       0,
       30
@@ -762,7 +963,7 @@
     {
      "c": 1,
      "seed": 9000006000001,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c01",
+     "dir": "validation_v1/b06_MA_2betamin/c01",
      "trial_ids": [
       30,
       60
@@ -771,7 +972,7 @@
     {
      "c": 2,
      "seed": 9000006000002,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c02",
+     "dir": "validation_v1/b06_MA_2betamin/c02",
      "trial_ids": [
       60,
       90
@@ -780,7 +981,7 @@
     {
      "c": 3,
      "seed": 9000006000003,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c03",
+     "dir": "validation_v1/b06_MA_2betamin/c03",
      "trial_ids": [
       90,
       120
@@ -789,7 +990,7 @@
     {
      "c": 4,
      "seed": 9000006000004,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c04",
+     "dir": "validation_v1/b06_MA_2betamin/c04",
      "trial_ids": [
       120,
       150
@@ -798,7 +999,7 @@
     {
      "c": 5,
      "seed": 9000006000005,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c05",
+     "dir": "validation_v1/b06_MA_2betamin/c05",
      "trial_ids": [
       150,
       180
@@ -807,7 +1008,7 @@
     {
      "c": 6,
      "seed": 9000006000006,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c06",
+     "dir": "validation_v1/b06_MA_2betamin/c06",
      "trial_ids": [
       180,
       210
@@ -816,7 +1017,7 @@
     {
      "c": 7,
      "seed": 9000006000007,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c07",
+     "dir": "validation_v1/b06_MA_2betamin/c07",
      "trial_ids": [
       210,
       240
@@ -825,7 +1026,7 @@
     {
      "c": 8,
      "seed": 9000006000008,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c08",
+     "dir": "validation_v1/b06_MA_2betamin/c08",
      "trial_ids": [
       240,
       270
@@ -834,7 +1035,7 @@
     {
      "c": 9,
      "seed": 9000006000009,
-     "dir": "/data/fable/vortex/validation_v1/b06_MA_2betamin/c09",
+     "dir": "validation_v1/b06_MA_2betamin/c09",
      "trial_ids": [
       270,
       300
@@ -859,7 +1060,7 @@
     {
      "c": 0,
      "seed": 9000007000000,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c00",
+     "dir": "validation_v1/b07_MD_linear/c00",
      "trial_ids": [
       0,
       30
@@ -868,7 +1069,7 @@
     {
      "c": 1,
      "seed": 9000007000001,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c01",
+     "dir": "validation_v1/b07_MD_linear/c01",
      "trial_ids": [
       30,
       60
@@ -877,7 +1078,7 @@
     {
      "c": 2,
      "seed": 9000007000002,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c02",
+     "dir": "validation_v1/b07_MD_linear/c02",
      "trial_ids": [
       60,
       90
@@ -886,7 +1087,7 @@
     {
      "c": 3,
      "seed": 9000007000003,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c03",
+     "dir": "validation_v1/b07_MD_linear/c03",
      "trial_ids": [
       90,
       120
@@ -895,7 +1096,7 @@
     {
      "c": 4,
      "seed": 9000007000004,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c04",
+     "dir": "validation_v1/b07_MD_linear/c04",
      "trial_ids": [
       120,
       150
@@ -904,7 +1105,7 @@
     {
      "c": 5,
      "seed": 9000007000005,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c05",
+     "dir": "validation_v1/b07_MD_linear/c05",
      "trial_ids": [
       150,
       180
@@ -913,7 +1114,7 @@
     {
      "c": 6,
      "seed": 9000007000006,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c06",
+     "dir": "validation_v1/b07_MD_linear/c06",
      "trial_ids": [
       180,
       210
@@ -922,7 +1123,7 @@
     {
      "c": 7,
      "seed": 9000007000007,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c07",
+     "dir": "validation_v1/b07_MD_linear/c07",
      "trial_ids": [
       210,
       240
@@ -931,7 +1132,7 @@
     {
      "c": 8,
      "seed": 9000007000008,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c08",
+     "dir": "validation_v1/b07_MD_linear/c08",
      "trial_ids": [
       240,
       270
@@ -940,7 +1141,7 @@
     {
      "c": 9,
      "seed": 9000007000009,
-     "dir": "/data/fable/vortex/validation_v1/b07_MD_linear/c09",
+     "dir": "validation_v1/b07_MD_linear/c09",
      "trial_ids": [
       270,
       300
@@ -965,7 +1166,7 @@
     {
      "c": 0,
      "seed": 9000008000000,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c00",
+     "dir": "validation_v1/b08_MD_accel/c00",
      "trial_ids": [
       0,
       30
@@ -974,7 +1175,7 @@
     {
      "c": 1,
      "seed": 9000008000001,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c01",
+     "dir": "validation_v1/b08_MD_accel/c01",
      "trial_ids": [
       30,
       60
@@ -983,7 +1184,7 @@
     {
      "c": 2,
      "seed": 9000008000002,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c02",
+     "dir": "validation_v1/b08_MD_accel/c02",
      "trial_ids": [
       60,
       90
@@ -992,7 +1193,7 @@
     {
      "c": 3,
      "seed": 9000008000003,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c03",
+     "dir": "validation_v1/b08_MD_accel/c03",
      "trial_ids": [
       90,
       120
@@ -1001,7 +1202,7 @@
     {
      "c": 4,
      "seed": 9000008000004,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c04",
+     "dir": "validation_v1/b08_MD_accel/c04",
      "trial_ids": [
       120,
       150
@@ -1010,7 +1211,7 @@
     {
      "c": 5,
      "seed": 9000008000005,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c05",
+     "dir": "validation_v1/b08_MD_accel/c05",
      "trial_ids": [
       150,
       180
@@ -1019,7 +1220,7 @@
     {
      "c": 6,
      "seed": 9000008000006,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c06",
+     "dir": "validation_v1/b08_MD_accel/c06",
      "trial_ids": [
       180,
       210
@@ -1028,7 +1229,7 @@
     {
      "c": 7,
      "seed": 9000008000007,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c07",
+     "dir": "validation_v1/b08_MD_accel/c07",
      "trial_ids": [
       210,
       240
@@ -1037,7 +1238,7 @@
     {
      "c": 8,
      "seed": 9000008000008,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c08",
+     "dir": "validation_v1/b08_MD_accel/c08",
      "trial_ids": [
       240,
       270
@@ -1046,7 +1247,7 @@
     {
      "c": 9,
      "seed": 9000008000009,
-     "dir": "/data/fable/vortex/validation_v1/b08_MD_accel/c09",
+     "dir": "validation_v1/b08_MD_accel/c09",
      "trial_ids": [
       270,
       300
@@ -1071,7 +1272,7 @@
     {
      "c": 0,
      "seed": 9000009000000,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c00",
+     "dir": "validation_v1/b09_MD_step/c00",
      "trial_ids": [
       0,
       30
@@ -1080,7 +1281,7 @@
     {
      "c": 1,
      "seed": 9000009000001,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c01",
+     "dir": "validation_v1/b09_MD_step/c01",
      "trial_ids": [
       30,
       60
@@ -1089,7 +1290,7 @@
     {
      "c": 2,
      "seed": 9000009000002,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c02",
+     "dir": "validation_v1/b09_MD_step/c02",
      "trial_ids": [
       60,
       90
@@ -1098,7 +1299,7 @@
     {
      "c": 3,
      "seed": 9000009000003,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c03",
+     "dir": "validation_v1/b09_MD_step/c03",
      "trial_ids": [
       90,
       120
@@ -1107,7 +1308,7 @@
     {
      "c": 4,
      "seed": 9000009000004,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c04",
+     "dir": "validation_v1/b09_MD_step/c04",
      "trial_ids": [
       120,
       150
@@ -1116,7 +1317,7 @@
     {
      "c": 5,
      "seed": 9000009000005,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c05",
+     "dir": "validation_v1/b09_MD_step/c05",
      "trial_ids": [
       150,
       180
@@ -1125,7 +1326,7 @@
     {
      "c": 6,
      "seed": 9000009000006,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c06",
+     "dir": "validation_v1/b09_MD_step/c06",
      "trial_ids": [
       180,
       210
@@ -1134,7 +1335,7 @@
     {
      "c": 7,
      "seed": 9000009000007,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c07",
+     "dir": "validation_v1/b09_MD_step/c07",
      "trial_ids": [
       210,
       240
@@ -1143,7 +1344,7 @@
     {
      "c": 8,
      "seed": 9000009000008,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c08",
+     "dir": "validation_v1/b09_MD_step/c08",
      "trial_ids": [
       240,
       270
@@ -1152,7 +1353,7 @@
     {
      "c": 9,
      "seed": 9000009000009,
-     "dir": "/data/fable/vortex/validation_v1/b09_MD_step/c09",
+     "dir": "validation_v1/b09_MD_step/c09",
      "trial_ids": [
       270,
       300
@@ -1174,7 +1375,7 @@
     {
      "c": 0,
      "seed": 9000010000000,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c00",
+     "dir": "validation_v1/b10_MO_lown/c00",
      "trial_ids": [
       0,
       30
@@ -1183,7 +1384,7 @@
     {
      "c": 1,
      "seed": 9000010000001,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c01",
+     "dir": "validation_v1/b10_MO_lown/c01",
      "trial_ids": [
       30,
       60
@@ -1192,7 +1393,7 @@
     {
      "c": 2,
      "seed": 9000010000002,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c02",
+     "dir": "validation_v1/b10_MO_lown/c02",
      "trial_ids": [
       60,
       90
@@ -1201,7 +1402,7 @@
     {
      "c": 3,
      "seed": 9000010000003,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c03",
+     "dir": "validation_v1/b10_MO_lown/c03",
      "trial_ids": [
       90,
       120
@@ -1210,7 +1411,7 @@
     {
      "c": 4,
      "seed": 9000010000004,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c04",
+     "dir": "validation_v1/b10_MO_lown/c04",
      "trial_ids": [
       120,
       150
@@ -1219,7 +1420,7 @@
     {
      "c": 5,
      "seed": 9000010000005,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c05",
+     "dir": "validation_v1/b10_MO_lown/c05",
      "trial_ids": [
       150,
       180
@@ -1228,7 +1429,7 @@
     {
      "c": 6,
      "seed": 9000010000006,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c06",
+     "dir": "validation_v1/b10_MO_lown/c06",
      "trial_ids": [
       180,
       210
@@ -1237,7 +1438,7 @@
     {
      "c": 7,
      "seed": 9000010000007,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c07",
+     "dir": "validation_v1/b10_MO_lown/c07",
      "trial_ids": [
       210,
       240
@@ -1246,7 +1447,7 @@
     {
      "c": 8,
      "seed": 9000010000008,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c08",
+     "dir": "validation_v1/b10_MO_lown/c08",
      "trial_ids": [
       240,
       270
@@ -1255,7 +1456,7 @@
     {
      "c": 9,
      "seed": 9000010000009,
-     "dir": "/data/fable/vortex/validation_v1/b10_MO_lown/c09",
+     "dir": "validation_v1/b10_MO_lown/c09",
      "trial_ids": [
       270,
       300
@@ -1277,7 +1478,7 @@
     {
      "c": 0,
      "seed": 9000011000000,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c00",
+     "dir": "validation_v1/b11_MO_uniform/c00",
      "trial_ids": [
       0,
       30
@@ -1286,7 +1487,7 @@
     {
      "c": 1,
      "seed": 9000011000001,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c01",
+     "dir": "validation_v1/b11_MO_uniform/c01",
      "trial_ids": [
       30,
       60
@@ -1295,7 +1496,7 @@
     {
      "c": 2,
      "seed": 9000011000002,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c02",
+     "dir": "validation_v1/b11_MO_uniform/c02",
      "trial_ids": [
       60,
       90
@@ -1304,7 +1505,7 @@
     {
      "c": 3,
      "seed": 9000011000003,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c03",
+     "dir": "validation_v1/b11_MO_uniform/c03",
      "trial_ids": [
       90,
       120
@@ -1313,7 +1514,7 @@
     {
      "c": 4,
      "seed": 9000011000004,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c04",
+     "dir": "validation_v1/b11_MO_uniform/c04",
      "trial_ids": [
       120,
       150
@@ -1322,7 +1523,7 @@
     {
      "c": 5,
      "seed": 9000011000005,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c05",
+     "dir": "validation_v1/b11_MO_uniform/c05",
      "trial_ids": [
       150,
       180
@@ -1331,7 +1532,7 @@
     {
      "c": 6,
      "seed": 9000011000006,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c06",
+     "dir": "validation_v1/b11_MO_uniform/c06",
      "trial_ids": [
       180,
       210
@@ -1340,7 +1541,7 @@
     {
      "c": 7,
      "seed": 9000011000007,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c07",
+     "dir": "validation_v1/b11_MO_uniform/c07",
      "trial_ids": [
       210,
       240
@@ -1349,7 +1550,7 @@
     {
      "c": 8,
      "seed": 9000011000008,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c08",
+     "dir": "validation_v1/b11_MO_uniform/c08",
      "trial_ids": [
       240,
       270
@@ -1358,7 +1559,7 @@
     {
      "c": 9,
      "seed": 9000011000009,
-     "dir": "/data/fable/vortex/validation_v1/b11_MO_uniform/c09",
+     "dir": "validation_v1/b11_MO_uniform/c09",
      "trial_ids": [
       270,
       300
@@ -1383,7 +1584,7 @@
     {
      "c": 0,
      "seed": 9000012000000,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c00",
+     "dir": "validation_v1/b12_MA_MD_linear/c00",
      "trial_ids": [
       0,
       30
@@ -1392,7 +1593,7 @@
     {
      "c": 1,
      "seed": 9000012000001,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c01",
+     "dir": "validation_v1/b12_MA_MD_linear/c01",
      "trial_ids": [
       30,
       60
@@ -1401,7 +1602,7 @@
     {
      "c": 2,
      "seed": 9000012000002,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c02",
+     "dir": "validation_v1/b12_MA_MD_linear/c02",
      "trial_ids": [
       60,
       90
@@ -1410,7 +1611,7 @@
     {
      "c": 3,
      "seed": 9000012000003,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c03",
+     "dir": "validation_v1/b12_MA_MD_linear/c03",
      "trial_ids": [
       90,
       120
@@ -1419,7 +1620,7 @@
     {
      "c": 4,
      "seed": 9000012000004,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c04",
+     "dir": "validation_v1/b12_MA_MD_linear/c04",
      "trial_ids": [
       120,
       150
@@ -1428,7 +1629,7 @@
     {
      "c": 5,
      "seed": 9000012000005,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c05",
+     "dir": "validation_v1/b12_MA_MD_linear/c05",
      "trial_ids": [
       150,
       180
@@ -1437,7 +1638,7 @@
     {
      "c": 6,
      "seed": 9000012000006,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c06",
+     "dir": "validation_v1/b12_MA_MD_linear/c06",
      "trial_ids": [
       180,
       210
@@ -1446,7 +1647,7 @@
     {
      "c": 7,
      "seed": 9000012000007,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c07",
+     "dir": "validation_v1/b12_MA_MD_linear/c07",
      "trial_ids": [
       210,
       240
@@ -1455,7 +1656,7 @@
     {
      "c": 8,
      "seed": 9000012000008,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c08",
+     "dir": "validation_v1/b12_MA_MD_linear/c08",
      "trial_ids": [
       240,
       270
@@ -1464,7 +1665,7 @@
     {
      "c": 9,
      "seed": 9000012000009,
-     "dir": "/data/fable/vortex/validation_v1/b12_MA_MD_linear/c09",
+     "dir": "validation_v1/b12_MA_MD_linear/c09",
      "trial_ids": [
       270,
       300
@@ -1489,7 +1690,7 @@
     {
      "c": 0,
      "seed": 9000013000000,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c00",
+     "dir": "validation_v1/b13_MA_MD_accel/c00",
      "trial_ids": [
       0,
       30
@@ -1498,7 +1699,7 @@
     {
      "c": 1,
      "seed": 9000013000001,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c01",
+     "dir": "validation_v1/b13_MA_MD_accel/c01",
      "trial_ids": [
       30,
       60
@@ -1507,7 +1708,7 @@
     {
      "c": 2,
      "seed": 9000013000002,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c02",
+     "dir": "validation_v1/b13_MA_MD_accel/c02",
      "trial_ids": [
       60,
       90
@@ -1516,7 +1717,7 @@
     {
      "c": 3,
      "seed": 9000013000003,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c03",
+     "dir": "validation_v1/b13_MA_MD_accel/c03",
      "trial_ids": [
       90,
       120
@@ -1525,7 +1726,7 @@
     {
      "c": 4,
      "seed": 9000013000004,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c04",
+     "dir": "validation_v1/b13_MA_MD_accel/c04",
      "trial_ids": [
       120,
       150
@@ -1534,7 +1735,7 @@
     {
      "c": 5,
      "seed": 9000013000005,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c05",
+     "dir": "validation_v1/b13_MA_MD_accel/c05",
      "trial_ids": [
       150,
       180
@@ -1543,7 +1744,7 @@
     {
      "c": 6,
      "seed": 9000013000006,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c06",
+     "dir": "validation_v1/b13_MA_MD_accel/c06",
      "trial_ids": [
       180,
       210
@@ -1552,7 +1753,7 @@
     {
      "c": 7,
      "seed": 9000013000007,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c07",
+     "dir": "validation_v1/b13_MA_MD_accel/c07",
      "trial_ids": [
       210,
       240
@@ -1561,7 +1762,7 @@
     {
      "c": 8,
      "seed": 9000013000008,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c08",
+     "dir": "validation_v1/b13_MA_MD_accel/c08",
      "trial_ids": [
       240,
       270
@@ -1570,7 +1771,7 @@
     {
      "c": 9,
      "seed": 9000013000009,
-     "dir": "/data/fable/vortex/validation_v1/b13_MA_MD_accel/c09",
+     "dir": "validation_v1/b13_MA_MD_accel/c09",
      "trial_ids": [
       270,
       300
@@ -1595,7 +1796,7 @@
     {
      "c": 0,
      "seed": 9000014000000,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c00",
+     "dir": "validation_v1/b14_MA_MD_step/c00",
      "trial_ids": [
       0,
       30
@@ -1604,7 +1805,7 @@
     {
      "c": 1,
      "seed": 9000014000001,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c01",
+     "dir": "validation_v1/b14_MA_MD_step/c01",
      "trial_ids": [
       30,
       60
@@ -1613,7 +1814,7 @@
     {
      "c": 2,
      "seed": 9000014000002,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c02",
+     "dir": "validation_v1/b14_MA_MD_step/c02",
      "trial_ids": [
       60,
       90
@@ -1622,7 +1823,7 @@
     {
      "c": 3,
      "seed": 9000014000003,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c03",
+     "dir": "validation_v1/b14_MA_MD_step/c03",
      "trial_ids": [
       90,
       120
@@ -1631,7 +1832,7 @@
     {
      "c": 4,
      "seed": 9000014000004,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c04",
+     "dir": "validation_v1/b14_MA_MD_step/c04",
      "trial_ids": [
       120,
       150
@@ -1640,7 +1841,7 @@
     {
      "c": 5,
      "seed": 9000014000005,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c05",
+     "dir": "validation_v1/b14_MA_MD_step/c05",
      "trial_ids": [
       150,
       180
@@ -1649,7 +1850,7 @@
     {
      "c": 6,
      "seed": 9000014000006,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c06",
+     "dir": "validation_v1/b14_MA_MD_step/c06",
      "trial_ids": [
       180,
       210
@@ -1658,7 +1859,7 @@
     {
      "c": 7,
      "seed": 9000014000007,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c07",
+     "dir": "validation_v1/b14_MA_MD_step/c07",
      "trial_ids": [
       210,
       240
@@ -1667,7 +1868,7 @@
     {
      "c": 8,
      "seed": 9000014000008,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c08",
+     "dir": "validation_v1/b14_MA_MD_step/c08",
      "trial_ids": [
       240,
       270
@@ -1676,7 +1877,7 @@
     {
      "c": 9,
      "seed": 9000014000009,
-     "dir": "/data/fable/vortex/validation_v1/b14_MA_MD_step/c09",
+     "dir": "validation_v1/b14_MA_MD_step/c09",
      "trial_ids": [
       270,
       300
@@ -1696,7 +1897,7 @@
     {
      "c": 0,
      "seed": 9000015000000,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c00",
+     "dir": "validation_v1/b15_MA_d10_0.3/c00",
      "trial_ids": [
       0,
       30
@@ -1705,7 +1906,7 @@
     {
      "c": 1,
      "seed": 9000015000001,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c01",
+     "dir": "validation_v1/b15_MA_d10_0.3/c01",
      "trial_ids": [
       30,
       60
@@ -1714,7 +1915,7 @@
     {
      "c": 2,
      "seed": 9000015000002,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c02",
+     "dir": "validation_v1/b15_MA_d10_0.3/c02",
      "trial_ids": [
       60,
       90
@@ -1723,7 +1924,7 @@
     {
      "c": 3,
      "seed": 9000015000003,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c03",
+     "dir": "validation_v1/b15_MA_d10_0.3/c03",
      "trial_ids": [
       90,
       120
@@ -1732,7 +1933,7 @@
     {
      "c": 4,
      "seed": 9000015000004,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c04",
+     "dir": "validation_v1/b15_MA_d10_0.3/c04",
      "trial_ids": [
       120,
       150
@@ -1741,7 +1942,7 @@
     {
      "c": 5,
      "seed": 9000015000005,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c05",
+     "dir": "validation_v1/b15_MA_d10_0.3/c05",
      "trial_ids": [
       150,
       180
@@ -1750,7 +1951,7 @@
     {
      "c": 6,
      "seed": 9000015000006,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c06",
+     "dir": "validation_v1/b15_MA_d10_0.3/c06",
      "trial_ids": [
       180,
       210
@@ -1759,7 +1960,7 @@
     {
      "c": 7,
      "seed": 9000015000007,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c07",
+     "dir": "validation_v1/b15_MA_d10_0.3/c07",
      "trial_ids": [
       210,
       240
@@ -1768,7 +1969,7 @@
     {
      "c": 8,
      "seed": 9000015000008,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c08",
+     "dir": "validation_v1/b15_MA_d10_0.3/c08",
      "trial_ids": [
       240,
       270
@@ -1777,7 +1978,7 @@
     {
      "c": 9,
      "seed": 9000015000009,
-     "dir": "/data/fable/vortex/validation_v1/b15_MA_d10_0.3/c09",
+     "dir": "validation_v1/b15_MA_d10_0.3/c09",
      "trial_ids": [
       270,
       300
@@ -1797,7 +1998,7 @@
     {
      "c": 0,
      "seed": 9000016000000,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c00",
+     "dir": "validation_v1/b16_MA_d10_0.5/c00",
      "trial_ids": [
       0,
       30
@@ -1806,7 +2007,7 @@
     {
      "c": 1,
      "seed": 9000016000001,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c01",
+     "dir": "validation_v1/b16_MA_d10_0.5/c01",
      "trial_ids": [
       30,
       60
@@ -1815,7 +2016,7 @@
     {
      "c": 2,
      "seed": 9000016000002,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c02",
+     "dir": "validation_v1/b16_MA_d10_0.5/c02",
      "trial_ids": [
       60,
       90
@@ -1824,7 +2025,7 @@
     {
      "c": 3,
      "seed": 9000016000003,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c03",
+     "dir": "validation_v1/b16_MA_d10_0.5/c03",
      "trial_ids": [
       90,
       120
@@ -1833,7 +2034,7 @@
     {
      "c": 4,
      "seed": 9000016000004,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c04",
+     "dir": "validation_v1/b16_MA_d10_0.5/c04",
      "trial_ids": [
       120,
       150
@@ -1842,7 +2043,7 @@
     {
      "c": 5,
      "seed": 9000016000005,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c05",
+     "dir": "validation_v1/b16_MA_d10_0.5/c05",
      "trial_ids": [
       150,
       180
@@ -1851,7 +2052,7 @@
     {
      "c": 6,
      "seed": 9000016000006,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c06",
+     "dir": "validation_v1/b16_MA_d10_0.5/c06",
      "trial_ids": [
       180,
       210
@@ -1860,7 +2061,7 @@
     {
      "c": 7,
      "seed": 9000016000007,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c07",
+     "dir": "validation_v1/b16_MA_d10_0.5/c07",
      "trial_ids": [
       210,
       240
@@ -1869,7 +2070,7 @@
     {
      "c": 8,
      "seed": 9000016000008,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c08",
+     "dir": "validation_v1/b16_MA_d10_0.5/c08",
      "trial_ids": [
       240,
       270
@@ -1878,7 +2079,7 @@
     {
      "c": 9,
      "seed": 9000016000009,
-     "dir": "/data/fable/vortex/validation_v1/b16_MA_d10_0.5/c09",
+     "dir": "validation_v1/b16_MA_d10_0.5/c09",
      "trial_ids": [
       270,
       300
@@ -1898,7 +2099,7 @@
     {
      "c": 0,
      "seed": 9000017000000,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c00",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c00",
      "trial_ids": [
       0,
       30
@@ -1907,7 +2108,7 @@
     {
      "c": 1,
      "seed": 9000017000001,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c01",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c01",
      "trial_ids": [
       30,
       60
@@ -1916,7 +2117,7 @@
     {
      "c": 2,
      "seed": 9000017000002,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c02",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c02",
      "trial_ids": [
       60,
       90
@@ -1925,7 +2126,7 @@
     {
      "c": 3,
      "seed": 9000017000003,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c03",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c03",
      "trial_ids": [
       90,
       120
@@ -1934,7 +2135,7 @@
     {
      "c": 4,
      "seed": 9000017000004,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c04",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c04",
      "trial_ids": [
       120,
       150
@@ -1943,7 +2144,7 @@
     {
      "c": 5,
      "seed": 9000017000005,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c05",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c05",
      "trial_ids": [
       150,
       180
@@ -1952,7 +2153,7 @@
     {
      "c": 6,
      "seed": 9000017000006,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c06",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c06",
      "trial_ids": [
       180,
       210
@@ -1961,7 +2162,7 @@
     {
      "c": 7,
      "seed": 9000017000007,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c07",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c07",
      "trial_ids": [
       210,
       240
@@ -1970,7 +2171,7 @@
     {
      "c": 8,
      "seed": 9000017000008,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c08",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c08",
      "trial_ids": [
       240,
       270
@@ -1979,7 +2180,7 @@
     {
      "c": 9,
      "seed": 9000017000009,
-     "dir": "/data/fable/vortex/validation_v1/b17_stress_fitted_parameters/c09",
+     "dir": "validation_v1/b17_stress_fitted_parameters/c09",
      "trial_ids": [
       270,
       300

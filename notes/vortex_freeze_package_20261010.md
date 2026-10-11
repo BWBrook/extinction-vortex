@@ -1,16 +1,21 @@
 # Validation freeze package (complete, for Astra's review)
 
-**Status: complete for review, 11 October 2026, Hobart (Fable). Not frozen.**
+**Status: complete for review, 11 October 2026, Hobart (Fable), with the 0.10
+review repairs. Not frozen.**
 This collects in one place everything that §4.3 validation and the empirical
 test will run on, as Astra's 0.8 and 0.9 reviews (1348, 1368) asked.
 - All values come from the designated-bank run
   (`/data/fable/vortex/production_banks_20261010T081726Z`). Its receipts are
   archived in
   [`analysis/fable/calibration/freeze_v1/`](../analysis/fable/calibration/freeze_v1/).
-- **The freeze** takes effect when Astra accepts this package and the commit
-  carrying it is named as frozen.
-- **Validation then starts** only with Barry's go-ahead for the compute,
-  per §4.1: about 3,000 core-hours, roughly 75 hours on deep-server.
+- **The freeze** takes effect when Astra accepts this package. It names
+  manifest digest `96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429`
+  and code commit `52779d0` as frozen.
+- **Compute host.** The manifest is host-independent. Validation can run on
+  deep-server (three slots, about 75 hours) or as kunanyi PBS jobs (Barry's
+  proposal, pending a feasibility probe). Each host runs preflight first.
+  Routine allocation falls under Barry's standing compute authority
+  (Astra 0.10 review).
 
 No empirical conditional-null p-value has been computed or inspected.
 
@@ -36,9 +41,10 @@ No empirical conditional-null p-value has been computed or inspected.
 | Provenance per trial | selected draw per population: parameters (including M_D shift and step time), recorded counts, latent counts under M_O; K-th distances; flags; fallback count |
 | Selection and cap | exact matched selection S on recorded counts; cap event A (counts and Poisson rates ≤ 10^9) |
 | Prior | (b): logit s ~ N(0, 1.5²); log f ~ U(log 0.01, log 2); σ ~ U(0.02, 1); ρ ~ U(0, 0.9); p_c ~ U(0, 0.05); δ ~ U(0.5, 0.95) |
-| Code | commit `49f65ce` (`bank.py`, `e2e_benchmark.py`, `tstats_batch.R`, `score_discrimination.py` contract v3, `make_manifest.py`, `validate.py`, `collect_validation.py`, `run_validation.sh`, `empirical_q1.py`); all 17 staged source hashes match it (`freeze_v1/freeze_source_sha256.txt`) |
-| Runtime | deep-server, Linux 6.8.0; Python 3.12.3, NumPy 1.26.4, SciPy 1.11.4; R 4.6.1, nlme 3.1.171 (`freeze_v1/runtime_versions.txt`) |
-| Receipts | `test_bank.py` 28/28 and `test_validation.py` 19/19 on the staged freeze source (`freeze_v1/receipt_*.txt`) |
+| Code | commit `52779d0`. The manifest embeds SHA-256 for its 12 run files (`bank.py`, `e2e_benchmark.py`, `tstats_batch.R`, `score_discrimination.py` contract v3, `compare_nulls.py`, `validate.py`, `preflight.py`, `collect_validation.py`, `run_validation.sh`, `empirical_q1.py`, `make_manifest.py`, the CC0 input). Full staged-source list: `freeze_v1/freeze_source_sha256.txt`. |
+| Runtime | **Pinned:** NumPy 1.26.4, SciPy 1.11.4, nlme 3.1.171; preflight refuses otherwise. **Recorded:** Python and R. The empirical run must reproduce the runtime the validation run recorded. Deep-server: Python 3.12.3, R 4.6.1 (`freeze_v1/preflight_96603037ec050361.json`). |
+| Binding | Every chunk, the collector summary and the empirical guard carry and check the manifest digest. Chunks also check their settings. |
+| Receipts | `test_bank.py` 28/28 and `test_validation.py` 25/25 on the staged `52779d0` source (`freeze_v1/receipt_*.txt`). The deep-server preflight passed. |
 
 ## 3. Designated banks
 
@@ -47,8 +53,9 @@ with `build_bank.py` from source staged at `afe9bca`.
 - `bank.py`, `build_bank.py`, `effect_target.py` and `empirical_position.py`
   are byte-identical in `49f65ce`.
 - `run_production_banks.sh` is committed unchanged in `a31e5bc`.
-- **Measured cost:** 452,339 CPU-seconds (125.6 core-hours) for the three
-  banks; 2 h 52 min of wall time on 56 processes.
+- **Measured cost:** 452,339 CPU-seconds (125.6 core-hours) and 2 h 52 min of
+  wall time on 56 processes, for the whole designated-bank package run: the
+  three banks plus the effect, position and timing stages.
 
 | Bank | Variant | Seed family (task 0–179) | Selected runs per population | Overflow (max) | Size | Use | Shard hashes |
 |---|---|---|---|---:|---:|---|---|
@@ -94,10 +101,18 @@ development values are in brackets.
 ## 6. Validation run definition and streams
 
 **Executable.**
-- **The manifest** is `freeze_v1/validation_manifest.json`. It has 17 blocks,
-  170 chunks and 7,900 trials, with output root
-  `/data/fable/vortex/validation_v1`, the primary bank, β_min = 0.974519 and
-  `code_commit` `49f65ce`.
+- **The manifest** is `freeze_v1/validation_manifest.json`
+  (digest `96603037…`). It has 17 blocks, 170 chunks and 7,900 trials.
+  - Its paths are relative to the host's run directory BASE: `bank_primary`,
+    `stress_sets.json`, `validation_v1/...`.
+  - It embeds the hashes of all 181 primary-bank files, the stress sets
+    (`b9ec4c2f…`), the effect JSON and the 12 run files, and it pins the
+    runtime.
+  - β_min = 0.974519; `code_commit` `52779d0`.
+- **On a new host:** stage the source at `52779d0` and the banks, then run
+  `preflight.py MANIFEST BASE SRCROOT`. Only after it passes, run
+  `run_validation.sh MANIFEST BASE 3 OUT [W]` (deep-server) or the PBS
+  equivalent.
 - **The stress sets** are `freeze_v1/stress_sets.json`: 300 × 9 retained
   library indices and parameters.
 - Both were written by `make_manifest.py` from the recomputed effect JSON and
@@ -142,9 +157,12 @@ development values are in brackets.
 
 ## 7. After validation (empirical, once)
 
-- **Q1:** `empirical_q1.py MANIFEST SUMMARY OUT 1` on the primary bank.
-  - It refuses to run unless the collector's summary for this manifest shows
-    no V-fail and no fit stop.
+- **Q1:** `empirical_q1.py MANIFEST BASE SUMMARY OUT 1` on the primary bank.
+  It refuses to run unless all of the following hold:
+  - the summary's manifest digest equals the current manifest's;
+  - there is no V-fail and no fit stop;
+  - this host's preflight runtime equals the validation runtime;
+  - OUT is empty.
   - Before its p-value is read, the empirical radius position is reported
     against the frozen bins.
 - **Then the §7 inventory**, with analysis IDs a = 1–22 and replicate streams
@@ -157,7 +175,9 @@ development values are in brackets.
 
 - Astra's review of this completed package. The M_D and M_O specifications
   were accepted in the 0.9 review, with the stated scope limits.
-- Barry's go-ahead for the validation compute (§4.1).
+- The compute host: deep-server, or kunanyi via PBS, as Barry proposed.
+  This is operational; the frozen manifest and procedure do not change with
+  the host.
 - **§4.1 screens, done** (`dev_screen200_v1/`): 5/200 null rejections, 5/200
   at β_min, 1 of 800,200 datasets failed per arm. No stop rule was
   triggered.

@@ -1,6 +1,6 @@
 {
  "seed": 9000017000999,
- "library": "/data/fable/vortex/production_banks_20261010T081726Z/effect/libraries_ar_cat.npz",
+ "library_sha256": "9afc7c9435226d20b33eb9de163ebcb2f189a84cd07cf4aee8d3308961813aa7",
  "sets": {
   "0": {
    "golden_plover": {
