@@ -6,11 +6,22 @@
 #PBS -M barry.brook@utas.edu.au
 #PBS -m ae
 # Runs after every slot job (afterany): assembles and gates the results, then packs the run
-# outputs with checksums for retrieval. qsub -v VBASE=... -W depend=afterany:ID:ID... collect.pbs
+# outputs with checksums for retrieval. Diagnostics are packed even if collection fails, but
+# the job exits nonzero when the collector fails, no summary was written, or packing fails.
+# qsub -v VBASE=... -W depend=afterany:ID:ID... collect.pbs
 set -eo pipefail
 source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+rc=0
 python analysis/fable/calibration/collect_validation.py "$VBASE/validation_manifest.json" "$VBASE" \
-  "$VBASE/validation_summary.json" > "$VBASE/collect.log" 2>&1 || echo "collector exit $?" >> "$VBASE/collect.log"
+  "$VBASE/validation_summary.json" > "$VBASE/collect.log" 2>&1 || rc=$?
+[ "$rc" -ne 0 ] && echo "collector exit $rc" >> "$VBASE/collect.log"
+[ -s "$VBASE/validation_summary.json" ] || { echo "no validation summary" >> "$VBASE/collect.log"; rc=${rc/#0/3}; }
 cd "$VBASE"
-tar -czf validation_v1.tar.gz validation_v1 validation_summary.json collect.log slot_logs preflight_*.json 2>/dev/null || true
-sha256sum validation_v1.tar.gz > validation_v1.tar.gz.sha256
+parts=(validation_v1 collect.log slot_logs preflight_*.json)
+[ -s validation_summary.json ] && parts+=(validation_summary.json)
+if tar -czf validation_v1.tar.gz "${parts[@]}" && sha256sum validation_v1.tar.gz > validation_v1.tar.gz.sha256; then
+  :
+else
+  echo "packing failed" >> collect.log; [ "$rc" -eq 0 ] && rc=4
+fi
+exit "$rc"
