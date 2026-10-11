@@ -1,0 +1,84 @@
+{
+  "reviewed_at": "2026-10-11T20:02:34.755043+11:00",
+  "repo_head": "29c45c940e6ecca7db0ec94ea992c76e36219a1a",
+  "scope": "Three in-memory D3 contract fixtures; defect confirmation, not validation.",
+  "review_target_source_hashes_match": true,
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/d3_oracle.py": "675bd8f24fd8e051d2f5245f929c8ea12e6967116513e9fbd7a4fbe5fcf3c89e",
+    "analysis/fable/calibration/v2_dev/run_d3.sh": "76f0d2d6d01cc789fc66e2f4d2a3de6edd1711b3def7a99393b2e48a7b5222e5",
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+    "analysis/fable/calibration/freeze_v1/validation_manifest.json": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+    "notes/vortex_v2_dev_plan_20261011.md": "5a16473400d83aaee520699c44a2093b303087f5781cd06aaaba7886ce2b2730"
+  },
+  "audit_script_sha256": "ed56d489ee899dc6bfb646f570abdec6444723ef84e28e7b411c6b41d278cbbb",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "checks": [
+    {
+      "source_lines": "d3_oracle.py:68-86; run_d3.sh:14-18",
+      "finding": "Exhausted support extension returns success, allowing the shell to launch arm V fits.",
+      "expected_defect_reproduced": true,
+      "observed": {
+        "returned_normally": true,
+        "recorded_stop": [
+          "p"
+        ],
+        "retained": {
+          "p": 0
+        },
+        "pool_job_counts": [
+          20,
+          20
+        ],
+        "stdout": "retained {'p': 0} STOP"
+      }
+    },
+    {
+      "source_lines": "d3_oracle.py:113-125",
+      "finding": "Resume skips an existing row and overwrites its configuration metadata without comparing the old binding.",
+      "expected_defect_reproduced": true,
+      "observed": {
+        "read_paths": [
+          "manifest",
+          "outers",
+          "out/e2e_rows.jsonl"
+        ],
+        "written_paths": [
+          "out/e2e_meta.json"
+        ],
+        "new_manifest_digest": "new_manifest",
+        "new_outers_digest": "new_digest"
+      }
+    },
+    {
+      "source_lines": "d3_oracle.py:126-130,143-148,170-193",
+      "finding": "A deliberately absent T file for a retained sampling failure prevents the complete paired report.",
+      "expected_defect_reproduced": true,
+      "observed": {
+        "exception": {
+          "type": "FileNotFoundError",
+          "path": "V/T_0.csv"
+        },
+        "T_paths_attempted": [
+          "V/T_0.csv"
+        ],
+        "report_written": false
+      }
+    }
+  ],
+  "all_expected_defects_reproduced": true,
+  "limitations": [
+    "No remote files, jobs, live logs or partial outcomes were read or changed.",
+    "No banks were loaded and no populations, reference datasets or fits were generated.",
+    "Filesystem operations inside reviewed functions were mocked; only this receipt was written.",
+    "Fixtures establish reachable code defects, not their occurrence in the live D3 run.",
+    "The support-stop implication for arm V follows the reviewed shell source; the production shell was not executed.",
+    "Newcombe intervals, trend ties and power are covered by the parent's separate checks.py, not this receipt.",
+    "Fixture runtime is recorded and differs from the frozen production runtime; no production replay is claimed."
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "reviewed_commit": "29c45c940e6ecca7db0ec94ea992c76e36219a1a",
+  "time_hobart": "2026-10-11T20:04:42.580697+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "input_sha256": {
+    "analysis/astra/validation_v1_audit/raw_score.json.gz": "cbdf10d782691d3b7a43a36584a86b2fe7952dc1137f083f5787cba229ca3bda",
+    "analysis/fable/calibration/v2_dev/knn_nuisance_c.py": "3ce14db77463422de2a9e5ef34623c9c337580ef6344dad16fe17eda7cd999e7",
+    "analysis/fable/calibration/v2_dev/d1c_summary.json": "93847024282e43fab7f888c49b2f359137277f7a2ce1414a12cdcc3c02dbcd1d",
+    "analysis/fable/calibration/v2_dev/d1c_trials.jsonl.gz": "34b01133394a8e3b4c2bfc0a29321d26d1d2d035f27b072e6bdc93ec0ba32a61",
+    "analysis/fable/calibration/v2_dev/d3_oracle.py": "675bd8f24fd8e051d2f5245f929c8ea12e6967116513e9fbd7a4fbe5fcf3c89e",
+    "analysis/fable/calibration/v2_dev/run_d3.sh": "76f0d2d6d01cc789fc66e2f4d2a3de6edd1711b3def7a99393b2e48a7b5222e5",
+    "notes/vortex_v2_dev_plan_20261011.md": "5a16473400d83aaee520699c44a2093b303087f5781cd06aaaba7886ce2b2730"
+  },
+  "d1c_reconciliation": {
+    "null_prior_predictive": {
+      "rows": 1000,
+      "matched_population_distances": 9000,
+      "boundary_ties": 571,
+      "null_pen_ranks_by_population": {
+        "wild_dog": 0,
+        "marmot": 0,
+        "ms_woodpecker": 4,
+        "rc_woodpecker": 2,
+        "golden_plover": 0,
+        "whooping_crane": 1,
+        "hawaiian_crow": 112,
+        "wood_turtle_A": 0,
+        "wood_turtle_B": 0
+      },
+      "number_of_populations_in_pen_mean": {
+        "9": 884,
+        "8": 113,
+        "7": 3
+      }
+    },
+    "null_high_sigma": {
+      "rows": 1000,
+      "matched_population_distances": 9000,
+      "boundary_ties": 806,
+      "null_pen_ranks_by_population": {
+        "wild_dog": 0,
+        "marmot": 0,
+        "ms_woodpecker": 0,
+        "rc_woodpecker": 1,
+        "golden_plover": 0,
+        "whooping_crane": 1,
+        "hawaiian_crow": 257,
+        "wood_turtle_A": 0,
+        "wood_turtle_B": 0
+      },
+      "number_of_populations_in_pen_mean": {
+        "8": 259,
+        "9": 741
+      }
+    },
+    "null_low_s": {
+      "rows": 1000,
+      "matched_population_distances": 9000,
+      "boundary_ties": 896,
+      "null_pen_ranks_by_population": {
+        "wild_dog": 0,
+        "marmot": 0,
+        "ms_woodpecker": 0,
+        "rc_woodpecker": 0,
+        "golden_plover": 0,
+        "whooping_crane": 0,
+        "hawaiian_crow": 370,
+        "wood_turtle_A": 0,
+        "wood_turtle_B": 0
+      },
+      "number_of_populations_in_pen_mean": {
+        "8": 370,
+        "9": 630
+      }
+    },
+    "null_strong_env": {
+      "rows": 1000,
+      "matched_population_distances": 9000,
+      "boundary_ties": 914,
+      "null_pen_ranks_by_population": {
+        "wild_dog": 0,
+        "marmot": 0,
+        "ms_woodpecker": 2,
+        "rc_woodpecker": 4,
+        "golden_plover": 0,
+        "whooping_crane": 2,
+        "hawaiian_crow": 313,
+        "wood_turtle_A": 0,
+        "wood_turtle_B": 0
+      },
+      "number_of_populations_in_pen_mean": {
+        "9": 680,
+        "8": 319,
+        "7": 1
+      }
+    }
+  },
+  "constant_library_midrank_fixture": {
+    "library": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "observed": [
+      4,
+      5,
+      6
+    ],
+    "ranks": [
+      0.0,
+      0.5,
+      1.0
+    ]
+  },
+  "neighbour_tie_fixture": {
+    "K": 3,
+    "query_K": [
+      1,
+      2,
+      0
+    ],
+    "query_K_plus_1_truncated": [
+      1,
+      2,
+      3
+    ],
+    "same_membership": false
+  },
+  "paired_ci_fixture": {
+    "table_a_b_c_d": [
+      100,
+      0,
+      0,
+      100
+    ],
+    "current": [
+      -0.0,
+      -0.0
+    ],
+    "method10": [
+      -0.0097,
+      0.0097
+    ],
+    "published_table_cases_passed": 2
+  },
+  "candidate_B_low_s_only_screen": {
+    "calibration_block": 3,
+    "n_cal": 1000,
+    "power": {
+      "MA_betamin": {
+        "block": 5,
+        "n": 300,
+        "raw_rejections": 21,
+        "low_s_wrapper_rejections": 6,
+        "raw_p_q10_50_90": [
+          0.07881059470264869,
+          0.40604697651174415,
+          0.8776611694152924
+        ],
+        "wrapped_p_q10_50_90": [
+          0.22907092907092907,
+          0.6943056943056942,
+          0.962037962037962
+        ]
+      },
+      "MA_2betamin": {
+        "block": 6,
+        "n": 300,
+        "raw_rejections": 25,
+        "low_s_wrapper_rejections": 8,
+        "raw_p_q10_50_90": [
+          0.05987006496751624,
+          0.308095952023988,
+          0.762168915542229
+        ],
+        "wrapped_p_q10_50_90": [
+          0.17452547452547454,
+          0.6138861138861139,
+          0.9100899100899101
+        ]
+      },
+      "MA_d10_0.3": {
+        "block": 15,
+        "n": 300,
+        "raw_rejections": 118,
+        "low_s_wrapper_rejections": 35,
+        "raw_p_q10_50_90": [
+          0.017491254372813594,
+          0.07221389305347325,
+          0.3428785607196402
+        ],
+        "wrapped_p_q10_50_90": [
+          0.03696303696303696,
+          0.2082917082917083,
+          0.6453546453546454
+        ]
+      },
+      "MA_d10_0.5": {
+        "block": 16,
+        "n": 300,
+        "raw_rejections": 206,
+        "low_s_wrapper_rejections": 98,
+        "raw_p_q10_50_90": [
+          0.008445777111444279,
+          0.03023488255872064,
+          0.14247876061969017
+        ],
+        "wrapped_p_q10_50_90": [
+          0.01288711288711289,
+          0.08641358641358642,
+          0.38171828171828176
+        ]
+      }
+    },
+    "largest_rejecting_raw_p_on_v1_grid": 0.01899050474762619,
+    "limits": "Post-hoc development screen on disjoint stored power arms. Not a new calibrated procedure or validation; full B including this same table can only reduce these detections. A new table can differ."
+  },
+  "limits": [
+    "No primary bank, neighbour npz or D3 results loaded.",
+    "All p bounds/outcomes reconciled to the independent v1 audit; per-population original kth records not reread.",
+    "Matching rounded distances does not prove membership identity.",
+    "This script reproduces current defects; it must be versioned rather than overwritten after peer repairs."
+  ]
+}

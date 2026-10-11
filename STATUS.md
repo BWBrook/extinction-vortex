@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 19:50 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 20:03 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -351,8 +351,10 @@ corrected.
 **Fable, 11 October evening.**
 - D1's categorical reading is withdrawn and qualified.
 - [D1c/D2](analysis/fable/calibration/v2_dev/NOTE.md):
-  - the exact reconstruction is verified;
-  - endpoint ranks are corrected;
+  - Fable reported exact reconstruction from matching rounded distances;
+    Astra's subsequent review qualifies membership identity below;
+  - integer endpoint ranks address the cancellation defect, but constant-library
+    ranks still require the correction below;
   - the association neither supports nor rules out nuisance mixing.
 - The [v2 development plan](notes/vortex_v2_dev_plan_20261011.md) fixes the
   paired D3 oracle specification and defines candidates A (C+ with
@@ -360,11 +362,35 @@ corrected.
   Θ_G).
 - D3 is running on deep-server, about 4 h.
 
-**Next response: Codex.** Critique of the plan and the candidate definitions.
-D3's paired result follows from Fable. No v2 method is selected or frozen, and
-no empirical run is possible.
+**Astra reviewed the revised plan and D1c/D2, 11 October:**
+[review](notes/astra_v2_plan_review_20261011.md),
+[reproducible checks](analysis/astra/v2_plan_review/), Correspondence **1546**.
+- Reconciled all 4,000 D1c trial IDs, outcomes and p_hi values with the independent
+  v1 audit and checked 36,000 rounded distance comparisons. K+1 truncation can
+  change tied membership relative to v1's K query; constant-library midranks
+  are defined and must be retained. Refresh D2 after both corrections.
+- D3's core pairing/common metric is sound. Reporting, support-stop, restart
+  and provenance repairs are required; no partial rejection outcomes were read
+  or running jobs changed. Preserve fits and verify which failure branches occurred.
+- Candidate A merits bounded development with a heuristic variance rationale
+  and measured signal/support costs. Candidate B's rank argument covers a fixed
+  finite grid, averaged over calibration-table randomness; empirical C-derived
+  grid choice and failure-inclusive validation require explicit qualifications.
+- A cheap post-hoc B screen using the stored low-s table reduces beta_min
+  detections from 21 to 6/300 and Delta10=.5 from 206 to 98/300. This is
+  development evidence for that table, not prospective power validation.
+
+**Next response: Claude/Fable.** Correct/version D1c/D2, complete D3 with
+verified reporting, revise candidate claims/shared evaluation, and respond to
+the cheap B screen before its full calibration cost. No v2 method is selected
+or frozen, and no empirical run is possible.
 
 ## Completed by Astra
+
+- 11 October evening, reviewed the revised v2 plan, reconciled D1c rows,
+  reproduced membership/rank/interval counterexamples and a cheap Candidate B
+  power screen. Returned bounded D3 reporting/restart repairs. No bank reload,
+  new population simulation, model fitting or empirical-statistic access.
 
 - 11 October, reviewed v2 diagnostic 1 and Fable's D2/D3/candidate proposals.
   Verified aggregate ranges and corner means; reproduced an endpoint-tie
@@ -634,8 +660,8 @@ no empirical run is possible.
 
 ## Pending
 
-1. Fable responds to the D1/D2/D3 review and completes the corrected diagnostic
-   and candidate specifications. The v1 freeze, execution and audit are
+1. Fable responds to the revised-plan review, corrects D1c/D2 and completes
+   the paired D3 report and candidate specifications. The v1 freeze, execution and audit are
    complete: V-fail. Compare at most two development candidates, and prepare
    a separate prospective protocol/freeze before untouched v2 validation.
    Retain the failed corner and low-power result; do not retune beta_min to
@@ -662,9 +688,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1530**; exhausted `through`: **1530**.
-- Explicit acknowledgement: through actual message **1530** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1530`.
+- Last full retrieval `next_after`: **1545**; exhausted `through`: **1545**.
+- Explicit acknowledgement: through actual message **1545** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1545`.
 
 ## Decision Inbox checkpoint
 
