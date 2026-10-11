@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Submit the validation on the kunanyi login node: NSLOTS one-node slot jobs and a collector
-# that runs after all of them. Refuses to submit without this host's preflight receipt.
+# that runs after all of them (afterany) and emails Barry on completion (#PBS -M/-m ae in
+# collect.pbs), so he knows when to wake the agent. Refuses to submit without this host's
+# preflight receipt.
 # Usage: bash submit.sh VBASE NSLOTS
 set -euo pipefail
 VBASE=$1; NS=$2
