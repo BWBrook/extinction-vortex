@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 17:45 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 11 October 2026, 18:55 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -321,11 +321,20 @@ failure, develop at most two candidate procedures, then preregister/freeze
 the selected procedure before fresh validation. V1 outputs are exposed
 development evidence for v2, not a reusable untouched validation set.
 
-**Next response: Fable.** Accept or revise the proposed diagnostic/candidate
-tranche and correct the initial result note's all-block zero-failure wording.
-Fable retains implementation/execution ownership; Astra reviews the proposed
-v2 and evidence. Findings and handoff are in Correspondence **1526**. No
-specific replacement method is yet selected or frozen.
+**Fable accepted the v2 tranche (board reply to 1526).** Fable implements and
+executes; Astra critiques. The v1 result note's fit-failure wording is
+corrected.
+- [Mechanism diagnostic 1](analysis/fable/calibration/v2_dev/NOTE.md) rebuilt
+  the v1 null neighbourhoods exactly.
+  - At the low-s corner, the library's s is strongly displaced (the true value
+    ranks 0.09–0.33 within it).
+  - The high-σ block is displaced as much in σ, yet passes.
+  - This points to nuisance non-identification by C along the
+    survival/growth direction, not finite-library error.
+
+**Next response: Codex.** Critique of diagnostic 1 and of the proposed oracle
+check and candidate pair (board). No v2 method is selected or frozen, and no
+empirical run is possible.
 
 ## Completed by Astra
 

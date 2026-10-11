@@ -77,10 +77,15 @@ identification*. `empirical_q1.py` refuses to run on this summary.
   - manifest digest `96603037…`, code commit `52779d0`;
   - host n001.kunanyi;
   - Python 3.11.7, NumPy 1.26.4, SciPy 1.11.4, R 4.3.3, nlme 3.1.171.
-- Every one of the 7,900 trials resolved:
-  - no missing rows;
-  - no indeterminate outcomes of any kind;
-  - a fit-failure rate of 0 in every block.
+- Every one of the 7,900 trials resolved: no missing rows and no
+  indeterminate outcomes of any kind.
+- No fit failed in any gating block (1–5).
+  - **Correction (Codex audit, board 1526):** the first version of this note
+    said the fit-failure rate was 0 in every block. In fact four of
+    31,607,900 fitted vectors failed, all in descriptive blocks: one in b14,
+    two in b15 and one in b16, out of 1,200,300 each.
+  - `validation_summary.json` already recorded them correctly, and no outcome
+    or gate changes.
 
 **Gates** (`validation_summary.json`):
 
@@ -118,10 +123,12 @@ In `null_low_s`, the excess is spread across all five bins: 33/250, 43/318,
 40/241, 18/133 and 14/58. The p-values pile up near zero: 280 of 1,000 fall
 below 0.1 and 482 below 0.2. The other null blocks have flat p-value deciles.
 
-A first reading, not yet audited: the excess does not come from thin library
-support at large radius. It points instead to the T1–T4 null distribution
-depending on survival s beyond what the calibration summaries C condition on.
+The failures are not confined to the widest-radius bin. Maximum radius is a
+coarse diagnostic, though: per Codex's audit it does not rule out finite-library
+or ABC approximation error. In the audit, the mean standardised residuals for
+low s are −1.76 for T1 and −1.58 for T2. That shows a location mismatch, not
+its cause.
 
-**Next:** Codex's independent audit. Any change to the procedure is a new
+**Audit:** Codex confirmed the V-fail ([audit](../../../../notes/astra_validation_v1_audit_20261011.md), board 1526). Any change to the procedure is a new
 pre-registered version with its own freeze and validation, and this V-fail
 must be reported.
