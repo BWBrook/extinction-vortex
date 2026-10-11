@@ -1,7 +1,9 @@
 """Assemble validation chunks into the declared scenarios and evaluate the gates (protocol
-§4.3; freeze package §6). Every intended trial ID is scored from its chunk (contract v3);
-missing trials stay in the denominators, rows outside a chunk's intended IDs are refused,
-and duplicates are refused by the scorer.
+§4.3; freeze package §6). Every chunk must be bound to this manifest's digest and settings
+(validate.chunk_state); every intended trial ID is scored from its chunk (contract v3) with
+the manifest's R; missing trials stay in the denominators, and rows outside a chunk or
+duplicated are refused. The summary records the manifest digest and this host's preflight
+runtime, which the empirical guard checks.
 
 Gates (fixed sample sizes, no optional stopping):
   null blocks (role "null"): pass iff non-accepts <= 60 of 1,000, i.e. the one-sided upper
@@ -16,12 +18,13 @@ Gates (fixed sample sizes, no optional stopping):
   stress block: rejection-rate bounds with unresolved trials counted as non-rejections
     (lower) and as rejections (upper), each with an exact 95% interval; not a gate.
 
-Usage: python collect_validation.py MANIFEST OUT_JSON
+Usage: python collect_validation.py MANIFEST BASE OUT_JSON
 """
 import os, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from score_discrimination import score_dir, load_dir
+from score_discrimination import score_dir
 from compare_nulls import clopper_pearson
+from validate import manifest_digest, chunk_state, require_preflight
 
 NULL_MAX, POWER_MIN, FIT_MAX = 60, 224, 0.02
 
@@ -31,15 +34,16 @@ def ci(k, n, a=0.05):
     return [k, n, round(k / n, 5), round(lo, 5), round(hi, 5)]
 
 
-def collect_scenario(s):
-    counts, fails = {}, {"failed_datasets": 0, "fitted_datasets": 0}
+def collect_scenario(man, digest, s, base):
+    counts, fails = {}, {"failed_datasets": 0, "fitted_datasets": 0, "flag_mismatches": 0}
+    seen = set()
     for c in s["chunks"]:
         ids = range(*c["trial_ids"])
-        _, logged = load_dir("v3", c["dir"])
-        extra = set(logged) - set(ids)
-        if extra:
-            raise SystemExit(f"{c['dir']}: rows outside the chunk's trial IDs: {sorted(extra)[:5]}")
-        _, cc, ff = score_dir("v3", c["dir"], ids)
+        if seen & set(ids) or c["dir"] in seen:
+            raise SystemExit(f"{s['name']}: overlapping chunks")
+        seen |= set(ids) | {c["dir"]}
+        chunk_state(man, digest, s, c, base)
+        _, cc, ff = score_dir("v3", os.path.join(base, c["dir"]), ids, man["R"])
         for k, v in cc.items():
             counts[k] = counts.get(k, 0) + v
         for k in fails:
@@ -67,16 +71,21 @@ def collect_scenario(s):
 
 
 def main():
-    man = json.load(open(sys.argv[1]))
-    res = [collect_scenario(s) for s in man["scenarios"]]
+    man_path, base, out = sys.argv[1], sys.argv[2], sys.argv[3]
+    man = json.load(open(man_path))
+    digest = manifest_digest(man_path)
+    require_preflight(base, digest)
+    preflight = json.load(open(os.path.join(base, f"preflight_{digest[:16]}.json")))
+    res = [collect_scenario(man, digest, s, base) for s in man["scenarios"]]
     vfail = any(not r["null_gate"]["pass"] for r in res if "null_gate" in r)
     stop = any(r.get("fit_stop") for r in res)
     power = next(r["power_gate"]["pass"] for r in res if "power_gate" in r)
-    summary = {"manifest": sys.argv[1], "code_commit": man.get("code_commit"), "v_fail": vfail,
+    summary = {"manifest_digest": digest, "code_commit": man.get("code_commit"),
+               "runtime": preflight["runtime"], "host": preflight["host"], "v_fail": vfail,
                "fit_stop": stop, "power_gate_pass": power,
                "labels_available": [] if (vfail or stop) else (["O1", "O2"] if power else ["O2", "O3"]),
                "scenarios": res}
-    json.dump(summary, open(sys.argv[2], "w"), indent=1)
+    json.dump(summary, open(out, "w"), indent=1)
     print(json.dumps({k: summary[k] for k in ("v_fail", "fit_stop", "power_gate_pass", "labels_available")}))
 
 
