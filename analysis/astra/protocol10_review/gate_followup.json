@@ -1,0 +1,21 @@
+{
+  "fixture_root": "/tmp/protocol10_gate_followup_4p_juk1p",
+  "reviewed_commit": "df9469377db01268c8c4ddd11d9968b642928dab",
+  "source_sha256": {
+    "e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "score_discrimination.py": "78821d31be456c6572da349335aeba6977c38e35cc9845d16d097adae88da084",
+    "validate.py": "81cd79b4bb9b46feff57e5e2241c055da37eec55463b6a6741f0087bd13d5bee",
+    "empirical_q1.py": "a1f731d6ec45ed9b9a24fac0ba141ae71c538425cd6c05e3c875c83cb94af533"
+  },
+  "missing_T_after_success": "SystemExit: /tmp/protocol10_gate_followup_4p_juk1p/chunk trial 0: recomputed outcome indet_malformed != logged accept",
+  "malformed_T_after_success": "SystemExit: /tmp/protocol10_gate_followup_4p_juk1p/chunk trial 0: recomputed outcome indet_malformed != logged accept",
+  "restart_malformed_T": {
+    "returned_success": true,
+    "run_chunk_calls": 0
+  },
+  "empirical_existing_output": {
+    "run_chunk_calls": 1,
+    "old_T_overwritten": true
+  },
+  "characterization_assertions_passed": true
+}

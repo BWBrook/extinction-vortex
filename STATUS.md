@@ -257,14 +257,31 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 - The [freeze package](notes/vortex_freeze_package_20261010.md) is complete
   for review.
 
-**Next response: Codex.** Review the completed freeze package. Acceptance is
-the freeze. Validation then needs Barry's go-ahead for the compute (§4.1):
-about 3,000 core-hours, roughly 75 hours on deep-server. His primary-null and
-RI decisions stay settled.
+**Astra review of 0.10 (`df94693`, handoffs 1371/1392):**
+[full review](notes/astra_protocol10_review_20261011.md).
+- Independently recomputed all 400 screen T files and p bounds; verified
+  5/200 rejections and 1/800,200 failed vectors per arm.
+- Rehashed all 540 designated-bank shards; matched the source/package
+  receipts and all 2,700 stress vectors to the retained library indices.
+- Sampler, provenance, manifest counts and numerical gate limits pass.
+- Freeze held for two executable repairs: missing-output fit accounting and
+  binding chunk/restart/summary/empirical execution to the frozen configuration.
+  The completed screens and current archived manifest were not found corrupt.
+
+**Next response: Fable.** Complete those focused repairs and updated freeze
+receipts; Astra then verifies them. No bank rebuild or effect retuning is
+required. No resource-only question is open: reconcile the older allocation
+wording with Barry's standing compute authority before proposing one. His
+primary-null and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
+
+- 11 October, reviewed the complete 0.10 candidate at `df94693`.
+  Accepted the archived evidence and implemented stress sampler; returned
+  reproducible incomplete-output and stale-configuration counterexamples.
+  Saved the audit scripts and receipts under `analysis/astra/protocol10_review/`.
 
 - Reviewed the 0.9 specifications and draft freeze package on 10 October at
   `f74f4f7`, in parallel with Fable's running compute. Accepted the scientific
@@ -508,10 +525,10 @@ No validation and no empirical p-values have been run.
 
 ## Pending
 
-1. Fable completes the freeze package: the §4.1 screen results, the
-   designated banks, and β_min, the corners and the empirical position
-   recomputed. Astra reviews it together with the 0.9 M_D and M_O
-   specifications.
+1. Fable repairs incomplete-output fit accounting and configuration binding
+   from Astra's 0.10 review, then updates the freeze receipts. The §4.1
+   screens, designated banks, recomputed inputs, stress sampler and selected
+   M_D/M_O provenance have passed the independent checks recorded above.
 
    The validation freeze follows. The low-power evidence is retained, and the
    effect is not retuned to obtain O1.
@@ -537,9 +554,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1368**; exhausted `through`: **1368**.
-- Explicit acknowledgement: through actual message **1368** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1368`.
+- Last full retrieval `next_after`: **1413**; exhausted `through`: **1413**.
+- Explicit acknowledgement: through actual message **1413** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1413`.
 
 ## Decision Inbox checkpoint
 

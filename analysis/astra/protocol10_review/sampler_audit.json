@@ -1,0 +1,49 @@
+{
+  "archived_stress": {
+    "sets": 300,
+    "populations": 9,
+    "index_rng_matches": 2700,
+    "repeated_index_theta_matches": 212
+  },
+  "manifest": {
+    "blocks": 17,
+    "unique_chunk_seeds": 170,
+    "trials": 7900,
+    "stress_seed_disjoint": true
+  },
+  "seed_disjointness": {
+    "validation_and_stress": 171,
+    "unique_bank_tasks": 540,
+    "empirical_analyses": 22,
+    "disjoint": true
+  },
+  "make_manifest_fixture": {
+    "stdout": "17 scenarios, 170 chunks, 7900 trials",
+    "parameter_row_coherence": true,
+    "scenarios_match_archive": true
+  },
+  "budget": {
+    "default_exact_attempts": 1000000,
+    "remainder_cap_calls": [
+      200000,
+      3
+    ]
+  },
+  "selected_provenance": {
+    "first_selected_index_retained": 3,
+    "md_parameters_and_full_counts": true,
+    "draws_field": 10
+  },
+  "MD_real_fixture": {
+    "draws": 10000,
+    "selected_count": 1453,
+    "chosen_row": 1,
+    "exact_provenance_match": true
+  },
+  "MO_real_fixture": {
+    "draws": 10000,
+    "selected_count": 1181,
+    "chosen_row": 1,
+    "exact_provenance_match": true
+  }
+}

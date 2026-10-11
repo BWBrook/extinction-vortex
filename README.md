@@ -127,12 +127,14 @@ banks.
   - The §4.1 screens found 5/200 null rejections, so no stop rule was
     triggered.
   - The designated banks are built, and β_min is unchanged on them.
-  - Validation follows Astra's acceptance and Barry's go-ahead for the
-    compute.
+  - [Astra's 0.10 review](notes/astra_protocol10_review_20261011.md) verifies
+    the completed evidence and stress sampler, but holds the executable
+    freeze for missing-output accounting and configuration-binding repairs.
 - [Astra's 0.9 review](notes/astra_protocol09_review_20261010.md) accepts the
-  proposed priors and sampling laws. The executable stress sampler, final
-  aggregation/gate checks and selected-draw provenance remain to be completed;
-  the cost total remains a projection. Fable supplies the completed package next.
+  proposed priors and sampling laws. Draft 0.10 adds the requested sampler,
+  aggregation/gate checks and selected-draw provenance. The 0.10 review above
+  records the remaining executable defects; the cost total remains a projection.
+Fable owns the focused repairs; no new scientific decision is needed for them.
 Synthetic development continues within existing authority; no empirical p-values
 precede the validation freeze.
 

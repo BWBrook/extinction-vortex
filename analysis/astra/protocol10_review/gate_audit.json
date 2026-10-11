@@ -1,0 +1,105 @@
+{
+  "fixture_root": "/tmp/protocol10_gate_keyzytmn",
+  "reviewed_commit": "df9469377db01268c8c4ddd11d9968b642928dab",
+  "source_sha256": {
+    "e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "score_discrimination.py": "78821d31be456c6572da349335aeba6977c38e35cc9845d16d097adae88da084",
+    "collect_validation.py": "887324ec4f4f8f6349aba90ff0dfae0d3d44cc89bea6e5698e14b98313fa9650",
+    "validate.py": "81cd79b4bb9b46feff57e5e2241c055da37eec55463b6a6741f0087bd13d5bee",
+    "empirical_q1.py": "a1f731d6ec45ed9b9a24fac0ba141ae71c538425cd6c05e3c875c83cb94af533"
+  },
+  "thresholds": {
+    "null60_hi": 0.07903168914313966,
+    "null61_hi": 0.08015731835965928,
+    "power223_lo": 0.6984902262471115,
+    "power224_lo": 0.701975021462647
+  },
+  "collector_wrong_settings": {
+    "chunk_R": 20,
+    "freeze_R": 2000,
+    "metadata": {
+      "R_train": 20,
+      "R_test": 20,
+      "K": 50,
+      "variant": "iid",
+      "beta": 999,
+      "manifest": "wrong.json"
+    },
+    "gate": {
+      "non_accepts": 0,
+      "max_allowed": 60,
+      "pass": true,
+      "upper_98.75": 0.00437
+    },
+    "fit_failures": {
+      "failed_datasets": 0,
+      "fitted_datasets": 41000,
+      "rate": 0.0
+    }
+  },
+  "cross_chunk_duplicate": {
+    "distinct_trials": 100,
+    "counted_n": 1000,
+    "accepts": 1000,
+    "gate": {
+      "non_accepts": 0,
+      "max_allowed": 60,
+      "pass": true,
+      "upper_98.75": 0.00437
+    }
+  },
+  "missing_fitted_rows": {
+    "missing": 30,
+    "gate": {
+      "non_accepts": 30,
+      "max_allowed": 60,
+      "pass": true,
+      "upper_98.75": 0.04446
+    },
+    "reported": {
+      "failed_datasets": 0,
+      "fitted_datasets": 39770,
+      "rate": 0.0
+    },
+    "fit_stop": false,
+    "actual_failed_present_Tfiles": 1230,
+    "actual_fitted_present_Tfiles": 41000,
+    "actual_rate": 0.03
+  },
+  "failed_flags_mismatch": {
+    "actual_rate": 0.04878048780487805,
+    "reported": {
+      "failed_datasets": 0,
+      "fitted_datasets": 41000,
+      "rate": 0.0
+    },
+    "fit_stop": false,
+    "gate": {
+      "non_accepts": 0,
+      "max_allowed": 60,
+      "pass": true,
+      "upper_98.75": 0.00437
+    }
+  },
+  "guard_changed_manifest": {
+    "original_sha256": "72ff45904e2669e44d73f20ee256c18dcb9c6f2b229b1215cdcef644faf40af2",
+    "current_sha256": "3d4d8d8b19ce88863a7984f3e2fdfa2fadc98ae265e551d93a68b377329e0832",
+    "accepted": true
+  },
+  "guard_absent_manifest": {
+    "accepted": true
+  },
+  "restart_wrong_metadata": {
+    "returned_success": true,
+    "run_chunk_calls": 0
+  },
+  "within_chunk_duplicate_refused": true,
+  "malformed_row_result": "KeyError: 'trial_id'",
+  "actual_frozen_manifest": {
+    "blocks": 17,
+    "chunks": 170,
+    "trials": 7900,
+    "correct_roles_counts_and_ids": true
+  },
+  "characterization_assertions_passed": true
+}
