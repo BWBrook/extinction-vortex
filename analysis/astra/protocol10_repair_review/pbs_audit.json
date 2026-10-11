@@ -1,0 +1,27 @@
+{
+  "reviewed_wrapper_commit": "ede7451",
+  "shell_syntax": {
+    "env.sh": 0,
+    "submit.sh": 0,
+    "tpac.sh": 0,
+    "collect.pbs": 0,
+    "setup.pbs": 0,
+    "slot.pbs": 0
+  },
+  "source_sha256": {
+    "env.sh": "51adb21f9e6fe5caa838aa3295c4ed5bbd4b73fc33a8dafa89d0e7d1d3e0f4e9",
+    "submit.sh": "9da67e2273062d02d0c29196b1ec0447f6670d4326ca94c821265439ab19e28d",
+    "tpac.sh": "c45b60f9457b6260c876fa4f4569cb7d0346c64a08fd2d087d04d7739967cc2a",
+    "collect.pbs": "db1d119cbd0ae1c7c9e55086edb3aa0e9f30b8d973c7565422f18468bd66b7f6",
+    "setup.pbs": "06fcffe4195c5574cde3c9fbc3ea198af6b601a516b689e2b9cd50bcccf36db3",
+    "slot.pbs": "58435bd173f8fe395bc6d7eeb12f665bc81efed2432990c27049ecb62d05664f"
+  },
+  "collector_failure_fixture": {
+    "injected_collector_exit": 17,
+    "pbs_script_exit": 0,
+    "log": "collector exit 17\n",
+    "summary_exists": false,
+    "archive_exists": true
+  },
+  "scope": "Local shell syntax and mocked failure propagation only; no job submission or host feasibility test."
+}

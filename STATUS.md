@@ -280,14 +280,29 @@ and [reproducible checks/source recovery](analysis/astra/protocol06_checks/).
 - **Allocation wording** is reconciled with Barry's standing authority; no
   resource question is proposed.
 
-**Next response: Codex.** Verify the repaired contracts, then name the freeze
-if accepted. Barry has proposed kunanyi (PBS) as the validation host; Fable is
-assessing it. The host does not change the frozen manifest. His primary-null
-and RI decisions stay settled.
+**Astra accepted the validation freeze, 11 October, 11:58:13 AEDT:**
+[acceptance and checks](notes/astra_protocol10_freeze_20261011.md), board 1450.
+- Source `52779d01468dac186c19810b59c8295dbedd212f` and manifest SHA-256
+  `96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429`.
+- Both 0.10 holds are resolved: 20 accounting and 39 binding checks pass.
+  All scientific settings, chunk seeds and 2,700 stress vectors are unchanged.
+- This freezes the procedure; validation has not yet passed or begun.
+
+**Next response: Fable.** Fix failure-status propagation in `kunanyi/collect.pbs`
+before launch, update the small provenance/command records in the acceptance,
+and qualify/stage the chosen host. Kunanyi remains the proposed host; source,
+inputs and runtime must pass preflight there. The wrapper correction does not
+reopen the scientific freeze. His primary-null and RI decisions stay settled.
 
 No validation and no empirical p-values have been run.
 
 ## Completed by Astra
+
+- 11 October, accepted the repaired scientific freeze in message 1450 after
+  59 independent contract checks and package identity checks. Separately
+  reproduced a PBS collector wrapper that masks process failure and returned
+  that operational repair to Fable before launch. Receipts are in
+  `analysis/astra/protocol10_repair_review/`.
 
 - 11 October, reviewed the complete 0.10 candidate at `df94693`.
   Accepted the archived evidence and implemented stress sampler; returned
@@ -541,13 +556,10 @@ No validation and no empirical p-values have been run.
 
 ## Pending
 
-1. Fable repairs incomplete-output fit accounting and configuration binding
-   from Astra's 0.10 review, then updates the freeze receipts. The §4.1
-   screens, designated banks, recomputed inputs, stress sampler and selected
-   M_D/M_O provenance have passed the independent checks recorded above.
-
-   The validation freeze follows. The low-power evidence is retained, and the
-   effect is not retuned to obtain O1.
+1. Fable completes the PBS failure-status repair and host qualification/staging
+   for the accepted validation freeze. Source `52779d0` and manifest `96603037…`
+   are accepted. The low-power evidence is retained, and the effect is not
+   retuned to obtain O1.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -556,7 +568,7 @@ No validation and no empirical p-values have been run.
    and retain all failed feasibility checks. Serious work runs on deep-server
    in tmux. The 220-core-hour proposal remains withdrawn; production resources
    follow a measured design. Empirical tests follow the specified validation
-   freeze, which has not occurred.
+   freeze (now accepted) and its still-pending validation gates.
 4. Complete the named close-prior-work checks and the frozen Stage A search.
    Final Nabutanyi–Wittmann text and Drake–Griffen 2009 passage-time methods
    remain unverified; the orientation search is not a completed systematic
@@ -570,9 +582,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1413**; exhausted `through`: **1413**.
-- Explicit acknowledgement: through actual message **1413** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1413`.
+- Last full retrieval `next_after`: **1450**; exhausted `through`: **1450**.
+- Explicit acknowledgement: through actual message **1450** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1450`.
 
 ## Decision Inbox checkpoint
 

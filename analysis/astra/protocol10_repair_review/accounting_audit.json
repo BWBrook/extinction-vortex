@@ -1,0 +1,637 @@
+{
+  "head": "a2082efddf35e199d15087d69931b0f8badeedb9",
+  "fixture_root": "/tmp/protocol10_accounting_repair_gmtiggaw",
+  "replicates_per_side": 20,
+  "scope": "synthetic T files; real scorer and collector; no R, banks, remote work, or empirical data",
+  "source_sha256": {
+    "score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+    "collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+    "e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b"
+  },
+  "checks": [
+    {
+      "name": "missing_row_present_failed_T",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 970,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 30,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 30,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 1230,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 0.03
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 30,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.04446
+        }
+      }
+    },
+    {
+      "name": "missing_row_no_T",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 970,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 30,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 30,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 1230,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 0.03
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 30,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.04446
+        }
+      }
+    },
+    {
+      "name": "absent_chunk_all_failed",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 0,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 1000,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 1000,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 41000,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 1.0
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 1000,
+          "max_allowed": 60,
+          "pass": false,
+          "upper_98.75": 1.0
+        }
+      }
+    },
+    {
+      "name": "missing_T_after_accept",
+      "pass": true,
+      "evidence": {
+        "retained_row": {
+          "trial": 0,
+          "dist": "{}",
+          "fallback": "",
+          "raw_p": 1.0,
+          "train_fail": "",
+          "test_fail": "",
+          "cond": "",
+          "D_obs": "",
+          "p_lo": "",
+          "p_hi": "",
+          "logged_outcome": "accept",
+          "outcome": "indet_malformed"
+        },
+        "collector": {
+          "n": 1000,
+          "counts": {
+            "reject": 0,
+            "accept": 999,
+            "indet_calib": 0,
+            "indet_sampling": 0,
+            "indet_malformed": 1,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 0,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 1,
+            "detections": 0
+          },
+          "fit_failures": {
+            "failed_datasets": 41,
+            "fitted_datasets": 41000,
+            "flag_mismatches": 0,
+            "rate": 0.001
+          },
+          "fit_stop": false,
+          "null_gate": {
+            "non_accepts": 1,
+            "max_allowed": 60,
+            "pass": true,
+            "upper_98.75": 0.00636
+          }
+        }
+      }
+    },
+    {
+      "name": "truncated_T_after_accept",
+      "pass": true,
+      "evidence": {
+        "retained_row": {
+          "trial": 0,
+          "dist": "{}",
+          "fallback": "",
+          "raw_p": 1.0,
+          "train_fail": "",
+          "test_fail": "",
+          "cond": "",
+          "D_obs": "",
+          "p_lo": "",
+          "p_hi": "",
+          "logged_outcome": "accept",
+          "outcome": "indet_malformed"
+        },
+        "collector": {
+          "n": 1000,
+          "counts": {
+            "reject": 0,
+            "accept": 999,
+            "indet_calib": 0,
+            "indet_sampling": 0,
+            "indet_malformed": 1,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 0,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 1,
+            "detections": 0
+          },
+          "fit_failures": {
+            "failed_datasets": 41,
+            "fitted_datasets": 41000,
+            "flag_mismatches": 0,
+            "rate": 0.001
+          },
+          "fit_stop": false,
+          "null_gate": {
+            "non_accepts": 1,
+            "max_allowed": 60,
+            "pass": true,
+            "upper_98.75": 0.00636
+          }
+        }
+      }
+    },
+    {
+      "name": "ragged_T_after_accept",
+      "pass": true,
+      "evidence": {
+        "retained_row": {
+          "trial": 0,
+          "dist": "{}",
+          "fallback": "",
+          "raw_p": 1.0,
+          "train_fail": "",
+          "test_fail": "",
+          "cond": "",
+          "D_obs": "",
+          "p_lo": "",
+          "p_hi": "",
+          "logged_outcome": "accept",
+          "outcome": "indet_malformed"
+        },
+        "collector": {
+          "n": 1000,
+          "counts": {
+            "reject": 0,
+            "accept": 999,
+            "indet_calib": 0,
+            "indet_sampling": 0,
+            "indet_malformed": 1,
+            "indet_obsfit": 0,
+            "indet_train": 0,
+            "indet_cov": 0,
+            "indet_straddle": 0,
+            "missing": 0,
+            "raw_p_below_alpha": 0,
+            "null_gate_count": 1,
+            "detections": 0
+          },
+          "fit_failures": {
+            "failed_datasets": 41,
+            "fitted_datasets": 41000,
+            "flag_mismatches": 0,
+            "rate": 0.001
+          },
+          "fit_stop": false,
+          "null_gate": {
+            "non_accepts": 1,
+            "max_allowed": 60,
+            "pass": true,
+            "upper_98.75": 0.00636
+          }
+        }
+      }
+    },
+    {
+      "name": "unflagged_nonfinite",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 1000,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 0,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 0,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 2000,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 2000,
+          "rate": 0.04878048780487805
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 0,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.00437
+        }
+      }
+    },
+    {
+      "name": "flagged_finite",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 1000,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 0,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 0,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 1000,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 1000,
+          "rate": 0.024390243902439025
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 0,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.00437
+        }
+      }
+    },
+    {
+      "name": "observed_training_test_union",
+      "pass": true,
+      "evidence": {
+        "counts": {
+          "reject": 0,
+          "accept": 0,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 1,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 0,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 1,
+          "detections": 0
+        },
+        "failures": {
+          "failed_datasets": 4,
+          "fitted_datasets": 41,
+          "flag_mismatches": 3
+        }
+      }
+    },
+    {
+      "name": "verified_sampling_exemption",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 980,
+          "indet_calib": 0,
+          "indet_sampling": 20,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 0,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 20,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 0,
+          "fitted_datasets": 40180,
+          "flag_mismatches": 0,
+          "rate": 0.0
+        },
+        "fit_stop": false,
+        "null_gate": {
+          "non_accepts": 20,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.03238
+        }
+      }
+    },
+    {
+      "name": "sampling_missing_failed_population",
+      "pass": true,
+      "evidence": {
+        "error": "/tmp/protocol10_accounting_repair_gmtiggaw/sampling_missing_failed_population/chunk trial 0: inconsistent sampling-failure record"
+      }
+    },
+    {
+      "name": "sampling_with_T_file",
+      "pass": true,
+      "evidence": {
+        "error": "/tmp/protocol10_accounting_repair_gmtiggaw/sampling_with_T_file/chunk trial 0: inconsistent sampling-failure record"
+      }
+    },
+    {
+      "name": "fit_stop_boundary_null_19_of_1000",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 981,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 19,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 19,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 779,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 0.019
+        },
+        "fit_stop": false,
+        "null_gate": {
+          "non_accepts": 19,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.03114
+        }
+      }
+    },
+    {
+      "name": "fit_stop_boundary_null_20_of_1000",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 980,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 20,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 20,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 820,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 0.02
+        },
+        "fit_stop": false,
+        "null_gate": {
+          "non_accepts": 20,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.03238
+        }
+      }
+    },
+    {
+      "name": "fit_stop_boundary_null_21_of_1000",
+      "pass": true,
+      "evidence": {
+        "n": 1000,
+        "counts": {
+          "reject": 0,
+          "accept": 979,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 21,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 21,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 861,
+          "fitted_datasets": 41000,
+          "flag_mismatches": 0,
+          "rate": 0.021
+        },
+        "fit_stop": true,
+        "null_gate": {
+          "non_accepts": 21,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.03361
+        }
+      }
+    },
+    {
+      "name": "fit_stop_boundary_power_6_of_300",
+      "pass": true,
+      "evidence": {
+        "n": 300,
+        "counts": {
+          "reject": 0,
+          "accept": 294,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 6,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 6,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 246,
+          "fitted_datasets": 12300,
+          "flag_mismatches": 0,
+          "rate": 0.02
+        },
+        "fit_stop": false,
+        "power_gate": {
+          "detections": 0,
+          "min_required": 224,
+          "pass": false,
+          "lower_95": 0.0
+        }
+      }
+    },
+    {
+      "name": "fit_stop_boundary_power_7_of_300",
+      "pass": true,
+      "evidence": {
+        "n": 300,
+        "counts": {
+          "reject": 0,
+          "accept": 293,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 7,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 7,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 287,
+          "fitted_datasets": 12300,
+          "flag_mismatches": 0,
+          "rate": 0.023333333333333334
+        },
+        "fit_stop": true,
+        "power_gate": {
+          "detections": 0,
+          "min_required": 224,
+          "pass": false,
+          "lower_95": 0.0
+        }
+      }
+    },
+    {
+      "name": "fit_stop_boundary_descriptive_7_of_300",
+      "pass": true,
+      "evidence": {
+        "n": 300,
+        "counts": {
+          "reject": 0,
+          "accept": 293,
+          "indet_calib": 0,
+          "indet_sampling": 0,
+          "indet_malformed": 0,
+          "indet_obsfit": 0,
+          "indet_train": 0,
+          "indet_cov": 0,
+          "indet_straddle": 0,
+          "missing": 7,
+          "raw_p_below_alpha": 0,
+          "null_gate_count": 7,
+          "detections": 0
+        },
+        "fit_failures": {
+          "failed_datasets": 287,
+          "fitted_datasets": 12300,
+          "flag_mismatches": 0,
+          "rate": 0.023333333333333334
+        }
+      }
+    },
+    {
+      "name": "valid_T_wrong_outcome",
+      "pass": true,
+      "evidence": {
+        "error": "/tmp/protocol10_accounting_repair_gmtiggaw/valid_T_wrong_outcome/chunk trial 0: recomputed outcome accept != logged reject"
+      }
+    },
+    {
+      "name": "valid_T_nan_logged_bound",
+      "pass": true,
+      "evidence": {
+        "error": "/tmp/protocol10_accounting_repair_gmtiggaw/valid_T_nan_logged_bound/chunk trial 0: recomputed p_hi 1.0 does not match logged nan"
+      }
+    }
+  ],
+  "passed": 20,
+  "failed": 0,
+  "elapsed_seconds": 10.19
+}

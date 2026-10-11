@@ -1,0 +1,58 @@
+{
+  "reviewed_code": "52779d01468dac186c19810b59c8295dbedd212f",
+  "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "unchanged_settings": [
+    "variant",
+    "R",
+    "K",
+    "budget",
+    "beta_min",
+    "all scenarios, chunks, IDs and seeds"
+  ],
+  "unchanged_stress_vectors": 2700,
+  "source_hashes": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "analysis/fable/calibration/tstats_batch.R": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+    "analysis/fable/calibration/score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+    "analysis/fable/calibration/compare_nulls.py": "63304743048808cf214664c520e16a68ab90f85034f3eaf5a3794d3454460b6f",
+    "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+    "analysis/fable/calibration/preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4",
+    "analysis/fable/calibration/collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+    "analysis/fable/calibration/run_validation.sh": "425e016c3497eab71ecf3287703754c90f2f52bc2b32c9d03b6a0e6c3043c0af",
+    "analysis/fable/calibration/empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+    "analysis/fable/calibration/make_manifest.py": "3748feb4732a7a6cd0bef4ec3333929a2c5f5bfadf43843244f4187f98ea793a",
+    "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+  },
+  "bank_shard_hashes_matching_previous_independent_audit": 180,
+  "bank_metadata_hash_matches": true,
+  "preflight_receipt": {
+    "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+    "host": "deep-server",
+    "checked_source": 12,
+    "checked_bank_shards": 181,
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "R": "R version 4.6.1 (2026-06-24)",
+      "nlme": "3.1.171"
+    },
+    "time": "2026-10-11T11:38:15+1100"
+  },
+  "stale_legacy_package_input_receipt_entries": {
+    "validation_manifest.json": {
+      "old": "b2512dd268ebd4371388518a7e1a94926375d6a8463001f9baf6cf6d19cd7045",
+      "current": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429"
+    },
+    "stress_sets.json": {
+      "old": "c0d37ddef09f7ba0c915c328978360ba046d7d3927b8fe126f98d3f14aa5b0d9",
+      "current": "b9ec4c2f21c7367374992dfedbbbd8939987a6c1ba612d0381c6abbc9454e128"
+    }
+  },
+  "limits": [
+    "No rerun of scientific simulations, R fits or full bank hashing.",
+    "Hash continuity relies on the earlier raw-bank audit in protocol10_review/evidence_check.json.",
+    "Effect JSON is hashed in the manifest; preflight does not read it because execution uses embedded parameters."
+  ]
+}

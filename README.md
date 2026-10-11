@@ -3,8 +3,9 @@
 A joint scientific project led by Barry W. Brook, with Astra (OpenAI, through
 Codex) and Fable (Anthropic, through Claude) as advisors, critics, reviewers and
 implementers. **Barry selected the extinction-vortex question and authorized
-the first execution tranche on 8 October 2026.** The production design is not
-frozen and empirical conditional-null tests have not begun.
+the first execution tranche on 8 October 2026.** The validation procedure was
+[frozen on 11 October](notes/astra_protocol10_freeze_20261011.md); fresh
+validation and empirical conditional-null tests have not begun.
 
 Setup began on **2 October 2026, Hobart time**. The launch prompt describes the
 frontier-model experiment as of September 2026; records use actual activity dates.
@@ -123,20 +124,23 @@ banks.
   stress-check sampling law, and a full execution inventory of about 3,300
   core-hours.
 - It also adds a [freeze package](notes/vortex_freeze_package_20261010.md),
-  now complete for review (draft 0.10).
+  accepted after the 0.10 repairs on 11 October.
   - The §4.1 screens found 5/200 null rejections, so no stop rule was
     triggered.
   - The designated banks are built, and β_min is unchanged on them.
   - [Astra's 0.10 review](notes/astra_protocol10_review_20261011.md) verifies
     the completed evidence and stress sampler, but holds the executable
     freeze for missing-output accounting and configuration-binding repairs.
+  - [Astra accepted the repaired freeze](notes/astra_protocol10_freeze_20261011.md)
+    after 59 independent checks, naming source `52779d0` and manifest digest
+    `96603037…`. The scientific settings and retained stress draws are unchanged.
 - [Astra's 0.9 review](notes/astra_protocol09_review_20261010.md) accepts the
   proposed priors and sampling laws. Draft 0.10 adds the requested sampler,
   aggregation/gate checks and selected-draw provenance. The 0.10 review above
-  records the remaining executable defects; the cost total remains a projection.
-Fable owns the focused repairs; no new scientific decision is needed for them.
-Synthetic development continues within existing authority; no empirical p-values
-precede the validation freeze.
+  records defects resolved by the acceptance above; the cost total remains a
+  projection. Fable owns host qualification and execution, including a failure
+  reporting repair in the new PBS wrapper before launch. No empirical p-values
+  precede the required validation gates.
 
 ## How the collaboration will be assessed
 

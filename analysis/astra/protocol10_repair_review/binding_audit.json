@@ -1,0 +1,199 @@
+{
+  "source_commit": "52779d0",
+  "working_tree_commit_at_review": "ede7451",
+  "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "source_sha256": {
+    "validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+    "collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+    "empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+    "preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4"
+  },
+  "checks_passed": 39,
+  "checks": {
+    "frozen_digest": {
+      "pass": true,
+      "detail": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429"
+    },
+    "frozen_manifest_unique_dirs_seeds": {
+      "pass": true,
+      "detail": null
+    },
+    "frozen_manifest_trial_partition": {
+      "pass": true,
+      "detail": null
+    },
+    "frozen_manifest_declared_roles": {
+      "pass": true,
+      "detail": null
+    },
+    "chunk_absent": {
+      "pass": true,
+      "detail": null
+    },
+    "chunk_complete": {
+      "pass": true,
+      "detail": null
+    },
+    "changed_digest_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "every_chunk_setting_bound": {
+      "pass": true,
+      "detail": {
+        "variant": true,
+        "R_train": true,
+        "R_test": true,
+        "K": true,
+        "budget": true,
+        "bankdir": true,
+        "block": true,
+        "scenario": true,
+        "role": true,
+        "beta": true,
+        "spec": true,
+        "stress": true,
+        "seed": true,
+        "trial_ids": true,
+        "dir": true
+      }
+    },
+    "missing_required_T_is_partial": {
+      "pass": true,
+      "detail": null
+    },
+    "duplicate_rows_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "out_of_chunk_rows_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "missing_preflight_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "stale_preflight_digest_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "main_restart_skips_bound_complete": {
+      "pass": true,
+      "detail": null
+    },
+    "main_restart_partial_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "main_partial_refusal_precedes_rerun": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_bound_chunk_uses_manifest_R": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_ignores_stale_legacy_R": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_repeated_chunk_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_overlapping_ids_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_repeat_directory_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_short_T_vs_manifest_R_fails_closed": {
+      "pass": true,
+      "detail": {
+        "failed_datasets": 8002,
+        "fitted_datasets": 8002,
+        "flag_mismatches": 0,
+        "rate": 1.0
+      }
+    },
+    "empirical_guard_passing_summary": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_guard_inplace_change_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_guard_v_fail_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_guard_fit_stop_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_guard_runtime_receipt_mismatch_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_main_writes_binding_before_run": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_main_once_per_output_directory": {
+      "pass": true,
+      "detail": null
+    },
+    "empirical_second_attempt_no_run": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_main_digest_runtime_propagation": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_main_power_fail_remains_labelled": {
+      "pass": true,
+      "detail": null
+    },
+    "collector_summary_accepted_by_empirical_guard": {
+      "pass": true,
+      "detail": null
+    },
+    "preflight_actual_hashes_and_runtime_receipt": {
+      "pass": true,
+      "detail": null
+    },
+    "no_real_R_invocation": {
+      "pass": true,
+      "detail": null
+    },
+    "preflight_changed_source_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "preflight_changed_bank_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "preflight_changed_stress_refused": {
+      "pass": true,
+      "detail": null
+    },
+    "preflight_pin_mismatch_refused": {
+      "pass": true,
+      "detail": null
+    }
+  },
+  "limits": {
+    "empirical_once_only": "Refuses a nonempty destination; not a global registry across other paths.",
+    "preflight_execution_binding": "Receipt is point-in-time evidence; require_preflight checks manifest digest, not live runtime, host, source or bank freshness.",
+    "restart_completion": "Requires T-file presence for fitted rows, not contents; collector validates contents and conservatively counts malformed files.",
+    "manifest_structure": "Overlap checking is within each scenario; actual frozen manifest has globally unique chunk directories and seeds."
+  },
+  "disposition": "PASS: requested binding and restart repairs; no current scientific/run blocker found in this scope.",
+  "execution_scope": "Tiny synthetic local fixtures, mocked banks/run_chunk/R subprocess. No actual R, banks, remote work, population simulation or empirical T/p-value access."
+}
