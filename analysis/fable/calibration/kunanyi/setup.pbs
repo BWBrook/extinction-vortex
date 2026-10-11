@@ -8,12 +8,15 @@
 set -eo pipefail
 source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
 mkdir -p "$VBASE/Rlib"
-if ! Rscript -e 'quit(status = as.integer(packageVersion("nlme") != "3.1.171"))'; then
-  Rscript -e 'for (u in c("https://cloud.r-project.org/src/contrib/Archive/nlme/nlme_3.1-171.tar.gz",
-                          "https://cloud.r-project.org/src/contrib/nlme_3.1-171.tar.gz"))
-                if (!inherits(try(install.packages(u, repos = NULL, type = "source",
-                                                   lib = Sys.getenv("R_LIBS_USER"))), "try-error") &&
-                    packageVersion("nlme", lib.loc = Sys.getenv("R_LIBS_USER")) == "3.1.171") break'
+if ! Rscript -e 'quit(status = as.integer(packageVersion("nlme") != "3.1.171"))' 2>/dev/null; then
+  Rscript -e 'lib <- Sys.getenv("R_LIBS_USER"); ok <- FALSE
+    for (u in c("https://cloud.r-project.org/src/contrib/nlme_3.1-171.tar.gz",
+                "https://cloud.r-project.org/src/contrib/Archive/nlme/nlme_3.1-171.tar.gz")) {
+      try(install.packages(u, repos = NULL, type = "source", lib = lib))
+      v <- tryCatch(as.character(packageVersion("nlme", lib.loc = lib)), error = function(e) "")
+      if (v == "3.1.171") { ok <- TRUE; break }
+    }
+    if (!ok) quit(status = 1)'
 fi
 Rscript -e 'stopifnot(packageVersion("nlme") == "3.1.171"); cat(R.version.string, "nlme", as.character(packageVersion("nlme")), "\n")'
 
