@@ -24,6 +24,6 @@ E28). No empirical T1–T4 or p-value has been computed.
 | `package_inputs_sha256.txt` | Current hashes of the frozen manifest (`96603037…`), stress sets (`b9ec4c2f…`), effect JSON, libraries and corners |
 | `package_inputs_sha256_pre_repair.txt` | Historical: the pre-repair manifest and stress receipt (`49f65ce`) |
 | `preflight_96603037ec050361.json` | deep-server preflight receipt for the frozen manifest |
-| `freeze_source_sha256.txt` | Staged freeze source; all 17 files match `49f65ce` |
+| `freeze_source_sha256.txt` | Staged freeze source at `52779d0` (all files match the commit; the 12 run files are also embedded in the manifest) |
 | `runtime_versions.txt` | Python, NumPy, SciPy, R, nlme and kernel versions |
-| `receipt_test_bank.txt`, `receipt_test_validation.txt` | 28/28 and 19/19 on the staged freeze source |
+| `receipt_test_bank.txt`, `receipt_test_validation.txt` | 28/28 and 25/25 on the staged `52779d0` source |
