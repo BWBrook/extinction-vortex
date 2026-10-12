@@ -1,0 +1,117 @@
+{
+  "reviewed_at": "2026-10-12T12:20:57.875486+11:00",
+  "scope": "Compact local receipts and mocked branches only; no T rescoring, bank loads, fits, or remote operations.",
+  "repo_head": "7b41881c8b73f70b64a915d0957e1ea2f308c114",
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/d3_oracle.py": "e868aa5cc91cfd7af1c483328787048ae73094e6a91f1966083ac83898765eda",
+    "analysis/fable/calibration/v2_dev/run_d3.sh": "e367b1764544e411ed4042f5d8168c5c7eff0c21c53ebec988e3b0009f51a6fb",
+    "analysis/fable/calibration/freeze_v1/validation_manifest.json": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429"
+  },
+  "script_sha256": "7cb47736b12ed78ea8673405e1ae51f6e29a0801530ad21e1142349870781b14",
+  "local_receipts": {
+    "ordered_unique_0_to_199": {
+      "V": true,
+      "O": true
+    },
+    "outers_ordered_unique_0_to_199": true,
+    "all_3600_arm_population_records_match_saved_outers": true,
+    "sampling_failures": 0,
+    "logged_fit_failures": {
+      "V": 0,
+      "O": 0
+    },
+    "logged_train_test_failures": {
+      "V": 0,
+      "O": 0
+    },
+    "outer_metadata_bound": true,
+    "manifest_bound": true,
+    "oracle_meta_bound": true,
+    "K_R_and_arm_seed_match_specification": true,
+    "all_six_outer_parameters_and_oracle_theta_match_corner": true,
+    "outer_seed_and_budget_match_specification": true,
+    "source_maps_match_manifest_and_current_files": true,
+    "launch_runner_matches_git_ff847a8": true,
+    "oracle_tasks_unique_and_complete": true,
+    "oracle_recorded_counts_reconcile": true,
+    "oracle_recorded_min_retained": 49052,
+    "oracle_stop": [],
+    "oracle_extended": [],
+    "timeline_start_entries": 1,
+    "no_restart_limit": "One saved driver start and sequential unique rows are consistent with no restart; do not prove no manual direct-arm restart."
+  },
+  "fixtures": {
+    "changed_meta": {
+      "error": "resume refused: bindings differ from the existing run",
+      "calls": [],
+      "read_paths": [
+        "manifest",
+        "outers",
+        "out/e2e_rows.jsonl",
+        "out/e2e_meta.json"
+      ],
+      "written_paths": []
+    },
+    "missing_meta": {
+      "error": null,
+      "calls": [],
+      "read_paths": [
+        "manifest",
+        "outers",
+        "out/e2e_rows.jsonl"
+      ],
+      "written_paths": [
+        "out/e2e_meta.json"
+      ]
+    },
+    "missing_neighbours": {
+      "error": null,
+      "calls": [],
+      "read_paths": [
+        "manifest",
+        "outers",
+        "out/e2e_rows.jsonl",
+        "out/e2e_meta.json"
+      ],
+      "written_paths": [
+        "out/e2e_meta.json"
+      ]
+    },
+    "support": {
+      "error": null,
+      "calls": [
+        "run_chunk",
+        "save_neighbours"
+      ],
+      "read_paths": [
+        "manifest",
+        "outers"
+      ],
+      "written_paths": [
+        "out/e2e_meta.json"
+      ]
+    },
+    "sampling_failure_report": {
+      "error": "'NoneType' object is not subscriptable",
+      "report_written": false,
+      "manifest_check": null,
+      "neighbour_sets": null
+    },
+    "false_binding_and_missing_neighbours_report": {
+      "error": null,
+      "report_written": true,
+      "manifest_check": false,
+      "neighbour_sets": {
+        "V": 0,
+        "O": 0
+      }
+    }
+  },
+  "all_expected_observations_reproduced": true,
+  "limitations": [
+    "Reported bank and neighbour SHA values are not independent verification of remote payloads.",
+    "Reported K-th-distance reconciliation establishes distances of saved sets, not exact query membership independently.",
+    "R/nlme were recorded at report time; launch-time versions remain unproven by these compact receipts.",
+    "No mocked defect establishes occurrence in the completed run; conditional repair needed only before reuse."
+  ]
+}

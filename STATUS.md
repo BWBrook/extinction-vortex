@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 12 October 2026, 11:30 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 12 October 2026, 12:29 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -360,7 +360,8 @@ corrected.
   paired D3 oracle specification and defines candidates A (C+ with
   demographic-variance summaries) and B (grid-calibrated p over a declared
   Θ_G).
-- D3 is running on deep-server, about 4 h.
+- D3 was launched on deep-server with an estimated 4 h run; completed results
+  are recorded below.
 
 **Astra reviewed the revised plan and D1c/D2, 11 October:**
 [review](notes/astra_v2_plan_review_20261011.md),
@@ -388,7 +389,7 @@ corrected.
   - the oracle removes the T1/T2 shift.
   - Receipts are verified, and none of Astra's flagged code paths occurred.
 - **D1c version 2** corrects the membership query and constant-library
-  midranks; D2 is unchanged.
+  midranks; D2's interpretation is unchanged (some coefficients change slightly).
 - **A0:** C+ leaves the nuisance displacement unchanged and costs C-locality.
 - [Plan §7](notes/vortex_v2_dev_plan_20261011.md) proposes invoking the stop
   rule, with three options for Barry:
@@ -397,10 +398,36 @@ corrected.
   3. use external demographic priors (a target change).
   Fable recommends option 1, with option 3 as the follow-on.
 
-**Next response: Codex.** Check D3, D1c version 2 and A0, and critique the
-stop-rule proposal before anything goes to Barry. No empirical run.
+**Astra review, 12 October:**
+[completed-result review](notes/astra_v2_results_review_20261012.md),
+[reproducers and receipts](analysis/astra/v2_results_review/), Correspondence **1561**.
+- Independently rescored all 400 D3 synthetic T files: every outcome/p bound,
+  the 34 versus 7 rejections, paired table/interval and z diagnostics reproduce.
+  Verified pairing, compact input/source bindings, 404 T/neighbour hashes and
+  180 oracle-shard hashes. No new population simulation or fitting.
+- D1c2/D2 passes the retained-row audit; A0 features and reported summary
+  arithmetic reproduce. Typical original-C distance inflation is about fivefold.
+- D3 establishes reference sensitivity at one corner; it does not isolate all
+  causes, rule out approximation or validate informative estimated priors. A0
+  does not measure A's calibration or power. V-fail/insufficient identification
+  remains the declared procedure's outcome, not a theorem about the raw series.
+- Recommends one fixed 200-case fitted low-s screen of unchanged A before
+  closure, about 5.3% of full A1. This is a proposed bounded assignment within
+  the existing two-candidate development scope, not a new freeze or validation.
+- D3 retains some inactive reporting/restart defects; fix relevant paths before
+  reuse. They do not contradict the independently audited current result.
+
+**Next response: Claude/Fable.** Accept/revise the bounded fitted-screen
+assignment and narrow the stopping/redesign claims. If the smaller screen is
+declined on implementation/cost grounds, the decision brief must state A's
+calibration is unmeasured. Barry retains the closure/redesign decision; no new
+Decision Inbox question has been created and no empirical run is enabled.
 
 ## Completed by Astra
+
+- 12 October, audited D3 raw outputs and corrected diagnostics, reconciled A0,
+  and challenged the stopping proposal. Proposed a fixed 200-case fitted A
+  screen before closure, retaining all prior empirical/validation boundaries.
 
 - 11 October evening, reviewed the revised v2 plan, reconciled D1c rows,
   reproduced membership/rank/interval counterexamples and a cheap Candidate B
@@ -675,8 +702,9 @@ stop-rule proposal before anything goes to Barry. No empirical run.
 
 ## Pending
 
-1. Fable responds to the revised-plan review, corrects D1c/D2 and completes
-   the paired D3 report and candidate specifications. The v1 freeze, execution and audit are
+1. Fable responds to the completed-result review and the proposed bounded
+   fitted screen of unchanged A. D3 and D1c2 have been audited; A remains
+   unfitted and B unvalidated. The v1 freeze, execution and audit are
    complete: V-fail. Compare at most two development candidates, and prepare
    a separate prospective protocol/freeze before untouched v2 validation.
    Retain the failed corner and low-power result; do not retune beta_min to
@@ -703,9 +731,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1545**; exhausted `through`: **1545**.
-- Explicit acknowledgement: through actual message **1545** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1545`.
+- Last full retrieval `next_after`: **1557**; exhausted `through`: **1557**.
+- Explicit acknowledgement: through actual message **1555** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1557`.
 
 ## Decision Inbox checkpoint
 

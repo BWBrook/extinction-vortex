@@ -1,0 +1,829 @@
+{
+  "scope": "A0 feature fixtures and stored summary arithmetic; no bank reload or statistical fitting",
+  "reviewed_source_commit": "7b41881c8b73f70b64a915d0957e1ea2f308c114",
+  "timestamp_hobart": "2026-10-12T12:21:25.413119+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4"
+  },
+  "inputs_sha256": {
+    "analysis/fable/calibration/v2_dev/a0_cplus.py": "684428553ce6637b4e2a2d08edad1c5e57e7b4ea31777ef07c0b981d4fac8642",
+    "analysis/fable/calibration/v2_dev/a0_cplus.json": "e21696acffc0253ed448c873e1fdd308f83ed9117fb8f3ae1d456c969d16f760",
+    "analysis/fable/calibration/v2_dev/d1c2_summary.json": "06d69db140faf0ab18165995e285a0701abeee4941a7c2c23d2a682802de95d1",
+    "analysis/fable/calibration/v2_dev/d1c2_trials.jsonl.gz": "4489009bb90cc6f2825fef2426607b3eeea6e22e391332a964e5ab90b78d118f"
+  },
+  "feature_fixtures": [
+    {
+      "fixture": 0,
+      "counts": [
+        10,
+        10,
+        10,
+        10,
+        0
+      ],
+      "h": [
+        0.0,
+        0.0
+      ],
+      "flat": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "fixture": 1,
+      "counts": [
+        10,
+        10,
+        10,
+        4,
+        0
+      ],
+      "h": [
+        0.0,
+        0.18657526784855002
+      ],
+      "flat": true,
+      "max_abs_error": 1.6653345369377348e-16
+    },
+    {
+      "fixture": 2,
+      "counts": [
+        40,
+        20,
+        10,
+        4,
+        1
+      ],
+      "h": [
+        0.2371097356815119,
+        -0.00276628024961763
+      ],
+      "flat": false,
+      "max_abs_error": 5.828670879282072e-16
+    },
+    {
+      "fixture": 3,
+      "counts": [
+        9,
+        14,
+        6,
+        11,
+        3,
+        0
+      ],
+      "h": [
+        2.322704198145175,
+        0.4111678774489205
+      ],
+      "flat": false,
+      "max_abs_error": 4.440892098500626e-15
+    },
+    {
+      "fixture": 4,
+      "counts": [
+        7,
+        7,
+        2,
+        1
+      ],
+      "h": [
+        0.0,
+        0.39235376380833165
+      ],
+      "flat": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "fixture": 5,
+      "counts": [
+        7,
+        3,
+        0
+      ],
+      "h": [
+        0.0,
+        0.0
+      ],
+      "flat": true,
+      "max_abs_error": 0.0
+    }
+  ],
+  "properties_passed": [
+    "terminal exclusion",
+    "penultimate inclusion",
+    "count-scale equivariance"
+  ],
+  "A0_C_vs_D1c2_equal_rank_means": 144,
+  "A0_C_quantiles_replayed_from_D1c2_rows": 216,
+  "rounding_differences_fully_explained_by_numpy_vs_python_round": [
+    {
+      "block": "null_prior_predictive",
+      "population": "wild_dog",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.101,
+        0.5072,
+        0.9156
+      ],
+      "D1c2_python_round": [
+        0.101,
+        0.5072,
+        0.9157
+      ]
+    },
+    {
+      "block": "null_prior_predictive",
+      "population": "marmot",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.0939,
+        0.4982,
+        0.912
+      ],
+      "D1c2_python_round": [
+        0.0939,
+        0.4982,
+        0.9121
+      ]
+    },
+    {
+      "block": "null_prior_predictive",
+      "population": "ms_woodpecker",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.087,
+        0.4812,
+        0.896
+      ],
+      "D1c2_python_round": [
+        0.0869,
+        0.4812,
+        0.896
+      ]
+    },
+    {
+      "block": "null_prior_predictive",
+      "population": "wood_turtle_A",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.1042,
+        0.4988,
+        0.9039
+      ],
+      "D1c2_python_round": [
+        0.1043,
+        0.4988,
+        0.9039
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "rc_woodpecker",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.6284,
+        0.844,
+        0.9266
+      ],
+      "D1c2_python_round": [
+        0.6284,
+        0.844,
+        0.9265
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "golden_plover",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.4338,
+        0.6382,
+        0.7925
+      ],
+      "D1c2_python_round": [
+        0.4339,
+        0.6382,
+        0.7925
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "golden_plover",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.1904,
+        0.31,
+        0.4275
+      ],
+      "D1c2_python_round": [
+        0.1905,
+        0.31,
+        0.4275
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "whooping_crane",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.5664,
+        0.7605,
+        0.8966
+      ],
+      "D1c2_python_round": [
+        0.5665,
+        0.7605,
+        0.8965
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "whooping_crane",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.2964,
+        0.4468,
+        0.5366
+      ],
+      "D1c2_python_round": [
+        0.2964,
+        0.4467,
+        0.5365
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "wood_turtle_A",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.4428,
+        0.7198,
+        0.8966
+      ],
+      "D1c2_python_round": [
+        0.4428,
+        0.7198,
+        0.8965
+      ]
+    },
+    {
+      "block": "null_high_sigma",
+      "population": "wood_turtle_B",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.6135,
+        0.8285,
+        0.9346
+      ],
+      "D1c2_python_round": [
+        0.6135,
+        0.8285,
+        0.9345
+      ]
+    },
+    {
+      "block": "null_low_s",
+      "population": "ms_woodpecker",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.049,
+        0.1695,
+        0.2846
+      ],
+      "D1c2_python_round": [
+        0.049,
+        0.1695,
+        0.2847
+      ]
+    },
+    {
+      "block": "null_low_s",
+      "population": "golden_plover",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.0374,
+        0.122,
+        0.211
+      ],
+      "D1c2_python_round": [
+        0.0374,
+        0.122,
+        0.2111
+      ]
+    },
+    {
+      "block": "null_low_s",
+      "population": "hawaiian_crow",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.1075,
+        0.2358,
+        0.4262
+      ],
+      "D1c2_python_round": [
+        0.1075,
+        0.2357,
+        0.4262
+      ]
+    },
+    {
+      "block": "null_low_s",
+      "population": "wood_turtle_B",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.0874,
+        0.3155,
+        0.5712
+      ],
+      "D1c2_python_round": [
+        0.0874,
+        0.3155,
+        0.5713
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "wild_dog",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.2504,
+        0.4702,
+        0.654
+      ],
+      "D1c2_python_round": [
+        0.2505,
+        0.4702,
+        0.6541
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "wild_dog",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.368,
+        0.5638,
+        0.763
+      ],
+      "D1c2_python_round": [
+        0.368,
+        0.5637,
+        0.7631
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "marmot",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.2434,
+        0.4462,
+        0.6515
+      ],
+      "D1c2_python_round": [
+        0.2434,
+        0.4463,
+        0.6515
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "rc_woodpecker",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.3968,
+        0.7235,
+        0.8946
+      ],
+      "D1c2_python_round": [
+        0.3968,
+        0.7235,
+        0.8945
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "rc_woodpecker",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.3074,
+        0.7078,
+        0.881
+      ],
+      "D1c2_python_round": [
+        0.3074,
+        0.7077,
+        0.881
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "golden_plover",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.1304,
+        0.3772,
+        0.6461
+      ],
+      "D1c2_python_round": [
+        0.1305,
+        0.3772,
+        0.6461
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "golden_plover",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.2494,
+        0.4167,
+        0.5415
+      ],
+      "D1c2_python_round": [
+        0.2495,
+        0.4167,
+        0.5415
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "whooping_crane",
+      "parameter": "lam_mean",
+      "A0_numpy_round": [
+        0.287,
+        0.5225,
+        0.6146
+      ],
+      "D1c2_python_round": [
+        0.2869,
+        0.5225,
+        0.6146
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "hawaiian_crow",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.3884,
+        0.5688,
+        0.742
+      ],
+      "D1c2_python_round": [
+        0.3885,
+        0.5687,
+        0.742
+      ]
+    },
+    {
+      "block": "null_strong_env",
+      "population": "wood_turtle_B",
+      "parameter": "s",
+      "A0_numpy_round": [
+        0.3688,
+        0.7105,
+        0.8965
+      ],
+      "D1c2_python_round": [
+        0.3689,
+        0.7105,
+        0.8965
+      ]
+    }
+  ],
+  "recomputed_summary_ranges": 32,
+  "all_population_block_distance_ratio_min_median_max": [
+    4.003584229390681,
+    5.153960616590929,
+    6.544267053701016
+  ],
+  "blocks": {
+    "null_prior_predictive": {
+      "population_count": 9,
+      "reported_rank_ranges": {
+        "C": {
+          "s": [
+            0.487,
+            0.513
+          ],
+          "f": [
+            0.48,
+            0.519
+          ],
+          "sigma": [
+            0.485,
+            0.512
+          ],
+          "lam_mean": [
+            0.488,
+            0.513
+          ]
+        },
+        "C+": {
+          "s": [
+            0.488,
+            0.514
+          ],
+          "f": [
+            0.482,
+            0.52
+          ],
+          "sigma": [
+            0.485,
+            0.512
+          ],
+          "lam_mean": [
+            0.488,
+            0.516
+          ]
+        }
+      },
+      "rank_mean_change_by_parameter": {
+        "s": {
+          "min": -0.0017999999999999683,
+          "max": 0.0023000000000000798
+        },
+        "f": {
+          "min": -0.0022999999999999687,
+          "max": 0.0020999999999999908
+        },
+        "sigma": {
+          "min": -0.0005000000000000004,
+          "max": 0.005200000000000038
+        },
+        "lam_mean": {
+          "min": -0.0020000000000000018,
+          "max": 0.0035999999999999366
+        }
+      },
+      "median_max_origC_distance_ratio_Cplus_over_C": {
+        "wild_dog": 4.003584229390681,
+        "marmot": 4.8112033195020745,
+        "ms_woodpecker": 5.384615384615384,
+        "rc_woodpecker": 6.4425675675675675,
+        "golden_plover": 5.736702127659575,
+        "whooping_crane": 5.251322751322752,
+        "hawaiian_crow": 6.288848263254113,
+        "wood_turtle_A": 4.928327645051194,
+        "wood_turtle_B": 5.4077102803738315
+      },
+      "distance_ratio_min_median_max": [
+        4.003584229390681,
+        5.384615384615384,
+        6.4425675675675675
+      ],
+      "constant_predictor_outer_total": 0,
+      "positive_constant_predictor_bank_fractions": {
+        "hawaiian_crow": 3e-05
+      },
+      "dropped_features": {}
+    },
+    "null_high_sigma": {
+      "population_count": 9,
+      "reported_rank_ranges": {
+        "C": {
+          "s": [
+            0.597,
+            0.803
+          ],
+          "f": [
+            0.318,
+            0.387
+          ],
+          "sigma": [
+            0.771,
+            0.918
+          ],
+          "lam_mean": [
+            0.308,
+            0.583
+          ]
+        },
+        "C+": {
+          "s": [
+            0.611,
+            0.789
+          ],
+          "f": [
+            0.317,
+            0.398
+          ],
+          "sigma": [
+            0.768,
+            0.917
+          ],
+          "lam_mean": [
+            0.305,
+            0.577
+          ]
+        }
+      },
+      "rank_mean_change_by_parameter": {
+        "s": {
+          "min": -0.02180000000000004,
+          "max": 0.020999999999999908
+        },
+        "f": {
+          "min": -0.020299999999999985,
+          "max": 0.0131
+        },
+        "sigma": {
+          "min": -0.00759999999999994,
+          "max": -0.0004999999999999449
+        },
+        "lam_mean": {
+          "min": -0.012199999999999989,
+          "max": -0.00030000000000002247
+        }
+      },
+      "median_max_origC_distance_ratio_Cplus_over_C": {
+        "wild_dog": 4.207970682546954,
+        "marmot": 4.649150533386014,
+        "ms_woodpecker": 5.901815181518152,
+        "rc_woodpecker": 6.544267053701016,
+        "golden_plover": 5.603658536585366,
+        "whooping_crane": 5.155555555555555,
+        "hawaiian_crow": 5.129310344827586,
+        "wood_turtle_A": 5.021704180064309,
+        "wood_turtle_B": 5.3290203327171906
+      },
+      "distance_ratio_min_median_max": [
+        4.207970682546954,
+        5.155555555555555,
+        6.544267053701016
+      ],
+      "constant_predictor_outer_total": 0,
+      "positive_constant_predictor_bank_fractions": {
+        "hawaiian_crow": 3e-05
+      },
+      "dropped_features": {}
+    },
+    "null_low_s": {
+      "population_count": 9,
+      "reported_rank_ranges": {
+        "C": {
+          "s": [
+            0.091,
+            0.327
+          ],
+          "f": [
+            0.264,
+            0.495
+          ],
+          "sigma": [
+            0.285,
+            0.595
+          ],
+          "lam_mean": [
+            0.004,
+            0.149
+          ]
+        },
+        "C+": {
+          "s": [
+            0.098,
+            0.323
+          ],
+          "f": [
+            0.259,
+            0.49
+          ],
+          "sigma": [
+            0.292,
+            0.599
+          ],
+          "lam_mean": [
+            0.004,
+            0.152
+          ]
+        }
+      },
+      "rank_mean_change_by_parameter": {
+        "s": {
+          "min": -0.0040999999999999925,
+          "max": 0.006900000000000003
+        },
+        "f": {
+          "min": -0.028100000000000014,
+          "max": 0.0030999999999999917
+        },
+        "sigma": {
+          "min": -0.008000000000000007,
+          "max": 0.014900000000000024
+        },
+        "lam_mean": {
+          "min": -0.0005999999999999998,
+          "max": 0.007100000000000002
+        }
+      },
+      "median_max_origC_distance_ratio_Cplus_over_C": {
+        "wild_dog": 4.030796048808832,
+        "marmot": 4.763685636856369,
+        "ms_woodpecker": 5.940748440748441,
+        "rc_woodpecker": 5.988349514563107,
+        "golden_plover": 5.657205240174672,
+        "whooping_crane": 4.496078431372549,
+        "hawaiian_crow": 4.701438848920864,
+        "wood_turtle_A": 5.152365677626302,
+        "wood_turtle_B": 5.130483689538807
+      },
+      "distance_ratio_min_median_max": [
+        4.030796048808832,
+        5.130483689538807,
+        5.988349514563107
+      ],
+      "constant_predictor_outer_total": 0,
+      "positive_constant_predictor_bank_fractions": {
+        "hawaiian_crow": 3e-05
+      },
+      "dropped_features": {}
+    },
+    "null_strong_env": {
+      "population_count": 9,
+      "reported_rank_ranges": {
+        "C": {
+          "s": [
+            0.394,
+            0.676
+          ],
+          "f": [
+            0.393,
+            0.602
+          ],
+          "sigma": [
+            0.345,
+            0.621
+          ],
+          "lam_mean": [
+            0.399,
+            0.646
+          ]
+        },
+        "C+": {
+          "s": [
+            0.39,
+            0.651
+          ],
+          "f": [
+            0.395,
+            0.603
+          ],
+          "sigma": [
+            0.343,
+            0.63
+          ],
+          "lam_mean": [
+            0.391,
+            0.642
+          ]
+        }
+      },
+      "rank_mean_change_by_parameter": {
+        "s": {
+          "min": -0.030100000000000016,
+          "max": 0.004699999999999982
+        },
+        "f": {
+          "min": -0.0039000000000000146,
+          "max": 0.0237
+        },
+        "sigma": {
+          "min": -0.0019000000000000128,
+          "max": 0.012199999999999989
+        },
+        "lam_mean": {
+          "min": -0.015600000000000003,
+          "max": 0.0014999999999999458
+        }
+      },
+      "median_max_origC_distance_ratio_Cplus_over_C": {
+        "wild_dog": 4.1946440235140425,
+        "marmot": 4.7299435028248595,
+        "ms_woodpecker": 5.58803611738149,
+        "rc_woodpecker": 5.772727272727273,
+        "golden_plover": 5.991957104557641,
+        "whooping_crane": 4.879310344827585,
+        "hawaiian_crow": 4.377419354838709,
+        "wood_turtle_A": 5.134124087591241,
+        "wood_turtle_B": 5.167635658914729
+      },
+      "distance_ratio_min_median_max": [
+        4.1946440235140425,
+        5.134124087591241,
+        5.991957104557641
+      ],
+      "constant_predictor_outer_total": 0,
+      "positive_constant_predictor_bank_fractions": {
+        "hawaiian_crow": 3e-05
+      },
+      "dropped_features": {}
+    }
+  },
+  "limits": [
+    "Computed changes and ratios use stored rounded summaries, not individual A0 rank records.",
+    "No bank, neighbour archive or A0 raw trial rows were loaded.",
+    "Matching the C summaries corroborates aggregate replay; it does not independently prove exact membership.",
+    "A0 contains no fitted calibration or power outcomes."
+  ]
+}
