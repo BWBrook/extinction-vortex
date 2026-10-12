@@ -19,5 +19,6 @@ $P run O $M $BASE $D/outers.json $D/oracle $D/O 30 > $D/O.log 2>&1 &
 po=$!
 rc=0; wait $pv || rc=$?; wait $po || rc=$((rc + $?))
 echo "arms rc=$rc $(date -Is)" >> $D/timeline.txt
-$P score $M $D/outers.json $D/V $D/O $D/score.json > $D/score.log 2>&1
+[ "$rc" -eq 0 ] || exit "$rc"
+$P report $M $BASE $D/outers.json $D/oracle $D/V $D/O $D/runner_sha256.txt $D/d3_report.json > $D/report.log 2>&1
 echo "done $(date -Is)" >> $D/timeline.txt

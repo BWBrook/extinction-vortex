@@ -1,7 +1,8 @@
 """V2 development diagnostics D1c (corrected D1) and D2 (association) on the exposed v1 null blocks.
 No new outcomes are generated. Repairs Astra's review of D1 (notes/astra_v2_diagnostic_review_20261011.md):
   - the trend summary telescopes to the penultimate count (N0 and L are fixed per population), so the
-    endpoint rank compares integer penultimate counts with half ties; constant libraries give null;
+    endpoint rank compares integer penultimate counts with half ties; a constant library keeps its
+    midrank (0, 0.5 or 1) and is flagged (version 2, after Astra 1545);
   - bindings: manifest digest, every primary-bank file hash checked against the manifest, source hashes,
     runtime; per trial and population the recomputed K-th distance is compared with the rounded v1 record,
     boundary ties are flagged and a digest of the neighbour draw IDs is kept (full IDs go to NEIGHBOUR_NPZ);
@@ -9,7 +10,11 @@ No new outcomes are generated. Repairs Astra's review of D1 (notes/astra_v2_diag
     reports association with the frozen rejection outcome with uncertainty, not attribution.
 Growth proxies: nominal s + f, and the stationary mean multiplier (1 - delta p_c)(E logistic(logit s +
 sigma Z) + f), Z ~ N(0, 1), ignoring selection (both are proxies, not the selected process's growth).
-Usage (from the frozen source root): python knn_nuisance_c.py MANIFEST BASE OUT_DIR NEIGHBOUR_NPZ [LIMIT]"""
+Version 2 (after Astra 1544-1546): membership comes from a separate k = K query, as v1's run_chunk makes;
+the k = K + 1 query only flags boundary ties. With OLD_NPZ (version 1's neighbour IDs, from a truncated
+K + 1 query) the number of changed memberships is counted. Version 1's outputs are kept as superseded.
+Usage (from the frozen source root):
+  python knn_nuisance_c.py MANIFEST BASE OUT_DIR NEIGHBOUR_NPZ [OLD_NPZ] [LIMIT]"""
 import gzip, hashlib, json, os, platform, sys
 import numpy as np
 import scipy
@@ -76,7 +81,8 @@ def logistic_slope(x, y):
 def main():
     self_test()
     man_path, base, outdir, nbr_path = sys.argv[1:5]
-    limit = int(sys.argv[5]) if len(sys.argv) > 5 else None
+    old = dict(np.load(sys.argv[5])) if len(sys.argv) > 5 and sys.argv[5] != "-" else None
+    limit = int(sys.argv[6]) if len(sys.argv) > 6 else None
     man = json.load(open(man_path)); K = man["K"]; des = designs()
     if os.environ.get("D1C_POPS"):                      # smoke test on a subset of populations
         des = {n: des[n] for n in os.environ["D1C_POPS"].split(",")}
@@ -104,15 +110,17 @@ def main():
         for b, rr in rows.items():
             obs = np.array([r["selected"][n]["recorded"] for r in rr])
             assert obs.shape[1] == L
-            dist, idx = tree.query(calib_features(obs)[:, keep] / mad[keep], k=K + 1, workers=16)
-            tie = dist[:, K - 1] == dist[:, K]; dist, idx = dist[:, :K], idx[:, :K]
+            q = calib_features(obs)[:, keep] / mad[keep]
+            dist, idx = tree.query(q, k=K, workers=16)          # membership: the query v1 made
+            d1, _ = tree.query(q, k=K + 1, workers=16)
+            tie = d1[:, K - 1] == d1[:, K]
             logged = np.array([json.loads(r["kth_dist"])[n] for r in rr])
             tp = {p: np.array([r["selected"][n]["params"][p] for r in rr]) for p in PARAMS}
             tv = dict(tp, lam_nominal=tp["s"] + tp["f"], lam_mean=lam_mean(tp))
             rk = {p: midrank(vals[p][idx], tv[p]) for p in ("s", "f", "sigma", "lam_nominal", "lam_mean")}
             lp = pen[idx]
             const = (lp == lp[:, :1]).all(1)
-            rk["pen"] = np.where(const, np.nan, midrank(lp, obs[:, -2].astype(np.int64)))
+            rk["pen"] = midrank(lp, obs[:, -2].astype(np.int64))
             per[b][n] = {"rank": rk, "const": const, "tie": tie, "kth": dist[:, -1], "logged": logged,
                          "n0_mismatch": int((n0[idx] != obs[:, :1]).sum()),
                          "lib_median": {p: np.median(vals[p][idx], 1) for p in ("s", "lam_mean")},
@@ -120,6 +128,9 @@ def main():
                          "nbr_digest": [hashlib.sha256(np.sort(bk["draw_id"][i]).astype(np.int64).tobytes()).hexdigest()[:16]
                                         for i in idx]}
             nbr[f"{b}/{n}"] = bk["draw_id"][idx].astype(np.int64)
+            if old is not None:
+                o = old[f"{b}/{n}"]
+                per[b][n]["changed"] = [int(K - np.intersect1d(o[r], nbr[f"{b}/{n}"][r]).size) for r in range(len(rr))]
         del bk, c, tree, vals
         print("done", n, flush=True)
     np.savez_compressed(nbr_path, **nbr)
@@ -140,7 +151,8 @@ def main():
                 fh.write(json.dumps({"block": b, "trial_id": r["trial_id"], "outcome": r["outcome"], "p_hi": r["p_hi"],
                                      "pop": {n: {**{k: nul(P[n]["rank"][k][i]) for k in SUMMARIES},
                                                  "kth": nul(P[n]["kth"][i]), "kth_v1": P[n]["logged"][i],
-                                                 "tie": bool(P[n]["tie"][i]), "nbr": P[n]["nbr_digest"][i]}
+                                                 "tie": bool(P[n]["tie"][i]), "const_pen": bool(P[n]["const"][i]),
+                                                 "nbr": P[n]["nbr_digest"][i]}
                                              for n in des}}) + "\n")
             summ = {k: np.nanmean(np.column_stack([P[n]["rank"][k] for n in des]), 1) - 0.5 for k in SUMMARIES}
             kdiff = np.concatenate([np.abs(np.round(P[n]["kth"], 4) - P[n]["logged"]) for n in des])
@@ -149,7 +161,12 @@ def main():
                                       "kth_over_1e-4": int((kdiff > 1e-4).sum()),
                                       "boundary_ties": int(sum(P[n]["tie"].sum() for n in des)),
                                       "n0_mismatches": int(sum(P[n]["n0_mismatch"] for n in des))},
-                   "pen_rank_undefined": {n: {"constant_library": int(P[n]["const"].sum())} for n in des},
+                   "constant_penultimate_library": {n: int(P[n]["const"].sum()) for n in des},
+                   "membership_vs_version1": None if old is None else {
+                       "sets_changed": int(sum(sum(c > 0 for c in P[n]["changed"]) for n in des)),
+                       "members_changed_max": int(max(max(P[n]["changed"]) for n in des)),
+                       "sets_changed_without_tie_flag": int(sum(sum(c > 0 and not t for c, t in zip(P[n]["changed"], P[n]["tie"]))
+                                                                for n in des))},
                    "per_population": {n: {**{f"{k}_rank_mean": nul(np.nanmean(P[n]["rank"][k])) for k in SUMMARIES},
                                           **{f"{k}_rank_q10_50_90": [nul(q) for q in np.nanquantile(P[n]["rank"][k], [.1, .5, .9])]
                                              for k in ("s", "lam_mean", "pen")},
@@ -172,7 +189,7 @@ def main():
             out["blocks"][b] = blk
     json.dump(out, open(os.path.join(outdir, "d1c_summary.json"), "w"), indent=1, allow_nan=False)
     for b, blk in out["blocks"].items():
-        print(b, blk["rejections"], blk["reconstruction"],
+        print(b, blk["rejections"], blk["reconstruction"], blk["membership_vs_version1"],
               {k: (blk["association"][k]["logistic_slope_per_sd"], [x[2] for x in blk["association"][k]["reject_by_tertile"]])
                for k in SUMMARIES})
 

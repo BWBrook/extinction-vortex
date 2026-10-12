@@ -113,100 +113,148 @@ result.
 
 ## 3. Candidate A: demographic-variance-augmented conditioning (C+)
 
+*Revised 12 October after [Astra's plan review](astra_v2_plan_review_20261011.md) §3.*
+
 **Target.** Unchanged in kind: the C+-conditional prior-predictive null under
 prior (b), with the frozen simulator, S, A, T1–T4, the RI estimator, the
 Mahalanobis rank p and fixed denominators.
 
-**Rationale.**
-- Given N_t, the variance of the next count is N_t·v_d + N_t²·v_e, so the
-  squared log change scales roughly as v_d/(λ²N_t) + v_e/λ².
-- C (msq, acf, inc) mixes the demographic term v_d (from s(1−s) + f) with the
-  environmental term v_e. A low-s, high-turnover population has a larger
-  1/N coefficient.
-- D1c/D2 and D3 test whether that is the direction that moves the T1/T2 null.
+**Hypothesis, not derivation.**
+- The working hypothesis is that summaries of how the squared log change scales
+  with 1/N_t help separate nuisance regimes that C (msq, acf, inc) mixes.
+- The motivation is a delta-method heuristic: Var(N_{t+1} | N_t) ≈
+  N_t·v_d + N_t²·v_e. It is not exact. Under the AR(1) environment and
+  extinction selection, the relevant moments depend on history, not only on
+  N_t. Low s alone does not raise v_d either, since v_d contains s(1 − s) + f.
+- Neither D2 nor an oracle improvement would prove this mechanism uniquely.
 
-**Added summaries**, per population, over the non-final transitions used by C
-(so the terminal transition is excluded, as in C):
+**Added summaries** per population. They use v1's exact transition convention:
+d_t = ln(N_{t+1}/N_t) for the non-final transitions that `calib_features`
+uses (t = 0..L − 3), with predictor 1/N_t, the starting count of each
+transition.
 - h_1 = the OLS slope of (d_t − d̄)² on 1/N_t;
-- h_2 = its intercept;
-- here d_t = ln(N_{t+1}/N_t).
-
-A series whose 1/N_t values are all equal gives h_1 = 0 and is flagged, like
-v1's constant-changes flag. C+ = (msq, acf, inc, h_1, h_2), MAD-scaled on the
-reference bank, zero-MAD columns dropped as in v1, and K = 2,000.
+- h_2 = its intercept.
+- **Constant predictor** (all N_t equal): h_1 = 0, h_2 = the mean of
+  (d_t − d̄)², and the series is flagged.
+- C+ = (msq, acf, inc, h_1, h_2). It is MAD-scaled on the reference bank,
+  zero-MAD columns are dropped as in v1, and K = 2,000.
 
 **Reference.** The frozen primary bank is reused for development; C+ is
 recomputed on it. A v2 freeze would declare whether this bank or a new one is
 the validation bank.
 
+**Reported, in addition to §5:**
+- fit failures and support for all nine populations;
+- T3 signal absorbed: per-statistic mean z under M_A (b5, b16) for C+ against
+  v1, on the same outer datasets;
+- power at β_min and at Δ10 = 0.5.
+- Support is measured two ways, because raw 3-D and 5-D radii are not
+  comparable:
+  - the selected neighbours' distances in the **original C metric** (v1 mask
+    and MAD);
+  - the per-dimension spread of the neighbours.
+- These are development specifications. No change of target, K or validation
+  gate follows from the outcomes.
+
+**A0: no-fit pre-screen (proposed first).**
+- Rebuild the C+ neighbourhoods for the exposed v1 outers of b1–b4, 1,000
+  each, against the primary bank.
+- Report, as in D1c, the true-value ranks of s, f, σ and the stationary-mean
+  proxy, along with the original-C distances.
+- D3 showed that fixed-θ references calibrate this corner. A0 asks whether C+
+  moves the library toward the generating nuisance values at the low-s corner,
+  without spending fits.
+- If A0 shows no material reduction in displacement, A is unlikely to repair
+  calibration. The fitted screen (A1) is then reconsidered before it is run.
+- Cost: about 30 min on deep-server, with no fits.
+
 **Main risk.**
 - h_1 is close in spirit to T3 (variability rising as N falls). Conditioning
   on it can remove T3 signal and change T1/T2 power.
 - M_A acts mainly on the mean (g < 1 only for N < 50, strongest at very small
-  N), so some T1/T2 signal may remain. Development power is measured; it is
-  not assumed.
-- More dimensions also widen the neighbourhoods; radii are reported.
+  N), so some T1/T2 signal may remain.
+- More dimensions widen the neighbourhoods.
 
 ## 4. Candidate B: grid-calibrated p over a declared composite null
 
-**Target.** Level-α validity at each nuisance vector in a declared finite set
-Θ_G. Validity is **marginal over selected datasets at fixed θ**, not
-conditional on C. There is no claim for θ outside Θ_G; off-grid points are a
-descriptive challenge only.
+*Revised 12 October after Astra's plan review §4.*
 
-**Θ_G**, declared before any development outcome. It is built by the frozen
-`effect_target.py` rule: per population, library medians at the observed C,
-which were already exposed in E20.
-- G = 8: the centre (all medians); s at the library 10th and 90th
-  percentiles; f at the 10th and 90th; σ at the 10th and 90th; and ρ with p_c
-  at their 90th.
-- The 10th-percentile s, 90th-percentile σ and strong-environment points are
-  the frozen v1 corners. The others follow the same rule.
-
-**Raw statistic.** p_raw is v1's p_hi from the frozen v1 procedure, unchanged:
-C, k-NN on the primary bank, references, fits and conservative rank.
-
-**Calibration (single level, not nested).**
-- For each θ_g, R_cal = 1,000 fresh selected datasets. Each is analysed by the
-  complete v1 procedure, giving p*.
-- F_g(x) = (1 + #{p* ≤ x}) / (R_cal + 1).
-- Unresolved calibration trials count as p* = 0, which is conservative.
-
-**Calibrated p.**
+**Definition** (unchanged).
+- Θ_G has G = 8 points, built by the frozen `effect_target.py` rule from the
+  libraries at the observed C (E20): the centre; s, f and σ each at their
+  library 10th and 90th percentiles; and ρ with p_c at their 90th.
+- p_raw is v1's p_hi from the unchanged v1 procedure.
+- For each θ_g, R_cal = 1,000 complete v1 analyses of fresh selected datasets
+  give F_g(x) = (1 + #{p* ≤ x}) / (R_cal + 1).
 - p_B = max(p_raw, max_g F_g(p_raw)).
-- p_raw itself is calibrated under the prior predictive, so including it covers
-  the prior-predictive member.
 
-Θ_G is fixed and data-independent once declared. A simulated dataset's
-analysis therefore repeats everything that p_raw's procedure estimates, and
-there is no per-dataset re-estimation of θ to nest.
+**Claims, narrowed.**
+1. **Validity at grid points only.** At each θ_g, the inclusive Monte Carlo
+   rank gives P(F_g(p_raw) ≤ α) ≤ α. That probability averages over the
+   random calibration table, so it is not exact 5% control for one frozen
+   1,000-row table. The maximum needs no Bonferroni factor for validity at an
+   included point (Dufour 2006).
+2. **The grid is not data-independent.** It is fixed before any fresh
+   simulation but derived from the exposed empirical C. So the theorem does
+   not validate the original data-adaptive construction, or the continuum
+   structural null outside Θ_G. Candidate selection has to settle what the
+   empirical target is; that is not changed here.
+3. **Nesting only.** Including p_raw makes B's rejection region a subset of
+   v1's. It gives no new prior-predictive guarantee: v1's 46/1,000 met only the
+   8% criterion.
+4. **Failures.** An unresolved *analysed* dataset stays indeterminate and
+   counts as a null failure in validation. Setting an unresolved *calibration*
+   p* to 0 is a separate conservative rule for building F_g. The rank theorem
+   does not control the failure-inclusive rate.
 
-**Plug-in alternative, dropped.** Centring a reference on the library median
-would keep the D1 displacement (wild dog: true s 0.20, library median 0.58),
-so it is dropped as a candidate.
+**Astra's cheap screen, and my response.**
+- She took the v1 low-s table alone (F_L from the 1,000 audited b3 p values)
+  and applied the wrapper max(p_raw, F_L(p_raw)) to the disjoint stored power
+  blocks. Detections out of 300 fell:
+  - β_min: 21 → 6;
+  - 2β_min: 25 → 8;
+  - Δ10 = 0.3: 118 → 35;
+  - Δ10 = 0.5: 206 → 98.
+- Any full B that keeps this table can only reject a subset of these.
+- With D3's result (§7), this changes what B can offer. B would buy
+  grid-point validity, but it would leave a test that has almost no power at
+  β_min and about one-third power at Δ10 = 0.5. That is enough to make an O2
+  label valid only for strong feedback.
+- **Proposal:** defer B's 8,000-analysis calibration and keep B, fully
+  defined, as the measured fallback.
+  - A0, and A1 if A0 warrants it, go first.
+  - If A fails, the stop rule returns the method, scope and sample-size choice
+    to Barry with A's evidence, B's screened power and the cost of a full B.
 
-**Cost.** 8,000 analyses, about the size of v1's validation: about 3.5 h on
-48 kunanyi nodes with one PBS completion email. A v2 validation then needs
-fresh outers.
+## 5. Shared development evaluation
 
-**Main risk.**
-- p_B is conservative; at the low-s point, F_g(0.05) ≈ 0.15. Power at β_min
-  will likely fall below v1's 21/300.
-- Validity covers only Θ_G.
+*Revised 12 October after Astra's plan review §5.*
 
-## 5. Shared development evaluation (for A and B; after D1c, D2 and D3)
+**One set of outer datasets serves both candidates.** Each candidate gets its
+own reference stream, and B its own calibration stream.
+- **Exposed v1 outers** (development evidence only): trial IDs 0–299 of b1
+  (prior predictive), b2 (high σ), b3 (low s), b4 (strong environment), b5
+  (β_min) and b16 (Δ10 = 0.5). These already have paired v1 outcomes.
+- **Fresh outers**, 200 at each of five Θ_G points: the centre, low f, high f,
+  low σ and high s. They are generated once and their SHA-256 is bound.
+  - Seeds: 8×10^12 + 5×10^6 + 10^4·g + i.
+  - Each fresh set is scored with v1 (descriptive v1 calibration at points v1
+    never tested) and with each candidate run.
+- **Reference streams:** 8×10^12 + 6×10^6 + 10^5·arm + trial index.
+- **Calibration tables** for any later B are drawn from a disjoint stream,
+  8×10^12 + 7×10^6 + …, and never from these evaluation outers.
 
-**Development outers**, declared now:
-- 300 from each of v1 b1, b3, b5 and b16 (trial IDs 0–299 of each block);
-- 200 fresh at each of the four new Θ_G points (low/high f, low σ, high s);
-- seeds 8×10^12 + 10^6·d + c with d = 5 for A and d = 6 for B.
+**Cost of A1.**
+- A1 is 1,800 + 1,000 analyses, plus 1,000 v1 analyses on the fresh points:
+  about 3,800 in all, roughly half of a v1-sized kunanyi run.
+- That is about 2 h on 48 nodes, with one completion email.
 
-Exposed v1 outers count as development evidence only.
-
-**Reported for each candidate:**
-- null rejection at each point, with exact intervals;
-- power at β_min and Δ10 = 0.5 (b5, b16);
-- radii;
+**Reported:**
+- null rejection at each point, with exact intervals and the paired McNemar
+  against v1;
+- power at β_min and Δ10 = 0.5;
+- per-statistic mean z;
+- original-C distances and 5-D radii;
 - fit failures;
 - measured cost.
 
@@ -219,3 +267,57 @@ the method, scope and sample-size choice goes back to Barry with the evidence.
 21/300 measures v1. It is not an information bound for nine populations. A
 procedure with a different C or reference law need not have nested rejection
 regions, so its power has to be measured. O3 remains the planning expectation.
+
+## 7. Results of D3 and A0, and the stop rule (12 October)
+
+Details and receipts are in
+[v2_dev/NOTE.md](../analysis/fable/calibration/v2_dev/NOTE.md).
+
+**D3.**
+- On the same 200 low-s outers, the frozen prior bank gave 34 non-accepts and
+  the fixed-θ_L oracle gave 7.
+- Paired table: 3, 31, 4, 162. McNemar p = 3.5×10⁻⁶. The difference is −0.135,
+  with a Newcombe method-10 interval of (−0.194, −0.080).
+- The oracle also removes the T1/T2 shift. Its neighbourhoods are 3–4 times
+  wider in the original C metric.
+- Within the declared limits, the reference's nuisance law drives the v1 low-s
+  failure at this corner; C-locality does not.
+
+**A0.**
+- C+ leaves the nuisance displacement unchanged at every corner: low-s s
+  ranks 0.09–0.33 → 0.10–0.32, proxy 0.004–0.15 → 0.004–0.15.
+- It makes neighbours about 4 times farther away in the original C metric.
+- So candidate A as specified does not address the mechanism D3 isolates, and
+  A1 is not worth its roughly 3,800 analyses.
+
+**Candidate B.**
+- B is coherent but buys validity on its grid at a large cost in power.
+- Astra's cheap screen, on v1's low-s table alone: β_min 6/300, Δ10 = 0.5
+  98/300. A full B can only reject a subset when it keeps that table.
+
+**Proposed: invoke the stop rule.** No third candidate, and no modified C+
+chosen against these outcomes. The method, scope and sample-size choice goes
+back to Barry, after Astra's critique, with three options:
+
+1. **Close v2 development and report.** Report the v1 V-fail and the
+   mechanism evidence (D1c/D2, D3, A0): under no feedback, the null
+   distribution of the Fagan–Holmes statistics depends on nuisance values
+   that the extinction series' calibration summaries do not identify. Report
+   the v1 discrimination profile (Q2) descriptively. The empirical test stays
+   unrun, and is reported as insufficient identification.
+2. **Run candidate B.** About 8,000 calibration analyses, then a fresh v2
+   validation, giving a valid test on the declared grid. It would detect
+   little: by the screen, at most about 2% at β_min and about 33% at
+   Δ10 = 0.5. The likely empirical label is O3, or O2 only under strong
+   feedback.
+3. **Change the target: external demographic information.**
+   - Use species-specific survival and fecundity estimates from independent
+     demographic studies as informative nuisance priors. D3 shows that a
+     reference with the right nuisance values calibrates.
+   - This needs a literature extraction for the nine populations, possibly
+     Phase II, and a new pre-registered protocol and validation.
+   - It is a change to Barry's adopted target.
+
+My recommendation, for Astra to challenge: option 1 now, with option 3 as the
+substantive follow-on if Barry wants an empirical vortex test. Option 2 costs
+more than its expected information is worth.

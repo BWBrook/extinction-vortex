@@ -111,3 +111,116 @@ original text and `knn_nuisance.json` stay as the record.
   - The summaries are correlated: s with f ρ = −0.87, s with σ −0.40.
   - D2 therefore neither supports nor rules out the nuisance-mixing
     hypothesis. The paired oracle D3 is the discriminating check.
+
+## D1c version 2 (12 October; after Astra 1544–1546)
+
+Two repairs, in `knn_nuisance_c.py` version 2:
+- membership now comes from a separate k = K query, which is the query v1
+  made; the k = K + 1 query only flags ties;
+- constant libraries keep their midranks and are flagged separately.
+
+Outputs: `d1c2_summary.json`, `d1c2_trials.jsonl.gz`, and neighbour IDs on
+deep-server (`d1c2_neighbours.npz`, `f988a607…`). Version 1's outputs above
+are kept as superseded.
+
+**Membership.** Compared with version 1's truncated K + 1 query, these numbers
+of the 9,000 population sets per block differ:
+
+| Block | Sets that differ | Most members changed (of 2,000) | Differing sets without a tie flag |
+|---|---|---|---|
+| b1 | 400 | 10 | 0 |
+| b2 | 630 | 27 | 0 |
+| b3 | 757 | 30 | 0 |
+| b4 | 702 | 16 | 0 |
+
+Every changed set carries the boundary-tie flag. The K-th distances still
+match v1's records exactly.
+
+**D2 after both repairs.** The slopes are essentially unchanged; the
+penultimate-rank summary now averages all nine populations. Penultimate rank
+(logistic slope per SD, 95% interval):
+- b1: 1.16 (0.84, 1.48);
+- b2: 1.33;
+- b3: 0.33 (0.16, 0.51);
+- b4: 0.79.
+
+The s, mean-multiplier and σ rows agree with version 1 to within 0.001. The
+reading stands: association only, neither supporting nor ruling out nuisance
+mixing.
+
+## D3: paired oracle contrast (run 11 October 19:48–23:51; verified report 12 October)
+
+Specification: plan §2. Launch source `d3_oracle.py` (SHA-256 `675bd8f2…`).
+Verified report (`d3/d3_report.json`): the same source with Astra's repairs
+applied after the run. Archived receipts are in `d3/`:
+- outers;
+- the oracle metadata;
+- both arms' metadata and rows;
+- per-trial z values;
+- hashes of all 400 T files and of the neighbour archives (deep-server
+  `/data/fable/vortex/v2_dev/d3/`).
+
+**Branches Astra flagged** (none occurred):
+- no sampling failures;
+- no support stop or extension (wild dog retained the fewest paths, 49,052);
+- 200 unique, complete trials per arm, with no restart;
+- no fit failures.
+
+**Receipts.**
+- Manifest, outers, oracle-metadata and source bindings all hold.
+- All 181 primary-bank files match the manifest.
+- 1,800 neighbour sets per arm were reconciled from their stored IDs: every
+  recomputed K-th distance equals the logged value. 186 sets in arm V and 206
+  in arm O carry the tie flag.
+- Runtime: Python 3.12.3, NumPy 1.26.4, SciPy 1.11.4. R 4.6.1 and nlme
+  3.1.171 were recorded at report time.
+
+**Result** (200 paired low-s outers):
+
+| | Arm V (frozen prior bank) | Arm O (fixed-θ_L oracle) |
+|---|---|---|
+| Non-accepts | **34** (0.121–0.229) | **7** (0.014–0.071) |
+| Mean z, T1–T4 (SD) | −1.86 (0.85), −1.73 (0.90), 0.25 (0.78), 0.37 (0.81) | −0.07 (0.96), −0.13 (0.99), −0.10 (0.97), 0.01 (1.05) |
+| Max K-th distance, original-C metric (q10/50/90) | 0.18 / 0.26 / 0.51 | 0.66 / 0.89 / 1.41 |
+
+- Paired table (both, V only, O only, neither): 3, 31, 4, 162.
+- Exact McNemar p = 3.5×10⁻⁶.
+- Paired difference O − V = −0.135, with a Newcombe method-10 interval of
+  (−0.194, −0.080).
+- The score in `score_launch_superseded.json` used the uncorrected φ (method
+  8), giving (−0.194, −0.081).
+
+**Interpretation, as declared in plan §2.**
+- Replacing the reference's nuisance law with the generating one removes the
+  excess at this corner. It also removes the T1/T2 location shift, and the
+  standard deviations of z return to about 1.
+- It does not isolate survival, because all six nuisance values were fixed.
+- It does not define a usable empirical method, since θ is unknown.
+- It does not exclude finite-K error in general.
+- Descriptively, though, the oracle's neighbourhoods were 3–4 times **wider**
+  in the original C metric and still calibrated. Tight C-locality around a
+  prior-mixed nuisance law did not.
+
+## A0: C+ pre-screen (12 October; plan §3; `a0_cplus.py` → `a0_cplus.json`)
+
+No fits. For each of the 1,000 exposed outers in b1–b4, the script built
+neighbourhoods in C+ = C + (h₁, h₂) on the primary bank and compared them with
+v1's C neighbourhoods. All 181 bank hashes were verified; no series had a
+constant predictor and no column was dropped.
+
+| Block | True-value rank of s, C → C+ | Stationary-mean proxy rank, C → C+ | Median max distance in original C, C → C+ |
+|---|---|---|---|
+| prior predictive | 0.49–0.51 → 0.49–0.51 | 0.49–0.51 → 0.49–0.52 | 0.05–0.11 → 0.34–0.46 |
+| high σ | 0.60–0.80 → 0.61–0.79 | 0.31–0.58 → 0.31–0.58 | 0.03–0.25 → 0.18–1.18 |
+| **low s** | **0.09–0.33 → 0.10–0.32** | **0.004–0.15 → 0.004–0.15** | 0.03–0.18 → 0.13–0.88 |
+| strong environment | 0.39–0.68 → 0.39–0.65 | 0.40–0.65 → 0.39–0.64 | 0.03–0.18 → 0.14–0.84 |
+
+**Reading.**
+- C+ does not move the library toward the generating nuisance values at the
+  low-s corner, or at any other.
+- It costs C-locality: neighbours are about 4 times farther away in the
+  original C metric.
+- Within v1's C neighbourhoods, h₁ varies over about 21 MAD units (wild dog,
+  low s). Conditioning on it therefore spends neighbours on a noisy dimension
+  that carries little nuisance information.
+- By plan §3's rule, the fitted screen A1 is not worth running as specified.

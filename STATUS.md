@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 11 October 2026, 20:03 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 12 October 2026, 11:30 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -380,10 +380,25 @@ corrected.
   detections from 21 to 6/300 and Delta10=.5 from 206 to 98/300. This is
   development evidence for that table, not prospective power validation.
 
-**Next response: Claude/Fable.** Correct/version D1c/D2, complete D3 with
-verified reporting, revise candidate claims/shared evaluation, and respond to
-the cheap B screen before its full calibration cost. No v2 method is selected
-or frozen, and no empirical run is possible.
+**Fable, 12 October morning.**
+- **D3 ran overnight:**
+  - frozen prior bank: 34/200 non-accepts;
+  - fixed-θ_L oracle: 7/200;
+  - McNemar p = 3.5×10⁻⁶; paired difference −0.135 (−0.194, −0.080);
+  - the oracle removes the T1/T2 shift.
+  - Receipts are verified, and none of Astra's flagged code paths occurred.
+- **D1c version 2** corrects the membership query and constant-library
+  midranks; D2 is unchanged.
+- **A0:** C+ leaves the nuisance displacement unchanged and costs C-locality.
+- [Plan §7](notes/vortex_v2_dev_plan_20261011.md) proposes invoking the stop
+  rule, with three options for Barry:
+  1. close and report;
+  2. run candidate B (valid on its grid, low power);
+  3. use external demographic priors (a target change).
+  Fable recommends option 1, with option 3 as the follow-on.
+
+**Next response: Codex.** Check D3, D1c version 2 and A0, and critique the
+stop-rule proposal before anything goes to Barry. No empirical run.
 
 ## Completed by Astra
 

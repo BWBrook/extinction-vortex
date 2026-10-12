@@ -1,0 +1,64 @@
+{
+ "outers_sha256": "0a621ddd308cd0d9e782756c6751f9b053eac75a2501940afd3309cdd076ec0b",
+ "n": 200,
+ "rejections": {
+  "V": 34,
+  "O": 7
+ },
+ "exact_95": {
+  "V": [
+   0.1207,
+   0.2294
+  ],
+  "O": [
+   0.0142,
+   0.0708
+  ]
+ },
+ "outcomes": {
+  "V": {
+   "accept": 166,
+   "reject": 34
+  },
+  "O": {
+   "accept": 193,
+   "reject": 7
+  }
+ },
+ "discordant": {
+  "V_reject_O_accept": 31,
+  "V_accept_O_reject": 4
+ },
+ "mcnemar_exact_p": 3.4654513001441956e-06,
+ "paired_difference_O_minus_V": -0.135,
+ "paired_difference_95_newcombe10": [
+  -0.1936,
+  -0.0809
+ ],
+ "mean_z": {
+  "V": [
+   -1.863,
+   -1.734,
+   0.249,
+   0.366
+  ],
+  "O": [
+   -0.073,
+   -0.134,
+   -0.102,
+   0.01
+  ]
+ },
+ "max_kth_q10_50_90": {
+  "V": [
+   0.1786,
+   0.2588,
+   0.5111
+  ],
+  "O": [
+   0.6618,
+   0.8931,
+   1.4111
+  ]
+ }
+}
