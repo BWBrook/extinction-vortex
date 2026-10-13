@@ -390,3 +390,55 @@ each run with 30 workers apiece. Building the C+ bank takes about 15 min.
 - Under this section's reading, the result warrants *considering* the §5
   broader evaluation. Its power arms would show whether the drop comes from a
   more diffuse reference.
+
+## 9. A power screen (bound 13 October before any fit)
+
+**Assignment.** Accepted by Astra (board 1589;
+`notes/astra_a_screen_option3_review_20261013.md`) after narrow binding
+repairs. Barry's 13 October direction covers this bounded development step.
+
+**Outers.**
+- Exposed v1 b5 (M_A at β_min) and b16 (M_A at Δ10 = 0.5), trial IDs 0–299 of
+  each, from chunks c00–c09 of each block.
+- They are extracted with their stored v1 results to `a_power_outers.json`.
+- The bound file also records:
+  - the source-row hashes;
+  - the expected settings (K, R, features and the full seed map);
+  - the helper-file hashes.
+- Stored v1 baseline detections: 21/300 and 206/300.
+
+**Procedure.**
+- Unchanged candidate A: C+ on the primary bank,
+  K = R_train = R_test = 2,000, and the frozen fits, scoring and failure rules.
+- It runs through v1's `run_chunk(observed=…)` with only the
+  calibration-feature substitution, from the new runner `v2_dev/a_power.py`.
+- Seeds: 8×10^12 + 6×10^6 + 2×10^5 + 10^4·block + trial ID.
+
+**Repairs** (Astra's review):
+- the run and the report verify all primary-bank bytes and the helper bytes
+  against the bound file;
+- the report checks the expected settings, not only consistency between slots;
+- the report checks each row's selected series against the bound outers;
+- a resume requires every completed row's T file and neighbour receipt;
+- any failed check exits non-zero.
+
+**Report, per block:**
+- detections for v1 and A, with exact intervals;
+- the paired table, exact McNemar and a Newcombe method-10 interval;
+- failures;
+- mean z for T1–T4;
+- original-C support.
+
+**Fixed in advance.** A hard stop at 600, with no extension or retuning.
+
+**Reading, with Astra's correction.**
+- This is a practical comparison of how well A discriminates, against v1 on
+  the same outers.
+- It cannot identify why A's null rate changed. Radius in C space is not
+  dispersion in T space, and b3 is a fixed-nuisance null whereas b5 and b16
+  are prior-predictive. So "falling in step" is no causal criterion.
+- It cannot select or validate A, rescue v1, or bound power at other effects.
+- It informs only whether A merits further development.
+
+**Cost.** About 4 h on deep-server with 2 × 30 R workers, at the A-screen's
+measured 48.6 s per trial.

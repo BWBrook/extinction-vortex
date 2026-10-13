@@ -281,3 +281,21 @@ where our calibration fails, and the process that ended these populations (human
 ## Highest-value next tranche
 
 Obtain full texts of Burrows et al. 1994, Bryant 1998 / Bryant & Page 2005, Parr 1980 and 1992, Pettersson 1985, Baker 1983, NRC 1992 and Garber & Burger 1995 (interlibrary loan or institutional access); check Table S1 and the Dryad CSV against these sources; then decide which series can carry informative priors (candidates: marmot, plover, 'alala banded-bird survival) and which are better treated as open or managed systems and excluded from the closed-null calibration (whooping crane, wood turtle, wild dog).
+
+## Correction (Fable, 13 October 2026, after Astra's audit, board 1589)
+
+**Withdrawn:** the blanket statement in cross-cutting caveat 2 that "closed-population violations are
+documented for at least five series", and the categorical habitat and removal explanations elsewhere in
+this note.
+- Handling, collaring or predator control does not by itself add or remove focal animals.
+- Shared field work does not by itself make individual-based survival circular.
+- For each series, known inputs and outputs, census inclusion, movement, detectability and changing vital
+  rates need separate dated evidence.
+- Neither automatically excluding a series nor a sentence in the limitations resolves a material model
+  mismatch.
+
+Astra's direct recovery supersedes several entries here; see
+[the nine-population source audit](astra_option3_nine_source_audit_20261013.md):
+- the Haley Lake marmot mapping;
+- the crane identity, already resolved on 8 October;
+- the 'alalā survival figure, 0.81 = 22/27 transitions from five banded adults.
