@@ -1,0 +1,113 @@
+{
+ "screen": "A-screen, development triage (plan \u00a78)",
+ "n": 200,
+ "checks": {
+  "all_trials_once": true,
+  "slot_bindings_identical": true,
+  "manifest_digest": true,
+  "outers_sha256": true,
+  "source_rows_sha256": true,
+  "source_matches_manifest": true,
+  "neighbour_receipts_complete": true,
+  "kth_matches_log": true
+ },
+ "bindings": {
+  "screen": "A-screen",
+  "slot": 0,
+  "nslots": 2,
+  "manifest_digest": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "outers_sha256": "4f21de71dfb6b579bfeaab1129ba711a8903758624a4b3dc363d307a45eea00a",
+  "K": 2000,
+  "R_train": 2000,
+  "R_test": 2000,
+  "seed_base": 8000006100000,
+  "features": [
+   "msq",
+   "acf",
+   "inc",
+   "h1",
+   "h2"
+  ],
+  "r_workers": 30,
+  "smoke": false,
+  "runtime": {
+   "python": "3.12.3",
+   "numpy": "1.26.4",
+   "scipy": "1.11.4"
+  },
+  "source_sha256": {
+   "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+   "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+   "analysis/fable/calibration/tstats_batch.R": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+   "analysis/fable/calibration/score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+   "analysis/fable/calibration/compare_nulls.py": "63304743048808cf214664c520e16a68ab90f85034f3eaf5a3794d3454460b6f",
+   "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+   "analysis/fable/calibration/preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4",
+   "analysis/fable/calibration/collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+   "analysis/fable/calibration/run_validation.sh": "425e016c3497eab71ecf3287703754c90f2f52bc2b32c9d03b6a0e6c3043c0af",
+   "analysis/fable/calibration/empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+   "analysis/fable/calibration/make_manifest.py": "3748feb4732a7a6cd0bef4ec3333929a2c5f5bfadf43843244f4187f98ea793a",
+   "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+  },
+  "runner_sha256": "8b1b22cef2599e501b3b7964fd89d8fba4f4de691dbe24bf43f83727f6051341"
+ },
+ "outcomes_A": {
+  "accept": 189,
+  "reject": 11
+ },
+ "nonaccepts": {
+  "V1": 21,
+  "A": 11
+ },
+ "exact_95": {
+  "V1": [
+   0.0662,
+   0.156
+  ],
+  "A": [
+   0.0278,
+   0.0963
+  ]
+ },
+ "table_both_V1_only_A_only_neither": [
+  6,
+  15,
+  5,
+  174
+ ],
+ "mcnemar_exact_p": 0.04138946533203125,
+ "paired_difference_A_minus_V1": -0.05,
+ "paired_difference_95_newcombe10": [
+  -0.0984,
+  -0.0051
+ ],
+ "fit_failures_A": 0,
+ "mean_z_T1_T4": {
+  "V1": [
+   -1.697,
+   -1.522,
+   0.33,
+   0.389
+  ],
+  "A": [
+   -1.405,
+   -1.294,
+   0.41,
+   0.657
+  ]
+ },
+ "origC_max_kth_q10_50_90": {
+  "V1": [
+   0.1678,
+   0.2837,
+   0.5176
+  ],
+  "A": [
+   0.7832,
+   1.2926,
+   2.6042
+  ]
+ },
+ "boundary_ties_A": 187,
+ "t_fits_mean_s": 48.6
+}

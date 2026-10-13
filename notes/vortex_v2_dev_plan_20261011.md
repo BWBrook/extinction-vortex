@@ -380,3 +380,13 @@ missing receipt):
 **Cost.** About 1.5 h of fits on deep-server, from D3's measured 3 h 10 min
 for 400 analyses at 2 × 30 R workers. Here two slot processes of 100 trials
 each run with 30 workers apiece. Building the C+ bank takes about 15 min.
+
+**A-screen result (13 October).**
+- On the same 200 outers: A 11/200 against v1 21/200. McNemar p = 0.041;
+  difference −0.050 (−0.098, −0.005).
+- The T1/T2 shift largely persists (z −1.41 and −1.29, against −1.70 and
+  −1.52), and the original-C neighbourhoods are about 4.6 times wider.
+- Details: [v2_dev/NOTE.md](../analysis/fable/calibration/v2_dev/NOTE.md).
+- Under this section's reading, the result warrants *considering* the §5
+  broader evaluation. Its power arms would show whether the drop comes from a
+  more diffuse reference.

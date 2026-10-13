@@ -224,3 +224,49 @@ constant predictor and no column was dropped.
   low s). Conditioning on it therefore spends neighbours on a noisy dimension
   that carries little nuisance information.
 - By plan §3's rule, the fitted screen A1 is not worth running as specified.
+
+## A-screen: fixed 200-case fitted screen of candidate A (13 October; plan §8)
+
+- **Run.** Deep-server, 11:06–12:56 AEDT: two slots of 100 trials, 30 R
+  workers each, about 48.6 s of fits per trial. Commit 6316a90 bound the
+  inputs before any fit.
+- **Archive.** `a_screen/` holds the report, outers, metadata, rows and the
+  hashes of all 200 T files and the neighbour archives. The T files themselves
+  are on deep-server at `/data/fable/vortex/v2_dev/a_screen/`.
+- **Report checks, all true:**
+  - every trial appears exactly once;
+  - slot bindings are identical;
+  - manifest digest and outers SHA-256;
+  - source-row and source hashes;
+  - neighbour receipts are complete;
+  - every C+ K-th distance matches the log.
+- **Failures.** None: no sampling or fit failures and no indeterminate
+  outcomes. Estimator fallbacks average 177 per trial, against 161 for v1 on
+  the same trials.
+
+**Result.** Same 200 exposed low-s outers (v1 b3 trial IDs 0–199):
+
+| | v1 (C) | Candidate A (C+) |
+|---|---|---|
+| Non-accepts | 21 (0.066–0.156) | **11** (0.028–0.096) |
+| Mean z, T1–T4 | −1.70, −1.52, 0.33, 0.39 | −1.41, −1.29, 0.41, 0.66 |
+| Max K-th distance, original-C metric (q10/50/90) | 0.17 / 0.28 / 0.52 | 0.78 / 1.29 / 2.60 |
+
+- Paired table (both, v1 only, A only, neither): 6, 15, 5, 174.
+- Exact McNemar p = 0.041.
+- A − v1 = −0.050, with a Newcombe method-10 interval of (−0.098, −0.005).
+- 187 of 1,800 C+ population sets carry the boundary-tie flag.
+
+**Reading (development triage, as declared).**
+- A lowers the non-accept rate on these trials. The paired interval excludes
+  zero, but only just.
+- The improvement does not come with removal of the T1/T2 location shift: it
+  shrinks by about 17%, and the T4 shift grows. D3's oracle removed it
+  entirely.
+- A's neighbourhoods are about 4.6 times wider in the original C metric. So
+  part or all of the drop may come from a broader, more diffuse reference
+  rather than from a corrected nuisance law. That route would also cost power.
+- This null-only screen cannot show which explanation holds.
+- Under §8, this is enough improvement to warrant considering the §5 broader
+  evaluation, whose power arms are what would settle it. It neither selects
+  nor validates A.

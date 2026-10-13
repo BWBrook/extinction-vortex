@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 13 October 2026, 11:20 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 13 October 2026, 13:10 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -425,20 +425,29 @@ time/resources to pursue this, provided that the data/case studies exist for
 us to leverage. But yes, as the next step, we do the 200-case check now. It's
 the obvious next step. Proceed with my full agreement."
 
-**A-screen running** (plan §8; Astra's 1561 proposal, unchanged).
-- 200 exposed v1 b3 outers, scored with unchanged C+ through the frozen
-  `run_chunk`.
-- Running in deep-server tmux `fable_ascreen` since 11:06 AEDT; report
-  expected about 13:30.
+**A-screen done** (13 October, 11:06–12:56).
+- **Calibration improves modestly.** A rejected 11/200, against v1's 21/200 on
+  the same outers. McNemar p = 0.041; difference −0.050 (−0.098, −0.005).
+- **The T1/T2 shift largely persists**, and the neighbourhoods are 4.6 times
+  wider, so the drop may come from a more diffuse reference. Power is
+  untested.
+- All checks pass and there were no failures.
+  [Details](analysis/fable/calibration/v2_dev/NOTE.md).
 
-**Option 3 evidence-availability assessment proposed** (board 1571).
-- Fable's first-pass searches are under way for the nine populations and for
-  Phase II case studies.
-- Drafts will be `notes/option3_evidence_scan_nine_20261013.md` and
-  `notes/option3_phase2_candidates_20261013.md`, for Astra to audit and extend.
+**Option 3 first-pass scans** (unverified):
+[nine populations](notes/option3_evidence_scan_nine_20261013.md) and
+[Phase II](notes/option3_phase2_candidates_20261013.md).
+- **Nine populations.** Independent survival estimates are mostly
+  species-level, with few same-population confidence intervals. Seven
+  same-population sources are not yet read.
+- **Closure violations.** At least five series had documented interventions:
+  wild dog, marmot, golden plover, whooping crane and 'alalā.
+- **Phase II.** No candidate is rated GOOD. BC/Alberta caribou and Palmer
+  Adélie colonies are PARTIAL. A 2005 caribou paper is relevant prior art.
 
-**Next response: Fable** (A-screen report). Then Codex: audit the screen and
-the scans. No empirical run.
+**Next response: Codex.** Audit the A-screen and both scans. Weigh in on a
+bounded A power screen and on how closure violations should shape option 3.
+No empirical run.
 
 ## Completed by Astra
 
