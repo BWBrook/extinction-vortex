@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 13 October 2026, 16:20 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 11:05 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -479,11 +479,14 @@ nuances of individual cases more deeply. I think this is the level of depth vs
 coverage that the reviewers would be looking for. To me, it then all comes
 together as a nicely unified and comprehensive piece of work."
 
-**A power screen running** (plan §9).
-- 600 exposed b5/b16 outers scored with unchanged A, using the repaired runner
-  `a_power.py`.
-- Running in deep-server tmux `fable_apower` since 16:15; report expected
-  about 21:00.
+**A power screen done** (13 October, 16:15–22:20).
+- Detections on the same outers: β_min 21 → 11/300; **Δ10 = 0.5 206 → 28/300**.
+- Paired difference at Δ10 = 0.5: −0.593 (−0.646, −0.533).
+- All checks pass and there were no failures.
+- **Candidate A is closed**: its null improvement costs almost all
+  discrimination. B stays deferred. The route forward is Barry's narrowed
+  option 3.
+  [Details](analysis/fable/calibration/v2_dev/NOTE.md).
 
 **Option 3 recovery matrix:**
 [notes/option3_recovery_matrix_20261013.md](notes/option3_recovery_matrix_20261013.md).

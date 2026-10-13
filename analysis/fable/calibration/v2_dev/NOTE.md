@@ -270,3 +270,37 @@ constant predictor and no column was dropped.
 - Under §8, this is enough improvement to warrant considering the §5 broader
   evaluation, whose power arms are what would settle it. It neither selects
   nor validates A.
+
+## A power screen: 600 exposed power outers (13 October; plan §9)
+
+- **Run.** Deep-server, 16:15–22:20 AEDT: two slots of 300 trials, 30 R
+  workers each, about 63 s of fits per trial. Commits e4519c7 and 9f48fd1
+  bound the inputs before any fit; runner SHA-256 `27d1baf5…`; outers
+  `0439267e…`.
+- **Archive.** `a_power/` holds the report, outers, metadata, rows and the
+  hashes of 600 T files and the neighbour archives. The T files are on
+  deep-server.
+- **Checks.** All 13 report checks are true, including all 181 bank and
+  helper bytes, the expected settings and full seed map, and selected series
+  matching the outers.
+- **Failures.** None: no fit failures and no indeterminate outcomes.
+
+**Result** (detections; same outers; paired):
+
+| Block | v1 (C) | A (C+) | Paired table (both, v1 only, A only, neither) | A − v1 (Newcombe 10) | McNemar p |
+|---|---|---|---|---|---|
+| M_A at β_min | 21/300 (0.044–0.105) | 11/300 (0.018–0.065) | 9, 12, 2, 277 | −0.033 (−0.063, −0.008) | 0.013 |
+| M_A at Δ10 = 0.5 | **206/300** (0.631–0.739) | **28/300** (0.063–0.132) | 27, 179, 1, 93 | **−0.593** (−0.646, −0.533) | 2.4×10⁻⁵² |
+
+- **Mean z, T1–T4, at Δ10 = 0.5:** v1 2.88, 3.12, 0.46, −0.40; A 1.30, 1.55,
+  0.47, 0.26. At β_min: v1 0.77, 0.85, 0.13, −0.08; A 0.63, 0.59, 0.04, 0.03.
+- **Original-C max K-th distance, median:** at β_min, v1 0.35 and A 2.06; at
+  Δ10 = 0.5, v1 0.44 and A 3.49.
+
+**Reading** (a practical comparison of discrimination, as declared; it does
+not identify a cause).
+- A's modest null improvement on the A-screen (11/200 against 21/200) comes
+  with a near-total loss of discrimination at Δ10 = 0.5: 206 → 28 detections.
+- A loses the T1/T2 signal that v1 detects.
+- A does not merit further development, and **candidate A is closed.**
+- This neither selects nor validates anything, and v1's V-fail stands.

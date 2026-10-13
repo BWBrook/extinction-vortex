@@ -1,0 +1,146 @@
+{
+ "screen": "A power screen, practical discrimination comparison (plan \u00a79)",
+ "checks": {
+  "all_trials_once": true,
+  "expected_settings": true,
+  "slot_bindings_identical": true,
+  "manifest_digest": true,
+  "outers_sha256": true,
+  "helper_bytes": true,
+  "bank_bytes": true,
+  "source_rows_sha256": true,
+  "source_matches_manifest": true,
+  "selected_series_match_outers": true,
+  "T_files_present": true,
+  "neighbour_receipts_complete": true,
+  "kth_matches_log": true
+ },
+ "settings_K_R": [
+  2000,
+  2000
+ ],
+ "blocks": {
+  "MA_betamin": {
+   "n": 300,
+   "outcomes_A": {
+    "accept": 289,
+    "reject": 11
+   },
+   "detections": {
+    "V1": 21,
+    "A": 11
+   },
+   "exact_95": {
+    "V1": [
+     0.0439,
+     0.105
+    ],
+    "A": [
+     0.0184,
+     0.0647
+    ]
+   },
+   "table_both_V1_only_A_only_neither": [
+    9,
+    12,
+    2,
+    277
+   ],
+   "mcnemar_exact_p": 0.012939453125,
+   "paired_difference_A_minus_V1": -0.0333,
+   "paired_difference_95_newcombe10": [
+    -0.0627,
+    -0.0083
+   ],
+   "fit_failures_A": 0,
+   "mean_z_T1_T4": {
+    "V1": [
+     0.774,
+     0.852,
+     0.128,
+     -0.083
+    ],
+    "A": [
+     0.626,
+     0.591,
+     0.041,
+     0.033
+    ]
+   },
+   "origC_max_kth_q10_50_90": {
+    "V1": [
+     0.1652,
+     0.3498,
+     0.6479
+    ],
+    "A": [
+     0.8822,
+     2.0625,
+     5.7428
+    ]
+   },
+   "t_fits_mean_s": 62.4
+  },
+  "MA_d10_0.5": {
+   "n": 300,
+   "outcomes_A": {
+    "accept": 272,
+    "reject": 28
+   },
+   "detections": {
+    "V1": 206,
+    "A": 28
+   },
+   "exact_95": {
+    "V1": [
+     0.6309,
+     0.7387
+    ],
+    "A": [
+     0.0629,
+     0.1321
+    ]
+   },
+   "table_both_V1_only_A_only_neither": [
+    27,
+    179,
+    1,
+    93
+   ],
+   "mcnemar_exact_p": 2.362160217415466e-52,
+   "paired_difference_A_minus_V1": -0.5933,
+   "paired_difference_95_newcombe10": [
+    -0.6459,
+    -0.5326
+   ],
+   "fit_failures_A": 0,
+   "mean_z_T1_T4": {
+    "V1": [
+     2.875,
+     3.116,
+     0.455,
+     -0.397
+    ],
+    "A": [
+     1.3,
+     1.548,
+     0.471,
+     0.262
+    ]
+   },
+   "origC_max_kth_q10_50_90": {
+    "V1": [
+     0.2134,
+     0.436,
+     0.9078
+    ],
+    "A": [
+     1.6532,
+     3.4893,
+     11.3739
+    ]
+   },
+   "t_fits_mean_s": 63.3
+  }
+ }
+}

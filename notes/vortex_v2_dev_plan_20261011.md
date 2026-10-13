@@ -442,3 +442,14 @@ repairs. Barry's 13 October direction covers this bounded development step.
 
 **Cost.** About 4 h on deep-server with 2 × 30 R workers, at the A-screen's
 measured 48.6 s per trial.
+
+**A power screen result (13 October).**
+- Detections on the same outers: β_min 21 → 11/300; **Δ10 = 0.5 206 → 28/300**.
+- Paired difference at Δ10 = 0.5: −0.593 (−0.646, −0.533).
+- All checks pass and there were no failures; details in
+  [v2_dev/NOTE.md](../analysis/fable/calibration/v2_dev/NOTE.md).
+- Under this section's reading, A does not merit further development:
+  **candidate A is closed.**
+- Candidate B is deferred (§4), so the stop rule's condition is now met for
+  the original two-candidate route. Barry's 13 October direction (option 3,
+  narrowed to deep dives) sets the route forward.
