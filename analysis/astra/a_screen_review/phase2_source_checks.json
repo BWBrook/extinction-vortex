@@ -1,0 +1,966 @@
+{
+  "audit": "bounded inventory/count comparison; not inference or original-source identity proof",
+  "caribou_commit": "f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3",
+  "source_provenance": {
+    "data/clean/counts.csv": {
+      "url": "https://raw.githubusercontent.com/ctlamb/CaribouIPM_BCAB/f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3/data/clean/counts.csv",
+      "sha256": "43c3e55ad82fe70783e417c39f2e7ff27f33fa9657a846f409a138f59dc40629",
+      "bytes": 39638
+    },
+    "data/clean/survival.csv": {
+      "url": "https://raw.githubusercontent.com/ctlamb/CaribouIPM_BCAB/f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3/data/clean/survival.csv",
+      "sha256": "d45a4fc39d579c2e0815671910567073ce9e7212e03109e81447beba4e7748da",
+      "bytes": 25020
+    },
+    "data/clean/recruitment_counts.csv": {
+      "url": "https://raw.githubusercontent.com/ctlamb/CaribouIPM_BCAB/f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3/data/clean/recruitment_counts.csv",
+      "sha256": "1784440c7664205e71f68bbf312579ef4a8cd0422682111e166ae73f63a8ac68",
+      "bytes": 29831
+    },
+    "AdeliePenguinCensus.csv": {
+      "url": "https://pallter-data.marine.rutgers.edu/erddap/tabledap/AdeliePenguinCensus.csv",
+      "sha256": "b4ef04e2275ea779fc8fe54fa13528dc2052d37dd88a60c811d54c7601f67b16",
+      "bytes": 59485
+    },
+    "AdeliePenguinAdultandChickCounts.csv": {
+      "url": "https://pallter-data.marine.rutgers.edu/erddap/tabledap/AdeliePenguinAdultandChickCounts.csv",
+      "sha256": "40485a328af51727e019c2cd99e4795c098499fef86a9d4b2af435a6de5373e0",
+      "bytes": 67176
+    },
+    "AdeliePenguinBandsSeen.csv": {
+      "url": "https://pallter-data.marine.rutgers.edu/erddap/tabledap/AdeliePenguinBandsSeen.csv",
+      "sha256": "8e72cff0cdc8a9b31bbfaf4b8aa59f4ec982937ca0d9010c3f43caf58b7840ff",
+      "bytes": 140161
+    },
+    "github_tree.json": {
+      "url": "https://api.github.com/repos/ctlamb/CaribouIPM_BCAB/git/trees/f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3?recursive=1",
+      "sha256": "4833cdad7862113c72e20a11e248e0ec3d632aef7fbba2032e24519a5b8d430f",
+      "bytes": 87368
+    },
+    "github_gitignore.txt": {
+      "url": "https://raw.githubusercontent.com/ctlamb/CaribouIPM_BCAB/f069f1f6f0705dc954a30a4cecbd9ff9bba7f2e3/.gitignore",
+      "sha256": "c33b4ec38b84285bb8c25ffbbf4f0d1b005db429c09bb3ab93af85608f146c08",
+      "bytes": 281
+    }
+  },
+  "Williams_sha256": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168",
+  "github_tree": {
+    "entries": 342,
+    "truncated": false,
+    "raw_paths": [],
+    "gitignore_excludes_data_raw": true
+  },
+  "caribou_overlap": {
+    "Maligne": {
+      "counts": {
+        "rows": 24,
+        "years": [
+          1988,
+          1993,
+          1996,
+          1998,
+          2000,
+          2001,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "values": {
+          "2021": 0.0,
+          "2020": 0.0,
+          "2019": 0.0,
+          "2018": 0.0,
+          "2017": 3.0,
+          "2016": 3.0,
+          "2015": 3.0,
+          "2014": 2.0,
+          "2013": 5.0,
+          "2012": 6.0,
+          "2011": 6.0,
+          "2009": 4.0,
+          "2008": 4.0,
+          "2007": 5.0,
+          "2006": 7.0,
+          "2005": 8.0,
+          "2004": 7.0,
+          "2003": 19.0,
+          "2001": 12.0,
+          "2000": 41.0,
+          "1998": 68.0,
+          "1996": 40.0,
+          "1993": 41.0,
+          "1988": 40.0
+        },
+        "zero_years": [
+          2018,
+          2019,
+          2020,
+          2021
+        ]
+      },
+      "survival": {
+        "rows": 6,
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 14,
+        "years": [
+          1994,
+          1997,
+          1999,
+          2001,
+          2002,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2013,
+          2014
+        ]
+      }
+    },
+    "Purcells Central": {
+      "counts": {
+        "rows": 13,
+        "years": [
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          2000,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2009
+        ],
+        "values": {
+          "2009": 0.0,
+          "2007": 0.0,
+          "2006": 0.0,
+          "2005": 1.0,
+          "2004": 6.0,
+          "2003": 6.0,
+          "2002": 5.0,
+          "2000": 5.0,
+          "1998": 5.0,
+          "1997": 14.0,
+          "1996": 17.0,
+          "1995": 15.0,
+          "1994": 15.0
+        },
+        "zero_years": [
+          2006,
+          2007,
+          2009
+        ]
+      },
+      "survival": {
+        "rows": 3,
+        "years": [
+          1994,
+          1995,
+          1996
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 5,
+        "years": [
+          1994,
+          1996,
+          1997,
+          2003,
+          2004
+        ]
+      }
+    },
+    "Banff": {
+      "counts": {
+        "rows": 16,
+        "years": [
+          1986,
+          1989,
+          1992,
+          1994,
+          1995,
+          1996,
+          1999,
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "values": {
+          "2008": 0.0,
+          "2007": 5.0,
+          "2006": 5.0,
+          "2005": 6.0,
+          "2004": 5.0,
+          "2003": 4.0,
+          "2002": 2.0,
+          "2001": 4.0,
+          "2000": 5.0,
+          "1999": 3.0,
+          "1996": 8.0,
+          "1995": 17.0,
+          "1994": 19.0,
+          "1992": 24.0,
+          "1989": 22.0,
+          "1986": 29.0
+        },
+        "zero_years": [
+          2008
+        ]
+      },
+      "survival": {
+        "rows": 0,
+        "years": []
+      },
+      "recruitment_counts": {
+        "rows": 0,
+        "years": []
+      }
+    },
+    "George Mountain": {
+      "counts": {
+        "rows": 8,
+        "years": [
+          1999,
+          2002,
+          2004,
+          2005,
+          2006,
+          2007,
+          2009,
+          2010
+        ],
+        "values": {
+          "2010": 0.0,
+          "2009": 0.0,
+          "2007": 0.0,
+          "2006": 0.0,
+          "2005": 0.0,
+          "2004": 0.0,
+          "2002": 3.0,
+          "1999": 6.0
+        },
+        "zero_years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2009,
+          2010
+        ]
+      },
+      "survival": {
+        "rows": 0,
+        "years": []
+      },
+      "recruitment_counts": {
+        "rows": 0,
+        "years": []
+      }
+    },
+    "South Selkirks": {
+      "counts": {
+        "rows": 27,
+        "years": [
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          1999,
+          2000,
+          2002,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "values": {
+          "2019": 0.0,
+          "2018": 3.0,
+          "2017": 11.0,
+          "2016": 12.0,
+          "2015": 14.0,
+          "2014": 18.0,
+          "2013": 27.0,
+          "2012": 27.0,
+          "2011": 36.0,
+          "2010": 43.0,
+          "2009": 46.0,
+          "2008": 46.0,
+          "2007": 41.0,
+          "2006": 34.0,
+          "2005": 35.0,
+          "2004": 33.0,
+          "2002": 34.0,
+          "2000": 34.0,
+          "1999": 48.0,
+          "1998": 45.0,
+          "1997": 39.0,
+          "1996": 39.0,
+          "1995": 52.0,
+          "1994": 45.0,
+          "1993": 51.0,
+          "1992": 47.0,
+          "1991": 47.0
+        },
+        "zero_years": [
+          2019
+        ]
+      },
+      "survival": {
+        "rows": 0,
+        "years": []
+      },
+      "recruitment_counts": {
+        "rows": 24,
+        "years": [
+          1991,
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          2000,
+          2002,
+          2003,
+          2004,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ]
+      }
+    },
+    "Purcells South": {
+      "counts": {
+        "rows": 23,
+        "years": [
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          2000,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "values": {
+          "2018": 4.0,
+          "2017": 13.0,
+          "2016": 16.0,
+          "2015": 19.0,
+          "2014": 19.0,
+          "2013": 20.0,
+          "2012": 14.0,
+          "2011": 15.0,
+          "2010": 15.0,
+          "2009": 14.0,
+          "2007": 15.0,
+          "2006": 16.0,
+          "2005": 10.0,
+          "2004": 11.0,
+          "2003": 9.0,
+          "2002": 13.0,
+          "2000": 13.0,
+          "1998": 13.0,
+          "1997": 37.0,
+          "1996": 46.0,
+          "1995": 63.0,
+          "1994": 54.0,
+          "1993": 44.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 15,
+        "years": [
+          1992,
+          1993,
+          1994,
+          1995,
+          1996,
+          1997,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 21,
+        "years": [
+          1994,
+          1995,
+          1996,
+          1997,
+          1998,
+          2000,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ]
+      }
+    },
+    "Klinse-Za": {
+      "counts": {
+        "rows": 12,
+        "years": [
+          1996,
+          2012,
+          2013,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "values": {
+          "2021": 101.0,
+          "2020": 85.0,
+          "2019": 81.0,
+          "2018": 66.0,
+          "2017": 61.0,
+          "2016": 54.0,
+          "2015": 42.0,
+          "2013": 36.0,
+          "2012": 25.0,
+          "1996": 220.0,
+          "2022": 111.0,
+          "2023": 127.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 21,
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 22,
+        "years": [
+          1996,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2023
+        ]
+      }
+    },
+    "Quintette": {
+      "counts": {
+        "rows": 8,
+        "years": [
+          2008,
+          2013,
+          2016,
+          2018,
+          2019,
+          2021,
+          2022,
+          2023
+        ],
+        "values": {
+          "2008": 173.0,
+          "2013": 83.0,
+          "2016": 29.0,
+          "2018": 49.0,
+          "2019": 48.0,
+          "2021": 49.0,
+          "2022": 69.0,
+          "2023": 96.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 21,
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 21,
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2022,
+          2023
+        ]
+      }
+    },
+    "Quintette Full": {
+      "counts": {
+        "rows": 3,
+        "years": [
+          2021,
+          2022,
+          2023
+        ],
+        "values": {
+          "2021": 64.0,
+          "2022": 104.0,
+          "2023": 99.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 3,
+        "years": [
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 3,
+        "years": [
+          2021,
+          2022,
+          2023
+        ]
+      }
+    },
+    "Burnt Pine": {
+      "counts": {
+        "rows": 5,
+        "years": [
+          2002,
+          2008,
+          2011,
+          2012,
+          2014
+        ],
+        "values": {
+          "2014": 1.0,
+          "2012": 1.0,
+          "2011": 5.0,
+          "2008": 13.0,
+          "2002": 20.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 5,
+        "years": [
+          2003,
+          2005,
+          2008,
+          2009,
+          2010
+        ]
+      },
+      "recruitment_counts": {
+        "rows": 6,
+        "years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2008
+        ]
+      }
+    },
+    "Monashee": {
+      "counts": {
+        "rows": 7,
+        "years": [
+          1994,
+          2002,
+          2004,
+          2006,
+          2008,
+          2011,
+          2016
+        ],
+        "values": {
+          "2016": 1.0,
+          "2011": 3.0,
+          "2008": 5.0,
+          "2006": 7.0,
+          "2004": 7.0,
+          "2002": 4.0,
+          "1994": 10.0
+        },
+        "zero_years": []
+      },
+      "survival": {
+        "rows": 0,
+        "years": []
+      },
+      "recruitment_counts": {
+        "rows": 5,
+        "years": [
+          1994,
+          2002,
+          2004,
+          2006,
+          2008
+        ]
+      }
+    }
+  },
+  "Williams_crosswalks": {
+    "27": {
+      "proposed_crosswalk": "Maligne",
+      "n_Williams": 14,
+      "all_year_counts_equal": false,
+      "mismatches": [
+        {
+          "year": 2006,
+          "Williams": 11.0,
+          "other": 7.0
+        },
+        {
+          "year": 2007,
+          "Williams": 7.0,
+          "other": 5.0
+        },
+        {
+          "year": 2008,
+          "Williams": 7.0,
+          "other": 4.0
+        },
+        {
+          "year": 2009,
+          "Williams": 3.0,
+          "other": 4.0
+        },
+        {
+          "year": 2010,
+          "Williams": 6.0,
+          "other": null
+        },
+        {
+          "year": 2011,
+          "Williams": 7.0,
+          "other": 6.0
+        },
+        {
+          "year": 2012,
+          "Williams": 5.0,
+          "other": 6.0
+        }
+      ],
+      "identity_status": "numerical crosswalk only; original source mapping not established"
+    },
+    "28": {
+      "proposed_crosswalk": "Banff",
+      "n_Williams": 16,
+      "all_year_counts_equal": true,
+      "mismatches": [],
+      "identity_status": "numerical crosswalk only; original source mapping not established"
+    },
+    "25": {
+      "proposed_crosswalk": "Litchfield island sum; season start year",
+      "n_Williams": 26,
+      "all_year_counts_equal": false,
+      "mismatches": [
+        {
+          "year": 1979,
+          "Williams": 564.0,
+          "other": null
+        },
+        {
+          "year": 1980,
+          "Williams": 650.0,
+          "other": null
+        },
+        {
+          "year": 1983,
+          "Williams": 558.5,
+          "other": null
+        },
+        {
+          "year": 1984,
+          "Williams": 549.0,
+          "other": null
+        },
+        {
+          "year": 1985,
+          "Williams": 586.0,
+          "other": null
+        },
+        {
+          "year": 1986,
+          "Williams": 577.0,
+          "other": null
+        },
+        {
+          "year": 1987,
+          "Williams": 430.0,
+          "other": null
+        },
+        {
+          "year": 1989,
+          "Williams": 606.0,
+          "other": null
+        },
+        {
+          "year": 1990,
+          "Williams": 448.0,
+          "other": null
+        },
+        {
+          "year": 1998,
+          "Williams": 338.0,
+          "other": 325.0
+        },
+        {
+          "year": 1999,
+          "Williams": 322.0,
+          "other": 301.0
+        }
+      ],
+      "identity_status": "numerical crosswalk only; original source mapping not established"
+    }
+  },
+  "Palmer": {
+    "row_counts": {
+      "AdeliePenguinCensus.csv": 1489,
+      "AdeliePenguinAdultandChickCounts.csv": 1467,
+      "AdeliePenguinBandsSeen.csv": 2442
+    },
+    "Litchfield_pair_totals_by_season": {
+      "PAL9192": 497.0,
+      "PAL9293": 496.0,
+      "PAL9394": 485.0,
+      "PAL9495": 425.0,
+      "PAL9596": 410.0,
+      "PAL9697": 346.0,
+      "PAL9798": 365.0,
+      "PAL9899": 325.0,
+      "PAL9900": 301.0,
+      "PAL0001": 274.0,
+      "PAL0102": 166.0,
+      "PAL0203": 143.0,
+      "PAL0304": 52.0,
+      "PAL0405": 33.0,
+      "PAL0506": 15.0,
+      "PAL0607": 4.0,
+      "PAL0708": 0.0,
+      "PAL0809": 0.0,
+      "PAL0910": 0.0,
+      "PAL1011": 0.0,
+      "PAL1112": 0.0,
+      "PAL1213": 0.0,
+      "PAL1314": 0.0,
+      "PAL1415": 0.0,
+      "PAL1516": 0.0,
+      "PAL1617": 0.0,
+      "PAL1718": 0.0
+    },
+    "band_unique_ids": 499,
+    "resightings_by_island": {
+      "HUM": 2311,
+      "TOR": 71,
+      "LIT": 28,
+      "BIS": 2,
+      "CHR": 17,
+      "COR": 3,
+      "DRM": 1,
+      "DRE": 6,
+      "KGI": 1,
+      "JOU": 2
+    },
+    "Litchfield_resighting_seasons": [
+      "PAL9192",
+      "PAL9293",
+      "PAL9394",
+      "PAL9495",
+      "PAL9596",
+      "PAL9697",
+      "PAL9798",
+      "PAL9899",
+      "PAL9900"
+    ],
+    "observed_band_year_values": [
+      "0.0",
+      "87.0",
+      "88.0",
+      "89.0",
+      "90.0",
+      "91.0",
+      "92.0",
+      "93.0",
+      "94.0",
+      "95.0",
+      "96.0",
+      "97.0",
+      "98.0"
+    ]
+  }
+}

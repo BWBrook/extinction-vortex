@@ -1,0 +1,162 @@
+{
+  "scope": "Independent contract audit; tiny synthetic/mocked fixtures, no R fits or production bank loads",
+  "time_hobart": "2026-10-13T14:19:53.747811+11:00",
+  "head": "1fe79ea9c5e605947544ba362b476a5b0f2f8c84",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "observed_receipts": {
+    "checks": {
+      "runner_unchanged_since_6316a90": true,
+      "driver_unchanged_since_6316a90": true,
+      "archived_runner_hashes_match_bound_source": true,
+      "archived_runner_hashes_match_current_source": true,
+      "metas_current_runner_hash": true,
+      "manifest_digest_matches": true,
+      "frozen_source_hashes_match": true,
+      "outers_hash_matches": true,
+      "first_200_complete_unique": true,
+      "declared_chunks_c00_c01": true,
+      "outer_chunk_assignment_correct": true,
+      "all_1800_recorded_series_match": true,
+      "slot_assignments_correct": true,
+      "settings_match_prespecification": true,
+      "reported_paired_table_matches_rows": true,
+      "no_recorded_failures_or_indeterminates": true,
+      "all_observed_reused_without_simulation": true
+    },
+    "paired_table": [
+      6,
+      15,
+      5,
+      174
+    ],
+    "population_series_compared": 1800,
+    "frozen_source_files": 12,
+    "pre_fit_timing": {
+      "commit_6316a90": "2026-10-13T11:07:43+11:00",
+      "timeline": [
+        "start 2026-10-13T11:06:29+11:00",
+        "slot0 bank built 2026-10-13T11:18:10+11:00",
+        "slots rc=0 2026-10-13T12:55:59+11:00",
+        "done 2026-10-13T12:56:08+11:00"
+      ],
+      "interpretation": "Binding follows wrapper launch, precedes first bank-ready log; consistent with pre-fit binding."
+    },
+    "limits": "Source v1 rows, raw T and neighbour payloads are remote; independent parent audit owns those checks."
+  },
+  "mocked_contract_cases": {
+    "report_baseline": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": true
+    },
+    "resume_complete": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "resume_missing_meta": {
+      "refused": true,
+      "error": "SystemExit: resume refused: missing or different bindings",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "resume_changed_meta": {
+      "refused": true,
+      "error": "SystemExit: resume refused: missing or different bindings",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "resume_duplicate_rows": {
+      "refused": true,
+      "error": "SystemExit: resume refused: duplicate rows or missing neighbour receipts",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "resume_missing_neighbours": {
+      "refused": true,
+      "error": "SystemExit: resume refused: duplicate rows or missing neighbour receipts",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "resume_missing_T": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "report_missing_neighbour_receipt": {
+      "refused": true,
+      "error": "SystemExit: report refused, failed checks: ['neighbour_receipts_complete']",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "report_wrong_kth": {
+      "refused": true,
+      "error": "SystemExit: report refused, failed checks: ['kth_matches_log']",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "report_changed_source": {
+      "refused": true,
+      "error": "SystemExit: report refused, failed checks: ['source_matches_manifest']",
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": null
+    },
+    "report_wrong_runner": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": true
+    },
+    "report_wrong_settings": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": true
+    },
+    "report_changed_outer_record": {
+      "refused": false,
+      "error": null,
+      "additional_mock_fits": 0,
+      "all_reference_rows_from_Cplus_K_query": true,
+      "bank_hashes_checked": false,
+      "report_all_checks_true": true
+    }
+  },
+  "interpretation": {
+    "completed_run": "Compact records match declared cases, source, settings, pairing, and zero failures; remote raw-T audit is separate.",
+    "latent_binding_gap": "No bank hash validation; report accepts consistently wrong runner/settings and changed row-level observed series. Not observed in completed run.",
+    "latent_resume_gap": "Missing raw T does not prevent resume skip, although report would encounter missing T. Existing missing-meta/changed-meta/duplicate/neighbour guards work.",
+    "power_screen": "Paired first-300 b5/b16 comparisons can quantify detection trade-offs, not causally identify diffuse reference as the mechanism."
+  }
+}

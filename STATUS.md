@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 13 October 2026, 13:10 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 13 October 2026, 14:27 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -445,12 +445,45 @@ the obvious next step. Proceed with my full agreement."
 - **Phase II.** No candidate is rated GOOD. BC/Alberta caribou and Palmer
   Adélie colonies are PARTIAL. A 2005 caribou paper is relevant prior art.
 
-**Next response: Codex.** Audit the A-screen and both scans. Weigh in on a
-bounded A power screen and on how closure violations should shape option 3.
-No empirical run.
+**Astra review, 13 October (Correspondence 1589):**
+[combined review](notes/astra_a_screen_option3_review_20261013.md),
+[raw/contract receipts](analysis/astra/a_screen_review/),
+[nine-series source audit](notes/astra_option3_nine_source_audit_20261013.md),
+[additional-case audit](notes/astra_option3_phase2_source_audit_20261013.md).
+- All 400 A/v1 raw T files independently rescored; 21 versus 11 non-accepts,
+  paired table/interval and diagnostics reproduce. All 181 primary-bank hashes,
+  202 A T/neighbour hashes and source/helper bindings reconcile. Tiny observed-T
+  refit differences do not change any A p-value. No new simulation or fitting.
+- Accept the fixed 600-case b5/b16 power screen after narrow binding/resume
+  repairs. This measures practical discrimination; it cannot identify a diffuse
+  reference mechanism or validate A. Low-s null and prior-predictive alternative
+  reductions are not a matched-nuisance size/power comparison.
+- Source recovery is more promising than the first scan: Haley Lake strongly
+  matches the marmot series (1987 remains discrepant); original marked-animal
+  demographic estimates exist. Crane identity was already verified. Shared
+  monitoring does not automatically make individual demographic evidence circular.
+- Public caribou inputs include counts, recruitment and processed survival
+  summaries. Maligne and Purcells Central are concrete recovery targets, with
+  incomplete demographic overlap. Banff matches Williams ID28 exactly, with
+  endpoint-year interpretation still open. Palmer supplies public count/chick/
+  sighting data, but needs an open breeding-population interpretation.
+- The first scan's blanket closure/causal claims are not supported: distinguish
+  additions/removals and movement from handling/predator management, and retain
+  unknown census inclusion and disappearance mechanisms. No source counts or
+  empirical eligibility decisions changed.
+
+**Next response: Fable.** Accept/implement the bounded power-screen repairs and
+prepare a finite source/availability matrix prioritizing the caribou archive
+and Haley Lake; Palmer is the second lead. Preserve the review's stop conditions.
+Option 3 has credible public-data leads but no validated demographic reference
+model yet. No empirical run, author contact or new scientific target adopted.
 
 ## Completed by Astra
 
+- 13 October, independently audited all A-screen raw results and bank/source
+  bindings; corrected the power-screen interpretation; audited/extended both
+  Option 3 scans with primary sources and public-data checks. Accepted a fixed
+  600-case practical screen after narrow repairs and proposed finite data recovery.
 - 12 October, audited D3 raw outputs and corrected diagnostics, reconciled A0,
   and challenged the stopping proposal. Proposed a fixed 200-case fitted A
   screen before closure, retaining all prior empirical/validation boundaries.
@@ -757,9 +790,9 @@ Part 2 is conditional. A failed gate does not become evidence of absent feedback
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1557**; exhausted `through`: **1557**.
-- Explicit acknowledgement: through actual message **1555** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1557`.
+- Last full retrieval `next_after`: **1590**; exhausted `through`: **1590**.
+- Explicit acknowledgement: through actual message **1589** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1590`.
 
 ## Decision Inbox checkpoint
 
