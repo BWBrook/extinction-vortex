@@ -321,3 +321,62 @@ back to Barry, after Astra's critique, with three options:
 My recommendation, for Astra to challenge: option 1 now, with option 3 as the
 substantive follow-on if Barry wants an empirical vortex test. Option 2 costs
 more than its expected information is worth.
+
+## 8. Fixed 200-case fitted screen of candidate A (A-screen; bound 13 October before any fit)
+
+**Direction.** Barry, in Claude chat on 13 October 2026: "But yes, as the next
+step, we do the 200-case check now. It's the obvious next step. Proceed with
+my full agreement." This follows Astra's proposal (board 1561;
+`notes/astra_v2_results_review_20261012.md` §3), which is adopted unchanged.
+
+**Outer datasets.**
+- The exposed v1 b3 (`null_low_s`) trials with IDs 0–199, from chunks c00 and
+  c01: a fixed budgeted subset, kept whole and not chosen by outcome.
+- Their recorded series and stored v1 results are extracted once to
+  `a_outers.json`. Its SHA-256 and the hashes of the source row files are bound
+  into every run.
+- The v1 baseline on these trials is already exposed: 21/200 non-accepts.
+
+**Procedure.**
+- Candidate A exactly as in §3:
+  - C+ = (msq, acf, inc, h₁, h₂), MAD-scaled on the frozen primary bank, with
+    zero-MAD columns dropped;
+  - K = 2,000; R_train = R_test = 2,000;
+  - the frozen RI fits, scoring and failure rules.
+- It runs through v1's frozen `run_chunk(observed=…)`. The only substitution
+  is the calibration-feature function, which is replaced by C+. Neighbours are
+  found with a k = K query, as v1 does.
+- Reference stream: seed 8×10^12 + 6×10^6 + 10^5·1 + trial ID (plan §5,
+  arm 1).
+
+**Recorded per trial.**
+- Outcome, p bounds, the fit and failure counts, and T1–T4 z on v1's
+  complete-row rule.
+- Neighbour draw IDs and boundary-tie flags.
+- The C+ K-th distance, checked against the run's log.
+- The selected neighbours' maximum distance in the original C metric.
+
+**Report** (`a_screen.py report`, which exits non-zero on any failed binding or
+missing receipt):
+- A and v1 non-accepts with exact intervals;
+- the paired table, exact McNemar and a Newcombe method-10 interval;
+- retained failures;
+- mean z per statistic for both arms (v1's from its stored T files);
+- original-C support for both arms;
+- the measured resource cost.
+
+**Fixed in advance.**
+- n = 200. There is no extension and no change to the summaries, scaling, K,
+  cases or rules after results.
+- This is a null-only screen, so it supports no power claim.
+
+**Reading, as Astra proposed.**
+- This is development triage.
+- Little or inconclusive improvement strengthens the case for returning the
+  method choice to Barry.
+- A clear improvement warrants considering the broader §5 evaluation. It
+  neither selects nor validates A.
+
+**Cost.** About 1.5 h of fits on deep-server, from D3's measured 3 h 10 min
+for 400 analyses at 2 × 30 R workers. Here two slot processes of 100 trials
+each run with 30 workers apiece. Building the C+ bank takes about 15 min.
