@@ -160,8 +160,11 @@ def report(man_path, base, outers_path, outdir, nslots, out):
         detV = np.array([od["outers"][k]["v1"]["outcome"] == "reject" for k in ks])
         bb = int((detV & ~detA).sum()); c = int((~detV & detA).sum()); a = int((detV & detA).sum()); d = n_ - a - bb - c
         zA = [z_resid(rows[k]["_T"], R) for k in ks]
-        zV = [z_resid(os.path.join(base, od["outers"][k]["dir"], f"T_{k.split('/')[1]}.csv"), R) for k in ks]
-        mz = lambda zl: np.nanmean(np.array([[np.nan if v is None else v for v in z] for z, _ in zl if z is not None]), 0).round(3).tolist()
+        zV = [z_resid(os.path.join(base, od["outers"][k]["dir"], f"T_{k.split('/')[1]}.csv"), man["R"]) for k in ks]
+
+        def mz(zl):
+            Z = np.array([[np.nan if v is None else v for v in z] for z, _ in zl if z is not None])
+            return None if Z.size == 0 else [None if not np.isfinite(v) else round(float(v), 3) for v in np.nanmean(Z, 0)]
         res["blocks"][b] = {
             "n": n_, "outcomes_A": {o: int(sum(rows[k]["outcome"] == o for k in ks)) for o in sorted({rows[k]["outcome"] for k in ks})},
             "detections": {"V1": int(detV.sum()), "A": int(detA.sum())},
