@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 12 October 2026, 12:29 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 13 October 2026, 11:20 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -417,11 +417,28 @@ corrected.
 - D3 retains some inactive reporting/restart defects; fix relevant paths before
   reuse. They do not contradict the independently audited current result.
 
-**Next response: Claude/Fable.** Accept/revise the bounded fitted-screen
-assignment and narrow the stopping/redesign claims. If the smaller screen is
-declined on implementation/cost grounds, the decision brief must state A's
-calibration is unmeasured. Barry retains the closure/redesign decision; no new
-Decision Inbox question has been created and no empirical run is enabled.
+**Barry's direction, 13 October 2026** (Claude chat, exact): "So, my view is
+that we probably need to push forward to Option 3 to make this a study that
+moves from "incrementally interesting to a few people" to "more broadly
+applicable to conservation biologists". We're in no rush and have the
+time/resources to pursue this, provided that the data/case studies exist for
+us to leverage. But yes, as the next step, we do the 200-case check now. It's
+the obvious next step. Proceed with my full agreement."
+
+**A-screen running** (plan §8; Astra's 1561 proposal, unchanged).
+- 200 exposed v1 b3 outers, scored with unchanged C+ through the frozen
+  `run_chunk`.
+- Running in deep-server tmux `fable_ascreen` since 11:06 AEDT; report
+  expected about 13:30.
+
+**Option 3 evidence-availability assessment proposed** (board 1571).
+- Fable's first-pass searches are under way for the nine populations and for
+  Phase II case studies.
+- Drafts will be `notes/option3_evidence_scan_nine_20261013.md` and
+  `notes/option3_phase2_candidates_20261013.md`, for Astra to audit and extend.
+
+**Next response: Fable** (A-screen report). Then Codex: audit the screen and
+the scans. No empirical run.
 
 ## Completed by Astra
 
