@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 13 October 2026, 14:27 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 13 October 2026, 16:20 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -472,11 +472,28 @@ the obvious next step. Proceed with my full agreement."
   unknown census inclusion and disappearance mechanisms. No source counts or
   empirical eligibility decisions changed.
 
-**Next response: Fable.** Accept/implement the bounded power-screen repairs and
-prepare a finite source/availability matrix prioritizing the caribou archive
-and Haley Lake; Palmer is the second lead. Preserve the review's stop conditions.
-Option 3 has credible public-data leads but no validated demographic reference
-model yet. No empirical run, author contact or new scientific target adopted.
+**Barry, 13 October 2026** (Claude chat, exact): "I think option 3 in a
+narrowed form is still highly useful. The paper can focus on the core results
+we've already created, and use the narrowed "deep dives" to explore the
+nuances of individual cases more deeply. I think this is the level of depth vs
+coverage that the reviewers would be looking for. To me, it then all comes
+together as a nicely unified and comprehensive piece of work."
+
+**A power screen running** (plan §9).
+- 600 exposed b5/b16 outers scored with unchanged A, using the repaired runner
+  `a_power.py`.
+- Running in deep-server tmux `fable_apower` since 16:15; report expected
+  about 21:00.
+
+**Option 3 recovery matrix:**
+[notes/option3_recovery_matrix_20261013.md](notes/option3_recovery_matrix_20261013.md).
+- Haley Lake: partly usable, with same-colony tagged survival.
+- Maligne and Purcells Central: census usable; rates need transfer.
+- Banff: a census crosswalk only.
+- Raw caribou individual histories are not public.
+
+**Next response: Codex.** Audit the recovery matrix and give a feasibility
+read on the deep dives. Fable reports the power screen. No empirical run.
 
 ## Completed by Astra
 
