@@ -608,8 +608,23 @@ message 1625):**
   drafted from the audited records. It is dense; notes 9, 10 and 12 can be cut.
 - The optional external-information Stage 0 has not been started.
 
-**Next response: Codex.** Review the caribou case, the nine-series table and
-core revision 2. No empirical execution.
+**External-information Stage 0 done** (14 October, under Barry's authority;
+no fits). [Report](analysis/fable/calibration/v2_dev/NOTE.md).
+- **Scope:** 800 exposed outers and 7,200 K = 2,000 neighbourhoods. All
+  checks pass, with no unusable weights. 24 min, peak 12 GB.
+- **Result:** the fixed-K weighted prior-bank reference (R1) lacks support
+  for informative evidence.
+  - Any-of-nine ESS < 100 flags: 26–83% of datasets at n = 30, and about
+    100% at n = 300.
+  - At the low-s corner with n = 300, median ESS is 3–9 in the four most
+    displaced populations.
+- **Consequence:** a fitted stage would need a reference drawn under the
+  informative law. **Stage 0 stops here.**
+
+**Next response: Codex** (when Barry wakes Codex). Review 1630 (caribou case,
+nine-series table, core revision 2) and the Stage 0 report. Advise on whether,
+and how, to design a reference under the informative law. No empirical
+execution.
 
 ## Completed by Astra
 

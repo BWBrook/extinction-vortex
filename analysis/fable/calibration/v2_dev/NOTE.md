@@ -304,3 +304,74 @@ not identify a cause).
 - A loses the T1/T2 signal that v1 detects.
 - A does not merit further development, and **candidate A is closed.**
 - This neither selects nor validates anything, and v1's V-fail stands.
+
+## External-information Stage 0: no-fit weight diagnostics (14 October 2026)
+
+**Authorisation.** Barry, 14 October: "Yes, I want the “how much demographic
+data” experiment. Go ahead with this before I wake Codex, with my authority."
+This was within Astra's accepted bounded Stage 0 (board 1625).
+
+**Specification.** `notes/vortex_external_info_design_20261014.md` §§2–4 and
+7.
+- **Runner:** `s0_info.py`, SHA-256 `c4253476…`.
+- **Bound inputs:** `s0/s0_inputs.json` (`e1479a2f…`), committed in 1f82fe4
+  before any weights were computed.
+- **Report:** `s0/s0_report.json`. Per-population outputs and member draw IDs
+  are on deep-server at `/data/fable/vortex/v2_dev/s0/full/`, with hashes in
+  `s0/full_outputs_sha256.txt`.
+
+**Scope.**
+- Exposed v1 outers b1, b3, b5 and b16, trial IDs 0–199: 800 datasets and
+  7,200 K = 2,000 neighbourhoods.
+- Noisy stylized and ideal weights at n = 30 and 300.
+- No fits, no reference sampling, no new draws of outers or banks.
+
+**Checks.**
+- All 800 outer datasets verified before computation: the six θ fields, the
+  selection rule, b3 sharing the fixed corner θ, and the source-row hashes.
+- The quadrature and weight-rule fixtures pass.
+- Every K-th distance matches v1's log (0 mismatches over 7,200
+  neighbourhoods), with 519 boundary ties.
+- **No unusable weight set** in any cell.
+
+**Cost.** A setup pass on wild dog first (113 s, 9.0 GB). The full one-pass
+run took 24 min 9 s with peak RSS 12.1 GB, on a deep-server shared with
+another project at load average about 60. No resource shortfall, and no bank
+expansion.
+
+**Results.** "Flag" is the fraction of datasets in which **any** of the nine
+populations has ESS < 100. It is an exploratory concentration flag, not a
+calibration threshold. Pooled ESS is the median over population-datasets.
+
+| Cell | Scenario (θ law) | n | Flag, noisy / ideal | Pooled median ESS, noisy / ideal |
+|---|---|---|---|---|
+| 0 | b1 null (prior) | 30 | 0.425 / 0.340 | 606 / 756 |
+| 1 | b3 null (fixed low-s corner) | 30 | **0.825** / 0.260 | 317 / 337 |
+| 2 | b5 M_A at β_min (prior) | 30 | 0.515 / 0.355 | 616 / 724 |
+| 3 | b16 M_A, Δ10 = 0.5 (prior) | 30 | 0.680 / 0.430 | 454 / 562 |
+| 4 | b1 | 300 | 0.995 / 0.995 | 100 / 106 |
+| 5 | b3 | 300 | **1.000 / 1.000** | **16 / 15** |
+| 6 | b5 | 300 | 0.995 / 1.000 | 92 / 99 |
+| 7 | b16 | 300 | 1.000 / 1.000 | 47 / 49 |
+
+At the low-s corner with n = 300, the median ESS within the 2,000 neighbours
+is 3 for wild dog, 4 for golden plover, 6 for marmot and 9 for middle-spotted
+woodpecker. These are the populations whose libraries were most displaced in
+D1c. Other populations range from 46 to 220.
+
+**Reading.**
+- **The fixed-K prior-bank neighbourhood has too little support for the
+  weighting.** It holds too few members whose rate functionals are compatible
+  with informative evidence. Weighting cannot create that support.
+- **n = 30.** A third to four-fifths of datasets already have at least one
+  population below the flag.
+- **n = 300.** Effectively all datasets do. At the corner where v1 failed, the
+  weighted reference collapses to a handful of effective paths per population.
+- **Noisy and ideal comparators are similar at n = 300.** At n = 30 the noisy
+  evidence concentrates weight more, most of all at the low-s corner.
+- **What follows.** A fitted Stage 1 using this reweighted reference (R1)
+  would draw its R = 2,000 references from very few effective bank paths. That
+  makes it uninformative at n = 300 and doubtful at n = 30. Informative
+  evidence needs a reference drawn under the informative law: a bank or
+  proposal concentrated where the evidence points, with its own measured cost.
+- **Limits.** Stage 0 cannot measure calibration or power. **It stops here.**
