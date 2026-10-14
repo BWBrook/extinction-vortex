@@ -1,0 +1,114 @@
+{
+  "scope": "Current compact receipts and narrow repairs; no fits, simulations, production bank loading or peer edits",
+  "time_hobart": "2026-10-14T11:31:36.408140+11:00",
+  "head": "20c85745f417c093b22743a304d0521c962cd986",
+  "observed": {
+    "checks": {
+      "runner_unchanged_since_9f48fd1": true,
+      "driver_unchanged_since_e4519c7": true,
+      "bound_helpers_match_9f48fd1": true,
+      "bound_helpers_match_current": true,
+      "candidate_A_helpers_unchanged_since_6316a90": true,
+      "frozen_sources_match": true,
+      "slot_source_bindings_match": true,
+      "manifest_binding": true,
+      "outers_binding": true,
+      "exact_600_cases": true,
+      "exact_source_chunks": true,
+      "correct_chunk_assignments": true,
+      "all_5400_series_match": true,
+      "expected_settings": true,
+      "full_seed_map_matches_plan": true,
+      "seeds_unique_and_disjoint_from_A_screen": true,
+      "slots_match_declared_partition": true,
+      "slot_meta_expected": true,
+      "paired_tables_match": true,
+      "no_recorded_failures_or_indeterminates": true,
+      "all_observed_reused_without_generation": true
+    },
+    "paired_tables": {
+      "MA_betamin": [
+        9,
+        12,
+        2,
+        277
+      ],
+      "MA_d10_0.5": [
+        27,
+        179,
+        1,
+        93
+      ]
+    },
+    "seed_ranges": {
+      "MA_betamin": [
+        8000006250000,
+        8000006250299
+      ],
+      "MA_d10_0.5": [
+        8000006360000,
+        8000006360299
+      ]
+    },
+    "binding_timestamps": {
+      "e4519c7": "2026-10-13T15:17:31+11:00",
+      "9f48fd1": "2026-10-13T16:15:11+11:00"
+    },
+    "timeline": [
+      "start 2026-10-13T16:15:11+11:00",
+      "slot0 bank built 2026-10-13T16:29:13+11:00",
+      "slots rc=0 2026-10-13T22:18:26+11:00",
+      "done 2026-10-13T22:20:31+11:00"
+    ],
+    "limits": "Remote raw-T rescoring and bank/neighbour bytes belong to the separate parent audit."
+  },
+  "guard_fixtures": {
+    "run_complete_resume": {
+      "refused": false,
+      "error": null,
+      "unexpected_trial_calls": 0
+    },
+    "run_missing_T": {
+      "refused": true,
+      "error": "resume refused: duplicate rows, missing neighbour receipts or missing T files",
+      "unexpected_trial_calls": 0
+    },
+    "run_changed_bank": {
+      "refused": true,
+      "error": "run refused: primary bank bytes differ from the manifest",
+      "unexpected_trial_calls": 0
+    },
+    "run_changed_helper": {
+      "refused": true,
+      "error": "run refused: settings, helper bytes or manifest differ from the bound outers file",
+      "unexpected_trial_calls": 0
+    },
+    "report_baseline": {
+      "refused": false,
+      "error": null,
+      "unexpected_trial_calls": 0
+    },
+    "report_changed_bank": {
+      "refused": true,
+      "error": "report refused, failed checks: ['bank_bytes']",
+      "unexpected_trial_calls": 0
+    },
+    "report_changed_helper": {
+      "refused": true,
+      "error": "report refused, failed checks: ['helper_bytes']",
+      "unexpected_trial_calls": 0
+    },
+    "report_changed_settings": {
+      "refused": true,
+      "error": "report refused, failed checks: ['expected_settings']",
+      "unexpected_trial_calls": 0
+    },
+    "report_changed_series": {
+      "refused": true,
+      "error": "report refused, failed checks: ['selected_series_match_outers']",
+      "unexpected_trial_calls": 0
+    }
+  },
+  "assessment": "No material current-record defect found. Requested repairs refuse their targeted cases. Parent owns raw-T and remote-byte verification.",
+  "scientific_limit": "D3 exact six-coordinate theta versus prior(b) is a one-corner null-reference comparison, not an ordered s/f precision bracket or a power result; precision-response monotonicity is unestablished."
+}

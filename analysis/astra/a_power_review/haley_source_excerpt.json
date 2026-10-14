@@ -1,0 +1,47 @@
+{
+  "purpose": "Source transcription for review only; no reconciled demographic input or fitted model.",
+  "source_url": "https://dspace.library.uvic.ca/bitstreams/6ef9deb0-12fa-4d2a-a3eb-628159c696fd/download",
+  "source_sha256": "a263400aae0287fad07b61e4d94d165332a4ae90aac7a9c1930a86ffc7358d79",
+  "source": "Bryant 1998, Metapopulation ecology of Vancouver Island marmots, PhD thesis",
+  "review_date": "2026-10-14",
+  "page_number_convention": "printed page; PDF page = printed page + 13 (both one-based)",
+  "appendix7_page110": {
+    "year": [1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997],
+    "adults_age2plus": [12, 14, 12, 12, 8, 7, 9, 5, 7, 5, 4],
+    "yearlings": [4, 1, 5, 0, 3, 6, 0, 10, 3, 0, 0],
+    "young_of_year": [2, 12, 0, 3, 9, 0, 12, 10, 0, 7, 4],
+    "tagged_male_young_of_year": [0, 0, 0, 1, 2, 0, 2, 1, 0, 2, 2],
+    "tagged_female_young_of_year": [0, 0, 0, 1, 1, 0, 4, 5, 0, 2, 1],
+    "immigrants": [null, 0, 3, 0, 0, 2, 1, 1, 2, 0, 0],
+    "litters": [1, 4, 0, 1, 3, 0, 3, 2, 0, 2, 1]
+  },
+  "appendix11_page116": {
+    "transition_start_year": [1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996],
+    "total_young_of_year": [2, 12, 0, 3, 9, 0, 12, 10, 0, 7],
+    "apparent_survivors": [1, 7, null, 3, 6, null, 10, 3, null, 0],
+    "tagged_young_of_year": [0, 0, 0, 2, 3, 0, 6, 6, 0, 7],
+    "tagged_yearlings_next_year": [null, null, null, 2, 0, null, 6, 3, null, 0],
+    "printed_tagged_mean": 0.50,
+    "printed_tagged_sd": 0.50,
+    "printed_tagged_n_years": 5
+  },
+  "appendix12_page117": {
+    "transition_start_year": [1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996],
+    "adults_and_yearlings": [16, 15, 17, 12, 11, 13, 9, 15, 10, 5],
+    "apparent_survivors": [14, 12, 12, 8, 7, 9, 5, 7, 5, 4],
+    "tagged_adults_and_yearlings": [3, 13, 12, 9, 11, 10, 9, 15, 10, 5],
+    "surviving_tagged_adults": [3, 8, 9, 8, 5, 8, 4, 10, 5, 4],
+    "printed_tagged_mean": 0.69,
+    "printed_tagged_sd": 0.19,
+    "printed_tagged_n_years": 10
+  },
+  "source_conflicts_to_preserve": [
+    "Appendix7 total1987=18; WilliamsID15=28; 1988-1997 match.",
+    "Appendix11 apparent survivors from1988=7; Appendix7 yearlings1989=5.",
+    "Appendix12 tagged survivors from1994=10; Appendix7 total adults1995=7.",
+    "Appendix11 tagged pups1996=7; Appendix7 tagged male+female pups1996=4.",
+    "Appendix7 pups1987-1997 sum59; thesis p47 reports58.",
+    "Appendix16 lists43 numbered records, summaryN42, fate categories sum41; keep printed28/38 as published, not reconciled."
+  ],
+  "history_recovery_status": "Annual aggregate risk/survivor tables plus selected lifetime reproductive and implant/fate summaries; complete encounter, breeding and exposure histories not recovered."
+}

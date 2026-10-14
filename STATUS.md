@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 11:05 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 11:39 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -431,7 +431,9 @@ the obvious next step. Proceed with my full agreement."
 - **The T1/T2 shift largely persists**, and the neighbourhoods are 4.6 times
   wider, so the drop may come from a more diffuse reference. Power is
   untested.
-- All checks pass and there were no failures.
+- All checks pass and A has no failed fits. Independent rescoring found one
+  v1 test-reference fit failure, handled by its recorded bounds without an
+  indeterminate outcome.
   [Details](analysis/fable/calibration/v2_dev/NOTE.md).
 
 **Option 3 first-pass scans** (unverified):
@@ -491,15 +493,48 @@ together as a nicely unified and comprehensive piece of work."
 **Option 3 recovery matrix:**
 [notes/option3_recovery_matrix_20261013.md](notes/option3_recovery_matrix_20261013.md).
 - Haley Lake: partly usable, with same-colony tagged survival.
-- Maligne and Purcells Central: census usable; rates need transfer.
+- Maligne and Purcells Central: useful source-labelled census and sparse
+  demographic evidence; transfer is an optional modelling assumption.
 - Banff: a census crosswalk only.
-- Raw caribou individual histories are not public.
+- Suitable individual caribou fate histories were not found in the inspected
+  public deposits; the recovered survival files are herd-year aggregates.
 
-**Next response: Codex.** Audit the recovery matrix and give a feasibility
-read on the deep dives. Fable reports the power screen. No empirical run.
+**Astra completed A-power and deep-dive review (14 October):**
+[integrated findings](notes/astra_a_power_deep_dive_review_20261014.md),
+[Haley source review](notes/astra_haley_recovery_review_20261014.md),
+[caribou source review](notes/astra_caribou_recovery_review_20261014.md) and
+[reproducible receipts](analysis/astra/a_power_review/).
+- Independently rescored all 1,200 A/v1 T files; paired results and intervals
+  reproduce. All 181 bank files, 602 A T/neighbour entries, five helpers and
+  600 sealed-v1 T hashes match; 21 contract checks and nine fixtures pass.
+  Supports closure of this A, B deferred, v1 V-fail unchanged.
+- D3 fixes all six nuisances and tests null calibration at one corner; it
+  does not bound the s/f precision needed for calibration or power. A new
+  external-information design needs explicit evidence sampling, nuisance
+  scope, reference feasibility and validation rules before execution.
+- Haley supports a descriptive deep dive now. Seasonal age-class maxima and
+  marked animals seen at different times are not a synchronous census.
+  Tagged summaries add information, but conflicting source tables are not a
+  reconciled demographic ledger. Define the observation model and a
+  case-specific estimand/statistic before any single-colony feedback test.
+- Caribou census classes and time labels remain distinct. Maligne's 2014
+  groups differ in location; duplication is unresolved. Banff primary text
+  confirms April 2009 deaths and earlier management, but not the archive's
+  2008 label. Missing CIs do not force rate transfer; decline-period sampling
+  does not prove feedback. Preserve source disagreements.
+
+**Next response: Fable.** Return the core-paper outline, revised
+external-information experiment specification, and Haley descriptive/model
+protocol; Astra reviews those drafts. No new simulation or empirical run.
+Author contact remains Barry's decision. Review posted as message 1608.
 
 ## Completed by Astra
 
+- 14 October, independently audited the 600-case A-power comparison, including
+  all paired raw T files and source/bank bindings. Audited the recovery matrix
+  against primary Haley and caribou sources. Supported A closure and bounded
+  writing/design drafts, with calibrated source and causal claims. No new
+  simulation, T-model fit, empirical statistic or external contact.
 - 13 October, independently audited all A-screen raw results and bank/source
   bindings; corrected the power-screen interpretation; audited/extended both
   Option 3 scans with primary sources and public-data checks. Accepted a fixed
@@ -781,13 +816,13 @@ read on the deep dives. Fable reports the power screen. No empirical run.
 
 ## Pending
 
-1. Fable responds to the completed-result review and the proposed bounded
-   fitted screen of unchanged A. D3 and D1c2 have been audited; A remains
-   unfitted and B unvalidated. The v1 freeze, execution and audit are
-   complete: V-fail. Compare at most two development candidates, and prepare
-   a separate prospective protocol/freeze before untouched v2 validation.
-   Retain the failed corner and low-power result; do not retune beta_min to
-   obtain O1 or silently loosen the null gate.
+1. Fable responds to review 1608 with the core-paper outline,
+   external-information design and Haley descriptive/model protocol.
+   D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
+   deferred. The original two-candidate route meets its stop rule. Any new
+   inferential procedure needs a separate prospective protocol/freeze before
+   untouched validation. Retain the failed corner and low-power result; do
+   not retune beta_min to obtain O1 or silently loosen the null gate.
 2. Retain the unresolved historical input/estimator and census-class questions.
    Do not infer software unavailability from failed retrieval or silently change
    raw values, interpolation or annual-increment definitions. Stage B remains
@@ -803,16 +838,18 @@ read on the deep dives. Fable reports the power screen. No empirical run.
    review. Phase II's additional-series search is a suggestion, not a commitment.
 5. Part 2, genetic extensions and new forward-response access remain parked.
 
-The empirical Part 1 comparison plus simulation is the minimum contribution;
-Part 2 is conditional. A failed gate does not become evidence of absent feedback.
+The current paper route is the core reconstruction/methodological results plus
+narrowed descriptive deep dives, following Barry's 13 October direction.
+Formal empirical feedback tests remain conditional on an adequate new design
+and prospective validation. A failed gate is not evidence of absent feedback.
 
 ## Correspondence checkpoint for this Astra task
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1590**; exhausted `through`: **1590**.
-- Explicit acknowledgement: through actual message **1589** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1590`.
+- Last full retrieval `next_after`: **1608**; exhausted `through`: **1608**.
+- Explicit acknowledgement: through actual message **1608** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1608`.
 
 ## Decision Inbox checkpoint
 
