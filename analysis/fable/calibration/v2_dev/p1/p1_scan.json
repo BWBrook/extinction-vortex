@@ -1,0 +1,220 @@
+{
+ "pairs": {
+  "wild_dog|null_prior_predictive/0": {
+   "radius": 0.04352064414380597,
+   "members_closed_ball": 2000,
+   "boundary": 1,
+   "members_at_lower_adjacent_radius": 1999,
+   "members_at_upper_adjacent_radius": 2000,
+   "bank_rows": 13459632
+  },
+  "wild_dog|null_low_s/0": {
+   "radius": 0.17754917172894868,
+   "members_closed_ball": 2000,
+   "boundary": 1,
+   "members_at_lower_adjacent_radius": 1999,
+   "members_at_upper_adjacent_radius": 2000,
+   "bank_rows": 13459632
+  },
+  "hawaiian_crow|null_prior_predictive/0": {
+   "radius": 0.09657315519370666,
+   "members_closed_ball": 2000,
+   "boundary": 1,
+   "members_at_lower_adjacent_radius": 1999,
+   "members_at_upper_adjacent_radius": 2000,
+   "bank_rows": 29895060
+  },
+  "hawaiian_crow|null_low_s/0": {
+   "radius": 0.004437190222615911,
+   "members_closed_ball": 2915,
+   "boundary": 2436,
+   "members_at_lower_adjacent_radius": 479,
+   "members_at_upper_adjacent_radius": 2915,
+   "bank_rows": 29895060
+  }
+ },
+ "settings": {
+  "0": {
+   "pop": "wild_dog",
+   "outer": "null_prior_predictive/0",
+   "kind": "n0",
+   "n": 0,
+   "forecast_retained_per_prior_proposal": 1e-06,
+   "forecast_expected_hits_at_proposal_cap": 1.0,
+   "ball_weight_sum": 2000.0
+  },
+  "1": {
+   "pop": "wild_dog",
+   "outer": "null_prior_predictive/0",
+   "kind": "noisy",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 1.7522940906841722e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.17522940906841722,
+   "ball_weight_sum": 350.45881813683445
+  },
+  "2": {
+   "pop": "wild_dog",
+   "outer": "null_prior_predictive/0",
+   "kind": "ideal",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 3.866278127888317e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.3866278127888317,
+   "ball_weight_sum": 773.2556255776634
+  },
+  "3": {
+   "pop": "wild_dog",
+   "outer": "null_prior_predictive/0",
+   "kind": "noisy",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 7.50682229680292e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.0750682229680292,
+   "ball_weight_sum": 150.1364459360584
+  },
+  "4": {
+   "pop": "wild_dog",
+   "outer": "null_prior_predictive/0",
+   "kind": "ideal",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 6.11317388674538e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.061131738867453794,
+   "ball_weight_sum": 122.26347773490758
+  },
+  "5": {
+   "pop": "wild_dog",
+   "outer": "null_low_s/0",
+   "kind": "n0",
+   "n": 0,
+   "forecast_retained_per_prior_proposal": 1e-06,
+   "forecast_expected_hits_at_proposal_cap": 1.0,
+   "ball_weight_sum": 2000.0
+  },
+  "6": {
+   "pop": "wild_dog",
+   "outer": "null_low_s/0",
+   "kind": "noisy",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 4.766216929411991e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.047662169294119906,
+   "ball_weight_sum": 95.32433858823981
+  },
+  "7": {
+   "pop": "wild_dog",
+   "outer": "null_low_s/0",
+   "kind": "ideal",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 2.773464293284242e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.027734642932842418,
+   "ball_weight_sum": 55.46928586568484
+  },
+  "8": {
+   "pop": "wild_dog",
+   "outer": "null_low_s/0",
+   "kind": "noisy",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 4.085885005872281e-10,
+   "forecast_expected_hits_at_proposal_cap": 0.0004085885005872281,
+   "ball_weight_sum": 0.8171770011744562
+  },
+  "9": {
+   "pop": "wild_dog",
+   "outer": "null_low_s/0",
+   "kind": "ideal",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 1.001276172794242e-09,
+   "forecast_expected_hits_at_proposal_cap": 0.001001276172794242,
+   "ball_weight_sum": 2.0025523455884837
+  },
+  "10": {
+   "pop": "hawaiian_crow",
+   "outer": "null_prior_predictive/0",
+   "kind": "n0",
+   "n": 0,
+   "forecast_retained_per_prior_proposal": 1e-06,
+   "forecast_expected_hits_at_proposal_cap": 1.0,
+   "ball_weight_sum": 2000.0
+  },
+  "11": {
+   "pop": "hawaiian_crow",
+   "outer": "null_prior_predictive/0",
+   "kind": "noisy",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 1.6281836878074604e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.16281836878074604,
+   "ball_weight_sum": 325.63673756149205
+  },
+  "12": {
+   "pop": "hawaiian_crow",
+   "outer": "null_prior_predictive/0",
+   "kind": "ideal",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 1.5210754195239424e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.15210754195239423,
+   "ball_weight_sum": 304.21508390478846
+  },
+  "13": {
+   "pop": "hawaiian_crow",
+   "outer": "null_prior_predictive/0",
+   "kind": "noisy",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 1.8917512204333316e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.018917512204333315,
+   "ball_weight_sum": 37.835024408666634
+  },
+  "14": {
+   "pop": "hawaiian_crow",
+   "outer": "null_prior_predictive/0",
+   "kind": "ideal",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 2.161492074639614e-08,
+   "forecast_expected_hits_at_proposal_cap": 0.02161492074639614,
+   "ball_weight_sum": 43.229841492792275
+  },
+  "15": {
+   "pop": "hawaiian_crow",
+   "outer": "null_low_s/0",
+   "kind": "n0",
+   "n": 0,
+   "forecast_retained_per_prior_proposal": 1.4575e-06,
+   "forecast_expected_hits_at_proposal_cap": 1.4575,
+   "ball_weight_sum": 2915.0
+  },
+  "16": {
+   "pop": "hawaiian_crow",
+   "outer": "null_low_s/0",
+   "kind": "noisy",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 4.165354239312002e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.4165354239312002,
+   "ball_weight_sum": 833.0708478624003
+  },
+  "17": {
+   "pop": "hawaiian_crow",
+   "outer": "null_low_s/0",
+   "kind": "ideal",
+   "n": 30,
+   "forecast_retained_per_prior_proposal": 7.002231478734602e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.7002231478734602,
+   "ball_weight_sum": 1400.4462957469202
+  },
+  "18": {
+   "pop": "hawaiian_crow",
+   "outer": "null_low_s/0",
+   "kind": "noisy",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 1.80606783385238e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.180606783385238,
+   "ball_weight_sum": 361.213566770476
+  },
+  "19": {
+   "pop": "hawaiian_crow",
+   "outer": "null_low_s/0",
+   "kind": "ideal",
+   "n": 300,
+   "forecast_retained_per_prior_proposal": 1.3934649887097266e-07,
+   "forecast_expected_hits_at_proposal_cap": 0.13934649887097267,
+   "ball_weight_sum": 278.6929977419453
+  }
+ },
+ "seconds": 141.6,
+ "peak_rss_gb": 10.92
+}

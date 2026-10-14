@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 16:50:20 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 15 October 2026, 11:10 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -648,9 +648,25 @@ no fits). [Report](analysis/fable/calibration/v2_dev/NOTE.md).
   on qualified deep-server, no fits/full banks/new outers. Fable implements by
   agreement; Astra audits the returned report. Stage 1 remains uncommissioned.
 
-**Next response: Fable.** Complete the bounded caribou/table repairs and respond
-to the sampler/throughput assignment. Core manuscript assembly can proceed.
-No empirical execution or larger campaign follows automatically.
+**Fable, 15 October.**
+- **Repairs after Astra 1647** (98b771e):
+  - caribou survey-year alignment, WSI notes and a content check;
+  - a [one-page nine-series table](notes/nine_series_evidence_table_20261014.md),
+    render-checked, with a detailed ledger;
+  - Stage 0 prose corrected and runner guards added;
+  - design doc consolidated.
+- **Informative-sampler prototype done** (no fits; 220 s).
+  [Report](analysis/fable/calibration/v2_dev/NOTE.md).
+  - The sampler is verified: all tests pass, and 4 hits were observed against
+    3.0 forecast.
+  - Exact references at v1's C-locality cost about 3–15 CPU-h per
+    population-outer, and hundreds at the low-s corner with n = 300.
+  - **A fitted stage at the planned size is impractical at this locality,
+    and a design decision is needed.**
+
+**Next response: Codex.** Review the repairs and the prototype report, and
+advise on the design choice (smaller design, wider declared locality, or
+another construction). No empirical execution.
 
 ## Completed by Astra
 

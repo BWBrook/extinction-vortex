@@ -379,3 +379,87 @@ version overstated it).
   sampler prototype is the next step
   (`notes/astra_informative_reference_proposal_20261014.md`).
 - **Limits.** Stage 0 cannot measure calibration or power. **It stops here.**
+
+## Informative-sampler prototype (15 October 2026; no fits)
+
+Astra's proposal (`notes/astra_informative_reference_proposal_20261014.md`;
+board 1647), within Barry's authority for the information experiment. Design
+doc §8.
+- **Runner:** `p1_sampler.py`, SHA-256 `4c967825…`.
+- **Bound settings:** `p1/p1_bound.json` (`112975ab…`), committed in 7a3aa0e
+  before the run.
+- A first launch (6110118) stopped in its test step after 0.6 s, on a JSON
+  serialisation of a NumPy boolean, before any scan or pilot. Its files are
+  kept on deep-server under `p1/failed_launch_1/`.
+- **Outputs:** `p1/test.log`, `p1/p1_scan.json`, `p1/p1_pilot.json` and
+  `p1/p1_cost_projection.json`.
+
+**Run.**
+- deep-server, one worker with single-threaded numerics, at load about 16 on
+  64 cores.
+- **Total 220 s:** tests under 1 s, bank scan 142 s (10.9 GB), pilot 78 s
+  (10.8 GB).
+- Every one of the 20 settings reached its cap: 10⁶ prior proposals, or 10⁵
+  paths for the n = 0 controls.
+
+**Tests (all pass).**
+- **Frozen dynamics:** the parameter-fed wrapper reproduces
+  `bank.simulate_chunk(fixed=θ)` exactly, for wild dog and crow.
+- **Analytic bound:** the largest log-factor on the test grid is −2.5×10⁻¹².
+- **n = 0** accepts every proposal.
+- **Factorised rejection:** Poisson then binomial gives the product
+  acceptance probability (0.7788 target, 0.7791 observed, over 2×10⁶
+  trials).
+- **Joint-selection law:** restarting θ after each failed path gives the
+  correct 0.0998 against a target of 0.1. Holding θ until a path is selected
+  would give 0.5.
+- **Closed-ball boundary** handling is exact.
+- **Pilot:** no bound violations and no rounding excess.
+
+**Bank scan** (closed balls at the full-precision Stage 0 radius, frozen
+metric).
+- Three pairs hold exactly 2,000 members, one of them on the boundary.
+- Crow at the low-s corner holds 2,915, with **2,436 on the boundary**: its
+  discrete C values tie at radius 0.0044, and only 479 fall strictly inside.
+- So the declared closed ball is not v1's arbitrary 2,000-member subset at a
+  tie.
+
+**Pilot against forecast.**
+- **Ball hits:** 4 observed over all 20 settings, against 3.0 forecast from
+  the bank scan. That is consistent; both are small by construction.
+- **Retention per prior proposal:** 10⁻⁶ for n = 0, because the ball holds
+  about 2,000 of 2×10⁹ prior paths. Informative evidence lowers it to 10⁻⁷ to
+  10⁻⁸ in most cells, and to **4×10⁻¹⁰** for wild dog at the low-s corner
+  with n = 300.
+- **θ acceptance:** 3–9% at n = 30, and 0.3–1.3% at n = 300.
+- **Throughput:** 0.24–0.87 µs per prior proposal, and about 2.5–5.3 µs per
+  simulated path.
+
+**Projected cost per population-outer for 4,000 retained references**
+(R_train + R_test). Order-of-magnitude only: the forecasts rest on the
+existing bank's ball members, and are least reliable where Stage 0 ESS was
+lowest.
+
+| Pair | n = 0 | n = 30 noisy / ideal | n = 300 noisy / ideal |
+|---|---|---|---|
+| wild dog, b1 | 5.9 CPU-h | 5.0 / 2.5 | 5.5 / 7.2 |
+| wild dog, b3 | 5.7 | 10 / 18 | **730 / 290** |
+| crow, b1 | 2.8 | 2.7 / 3.0 | 15 / 13 |
+| crow, b3 | 1.9 | 1.6 / 1.0 | 2.2 / 2.8 |
+
+**Reading** (measured feasibility, with explicitly uncertain forecasts; no
+calibration or power claim).
+- **The sampler is correct and cheap per proposal.** What costs is the
+  locality: v1's K = 2,000-of-2×10⁹ ball has prior mass of about 10⁻⁶, so
+  every exact retained reference needs on the order of 10⁶ or more prior
+  proposals.
+- **A fitted stage at the planned size is not practical at this locality.**
+  The plan was 8 cells × 200 outers × 9 populations, about 14,400
+  population-outer-cells. At a typical 3–15 CPU-h each, that is about 10⁵
+  CPU-h, and the low-s corner with n = 300 would add hundreds of CPU-h per
+  outer for the most displaced populations.
+- **Feasible directions** need a design decision, and none is chosen here:
+  - a much smaller design;
+  - a declared wider C-locality, which changes the conditioning target;
+  - a different reference construction.
+- **This prototype stops here**, as specified.
