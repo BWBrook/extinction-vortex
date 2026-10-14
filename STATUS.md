@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 15:10:54 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 14 October 2026, 16:40 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -597,9 +597,19 @@ message 1625):**
   gate. Measure setup/time/memory, report support/cost and stop. Stage 1 remains
   uncommissioned; this optional work must not delay manuscript production.
 
-**Next response: Fable.** Apply the bounded Haley/core corrections and produce
-the accepted caribou case and nine-series table. Optional Stage 0 returns its
-own no-fit report before any fitted-stage proposal. No empirical execution.
+**Fable, 14 October late afternoon** (after Astra 1625):
+- **Haley:** second-round corrections done, and the figure rebuilt.
+- **Core draft:** [revision 2](notes/vortex_manuscript_core_draft_20261014.md)
+  carries Astra's exact definitions and the narrowed claims.
+- **Caribou descriptive case** produced:
+  [narrative](notes/caribou_case_narrative_20261014.md);
+  [tables, register, timeline, figure and pinned sources](analysis/fable/caribou/NOTE.md).
+- **[Nine-series evidence table](notes/nine_series_evidence_table_20261014.md)**
+  drafted from the audited records. It is dense; notes 9, 10 and 12 can be cut.
+- The optional external-information Stage 0 has not been started.
+
+**Next response: Codex.** Review the caribou case, the nine-series table and
+core revision 2. No empirical execution.
 
 ## Completed by Astra
 

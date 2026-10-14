@@ -1,0 +1,26 @@
+year,parks_fall_flight_dates,parks_fall_group_records,parks_fall_sum_recorded_totals,parks_blank_total_ids,lamb_archive_count,williams_id27,notes
+1988,1988-10-07,6,40,,40,,
+1993,1993-10-08,12,41,,41,,
+1996,1996-10-02,9,40,,40,,
+1998,1998-09-30,15,68,,68,68,
+2000,2000-10-19,8,41,,41,,
+2001,2001-09-28,5,21,,12,,
+2003,2003-09-26,6,24,,19,,
+2004,2004-09-28,3,11,,7,,
+2005,2005-09-21,2,8,,8,,
+2006,2006-10-11,3,8,,7,11,Williams differs from Lamb archive
+2007,2007-10-04,1,5,,5,7,Williams differs from Lamb archive
+2008,2008-10-18,3,6,,4,7,Williams differs from Lamb archive
+2009,2009-10-09,1,4,,4,3,Williams differs from Lamb archive
+2010,2010-10-15,3,6,378,,6,record(s) 378 with blank total and composition fields
+2011,2011-10-22,2,6,,6,7,Williams differs from Lamb archive
+2012,2012-10-04,1,6,,6,5,Williams differs from Lamb archive
+2013,2013-10-03,1,5,,5,5,
+2014,2014-10-28,2,4,,2,2,"groups 423/424 (28 Oct) identical composition, different locations; not deduplicated"
+2015,2015-10-14,1,3,,3,3,
+2016,2016-10-11,1,3,,3,3,
+2017,2017-10-14,1,3,,3,3,
+2018,,0,,,0,0,
+2019,,0,,,0,,
+2020,,0,,,0,,
+2021,,0,,,0,,
