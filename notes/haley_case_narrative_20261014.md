@@ -36,7 +36,7 @@ possibly changing detection.
 count conceals.
 - **Adults declined.** Animals aged two and over fell from 12–14 in
   1987–1990 to 4–7 in 1994–1997 (Fig. Xb).
-- **Recruitment was episodic.** Litters were recorded in 8 of 11 years,
+- **Reproduction was episodic.** Litters were recorded in 8 of 11 years,
   between 0 and 4 a year, with none in 1989, 1992 or 1995 (Fig. Xd). Pup
   counts accordingly swing between 0 and 12, and reproduction was concentrated
   among a few females (Appendix 14).
@@ -49,8 +49,9 @@ count conceals.
 - **Non-pups.** Of 97 recorded annual exposures of tagged non-pups (adults
   and yearlings), 64 were seen again as adults the following year (Fig. Xc).
   Annual values range from 4 of 9 to 3 of 3.
-- **Pups.** Of 24 tagged-pup exposures, 11 were seen as yearlings. This
-  includes no survivors in 1991 (0 of 3) or 1996 (0 of 7).
+- **Pups.** Of 24 tagged-pup exposures, 11 were seen as yearlings the
+  following year. None of the tagged pups in the 1991 and 1996 cohorts was
+  observed as a yearling in the following year (0 of 3 and 0 of 7).
 
 These are minimum persistence rates: missed animals, lost tags and emigrants
 count as losses (p. 18). The exposures are not independent animals, and we
@@ -62,16 +63,20 @@ consistent ledger.
   yet only 7 adults appear in the 1995 total (A3).
 - 1996 has 7 tagged pups in one table and 4 in another (A4).
 - Totals disagree between tables and text (A5, A6).
-- A 1996 transplant appears in two accounts that cannot be linked to a donor
-  colony, so it is not coded as a Haley removal (A7).
+- The thesis gives two transplant accounts, Mount McQuillan and Franklin.
+  Their linkage is unresolved, the donor colony is unknown, and no Haley
+  removal is coded (A7).
 
-We keep these conflicts visible rather than resolving them arithmetically.
+We keep these conflicts visible rather than resolving them arithmetically;
+their causes (transcription, revision or different inclusion rules) are
+unresolved.
 
 **What the case can and cannot tell us.** The Haley record supplies exactly
 the kinds of information the count-only procedure lacked: age structure,
 marked-animal persistence, reproduction and movement. It shows a colony whose
-decline coincided with fewer adults, irregular recruitment and dependence on
-arrivals. It does not isolate abundance-dependent feedback.
+decline coincided with fewer adults, episodic reproduction and recorded
+immigration, including a breeding episode that Bryant attributed to
+immigration. It does not isolate abundance-dependent feedback.
 - The rates were measured during the decline, so they may reflect feedback,
   external drivers such as predation or habitat change, movement, changing
   observation, or chance.

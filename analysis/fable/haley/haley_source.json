@@ -1,5 +1,5 @@
 {
- "purpose": "Haley Lake descriptive deep dive (notes/vortex_haley_deep_dive_protocol_20261014.md). Source transcription, independently re-extracted by Fable from the PDF (pdftotext -layout) on 14 October 2026; agrees with Astra's analysis/astra/a_power_review/haley_source_excerpt.json in every value. No reconciliation, fitting or new interval.",
+ "purpose": "Haley Lake descriptive deep dive (notes/vortex_haley_deep_dive_protocol_20261014.md). Source recheck reported by Fable from the PDF (pdftotext -layout) on 14 October 2026, after exposure to Astra's transcription (not blinded); numerical agreement with analysis/astra/a_power_review/haley_source_excerpt.json is verified. No reconciliation, fitting or new interval.",
  "source": "Bryant, A. A. (1998) Metapopulation ecology of Vancouver Island marmots (Marmota vancouverensis). PhD dissertation, University of Victoria.",
  "source_url": "https://dspace.library.uvic.ca/bitstreams/6ef9deb0-12fa-4d2a-a3eb-628159c696fd/download",
  "source_sha256": "a263400aae0287fad07b61e4d94d165332a4ae90aac7a9c1930a86ffc7358d79",

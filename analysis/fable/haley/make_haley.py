@@ -63,7 +63,7 @@ def figure():
     for x0, x1 in ((1981, 1986), (1998, 2000)):
         a.text((x0 + x1) / 2, 37.5, "Williams only", ha="center", va="top", color=INK2, fontsize=7.5, style="italic")
     a.set_ylim(0, 38); a.set_ylabel("Animals counted")
-    a.set_title("(a) Annual count (seasonal age-class maxima summed)", loc="left", fontsize=9.5, color=INK)
+    a.set_title("(a) Annual totals: Williams and Bryant", loc="left", fontsize=9.5, color=INK)
     a.legend(loc="upper right", bbox_to_anchor=(1.0, 0.82), frameon=False, fontsize=8)
 
     # (b) stage composition
@@ -72,6 +72,9 @@ def figure():
                           ("young_of_year", PUP, "Pups (young-of-year)")):
         a.bar(A7["year"], A7[key], bottom=bottom, color=col, width=0.72, edgecolor=SURF, linewidth=1.5, label=lab)
         bottom = [b + v for b, v in zip(bottom, A7[key])]
+        if key == "yearlings":                             # register A2: plotted 1989 yearlings conflict with App. 11
+            i = A7["year"].index(1989)
+            a.text(1989 + 0.42, bottom[i] - A7[key][i] / 2, "‡", fontsize=9, color=INK, va="center")
     a.set_ylabel("Animals (seasonal max)")
     a.set_title("(b) Stage composition, Bryant App. 7 (1987–1997 only)", loc="left", fontsize=9.5, color=INK)
     a.legend(loc="upper left", frameon=False, fontsize=8, ncol=3)
@@ -81,7 +84,10 @@ def figure():
     a = ax[2]
     for t, n, s in zip(A12["transition_start"], A12["tagged_exposed_n"], A12["tagged_survivors_s"]):
         a.plot(t - 0.12, s / n, marker="o", markersize=7, color=ADULT, markeredgecolor=SURF, markeredgewidth=1.2, linestyle="none")
-        a.text(t - 0.12, s / n + 0.07, f"{s}/{n}" + ("‡" if t == 1994 else ""), ha="center", fontsize=7, color=INK)
+        if t == 1990:                                      # keep clear of the 1990 pup marker
+            a.text(t - 0.12, s / n - 0.1, f"{s}/{n}", ha="center", va="center", fontsize=7, color=INK)
+        else:
+            a.text(t - 0.12, s / n + 0.07, f"{s}/{n}" + ("‡" if t == 1994 else ""), ha="center", fontsize=7, color=INK)
     for t, n, s in zip(A11["transition_start"], A11["tagged_exposed_n"], A11["tagged_survivors_s"]):
         if n:
             a.plot(t + 0.12, s / n, marker="s", markersize=7, color=PUP, markeredgecolor=SURF, markeredgewidth=1.2, linestyle="none")
@@ -110,9 +116,11 @@ def figure():
              loc="upper right", frameon=False, fontsize=8, ncol=2)
     a.set_xticks(range(1981, 2001, 2)); a.set_xlabel("Year (panel c: transition start year)")
 
-    fig.text(0.01, 0.005, "‡ conflicts with Appendix 7 (see conflict register). Source: Bryant 1998 (UVic PhD), Apps 7, 11, 12; "
-             "Williams et al. 2021 ID 15. Descriptive only.", fontsize=7, color=INK2)
-    fig.tight_layout(rect=(0, 0.015, 1, 1))
+    fig.text(0.01, 0.018, "Bryant's 1987–1997 values are sums of seasonal age-class maxima (marked animals accumulated through the\n"
+             "season); census conventions for 1981–1986 and 1998–2000 are not recovered.", fontsize=7, color=INK2)
+    fig.text(0.01, 0.002, "‡ source conflict (register A2–A4). Sources: Bryant 1998 (UVic PhD), Apps 7, 11, 12; Williams et al. 2021 ID 15. "
+             "Descriptive only; no intervals.", fontsize=7, color=INK2)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
     for ext in ("png", "pdf"):
         fig.savefig(os.path.join(HERE, f"haley_case.{ext}"), dpi=200)
 
