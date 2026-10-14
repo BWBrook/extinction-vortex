@@ -23,11 +23,28 @@ def read(name, enc="utf-8"):
     return list(csv.DictReader(open(os.path.join(SRC, name), encoding=enc)))
 
 
+WSI_FIELDS = ("SURVEY_SUMMARY_DETAIL_ID", "SUMMARY_YEAR", "SUMMARY_MONTH", "SUMMARY_DAY", "PARAMETER_METHOD_CODE",
+              "PARAMETER_METHOD_NAME", "PARAMETER_VALUE", "BEST_PARAMETER_VALUE", "SUMMARY_DETAIL_NOTE", "SUMMARY_GENERAL_NOTE")
+
+
+def wsi_rows():
+    w = json.load(open(os.path.join(SRC, "wsi_central.json")))
+    props = [f["properties"] for f in (w["features"] if isinstance(w, dict) else w)]
+    return sorted(({k: p.get(k) for k in WSI_FIELDS} for p in props if p.get("PARAMETER_NAME") == "Individuals"),
+                  key=lambda r: r["SURVEY_SUMMARY_DETAIL_ID"])
+
+
 def check_hashes():
+    """Static files: whole-file SHA-256. The live WSI service response varies in generated feature IDs and timestamps,
+    so its 23 Individuals rows are checked by a content hash over the declared fields instead."""
     out = {}
     for f, m in MAN["files"].items():
         h = sha(os.path.join(SRC, f)); out[f] = h
-        if h != m["sha256_fable"]:
+        if f == "wsi_central.json":
+            ch = hashlib.sha256(json.dumps(wsi_rows(), sort_keys=True).encode()).hexdigest()
+            if ch != MAN["wsi_individuals_content_sha256"]:
+                raise SystemExit(f"WSI Individuals content {ch} differs from the recorded {MAN['wsi_individuals_content_sha256']}")
+        elif h != m["sha256_fable"]:
             raise SystemExit(f"{f}: snapshot hash {h} differs from the recorded {m['sha256_fable']}")
     return out
 
@@ -73,27 +90,24 @@ def maligne(W):
 
 
 def purcells():
-    w = json.load(open(os.path.join(SRC, "wsi_central.json")))
-    props = [f["properties"] for f in (w["features"] if isinstance(w, dict) else w)]
-    ind = [p for p in props if p.get("PARAMETER_NAME") == "Individuals"]
     by = collections.defaultdict(dict)
-    for p in sorted(ind, key=lambda p: p["SURVEY_SUMMARY_DETAIL_ID"]):
-        k = p["PARAMETER_METHOD_CODE"]; y = p["SUMMARY_YEAR"]
-        cell = by[y].setdefault(k, [])
-        cell.append((p["PARAMETER_VALUE"], p["BEST_PARAMETER_VALUE"], p["SURVEY_SUMMARY_DETAIL_ID"],
-                     f"{y:04d}-{p['SUMMARY_MONTH'] or 0:02d}-{p['SUMMARY_DAY'] or 0:02d}", (p.get("SUMMARY_DETAIL_NOTE") or "").strip()))
+    for p in wsi_rows():
+        cell = by[p["SUMMARY_YEAR"]].setdefault(p["PARAMETER_METHOD_CODE"], [])
+        cell.append(p)
     lc = {int(r["year"]): int(r["count"]) for r in lamb("Purcells Central")}
     out = []
     for y in sorted(set(by) | set(lc)):
-        cells = by.get(y, {})
-        f = lambda k: ";".join(str(v[0]) for v in cells.get(k, []))
-        best = ";".join(f"{k}" for k in ("OTC", "MNKA", "MC") for v in cells.get(k, []) if v[1] == "Yes")
-        ids = ";".join(str(v[2]) for k in ("OTC", "MNKA", "MC") for v in cells.get(k, []))
-        dates = ";".join(sorted({v[3] for k in cells for v in cells[k]}))
-        notes = " | ".join(sorted({v[4] for k in cells for v in cells[k] if v[4]}))
-        out.append([y, dates, f("OTC"), f("MNKA"), f("MC"), best, ids, lc.get(y, ""), notes])
-    write("purcells_central_census.csv", ["year", "wsi_survey_dates", "wsi_OTC", "wsi_MNKA", "wsi_MC", "wsi_best_flagged",
-                                          "wsi_detail_ids", "lamb_archive_count", "wsi_detail_notes"], out)
+        rows = [p for k in ("OTC", "MNKA", "MC") for p in by.get(y, {}).get(k, [])]
+        f = lambda k: ";".join(str(p["PARAMETER_VALUE"]) for p in by.get(y, {}).get(k, []))
+        best = ";".join(p["PARAMETER_METHOD_CODE"] for p in rows if p["BEST_PARAMETER_VALUE"] == "Yes")
+        ids = ";".join(str(p["SURVEY_SUMMARY_DETAIL_ID"]) for p in rows)
+        months = ";".join(sorted({str(p["SUMMARY_MONTH"]) for p in rows if p["SUMMARY_MONTH"]}))
+        days = ";".join(sorted({str(p["SUMMARY_DAY"]) for p in rows if p["SUMMARY_DAY"]}))   # blank = day not supplied
+        dnotes = " | ".join(sorted({(p["SUMMARY_DETAIL_NOTE"] or "").strip() for p in rows} - {""}))
+        gnotes = " | ".join(sorted({(p["SUMMARY_GENERAL_NOTE"] or "").strip() for p in rows} - {""}))
+        out.append([y, months, days, f("OTC"), f("MNKA"), f("MC"), best, ids, lc.get(y, ""), dnotes, gnotes])
+    write("purcells_central_census.csv", ["year", "wsi_month", "wsi_day", "wsi_OTC", "wsi_MNKA", "wsi_MC", "wsi_best_flagged",
+                                          "wsi_detail_ids", "lamb_archive_count", "wsi_detail_notes", "wsi_general_notes"], out)
     return out
 
 
@@ -114,10 +128,17 @@ def demography():
                         "herd-year aggregate; KM at month 12 with staggered entry, boundary values by resampling (dataprep.Rmd); "
                         "not a binomial denominator or recovered CI; collar risk sets not in the release"])
         for r in lamb(h, "recruitment_counts.csv"):
+            # dataprep.Rmd lines 849-853 add one to fall and spring survey years before writing this file
+            sy = int(r["year"]) - 1 if r["season"] in ("fall", "spring") else int(r["year"])
             out.append([h, r["year"], f"calves / classified non-calves ({r['season']}, {r['type']}; archive recruitment_counts.csv)",
                         f"{r['calves']}/{r['adults']}", "",
-                        "shared-survey composition; denominator excludes unclassified animals; not automatically calf:cow"])
-    write("demographic_evidence.csv", ["herd", "year", "quantity", "value", "uncertainty_as_given", "provenance"], out)
+                        "archived composition summary from the shared monitoring programme; denominator excludes unclassified "
+                        "animals; not automatically calf:cow", sy])
+    for r in out[:]:
+        if len(r) == 6:                                     # survival rows: archive year convention (see NOTE.md)
+            r.append("")
+    write("demographic_evidence.csv", ["herd", "archive_year", "quantity", "value", "uncertainty_as_given", "provenance",
+                                       "survey_calendar_year"], out)
     return out
 
 
@@ -131,9 +152,9 @@ def figure(ml, pu, bf):
 
     def rug(a, herd, ytop):
         sv = sorted({int(r[1]) for r in dem if r[0] == herd and r[2].startswith("adult female")})
-        rc = sorted({int(r[1]) for r in dem if r[0] == herd and r[2].startswith("calves")})
-        a.plot(sv, [-0.06 * ytop] * len(sv), linestyle="none", marker="|", markersize=9, color=INK, label="survival estimate year")
-        a.plot(rc, [-0.12 * ytop] * len(rc), linestyle="none", marker="|", markersize=9, color=INK2, label="composition survey year")
+        rc = sorted({int(r[6]) for r in dem if r[0] == herd and r[2].startswith("calves")})          # survey calendar year
+        a.plot(sv, [-0.06 * ytop] * len(sv), linestyle="none", marker="|", markersize=9, color=INK, label="survival estimate (archive year)")
+        a.plot(rc, [-0.12 * ytop] * len(rc), linestyle="none", marker="|", markersize=9, color=INK2, label="composition survey (calendar year)")
 
     # Maligne
     a = ax[0]; top = 72
@@ -151,10 +172,10 @@ def figure(ml, pu, bf):
 
     # Purcells Central
     a = ax[1]; top = 20
-    a.plot([r[0] for r in pu if r[7] != ""], [r[7] for r in pu if r[7] != ""], color=INK2, linewidth=1.6, label="Lamb archive count")
+    a.plot([r[0] for r in pu if r[8] != ""], [r[8] for r in pu if r[8] != ""], color=INK2, linewidth=1.6, label="Lamb archive count")
     for col, k, mk, lab in ((2, "OTC", "o", "WSI observed total count (OTC)"), (3, "MNKA", "^", "WSI minimum known alive (MNKA)"),
                             (4, "MC", "D", "WSI model/correction (MC)")):
-        pts = [(r[0], float(v)) for r in pu if r[col] != "" for v in str(r[col]).split(";")]
+        pts = [(r[0], float(v)) for r in pu if r[col + 1] != "" for v in str(r[col + 1]).split(";")]
         a.plot([p[0] + {2: -0.18, 3: 0, 4: 0.18}[col] for p in pts], [p[1] for p in pts], linestyle="none", marker=mk, markersize=5,
                color={2: OBS, 3: MNKA, 4: MC}[col], label=lab)
     rug(a, "Purcells Central", top)
@@ -178,10 +199,11 @@ def figure(ml, pu, bf):
     a.set_title("(c) Banff (Banff NP)", loc="left", fontsize=9.5, color=INK)
     a.legend(loc="upper right", frameon=False, fontsize=7.5)
     a.set_xlabel("Year")
-    fig.text(0.01, 0.004, "Rugs below zero mark years with an archived survival estimate (black) or composition survey (grey); none for Banff.\n"
+    fig.text(0.01, 0.004, "Rugs: archived survival estimate (black; archive year: Maligne Y ~ Oct Y-1 to Sep Y, Purcells Central Y ~ Apr Y to Mar Y+1)\n"
+             "and composition survey (grey; survey calendar year, archive fall years shifted back by one); none for Banff.\n"
              "Sources: Parks Canada open data; BC WSI; Lamb et al. 2024 archive (f069f1f6); Williams et al. 2021; Hebblewhite et al. 2010. "
              "Descriptive only.", fontsize=7, color=INK2)
-    fig.tight_layout(rect=(0, 0.035, 1, 1))
+    fig.tight_layout(rect=(0, 0.05, 1, 1))
     for ext in ("png", "pdf"):
         fig.savefig(os.path.join(HERE, f"caribou_case.{ext}"), dpi=200)
 

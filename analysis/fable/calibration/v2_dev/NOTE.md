@@ -355,23 +355,27 @@ calibration threshold. Pooled ESS is the median over population-datasets.
 | 7 | b16 | 300 | 1.000 / 1.000 | 47 / 49 |
 
 At the low-s corner with n = 300, the median ESS within the 2,000 neighbours
-is 3 for wild dog, 4 for golden plover, 6 for marmot and 9 for middle-spotted
-woodpecker. These are the populations whose libraries were most displaced in
-D1c. Other populations range from 46 to 220.
+is 3 for wild dog, 4 for golden plover, 6 for marmot, 9 for middle-spotted
+woodpecker and **15 for wood turtle A** (14.6 noisy, 14.7 ideal). The other
+four populations range from 46 to 199 (noisy) and 49 to 220 (ideal).
+*(Corrected 15 October: the first version omitted wood turtle A from the
+low-median list; the JSON report was correct.)*
 
-**Reading.**
-- **The fixed-K prior-bank neighbourhood has too little support for the
-  weighting.** It holds too few members whose rate functionals are compatible
-  with informative evidence. Weighting cannot create that support.
-- **n = 30.** A third to four-fifths of datasets already have at least one
-  population below the flag.
-- **n = 300.** Effectively all datasets do. At the corner where v1 failed, the
-  weighted reference collapses to a handful of effective paths per population.
-- **Noisy and ideal comparators are similar at n = 300.** At n = 30 the noisy
-  evidence concentrates weight more, most of all at the low-s corner.
-- **What follows.** A fitted Stage 1 using this reweighted reference (R1)
-  would draw its R = 2,000 references from very few effective bank paths. That
-  makes it uninformative at n = 300 and doubtful at n = 30. Informative
-  evidence needs a reference drawn under the informative law: a bank or
-  proposal concentrated where the evidence points, with its own measured cost.
+**Reading** (revised 15 October after Astra's Stage 0 audit; the first
+version overstated it).
+- **What is measured.** Weighting the existing K = 2,000 prior-bank members by
+  informative stylized evidence concentrates the normalised weights strongly.
+  Most ESS values are below 100 at n = 300, and many are at n = 30. The
+  concentration is most severe for five populations at the low-s corner.
+- **What is not established.** This is a computational warning about the
+  fixed-K reweighted reference (R1). It does not show:
+  - an absence of target support;
+  - importance-sampling error for the T statistics;
+  - inadequate reference draws;
+  - the outcome of an unrun fitted test;
+  - anything adverse about the value of demographic data.
+- **Decision.** It is a reason not to spend a fitted stage on R1 now, and to
+  investigate a reference drawn under the informative law. Astra's bounded
+  sampler prototype is the next step
+  (`notes/astra_informative_reference_proposal_20261014.md`).
 - **Limits.** Stage 0 cannot measure calibration or power. **It stops here.**

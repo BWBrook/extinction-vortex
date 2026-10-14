@@ -6,6 +6,8 @@ Noisy stylized E: k ~ Binomial(n, s_bar_true), then r ~ Poisson(n f_bar_true), c
 Ideal comparator: the expected log-likelihood at the true functionals. n in {30, 300} is a per-population ideal
 information index. No fits, no reference sampling, no new outer draws, no new bank. ESS < 100 is an exploratory
 concentration flag only. Stage 0 cannot measure calibration or power. Run from the frozen source root.
+Revision 15 Oct (Astra Stage 0 audit; for reuse only; the archived run used runner c4253476...): +inf weights rejected,
+boundary-safe ideal weights, imported-source and bank_meta byte checks, per-output bindings, and an exact-key report.
   prepare MANIFEST BASE OUT_INPUTS          bind outers (original v1 rows), E draws and settings
   run     MANIFEST BASE INPUTS OUTDIR [POP]  one pass per population (POP alone = setup/resource pass)
   report  INPUTS OUTDIR OUT_JSON"""
@@ -13,6 +15,7 @@ import hashlib, json, os, platform, resource, sys, time
 import numpy as np
 import scipy
 from scipy import stats
+from scipy.special import xlogy, xlog1py
 from scipy.spatial import cKDTree
 sys.path.insert(0, "analysis/fable/calibration")
 from bank import designs, calib_features, load_bank
@@ -57,13 +60,14 @@ def logw_noisy(sb, fb, n, k, r):
 
 
 def logw_ideal(sb, fb, n, sb0, fb0):
+    """Expected log-likelihood at the true functionals; xlogy/xlog1py give the 0 log 0 = 0 limits."""
     with np.errstate(divide="ignore", invalid="ignore"):
-        return n * (sb0 * np.log(sb) + (1 - sb0) * np.log1p(-sb)) + n * (fb0 * np.log(fb) - fb)
+        return n * (xlogy(sb0, sb) + xlog1py(1 - sb0, -sb)) + n * (xlogy(fb0, fb) - fb)
 
 
 def weight_stats(lw):
     """Stable normalisation. -inf members get zero weight; NaN anywhere, or no finite member, makes the set unusable."""
-    if np.isnan(lw).any() or not np.isfinite(lw).any():
+    if np.isnan(lw).any() or np.isposinf(lw).any() or not np.isfinite(lw).any():
         return {"usable": False, "ess": None, "max_share": None}
     w = np.exp(lw - lw[np.isfinite(lw)].max())
     w[~np.isfinite(lw)] = 0.0
@@ -81,6 +85,9 @@ def self_test():
     assert not weight_stats(np.full(K, -np.inf))["usable"]                                                   # nothing finite
     bad = np.zeros(K); bad[5] = np.nan
     assert not weight_stats(bad)["usable"]                                                                   # invalid input reported, not replaced
+    bad = np.zeros(K); bad[7] = np.inf
+    assert not weight_stats(bad)["usable"]                                                                   # +inf rejected (revision 15 Oct)
+    assert np.isfinite(logw_ideal(np.array([0.4]), np.array([0.3]), 30, 0.0, 0.0)).all()                    # 0 log 0 limits
     p = {"s": np.array([0.5]), "f": np.array([0.2]), "sigma": np.array([0.0]), "p_c": np.array([0.0]), "delta": np.array([0.5])}
     sb, fb = rate_functionals(p); assert abs(sb[0] - 0.5) < 1e-12 and abs(fb[0] - 0.2) < 1e-12              # quadrature at sigma = 0
     lw0 = logw_noisy(np.array([0.3, 0.6]), np.array([0.2, 0.2]), 30, 0, 0); assert np.isfinite(lw0).all()   # boundary k = 0
@@ -150,6 +157,12 @@ def run(man_path, base, inputs_path, outdir, only=None):
     if any(sha(os.path.join(base, k2, "e2e_rows.jsonl")) != v for k2, v in b["source_rows_sha256"].items()):
         raise SystemExit("run refused: v1 source rows changed")
     bankdir = os.path.join(base, man["bankdir"])
+    if any(sha(f) != h for f, h in man["source_sha256"].items()):                    # imported frozen sources (rev. 15 Oct)
+        raise SystemExit("run refused: frozen source bytes differ from the manifest")
+    if sha(os.path.join(bankdir, "bank_meta.json")) != man["bank_sha256"]["bank_meta.json"]:
+        raise SystemExit("run refused: bank_meta.json differs from the manifest")
+    binding = {"inputs_sha256": sha(inputs_path), "runner_sha256": sha(os.path.abspath(__file__)),
+               "runtime": b["runtime"], "manifest_digest": b["manifest_digest"]}
     pops = b["population_order"] if only is None else [only]
     for pn in pops:
         if any(sha(os.path.join(bankdir, f)) != h for f, h in man["bank_sha256"].items() if f"_{pn}_" in f):
@@ -178,7 +191,7 @@ def run(man_path, base, inputs_path, outdir, only=None):
                 row[f"ideal_{n}"] = weight_stats(logw_ideal(sb, fb, n, E["sbar_true"], E["fbar_true"]))
             res.append(row)
         np.savez_compressed(os.path.join(outdir, f"members_{pi_name}.npz"), keys=np.array(keys), draw_id=bk["draw_id"][idx])
-        json.dump({"population": pi_name, "bank_rows": int(len(bk["rec"])), "seconds": round(time.time() - tp, 1),
+        json.dump({"population": pi_name, "binding": binding, "bank_rows": int(len(bk["rec"])), "seconds": round(time.time() - tp, 1),
                    "peak_rss_gb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 2),
                    "members_sha256": sha(os.path.join(outdir, f"members_{pi_name}.npz")), "rows": res},
                   open(os.path.join(outdir, f"s0_{pi_name}.json"), "w"))
@@ -191,6 +204,18 @@ def run(man_path, base, inputs_path, outdir, only=None):
 def report(inputs_path, outdir, out):
     d = json.load(open(inputs_path)); b = d["bindings"]; pops = b["population_order"]
     per = {pn: json.load(open(os.path.join(outdir, f"s0_{pn}.json"))) for pn in pops}
+    expected = set(d["outers"])                                         # exact keys, labels and member payloads (rev. 15 Oct)
+    for pn in pops:
+        bd = per[pn].get("binding")
+        if per[pn]["population"] != pn or [r["outer"] for r in per[pn]["rows"]].__len__() != len(expected) \
+                or {r["outer"] for r in per[pn]["rows"]} != expected:
+            raise SystemExit(f"report refused: {pn} rows are not exactly the expected outers")
+        if bd is None or bd["inputs_sha256"] != sha(inputs_path) or bd["runtime"] != b["runtime"] \
+                or bd["manifest_digest"] != b["manifest_digest"]:
+            raise SystemExit(f"report refused: {pn} output is not bound to these inputs/runtime")
+        mp = os.path.join(outdir, f"members_{pn}.npz")
+        if not os.path.exists(mp) or sha(mp) != per[pn]["members_sha256"]:
+            raise SystemExit(f"report refused: {pn} member payload missing or changed")
     q = lambda v: [round(float(x), 4) for x in np.quantile(v, [0.05, 0.25, 0.5, 0.75, 0.95])] if len(v) else None
     res = {"stage": b["stage"], "inputs_sha256": sha(inputs_path), "bindings": {k: v for k, v in b.items()},
            "note": "ESS < 100 is an exploratory concentration flag only; Stage 0 cannot measure calibration or power.",

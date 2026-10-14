@@ -2,8 +2,13 @@
 
 Fable, 14 October 2026 (Australia/Hobart).
 
-**Status.** Design only: no run is commissioned and the experiment is
-optional. It does not delay the core paper or the Haley case.
+**Status (consolidated 15 October).**
+- Stage 0 (no fits) was completed on 14 October under Barry's authority (§7;
+  report in `analysis/fable/calibration/v2_dev/NOTE.md`). It measured weight
+  concentration only.
+- No fitted stage on the reweighted reference (R1) is commissioned.
+- The next step is Astra's bounded informative-sampler prototype (§8).
+- The experiment does not delay the core paper or the case studies.
 
 **Revision 2** follows Astra's review
 (`notes/astra_three_drafts_review_20261014.md`, board 1614) and replaces
@@ -23,7 +28,9 @@ functionals. How do null non-accept rates, detection rates and reference
 support change?
 
 **Repeated law: unchanged from v1.**
-- θ and the whole path are drawn jointly from prior (b) and M0 (or M_A).
+- In the bank, θ and the whole path are drawn jointly from prior (b) and M0.
+  The outers differ: b1, b5 and b16 draw θ from prior (b), while b3 uses the
+  fixed low-s corner θ (§4).
 - The result is then kept only if it meets selection S and the cap event A.
 - The primary bank was built exactly this way. Its retained members are
   therefore draws from p(θ, N | S, A).
@@ -88,13 +95,13 @@ log-likelihoods at the true functionals. **Noisy stylized E** uses the sampled
 - the largest weight share;
 - the original-C K-th distance, unchanged from v1.
 
-**Support rule.**
-- A dataset fails support if **any** of its nine populations has ESS < 100.
-- Failure rates are reported **by scenario as dataset-level any-of-nine
-  failures**, not as pair rates. Even 1% independent pair failures give
-  8.65% dataset failures.
-- A failed dataset is indeterminate and counted in the fixed denominator, as
-  a null failure or a non-detection.
+**Concentration flag** (superseded wording, 15 October).
+- ESS < 100 is an **exploratory concentration flag**. It is not a calibration
+  threshold and not an indeterminacy rule.
+- It is reported by scenario as dataset-level any-of-nine fractions. Even 1%
+  independent pair flags give 8.65% dataset flags.
+- Any fitted design must declare its own support and failure rule before
+  running.
 
 ## 4. First diagnostic (eight cells)
 
@@ -146,8 +153,9 @@ involves no fits.
 
 ## 5. Streams (disjoint and bound)
 
-Every stream comes from NumPy `default_rng` seeded with an integer sequence,
-which makes them collision-free by construction.
+Every stream comes from NumPy `default_rng` seeded with an integer sequence.
+Astra verified that all 16,000 initial states are distinct in the reviewed
+runtime. That is not a proof of collision-free or non-overlapping streams.
 - **E draws:** `default_rng([20261014, 1, cell, trial, population_index])`.
 - **Reference draws:** `default_rng([20261014, 2, cell, trial])`, passed to
   the reference sampler. Populations are drawn in the frozen design order.
@@ -159,7 +167,7 @@ before Stage 0, as in the A power screen.
 
 ## 6. What it can and cannot show
 
-**Can show:** whether stylized rate information at two levels restores
+**Can show (a fitted stage, if one is later commissioned):** whether stylized rate information at two levels restores
 support-limited calibration where v1 failed (b3), and what it costs in
 detection (b5, b16), on development outers.
 
@@ -208,3 +216,42 @@ calibration threshold or a frozen indeterminacy rule.
 radii, unusable weights, and any-of-nine flag fractions by scenario, n and
 comparator. **Stage 0 cannot measure calibration or power.** It returns its
 report and stops.
+
+
+## 8. Next step: bounded informative-sampler prototype (15 October)
+
+This adopts Astra's proposal
+(`notes/astra_informative_reference_proposal_20261014.md`; board 1647).
+Fable implements; Astra audits.
+
+**Sampler.** Evidence-rejection sampling, which targets
+π_b(θ)·L(E|θ)·m0(N|θ)·1{S, A}·1{C(N) ∈ B_i}:
+1. Draw θ from the full prior.
+2. Accept θ with probability L(E|θ)/M_E. The Poisson factor is applied first,
+   then the binomial with an independent uniform.
+3. Simulate one null path.
+4. Retain the path only if S, A and the closed C-ball B_i hold.
+5. Restart θ after every failure.
+
+**Bound.** M_E is the analytic maximum: H_E at u = k/n, v = r/n, using the
+0·log 0 convention. For the ideal comparator, k = n·u0 and r = n·v0. The
+n = 0 control uses prior draws only.
+
+**Settings.** Twenty in total: wild dog and Hawaiian crow × b1/b3 trial 0 ×
+(n = 30 and 300, noisy and ideal), plus an n = 0 control for each pair. The
+Stage 0 E values are reused, with new bound streams.
+
+**C-ball.** B_i is a closed ball at the full-precision Stage 0 K-th radius in
+the frozen metric. Boundary hits are counted separately, and the adjacent
+floating-point radii are checked.
+
+**Caps.**
+- At most 10⁶ prior proposals or 10⁵ paths per setting, whichever comes
+  first.
+- A balanced, bound batch schedule across the settings.
+- At most 4 workers, single-threaded numerics, and 30 minutes wall time for
+  the whole prototype, including the bank-scan forecast and the tests.
+
+**Report.** Acceptance, path, S/A and ball counts; costs; and explicitly
+uncertain retention forecasts from a closed-ball scan of the existing bank.
+Then **stop**: no fits, no full banks, no kunanyi.

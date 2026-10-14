@@ -1,6 +1,6 @@
 {
  "retrieved": "2026-10-14 (Australia/Hobart)",
- "note": "Pinned snapshots of public sources, downloaded by Fable on 14 October 2026; not vendored. Lamb files are pinned to Git commit f069f1f6 only (not claimed identical to either Zenodo ZIP). The live WSI query returned a file whose hash differs from Astra's 13-14 October snapshot; its 23 'Individuals' rows (IDs, years, methods, values, best flags and notes) are identical to Astra's receipt.",
+ "note": "Pinned snapshots of public sources, downloaded by Fable on 14 October 2026; not vendored. Lamb files are pinned to Git commit f069f1f6 only (not claimed identical to either Zenodo ZIP). The live WSI query returned a file whose hash differs from Astra's 13-14 October snapshot; its 23 'Individuals' rows (IDs, years, methods, values, best flags and notes) are identical to Astra's receipt. From 15 October 2026 the build checks the WSI by a content hash over the 23 Individuals rows' declared fields (ID, year, month, day, method code and name, value, BEST flag, detail and general notes), verified identical to Astra's receipt; whole-file hashes vary with generated feature IDs and timestamps (observed 0360becd\u2026, b14dc790\u2026, Astra 299f5b70\u2026).",
  "banff_primary_text": {
   "citation": "Hebblewhite, White & Musiani 2010, Conservation Biology, doi:10.1111/j.1523-1739.2009.01343.x",
   "url": "https://www.researchgate.net/publication/38024114_Revisiting_Extinction_in_National_Parks_Mountain_Caribou_in_Banff",
@@ -61,5 +61,6 @@
    "sha256_fable": "2076039b92f9fb71d07e3429e54b394e775fd0049422547a35628e0edc2a3672",
    "sha256_astra": "2076039b92f9fb71d07e3429e54b394e775fd0049422547a35628e0edc2a3672"
   }
- }
+ },
+ "wsi_individuals_content_sha256": "309ac967d022699c26906e48ae9abe34461c63f3fcb85025148ca9059845cc30"
 }
