@@ -1,0 +1,1206 @@
+{
+  "audited_at": "2026-10-14T16:43:02.334394+11:00",
+  "checkout": "3437fcdcf751bce1a4a0622a9f80d6299b3e734d",
+  "scope": "Pinned-source descriptive audit; no fits, intervals, source amendment or publication",
+  "source_hashes": {
+    "pc.csv": {
+      "bytes": 31466,
+      "sha256": "623bb71d011721c7dc59254d7eb1cf6c849d92bae0579d2b7671f350afc43c83"
+    },
+    "wsi_central.json": {
+      "bytes": 44496953,
+      "sha256": "0360becdc85e3519e8ff4ec6e68c4279c9d8fdc050d08eb1780582c420575573"
+    },
+    "counts.csv": {
+      "bytes": 39638,
+      "sha256": "43c3e55ad82fe70783e417c39f2e7ff27f33fa9657a846f409a138f59dc40629"
+    },
+    "survival.csv": {
+      "bytes": 25020,
+      "sha256": "d45a4fc39d579c2e0815671910567073ce9e7212e03109e81447beba4e7748da"
+    },
+    "recruitment.csv": {
+      "bytes": 33022,
+      "sha256": "e3ffd4bd7feb6afab314c9815fbf9fe8c44ce1d43bfd310a73acd47dc8c32773"
+    },
+    "recruitment_counts.csv": {
+      "bytes": 29831,
+      "sha256": "1784440c7664205e71f68bbf312579ef4a8cd0422682111e166ae73f63a8ac68"
+    },
+    "transplants.csv": {
+      "bytes": 1634,
+      "sha256": "aae39c167c59a5814a5159ca0c56e14ada2275c02d482630126f343afd291f15"
+    },
+    "treatments.csv": {
+      "bytes": 413907,
+      "sha256": "9c161ccca4c553b799e7fc9a227915e96c96f7a6e5890c5749e033b35a732270"
+    },
+    "dataprep.Rmd": {
+      "bytes": 54876,
+      "sha256": "2076039b92f9fb71d07e3429e54b394e775fd0049422547a35628e0edc2a3672"
+    }
+  },
+  "Williams_input_sha256": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168",
+  "WSI_comparison": {
+    "rows_each": 92,
+    "individuals_each": 23,
+    "full_properties_identical": true,
+    "geometry_identical": true,
+    "top_level_changes": [
+      "timeStamp"
+    ],
+    "feature_changed_keys": [
+      "id"
+    ],
+    "previous_review_prose_25_is_error": true,
+    "general_notes_omitted_from_new_census_table": [
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5676,
+        "SUMMARY_YEAR": 2006,
+        "SUMMARY_MONTH": 4,
+        "SUMMARY_DAY": 12,
+        "SUMMARY_GENERAL_NOTE": "As of 2006, the South Purcells caribou were split into 2 distinct herds: Purcell Central and Purcells South. Data in reports prior to 2006 were summarized for South Purcells."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5765,
+        "SUMMARY_YEAR": 1996,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": 20,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey, as indicated in Figure 4 of the 2006 (Kinley) report; several areas not covered, however caribou had not bee seen in those areas during previous censuses (unpublished data, Kinley, 1996)."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5764,
+        "SUMMARY_YEAR": 1996,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": 20,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey, as indicated in Figure 4 of the 2006 (Kinley) report; several areas not covered, however caribou had not bee seen in those areas during previous censuses (unpublished data, Kinley, 1996)."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5880,
+        "SUMMARY_YEAR": 2003,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": null,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey, as indicated in Figure 5 of 2006 report (Kinley); consisted of 2 partial surveys covering limited areas (Kinley, 2004); survey date is unknown (raw data and report not located)."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5881,
+        "SUMMARY_YEAR": 2003,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": null,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey, as indicated in Figure 5 of 2006 report (Kinley); consisted of 2 partial surveys covering limited areas (Kinley, 2004); survey date is unknown (raw data and report not located)."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5687,
+        "SUMMARY_YEAR": 2005,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": null,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey - indicated in Figure 5 of 2006 report (Kinley), details not provided; survey date is unknown (raw data and report not located)."
+      },
+      {
+        "SURVEY_SUMMARY_DETAIL_ID": 5688,
+        "SUMMARY_YEAR": 2005,
+        "SUMMARY_MONTH": 3,
+        "SUMMARY_DAY": null,
+        "SUMMARY_GENERAL_NOTE": "Incomplete survey - indicated in Figure 5 of 2006 report (Kinley), details not provided; survey date is unknown (raw data and report not located)."
+      }
+    ]
+  },
+  "Maligne_flights": [
+    {
+      "survey_year": 1988,
+      "flight_date": "1988-10-07",
+      "group_records": 6,
+      "ids": [
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 40,
+      "calves": 8
+    },
+    {
+      "survey_year": 1993,
+      "flight_date": "1993-10-08",
+      "group_records": 12,
+      "ids": [
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 41,
+      "calves": 10
+    },
+    {
+      "survey_year": 1996,
+      "flight_date": "1996-10-02",
+      "group_records": 9,
+      "ids": [
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "169"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 40,
+      "calves": 3
+    },
+    {
+      "survey_year": 1998,
+      "flight_date": "1998-09-30",
+      "group_records": 15,
+      "ids": [
+        "181",
+        "182",
+        "183",
+        "184",
+        "185",
+        "186",
+        "187",
+        "188",
+        "189",
+        "190",
+        "191",
+        "192",
+        "193",
+        "194",
+        "195"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 68,
+      "calves": 15
+    },
+    {
+      "survey_year": 2000,
+      "flight_date": "2000-10-19",
+      "group_records": 8,
+      "ids": [
+        "208",
+        "209",
+        "210",
+        "211",
+        "212",
+        "213",
+        "214",
+        "215"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 41,
+      "calves": 6
+    },
+    {
+      "survey_year": 2001,
+      "flight_date": "2001-09-28",
+      "group_records": 5,
+      "ids": [
+        "222",
+        "223",
+        "224",
+        "225",
+        "226"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 21,
+      "calves": 4
+    },
+    {
+      "survey_year": 2003,
+      "flight_date": "2003-09-26",
+      "group_records": 6,
+      "ids": [
+        "230",
+        "231",
+        "232",
+        "233",
+        "234",
+        "235"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 24,
+      "calves": 4
+    },
+    {
+      "survey_year": 2004,
+      "flight_date": "2004-09-28",
+      "group_records": 3,
+      "ids": [
+        "252",
+        "253",
+        "254"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 11,
+      "calves": 1
+    },
+    {
+      "survey_year": 2005,
+      "flight_date": "2005-09-21",
+      "group_records": 2,
+      "ids": [
+        "271",
+        "272"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 8,
+      "calves": 1
+    },
+    {
+      "survey_year": 2006,
+      "flight_date": "2006-10-11",
+      "group_records": 3,
+      "ids": [
+        "277",
+        "278",
+        "279"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 8,
+      "calves": 2
+    },
+    {
+      "survey_year": 2007,
+      "flight_date": "2007-10-04",
+      "group_records": 1,
+      "ids": [
+        "302"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 5,
+      "calves": 0
+    },
+    {
+      "survey_year": 2008,
+      "flight_date": "2008-10-18",
+      "group_records": 3,
+      "ids": [
+        "321",
+        "322",
+        "323"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 6,
+      "calves": 2
+    },
+    {
+      "survey_year": 2009,
+      "flight_date": "2009-10-09",
+      "group_records": 1,
+      "ids": [
+        "355"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 4,
+      "calves": 1
+    },
+    {
+      "survey_year": 2010,
+      "flight_date": "2010-10-15",
+      "group_records": 3,
+      "ids": [
+        "358",
+        "377",
+        "378"
+      ],
+      "blank_total_ids": [
+        "378"
+      ],
+      "recorded_total": 6,
+      "calves": 0
+    },
+    {
+      "survey_year": 2011,
+      "flight_date": "2011-10-22",
+      "group_records": 2,
+      "ids": [
+        "392",
+        "393"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 6,
+      "calves": 1
+    },
+    {
+      "survey_year": 2012,
+      "flight_date": "2012-10-04",
+      "group_records": 1,
+      "ids": [
+        "396"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 6,
+      "calves": 1
+    },
+    {
+      "survey_year": 2013,
+      "flight_date": "2013-10-03",
+      "group_records": 1,
+      "ids": [
+        "413"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 5,
+      "calves": 0
+    },
+    {
+      "survey_year": 2014,
+      "flight_date": "2014-10-28",
+      "group_records": 2,
+      "ids": [
+        "423",
+        "424"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 4,
+      "calves": 0
+    },
+    {
+      "survey_year": 2015,
+      "flight_date": "2015-10-14",
+      "group_records": 1,
+      "ids": [
+        "433"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 3,
+      "calves": 1
+    },
+    {
+      "survey_year": 2016,
+      "flight_date": "2016-10-11",
+      "group_records": 1,
+      "ids": [
+        "446"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 3,
+      "calves": 1
+    },
+    {
+      "survey_year": 2017,
+      "flight_date": "2017-10-14",
+      "group_records": 1,
+      "ids": [
+        "453"
+      ],
+      "blank_total_ids": [],
+      "recorded_total": 3,
+      "calves": 1
+    }
+  ],
+  "Maligne_count_conflicts": [
+    {
+      "year": 2001,
+      "parks": 21,
+      "archive": 12
+    },
+    {
+      "year": 2003,
+      "parks": 24,
+      "archive": 19
+    },
+    {
+      "year": 2004,
+      "parks": 11,
+      "archive": 7
+    },
+    {
+      "year": 2006,
+      "parks": 8,
+      "archive": 7
+    },
+    {
+      "year": 2008,
+      "parks": 6,
+      "archive": 4
+    },
+    {
+      "year": 2014,
+      "parks": 4,
+      "archive": 2
+    }
+  ],
+  "Maligne_records_378_423_424": [
+    {
+      "Unique ID": "378",
+      "Survey type": "rut",
+      "Day": "15",
+      "Month": "10",
+      "Year": "2010",
+      "Location": "Evelyn Creek",
+      "Region": "Maligne",
+      "Total number of individuals": "",
+      "Adult -unknown sex": "",
+      "Adult - Male": "",
+      "Adult - Female": "",
+      "Yearling - sex unknown": "",
+      "Yearling - Male": "",
+      "Yearling - Female": "",
+      "Calf - sex unknown": "",
+      "Calf -Male": "",
+      "Calf - Female": ""
+    },
+    {
+      "Unique ID": "423",
+      "Survey type": "rut",
+      "Day": "28",
+      "Month": "10",
+      "Year": "2014",
+      "Location": "Maligne Pass",
+      "Region": "Maligne",
+      "Total number of individuals": "2",
+      "Adult -unknown sex": "",
+      "Adult - Male": "1",
+      "Adult - Female": "1",
+      "Yearling - sex unknown": "",
+      "Yearling - Male": "",
+      "Yearling - Female": "",
+      "Calf - sex unknown": "",
+      "Calf -Male": "",
+      "Calf - Female": ""
+    },
+    {
+      "Unique ID": "424",
+      "Survey type": "rut",
+      "Day": "28",
+      "Month": "10",
+      "Year": "2014",
+      "Location": "North of Maligne Pass",
+      "Region": "Maligne",
+      "Total number of individuals": "2",
+      "Adult -unknown sex": "",
+      "Adult - Male": "1",
+      "Adult - Female": "1",
+      "Yearling - sex unknown": "",
+      "Yearling - Male": "",
+      "Yearling - Female": "",
+      "Calf - sex unknown": "",
+      "Calf -Male": "",
+      "Calf - Female": ""
+    }
+  ],
+  "Purcells_archive_class_crosswalk": [
+    {
+      "year": 1994,
+      "archive_count": 15,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 1995,
+      "archive_count": 15,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 1996,
+      "archive_count": 17,
+      "MinUsed": "1",
+      "matching_WSI_class": "MNKA"
+    },
+    {
+      "year": 1997,
+      "archive_count": 14,
+      "MinUsed": "1",
+      "matching_WSI_class": "MNKA"
+    },
+    {
+      "year": 1998,
+      "archive_count": 5,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2000,
+      "archive_count": 5,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2002,
+      "archive_count": 5,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2003,
+      "archive_count": 6,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2004,
+      "archive_count": 6,
+      "MinUsed": "1",
+      "matching_WSI_class": "MNKA"
+    },
+    {
+      "year": 2005,
+      "archive_count": 1,
+      "MinUsed": "1",
+      "matching_WSI_class": "MNKA"
+    },
+    {
+      "year": 2006,
+      "archive_count": 0,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2007,
+      "archive_count": 0,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    },
+    {
+      "year": 2009,
+      "archive_count": 0,
+      "MinUsed": "0",
+      "matching_WSI_class": "OTC"
+    }
+  ],
+  "Banff_exact_matches": 16,
+  "survival_rows": [
+    {
+      "herd": "Maligne",
+      "year": "2002",
+      "est": "1",
+      "sd": "0.2142916725421707"
+    },
+    {
+      "herd": "Maligne",
+      "year": "2003",
+      "est": "1",
+      "sd": "0.12818004525491689"
+    },
+    {
+      "herd": "Maligne",
+      "year": "2004",
+      "est": "0.7142857142857143",
+      "sd": "0.17074694419062766"
+    },
+    {
+      "herd": "Maligne",
+      "year": "2005",
+      "est": "0.75",
+      "sd": "0.21650635094610965"
+    },
+    {
+      "herd": "Maligne",
+      "year": "2006",
+      "est": "0.75",
+      "sd": "0.21650635094610965"
+    },
+    {
+      "herd": "Maligne",
+      "year": "2007",
+      "est": "0.6666666666666666",
+      "sd": "0.2721655269759087"
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1994",
+      "est": "1",
+      "sd": "0.2692690832095395"
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1995",
+      "est": "1",
+      "sd": "0.27358212754828654"
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1996",
+      "est": "0.6666666666666666",
+      "sd": "0.2721655269759087"
+    }
+  ],
+  "composition_source_crosswalk": [
+    {
+      "herd": "Maligne",
+      "year": "2014",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "0",
+      "adults": "5",
+      "recruitment": "0",
+      "survey_calendar_year": 2013,
+      "PC_flight_date": "2013-10-03",
+      "PC_calves": 0,
+      "PC_recorded_noncalves": 5,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "2013",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "5",
+      "recruitment": "0.2",
+      "survey_calendar_year": 2012,
+      "PC_flight_date": "2012-10-04",
+      "PC_calves": 1,
+      "PC_recorded_noncalves": 5,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "2010",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "3",
+      "recruitment": "0.3333333333333333",
+      "survey_calendar_year": 2009,
+      "PC_flight_date": "2009-10-09",
+      "PC_calves": 1,
+      "PC_recorded_noncalves": 3,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "2009",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "3",
+      "recruitment": "0.3333333333333333",
+      "survey_calendar_year": 2008,
+      "PC_flight_date": "2008-10-18",
+      "PC_calves": 2,
+      "PC_recorded_noncalves": 4,
+      "composition_matches_PC": false
+    },
+    {
+      "herd": "Maligne",
+      "year": "2008",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "0",
+      "adults": "5",
+      "recruitment": "0",
+      "survey_calendar_year": 2007,
+      "PC_flight_date": "2007-10-04",
+      "PC_calves": 0,
+      "PC_recorded_noncalves": 5,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "2007",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "2",
+      "adults": "5",
+      "recruitment": "0.4",
+      "survey_calendar_year": 2006,
+      "PC_flight_date": "2006-10-11",
+      "PC_calves": 2,
+      "PC_recorded_noncalves": 6,
+      "composition_matches_PC": false
+    },
+    {
+      "herd": "Maligne",
+      "year": "2006",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "7",
+      "recruitment": "0.14285714285714285",
+      "survey_calendar_year": 2005,
+      "PC_flight_date": "2005-09-21",
+      "PC_calves": 1,
+      "PC_recorded_noncalves": 7,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "2005",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "6",
+      "recruitment": "0.16666666666666666",
+      "survey_calendar_year": 2004,
+      "PC_flight_date": "2004-09-28",
+      "PC_calves": 1,
+      "PC_recorded_noncalves": 10,
+      "composition_matches_PC": false
+    },
+    {
+      "herd": "Maligne",
+      "year": "2004",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "4",
+      "adults": "15",
+      "recruitment": "0.26666666666666666",
+      "survey_calendar_year": 2003,
+      "PC_flight_date": "2003-09-26",
+      "PC_calves": 4,
+      "PC_recorded_noncalves": 20,
+      "composition_matches_PC": false
+    },
+    {
+      "herd": "Maligne",
+      "year": "2002",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "4",
+      "adults": "8",
+      "recruitment": "0.5",
+      "survey_calendar_year": 2001,
+      "PC_flight_date": "2001-09-28",
+      "PC_calves": 4,
+      "PC_recorded_noncalves": 17,
+      "composition_matches_PC": false
+    },
+    {
+      "herd": "Maligne",
+      "year": "2001",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "6",
+      "adults": "35",
+      "recruitment": "0.17142857142857143",
+      "survey_calendar_year": 2000,
+      "PC_flight_date": "2000-10-19",
+      "PC_calves": 6,
+      "PC_recorded_noncalves": 35,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "1999",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "15",
+      "adults": "53",
+      "recruitment": "0.2830188679245283",
+      "survey_calendar_year": 1998,
+      "PC_flight_date": "1998-09-30",
+      "PC_calves": 15,
+      "PC_recorded_noncalves": 53,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "1997",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "3",
+      "adults": "37",
+      "recruitment": "0.08108108108108109",
+      "survey_calendar_year": 1996,
+      "PC_flight_date": "1996-10-02",
+      "PC_calves": 3,
+      "PC_recorded_noncalves": 37,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Maligne",
+      "year": "1994",
+      "season": "fall",
+      "type": "OTC",
+      "calves": "10",
+      "adults": "31",
+      "recruitment": "0.3225806451612903",
+      "survey_calendar_year": 1993,
+      "PC_flight_date": "1993-10-08",
+      "PC_calves": 10,
+      "PC_recorded_noncalves": 31,
+      "composition_matches_PC": true
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "2004",
+      "season": "winter",
+      "type": "MNKA",
+      "calves": "1",
+      "adults": "5",
+      "recruitment": "0.2",
+      "survey_calendar_year": 2004
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "2003",
+      "season": "winter",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "5",
+      "recruitment": "0.2",
+      "survey_calendar_year": 2003
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1997",
+      "season": "winter",
+      "type": "MNKA",
+      "calves": "1",
+      "adults": "13",
+      "recruitment": "0.07692307692307693",
+      "survey_calendar_year": 1997
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1996",
+      "season": "winter",
+      "type": "OTC",
+      "calves": "1",
+      "adults": "12",
+      "recruitment": "0.08333333333333333",
+      "survey_calendar_year": 1996
+    },
+    {
+      "herd": "Purcells Central",
+      "year": "1994",
+      "season": "winter",
+      "type": "OTC",
+      "calves": "2",
+      "adults": "13",
+      "recruitment": "0.15384615384615385",
+      "survey_calendar_year": 1994
+    }
+  ],
+  "treatment_checks": {
+    "Maligne": {
+      "years": [
+        1973,
+        2023
+      ],
+      "rows": 306,
+      "applied_values": [
+        "0",
+        "NA"
+      ],
+      "zero_years": [
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "NA_years": [
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987
+      ],
+      "categories": [
+        "feed",
+        "pen",
+        "reduce moose",
+        "reduce wolves",
+        "sterilize wolves",
+        "transplant"
+      ]
+    },
+    "Purcells Central": {
+      "years": [
+        1973,
+        2023
+      ],
+      "rows": 306,
+      "applied_values": [
+        "0",
+        "NA"
+      ],
+      "zero_years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "NA_years": [
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990
+      ],
+      "categories": [
+        "feed",
+        "pen",
+        "reduce moose",
+        "reduce wolves",
+        "sterilize wolves",
+        "transplant"
+      ]
+    },
+    "Banff": {
+      "years": [
+        1973,
+        2023
+      ],
+      "rows": 306,
+      "applied_values": [
+        "0",
+        "NA"
+      ],
+      "zero_years": [
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "NA_years": [
+        1973,
+        1974,
+        1975,
+        1976,
+        1977,
+        1978,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985
+      ],
+      "categories": [
+        "feed",
+        "pen",
+        "reduce moose",
+        "reduce wolves",
+        "sterilize wolves",
+        "transplant"
+      ]
+    }
+  },
+  "Purcell_transplant_rows": [
+    {
+      "herd": "Purcell South",
+      "year": "2012",
+      "adultF": "16",
+      "yrlF": "",
+      "calfF": "",
+      "adultM": "3",
+      "yrlM": "",
+      "calfM": "",
+      "citation": "",
+      "comment": "The Purcells-South mountain caribou herd in the Kootenay Region has a current population estimated at only 14 in 2010"
+    }
+  ],
+  "rebuild": {
+    "temporary_directory": "/tmp/astra_caribou_rebuild_oh360dtd",
+    "run": {
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--with",
+        "matplotlib",
+        "python",
+        "/tmp/astra_caribou_rebuild_oh360dtd/analysis/fable/caribou/make_caribou.py",
+        "/tmp/claude-1000/-home-bwbrook-papers-project/2114b555-0c74-405f-bb3d-7860a2e979f1/scratchpad/caribou_src"
+      ],
+      "stdout": "hashes ok: ['counts.csv', 'dataprep.Rmd', 'pc.csv', 'recruitment.csv', 'recruitment_counts.csv', 'survival.csv', 'transplants.csv', 'treatments.csv', 'wsi_central.json']\nBanff crosswalk: 16 of 16\n",
+      "stderr": ""
+    },
+    "generated_files": [
+      "banff_census.csv",
+      "caribou_case.pdf",
+      "caribou_case.png",
+      "demographic_evidence.csv",
+      "maligne_census.csv",
+      "purcells_central_census.csv"
+    ],
+    "file_comparisons": {
+      "banff_census.csv": {
+        "byte_equal": true,
+        "rebuilt_sha256": "2be5de49a8a384e6ce6da0c14bf383583c2a1360e6b51b1e8693c67bdc39531c",
+        "delivered_sha256": "2be5de49a8a384e6ce6da0c14bf383583c2a1360e6b51b1e8693c67bdc39531c"
+      },
+      "caribou_case.pdf": {
+        "byte_equal": false,
+        "rebuilt_sha256": "4d60a58509b981ae2b514faabb184c7f855f5b794c75e04afa22379ec710e0b7",
+        "delivered_sha256": "70afa24d2a5a8804978cc3d40a04e0e6688fdd303f6f0cfd724060d794bd9f12"
+      },
+      "caribou_case.png": {
+        "byte_equal": true,
+        "rebuilt_sha256": "5d9ea09ca303a99ffddabd2c5e17b802ee0ade7795db90671face3c793474581",
+        "delivered_sha256": "5d9ea09ca303a99ffddabd2c5e17b802ee0ade7795db90671face3c793474581"
+      },
+      "demographic_evidence.csv": {
+        "byte_equal": true,
+        "rebuilt_sha256": "5a62c11cc898213076aa36a08acb631134ae20892de2b051be669f76085b5c8c",
+        "delivered_sha256": "5a62c11cc898213076aa36a08acb631134ae20892de2b051be669f76085b5c8c"
+      },
+      "maligne_census.csv": {
+        "byte_equal": true,
+        "rebuilt_sha256": "f1d1167c20fea8ce92ad502f305d2c329586f7052d0b91725813f201d8b7cfa8",
+        "delivered_sha256": "f1d1167c20fea8ce92ad502f305d2c329586f7052d0b91725813f201d8b7cfa8"
+      },
+      "purcells_central_census.csv": {
+        "byte_equal": true,
+        "rebuilt_sha256": "f7eaf7049b761bcaf35262bc72a7c7cb8524b1f7f170ffbb1836b0b16246d654",
+        "delivered_sha256": "f7eaf7049b761bcaf35262bc72a7c7cb8524b1f7f170ffbb1836b0b16246d654"
+      }
+    },
+    "png_comparison": {
+      "matplotlib": "3.11.2",
+      "shapes_equal": true,
+      "pixels_equal": true
+    },
+    "pdf_check": {
+      "command": [
+        "qpdf",
+        "--check",
+        "/tmp/astra_caribou_rebuild_oh360dtd/analysis/fable/caribou/caribou_case.pdf"
+      ],
+      "stdout": "checking /tmp/astra_caribou_rebuild_oh360dtd/analysis/fable/caribou/caribou_case.pdf\nPDF Version: 1.4\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect\n",
+      "stderr": ""
+    },
+    "delivered_pdf_check": {
+      "command": [
+        "qpdf",
+        "--check",
+        "/home/bwbrook/papers/project/analysis/fable/caribou/caribou_case.pdf"
+      ],
+      "stdout": "checking /home/bwbrook/papers/project/analysis/fable/caribou/caribou_case.pdf\nPDF Version: 1.4\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect\n",
+      "stderr": ""
+    },
+    "pdf_render": "/tmp/astra_caribou_rebuild_oh360dtd/rebuilt_pdf.png",
+    "PDF_rendered_PNGs_byte_equal": true,
+    "events_timeline_generated": false
+  },
+  "provenance_limit": "Earlier primary-paper and management-page readings reused; no renewed source search or raw individual-history recovery. Source snapshots remain outside repository."
+}

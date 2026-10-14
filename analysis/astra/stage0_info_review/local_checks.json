@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-10-14T16:42:37.792825+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "head": "3437fcdcf751bce1a4a0622a9f80d6299b3e734d",
+  "remote_receipt_sha256": "d86cb57a40329396d6619482b4278508028c081f855c37d1d5b812e04b67d5e4",
+  "committed_raw_and_member_hash_matches": 18,
+  "local_and_remote_inputs_report_runner_manifest_match": true,
+  "pre_weight_commit": "1f82fe4",
+  "pre_weight_commit_hashes": {
+    "analysis/fable/calibration/v2_dev/s0_info.py": "c42534764dff7f587d845e599c5a196ee16e2a32dbf83f1d1bbf968c920710d5",
+    "analysis/fable/calibration/v2_dev/s0/s0_inputs.json": "e1479a2f2a96ad5321fe89b25b30df8b21a69792e7ba4907f9a95714343b0126"
+  },
+  "d1c2_file_sha256": "4489009bb90cc6f2825fef2426607b3eeea6e22e391332a964e5ab90b78d118f",
+  "null_neighbourhood_digest_matches": 3600,
+  "null_member_digest_sha256": {
+    "wild_dog": "bedf52aff53ea426b15c70f4f9deb9b8cfcb4e82fd0cc1233f6adf2d06e50da8",
+    "marmot": "211b91053323e1e2079c180eeff0dbd2402b2395d5f13780dae6533072a8c8af",
+    "ms_woodpecker": "2acae4cde6e75458663d864d8838ae53b2d7c9f06bbc5cf78e81d0272cacfad0",
+    "rc_woodpecker": "8e97f0612ae7bad411ace6b9fa828ac7fe188394e4d21e5b3edbed64736ffd85",
+    "golden_plover": "183c6c1b26cb50798a5870e6d14c1dba29ab5ead1484991c5c37f96b0fb89b75",
+    "whooping_crane": "22820e6ea64de7b802bcc13becc4e1c4f46fbb8f7c49f0e08cb10d828f2b6451",
+    "hawaiian_crow": "765dcdb009c688bc156ed993a18b7067d55dd84925d77af6f54c2fc561dafce3",
+    "wood_turtle_A": "194cae29e287e4564b6a2e6cb2655bd2a9cd9da01543197519a0040be486709c",
+    "wood_turtle_B": "4e1eab85d1f2aecd1ce7f94a16668a399bcfd307df598175285c9645f4cdced3"
+  },
+  "reuse_previous_quadrature_receipt": {
+    "path": "analysis/astra/artifact_review_20261014/info_checks.json",
+    "sha256": "d29d428e41306150e9130e25f1c303836b79f3a5221ca04dcdc50eb73961e062",
+    "cases": 45,
+    "max_absolute_error": 7.771561172376096e-16
+  },
+  "actual_helper_fixtures": {
+    "production_self_test_passed": true,
+    "finite_noisy_fixture_cases": 3,
+    "maximum_ess_or_share_error": 2.220446049250313e-16,
+    "ideal_logweight_error": 5.684341886080802e-14,
+    "mixed_positive_inf_observed": {
+      "usable": true,
+      "ess": 1.0,
+      "max_share": 1.0
+    },
+    "ideal_zero_true_and_candidate_rates_return_nan": true,
+    "edge_case_scope": "Malformed +inf weights and exact zero/one model rates; no observed invalid or boundary rates established in the completed finite summaries."
+  },
+  "report_contract_fixture": {
+    "report_accepted_all_populations_missing_same_outer": true,
+    "observed_cell0_denominator": 199,
+    "observed_neighbourhood_count": 7191,
+    "changed_helper_and_runtime_bindings_accepted": true,
+    "wrong_population_labels_and_absent_member_payloads_accepted": true,
+    "impact": "Reuse guard failure; independent checks show the completed report has exactly 200 unique complete outers per cell and matching artifact hashes."
+  }
+}

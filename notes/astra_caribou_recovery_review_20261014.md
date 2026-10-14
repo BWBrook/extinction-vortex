@@ -26,7 +26,7 @@ Some earlier rows are identical except for unique ID: `144/148/149` (1993), `166
 
 The source has more composition information than a total-only trajectory. Calf versus non-calf data can inform recruitment conditional on census timing and classification. They share a sampling event and denominator with abundance, so a joint likelihood or conditional composition analysis is appropriate; counting the same total twice as independent evidence is not. This dependence does not make the composition automatically unusable. The archive's `dataprep.Rmd` also subtracts unclassified life stage/sex from recruitment denominators: “non-calf denominator” should therefore be read as classified non-calves under that construction, not necessarily every non-calf animal present.
 
-**Purcells Central.** The public WSI query returns 92 unsecured summary rows, 25 with parameter `Individuals`. The critical crosswalk independently reproduces:
+**Purcells Central.** The public WSI query returns 92 unsecured summary rows, 23 with parameter `Individuals`. The critical crosswalk independently reproduces:
 
 | Year | WSI OTC | WSI MNKA | Archive count | WSI qualification |
 |---|---:|---:|---:|---|
@@ -64,3 +64,8 @@ Palmer does not require another search for this tranche. The matrix's documented
 Reproduction: download the six URLs in the receipt manifest to the named files in a temporary directory, then run `python3 analysis/astra/a_power_review/caribou_source_checks.py INPUT_DIR OUTPUT.json`. This replays the CSV/WFS/version tabulations. The Banff paper findings are a separately labelled direct reading, not automated verification. Earlier ZIP-content inspections, source-report transcriptions and historical endpoint checks were not all repeated here. No empirical fit, author contact or source-data amendment was performed.
 
 14 October 2026, 11:36 AEDT (Australia/Hobart).
+
+Correction, 14 October 2026 afternoon: changed the prose count of WSI
+`Individuals` rows from 25 to 23. The original machine receipt already
+contained 23; comparison with the later snapshot confirms identical source
+properties and geometries. No source row or reported crosswalk value changed.

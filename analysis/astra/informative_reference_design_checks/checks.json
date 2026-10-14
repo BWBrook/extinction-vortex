@@ -1,0 +1,28 @@
+{
+  "scope": "Deterministic envelope and finite probability identities only; no sampler or compute benchmark",
+  "noisy_envelope_cases": 1344,
+  "largest_log_acceptance_excess": 0.0,
+  "normalized_kernel_vs_full_pmf_max_error": 1.8189894035458565e-12,
+  "factorized_vs_joint_acceptance_max_error": 8.881784197001252e-15,
+  "ideal_fractional_cases": 200,
+  "joint_selection_example": {
+    "target": [
+      "1/10",
+      "9/10"
+    ],
+    "evidence_then_one_path": [
+      "1/10",
+      "9/10"
+    ],
+    "fixed_q_importance_weights": [
+      "1/10",
+      "9/10"
+    ],
+    "incorrect_hold_theta_until_selected": [
+      "1/2",
+      "1/2"
+    ]
+  },
+  "limits": "Finite numerical examples supplement the analytic concavity bound; no acceptance efficiency, path-wrapper equivalence or statistical calibration measured.",
+  "proposal_sha256_at_check": "70fe1b2797360de760af449fdcfedd917b2cebcda1dbfb24b8cfc6cf017d2d76"
+}

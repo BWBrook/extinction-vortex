@@ -1,0 +1,2744 @@
+{
+  "timestamp": "2026-10-14T16:40:55.261964+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "elapsed_seconds": 7.289,
+  "scope": "Saved outputs, member IDs and source receipts only; no bank arrays/tree, new population simulation, reference draw or fit; replayed saved E draws.",
+  "paths": {
+    "base": "/data/fable/vortex/v2_dev/s0",
+    "source": "/data/fable/vortex/kunanyi_stage/run1/src",
+    "original": "/data/fable/vortex/kunanyi_run1/extract"
+  },
+  "manifest_sha256": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+  "runner_sha256": "c42534764dff7f587d845e599c5a196ee16e2a32dbf83f1d1bbf968c920710d5",
+  "inputs_sha256": "e1479a2f2a96ad5321fe89b25b30df8b21a69792e7ba4907f9a95714343b0126",
+  "report_sha256": "da56d6dfe196f631a6db62f284cd8437a9f072549e11ba58f62eccb61a7bda23",
+  "source_sha256": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "analysis/fable/calibration/tstats_batch.R": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+    "analysis/fable/calibration/score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+    "analysis/fable/calibration/compare_nulls.py": "63304743048808cf214664c520e16a68ab90f85034f3eaf5a3794d3454460b6f",
+    "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+    "analysis/fable/calibration/preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4",
+    "analysis/fable/calibration/collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+    "analysis/fable/calibration/run_validation.sh": "425e016c3497eab71ecf3287703754c90f2f52bc2b32c9d03b6a0e6c3043c0af",
+    "analysis/fable/calibration/empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+    "analysis/fable/calibration/make_manifest.py": "3748feb4732a7a6cd0bef4ec3333929a2c5f5bfadf43843244f4187f98ea793a",
+    "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+  },
+  "bank_meta_sha256": "68180fb9f3fa1392bb8418be2a3af008cdf46aaf2878cc9fbd7de476df76ff15",
+  "bank_shard_rehash_scope": "No fresh shard rehash: s0 run verifies all 180 population shards; metadata freshly rehashed here.",
+  "source_rows_sha256": {
+    "validation_v1/b01_null_prior_predictive/c00": "917eda247a3544d00ed4d6a3bad7b5feaff160f3ab2b49dbb5f51c69d2e3feac",
+    "validation_v1/b01_null_prior_predictive/c01": "aa1e70416db20070c8dfe06046e0d496bef9b25e3839789d19a686e0591458fb",
+    "validation_v1/b03_null_low_s/c00": "a3ca5cbbe93b248dfbd27b632423a3abfdf3fcc3fadd90f0519a95236b461d46",
+    "validation_v1/b03_null_low_s/c01": "8f8cd312491003665970604b92ea09b3e0869b97040b7391ed8c588e46bbd7dd",
+    "validation_v1/b05_MA_betamin/c00": "0102862aa2df2d0b8712b9ab363a7b1bd25ab5a638d54e8abad62f679d6782e9",
+    "validation_v1/b05_MA_betamin/c01": "af6b61c6cd8491308d561c3b9442ec21c7dc7370132b922e7f160a877de4ced1",
+    "validation_v1/b05_MA_betamin/c02": "cbc95de00f606a268bf3a72666952334b4bae80c85467580423699c8fc872e9e",
+    "validation_v1/b05_MA_betamin/c03": "2ea14443e0664df7f8de6597226b5ef772edacbfa2624ad26baf8b5a9943bba5",
+    "validation_v1/b05_MA_betamin/c04": "2d6912197b29c4d17e9c5dcf8fc662a5bdc8cdb27b55820bb70f64f14bf74725",
+    "validation_v1/b05_MA_betamin/c05": "76cc5df749f06689538322d83642334c9014335f033db2845d73bafa993e90e8",
+    "validation_v1/b05_MA_betamin/c06": "887efb5f22298e7d063807e9f1ef477e71eef2de1228ed83b7b864d99f74c2b3",
+    "validation_v1/b16_MA_d10_0.5/c00": "e232b6eb361b44f2b7feb577339edb48db3fb90ee3953764a334a1d9b5ebe965",
+    "validation_v1/b16_MA_d10_0.5/c01": "9e24f7e8e6ab42a14dd6ca6177dd4a836b7533d46cdb1e593b73006aa3e1150b",
+    "validation_v1/b16_MA_d10_0.5/c02": "da7b1d092bb2f40f44a832bc11c9fa858de14d6cd40f139b97d3bb9b3204693c",
+    "validation_v1/b16_MA_d10_0.5/c03": "0da06bfe1dd382f091a4b7452c582a95ab54fc2d37d43f0a21649931bff627df",
+    "validation_v1/b16_MA_d10_0.5/c04": "37ed95112442cab572b76dc16898fa17f5896e1f642c2e33eb40dd86ec8198d0",
+    "validation_v1/b16_MA_d10_0.5/c05": "b85f888e8383c15cbe51e1125d058b6c6af59131f75451d9a857a150e0f6feff",
+    "validation_v1/b16_MA_d10_0.5/c06": "52129aaa1bef5bb7a74499fde928abde7baca755655099d2ec6f97af362d6b14"
+  },
+  "outer_count": 800,
+  "exact_original_outer_matches": 800,
+  "original_outer_duplicate_counts": [
+    1
+  ],
+  "fixed_corner_matches": 1800,
+  "E_replay_matches": 14400,
+  "maximum_functional_error": 4.440892098500626e-16,
+  "raw_sha256": {
+    "s0_wild_dog.json": "c86baac9dc30f78b5172e10850601aaf7b2eb2e936bd74c963d3e33e85d938af",
+    "s0_marmot.json": "dc0cdcbe2c0307fd1077aeaa399334b4855dfc1ffda1c837b91eed6888cffed3",
+    "s0_ms_woodpecker.json": "b845592e52b5f9b826f60e26819b7ff07ce0775ee892b6d2e5556a44e5c8694d",
+    "s0_rc_woodpecker.json": "021450689747963983fe4c93a1019e7678e4ebfa2163ed07ddd47ea55f6a7327",
+    "s0_golden_plover.json": "509a89a31e4e48798c6e426a822202ed4149c2c428a14ad1f4ba5a20597fdcca",
+    "s0_whooping_crane.json": "9fce0190cda61329ce09e7c182a6dbcc68cdad5352d02d769a4800cffaff378a",
+    "s0_hawaiian_crow.json": "69c71150ade94798e78bb59f602babc7270ffb52a7b239259338423c3794f5b4",
+    "s0_wood_turtle_A.json": "de91ba486b07c00cfb19878c4b1f6937998675e4cdb408e86ae8824422030dbc",
+    "s0_wood_turtle_B.json": "16fad54c0ad2de8cfefb7498b90ad25aa95620de2a903df7505a98cda5804375"
+  },
+  "member_sha256": {
+    "members_wild_dog.npz": "dbd6b1862b5085e0d09fbdf2c098c6b236175339eb51ea0c07db20322eead442",
+    "members_marmot.npz": "65aadc4b8bc9441408b769f18afa87979ff3c236da0515397881f7869cd2491b",
+    "members_ms_woodpecker.npz": "65e396fbecf8ff33a1e25eef470f14d15d0f3de854fca21f6b0b80e5566e0cf4",
+    "members_rc_woodpecker.npz": "15f053dade39cc8cb52082c565d261859eebf502b05d49c5b3c18312606f2442",
+    "members_golden_plover.npz": "c6fdc2e62f159f1946c7f6242985451a1154587f10451f61f3231145ce341c42",
+    "members_whooping_crane.npz": "97721c0041f3b9d1e28bdd9fda7f5a60a508f56ad0caa794914e72320d38ab68",
+    "members_hawaiian_crow.npz": "e7918b760fa51fbfca4db6cc35078fcde52d0f95527102fdcf1f1a95c8babd18",
+    "members_wood_turtle_A.npz": "ee1585c520f0ad49485693dbfa38ec6d5218b76518d060e09abe9081134b493b",
+    "members_wood_turtle_B.npz": "e6987b9a239bf7b5a911c7dcc66d0c0b78a3e5815f72d46d37689fc5f7f13609"
+  },
+  "member_checks": {
+    "wild_dog": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 1785,
+      "maximum": 1999999808,
+      "null_digest_count": 400
+    },
+    "marmot": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 1580,
+      "maximum": 1999992956,
+      "null_digest_count": 400
+    },
+    "ms_woodpecker": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 368,
+      "maximum": 1999999338,
+      "null_digest_count": 400
+    },
+    "rc_woodpecker": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 29,
+      "maximum": 1999998756,
+      "null_digest_count": 400
+    },
+    "golden_plover": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 544,
+      "maximum": 1999999007,
+      "null_digest_count": 400
+    },
+    "whooping_crane": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 445,
+      "maximum": 1999999678,
+      "null_digest_count": 400
+    },
+    "hawaiian_crow": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 1188,
+      "maximum": 1999999558,
+      "null_digest_count": 400
+    },
+    "wood_turtle_A": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 374,
+      "maximum": 1999998859,
+      "null_digest_count": 400
+    },
+    "wood_turtle_B": {
+      "shape": [
+        800,
+        2000
+      ],
+      "dtype": "int64",
+      "duplicate_rows": 0,
+      "minimum": 1373,
+      "maximum": 1999999433,
+      "null_digest_count": 400
+    }
+  },
+  "null_member_digest_sha256": {
+    "wild_dog": "bedf52aff53ea426b15c70f4f9deb9b8cfcb4e82fd0cc1233f6adf2d06e50da8",
+    "marmot": "211b91053323e1e2079c180eeff0dbd2402b2395d5f13780dae6533072a8c8af",
+    "ms_woodpecker": "2acae4cde6e75458663d864d8838ae53b2d7c9f06bbc5cf78e81d0272cacfad0",
+    "rc_woodpecker": "8e97f0612ae7bad411ace6b9fa828ac7fe188394e4d21e5b3edbed64736ffd85",
+    "golden_plover": "183c6c1b26cb50798a5870e6d14c1dba29ab5ead1484991c5c37f96b0fb89b75",
+    "whooping_crane": "22820e6ea64de7b802bcc13becc4e1c4f46fbb8f7c49f0e08cb10d828f2b6451",
+    "hawaiian_crow": "765dcdb009c688bc156ed993a18b7067d55dd84925d77af6f54c2fc561dafce3",
+    "wood_turtle_A": "194cae29e287e4564b6a2e6cb2655bd2a9cd9da01543197519a0040be486709c",
+    "wood_turtle_B": "4e1eab85d1f2aecd1ce7f94a16668a399bcfd307df598175285c9645f4cdced3"
+  },
+  "query": {
+    "neighbourhoods": 7200,
+    "boundary_ties": 519,
+    "kth_mismatches_vs_v1_log": 0
+  },
+  "costs": {
+    "wild_dog": {
+      "seconds": 113.2,
+      "peak_rss_gb": 8.99,
+      "bank_rows": 13459632,
+      "members_sha256": "dbd6b1862b5085e0d09fbdf2c098c6b236175339eb51ea0c07db20322eead442"
+    },
+    "marmot": {
+      "seconds": 115.2,
+      "peak_rss_gb": 8.99,
+      "bank_rows": 14536935,
+      "members_sha256": "65aadc4b8bc9441408b769f18afa87979ff3c236da0515397881f7869cd2491b"
+    },
+    "ms_woodpecker": {
+      "seconds": 149.6,
+      "peak_rss_gb": 9.71,
+      "bank_rows": 20323091,
+      "members_sha256": "65e396fbecf8ff33a1e25eef470f14d15d0f3de854fca21f6b0b80e5566e0cf4"
+    },
+    "rc_woodpecker": {
+      "seconds": 206.2,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 28705083,
+      "members_sha256": "15f053dade39cc8cb52082c565d261859eebf502b05d49c5b3c18312606f2442"
+    },
+    "golden_plover": {
+      "seconds": 169.8,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 22037346,
+      "members_sha256": "c6fdc2e62f159f1946c7f6242985451a1154587f10451f61f3231145ce341c42"
+    },
+    "whooping_crane": {
+      "seconds": 149.8,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 19798545,
+      "members_sha256": "97721c0041f3b9d1e28bdd9fda7f5a60a508f56ad0caa794914e72320d38ab68"
+    },
+    "hawaiian_crow": {
+      "seconds": 204.1,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 29895060,
+      "members_sha256": "e7918b760fa51fbfca4db6cc35078fcde52d0f95527102fdcf1f1a95c8babd18"
+    },
+    "wood_turtle_A": {
+      "seconds": 127.9,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 16488428,
+      "members_sha256": "ee1585c520f0ad49485693dbfa38ec6d5218b76518d060e09abe9081134b493b"
+    },
+    "wood_turtle_B": {
+      "seconds": 134.0,
+      "peak_rss_gb": 12.07,
+      "bank_rows": 17686102,
+      "members_sha256": "e6987b9a239bf7b5a911c7dcc66d0c0b78a3e5815f72d46d37689fc5f7f13609"
+    }
+  },
+  "cells": {
+    "0": {
+      "scenario": "null_prior_predictive",
+      "n": 30,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            125.632,
+            392.5216,
+            684.8542,
+            1120.8342,
+            1662.6624
+          ],
+          "marmot": [
+            92.9968,
+            393.7505,
+            655.1589,
+            1094.1244,
+            1686.1822
+          ],
+          "ms_woodpecker": [
+            68.1515,
+            293.5387,
+            500.3414,
+            983.376,
+            1551.6613
+          ],
+          "rc_woodpecker": [
+            67.558,
+            250.7214,
+            496.9798,
+            934.7586,
+            1454.7447
+          ],
+          "golden_plover": [
+            81.677,
+            312.2504,
+            605.5037,
+            1028.0493,
+            1469.8428
+          ],
+          "whooping_crane": [
+            80.8949,
+            335.6698,
+            677.353,
+            1101.3866,
+            1574.5174
+          ],
+          "hawaiian_crow": [
+            81.293,
+            290.6998,
+            555.9822,
+            976.6793,
+            1433.5612
+          ],
+          "wood_turtle_A": [
+            79.677,
+            390.6863,
+            654.4757,
+            1193.3186,
+            1619.8455
+          ],
+          "wood_turtle_B": [
+            59.9708,
+            304.584,
+            608.1448,
+            1030.2535,
+            1582.3799
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0009,
+            0.0017,
+            0.0029,
+            0.0065,
+            0.0219
+          ],
+          "marmot": [
+            0.0009,
+            0.0017,
+            0.0032,
+            0.0062,
+            0.0292
+          ],
+          "ms_woodpecker": [
+            0.001,
+            0.0018,
+            0.0041,
+            0.0086,
+            0.0329
+          ],
+          "rc_woodpecker": [
+            0.0011,
+            0.002,
+            0.0042,
+            0.0092,
+            0.0338
+          ],
+          "golden_plover": [
+            0.001,
+            0.0017,
+            0.0036,
+            0.0072,
+            0.0324
+          ],
+          "whooping_crane": [
+            0.001,
+            0.0016,
+            0.0028,
+            0.0068,
+            0.034
+          ],
+          "hawaiian_crow": [
+            0.0011,
+            0.002,
+            0.0035,
+            0.0074,
+            0.0323
+          ],
+          "wood_turtle_A": [
+            0.0009,
+            0.0015,
+            0.0029,
+            0.0066,
+            0.0302
+          ],
+          "wood_turtle_B": [
+            0.0009,
+            0.0018,
+            0.0033,
+            0.0073,
+            0.0374
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.425,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          80.0082,
+          317.2422,
+          605.5037,
+          1062.5305,
+          1574.1231
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            185.8206,
+            497.6179,
+            872.7404,
+            1442.3394,
+            1805.0106
+          ],
+          "marmot": [
+            109.4699,
+            501.5975,
+            856.5654,
+            1387.2169,
+            1758.7091
+          ],
+          "ms_woodpecker": [
+            119.9905,
+            364.6745,
+            674.5562,
+            1265.7665,
+            1696.1004
+          ],
+          "rc_woodpecker": [
+            78.6155,
+            323.7837,
+            664.8177,
+            1201.4491,
+            1613.6759
+          ],
+          "golden_plover": [
+            132.8929,
+            423.9682,
+            729.4318,
+            1268.2342,
+            1672.0815
+          ],
+          "whooping_crane": [
+            104.5803,
+            426.488,
+            811.5098,
+            1346.3256,
+            1703.507
+          ],
+          "hawaiian_crow": [
+            116.2366,
+            356.4856,
+            635.581,
+            1194.4381,
+            1556.0963
+          ],
+          "wood_turtle_A": [
+            131.3673,
+            445.6572,
+            821.6633,
+            1416.823,
+            1724.8386
+          ],
+          "wood_turtle_B": [
+            92.1079,
+            482.5224,
+            719.3599,
+            1362.0518,
+            1714.5388
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0007,
+            0.001,
+            0.002,
+            0.0037,
+            0.0102
+          ],
+          "marmot": [
+            0.0007,
+            0.0011,
+            0.002,
+            0.0037,
+            0.0213
+          ],
+          "ms_woodpecker": [
+            0.0008,
+            0.0013,
+            0.0027,
+            0.0054,
+            0.018
+          ],
+          "rc_woodpecker": [
+            0.0009,
+            0.0013,
+            0.0028,
+            0.0063,
+            0.0282
+          ],
+          "golden_plover": [
+            0.0008,
+            0.0013,
+            0.0024,
+            0.0045,
+            0.0147
+          ],
+          "whooping_crane": [
+            0.0008,
+            0.0011,
+            0.0023,
+            0.0052,
+            0.0208
+          ],
+          "hawaiian_crow": [
+            0.0009,
+            0.0014,
+            0.0028,
+            0.0055,
+            0.018
+          ],
+          "wood_turtle_A": [
+            0.0008,
+            0.0011,
+            0.0021,
+            0.0041,
+            0.0149
+          ],
+          "wood_turtle_B": [
+            0.0008,
+            0.0012,
+            0.0024,
+            0.0039,
+            0.0216
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.34,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          116.2366,
+          420.1486,
+          756.3833,
+          1317.5665,
+          1714.4093
+        ]
+      }
+    },
+    "1": {
+      "scenario": "null_low_s",
+      "n": 30,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            26.0766,
+            81.9389,
+            147.7908,
+            235.8213,
+            379.9593
+          ],
+          "marmot": [
+            23.1326,
+            81.7146,
+            154.6528,
+            267.0071,
+            428.0953
+          ],
+          "ms_woodpecker": [
+            25.4305,
+            102.0735,
+            212.9435,
+            334.2793,
+            525.5817
+          ],
+          "rc_woodpecker": [
+            117.4366,
+            305.38,
+            506.5821,
+            699.1349,
+            941.1408
+          ],
+          "golden_plover": [
+            17.4216,
+            66.4573,
+            146.5845,
+            272.9075,
+            507.7651
+          ],
+          "whooping_crane": [
+            137.1742,
+            510.7791,
+            857.8692,
+            1109.3403,
+            1450.7651
+          ],
+          "hawaiian_crow": [
+            316.018,
+            704.5582,
+            963.3537,
+            1270.1223,
+            1540.9327
+          ],
+          "wood_turtle_A": [
+            47.018,
+            154.1717,
+            293.9716,
+            463.8466,
+            702.5241
+          ],
+          "wood_turtle_B": [
+            62.3973,
+            277.9774,
+            521.9766,
+            732.4542,
+            930.7002
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0055,
+            0.0108,
+            0.0214,
+            0.0422,
+            0.129
+          ],
+          "marmot": [
+            0.0046,
+            0.0086,
+            0.0172,
+            0.0399,
+            0.1232
+          ],
+          "ms_woodpecker": [
+            0.0037,
+            0.0073,
+            0.0129,
+            0.0307,
+            0.1111
+          ],
+          "rc_woodpecker": [
+            0.0018,
+            0.0026,
+            0.0044,
+            0.0081,
+            0.0278
+          ],
+          "golden_plover": [
+            0.0041,
+            0.0101,
+            0.0215,
+            0.0498,
+            0.1768
+          ],
+          "whooping_crane": [
+            0.0011,
+            0.0016,
+            0.0024,
+            0.0053,
+            0.0273
+          ],
+          "hawaiian_crow": [
+            0.001,
+            0.0013,
+            0.002,
+            0.0031,
+            0.0097
+          ],
+          "wood_turtle_A": [
+            0.0025,
+            0.0046,
+            0.009,
+            0.0197,
+            0.0723
+          ],
+          "wood_turtle_B": [
+            0.0019,
+            0.0026,
+            0.0046,
+            0.0091,
+            0.0536
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.825,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          35.3389,
+          142.6738,
+          317.4203,
+          648.4903,
+          1256.4628
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            87.9156,
+            147.1734,
+            164.8613,
+            187.9096,
+            215.7035
+          ],
+          "marmot": [
+            113.0418,
+            161.3781,
+            179.347,
+            196.8566,
+            228.8343
+          ],
+          "ms_woodpecker": [
+            93.7597,
+            226.7027,
+            254.3909,
+            284.3725,
+            326.7138
+          ],
+          "rc_woodpecker": [
+            262.5131,
+            545.4698,
+            614.4505,
+            686.5036,
+            733.7609
+          ],
+          "golden_plover": [
+            51.2093,
+            132.481,
+            182.9204,
+            203.1863,
+            226.959
+          ],
+          "whooping_crane": [
+            519.0502,
+            901.0331,
+            1018.107,
+            1107.8659,
+            1161.2568
+          ],
+          "hawaiian_crow": [
+            661.4322,
+            1074.2169,
+            1233.9803,
+            1396.2362,
+            1482.1295
+          ],
+          "wood_turtle_A": [
+            192.8336,
+            312.9932,
+            367.1855,
+            403.4102,
+            436.7304
+          ],
+          "wood_turtle_B": [
+            255.5039,
+            518.4154,
+            681.7641,
+            753.9099,
+            831.0251
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0135,
+            0.0172,
+            0.0202,
+            0.0233,
+            0.0357
+          ],
+          "marmot": [
+            0.0111,
+            0.0137,
+            0.0156,
+            0.0178,
+            0.0257
+          ],
+          "ms_woodpecker": [
+            0.0081,
+            0.0094,
+            0.0105,
+            0.0125,
+            0.0334
+          ],
+          "rc_woodpecker": [
+            0.0027,
+            0.0029,
+            0.0033,
+            0.0038,
+            0.009
+          ],
+          "golden_plover": [
+            0.0121,
+            0.0156,
+            0.018,
+            0.0246,
+            0.058
+          ],
+          "whooping_crane": [
+            0.0015,
+            0.0018,
+            0.002,
+            0.0023,
+            0.0041
+          ],
+          "hawaiian_crow": [
+            0.001,
+            0.0011,
+            0.0013,
+            0.0015,
+            0.0028
+          ],
+          "wood_turtle_A": [
+            0.0049,
+            0.0061,
+            0.0071,
+            0.0087,
+            0.0141
+          ],
+          "wood_turtle_B": [
+            0.0024,
+            0.0027,
+            0.0031,
+            0.0043,
+            0.0102
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.26,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          119.1447,
+          191.6458,
+          337.0434,
+          726.673,
+          1265.6692
+        ]
+      }
+    },
+    "2": {
+      "scenario": "MA_betamin",
+      "n": 30,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            94.3864,
+            349.5548,
+            657.371,
+            1100.8305,
+            1677.0896
+          ],
+          "marmot": [
+            91.0025,
+            365.8041,
+            656.0492,
+            1133.8285,
+            1574.8982
+          ],
+          "ms_woodpecker": [
+            122.8734,
+            346.1057,
+            631.3376,
+            1057.3779,
+            1552.9615
+          ],
+          "rc_woodpecker": [
+            48.7358,
+            266.0451,
+            525.8785,
+            916.5143,
+            1539.9535
+          ],
+          "golden_plover": [
+            59.1844,
+            281.445,
+            643.238,
+            1114.3518,
+            1513.5665
+          ],
+          "whooping_crane": [
+            79.1026,
+            321.3364,
+            550.8061,
+            974.0029,
+            1582.3267
+          ],
+          "hawaiian_crow": [
+            73.0731,
+            228.0785,
+            573.9479,
+            950.588,
+            1404.7288
+          ],
+          "wood_turtle_A": [
+            63.5764,
+            289.9732,
+            563.919,
+            1083.1803,
+            1611.6708
+          ],
+          "wood_turtle_B": [
+            98.1855,
+            396.1123,
+            689.5317,
+            1176.8831,
+            1613.748
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0008,
+            0.0018,
+            0.003,
+            0.0065,
+            0.0298
+          ],
+          "marmot": [
+            0.001,
+            0.0016,
+            0.0031,
+            0.0058,
+            0.0337
+          ],
+          "ms_woodpecker": [
+            0.001,
+            0.0018,
+            0.0029,
+            0.0073,
+            0.0188
+          ],
+          "rc_woodpecker": [
+            0.001,
+            0.002,
+            0.0037,
+            0.009,
+            0.0512
+          ],
+          "golden_plover": [
+            0.001,
+            0.0017,
+            0.0031,
+            0.0088,
+            0.041
+          ],
+          "whooping_crane": [
+            0.001,
+            0.002,
+            0.0036,
+            0.0071,
+            0.0376
+          ],
+          "hawaiian_crow": [
+            0.0011,
+            0.0019,
+            0.0034,
+            0.0093,
+            0.0393
+          ],
+          "wood_turtle_A": [
+            0.0009,
+            0.0018,
+            0.0036,
+            0.008,
+            0.0426
+          ],
+          "wood_turtle_B": [
+            0.0009,
+            0.0015,
+            0.0027,
+            0.0066,
+            0.0235
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.515,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          73.3968,
+          318.2365,
+          615.7043,
+          1072.5966,
+          1586.7451
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            140.392,
+            490.7498,
+            758.6249,
+            1435.5554,
+            1784.2812
+          ],
+          "marmot": [
+            124.7949,
+            442.7798,
+            841.3082,
+            1423.6186,
+            1752.0263
+          ],
+          "ms_woodpecker": [
+            170.7267,
+            468.9012,
+            743.6866,
+            1244.5526,
+            1687.4025
+          ],
+          "rc_woodpecker": [
+            78.3214,
+            370.6217,
+            630.7945,
+            1098.8665,
+            1573.8861
+          ],
+          "golden_plover": [
+            93.2111,
+            409.959,
+            790.4425,
+            1442.253,
+            1671.7269
+          ],
+          "whooping_crane": [
+            124.0338,
+            441.9919,
+            686.2274,
+            1270.164,
+            1702.0556
+          ],
+          "hawaiian_crow": [
+            69.2715,
+            339.6517,
+            663.2203,
+            1132.6264,
+            1575.5843
+          ],
+          "wood_turtle_A": [
+            84.9805,
+            411.9664,
+            743.4937,
+            1470.6442,
+            1758.4103
+          ],
+          "wood_turtle_B": [
+            131.8225,
+            510.1477,
+            789.1599,
+            1381.4638,
+            1734.766
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0007,
+            0.0011,
+            0.0023,
+            0.0039,
+            0.0156
+          ],
+          "marmot": [
+            0.0007,
+            0.0011,
+            0.0021,
+            0.0043,
+            0.0197
+          ],
+          "ms_woodpecker": [
+            0.0008,
+            0.0013,
+            0.0024,
+            0.0041,
+            0.0129
+          ],
+          "rc_woodpecker": [
+            0.0009,
+            0.0015,
+            0.0029,
+            0.0051,
+            0.0264
+          ],
+          "golden_plover": [
+            0.0008,
+            0.0011,
+            0.0023,
+            0.0048,
+            0.0201
+          ],
+          "whooping_crane": [
+            0.0008,
+            0.0013,
+            0.0027,
+            0.0044,
+            0.0182
+          ],
+          "hawaiian_crow": [
+            0.0009,
+            0.0015,
+            0.0028,
+            0.0058,
+            0.0246
+          ],
+          "wood_turtle_A": [
+            0.0007,
+            0.001,
+            0.0023,
+            0.0046,
+            0.025
+          ],
+          "wood_turtle_B": [
+            0.0007,
+            0.0011,
+            0.0022,
+            0.0037,
+            0.0134
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.355,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          103.817,
+          427.5442,
+          723.8308,
+          1321.9528,
+          1708.6543
+        ]
+      }
+    },
+    "3": {
+      "scenario": "MA_d10_0.5",
+      "n": 30,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            62.818,
+            321.2154,
+            579.8855,
+            978.1032,
+            1409.4473
+          ],
+          "marmot": [
+            60.6398,
+            277.0127,
+            549.6288,
+            874.8864,
+            1465.582
+          ],
+          "ms_woodpecker": [
+            53.359,
+            226.1716,
+            391.9441,
+            733.3811,
+            1305.2565
+          ],
+          "rc_woodpecker": [
+            37.9271,
+            148.6869,
+            331.0512,
+            625.9666,
+            1312.0739
+          ],
+          "golden_plover": [
+            42.0035,
+            252.9217,
+            491.2541,
+            832.5442,
+            1441.2778
+          ],
+          "whooping_crane": [
+            43.1613,
+            213.0463,
+            476.686,
+            848.7025,
+            1574.6566
+          ],
+          "hawaiian_crow": [
+            24.4567,
+            146.1747,
+            266.9142,
+            577.4165,
+            1279.0786
+          ],
+          "wood_turtle_A": [
+            84.0704,
+            267.5175,
+            554.8302,
+            885.3217,
+            1426.6037
+          ],
+          "wood_turtle_B": [
+            67.4309,
+            271.5999,
+            452.53,
+            774.8945,
+            1450.1143
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0012,
+            0.0021,
+            0.004,
+            0.0081,
+            0.033
+          ],
+          "marmot": [
+            0.0011,
+            0.0024,
+            0.0045,
+            0.0099,
+            0.0616
+          ],
+          "ms_woodpecker": [
+            0.0013,
+            0.003,
+            0.0058,
+            0.0149,
+            0.0684
+          ],
+          "rc_woodpecker": [
+            0.0012,
+            0.0033,
+            0.0075,
+            0.0184,
+            0.0632
+          ],
+          "golden_plover": [
+            0.0011,
+            0.0024,
+            0.0046,
+            0.0101,
+            0.0676
+          ],
+          "whooping_crane": [
+            0.001,
+            0.0023,
+            0.0047,
+            0.0128,
+            0.0602
+          ],
+          "hawaiian_crow": [
+            0.0013,
+            0.0042,
+            0.0102,
+            0.0235,
+            0.1118
+          ],
+          "wood_turtle_A": [
+            0.0011,
+            0.0024,
+            0.0038,
+            0.0091,
+            0.0464
+          ],
+          "wood_turtle_B": [
+            0.0011,
+            0.0025,
+            0.0046,
+            0.0099,
+            0.0371
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.68,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          46.7145,
+          217.6276,
+          453.8499,
+          795.1744,
+          1408.9665
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            134.5235,
+            417.522,
+            703.4237,
+            1141.9234,
+            1683.9887
+          ],
+          "marmot": [
+            134.2012,
+            403.2381,
+            670.045,
+            1050.1477,
+            1514.1229
+          ],
+          "ms_woodpecker": [
+            109.6308,
+            294.1667,
+            490.2867,
+            899.0656,
+            1316.7077
+          ],
+          "rc_woodpecker": [
+            77.4932,
+            227.1694,
+            463.6143,
+            790.4334,
+            1165.2332
+          ],
+          "golden_plover": [
+            72.6848,
+            339.5175,
+            617.1533,
+            1081.2391,
+            1545.7084
+          ],
+          "whooping_crane": [
+            61.1024,
+            291.1114,
+            564.1772,
+            998.0157,
+            1441.9611
+          ],
+          "hawaiian_crow": [
+            45.7991,
+            178.4474,
+            351.6093,
+            678.1899,
+            1298.587
+          ],
+          "wood_turtle_A": [
+            156.7693,
+            375.7277,
+            604.8572,
+            1093.0647,
+            1618.3688
+          ],
+          "wood_turtle_B": [
+            149.4915,
+            350.9929,
+            606.6826,
+            981.9531,
+            1515.4162
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0008,
+            0.0016,
+            0.0028,
+            0.0047,
+            0.0156
+          ],
+          "marmot": [
+            0.0011,
+            0.0018,
+            0.003,
+            0.0049,
+            0.0235
+          ],
+          "ms_woodpecker": [
+            0.0012,
+            0.0025,
+            0.0043,
+            0.0086,
+            0.024
+          ],
+          "rc_woodpecker": [
+            0.0014,
+            0.0026,
+            0.0045,
+            0.0096,
+            0.0274
+          ],
+          "golden_plover": [
+            0.001,
+            0.0017,
+            0.0032,
+            0.0064,
+            0.0363
+          ],
+          "whooping_crane": [
+            0.0011,
+            0.0019,
+            0.0036,
+            0.0071,
+            0.0344
+          ],
+          "hawaiian_crow": [
+            0.0014,
+            0.0032,
+            0.0069,
+            0.0161,
+            0.0672
+          ],
+          "wood_turtle_A": [
+            0.0009,
+            0.0019,
+            0.0031,
+            0.0059,
+            0.013
+          ],
+          "wood_turtle_B": [
+            0.001,
+            0.0018,
+            0.0032,
+            0.0059,
+            0.0173
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.43,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          84.8389,
+          297.5326,
+          562.0633,
+          955.5269,
+          1509.7647
+        ]
+      }
+    },
+    "4": {
+      "scenario": "null_prior_predictive",
+      "n": 300,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            17.1275,
+            51.4853,
+            121.6859,
+            304.1868,
+            703.1459
+          ],
+          "marmot": [
+            9.9575,
+            52.8545,
+            113.1858,
+            255.5402,
+            654.4464
+          ],
+          "ms_woodpecker": [
+            6.6722,
+            37.8743,
+            83.4121,
+            207.6824,
+            653.7183
+          ],
+          "rc_woodpecker": [
+            3.9982,
+            31.4857,
+            94.6561,
+            231.2261,
+            470.9549
+          ],
+          "golden_plover": [
+            7.8046,
+            47.1138,
+            99.9555,
+            233.3739,
+            594.8417
+          ],
+          "whooping_crane": [
+            8.527,
+            36.8581,
+            108.9863,
+            261.296,
+            519.7455
+          ],
+          "hawaiian_crow": [
+            5.2472,
+            37.1205,
+            83.384,
+            249.3328,
+            460.579
+          ],
+          "wood_turtle_A": [
+            8.9462,
+            45.8804,
+            111.345,
+            278.7154,
+            601.0831
+          ],
+          "wood_turtle_B": [
+            7.3164,
+            51.7389,
+            100.4388,
+            207.0295,
+            619.7783
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0025,
+            0.0062,
+            0.0153,
+            0.0376,
+            0.1428
+          ],
+          "marmot": [
+            0.0028,
+            0.0077,
+            0.0167,
+            0.0371,
+            0.1734
+          ],
+          "ms_woodpecker": [
+            0.0027,
+            0.0096,
+            0.0225,
+            0.0527,
+            0.3056
+          ],
+          "rc_woodpecker": [
+            0.0037,
+            0.0086,
+            0.0225,
+            0.0583,
+            0.3838
+          ],
+          "golden_plover": [
+            0.003,
+            0.0081,
+            0.0192,
+            0.0411,
+            0.2197
+          ],
+          "whooping_crane": [
+            0.0033,
+            0.0074,
+            0.0181,
+            0.0559,
+            0.205
+          ],
+          "hawaiian_crow": [
+            0.0041,
+            0.0079,
+            0.0234,
+            0.0554,
+            0.303
+          ],
+          "wood_turtle_A": [
+            0.0031,
+            0.0067,
+            0.018,
+            0.0447,
+            0.1962
+          ],
+          "wood_turtle_B": [
+            0.0031,
+            0.0092,
+            0.0184,
+            0.0375,
+            0.2388
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.995,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          7.3164,
+          42.7984,
+          100.2074,
+          251.8338,
+          594.0239
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            18.4275,
+            56.874,
+            128.6878,
+            321.7943,
+            771.9716
+          ],
+          "marmot": [
+            10.3356,
+            56.518,
+            126.4817,
+            292.2957,
+            711.621
+          ],
+          "ms_woodpecker": [
+            6.5775,
+            39.4035,
+            86.8384,
+            225.0294,
+            633.4594
+          ],
+          "rc_woodpecker": [
+            5.0953,
+            29.0818,
+            84.9312,
+            242.4796,
+            519.4733
+          ],
+          "golden_plover": [
+            10.7662,
+            48.1559,
+            103.8751,
+            256.4623,
+            620.3725
+          ],
+          "whooping_crane": [
+            8.9609,
+            37.9336,
+            107.4751,
+            291.7819,
+            543.7334
+          ],
+          "hawaiian_crow": [
+            6.092,
+            40.2864,
+            87.2977,
+            220.6967,
+            483.1473
+          ],
+          "wood_turtle_A": [
+            11.0005,
+            49.4022,
+            134.2795,
+            318.0944,
+            653.3922
+          ],
+          "wood_turtle_B": [
+            9.8722,
+            53.3553,
+            114.6155,
+            277.4693,
+            702.2943
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0022,
+            0.0057,
+            0.0151,
+            0.0315,
+            0.108
+          ],
+          "marmot": [
+            0.0024,
+            0.0066,
+            0.0154,
+            0.0335,
+            0.1521
+          ],
+          "ms_woodpecker": [
+            0.0026,
+            0.0086,
+            0.0222,
+            0.0524,
+            0.256
+          ],
+          "rc_woodpecker": [
+            0.0035,
+            0.0082,
+            0.0229,
+            0.0641,
+            0.33
+          ],
+          "golden_plover": [
+            0.0028,
+            0.0074,
+            0.0189,
+            0.0403,
+            0.1615
+          ],
+          "whooping_crane": [
+            0.0032,
+            0.0065,
+            0.0185,
+            0.0473,
+            0.2035
+          ],
+          "hawaiian_crow": [
+            0.0037,
+            0.0082,
+            0.0223,
+            0.0498,
+            0.267
+          ],
+          "wood_turtle_A": [
+            0.0025,
+            0.0059,
+            0.0148,
+            0.0396,
+            0.1655
+          ],
+          "wood_turtle_B": [
+            0.0025,
+            0.0068,
+            0.0168,
+            0.0386,
+            0.1774
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.995,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          8.9663,
+          46.3464,
+          106.239,
+          275.1226,
+          638.7266
+        ]
+      }
+    },
+    "5": {
+      "scenario": "null_low_s",
+      "n": 300,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            1.2942,
+            2.2008,
+            3.2108,
+            5.1452,
+            9.8086
+          ],
+          "marmot": [
+            1.7965,
+            3.5205,
+            6.3119,
+            10.0009,
+            16.9608
+          ],
+          "ms_woodpecker": [
+            2.1231,
+            5.4061,
+            8.8792,
+            14.2216,
+            22.9887
+          ],
+          "rc_woodpecker": [
+            11.1798,
+            30.64,
+            47.885,
+            69.5378,
+            90.8762
+          ],
+          "golden_plover": [
+            1.1849,
+            2.3188,
+            4.3164,
+            7.3395,
+            14.0087
+          ],
+          "whooping_crane": [
+            18.935,
+            52.1165,
+            79.0093,
+            123.8181,
+            190.7419
+          ],
+          "hawaiian_crow": [
+            41.0124,
+            138.8259,
+            198.5349,
+            304.3385,
+            442.6953
+          ],
+          "wood_turtle_A": [
+            3.7765,
+            8.5019,
+            14.6159,
+            24.4557,
+            40.6781
+          ],
+          "wood_turtle_B": [
+            12.2461,
+            25.2213,
+            46.4989,
+            68.6144,
+            108.5635
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.1794,
+            0.2893,
+            0.4393,
+            0.623,
+            0.8737
+          ],
+          "marmot": [
+            0.1123,
+            0.1771,
+            0.2743,
+            0.4375,
+            0.7293
+          ],
+          "ms_woodpecker": [
+            0.0856,
+            0.1354,
+            0.2049,
+            0.3115,
+            0.6131
+          ],
+          "rc_woodpecker": [
+            0.0208,
+            0.0292,
+            0.0403,
+            0.0658,
+            0.1755
+          ],
+          "golden_plover": [
+            0.1338,
+            0.2266,
+            0.3477,
+            0.6001,
+            0.9154
+          ],
+          "whooping_crane": [
+            0.0107,
+            0.0169,
+            0.0255,
+            0.0407,
+            0.1031
+          ],
+          "hawaiian_crow": [
+            0.0041,
+            0.0063,
+            0.0095,
+            0.0143,
+            0.0477
+          ],
+          "wood_turtle_A": [
+            0.0445,
+            0.0823,
+            0.1286,
+            0.2006,
+            0.4323
+          ],
+          "wood_turtle_B": [
+            0.0197,
+            0.0288,
+            0.0446,
+            0.08,
+            0.1635
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 1.0,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          1.9439,
+          5.7381,
+          15.6403,
+          62.4448,
+          219.918
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            1.4424,
+            2.2984,
+            3.2218,
+            4.9118,
+            8.4862
+          ],
+          "marmot": [
+            2.4191,
+            4.0222,
+            6.106,
+            7.9894,
+            12.0323
+          ],
+          "ms_woodpecker": [
+            2.4558,
+            6.1879,
+            8.7931,
+            11.705,
+            17.0029
+          ],
+          "rc_woodpecker": [
+            14.4802,
+            39.1228,
+            51.6542,
+            62.5279,
+            77.2399
+          ],
+          "golden_plover": [
+            1.3181,
+            2.5128,
+            3.6923,
+            5.4903,
+            10.0887
+          ],
+          "whooping_crane": [
+            31.9167,
+            61.4071,
+            83.7699,
+            108.2819,
+            160.7723
+          ],
+          "hawaiian_crow": [
+            77.9082,
+            182.3434,
+            219.909,
+            326.4762,
+            423.6218
+          ],
+          "wood_turtle_A": [
+            5.6393,
+            9.0927,
+            14.7172,
+            21.999,
+            35.3207
+          ],
+          "wood_turtle_B": [
+            9.6224,
+            33.3868,
+            49.1831,
+            63.8206,
+            80.6033
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.2038,
+            0.3198,
+            0.4428,
+            0.6008,
+            0.8265
+          ],
+          "marmot": [
+            0.1448,
+            0.2185,
+            0.2745,
+            0.3756,
+            0.6122
+          ],
+          "ms_woodpecker": [
+            0.1068,
+            0.1518,
+            0.1972,
+            0.2913,
+            0.592
+          ],
+          "rc_woodpecker": [
+            0.0256,
+            0.0311,
+            0.0378,
+            0.0524,
+            0.1352
+          ],
+          "golden_plover": [
+            0.172,
+            0.2848,
+            0.4132,
+            0.5582,
+            0.8677
+          ],
+          "whooping_crane": [
+            0.0125,
+            0.0188,
+            0.024,
+            0.0342,
+            0.0686
+          ],
+          "hawaiian_crow": [
+            0.0046,
+            0.0062,
+            0.009,
+            0.0109,
+            0.0254
+          ],
+          "wood_turtle_A": [
+            0.0555,
+            0.0877,
+            0.1297,
+            0.2039,
+            0.3047
+          ],
+          "wood_turtle_B": [
+            0.0242,
+            0.0313,
+            0.0405,
+            0.0615,
+            0.1891
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 1.0,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          2.0996,
+          5.473,
+          14.609,
+          61.7444,
+          239.627
+        ]
+      }
+    },
+    "6": {
+      "scenario": "MA_betamin",
+      "n": 300,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            7.7186,
+            46.7755,
+            104.2455,
+            274.7025,
+            662.6554
+          ],
+          "marmot": [
+            6.2731,
+            43.5501,
+            106.9663,
+            296.5333,
+            680.9359
+          ],
+          "ms_woodpecker": [
+            8.5859,
+            45.9664,
+            90.8024,
+            196.6641,
+            540.2507
+          ],
+          "rc_woodpecker": [
+            5.9602,
+            32.4498,
+            76.1304,
+            186.1748,
+            495.5246
+          ],
+          "golden_plover": [
+            8.2541,
+            41.0453,
+            100.9319,
+            255.0788,
+            631.5744
+          ],
+          "whooping_crane": [
+            5.8055,
+            38.4305,
+            81.9751,
+            231.8853,
+            616.9166
+          ],
+          "hawaiian_crow": [
+            4.0901,
+            31.6187,
+            75.7504,
+            167.8884,
+            392.2442
+          ],
+          "wood_turtle_A": [
+            8.3683,
+            37.0148,
+            93.0674,
+            296.5019,
+            672.7432
+          ],
+          "wood_turtle_B": [
+            8.8267,
+            48.8863,
+            103.6625,
+            278.7347,
+            659.3063
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0027,
+            0.0073,
+            0.0182,
+            0.0426,
+            0.2164
+          ],
+          "marmot": [
+            0.0027,
+            0.0066,
+            0.0179,
+            0.046,
+            0.2784
+          ],
+          "ms_woodpecker": [
+            0.0035,
+            0.0098,
+            0.0211,
+            0.0432,
+            0.2353
+          ],
+          "rc_woodpecker": [
+            0.0036,
+            0.011,
+            0.0261,
+            0.0629,
+            0.2781
+          ],
+          "golden_plover": [
+            0.0027,
+            0.0078,
+            0.0195,
+            0.0444,
+            0.23
+          ],
+          "whooping_crane": [
+            0.0029,
+            0.0085,
+            0.0235,
+            0.0512,
+            0.2869
+          ],
+          "hawaiian_crow": [
+            0.0048,
+            0.0115,
+            0.0264,
+            0.0611,
+            0.3491
+          ],
+          "wood_turtle_A": [
+            0.0028,
+            0.0066,
+            0.0208,
+            0.0509,
+            0.2077
+          ],
+          "wood_turtle_B": [
+            0.0028,
+            0.0067,
+            0.0182,
+            0.0439,
+            0.2243
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 0.995,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          6.2898,
+          39.2081,
+          92.1434,
+          237.2618,
+          609.2417
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            11.1167,
+            54.108,
+            115.3341,
+            325.2515,
+            713.9826
+          ],
+          "marmot": [
+            8.3454,
+            43.6815,
+            114.4434,
+            296.2659,
+            681.4994
+          ],
+          "ms_woodpecker": [
+            13.1414,
+            52.0642,
+            106.2129,
+            227.4644,
+            640.6454
+          ],
+          "rc_woodpecker": [
+            7.7527,
+            37.7376,
+            80.0325,
+            180.3898,
+            487.6985
+          ],
+          "golden_plover": [
+            9.2389,
+            42.5102,
+            111.5957,
+            291.699,
+            662.8828
+          ],
+          "whooping_crane": [
+            6.7207,
+            41.866,
+            88.1744,
+            239.4429,
+            679.785
+          ],
+          "hawaiian_crow": [
+            4.8125,
+            31.6695,
+            81.0669,
+            191.0272,
+            500.6242
+          ],
+          "wood_turtle_A": [
+            8.3132,
+            46.7078,
+            103.8685,
+            322.497,
+            676.1508
+          ],
+          "wood_turtle_B": [
+            10.0012,
+            52.8569,
+            117.5602,
+            279.0643,
+            701.4975
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0024,
+            0.0059,
+            0.0172,
+            0.0372,
+            0.1756
+          ],
+          "marmot": [
+            0.0026,
+            0.0064,
+            0.0166,
+            0.0453,
+            0.212
+          ],
+          "ms_woodpecker": [
+            0.003,
+            0.0084,
+            0.0188,
+            0.0395,
+            0.1401
+          ],
+          "rc_woodpecker": [
+            0.0039,
+            0.0113,
+            0.0239,
+            0.052,
+            0.2187
+          ],
+          "golden_plover": [
+            0.0027,
+            0.0066,
+            0.0179,
+            0.0445,
+            0.1845
+          ],
+          "whooping_crane": [
+            0.0026,
+            0.0081,
+            0.0217,
+            0.0474,
+            0.2631
+          ],
+          "hawaiian_crow": [
+            0.0037,
+            0.0102,
+            0.0235,
+            0.0597,
+            0.3421
+          ],
+          "wood_turtle_A": [
+            0.0026,
+            0.0061,
+            0.0192,
+            0.0431,
+            0.2112
+          ],
+          "wood_turtle_B": [
+            0.0024,
+            0.0072,
+            0.0165,
+            0.0372,
+            0.1813
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 1.0,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          8.3495,
+          43.8496,
+          99.1829,
+          257.7952,
+          643.0744
+        ]
+      }
+    },
+    "7": {
+      "scenario": "MA_d10_0.5",
+      "n": 300,
+      "noisy": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            6.7816,
+            30.8797,
+            74.7557,
+            181.304,
+            569.9998
+          ],
+          "marmot": [
+            2.6173,
+            20.0998,
+            58.0846,
+            106.7794,
+            237.7734
+          ],
+          "ms_woodpecker": [
+            3.1549,
+            11.4692,
+            34.266,
+            77.9517,
+            250.33
+          ],
+          "rc_woodpecker": [
+            3.2832,
+            10.4485,
+            35.4429,
+            70.02,
+            225.2153
+          ],
+          "golden_plover": [
+            2.2617,
+            21.8544,
+            54.032,
+            130.2115,
+            371.202
+          ],
+          "whooping_crane": [
+            2.2883,
+            14.8571,
+            42.3321,
+            109.5324,
+            337.3872
+          ],
+          "hawaiian_crow": [
+            1.237,
+            4.2411,
+            17.7854,
+            53.4879,
+            198.5612
+          ],
+          "wood_turtle_A": [
+            4.9145,
+            22.029,
+            59.4116,
+            113.7857,
+            351.9701
+          ],
+          "wood_turtle_B": [
+            5.9384,
+            23.2294,
+            62.8534,
+            127.065,
+            350.0743
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0035,
+            0.0105,
+            0.026,
+            0.0684,
+            0.2668
+          ],
+          "marmot": [
+            0.0085,
+            0.0188,
+            0.0349,
+            0.0957,
+            0.521
+          ],
+          "ms_woodpecker": [
+            0.0087,
+            0.0251,
+            0.0596,
+            0.154,
+            0.4597
+          ],
+          "rc_woodpecker": [
+            0.0084,
+            0.0288,
+            0.0576,
+            0.1676,
+            0.4391
+          ],
+          "golden_plover": [
+            0.005,
+            0.0156,
+            0.0402,
+            0.0952,
+            0.5511
+          ],
+          "whooping_crane": [
+            0.0059,
+            0.0185,
+            0.0475,
+            0.1232,
+            0.5821
+          ],
+          "hawaiian_crow": [
+            0.0097,
+            0.0373,
+            0.1103,
+            0.3482,
+            0.8968
+          ],
+          "wood_turtle_A": [
+            0.0057,
+            0.018,
+            0.0348,
+            0.0914,
+            0.339
+          ],
+          "wood_turtle_B": [
+            0.0054,
+            0.0161,
+            0.0332,
+            0.0813,
+            0.2802
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 1.0,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          2.6907,
+          15.4386,
+          46.745,
+          103.1594,
+          320.9043
+        ]
+      },
+      "ideal": {
+        "ess_q05_25_50_75_95": {
+          "wild_dog": [
+            9.4148,
+            34.3455,
+            72.7691,
+            161.7352,
+            515.9339
+          ],
+          "marmot": [
+            3.8732,
+            23.4874,
+            59.93,
+            101.596,
+            283.6385
+          ],
+          "ms_woodpecker": [
+            3.1614,
+            14.3267,
+            39.2976,
+            77.1774,
+            235.4046
+          ],
+          "rc_woodpecker": [
+            4.0931,
+            12.4997,
+            36.5991,
+            73.8143,
+            234.0462
+          ],
+          "golden_plover": [
+            2.9832,
+            22.8717,
+            62.7887,
+            159.066,
+            398.0468
+          ],
+          "whooping_crane": [
+            2.7154,
+            16.5767,
+            42.9727,
+            105.4441,
+            289.6031
+          ],
+          "hawaiian_crow": [
+            1.226,
+            5.1514,
+            18.083,
+            47.165,
+            200.196
+          ],
+          "wood_turtle_A": [
+            6.3732,
+            28.3641,
+            64.2277,
+            128.7491,
+            394.1778
+          ],
+          "wood_turtle_B": [
+            6.5423,
+            27.6086,
+            61.8189,
+            132.3234,
+            316.7231
+          ]
+        },
+        "max_share_q05_25_50_75_95": {
+          "wild_dog": [
+            0.0034,
+            0.0125,
+            0.0273,
+            0.0563,
+            0.2283
+          ],
+          "marmot": [
+            0.0072,
+            0.02,
+            0.0339,
+            0.0851,
+            0.3808
+          ],
+          "ms_woodpecker": [
+            0.0086,
+            0.0269,
+            0.0552,
+            0.1369,
+            0.4686
+          ],
+          "rc_woodpecker": [
+            0.0085,
+            0.0272,
+            0.056,
+            0.154,
+            0.3639
+          ],
+          "golden_plover": [
+            0.0048,
+            0.0128,
+            0.0321,
+            0.0819,
+            0.5205
+          ],
+          "whooping_crane": [
+            0.0067,
+            0.0198,
+            0.0443,
+            0.1091,
+            0.4576
+          ],
+          "hawaiian_crow": [
+            0.0097,
+            0.0443,
+            0.1039,
+            0.3147,
+            0.9007
+          ],
+          "wood_turtle_A": [
+            0.0049,
+            0.0155,
+            0.0321,
+            0.0713,
+            0.2714
+          ],
+          "wood_turtle_B": [
+            0.0062,
+            0.0158,
+            0.0323,
+            0.0763,
+            0.2241
+          ]
+        },
+        "unusable_sets": {
+          "wild_dog": 0,
+          "marmot": 0,
+          "ms_woodpecker": 0,
+          "rc_woodpecker": 0,
+          "golden_plover": 0,
+          "whooping_crane": 0,
+          "hawaiian_crow": 0,
+          "wood_turtle_A": 0,
+          "wood_turtle_B": 0
+        },
+        "datasets": 200,
+        "any_of_nine_flag_fraction": 1.0,
+        "any_of_nine_unusable_fraction": 0.0,
+        "pooled_ess_q05_25_50_75_95": [
+          3.1677,
+          18.0839,
+          49.0997,
+          103.1436,
+          345.6521
+        ]
+      }
+    }
+  },
+  "report_all_numeric_summaries_match": true,
+  "raw_unusable_sets": 0,
+  "full_log_sha256": "258fb565f7636a479c31f503bd60a700160a2cc8f4060007e229d8ee2df4ed3b",
+  "full_log": "wild_dog rows 800 s 113.3 peak GB 8.99\nmarmot rows 800 s 115.3 peak GB 8.99\nms_woodpecker rows 800 s 149.7 peak GB 9.71\nrc_woodpecker rows 800 s 206.3 peak GB 12.07\ngolden_plover rows 800 s 169.9 peak GB 12.07\nwhooping_crane rows 800 s 149.9 peak GB 12.07\nhawaiian_crow rows 800 s 204.2 peak GB 12.07\nwood_turtle_A rows 800 s 128.0 peak GB 12.07\nwood_turtle_B rows 800 s 134.1 peak GB 12.07\ntotal s 1447.3\n\tCommand being timed: \"python3 -I /data/fable/vortex/v2_dev/s0_info.py run ../validation_manifest.json /data/fable/vortex/kunanyi_run1/extract /data/fable/vortex/v2_dev/s0/s0_inputs.json /data/fable/vortex/v2_dev/s0/full\"\n\tUser time (seconds): 1259.87\n\tSystem time (seconds): 205.85\n\tPercent of CPU this job got: 101%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 24:08.94\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 12074316\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 0\n\tMinor (reclaiming a frame) page faults: 5703070\n\tVoluntary context switches: 467\n\tInvoluntary context switches: 655945\n\tSwaps: 0\n\tFile system inputs: 0\n\tFile system outputs: 145064\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+}

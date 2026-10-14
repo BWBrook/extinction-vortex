@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 16:40 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 16:50:20 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -606,28 +606,60 @@ message 1625):**
   [tables, register, timeline, figure and pinned sources](analysis/fable/caribou/NOTE.md).
 - **[Nine-series evidence table](notes/nine_series_evidence_table_20261014.md)**
   drafted from the audited records. It is dense; notes 9, 10 and 12 can be cut.
-- The optional external-information Stage 0 has not been started.
+- Stage 0 was unstarted at that artifact handoff; its later completion is below.
 
 **External-information Stage 0 done** (14 October, under Barry's authority;
 no fits). [Report](analysis/fable/calibration/v2_dev/NOTE.md).
-- **Scope:** 800 exposed outers and 7,200 K = 2,000 neighbourhoods. All
-  checks pass, with no unusable weights. 24 min, peak 12 GB.
-- **Result:** the fixed-K weighted prior-bank reference (R1) lacks support
-  for informative evidence.
+- **Scope:** 800 exposed outers and 7,200 K = 2,000 neighbourhoods. The
+  completed diagnostics reproduce, with no unusable weights. 24:08.94 elapsed,
+  peak 11.52 GiB from the raw resource log.
+- **Result:** the fixed-K weighted prior-bank reference (R1) shows substantial
+  weight concentration at the stronger information level.
   - Any-of-nine ESS < 100 flags: 26–83% of datasets at n = 30, and about
     100% at n = 300.
-  - At the low-s corner with n = 300, median ESS is 3–9 in the four most
-    displaced populations.
-- **Consequence:** a fitted stage would need a reference drawn under the
-  informative law. **Stage 0 stops here.**
+  - At the low-s corner with n = 300, noisy median ESS is 3–9 in four
+    populations and 14.62 in wood turtle A; the other four range from 46.50
+    to 198.53. The ideal comparator differs.
+- **Consequence:** do not commission a full fitted R1 stage now. ESS is an
+  exploratory concentration diagnostic, not proof of absent mathematical
+  support, calibration failure or low power. **Stage 0 stops here.**
 
-**Next response: Codex** (when Barry wakes Codex). Review 1630 (caribou case,
-nine-series table, core revision 2) and the Stage 0 report. Advise on whether,
-and how, to design a reference under the informative law. No empirical
-execution.
+**Astra reviewed Stage 0 and the case package (14 October, message 1647):**
+[integrated review](notes/astra_stage0_case_package_review_20261014.md),
+[Stage 0 audit](notes/astra_stage0_info_audit_20261014.md),
+[caribou artifact review](notes/astra_caribou_artifact_review_20261014.md), and
+[manuscript/table follow-up](notes/astra_manuscript_tables_followup_review_20261014.md).
+- Stage 0 saved results reproduce: all 800 original outers, 14,400 E draws,
+  18 raw/member hashes and all reported aggregates. Binding/completeness guards
+  need repairs before reuse, with no observed error in the current report.
+- Core revision 2 and Haley corrections are accepted for manuscript assembly.
+- Caribou count values and rebuilt artifacts reproduce. Correct the one-year
+  Maligne composition-survey shift and restore WSI general survey/date notes;
+  finish the bounded narrative/cross-reference repairs. Astra's earlier WSI
+  prose count 25 was corrected to 23; the machine receipt was already right.
+- The nine-series table has a supplied 606-word replacement candidate; shorten
+  and render it as a readable page while retaining the existing detailed ledger.
+- [Informative-reference proposal](notes/astra_informative_reference_proposal_20261014.md):
+  evidence rejection of fresh prior theta, then one path and S/A/C selection.
+  A bounded mathematical audit supports the law/envelope and identified a
+  likely zero-hit limitation of tiny pilots. Forecast bank mass first, then
+  measure implementation/throughput; do not interpret predictable zero hits as
+  failure. Proposed 20-setting pilot: at most four workers and 30 minutes total
+  on qualified deep-server, no fits/full banks/new outers. Fable implements by
+  agreement; Astra audits the returned report. Stage 1 remains uncommissioned.
+
+**Next response: Fable.** Complete the bounded caribou/table repairs and respond
+to the sampler/throughput assignment. Core manuscript assembly can proceed.
+No empirical execution or larger campaign follows automatically.
 
 ## Completed by Astra
 
+- 14 October late afternoon, audited Stage 0 raw outputs and input/stream
+  bindings, the caribou descriptive package, and core/Haley/table revisions at
+  `3437fcd`. Prepared a finite informative-reference proposal with independent
+  mathematical challenge and 1,544 deterministic likelihood-envelope cases.
+  Corrected the earlier WSI prose row count. No new population simulation,
+  reference draw, model fitting or empirical statistic was performed.
 - 14 October, reviewed completed Haley artifacts, core manuscript and revised
   external-information design at `ec72dd0`, with three bounded reviewers.
   Verified the figure rebuild, frozen source/results, rate integration, seed
@@ -925,12 +957,12 @@ execution.
 
 ## Pending
 
-1. Fable responds to review 1625 with the bounded Haley/core repairs and the
-   accepted descriptive caribou package plus nine-series evidence table.
-   Optional external-information Stage 0 may proceed after the specified
-   execution checks; it returns a support/cost report without fits and stops.
-   It must not delay the paper. Stage 1 and larger extensions remain
-   uncommissioned.
+1. Fable responds to review 1647 with the caribou timing/coverage repairs and
+   a readable one-page nine-series table, and to the bounded informative-
+   reference prototype assignment. Core/Haley corrections are closed. Stage 0
+   is complete and audited; the proposed next prototype stops at a no-fit
+   implementation/throughput report. Stage 1 and larger extensions remain
+   uncommissioned. Manuscript assembly can proceed independently.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
    deferred. The original two-candidate route meets its stop rule. Any new
    inferential procedure needs a separate prospective protocol/freeze before
@@ -960,9 +992,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1625**; exhausted `through`: **1625**.
-- Explicit acknowledgement: through actual message **1625** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1625`.
+- Last full retrieval `next_after`: **1647**; exhausted `through`: **1647**.
+- Explicit acknowledgement: through actual message **1647** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1647`.
 
 ## Decision Inbox checkpoint
 

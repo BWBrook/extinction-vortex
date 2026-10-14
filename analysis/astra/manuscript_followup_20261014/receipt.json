@@ -1,0 +1,48 @@
+{
+  "purpose": "Bounded textual follow-up; not a repeat numerical audit or figure rebuild",
+  "reviewed_head": "3437fcdcf751bce1a4a0622a9f80d6299b3e734d",
+  "previous_review_head": "ec72dd0330b6acd440aa85d2507c28e465ed2020",
+  "recorded_at": "2026-10-14T16:41:37.466403+11:00",
+  "checks": {
+    "haley_json_changed_keys": [
+      "purpose"
+    ],
+    "unchanged_csvs": {
+      "analysis/fable/haley/source_table_annual.csv": true,
+      "analysis/fable/haley/source_table_transitions.csv": true
+    },
+    "unchanged_core_implementation_since_review": {
+      "analysis/fable/calibration/bank.py": true,
+      "analysis/fable/calibration/tstats_batch.R": true,
+      "analysis/fable/calibration/e2e_benchmark.py": true,
+      "analysis/fable/calibration/effect_target.py": true
+    }
+  },
+  "word_counts_whitespace": {
+    "nine_series_whole_file": 3748,
+    "nine_series_table": 1731,
+    "proposed_table_caption_footnote": 606
+  },
+  "sha256": {
+    "notes/vortex_manuscript_core_draft_20261014.md": "40e0a2d3acdf70592fb4e711eecfe8a719a08c36ac52e902b967390da391a140",
+    "notes/haley_case_narrative_20261014.md": "688ee61132fa18d68281760c5e4061b48a9c316c8fec9e7f9053135efaad3575",
+    "notes/nine_series_evidence_table_20261014.md": "9bff38fe67e0d021f79d794c4e2dffed671b4eae0c8de5a71a0d0261e537e334",
+    "analysis/fable/haley/haley_source.json": "9a06d96ebb4bbd2893f9a2f8eb6a9006bb6c478cde89b5cdbf558e4ed08bbc0e",
+    "analysis/fable/haley/make_haley.py": "49584502d1d74774a99c9e47ddb260962ffbb7506d2a0f4e3f3cd0e971282338",
+    "analysis/fable/haley/haley_case.png": "f3e5d73e006924b9c9721a220c7cb4624b88edbf9495edb8e9b86bcb5e1f23ee",
+    "analysis/fable/haley/haley_case.pdf": "f23c0ecd0ca23d2e9a9812dac2b6f9e9b2e7ed32b3554acb1fe8f907426f38c0",
+    "analysis/fable/haley/source_table_annual.csv": "5fce320956e2b9187b34c041fa8d1c4cae8c8fdab0edb3a4c36b6696407594d6",
+    "analysis/fable/haley/source_table_transitions.csv": "be297ae1111bb238fbd027889ff9fbcc6b2ff06ac55af6d7e6fc1ed87e7be5c1"
+  },
+  "manual_checks": [
+    "Core revision 2 read against previous findings",
+    "Haley changed text/code read; revised PNG visually inspected",
+    "Nine-series table compared against retained audited records"
+  ],
+  "not_run": [
+    "No old numerical checks repeated",
+    "No PDF re-render or package rebuild",
+    "No fits, simulations, new empirical statistics or intervals",
+    "No fresh literature/source retrieval"
+  ]
+}
