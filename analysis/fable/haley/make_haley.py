@@ -17,7 +17,7 @@ ADULT, YEARL, PUP, LITTER, IMM = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e
 def write_tables():
     w = dict(zip(W["year"], W["total"])); a = {y: i for i, y in enumerate(A7["year"])}
     with open(os.path.join(HERE, "source_table_annual.csv"), "w", newline="") as fh:
-        c = csv.writer(fh)
+        c = csv.writer(fh, lineterminator="\n")
         c.writerow(["year", "williams_total", "bryant_age_summed_total", "adults_age2plus", "yearlings", "young_of_year",
                     "tagged_yoy_male", "tagged_yoy_female", "immigrants", "litters", "source_note"])
         for y in W["year"]:
@@ -30,7 +30,7 @@ def write_tables():
             else:
                 c.writerow([y, w[y], "", "", "", "", "", "", "", "", "Williams only; no recovered source"])
     with open(os.path.join(HERE, "source_table_transitions.csv"), "w", newline="") as fh:
-        c = csv.writer(fh)
+        c = csv.writer(fh, lineterminator="\n")
         c.writerow(["transition", "class", "tagged_exposed_n", "tagged_survivors_s", "count_exposed_n", "count_survivors_s", "source"])
         for k, t in enumerate(A12["transition_start"]):
             c.writerow([f"{t}->{t + 1}", "non-pups (adults+yearlings -> adults 2+)", A12["tagged_exposed_n"][k], A12["tagged_survivors_s"][k],
