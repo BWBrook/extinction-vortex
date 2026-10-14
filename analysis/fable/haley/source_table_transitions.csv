@@ -1,0 +1,21 @@
+transition,class,tagged_exposed_n,tagged_survivors_s,count_exposed_n,count_survivors_s,source
+1987->1988,non-pups (adults+yearlings -> adults 2+),3,3,16,14,Bryant App. 12 p. 117
+1988->1989,non-pups (adults+yearlings -> adults 2+),13,8,15,12,Bryant App. 12 p. 117
+1989->1990,non-pups (adults+yearlings -> adults 2+),12,9,17,12,Bryant App. 12 p. 117
+1990->1991,non-pups (adults+yearlings -> adults 2+),9,8,12,8,Bryant App. 12 p. 117
+1991->1992,non-pups (adults+yearlings -> adults 2+),11,5,11,7,Bryant App. 12 p. 117
+1992->1993,non-pups (adults+yearlings -> adults 2+),10,8,13,9,Bryant App. 12 p. 117
+1993->1994,non-pups (adults+yearlings -> adults 2+),9,4,9,5,Bryant App. 12 p. 117
+1994->1995,non-pups (adults+yearlings -> adults 2+),15,10,15,7,Bryant App. 12 p. 117
+1995->1996,non-pups (adults+yearlings -> adults 2+),10,5,10,5,Bryant App. 12 p. 117
+1996->1997,non-pups (adults+yearlings -> adults 2+),5,4,5,4,Bryant App. 12 p. 117
+1987->1988,pups (young-of-year -> yearlings),0,,2,1,Bryant App. 11 p. 116
+1988->1989,pups (young-of-year -> yearlings),0,,12,7,Bryant App. 11 p. 116
+1989->1990,pups (young-of-year -> yearlings),0,,0,,Bryant App. 11 p. 116
+1990->1991,pups (young-of-year -> yearlings),2,2,3,3,Bryant App. 11 p. 116
+1991->1992,pups (young-of-year -> yearlings),3,0,9,6,Bryant App. 11 p. 116
+1992->1993,pups (young-of-year -> yearlings),0,,0,,Bryant App. 11 p. 116
+1993->1994,pups (young-of-year -> yearlings),6,6,12,10,Bryant App. 11 p. 116
+1994->1995,pups (young-of-year -> yearlings),6,3,10,3,Bryant App. 11 p. 116
+1995->1996,pups (young-of-year -> yearlings),0,,0,,Bryant App. 11 p. 116
+1996->1997,pups (young-of-year -> yearlings),7,0,7,0,Bryant App. 11 p. 116

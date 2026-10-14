@@ -247,8 +247,11 @@ place.
   - Appendix 16's 43, 42 and 41.
 - **Uncertainty.** Missing confidence intervals do not compel borrowing a
   pooled interval, and repeated exposures are not independent animals.
-- **Transplant.** The 1996 transplant's donor colony is unknown, and the
-  McQuillan and Franklin accounts differ. It is not a Haley removal.
+- **Transplant.** The 1996 transplant is not established as a Haley removal
+  and is not coded as one; the donor colony remains unknown. Unknown origin is
+  not evidence that Haley was not the donor. The McQuillan and Franklin
+  accounts stay separate, with their linkage unresolved. *(Wording corrected
+  14 October after Astra's protocol review.)*
 - **Captive breeding.** The parenthesis about the thesis predating captive
   breeding is withdrawn; p. 48 already mentions a female at Toronto Zoo.
 
@@ -262,7 +265,8 @@ place.
   are uncertainty information with stated provenance, not recovered binomial
   denominators.
 - **Maligne 2014.** Groups 423 and 424 have different locations, so they are
-  not exact duplicates. The 2010 record ID 378 is entirely blank. Blank
+  not exact duplicates. The 2010 record ID 378 has blank total and composition fields; its date,
+  location and ID are present. *(Wording corrected 14 October.)* Blank
   composition fields elsewhere do not by themselves show incomplete
   classification.
 - **Purcells Central.** The OTC, MNKA and MC classes stay distinct. 1997

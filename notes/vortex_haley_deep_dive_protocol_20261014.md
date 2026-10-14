@@ -49,16 +49,20 @@ every year 1988–1997.
   Both are shown.
 - observed arrivals: 9 immigrants over the recorded years, plus the 1974
   Haley-to-Bell-Creek movement as evidence that emigration is possible.
-- tagged persistence with denominators:
-  - non-pups (Appendix 12): 3/3, 13/8, 12/9, 9/8, 11/5, 10/8, 9/4, 15/10,
-    10/5 and 5/4 for the transitions starting 1987–1996. Total 97 exposures
-    and 64 survivors.
-  - tagged pups (Appendix 11): 2/2, 3/0, 6/6, 6/3 and 7/0 for 1990, 1991,
-    1993, 1994 and 1996. Total 24 exposures and 11 survivors.
+- tagged persistence with denominators, given as explicit exposed n and
+  survivors s and plotted as s/n (corrected 14 October; the first draft wrote
+  n/s):
+  - non-pups (Appendix 12), s/n for transitions starting 1987–1996: 3/3,
+    8/13, 9/12, 8/9, 5/11, 8/10, 4/9, 10/15, 5/10 and 4/5. Total 64 survivors
+    from 97 exposures.
+  - tagged pups (Appendix 11), s/n for transitions starting 1990, 1991, 1993,
+    1994 and 1996: 2/2, 0/3, 6/6, 3/6 and 0/7. Total 11 from 24.
   - The thesis calls these minimum persistence (p. 18), and they are not
     independent animals.
-- count-derived apparent survival (123/83 adults, 55/30 juveniles), labelled
-  as a re-expression of the stage counts, not independent evidence.
+- count-derived apparent survival (83 survivors from 123 non-pup exposures;
+  30 from 55 pup exposures), labelled as summaries from the same count
+  programme, not independent evidence, and not algebraically reconciled in
+  every row.
 - named-animal records (Appendix 16; 15 Haley rows covering 11 named animals)
   and selected lifetime reproduction (Appendix 14, excluding females alive at
   the end of 1997), described as partial records.
@@ -120,8 +124,8 @@ Barry's decision). No quantitative reconstruction is forced.
 A formal Haley feedback analysis would first need:
 1. A case-specific estimand and statistic. The nine-population
    random-intercept T1–T4 estimator does not identify its between-population
-   random effect from one colony; a single-series analogue (for example OLS
-   with AR(1) on D_s) must be defined and justified.
+   random effect from one colony. A case-specific statistic must be defined
+   and justified; none is selected by this protocol.
 2. A mapping from seasonal age-class maxima to the generator's census state,
    including observation error and effort.
 3. Reconciled or explicitly bounded annual rows.
