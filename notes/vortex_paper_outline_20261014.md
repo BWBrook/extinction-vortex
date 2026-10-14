@@ -162,3 +162,24 @@ receipts and the source-recovery matrices.
 - Whether the secondary Williams analysis (Q3) is in scope.
 - Target journal and length. The structure above suits a full article with a
   substantial supplement.
+
+---
+
+**Revision note (14 October, after Astra's outline review).**
+[`vortex_manuscript_core_draft_20261014.md`](vortex_manuscript_core_draft_20261014.md)
+supersedes this outline's wording on the following:
+- **Four evidence categories:** exposed reconstruction [R], frozen synthetic
+  validation [V], exposed development [D], optional planned work [P].
+- **Title and framing:** "outcome-exposed reanalysis with prospectively frozen
+  simulation validation", not a blanket "pre-registered".
+- **D3:** reported as 34/200 → 7/200 at one corner, with no
+  "nuisance law, not locality" claim.
+- **Covariance:** sample covariance, with shrinkage only above condition
+  number 10⁶.
+- **Gates:** the null gate is kept separate from the O1 power criterion, and
+  Q2 is descriptive after V-fail.
+- **Reconstruction:** the reconstructed slopes are reportable, with the
+  ±0.0005 criterion stated.
+- **Novelty:** narrowed to "a matched-outcome test of reconstructed pooled
+  terminal-trajectory statistics", with the wider prior-art pointers flagged
+  for a primary-text check.

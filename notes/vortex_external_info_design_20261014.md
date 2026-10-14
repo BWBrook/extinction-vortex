@@ -1,154 +1,165 @@
-# External demographic information: simulation design (draft for review)
+# External demographic information: simulation design, revision 2 (draft for review)
 
-Fable, 14 October 2026 (Australia/Hobart). Design only; no run is
-commissioned. It revises item 2 of board 1606 after Astra's correction
-(`notes/astra_a_power_deep_dive_review_20261014.md` §2): D3 and v1 do not
-bracket the precision needed. D3 fixed all six nuisances at one corner and had
-no power endpoint.
+Fable, 14 October 2026 (Australia/Hobart).
 
-## 1. Question and estimands
+**Status.** Design only: no run is commissioned and the experiment is
+optional. It does not delay the core paper or the Haley case.
 
-**Question.** If independent evidence E about survival and recruitment
-accompanies a focal extinction series N, how do null calibration and
-discrimination of the C-conditioned T1–T4 test change with E's precision,
-bias and timing?
+**Revision 2** follows Astra's review
+(`notes/astra_three_drafts_review_20261014.md`, board 1614) and replaces
+revision 1 (commit e614b23). Revision 1's arms are reduced to the eight-cell
+first diagnostic, and its errors are corrected:
+- the rate labels;
+- the selection law;
+- the fixed-ESS neighbourhood;
+- the seed collision;
+- the ideal comparator.
 
-**Repeated-experiment law (primary).** Each replicate draws:
-1. θ ~ prior (b);
-2. N ~ M0 or M_A given θ, under the frozen selection S and cap event A;
-3. E ~ p(E | θ, timing), independently of N given θ.
+## 1. Question and law
 
-The analysis uses the reference law
-p(N* | C(N*) ≈ C(N), S, E) ∝ ∫ p(N* | θ) π_b(θ) L(E | θ) dθ.
-Under this law, exact C-conditioning gives prior-predictive exchangeability
-given (C, E). The experiment measures how fixed-θ calibration and power move
-as E becomes informative.
+**Question.** In the existing v1 C-conditioned T1–T4 test, suppose the
+k-NN reference is reweighted by independent evidence E about two rate
+functionals. How do null non-accept rates, detection rates and reference
+support change?
 
-**Fixed-corner targets (secondary).** θ is fixed at a frozen v1 corner (low
-s, high σ, strong environment) and E is drawn at that θ. This is the
-fixed-nuisance validity that v1 failed. It is reported per corner, with no
-claim beyond the corners.
+**Repeated law: unchanged from v1.**
+- θ and the whole path are drawn jointly from prior (b) and M0 (or M_A).
+- The result is then kept only if it meets selection S and the cap event A.
+- The primary bank was built exactly this way. Its retained members are
+  therefore draws from p(θ, N | S, A).
+- Likelihood weighting of retained members by L(E | θ) targets
+  p(θ, N | S, A, E). No inverse-selection weighting is needed.
+- A scheme that held θ fixed until a selected path appeared would be a
+  different law. It is not used.
 
-**Dependence (sensitivity).** E shares years with N: it is computed from
-abundance-weighted survival over the series' own years. Reported apart from
-the independent case and not mixed into it.
+**E is independent of N given θ.** Shared-year or dependent E is deferred. It
+would need a joint law, or an explicit misspecification label.
 
-## 2. Information arms, units and levels
+**No guarantee.** The ideal exchangeability argument does not guarantee
+fixed-θ calibration or finite-bank calibration. Both are what the experiment
+measures.
 
-The units are those a field study reports.
-- **Survival evidence.** A marking study with n_E animal-years gives
-  k ~ Binomial(n_E, s̄). Here s̄ = (1 − δ p_c) · E_Z[logit⁻¹(logit s + σZ)] is
-  the realized annual survival a field study measures.
-- **Recruitment evidence.** m_E breeding records with recruits
-  r ~ Poisson(m_E · f̄), where f̄ = (1 − δ p_c) f.
-- L(E | θ) uses the same mappings. Environmental and catastrophe parameters
-  keep prior (b) unless an arm says otherwise.
+## 2. Measurement model (stylized)
 
-| Arm | What is informed | Levels |
-|---|---|---|
-| E-sf (realistic) | s̄ and f̄ through noisy E | n_E = m_E ∈ {10, 30, 100, 300}; bias on logit s̄ of 0 or +0.5 (E drawn at a shifted value, analysed as unbiased) |
-| I-sf (ideal benchmark) | s̄ and f̄ through truth-centred priors | the same Fisher information as E-sf at each n_E, centred exactly at the truth |
-| Timing (under M_A only) | E from the baseline phase (N ≥ n_ref, g = 1) against the decline phase (survival including g(N_t) over the final 5 transitions) | n_E ∈ {30, 300}, bias 0 |
-| Oracle-6 (limit) | all six nuisances known (the D3 construction) | null at the low-s corner (done: D3); power at Δ10 = 0.5 on a fixed subset (§4) |
+**Rate functionals.** For each population:
+- s̄(θ) = (1 − δ p_c) · E_Z[logit⁻¹(logit s + σZ)], Z ~ N(0, 1);
+- f̄(θ) = (1 − δ p_c) · f.
 
-n_E = 0 recovers v1. Haley's tagged summaries (97 non-pup exposures over ten
-years) and the caribou collars (about 3–8 per year) sit inside this range.
-This is an approximate anchor, not a claim that those studies match the
-binomial model.
+These are the stationary, **unselected** M0 mean annual survival and
+recruitment per counted individual. They are census-class marginal rate
+functionals, not realized annual field rates.
 
-## 3. Reference construction and feasibility
+**Stylized evidence.**
+- k ~ Binomial(n, s̄(θ_true));
+- r ~ Poisson(n · f̄(θ_true)).
 
-**R1: weighted primary bank.** Each bank member i (θ_i a prior draw under
-selection) gets weight w_i = L(E | θ_i).
-- The reference is the K_eff-effective neighbourhood. Members are taken in
-  C-distance order until the weighted effective sample size
-  (Σw)² / Σw² reaches 2,000, capped at 200,000 members.
-- R_train + R_test trajectories are drawn with probability ∝ w.
-- The frozen C metric (v1 mask and MAD), estimator, scoring and failure rules
-  are kept.
+n is an **ideal information index**, not a field sample size: "n marked
+animal-years" is an analogy only. Shared annual environment and catastrophes,
+which induce extra variance and survival–recruitment dependence in real
+studies, are omitted by construction.
 
-**Diagnostics** per outer and population:
-- the effective sample size reached;
-- the members needed;
+**What the likelihood informs.** L(E | θ) depends on σ, p_c and δ as well as
+on s and f. It informs two rate functionals, not s and f alone.
+
+**Ideal comparator (I).** The truth-centred version replaces the sampled
+(k, r) with their expectations. Its log-weight is
+
+log w_I(θ) = n[s̄₀ log s̄(θ) + (1 − s̄₀) log(1 − s̄(θ))] + n[f̄₀ log f̄(θ) − f̄(θ)],
+
+with s̄₀ = s̄(θ_true) and f̄₀ = f̄(θ_true): the expected binomial and Poisson
+log-likelihoods at the true functionals. **Realistic E** uses the sampled
+(k, r) in the same likelihood.
+
+## 3. Reference construction (fixed K)
+
+- **Membership.** v1's own K = 2,000 neighbours in the frozen C metric (v1
+  mask and MAD), queried with k = K.
+- **Draws.** The R_train + R_test reference trajectories are drawn from the
+  members with probability proportional to w = L(E | θ) (or w_I). This is
+  the only change to `run_chunk`'s reference draw.
+- **Not used.** Expanding the neighbourhood to a fixed ESS confounds
+  information with C-locality and is a different procedure.
+
+**Stage 0 diagnostics** (no fits), per dataset × population:
+- the weight ESS, (Σw)² / Σw², within the K members;
 - the largest weight share;
-- the original-C distance at the last member.
+- the original-C K-th distance, unchanged from v1.
 
-**Support rule.** If 200,000 members do not reach an effective sample size of
-2,000, the trial is *indeterminate (support)* and stays in the denominator as
-a null failure or a non-detection.
+**Support rule.**
+- A dataset fails support if **any** of its nine populations has ESS < 100.
+- Failure rates are reported **by scenario as dataset-level any-of-nine
+  failures**, not as pair rates. Even 1% independent pair failures give
+  8.65% dataset failures.
+- A failed dataset is indeterminate and counted in the fixed denominator, as
+  a null failure or a non-detection.
 
-**Stage 0 (no-fit feasibility pre-screen).** Compute these diagnostics for
-every arm and level on the exposed outers below, before any fit.
-- The decision rule is declared now: a level whose median effective sample
-  size falls short at more than 10% of outer-population pairs is dropped from
-  Stage 1 and reported as infeasible under R1.
-- R2 (a bank drawn per information level) is costed only for dropped levels,
-  and only with a bounded design.
+## 4. First diagnostic (eight cells)
 
-## 4. Scenarios, sizes and rules (Stage 1, fitted)
+**Cells.** Realistic E, unbiased, n ∈ {30, 300}, crossed with four scenarios:
 
-**Outers.** Exposed v1 outers, used for development only; their true θ is
-logged, so E can be drawn per outer.
-- b1 (prior-predictive null), trial IDs 0–199.
-- b3 (low-s null), 0–199.
-- b2 (high σ) and b4 (strong environment), 0–199.
-- b5 (β_min) and b16 (Δ10 = 0.5), 0–199.
+| Scenario | v1 block | Trial IDs |
+|---|---|---|
+| prior-predictive null | b1 | 0–199 |
+| low-s null | b3 | 0–199 |
+| M_A at β_min | b5 | 0–199 |
+| M_A at Δ10 = 0.5 | b16 | 0–199 |
 
-Each pairs with its stored v1 outcome.
+These are exposed v1 outers, used for development only. Their true θ is
+logged, so E can be drawn per outer. Each pairs with its stored v1 outcome.
+Stage 0 also reports w_I diagnostics for the same cells; this is cheap and
+involves no fits.
 
-**Cells.**
-- E-sf: 4 levels × 2 biases × 6 scenarios.
-- I-sf: 4 levels × 6 scenarios.
-- Timing: 2 levels × 2 phases × 2 alternatives.
-- Oracle-6 power: 50 b16 outers, each with its own fixed-θ bank; about 40 min
-  per bank on deep-server, so about 35 h. It is included only if Barry
-  accepts that cost and is otherwise reported as not run.
+**Stage 0 (no fits).**
+- All eight cells × 200 outers × 9 populations: weight diagnostics only.
+- Cost: one bank pass, about 30 min on deep-server.
+- The report is returned to Astra **before any fitted stage is proposed**.
 
-At 200 outers each, 80 cells make Stage 1 about 16,000 analyses before Stage 0 drops,
-about twice v1's validation: roughly 7 h on 48 kunanyi nodes, with one PBS
-completion email.
+**Stage 1 (fitted; proposed only after Stage 0 review).**
+- The same eight cells, 1,600 analyses.
+- On kunanyi this is about 40 min of fits on 48 nodes, plus unbenchmarked
+  weighting and setup, which Stage 0 will measure.
+- Reported per cell:
+  - non-accepts or detections, with exact intervals;
+  - the paired table against v1, with McNemar and Newcombe method 10;
+  - mean z;
+  - support failures;
+  - fit failures.
+- No extension and no retuning.
 
-**Seeds.**
-- E draws: 8×10^12 + 8×10^6 + 10^5·cell + trial.
-- Reference draws: 8×10^12 + 9×10^6 + 10^5·cell + trial.
+**Deferred:**
+- bias arms;
+- the other null corners;
+- the baseline-against-decline timing question (the stored outers lack
+  annual environment and survivor/recruit histories, and g acts on survival
+  odds);
+- shared-year dependence;
+- the oracle-6 power arm (needs a concrete bounded plan before any cost is put
+  to Barry).
 
-**Reported per cell:**
-- non-accepts or detections, with exact intervals;
-- the paired table against v1;
-- mean z;
-- support diagnostics;
-- failures.
+## 5. Streams (disjoint and bound)
 
-**The information curve.** Calibration at each null scenario and power at
-β_min and Δ10 = 0.5, plotted against n_E, for E-sf against I-sf, by bias and
-timing.
+Every stream comes from NumPy `default_rng` seeded with an integer sequence,
+which makes them collision-free by construction.
+- **E draws:** `default_rng([20261014, 1, cell, trial, population_index])`.
+- **Reference draws:** `default_rng([20261014, 2, cell, trial])`, passed to
+  the reference sampler. Populations are drawn in the frozen design order.
+- **Coding:** cell = 0–7 (n index × 4 + scenario index); population index =
+  frozen design order 0–8.
 
-**Rules.**
-- No extension, no retuning and no adaptive levels beyond the Stage 0 rule.
-- Results are development evidence.
-- A method chosen from them must be frozen and validated prospectively on
-  fresh outers before any empirical use.
+The full stream table, settings and helper hashes are bound in the inputs file
+before Stage 0, as in the A power screen.
 
-## 5. What it can and cannot show
+## 6. What it can and cannot show
 
-**Can show:**
-- whether external s/f evidence at field-plausible precision restores
-  calibration at the corners where v1 failed;
-- what that costs in power;
-- how sensitive the result is to bias and to decline-phase measurement.
+**Can show:** whether stylized rate information at two levels restores
+support-limited calibration where v1 failed (b3), and what it costs in
+detection (b5, b16), on development outers.
 
 **Cannot show:**
-- that this population model is a valid null for Haley or for caribou;
+- realistic field-study performance (the measurement model is stylized);
+- validity for Haley or caribou;
 - anything empirical about the nine populations;
-- uniform validity over nuisance values outside the scenarios.
+- uniform validity.
 
-## 6. Open points for Astra
-
-1. Whether R1's effective-sample-size neighbourhood is acceptable as a fixed
-   rule, or whether K should stay at 2,000 members with weights only.
-2. Whether s̄ and f̄ are the right estimands for E, against stage-specific
-   rates.
-3. Whether the decline-phase window of 5 transitions is a reasonable
-   declaration.
-4. Whether to cut the cells (for example, bias only at n_E ∈ {30, 300})
-   before Stage 0.
+A method chosen later would need freezing and prospective validation on fresh
+outers.

@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 14:38 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 14 October 2026, 15:30 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -554,10 +554,20 @@ The recovery-matrix corrections are appended as matrix §8.
   factorial, timing/dependence and oracle-power arms. This is a proposal for
   the revised specification, not an execution instruction or validation.
 
-**Next response: Fable.** Produce the Haley artifacts, draft the verified core
-methods/results with those amendments, and return the smaller external-information
-specification. Astra reviews the artifacts and revised design. No new simulation,
-fit, empirical test or author contact is commissioned here.
+**Fable, 14 October afternoon** (after Astra 1614):
+- **Haley Lake descriptive deep dive** produced:
+  [narrative](notes/haley_case_narrative_20261014.md);
+  [tables, conflict register and figure](analysis/fable/haley/NOTE.md).
+  The transcription was re-extracted from the PDF, and every value agrees with
+  Astra's.
+- [Core methods and results draft](notes/vortex_manuscript_core_draft_20261014.md),
+  with the corrected claims and four evidence categories.
+- External-information design cut to
+  [revision 2](notes/vortex_external_info_design_20261014.md): eight cells, a
+  Stage 0 no-fit diagnostic first, optional.
+
+**Next response: Codex.** Review the Haley artifacts, the core draft and
+revision 2. No run is commissioned and no empirical execution.
 
 ## Completed by Astra
 
