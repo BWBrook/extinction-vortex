@@ -1,0 +1,181 @@
+{
+  "scope": "Read archived receipts and unchanged frozen source; two hand-specified arithmetic fixtures; no fits, simulation or raw-bank reload",
+  "reviewed_commit": "ec72dd0330b6acd440aa85d2507c28e465ed2020",
+  "frozen_source": "52779d01468dac186c19810b59c8295dbedd212f",
+  "manuscript_sha256": "3657d96527d13f8d234f6a641a9a698dcf4313634e12f546522937b0d5f0814b",
+  "source_identity": {
+    "analysis/fable/calibration/tstats_batch.R": {
+      "sha256": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+      "identical_to_frozen": true
+    },
+    "analysis/fable/calibration/bank.py": {
+      "sha256": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+      "identical_to_frozen": true
+    },
+    "analysis/fable/calibration/effect_target.py": {
+      "sha256": "720149280db6e076eed2fadf0dc71e0f324a488932aa8160213300e91df5e184",
+      "identical_to_frozen": true
+    },
+    "analysis/fable/calibration/e2e_benchmark.py": {
+      "sha256": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+      "identical_to_frozen": true
+    }
+  },
+  "receipt_sha256": {
+    "analysis/fable/calibration/freeze_v1/effect_target_ar_cat.json": "34e5c8f0cb945f9da95e3051241b1b5fadc53c8cc00073cd38e4b761d5aa090a",
+    "analysis/fable/calibration/validation_v1/validation_summary.json": "c0eaf012ded16d79b82f894c76f13bd281a287660ef01581abe6d7a9949d1154",
+    "analysis/fable/calibration/freeze_v1/bank_primary_meta.json": "68180fb9f3fa1392bb8418be2a3af008cdf46aaf2878cc9fbd7de476df76ff15"
+  },
+  "effect_target": {
+    "n0": 20,
+    "runs_per_grid_point": 100000,
+    "chosen": {
+      "delta10": 0.075,
+      "beta": 0.9745192683713976,
+      "p_null": 0.41431,
+      "p_MA": 0.55012,
+      "diff": 0.13581000000000004,
+      "overflow": 0
+    },
+    "g10": 0.925,
+    "preceding_grid_point": {
+      "delta10": 0.05,
+      "beta": 0.6411661798443822,
+      "p_null": 0.41431,
+      "p_MA": 0.50363,
+      "diff": 0.08932000000000001,
+      "overflow": 0
+    },
+    "interpretation": "Risk increment threshold 0.10 is distinct from Delta10=1-g(10)=0.075"
+  },
+  "validation": {
+    "host": "n001.kunanyi",
+    "runtime": {
+      "python": "3.11.7",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "R": "R version 4.3.3 (2024-02-29)",
+      "nlme": "3.1.171"
+    },
+    "rejections_by_block": [
+      46,
+      41,
+      148,
+      30,
+      21,
+      25,
+      16,
+      26,
+      17,
+      15,
+      17,
+      42,
+      40,
+      28,
+      118,
+      206,
+      11
+    ],
+    "trials": 7900,
+    "failed_vectors": 4,
+    "gates": [
+      {
+        "block": 1,
+        "null_gate": {
+          "non_accepts": 46,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.06312
+        },
+        "power_gate": null
+      },
+      {
+        "block": 2,
+        "null_gate": {
+          "non_accepts": 41,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.05736
+        },
+        "power_gate": null
+      },
+      {
+        "block": 3,
+        "null_gate": {
+          "non_accepts": 148,
+          "max_allowed": 60,
+          "pass": false,
+          "upper_98.75": 0.17498
+        },
+        "power_gate": null
+      },
+      {
+        "block": 4,
+        "null_gate": {
+          "non_accepts": 30,
+          "max_allowed": 60,
+          "pass": true,
+          "upper_98.75": 0.04446
+        },
+        "power_gate": null
+      },
+      {
+        "block": 5,
+        "null_gate": null,
+        "power_gate": {
+          "detections": 21,
+          "min_required": 224,
+          "pass": false,
+          "lower_95": 0.04738
+        }
+      }
+    ]
+  },
+  "bank_retained_per_population": {
+    "wild_dog": 13459632,
+    "marmot": 14536935,
+    "ms_woodpecker": 20323091,
+    "rc_woodpecker": 28705083,
+    "golden_plover": 22037346,
+    "whooping_crane": 19798545,
+    "hawaiian_crow": 29895060,
+    "wood_turtle_A": 16488428,
+    "wood_turtle_B": 17686102
+  },
+  "arithmetic_fixtures": {
+    "reverse_time_sign": [
+      {
+        "s": 1,
+        "D": -0.6931471805599453,
+        "earlier_year": 0,
+        "later_year": 1
+      },
+      {
+        "s": 0,
+        "D": -2.3025850929940455,
+        "earlier_year": 1,
+        "later_year": 2
+      }
+    ],
+    "gap_mapping": [
+      {
+        "s": 3,
+        "D": -0.6931471805599453,
+        "earlier_year": 0,
+        "later_year": 1
+      },
+      {
+        "s": 0,
+        "D": -1.6094379124341003,
+        "earlier_year": 3,
+        "later_year": 4
+      }
+    ],
+    "qualification": "These confirm index algebra and mapping, not any fitted T statistic"
+  },
+  "manual_source_findings": [
+    "Normal prior scale is SD 1.5, hence variance 1.5 squared",
+    "T4 uses squared conditional residuals after refitting the mean model without final transitions",
+    "Scorer uses squared Mahalanobis distance and complete training vectors; max 40/2000 failures before trial indeterminacy"
+  ]
+}

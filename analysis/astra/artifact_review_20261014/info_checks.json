@@ -1,0 +1,139 @@
+{
+  "scope": "Rev2 numerical/seed/source fixtures only; no bank payload/query, E sampling, fits or remote compute",
+  "time_hobart": "2026-10-14T15:10:16.679771+11:00",
+  "head": "ec72dd0330b6acd440aa85d2507c28e465ed2020",
+  "draft_sha256": "d2d08c4a709f51e3f2b061dad723796c6daa93682d37e2c29f44a5bc99db1be8",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "numerical_fixtures": {
+    "GH40_vs_adaptive_quad_cases": 45,
+    "GH40_max_absolute_error": 7.771561172376096e-16,
+    "GH40_vs_GH80_max_absolute_difference": 7.216449660063518e-16,
+    "scope": "Deterministic grid spans sigma0..1 and logit(s)-30..30; this does not certify every possible input or a future implementation.",
+    "normalized_loglikelihood_vs_full_pmf_max_error": 6.546866425325545e-42,
+    "ideal_expression_matches_expected_pseudocounts": true,
+    "underflow_fixture": {
+      "raw_weight_sum": 0.0,
+      "stable_weights": [
+        0.6652409557748218,
+        0.24472847105479764,
+        0.09003057317038046
+      ],
+      "ESS": 1.9586986534143886,
+      "max_share": 0.6652409557748218
+    },
+    "all_minus_inf_nan_and_plus_inf_refused": [
+      true,
+      true,
+      true
+    ],
+    "zero_times_log_zero_boundary_handled": true,
+    "n0_returns_uniform_K2000_ESS": 2000.0,
+    "ESS_exact100_fixture_passes_strict_less_than100_flag": true,
+    "proposed_numerical_contract": "Fix the quadrature rule; stabilize in log space; use xlogy/log1p equivalents at boundaries; allow -inf zero weights only when some finite weight exists; report unusable weights instead of uniform fallback."
+  },
+  "stream_fixtures": {
+    "E_streams": 14400,
+    "reference_streams_reserved_for_Stage1": 1600,
+    "entropy_tuples_unique": true,
+    "duplicate_initial_states_in_enumeration": 0,
+    "bit_generators_in_local_runtime": [
+      "PCG64"
+    ],
+    "frozen_population_order": [
+      "wild_dog",
+      "marmot",
+      "ms_woodpecker",
+      "rc_woodpecker",
+      "golden_plover",
+      "whooping_crane",
+      "hawaiian_crow",
+      "wood_turtle_A",
+      "wood_turtle_B"
+    ],
+    "cell_map": [
+      {
+        "cell": 0,
+        "n": 30,
+        "block": 1
+      },
+      {
+        "cell": 1,
+        "n": 30,
+        "block": 3
+      },
+      {
+        "cell": 2,
+        "n": 30,
+        "block": 5
+      },
+      {
+        "cell": 3,
+        "n": 30,
+        "block": 16
+      },
+      {
+        "cell": 4,
+        "n": 300,
+        "block": 1
+      },
+      {
+        "cell": 5,
+        "n": 300,
+        "block": 3
+      },
+      {
+        "cell": 6,
+        "n": 300,
+        "block": 5
+      },
+      {
+        "cell": 7,
+        "n": 300,
+        "block": 16
+      }
+    ],
+    "qualification": "Finite enumeration found no duplicate states in this installed runtime; SeedSequence does not mathematically guarantee collision-free/nonoverlapping streams. Pin NumPy/BitGenerator and bind ordering plus k-then-r draw convention."
+  },
+  "source_and_feasibility": {
+    "frozen_bank_and_fitter_sources_match": true,
+    "original_v1_outer_schema": [
+      "recorded",
+      "draws",
+      "params"
+    ],
+    "A_power_compact_outers_lack_theta": true,
+    "truth_source_contract": "Extract six-coordinate theta from original v1 selected[population].params, bind source row hashes and IDs. A compact observed-mode rerun is not a source of true theta; it stores params={}.",
+    "current_availability_limit": "Source schema verified locally; no new read of all remote original row payloads in this review.",
+    "tie_fixture": {
+      "direct_K3_members": [
+        1,
+        2,
+        0
+      ],
+      "truncated_K4_members": [
+        1,
+        2,
+        3
+      ],
+      "membership_differs_despite_equal_distances": true
+    },
+    "membership_contract": "Use k=K (not truncated K+1), identical bank/shard row order, mask/MAD and pinned runtime; bind actual draw IDs. A matching rounded Kth distance does not certify membership at ties.",
+    "Stage0_arithmetic": {
+      "cells": 8,
+      "outer_population_pairs_per_weight_type": 14400,
+      "noisy_weight_evaluations": 28800000,
+      "ideal_weight_evaluations": 28800000,
+      "distinct_outer_population_neighbour_sets": 7200,
+      "member_occurrences_if_shared_across_levels_and_weight_types": 14400000,
+      "primary_retained_members": 182930222,
+      "GH40_evaluations_for_occurrences_if_reused": 576000000,
+      "GH40_evaluations_if_needlessly_applied_to_all_bank_members": 7317208880
+    },
+    "resource_limit": "Thirty minutes is a planning estimate, not a measured bound; preserve one-pass/per-population processing and record elapsed time/peak memory. Stage0 measures support diagnostics only, with no fitted classification or Stage1 permission.",
+    "ESS100_interpretation": "Declared concentration flag for exploratory diagnostics; not a demonstrated validity threshold. Report continuous ESS/max-weight share and any-of-nine fractions by scenario and n for both noisy and ideal weights."
+  }
+}

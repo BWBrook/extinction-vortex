@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 15:00 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 15:10:54 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -573,12 +573,42 @@ caribou and the nine-series table to Codex."
   Purcells Central) and a one-page evidence table for the nine F&H series.
 - Descriptive only, from the pinned public sources and existing audits.
 
-**Next response: Codex.** Review 1621 (the Haley artifacts, core draft and
-external-information revision 2), and accept or revise 1623. No empirical
-execution.
+**Astra reviewed the completed drafts and accepted the next tranche (14 October,
+message 1625):**
+[integrated review](notes/astra_completed_drafts_caribou_review_20261014.md),
+[Haley artifact review](notes/astra_haley_artifact_review_20261014.md),
+[core manuscript review](notes/astra_core_manuscript_review_20261014.md) and
+[reproducible checks](analysis/astra/artifact_review_20261014/).
+- All 30 Haley source/artifact checks pass, including rebuilt tables/PNG and
+  identical PDF rendering. Finish bounded wording and annotation corrections;
+  no source values or empirical inference changed.
+- All 17 v1 validation totals and the effect/bank receipts reconcile. Correct
+  the manuscript's definitions, chronology and evidence limits. The 0.10 risk
+  threshold and Delta10=0.075 describe different quantities and both stand.
+- Accept Fable's six descriptive caribou deliverables and one-page nine-series
+  evidence table, with source classes, denominators, endpoint conflicts and
+  data dependence explicit. Fable implements; Astra reviews. No broader search,
+  author contact, new interval or fitted case analysis is included.
+- Revision 2 supports an optional bounded external-information Stage 0 within
+  the standing development scope, after input/runtime/member-ID binding and
+  tiny numerical checks. Exactly eight cells x 200 exposed outers x nine
+  populations, with noisy and ideal weight diagnostics; no fitting or new bank.
+  ESS<100 is an exploratory concentration flag, not a validated calibration
+  gate. Measure setup/time/memory, report support/cost and stop. Stage 1 remains
+  uncommissioned; this optional work must not delay manuscript production.
+
+**Next response: Fable.** Apply the bounded Haley/core corrections and produce
+the accepted caribou case and nine-series table. Optional Stage 0 returns its
+own no-fit report before any fitted-stage proposal. No empirical execution.
 
 ## Completed by Astra
 
+- 14 October, reviewed completed Haley artifacts, core manuscript and revised
+  external-information design at `ec72dd0`, with three bounded reviewers.
+  Verified the figure rebuild, frozen source/results, rate integration, seed
+  enumeration and numerical fixtures. Accepted the caribou/table tranche and
+  optional bounded no-fit diagnostic with execution checks. No bank loading,
+  population simulation, reference sampling, model fit or empirical statistic.
 - 14 October afternoon, reviewed the paper outline, external-information design
   and Haley protocol at `e614b23`, with three bounded reviewers. Checked source,
   seed and cost contracts and exact selection/variance/ESS examples. Supported
@@ -870,10 +900,12 @@ execution.
 
 ## Pending
 
-1. Fable responds to review 1614 with the Haley descriptive artifacts,
-   verified core methods/results draft and smaller external-information design.
-   The latter is optional and must not delay the first two; no new experiment
-   is commissioned by accepting descriptive production.
+1. Fable responds to review 1625 with the bounded Haley/core repairs and the
+   accepted descriptive caribou package plus nine-series evidence table.
+   Optional external-information Stage 0 may proceed after the specified
+   execution checks; it returns a support/cost report without fits and stops.
+   It must not delay the paper. Stage 1 and larger extensions remain
+   uncommissioned.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
    deferred. The original two-candidate route meets its stop rule. Any new
    inferential procedure needs a separate prospective protocol/freeze before
@@ -903,9 +935,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1614**; exhausted `through`: **1614**.
-- Explicit acknowledgement: through actual message **1614** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1614`.
+- Last full retrieval `next_after`: **1625**; exhausted `through`: **1625**.
+- Explicit acknowledgement: through actual message **1625** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1625`.
 
 ## Decision Inbox checkpoint
 

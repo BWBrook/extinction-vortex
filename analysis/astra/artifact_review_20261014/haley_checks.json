@@ -1,0 +1,208 @@
+{
+  "scope": "Source transcription, CSV and figure consistency; no empirical model or inference",
+  "reviewed_head": "ec72dd0330b6acd440aa85d2507c28e465ed2020",
+  "matplotlib_version": "3.11.2",
+  "checks": [
+    {
+      "name": "primary PDF pin agrees with verified source receipt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cached primary PDF bytes match source pin",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "appendix7_p110 all source arrays agree",
+      "passed": true,
+      "details": {
+        "arrays": 8,
+        "values": 88
+      }
+    },
+    {
+      "name": "appendix12_p117_nonpups all source arrays agree",
+      "passed": true,
+      "details": {
+        "arrays": 5,
+        "values": 50
+      }
+    },
+    {
+      "name": "appendix11_p116_pups all source arrays agree",
+      "passed": true,
+      "details": {
+        "arrays": 5,
+        "values": 50
+      }
+    },
+    {
+      "name": "appendix12_p117_nonpups printed summary agrees",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "appendix11_p116_pups printed summary agrees",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "unique Williams ID15 row",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Williams ID15 species identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Williams all20 annual values read directly from raw CSV",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "ten source-overlap matches and retained1987 conflict",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "annual CSV row count and ordering",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all annual CSV values and missing entries match independent reference/raw CSV",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "transition CSV has20 distinct cohort rows",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all transition CSV values, start/end years, zero and null entries match reference",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "narrative descriptive sums and8of11 litter years",
+      "passed": true,
+      "details": {
+        "tagged_nonpup_n_s": [
+          97,
+          64
+        ],
+        "tagged_pup_n_s": [
+          24,
+          11
+        ],
+        "count_nonpup_n_s": [
+          123,
+          83
+        ],
+        "count_pup_n_s": [
+          55,
+          30
+        ],
+        "pups": 59,
+        "litters": 17,
+        "litter_positive_years": 8,
+        "litter_zero_years": [
+          1989,
+          1992,
+          1995
+        ],
+        "immigrants": 9
+      }
+    },
+    {
+      "name": "three numerical cross-table conflicts remain preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "four rendered axes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "plotted Williams data match independent raw series",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "plotted Bryant totals match source",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all33 stage-bar heights match source arrays",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all15 plotted persistence points use s/n with correct cohort years and missing gaps",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "genuine zero and conflict labels retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "persistence has no interval artists",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all litter bars and10 recorded immigrant bars match source",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "temporary rebuild byte match: source_table_annual.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "temporary rebuild byte match: source_table_transitions.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "temporary rebuild byte match: haley_case.png",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "committed PDF passes qpdf syntax/stream check",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "temporary rebuild PDF raster byte match",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "all_checks_passed": true,
+  "manual_review": "PNG and a180dpi rendering of the committed PDF were visually inspected; see review memo for interpretation/display corrections.",
+  "source_independence_limit": "This verifies values against the previously source-checked Astra receipt; it does not independently establish how Fable performed re-extraction.",
+  "input_sha256": {
+    "analysis/astra/a_power_review/haley_source_excerpt.json": "efc413756e9bdedf7bcc07319f3970e17cc7710f46ecf825f108f48b31591790",
+    "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168",
+    "analysis/fable/haley/NOTE.md": "e5aba40700029fc18d04c8516e655f3f7ad227a73c2c375a2c86cb77390aeb33",
+    "analysis/fable/haley/conflict_register.md": "2d2dd6b51bdba6c65cfb143c509f6bc930391fcec2174697b6015f07489f2cba",
+    "analysis/fable/haley/haley_case.pdf": "349878533b46bd17cfeea368f099339aa2b113d3b0a7d53d7f7e97427c135b19",
+    "analysis/fable/haley/haley_case.png": "26a005e597deaf3946d1f0371ce61f976cfdd4616fb39e82478dbc4a23d8cf72",
+    "analysis/fable/haley/haley_source.json": "be7a0be36edadd2bd1a40fdffea3e2639f139b5b348452c88620b6734f9a92a3",
+    "analysis/fable/haley/make_haley.py": "96838e83e59b6d041cd6badf61e2cc2d4c35a261bf19a8901a4d5a343b0b740e",
+    "analysis/fable/haley/source_table_annual.csv": "5fce320956e2b9187b34c041fa8d1c4cae8c8fdab0edb3a4c36b6696407594d6",
+    "analysis/fable/haley/source_table_transitions.csv": "be297ae1111bb238fbd027889ff9fbcc6b2ff06ac55af6d7e6fc1ed87e7be5c1",
+    "notes/haley_case_narrative_20261014.md": "3089b69d64d290dfdb2833228d6213abea5f202f25dd8fbcefe3eba65aff2645"
+  }
+}
