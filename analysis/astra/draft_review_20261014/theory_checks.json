@@ -1,0 +1,49 @@
+{
+  "scope": "Exact illustrative probability/variance arithmetic, not project simulation or empirical analysis.",
+  "selection": {
+    "prior": [
+      0.5,
+      0.5
+    ],
+    "P_selection_given_theta": [
+      0.1,
+      0.9
+    ],
+    "P_evidence_given_theta": [
+      0.9,
+      0.1
+    ],
+    "theta_posterior_joint_then_selection": [
+      0.5,
+      0.5
+    ],
+    "theta_posterior_fixed_theta_then_conditioned_path": [
+      0.9,
+      0.1
+    ],
+    "inverse_selection_weight_restores_second_target": true
+  },
+  "shared_year": {
+    "n": 10,
+    "survival_mean": 5.0,
+    "binomial_variance": 2.5,
+    "shared_environment_survival_variance": 10.6,
+    "recruitment_mean": 10.0,
+    "poisson_variance": 10.0,
+    "shared_environment_recruitment_variance": 74.0,
+    "survival_recruitment_covariance": 24.0
+  },
+  "ESS_nonmonotone": {
+    "ten_unit_weights": 10.0,
+    "after_adding_weight_100": 1.2087912087912087
+  },
+  "any_of_nine_failure_under_independent_pair_failures": {
+    "0.01": 0.0864827525163591,
+    "0.1": 0.612579511
+  },
+  "limitations": [
+    "Two-point examples demonstrate logical differences; they are not estimated project effect sizes.",
+    "Any-of-nine formula assumes independent population failures solely for illustration.",
+    "No data downloaded, random values generated, model fitted or bank loaded."
+  ]
+}

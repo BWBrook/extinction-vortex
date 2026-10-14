@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 12:30 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 14:38 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -431,9 +431,7 @@ the obvious next step. Proceed with my full agreement."
 - **The T1/T2 shift largely persists**, and the neighbourhoods are 4.6 times
   wider, so the drop may come from a more diffuse reference. Power is
   untested.
-- All checks pass and A has no failed fits. Independent rescoring found one
-  v1 test-reference fit failure, handled by its recorded bounds without an
-  indeterminate outcome.
+- All checks pass and there were no failed fits in this null-screen comparison.
   [Details](analysis/fable/calibration/v2_dev/NOTE.md).
 
 **Option 3 first-pass scans** (unverified):
@@ -484,7 +482,10 @@ together as a nicely unified and comprehensive piece of work."
 **A power screen done** (13 October, 16:15–22:20).
 - Detections on the same outers: β_min 21 → 11/300; **Δ10 = 0.5 206 → 28/300**.
 - Paired difference at Δ10 = 0.5: −0.593 (−0.646, −0.533).
-- All checks pass and there were no failures.
+- All checks pass and A has no failed fits. Independent rescoring found one
+  v1 test-reference fit failure in b16, handled by its recorded bounds without
+  an indeterminate outcome. Astra's earlier STATUS placement of this note
+  under the null screen was incorrect; the audit receipts were correctly scoped.
 - **Candidate A is closed**: its null improvement costs almost all
   discrimination. B stays deferred. The route forward is Barry's narrowed
   option 3.
@@ -531,11 +532,40 @@ together as a nicely unified and comprehensive piece of work."
 
 The recovery-matrix corrections are appended as matrix §8.
 
-**Next response: Codex.** Review the three drafts. No run is commissioned and
-no empirical execution.
+**Astra review of the three drafts (14 October, message 1614):**
+[integrated review](notes/astra_three_drafts_review_20261014.md),
+[paper-outline review](notes/astra_paper_outline_review_20261014.md),
+[Haley protocol review](notes/astra_haley_protocol_review_20261014.md), and
+[deterministic source/probability checks](analysis/astra/draft_review_20261014/).
+- Proceed to the four Haley descriptive deliverables with corrected
+  survivors/exposures notation, transition labels, missing-versus-zero rules
+  and uncertainty wording. No further general protocol round is needed.
+- Existing-results writing can proceed with four evidence categories: exposed
+  reconstruction, prospectively frozen synthetic validation, exposed development,
+  and optional planned work. Remove the claim that D3 excludes locality effects;
+  keep Q2 descriptive after V-fail and the covariance/gate rules exact.
+- The external-information study remains optional, design-only and not ready
+  for implementation or either proposed execution stage. Repair its external
+  observation likelihood, selection law, reference rule and overlapping seeds;
+  measure the revised resource needs before any run. Seven source checks and
+  exact examples reproduce the review's logical/arithmetic findings.
+- Suggested first diagnostic design: unbiased information levels 30 and 300,
+  b1/b3/b5/b16, fixed-K weight diagnostics without fitting; defer the larger
+  factorial, timing/dependence and oracle-power arms. This is a proposal for
+  the revised specification, not an execution instruction or validation.
+
+**Next response: Fable.** Produce the Haley artifacts, draft the verified core
+methods/results with those amendments, and return the smaller external-information
+specification. Astra reviews the artifacts and revised design. No new simulation,
+fit, empirical test or author contact is commissioned here.
 
 ## Completed by Astra
 
+- 14 October afternoon, reviewed the paper outline, external-information design
+  and Haley protocol at `e614b23`, with three bounded reviewers. Checked source,
+  seed and cost contracts and exact selection/variance/ESS examples. Supported
+  direct descriptive/manuscript production with amendments; returned concrete
+  design repairs before external-information implementation or execution.
 - 14 October, independently audited the 600-case A-power comparison, including
   all paired raw T files and source/bank bindings. Audited the recovery matrix
   against primary Haley and caribou sources. Supported A closure and bounded
@@ -822,8 +852,10 @@ no empirical execution.
 
 ## Pending
 
-1. Fable responds to review 1608 with the core-paper outline,
-   external-information design and Haley descriptive/model protocol.
+1. Fable responds to review 1614 with the Haley descriptive artifacts,
+   verified core methods/results draft and smaller external-information design.
+   The latter is optional and must not delay the first two; no new experiment
+   is commissioned by accepting descriptive production.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
    deferred. The original two-candidate route meets its stop rule. Any new
    inferential procedure needs a separate prospective protocol/freeze before
@@ -853,9 +885,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1608**; exhausted `through`: **1608**.
-- Explicit acknowledgement: through actual message **1608** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1608`.
+- Last full retrieval `next_after`: **1614**; exhausted `through`: **1614**.
+- Explicit acknowledgement: through actual message **1614** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1614`.
 
 ## Decision Inbox checkpoint
 

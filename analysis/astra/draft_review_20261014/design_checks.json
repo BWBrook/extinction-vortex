@@ -1,0 +1,152 @@
+{
+  "scope": "Source and deterministic arithmetic only; no bank payloads, simulation, fitting, dispatch or empirical statistics",
+  "time_hobart": "2026-10-14T14:33:17.295154+11:00",
+  "head": "e614b238af7c900e678b5382b6c804d0422b15d9",
+  "draft_sha256": "eba768947408056a9556f24b2cca9ba052c68c1606ebe860ff991758913b8b83",
+  "checks": {
+    "bank_source_matches_frozen_manifest": true,
+    "fitter_source_matches_frozen_manifest": true,
+    "primary_metadata_matches_frozen_bank_manifest": true,
+    "all_primary_population_banks_exceed_200000_records": true,
+    "saved_outer_fields_are_counts_theta_drawcount": true,
+    "simulator_returns_no_annual_rate_history": true,
+    "bank_save_has_no_explicit_environment_survival_recruit_fields": true
+  },
+  "source_contract": {
+    "generator_assignments": {
+      "z": [
+        {
+          "line": 129,
+          "expression": "innovations(p, n, rng)"
+        },
+        {
+          "line": 137,
+          "expression": "p['rho'] * z + np.sqrt(1 - p['rho'] ** 2) * innovations(p, n, rng)"
+        }
+      ],
+      "mult": [
+        {
+          "line": 140,
+          "expression": "np.where(rng.random(n) < p['p_c'], 1 - p['delta'], 1.0)"
+        }
+      ],
+      "g": [
+        {
+          "line": 142,
+          "expression": "np.ones(idx.size)"
+        }
+      ],
+      "logit": [
+        {
+          "line": 149,
+          "expression": "lgs[idx] + p['sigma'][idx] * ze + np.log(g)"
+        }
+      ],
+      "st": [
+        {
+          "line": 150,
+          "expression": "mult[idx] / (1 + np.exp(-logit))"
+        }
+      ],
+      "ft": [
+        {
+          "line": 151,
+          "expression": "mult[idx] * g * p['f'][idx] * np.exp(p['sigma'][idx] * ze - p['sigma'][idx] ** 2 / 2)"
+        }
+      ],
+      "lam": [
+        {
+          "line": 152,
+          "expression": "N[idx] * ft"
+        }
+      ],
+      "selected": [
+        {
+          "line": 168,
+          "expression": "(rec[:, 1:-1] > 1).all(axis=1) & (rec[:, -1] <= 1) & ~overflow"
+        }
+      ]
+    },
+    "saved_outer_fields": [
+      "recorded",
+      "draws",
+      "params"
+    ],
+    "saved_bank_named_fields": [
+      "rec",
+      "draw_id",
+      "seed",
+      "draws",
+      "overflow"
+    ],
+    "saved_bank_extra_fields": "PARAM_NAMES: s,f,sigma,rho,p_c,delta,nu; these are draw parameters, not annual histories",
+    "simulator_return": "(rec, p, overflow, selected)",
+    "existing_reference_sampling": [
+      {
+        "line": 202,
+        "expression": "libs[n][rng.integers(K)]"
+      }
+    ],
+    "interpretation": [
+      "Annual survival probability is catastrophe_multiplier * logistic(logit(s)+sigma*z+log(g)); g multiplies survival odds.",
+      "Annual recruits have Poisson mean N * catastrophe_multiplier * g * f * exp(sigma*z-sigma^2/2); f is per counted individual.",
+      "z and catastrophe multiplier are shared among individuals within a trajectory-year; z follows stationary-marginal AR(1).",
+      "Draft sbar and fbar match stationary unconditional M0 mean probabilities/rates, not realised finite-year field rates.",
+      "Fresh prior-predictive sampling redraws theta for every candidate and retains first selected candidate; it does not hold one prior theta fixed until selection.",
+      "Selection checks recorded intermediate census counts >1, final count <=1 and no overflow. The process runs annual steps between censuses.",
+      "Stored census counts and theta do not determine realised z, catastrophe occurrence or the survivor/recruit decomposition. Matched latent-history replay would require new generator execution."
+    ]
+  },
+  "seed_audit": {
+    "identity": "E(cell+10,trial) == Reference(cell,trial)",
+    "example": {
+      "evidence_cell": 10,
+      "reference_cell": 0,
+      "trial": 0,
+      "both_seed": 8000009000000
+    },
+    "within_each_family_unique": true,
+    "cross_family_overlap_if_both_families_defined_for_all_cells_0_to_79": 14000,
+    "overlap_cell_pairs": 70,
+    "qualification": "Actual used collision count depends on the unspecified cell enumeration and which cells draw E; I-sf may draw no E. The namespace collision itself is exact.",
+    "population_stream_contract": "No population coordinate or fixed population iteration/spawn convention is declared; this must be defined before execution."
+  },
+  "arithmetic": {
+    "cells": {
+      "E_sf": 48,
+      "I_sf": 24,
+      "Timing": 8
+    },
+    "total_cells": 80,
+    "analyses": 16000,
+    "fitted_T_vectors_if_all_cells_run_at_frozen_R": 64016000,
+    "v1_validation_analyses": 7900,
+    "ratio_to_v1": 2.0253164556962027,
+    "oracle_power_additional_analyses": 50,
+    "analyses_with_oracle": 16050,
+    "oracle_50_times_40min_hours": 33.333333333333336,
+    "observed_D3_bank_seconds": 2354.0,
+    "oracle_fixed_draw_projection": {
+      "population_banks": 450,
+      "shard_files": 9000,
+      "initial_generator_draws": 900000000000
+    },
+    "R1_worst_case_weight_evaluations": 28800000000,
+    "unique_outer_population_queries_if_reused_across_cells": 10800,
+    "full_top200000_cache_distance_index_bytes_at_8_bytes_each": 34560000000,
+    "cost_interpretation": "80 cells and 16000 analyses are arithmetically correct; seven hours is an unmeasured old-run scaling, omitting new weighting/large-neighbour setup. Oracle 35h rounds 33h20m bank generation and excludes 50 extra fitted analyses; support/extension costs vary with each theta."
+  },
+  "primary_bank_retained_by_population": {
+    "wild_dog": 13459632,
+    "marmot": 14536935,
+    "ms_woodpecker": 20323091,
+    "rc_woodpecker": 28705083,
+    "golden_plover": 22037346,
+    "whooping_crane": 19798545,
+    "hawaiian_crow": 29895060,
+    "wood_turtle_A": 16488428,
+    "wood_turtle_B": 17686102
+  },
+  "primary_bank_retained_total": 182930222,
+  "remaining_feasibility_limit": "Record counts suffice for the 200000 cap in every population, but weighted ESS/support cannot be certified without the proposed separate pre-screen. Existing run_chunk samples uniformly from fixed K; weighted variable-size libraries require a new declared sampler."
+}
