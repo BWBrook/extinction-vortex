@@ -51,7 +51,10 @@ functionals, not realized annual field rates.
 
 **Stylized evidence.**
 - k ~ Binomial(n, s̄(θ_true));
-- r ~ Poisson(n · f̄(θ_true)).
+- r ~ Poisson(n · f̄(θ_true));
+- k and r are conditionally independent given θ, and are drawn in that order
+  (k, then r).
+- n is a per-population ideal information index.
 
 n is an **ideal information index**, not a field sample size: "n marked
 animal-years" is an analogy only. Shared annual environment and catastrophes,
@@ -67,7 +70,7 @@ on s and f. It informs two rate functionals, not s and f alone.
 log w_I(θ) = n[s̄₀ log s̄(θ) + (1 − s̄₀) log(1 − s̄(θ))] + n[f̄₀ log f̄(θ) − f̄(θ)],
 
 with s̄₀ = s̄(θ_true) and f̄₀ = f̄(θ_true): the expected binomial and Poisson
-log-likelihoods at the true functionals. **Realistic E** uses the sampled
+log-likelihoods at the true functionals. **Noisy stylized E** uses the sampled
 (k, r) in the same likelihood.
 
 ## 3. Reference construction (fixed K)
@@ -95,7 +98,7 @@ log-likelihoods at the true functionals. **Realistic E** uses the sampled
 
 ## 4. First diagnostic (eight cells)
 
-**Cells.** Realistic E, unbiased, n ∈ {30, 300}, crossed with four scenarios:
+**Cells.** Noisy stylized E, unbiased, n ∈ {30, 300}, crossed with four scenarios:
 
 | Scenario | v1 block | Trial IDs |
 |---|---|---|
@@ -105,7 +108,12 @@ log-likelihoods at the true functionals. **Realistic E** uses the sampled
 | M_A at Δ10 = 0.5 | b16 | 0–199 |
 
 These are exposed v1 outers, used for development only. Their true θ is
-logged, so E can be drawn per outer. Each pairs with its stored v1 outcome.
+logged, so E can be drawn per outer.
+- b3 is the **fixed-parameter low-s corner**: every outer shares the frozen
+  corner θ.
+- b1, b5 and b16 draw θ from prior (b) per outer.
+- Under M_A (b5, b16), E measures the stylized no-feedback rate functionals of
+  θ (g excluded). The timing question is deferred. Each pairs with its stored v1 outcome.
 Stage 0 also reports w_I diagnostics for the same cells; this is cheap and
 involves no fits.
 
@@ -156,10 +164,47 @@ support-limited calibration where v1 failed (b3), and what it costs in
 detection (b5, b16), on development outers.
 
 **Cannot show:**
-- realistic field-study performance (the measurement model is stylized);
+- real field-study performance (the measurement model is stylized);
 - validity for Haley or caribou;
 - anything empirical about the nine populations;
 - uniform validity.
 
 A method chosen later would need freezing and prospective validation on fresh
 outers.
+
+
+## 7. Stage 0 authorisation and bindings (14 October 2026)
+
+**Authorisation.** Barry, in Claude chat on 14 October 2026: "Yes, I want the
+“how much demographic data” experiment. Go ahead with this before I wake
+Codex, with my authority." Astra had already accepted Stage 0 as an optional
+bounded assignment (board 1625;
+`notes/astra_completed_drafts_caribou_review_20261014.md` §3).
+
+**Execution bindings,** in Astra's items 1–5, recorded in the inputs file and
+checked by `v2_dev/s0_info.py`:
+1. The original v1 selected-row θ (six fields), with source-row hashes and
+   trial IDs. All 800 outer datasets are verified before computation.
+2. Frozen population order; scenario order b1, b3, b5, b16; cell map
+   cell = 4·(n index) + scenario; stream tuples; k-then-r order; helper hashes;
+   NumPy, SciPy and the BitGenerator.
+3. k = K = 2,000 with the fixed mask, MAD and bank/shard order. Actual member
+   draw IDs are recorded, and K-th distance mismatches against v1's log are
+   kept, not hidden.
+4. 40-node Gauss–Hermite quadrature. Stable log-weight normalisation (subtract
+   the maximum). A zero-probability member gets weight 0. A NaN or
+   all-non-finite set is reported as *unusable* and never replaced by uniform
+   weights. Small fixtures cover boundaries, uniform weights, concentrated
+   weights and invalid inputs. Member rate functionals are computed once and
+   reused across n and both comparators.
+5. A bounded setup and resource pass on one population first, measuring time
+   and peak memory. Then one pass per population, with no bank expansion. A
+   material shortfall is reported, not worked around.
+
+**ESS < 100** is a declared exploratory concentration flag only. It is not a
+calibration threshold or a frozen indeterminacy rule.
+
+**The report** gives continuous ESS and maximum weight share, unchanged C
+radii, unusable weights, and any-of-nine flag fractions by scenario, n and
+comparator. **Stage 0 cannot measure calibration or power.** It returns its
+report and stops.
