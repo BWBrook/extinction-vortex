@@ -157,7 +157,7 @@ def test(man_path, base, bound_path):
     m = 2_000_000
     acc = (np.log(rng.random(m)) < hp[0]) & (np.log(rng.random(m)) < hb[0])
     res["factorised_acceptance"] = {"target": p_target, "observed": float(acc.mean()),
-                                    "ok": abs(acc.mean() - p_target) < 5 * np.sqrt(p_target * (1 - p_target) / m)}
+                                    "ok": bool(abs(acc.mean() - p_target) < 5 * np.sqrt(p_target * (1 - p_target) / m))}
     # 5. joint-selection law on a two-state toy: restart theta after each failed path
     rng = np.random.default_rng(11); keepA = keepB = 0
     for _ in range(200):
