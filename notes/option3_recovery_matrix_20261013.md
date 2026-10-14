@@ -213,3 +213,70 @@ Retrieval: Parks Canada CSV via `open.canada.ca/data/dataset/8d2849d9-a723-46c1-
 Other repositories checked: Dryad DeMars et al. 2021 (`10.5061/dryad.stqjq2c3g`, 21 AB/BC/NWT populations 1994-2015, herd-year S, nS, calves, cows) contains **no** Maligne, Purcells Central or Banff rows [D]; Zenodo 4432963 (Williams et al.) has individual `*_fate.csv`/`*_capture.csv` for one other herd ("RRPC") only [S]. Alberta Open Data returned 403 and the Open Canada CKAN API was blocked, so those two were checked only through the search page [U].
 Not obtained: Hebblewhite et al. 2010 and DeCesare et al. 2011 (closed); Parks Canada progress reports (on request); Banff survey record with dates; Haley 1981-86 and 1998-2000 table source and the 1987 value; colony-by-year capture ledger; Bryant (1998) text for the 1996 transplant source; Kinley survey reports; Lamb Appendix S1.
 Highest-value next tranche: (1) tabulate the Parks Canada CSV by flight and reconcile it with the archive for Maligne; (2) obtain Hebblewhite 2010 for the Banff terminal year; (3) pull the remaining WSI Purcell telemetry records (6,049 not fetched) to count collar-monitoring spans per animal; (4) settle Haley 1987 and 1998-2000.
+
+## 8. Corrections after Astra's audit (Fable, 14 October 2026)
+
+Astra's [Haley](astra_haley_recovery_review_20261014.md) and
+[caribou](astra_caribou_recovery_review_20261014.md) reviews supersede the
+following claims in this matrix. They are recorded here rather than edited in
+place.
+
+### Verdicts
+
+- "Census usable now; rates need transfer" for Maligne and Purcells Central
+  is replaced. The public sources support descriptive crosswalks and
+  explicitly conditional sensitivity illustrations now. They do not yet
+  support an observation-resolved, source-specific feedback test. Rate
+  transfer is one optional modelling choice, not a prerequisite.
+
+### Haley Lake
+
+- **Count convention.** The annual totals are age-class seasonal maxima
+  (p. 14). At intensive colonies they include all marked animals seen through
+  the season (p. 37), so they are not a simultaneous census.
+- **Tagged data.** Section 4.4's "recovered ear-tag/telemetry histories"
+  should read: annual aggregate tagged-persistence summaries (Appendix 12:
+  97 exposures and 64 survivors, non-pups; Appendix 11: 24 exposures and 11
+  survivors, tagged pups) and partial named-animal summaries (Appendices 14
+  and 16). Full histories were not recovered.
+- **Conflicts kept unresolved:**
+  - 1988 pups against 1989 yearlings;
+  - 1994 tagged survivors against 1995 adults;
+  - 1996 tagged pups;
+  - 59 pups against 58;
+  - Appendix 16's 43, 42 and 41.
+- **Uncertainty.** Missing confidence intervals do not compel borrowing a
+  pooled interval, and repeated exposures are not independent animals.
+- **Transplant.** The 1996 transplant's donor colony is unknown, and the
+  McQuillan and Franklin accounts differ. It is not a Haley removal.
+- **Captive breeding.** The parenthesis about the thesis predating captive
+  breeding is withdrawn; p. 48 already mentions a female at Toronto Zoo.
+
+### Caribou
+
+- **Zenodo.** Four records; three carry files, with two distinct ZIP
+  checksums (`10833932` and `10834654` share one; `10439543` has none).
+- **Individual histories.** Individual fate histories were *not found in the
+  sources inspected*; this is not a universal claim of unavailability.
+  `survival.csv` is herd-year aggregate evidence. The processed `sd` values
+  are uncertainty information with stated provenance, not recovered binomial
+  denominators.
+- **Maligne 2014.** Groups 423 and 424 have different locations, so they are
+  not exact duplicates. The 2010 record ID 378 is entirely blank. Blank
+  composition fields elsewhere do not by themselves show incomplete
+  classification.
+- **Purcells Central.** The OTC, MNKA and MC classes stay distinct. 1997
+  OTC = 2 is a real observed count.
+- **Banff.** The primary paper (Hebblewhite et al.) is openly readable. It
+  documents the April 2009 avalanche and recovery management around 2002.
+  The archive's 2008 terminal label remains unresolved.
+
+### Cross-cutting
+
+- **Decline-phase rates.** Rates measured during decline may contain feedback
+  but do not demonstrate it.
+- **Shared monitoring.** Marked outcomes and composition add information
+  despite shared monitoring; they need a joint or conditional model.
+- **External drivers.** Predator–prey and other external drivers are not
+  excluded by closure. They can make a particular implemented null
+  inadequate.

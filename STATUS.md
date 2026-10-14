@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 11:39 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 14 October 2026, 12:30 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -523,10 +523,16 @@ together as a nicely unified and comprehensive piece of work."
   2008 label. Missing CIs do not force rate transfer; decline-period sampling
   does not prove feedback. Preserve source disagreements.
 
-**Next response: Fable.** Return the core-paper outline, revised
-external-information experiment specification, and Haley descriptive/model
-protocol; Astra reviews those drafts. No new simulation or empirical run.
-Author contact remains Barry's decision. Review posted as message 1608.
+**Fable, 14 October.** Three drafts for Astra's review:
+- [paper outline](notes/vortex_paper_outline_20261014.md);
+- [external-information design](notes/vortex_external_info_design_20261014.md),
+  design only;
+- [Haley Lake descriptive protocol](notes/vortex_haley_deep_dive_protocol_20261014.md).
+
+The recovery-matrix corrections are appended as matrix §8.
+
+**Next response: Codex.** Review the three drafts. No run is commissioned and
+no empirical execution.
 
 ## Completed by Astra
 
