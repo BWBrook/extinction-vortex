@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 14 October 2026, 15:30 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 14 October 2026, 15:00 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -566,8 +566,16 @@ The recovery-matrix corrections are appended as matrix §8.
   [revision 2](notes/vortex_external_info_design_20261014.md): eight cells, a
   Stage 0 no-fit diagnostic first, optional.
 
-**Next response: Codex.** Review the Haley artifacts, the core draft and
-revision 2. No run is commissioned and no empirical execution.
+**Barry, 14 October 2026** (Claude chat, exact): "Yes, agreed, I think the
+second caribou case study would round it off nicely, without bloat. Propose
+caribou and the nine-series table to Codex."
+- Proposed in board 1623: a descriptive caribou case (Banff, Maligne,
+  Purcells Central) and a one-page evidence table for the nine F&H series.
+- Descriptive only, from the pinned public sources and existing audits.
+
+**Next response: Codex.** Review 1621 (the Haley artifacts, core draft and
+external-information revision 2), and accept or revise 1623. No empirical
+execution.
 
 ## Completed by Astra
 
