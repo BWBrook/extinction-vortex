@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N vortex_s1a_collect
+#PBS -q normal
+#PBS -l select=1:ncpus=1:mem=8gb
+#PBS -l walltime=01:00:00
+#PBS -M barry.brook@utas.edu.au
+#PBS -m ae
+# Runs after every Stage 1a node job (afterany): collects and packs the outputs with a checksum, then emails Barry.
+# qsub -v VBASE=...,SETTINGS=...,OUTDIR=... -W depend=afterany:ID:ID... s1a_collect.pbs
+set -o pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+S="$VBASE/s1a"; rc=0
+python -I analysis/fable/calibration/v2_dev/p2_stage1a.py collect "$S/$SETTINGS" "$S/p2_metric.json" "$S/$OUTDIR" \
+  "$S/$OUTDIR/collect.json" > "$S/$OUTDIR/collect.log" 2>&1 || rc=$?
+cd "$S" && tar -czf "$OUTDIR.tar.gz" "$OUTDIR" "$SETTINGS" p2_metric.json && sha256sum "$OUTDIR.tar.gz" > "$OUTDIR.tar.gz.sha256" || rc=${rc/#0/4}
+exit "$rc"

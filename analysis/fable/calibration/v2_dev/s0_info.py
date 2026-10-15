@@ -211,7 +211,7 @@ def report(inputs_path, outdir, out):
                 or {r["outer"] for r in per[pn]["rows"]} != expected:
             raise SystemExit(f"report refused: {pn} rows are not exactly the expected outers")
         if bd is None or bd["inputs_sha256"] != sha(inputs_path) or bd["runtime"] != b["runtime"] \
-                or bd["manifest_digest"] != b["manifest_digest"]:
+                or bd["manifest_digest"] != b["manifest_digest"] or bd["runner_sha256"] != b["helper_sha256"]["s0_info.py"]:
             raise SystemExit(f"report refused: {pn} output is not bound to these inputs/runtime")
         mp = os.path.join(outdir, f"members_{pn}.npz")
         if not os.path.exists(mp) or sha(mp) != per[pn]["members_sha256"]:

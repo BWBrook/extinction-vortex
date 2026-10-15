@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -N vortex_s1a
+#PBS -q normal
+#PBS -l select=1:ncpus=28:mem=64gb
+# Stage 1a sampling pilot: 28 single-threaded workers per node, each running its LPT-assigned settings.
+# qsub -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,NODE=i,NW=n,WALL_SECS=s s1a_node.pbs
+# Workers stop starting batches 10 minutes before the walltime and write explicit censored checkpoints.
+set -o pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+S="$VBASE/s1a"; mkdir -p "$S/$OUTDIR/logs"
+DEADLINE=$(( $(date +%s) + WALL_SECS - 600 ))
+pids=()
+for i in $(seq 0 27); do
+  w=$(( NODE * 28 + i ))
+  python -I analysis/fable/calibration/v2_dev/p2_stage1a.py run "$S/$SETTINGS" "$S/p2_metric.json" "$S/$OUTDIR" \
+    "$w" "$NW" "$DEADLINE" > "$S/$OUTDIR/logs/w$w.log" 2>&1 &
+  pids+=($!)
+done
+fail=0
+for p in "${pids[@]}"; do wait "$p" || fail=$((fail + 1)); done
+echo "node $NODE workers failed: $fail" >> "$S/$OUTDIR/logs/nodes.log"
+exit "$fail"

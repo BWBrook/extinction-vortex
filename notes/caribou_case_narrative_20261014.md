@@ -79,7 +79,7 @@ changed the environment rather than adding or removing caribou.
   from small collared samples, with constructed uncertainty at the boundary
   of 1. The annual risk sets were not recovered in the inspected sources (B1, B2).
 - **Calf composition.** Calves per classified non-calf are available from the
-  same surveys as the counts. That is not automatically a calf:cow ratio, and
+  shared monitoring programme as the counts. That is not automatically a calf:cow ratio, and
   not independent of the counts.
 - **Banff:** the inspected archive contains no survival or composition rows.
 - **Individual fate histories** were not found in the sources we inspected.

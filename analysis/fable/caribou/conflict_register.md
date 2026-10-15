@@ -23,7 +23,6 @@ board 1625; the evidence base is Astra's caribou recovery review and matrix §8.
 | A8 | Purcells Central: OTC and MC both flagged BEST in 1998, 2000, 2002 and 2003 | — | The flag alone does not pick one annual value. |
 | A9 | Banff: archive and Williams terminal zero labelled 2008 (2007 = 5) | Hebblewhite et al. 2010 and Parks Canada: the last five animals died in the April 2009 avalanche | Unresolved: a season-label convention, a detection gap or a label error. No year shift is applied. |
 | A10 | Purcells Central 2012 augmentation: COSEWIC (9 caribou, "Augmented 2012") | Lamb `transplants.csv`: release recorded under Purcells South (16 adult F + 3 adult M) | Unit identity differs. The release post-dates the zero and is not coded within the series. |
-
 | A11 | Maligne archived composition (`recruitment_counts.csv`, survey years after the +1 archive shift is undone) | Same-year Parks Canada flight composition: 9 of 14 match exactly; 5 differ (survey years 2001, 2003, 2004, 2006, 2008) | Archived composition summaries from the shared monitoring programme, with their OTC/MNKA classes kept. Not reconstructed from the displayed Parks group sums (Astra caribou artifact review). |
 
 ## B. Missing or unrecovered evidence (missing is not zero)
@@ -52,7 +51,7 @@ board 1625; the evidence base is Astra's caribou recovery review and matrix §8.
   `sd`. This is uncertainty information with stated provenance, not a
   binomial denominator or a recovered CI (`dataprep.Rmd`).
 - **Composition.** Calves per classified non-calf (`recruitment_counts.csv`)
-  come from the same surveys as the counts and exclude unclassified animals.
+  come from the shared monitoring programme with the counts and exclude unclassified animals.
   This is not automatically calf:cow, and counting the same total twice as
   independent evidence would be wrong.
 - **IPM outputs.** Lamb's IPM posteriors reuse the counts and rates and are
