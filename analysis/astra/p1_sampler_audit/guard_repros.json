@@ -1,0 +1,31 @@
+{
+  "scope": "Synthetic runner guard tests only: bank loading and population simulation replaced by stubs.\nNo new pilot, bank, outer dataset or fit. Original files are not modified.\n",
+  "changed_imported_generator_not_rejected": true,
+  "invalid_n0_runner": {
+    "proposals": 4,
+    "theta_accept": 4,
+    "paths": 3,
+    "selected_SA": 3,
+    "ball_hits": 3,
+    "bound_violation": false,
+    "stopped": "proposal cap"
+  },
+  "nan_evidence_runner": {
+    "proposals": 4,
+    "theta_accept": 0,
+    "paths": 0,
+    "selected_SA": 0,
+    "ball_hits": 0,
+    "bound_violation": false,
+    "stopped": "proposal cap"
+  },
+  "path_cap_truncation": {
+    "proposals": 4,
+    "theta_accept": 4,
+    "paths": 3,
+    "selected_SA": 3,
+    "ball_hits": 3,
+    "bound_violation": false,
+    "stopped": "proposal cap"
+  }
+}

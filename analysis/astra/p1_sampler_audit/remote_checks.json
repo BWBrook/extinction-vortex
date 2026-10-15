@@ -1,0 +1,140 @@
+{
+  "scope": "Bounded P1 audit: no bank scan, fitted test, outer draw, or throughput pilot.\nRun from frozen source root on deep-server with numerical threads fixed to one.\n",
+  "timestamp": "2026-10-15T11:26:39.165656+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "sha256": {
+    "/data/fable/vortex/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "/data/fable/vortex/kunanyi_stage/run1/validation_manifest.json": "96603037ec05036153f67b649757d067ca193c5e0a8610d3b855ef8f22139429",
+    "/data/fable/vortex/v2_dev/p1/p1_scan.json": "733b7f506e1e01d7ea5b24a35dff1fcf45e72759807c4aec85b0d10324727706",
+    "/data/fable/vortex/v2_dev/p1/p1_pilot.json": "1637ebd662b1848ed167d2d527d66a272490a12fb7fa41100a2d62ae0470e054",
+    "/data/fable/vortex/v2_dev/p1/p1_bound.json": "112975ab9710c3d630d0fe44200d8f868e3abda404294394f7fa51e25fbb3215"
+  },
+  "source_files_verified": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82",
+    "analysis/fable/calibration/e2e_benchmark.py": "14cc84460308865eb0aa5c954456777379f0fb5bd69721223d7d30fac9e7f7d5",
+    "analysis/fable/calibration/tstats_batch.R": "09bd7aa93ed8b3bf6a022fbd03d99701d9fa3123ca2adfe434c599b92bcb9ecf",
+    "analysis/fable/calibration/score_discrimination.py": "cae4f630c3ccbd0ee2f47d76439dda29a7bb7927b2fea317c132b1a0a81094aa",
+    "analysis/fable/calibration/compare_nulls.py": "63304743048808cf214664c520e16a68ab90f85034f3eaf5a3794d3454460b6f",
+    "analysis/fable/calibration/validate.py": "7238052422eef070fc174a0e2a9347eb2c50b4eda1743cdebba3a959b4fb334b",
+    "analysis/fable/calibration/preflight.py": "3a9c7fc89b4bc8eaf285370185cfb668ec2bbafca173ce1205b4b9b6cb83dad4",
+    "analysis/fable/calibration/collect_validation.py": "59b2017e8d04de9e8a775f8464374457ea9403d661a1e472892ea5b677397d38",
+    "analysis/fable/calibration/run_validation.sh": "425e016c3497eab71ecf3287703754c90f2f52bc2b32c9d03b6a0e6c3043c0af",
+    "analysis/fable/calibration/empirical_q1.py": "569bacb93331024dcc4faebb38546a3815b3c0b3753f22b37606122152f018d3",
+    "analysis/fable/calibration/make_manifest.py": "3748feb4732a7a6cd0bef4ec3333929a2c5f5bfadf43843244f4187f98ea793a",
+    "data/raw/williams2021/population_data.csv": "fce2d8a232460b56f5566c41c03038a3f99ca978e0620a49867e5016a34df168"
+  },
+  "bank_meta_sha256": "68180fb9f3fa1392bb8418be2a3af008cdf46aaf2878cc9fbd7de476df76ff15",
+  "bank_scope": "Metadata hash and raw-attempt denominator verified; no bank shard rehash or array read.",
+  "stage0_settings_exact_matches": 20,
+  "log_factors": {
+    "noisy_cases": 1344,
+    "ideal_cases": 200,
+    "max_full_pmf_error": 9.094947017729282e-13,
+    "max_log_factor": 0.0
+  },
+  "rate_quadrature": {
+    "cases": 18,
+    "max_abs_error": 8.604228440844963e-16
+  },
+  "saved_theta_replay": {
+    "settings": 20,
+    "samples_matching": 1000,
+    "parameter_proposals": 1000000,
+    "new_population_paths": 0
+  },
+  "heterogeneous_wrapper": [
+    {
+      "population": "wild_dog",
+      "seed": 13,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "wild_dog",
+      "seed": 257,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "wild_dog",
+      "seed": 999,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "wild_dog",
+      "seed": 20261015,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "hawaiian_crow",
+      "seed": 13,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "hawaiian_crow",
+      "seed": 257,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "hawaiian_crow",
+      "seed": 999,
+      "paths_each": 500,
+      "exact": true
+    },
+    {
+      "population": "hawaiian_crow",
+      "seed": 20261015,
+      "paths_each": 500,
+      "exact": true
+    }
+  ],
+  "zero_radius_counterexample": {
+    "features": [
+      0.0,
+      1e-200,
+      1.0
+    ],
+    "expected_exact_feature_match": [
+      true,
+      false,
+      false
+    ],
+    "observed": [
+      true,
+      true,
+      false
+    ],
+    "present_bound_radii_all_positive": true
+  },
+  "invalid_n0_evidence": {
+    "n": 0,
+    "k": 1,
+    "r": 1,
+    "observed_log_factors": [
+      0.0,
+      0.0
+    ],
+    "rejected": false
+  },
+  "completed_accounting": {
+    "proposals": 16400000,
+    "paths": 865652,
+    "selected_SA": 17360,
+    "overflow": 5714,
+    "ball_hits": 4,
+    "ball_boundary": 3,
+    "settings": 20,
+    "theta_accept_equals_paths_all": true,
+    "stored_paths_satisfy_selection": true
+  },
+  "forecast_at_actual_denominators": 3.0127840583378163,
+  "elapsed_seconds": 1.674
+}

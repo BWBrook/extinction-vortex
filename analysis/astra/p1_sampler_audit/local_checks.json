@@ -1,0 +1,14 @@
+{
+  "scope": "Local metadata reconciliation only; scientific/numerical checks ran on deep-server.",
+  "reviewed_sampler_commit": "b781db17921008724e15f0eca671ea3b767964ef",
+  "local_HEAD_at_check": "a7b8ae348b986dbd1aac747a63ccac65f13472e2",
+  "local_remote_artifacts_equal": {
+    "p1_bound.json": true,
+    "p1_scan.json": true,
+    "p1_pilot.json": true
+  },
+  "helper_and_12_frozen_source_files_equal": true,
+  "canonical_test_JSON_exact_replay": true,
+  "all_cost_forecast_denominators_match_actual_proposals": true,
+  "settings": 20
+}

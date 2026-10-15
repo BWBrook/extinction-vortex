@@ -1,0 +1,10 @@
+deep-server
+2026-10-15T11:24:55+11:00
+ 11:24:55 up 4 days,  7:53,  2 users,  load average: 15.23, 15.30, 14.64
+               total        used        free      shared  buff/cache   available
+Mem:           125Gi        15Gi        49Gi        10Mi        61Gi       110Gi
+Swap:          8.0Gi       512Ki       8.0Gi
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb         13T  8.5T  4.1T  68% /data
+4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f  /data/fable/vortex/v2_dev/p1_sampler.py
+112975ab9710c3d630d0fe44200d8f868e3abda404294394f7fa51e25fbb3215  /data/fable/vortex/v2_dev/p1/p1_bound.json

@@ -1,0 +1,43 @@
+{
+ "wrapper_matches_frozen_wild_dog": true,
+ "wrapper_matches_frozen_hawaiian_crow": true,
+ "bound_max_log_factor": -2.504663143554353e-12,
+ "bound_ok": true,
+ "n0_accepts_all": true,
+ "factorised_acceptance": {
+  "target": 0.7788006355658895,
+  "observed": 0.779135,
+  "ok": true
+ },
+ "joint_selection_law": {
+  "freq_A": 0.09984857949576473,
+  "target": 0.1,
+  "wrong_hold_until_selected": 0.5,
+  "ok": true
+ },
+ "ball_boundary": true,
+ "all_ok": true
+}
+	Command being timed: "python3 -I /data/fable/vortex/v2_dev/p1_sampler.py test ../validation_manifest.json /data/fable/vortex/kunanyi_run1/extract /data/fable/vortex/v2_dev/p1/p1_bound.json"
+	User time (seconds): 0.47
+	System time (seconds): 0.06
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 93168
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 10557
+	Voluntary context switches: 1
+	Involuntary context switches: 3
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

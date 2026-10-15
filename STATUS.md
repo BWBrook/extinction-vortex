@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 15 October 2026, 11:25 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 15 October 2026, 11:32:01 Hobart (AEDT), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -674,12 +674,41 @@ feasible on `kunanyi`!"
   budgeted full sampling run (1b), then fits under a frozen specification
   (1c).
 
-**Next response: Codex.** Review the repairs and the prototype report, and
-advise on the design choice (smaller design, wider declared locality, or
-another construction). No empirical execution.
+**Astra review, 15 October** ([integrated review](notes/astra_p1_and_repairs_review_20261015.md);
+board 1657; exposure E46).
+- Accepts the repaired caribou package and readable one-page table. Two minor
+  prose/table-formatting edits can accompany manuscript assembly.
+- Accepts the completed informative sampler as development evidence:
+  likelihood/wrapper/stream checks pass, all 20 settings meet their caps,
+  and all cost rows reproduce. Four hits against 3.012784 forecast do not
+  validate rare-cell rates, power or the whole-study cost projection.
+- The resource-impracticality conclusion above is superseded by Barry's
+  clarification and this review. The K=2,000 finite-library correction is
+  accepted as a candidate design; its adequacy still needs calibration.
+  Low ESS does not establish equal costs across populations. The 0.2–1 million
+  CPU-hour range remains a planning scenario, not a measured full inventory.
+- Supports Fable's fixed-radius Kunanyi Stage 1a route. Proposed first ceiling:
+  **1,000 allocated CPU-hours**, including overhead, for 720 noisy settings
+  (all nine populations, four scenarios, n=30/300, outer IDs 0–9) plus 360
+  shorter matched n=0 controls. A cluster smoke fixes the packing and
+  attempt/time budgets before dispatch. This is a no-fit sampling pilot.
+- Before scaling, enforce actual source/metric bindings, checkpoint partial
+  results with deterministic resume, enforce hard total budgets, reject invalid
+  inputs, handle zero-radius equality and truncated-batch exposure correctly.
+  Stage 0's report also needs its recorded runner hash checked before reuse.
+- **Next response: Fable.** Confirm the bounded refinement and prepare the
+  repaired executable/manifest for Astra's check before large dispatch.
+  Return the no-fit report before any Stage 1b campaign or Stage 1c fits.
+  No new Barry questionnaire is needed for this in-scope preparation.
 
 ## Completed by Astra
 
+- 15 October, reviewed the repaired artifacts and informative sampler at
+  `b781db1`, incorporating the resource clarification in `a7b8ae3` and 1655.
+  Replayed bounded numerical/stream/wrapper checks, all cost arithmetic and
+  Stage 0 guard fixtures; rebuilt caribou outputs and checked table rendering.
+  Proposed the concrete fixed-radius Kunanyi pilot in 1657. Small synthetic
+  unit fixtures ran, but no full pilot, bank scan, fit or empirical statistic.
 - 14 October late afternoon, audited Stage 0 raw outputs and input/stream
   bindings, the caribou descriptive package, and core/Haley/table revisions at
   `3437fcd`. Prepared a finite informative-reference proposal with independent
@@ -983,12 +1012,14 @@ another construction). No empirical execution.
 
 ## Pending
 
-1. Fable responds to review 1647 with the caribou timing/coverage repairs and
-   a readable one-page nine-series table, and to the bounded informative-
-   reference prototype assignment. Core/Haley corrections are closed. Stage 0
-   is complete and audited; the proposed next prototype stops at a no-fit
-   implementation/throughput report. Stage 1 and larger extensions remain
-   uncommissioned. Manuscript assembly can proceed independently.
+1. Fable responds to review 1657 with the repaired executable and bound
+   fixed-radius Kunanyi sampling-pilot package (proposed first ceiling
+   1,000 allocated CPU-hours, 720 noisy settings plus 360 matched n=0 controls).
+   Astra checks the package before large dispatch; the pilot stops at its
+   no-fit report. Full-library Stage 1b and fitted Stage 1c remain uncommissioned.
+   Core/Haley, material caribou and one-page table findings are closed; two
+   minor caribou prose/format edits can accompany manuscript assembly.
+   Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
    deferred. The original two-candidate route meets its stop rule. Any new
    inferential procedure needs a separate prospective protocol/freeze before
@@ -1018,9 +1049,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1647**; exhausted `through`: **1647**.
-- Explicit acknowledgement: through actual message **1647** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1647`.
+- Last full retrieval `next_after`: **1657**; exhausted `through`: **1657**.
+- Explicit acknowledgement: through actual message **1657** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1657`.
 
 ## Decision Inbox checkpoint
 

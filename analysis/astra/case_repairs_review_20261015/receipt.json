@@ -1,0 +1,265 @@
+{
+  "audit_time": "2026-10-15T11:28:10.920386+11:00",
+  "commit": "a7b8ae348b986dbd1aac747a63ccac65f13472e2",
+  "baseline": "f2f9ad3",
+  "source_cache": "/home/bwbrook/.cache/vortex/caribou_src",
+  "source_sha256": {
+    "pc.csv": "623bb71d011721c7dc59254d7eb1cf6c849d92bae0579d2b7671f350afc43c83",
+    "wsi_central.json": "b14dc790d06a0c112ab26f49b60868b10961f79e6a5bd8a91b6306c692426a58",
+    "counts.csv": "43c3e55ad82fe70783e417c39f2e7ff27f33fa9657a846f409a138f59dc40629",
+    "survival.csv": "d45a4fc39d579c2e0815671910567073ce9e7212e03109e81447beba4e7748da",
+    "recruitment.csv": "e3ffd4bd7feb6afab314c9815fbf9fe8c44ce1d43bfd310a73acd47dc8c32773",
+    "recruitment_counts.csv": "1784440c7664205e71f68bbf312579ef4a8cd0422682111e166ae73f63a8ac68",
+    "transplants.csv": "aae39c167c59a5814a5159ca0c56e14ada2275c02d482630126f343afd291f15",
+    "treatments.csv": "9c161ccca4c553b799e7fc9a227915e96c96f7a6e5890c5749e033b35a732270",
+    "dataprep.Rmd": "2076039b92f9fb71d07e3429e54b394e775fd0049422547a35628e0edc2a3672"
+  },
+  "WSI_rows": 92,
+  "WSI_Individuals": 23,
+  "WSI_content_sha256": "309ac967d022699c26906e48ae9abe34461c63f3fcb85025148ca9059845cc30",
+  "WSI_declared_fields": [
+    "SURVEY_SUMMARY_DETAIL_ID",
+    "SUMMARY_YEAR",
+    "SUMMARY_MONTH",
+    "SUMMARY_DAY",
+    "PARAMETER_METHOD_CODE",
+    "PARAMETER_METHOD_NAME",
+    "PARAMETER_VALUE",
+    "BEST_PARAMETER_VALUE",
+    "SUMMARY_DETAIL_NOTE",
+    "SUMMARY_GENERAL_NOTE"
+  ],
+  "WSI_matches_prior_receipt": true,
+  "hash_guard_probes": {
+    "wrapper_only": "accepted",
+    "changed_value": "WSI Individuals content 66538b2255e174ba8be54572a75c3bc1024ebe9e84eeb067856398025ab8616a differs from the recorded 309ac967d022699c26906e48ae9abe34461c63f3fcb85025148ca9059845cc30",
+    "changed_general_note": "WSI Individuals content b60342290da8640296dd4d82deae8757f095ffac99797ecb760772350948e36f differs from the recorded 309ac967d022699c26906e48ae9abe34461c63f3fcb85025148ca9059845cc30",
+    "missing_row": "WSI Individuals content d641175366d0c8cd01043ec42f3b01cc67975fd8102dc008872f2dd378b88b1c differs from the recorded 309ac967d022699c26906e48ae9abe34461c63f3fcb85025148ca9059845cc30"
+  },
+  "demographic_year_crosswalk": [
+    {
+      "herd": "Maligne",
+      "archive_year": 2014,
+      "survey_calendar_year": 2013,
+      "value": "0/5"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2013,
+      "survey_calendar_year": 2012,
+      "value": "1/5"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2010,
+      "survey_calendar_year": 2009,
+      "value": "1/3"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2009,
+      "survey_calendar_year": 2008,
+      "value": "1/3"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2008,
+      "survey_calendar_year": 2007,
+      "value": "0/5"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2007,
+      "survey_calendar_year": 2006,
+      "value": "2/5"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2006,
+      "survey_calendar_year": 2005,
+      "value": "1/7"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2005,
+      "survey_calendar_year": 2004,
+      "value": "1/6"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2004,
+      "survey_calendar_year": 2003,
+      "value": "4/15"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2002,
+      "survey_calendar_year": 2001,
+      "value": "4/8"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 2001,
+      "survey_calendar_year": 2000,
+      "value": "6/35"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 1999,
+      "survey_calendar_year": 1998,
+      "value": "15/53"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 1997,
+      "survey_calendar_year": 1996,
+      "value": "3/37"
+    },
+    {
+      "herd": "Maligne",
+      "archive_year": 1994,
+      "survey_calendar_year": 1993,
+      "value": "10/31"
+    },
+    {
+      "herd": "Purcells Central",
+      "archive_year": 2004,
+      "survey_calendar_year": 2004,
+      "value": "1/5"
+    },
+    {
+      "herd": "Purcells Central",
+      "archive_year": 2003,
+      "survey_calendar_year": 2003,
+      "value": "1/5"
+    },
+    {
+      "herd": "Purcells Central",
+      "archive_year": 1997,
+      "survey_calendar_year": 1997,
+      "value": "1/13"
+    },
+    {
+      "herd": "Purcells Central",
+      "archive_year": 1996,
+      "survey_calendar_year": 1996,
+      "value": "1/12"
+    },
+    {
+      "herd": "Purcells Central",
+      "archive_year": 1994,
+      "survey_calendar_year": 1994,
+      "value": "2/13"
+    }
+  ],
+  "general_notes_years": [
+    "1996",
+    "2003",
+    "2005",
+    "2006"
+  ],
+  "missing_day_years": [
+    "2003",
+    "2005"
+  ],
+  "unchanged_count_tables": {
+    "maligne_census.csv": true,
+    "banff_census.csv": true
+  },
+  "temporary_directory": "/tmp/astra_case_repairs_check_ruiwbiwc",
+  "rebuild": {
+    "command": [
+      "uv",
+      "run",
+      "--offline",
+      "--with",
+      "matplotlib",
+      "python",
+      "/tmp/astra_case_repairs_check_ruiwbiwc/analysis/fable/caribou/make_caribou.py",
+      "/home/bwbrook/.cache/vortex/caribou_src"
+    ],
+    "stdout": "hashes ok: ['counts.csv', 'dataprep.Rmd', 'pc.csv', 'recruitment.csv', 'recruitment_counts.csv', 'survival.csv', 'transplants.csv', 'treatments.csv', 'wsi_central.json']\nBanff crosswalk: 16 of 16\n",
+    "stderr": ""
+  },
+  "rebuilt_bytes_equal": {
+    "banff_census.csv": true,
+    "maligne_census.csv": true,
+    "purcells_central_census.csv": true,
+    "demographic_evidence.csv": true,
+    "caribou_case.png": true
+  },
+  "caribou_PDF_render_equal": true,
+  "PDFs": {
+    "nine_series": {
+      "sha256": "828de0e4c2bc72694f7816316db32af004283014f56a33e0ff1b1faed54c5faf",
+      "pages": 1,
+      "info": "Creator:         LaTeX via pandoc\nProducer:        xdvipdfmx (20220710)\nCreationDate:    Thu Oct 15 09:45:32 2026 AEDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       841.89 x 595.28 pts (A4)\nPage rot:        0\nFile size:       35473 bytes\nOptimized:       no\nPDF version:     1.5\n",
+      "qpdf": {
+        "command": [
+          "qpdf",
+          "--check",
+          "/home/bwbrook/papers/project/analysis/fable/tables/nine_series_table.pdf"
+        ],
+        "stdout": "checking /home/bwbrook/papers/project/analysis/fable/tables/nine_series_table.pdf\nPDF Version: 1.5\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect\n",
+        "stderr": ""
+      },
+      "render": "/tmp/astra_case_repairs_check_ruiwbiwc/nine_series.png",
+      "text": "/tmp/astra_case_repairs_check_ruiwbiwc/nine_series.txt"
+    },
+    "caribou": {
+      "sha256": "b01d70d53e50ea788bb12c0c87fb0c2508a70033cc737bb15a9b3fea13f2ee7e",
+      "pages": 1,
+      "info": "Creator:         Matplotlib v3.11.2, https://matplotlib.org\nProducer:        Matplotlib pdf backend v3.11.2\nCreationDate:    Thu Oct 15 10:44:15 2026 AEDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       518.4 x 619.2 pts\nPage rot:        0\nFile size:       30503 bytes\nOptimized:       no\nPDF version:     1.4\n",
+      "qpdf": {
+        "command": [
+          "qpdf",
+          "--check",
+          "/home/bwbrook/papers/project/analysis/fable/caribou/caribou_case.pdf"
+        ],
+        "stdout": "checking /home/bwbrook/papers/project/analysis/fable/caribou/caribou_case.pdf\nPDF Version: 1.4\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect\n",
+        "stderr": ""
+      },
+      "render": "/tmp/astra_case_repairs_check_ruiwbiwc/caribou.png",
+      "text": "/tmp/astra_case_repairs_check_ruiwbiwc/caribou.txt"
+    },
+    "rebuilt_caribou": {
+      "sha256": "e8aaefa335c2dc5ae375f2f8d1bea4297fd67220287c5d29334e26f7fc389b3c",
+      "pages": 1,
+      "info": "Creator:         Matplotlib v3.11.2, https://matplotlib.org\nProducer:        Matplotlib pdf backend v3.11.2\nCreationDate:    Thu Oct 15 11:28:08 2026 AEDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       518.4 x 619.2 pts\nPage rot:        0\nFile size:       30503 bytes\nOptimized:       no\nPDF version:     1.4\n",
+      "qpdf": {
+        "command": [
+          "qpdf",
+          "--check",
+          "/tmp/astra_case_repairs_check_ruiwbiwc/analysis/fable/caribou/caribou_case.pdf"
+        ],
+        "stdout": "checking /tmp/astra_case_repairs_check_ruiwbiwc/analysis/fable/caribou/caribou_case.pdf\nPDF Version: 1.4\nFile is not encrypted\nFile is not linearized\nNo syntax or stream encoding errors found; the file may still contain\nerrors that qpdf cannot detect\n",
+        "stderr": ""
+      },
+      "render": "/tmp/astra_case_repairs_check_ruiwbiwc/rebuilt_caribou.png",
+      "text": "/tmp/astra_case_repairs_check_ruiwbiwc/rebuilt_caribou.txt"
+    }
+  },
+  "nine_series": {
+    "ids_in_PDF": [
+      "14",
+      "15",
+      "6",
+      "20",
+      "21",
+      "10",
+      "4",
+      "8",
+      "9"
+    ],
+    "source_total_whitespace_words": 664,
+    "source_body_whitespace_words": 649,
+    "table_prose_whitespace_words": 448,
+    "source_body_lexical_tokens": 628,
+    "PDF_lexical_tokens": 628,
+    "PDF_source_token_multisets_identical": true,
+    "prior_main_file_whitespace_words": 3748,
+    "ledger_whitespace_words": 3782,
+    "ledger_source_notes_unchanged": true
+  },
+  "scope": "Repairs only; existing sources and earlier audit evidence. No new source search, model, interval or empirical inference."
+}
