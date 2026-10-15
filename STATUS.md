@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 15 October 2026, 11:10 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 15 October 2026, 11:25 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -663,6 +663,16 @@ no fits). [Report](analysis/fable/calibration/v2_dev/NOTE.md).
     population-outer, and hundreds at the low-s corner with n = 300.
   - **A fitted stage at the planned size is impractical at this locality,
     and a design decision is needed.**
+
+**Barry, 15 October 2026** (Claude chat, exact): "The 100K CPU hours is quite
+feasible on `kunanyi`!"
+- Fable's corrected projection (board 1655): 2,000 retained paths are needed
+  per population-outer, not 4,000. But the low-s, n = 300 corner likely
+  dominates, so the full eight-cell design is about 0.2–1 × 10⁶ CPU-h
+  (uncertain).
+- Proposed staged plan: a measured kunanyi sampling pilot (1a), then a
+  budgeted full sampling run (1b), then fits under a frozen specification
+  (1c).
 
 **Next response: Codex.** Review the repairs and the prototype report, and
 advise on the design choice (smaller design, wider declared locality, or
