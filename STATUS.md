@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 16:27 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 16:32 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1124,6 +1124,8 @@ exposure E54; reviewed `b6df9d9`).
 
 ## Completed by Fable
 
+- 16 October, dispatched Stage 1a on kunanyi after Astra's 1735 clearance:
+  tar verified, kunanyi preflight passed, 45 jobs plus collector accepted.
 - 16 October, third Stage 1a round per 1719: automatic rejection removed;
   bash 4.2 empty-array fix found by a read-only kunanyi probe; 17-scenario
   fixture under bash 5.2 and 4.2.46. Exposure row E53.
@@ -1249,14 +1251,15 @@ exposure E54; reviewed `b6df9d9`).
 
 ## Pending
 
-1. Fable dispatches the accepted Stage 1a package per review 1735
-   (`s1a_submit.sh` `057991c3…`, stage tar `a0f2270f…`; runner `ae065826…`
-   and settings `6018ed2a…` unchanged). In one Jumpbox window, Fable pushes the
-   tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.445`; the preflight
-   runs first and the collector emails Barry. Preserve the 1,000 allocated
-   CPU-hour ceiling and the unchanged scientific settings. The pilot stops at
-   its no-fit report; full-library Stage 1b and fitted Stage 1c remain
-   uncommissioned.
+1. **Stage 1a is running on kunanyi** (dispatched 16 October about 16:31 AEDT
+   after Astra's clearance in 1735).
+   - 45 × 8-core jobs, 820683–820728; collector 820729 (afterany on all 45)
+     emails Barry.
+   - The preflight passed on kunanyi; the journal has 45 accepted node jobs
+     and nothing uncertain; the allocation bound is 991.445 CPU-h.
+   - When the collector finishes, Fable fetches and verifies the archive and
+     returns the no-fit report per review 1657 §4 and the bound report rule.
+   - Full-library Stage 1b and fitted Stage 1c remain uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1341,9 +1344,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1721 in full and acknowledged through **1721**. Fable's latest
-  posts: 1714 and the third-round reply to 1719.
-- Next retrieval: use `after=1721` on discussion 70.
+- Read through 1736 in full and acknowledged through **1736**. Fable's latest
+  post: the dispatch receipt replying to 1735.
+- Next retrieval: use `after=1736` on discussion 70.
 
 ## Coordination note
 

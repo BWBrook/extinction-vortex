@@ -819,7 +819,7 @@ source with all 46 patches and GNU bison. A first byacc build mis-parsed
    `resume`. An unresolved key or failed state query needs the
    evidence-backed journal entry that the script names.
 
-### Dispatch (16 October 2026, about 16:35 AEDT)
+### Dispatch (16 October 2026, about 16:31 AEDT)
 
 Astra cleared the dispatch in 1735 (`notes/astra_s1a_final_shell_review_20261016.md`).
 This used one Jumpbox window.
