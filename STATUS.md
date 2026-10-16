@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 11:58 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 12:15 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -755,6 +755,34 @@ board 1698; exposure E48).
   checks the changed contracts before dispatch. No new Barry decision or
   Jumpbox window is needed for these repairs. Stage 1b/c remain uncommissioned.
 
+**Fable, 16 October: Stage 1a pre-dispatch repairs** (board reply to 1698;
+[NOTE](analysis/fable/calibration/v2_dev/NOTE.md), "Pre-dispatch repairs";
+exposure E49). Runner `793e7a42…`, settings `9a7d4699…` (same budgets and
+assignment), stage tar `a4c3e4e4…`.
+- **Submission:** run identity, a lock, preflight before any qsub, a synced
+  per-job request/accepted journal, and PBS-name reconciliation including
+  finished jobs. A second dispatch is refused; `resume` submits only missing
+  jobs and the collector once. The stub-scheduler fixture passes ten
+  scenarios. Each completed one has 45 jobs, 360 single-owner workers, one
+  collector and ≤ 991.44 CPU-h.
+- **Recovery:** a zero checkpoint; checkpoints carry the committed journal's
+  length and SHA-256; verified prefix and atomic replacement; missing, short,
+  altered, orphan and terminal-inconsistent journals are rejected. Crashes at
+  every state write and during recovery are recovered identically.
+- **Collection:** a current atomic summary (`collection_ok` / `run_complete`)
+  with full row, record and worker validation.
+- **Preflight:** a real bound preflight runs shape, ceiling, deadline and
+  fixture checks; it passes 45 × 8 at 2:45:00 and refuses the three negative
+  shapes.
+- **Report rule** bound into the settings: prefix-conditioned exact intervals
+  (Clopper–Pearson at the budget; negative binomial at the hit stop). Storage
+  maximum corrected to 21,999 records per setting; the bias remark is
+  withdrawn.
+- 35/35 runner fixtures pass, and the smoke replays exactly under the new
+  collector.
+- **Next response: Astra.** Check the repaired contracts. Barry's Jumpbox
+  window is needed only after that check passes.
+
 ## Completed by Astra
 
 - 16 October, reviewed Stage 1a at `e3870d4` with three bounded reviewers.
@@ -960,6 +988,9 @@ board 1698; exposure E48).
 
 ## Completed by Fable
 
+- 16 October, Stage 1a pre-dispatch repairs per 1698: journalled, resumable
+  submission with fixture; atomic journal recovery; validating collector;
+  bound preflight; report rule. Exposure row E49.
 - 16 October, Stage 1a: kunanyi smoke (1,080/1,080, cross-machine identical);
   checkpoint-cadence, hit-stop, job-shape and collector repairs with new
   fixtures; budgeted final manifest and stage tar. Exposure row E47.
@@ -1075,14 +1106,12 @@ board 1698; exposure E48).
 
 ## Pending
 
-1. Fable repairs Stage 1a submission/retry ownership, hit-journal recovery,
-   collection integrity and final preflight per review 1698, then rebinds the
-   runner/settings/stage archive and returns targeted failure receipts. Astra
-   checks that finite diff before dispatch. The current package at `e3870d4`
-   is held; its nominal single-dispatch allocation fits the 1,000 CPU-hour
-   ceiling, but retry enforcement does not. Barry's next Jumpbox window is
-   needed only after those repairs pass. The pilot stops at its no-fit report;
-   full-library Stage 1b and fitted Stage 1c remain uncommissioned.
+1. Astra checks Fable's Stage 1a pre-dispatch repairs (runner `793e7a42…`,
+   settings `9a7d4699…`, `s1a_submit.sh` `facded63…`, stage tar
+   `a4c3e4e4…`) per review 1698. Then, in one Jumpbox window, Fable pushes the
+   tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.44`; the preflight
+   runs first and the collector emails Barry. The pilot stops at its no-fit
+   report; full-library Stage 1b and fitted Stage 1c remain uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1167,9 +1196,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1660 in full and acknowledged through **1660**. Fable's latest
-  posts: 1660 and the Stage 1a manifest post that follows it.
-- Next retrieval: use `after=1660` on discussion 70.
+- Read through 1700 in full and acknowledged through **1700**. Fable's latest
+  posts: 1687 and the repair post replying to 1698.
+- Next retrieval: use `after=1700` on discussion 70.
 
 ## Coordination note
 

@@ -509,8 +509,12 @@ workers, one node).
 2. **Declared storage limit.** A setting stops at the first batch boundary
    with at least 2,000 retained hits (HIT_STOP = K). The crossing batch is
    kept whole, and the stop reason (`hits` or `budget`) is recorded.
-   - This bounds storage at about 1,080 × 2,000 records, roughly 0.7 GB.
-   - Under this inverse sampling, hits/proposals has bias of order 1/2,000.
+   - The hard maximum is K + B − 1 = 21,999 records per setting (B =
+     20,000). About 2,000 per setting (roughly 0.7 GB in total) is a
+     planning estimate only. *Corrected 16 Oct per Astra 1698.*
+   - *Withdrawn 16 Oct:* the earlier "O(1/2,000) bias" remark held only for
+     an ideal inverse-binomial design. Uncertainty now follows the declared
+     report rule below.
 3. **Job shape.** Jobs now take JOBCPUS workers and JOBCPUS/2 + 1 GB, so they
    can backfill partly occupied nodes.
 4. **Collector packing.** The pack excludes the collector's own PBS logs, is
@@ -526,7 +530,9 @@ workers, one node).
 The repaired runner reproduces all 1,080 smoke settings exactly on
 deep-server: no counter or hit-record mismatches, 38 hits.
 
-**Final manifest** `p2/p2_settings_s1a.json` (`d0dd1bff…`).
+**Final manifest** `p2/p2_settings_s1a.json` (`d0dd1bff…`, superseded the
+same day by `9a7d4699…`, which rebinds the repaired runner; the budgets and
+assignment are unchanged).
 - **Settings:** the same 1,080 indices and streams. The smoke's five batches
   are the exact prefix of each final stream, so they are recomputed, not
   added as extra exposure.
@@ -537,8 +543,8 @@ deep-server: no counter or hit-record mismatches, 38 hits.
 - **Packing:** NWORKERS 360. LPT gives every worker two informative settings
   and one control, for an expected load of 7,425 s (2.06 h) on every worker.
 - **Dispatch shape:** 45 jobs × 8 cores, 5 GB each, walltime 2:45:00.
-  - The deadline at walltime − 10 min (2.58 h) leaves 25% margin over the
-    expected load.
+  - The deadline at walltime − 10 min (2.58 h) exceeds the expected load by
+    25%; the expected load uses 80% of the deadline.
   - If every job used its full walltime, the bound would be 360 × 2.75 = 990
     CPU-h. With the collector (≤ 1 CPU-h) and the smoke (0.44 CPU-h), that
     is at most 991.5 CPU-h, within the 1,000 CPU-h ceiling.
@@ -549,12 +555,126 @@ deep-server: no counter or hit-record mismatches, 38 hits.
   - Of the 34 settings with smoke hits, 15 project to reach 2,000.
   - The 1,046 zero-hit settings have only an uninformative upper bound at
     smoke scale.
-- **Stage tar:** `s1a_stage_final.tar` (`ceaa2975…`) on deep-server, with
-  per-file hashes in `s1a/stage_sha256.txt`.
+- **Stage tar:** `s1a_stage_final.tar` on deep-server, with per-file hashes in
+  `s1a/stage_sha256.txt`. It was `ceaa2975…`; the repaired package below is
+  `a4c3e4e4…`.
 
-**Dispatch** (after Astra's law, guard and budget check; one Jumpbox window).
+### Pre-dispatch repairs (16 October; Astra 1698, `notes/astra_s1a_prerun_review_20261016.md`)
+
+Runner `793e7a42…`, settings `9a7d4699…`, `s1a_submit.sh` `facded63…`,
+stage tar `a4c3e4e4…`. The sampling law, streams, budgets and assignment are
+unchanged.
+
+**A. Submission** (`kunanyi/s1a_submit.sh`).
+- **Run identity.** `run.json` holds the settings hash, output directory,
+  shape, walltime, ceiling and prior allocation. A journal fixes it.
+- **One submitter.** A lock directory admits a single submission.
+- **Preflight first.** The bound preflight runs before any qsub.
+- **Journal.** Each job has a unique PBS name (settings hash, output
+  directory, index). Every qsub is journalled as `request` before it is
+  made, and as `accepted ID` as soon as it is accepted. The journal is
+  synced.
+- **Duplicates are refused.** Before submitting a name, the script queries
+  PBS for that name, including finished jobs. An accepted job whose reply was
+  lost is recorded as reconciled, not submitted again. More than one job with
+  that name is refused.
+- **Dispatch modes.** A second `new` dispatch is refused. `resume` submits
+  only jobs never accepted, then the collector once. The collector depends
+  on every accepted job that has not finished.
+- **Fixture** (`kunanyi/s1a_submit_fixture.py` → `s1a_submit_fixture.json`;
+  stub qsub/qselect/qstat and stub preflight). All ten scenarios pass:
+  - normal dispatch, then a duplicate dispatch (refused, no qsub), then resume
+    (no qsub);
+  - qsub rejected at call 4, then resume;
+  - accepted at call 4 but the reply lost, then resume (reconciled, not
+    duplicated);
+  - collector rejected, then resume;
+  - collector reply lost, then resume;
+  - rejection at call 4 with three jobs finished before the resume (the
+    collector depends on the 42 unfinished);
+  - preflight refusal, a held lock, a resume with another shape, and a resume
+    without a journal: all refused with no qsub.
+  - Every completed scenario ends with exactly 45 node jobs, each of the 360
+    workers owned once, one collector, and an allocation bound of 991.44
+    CPU-h.
+
+**B. Recovery** (`run_setting`).
+- **Initial boundary.** Every setting first writes a zero checkpoint.
+- **Commit order.** Each commit appends and fsyncs hit records, then writes a
+  checkpoint recording the committed journal's length and SHA-256.
+- **Resume.** Recovery verifies the committed prefix (length, hash, record
+  count) and replaces the file with that prefix atomically: temp file, fsync,
+  rename. The only committed copy is never truncated in place.
+- **Rejections.** Missing, short, altered and orphan journals, unreadable
+  checkpoints, and terminal checkpoints with a missing journal or uncommitted
+  bytes are all rejected with a diagnostic.
+- **Fixtures** (`p2/s1a_test_receipt.txt`, 35 checks, all pass):
+  - an injected crash at each of the four state writes, including the one
+    right after the first hit fsync;
+  - a crash during recovery's journal replacement, with a torn tail;
+  - each of these recovers to counters and journal bytes identical to the
+    uninterrupted run;
+  - all seven rejection cases;
+  - a deadline after one batch, a crossing-batch hit stop, and a
+    bound-violation failure;
+  - the earlier real-stream resume, cadence, hit-stop and censoring fixtures.
+
+**C. Collection and preflight.**
+- **Collector.** `collect` first writes an in-progress failure summary, so no
+  earlier summary can survive a crash. It then validates every row:
+  - checkpoint binding and index, counter invariants, and status and stop
+    consistency;
+  - the journal's length and hash;
+  - each hit record's schema, identity bounds and order (unique), and
+    selection S;
+  - each worker receipt's binding, range and file name.
+- **Summary.** It publishes `collection_ok` and `run_complete` atomically,
+  keeping missing and incomplete rows visible.
+- **Collector fixtures** (in the 35): a valid run with a missing setting is
+  accepted. Malformed same-length hit JSON, a stale worker receipt, an
+  invariant breach, and a corrupt checkpoint over an old success summary are
+  all rejected, with a current failure summary.
+- **Preflight.** `preflight SETTINGS METRIC NJOBS JOBCPUS WALL_SECS CEILING
+  PRIOR COLLECTOR` runs the real bound check (runner, helper, imported
+  source, metric, runtime), then:
+  - the shape (NJOBS × JOBCPUS = bound workers, each one an owner);
+  - the cumulative allocation bound against the ceiling;
+  - the deadline margin;
+  - finally the fixtures.
+  - Receipts (`p2/preflight_receipts.txt`): 45 × 8 at 2:45:00 passes (991.44
+    CPU-h). 4:00:00 (1,441 CPU-h), 44 × 8, and a 2:10:00 walltime shorter
+    than the load are all refused.
+- **Replay.** The repaired runner reproduces all 1,080 smoke settings and 38
+  hit records exactly, and the new collector validates them:
+  `collection_ok`, `run_complete`, no errors (`p2/dry3_summary.json`).
+
+**Report rule** (bound into the settings as `report_rule` with
+`prefix_batches` = 5; declared before dispatch).
+- **Descriptive only:** full-stream H/N.
+- **Formal 95% retention intervals** condition on the recomputed smoke prefix
+  (batches 0–4, h0 hits) and use only later proposals:
+  - a setting ending at its proposal budget gets Clopper–Pearson on the
+    suffix;
+  - a setting ending at the hit stop gets the exact negative-binomial interval
+    from n*, the suffix position of its (2,000 − h0)-th suffix hit:
+    [BetaInv(0.025; c, n* − c + 1), BetaInv(0.975; c, n* − c)], with
+    c = 2,000 − h0. The hit identities make n* recoverable.
+  - Together these are exact for the curtailed design: outcomes ordered by n*
+    when stopped, otherwise by suffix hits.
+  - Censored, failed or interrupted settings get Clopper–Pearson, labelled
+    conditional on non-informative censoring.
+- **Cost:** observed CPU through the crossing batch for hit-stopped settings.
+  Rate-based projections to 2,000 for the others are labelled as
+  projections.
+- **Zero hits** give an upper retention bound and an unresolved cost.
+- All 1,080 rows and complete-nine-population availability are reported.
+- The collector computes these per row.
+
+**Dispatch** (after Astra checks this repair; one Jumpbox window).
 1. Push the tar and extract it into run1.
 2. Run `sha256sum -c`.
-3. Run `p2_stage1a.py test` on the login node, which also checks the runtime.
-4. Submit `s1a_submit.sh /u/bwbrook/vortex/run1 p2_settings_s1a.json main 45 8 02:45:00`.
-   The afterany collector emails Barry.
+3. Run `s1a_submit.sh /u/bwbrook/vortex/run1 p2_settings_s1a.json main 45 8
+   02:45:00 1000 0.44`. Its preflight runs the bound check and fixtures on
+   the kunanyi login node before any qsub.
+4. The afterany collector emails Barry. After any interruption, rerun with
+   `resume`.

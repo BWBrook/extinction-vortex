@@ -1,0 +1,1 @@
+{"settings_sha256": "71354631680ff0cbdc9f7b2e2a48635efe4d9a88fae30afcebb0e38235657535", "collection_ok": true, "run_complete": true, "status": {"complete": 1080, "censored": 0, "failed": 0, "running": 0, "missing": 0, "invalid": 0}, "hits": 38, "workers": 28, "counter_and_hit_record_mismatches_vs_first_dry_run": [0, 0]}
