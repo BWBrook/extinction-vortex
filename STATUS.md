@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 20:45 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 20:49 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1312,8 +1312,16 @@ board 1755; exposure E56).
        ≥ 152/200.
      - These are interpreted as stringent development adequacy criteria, with
        estimation as the primary result.
-   - Stage 1b and Stage 1c remain uncommissioned until Barry authorises them,
-     after Astra's check.
+   - **Barry, 16 October 2026** (Claude chat, exact; board 1759): "Decisions: 1
+     and 2 are both fully authorised."
+     - Stage 1b sampling is authorised: W1 then W2, within allocated
+       ceilings of 200k / 1.0M / 1.2M CPU-h, with a 2,000 CPU-h per-setting
+       cap.
+     - Stage 1c fitting is authorised with the §6 gate meaning.
+     - Astra still checks each executable package before dispatch.
+     - Fable is implementing: the metric export for the 1,800 new
+       population-outer pairs, the stable-ID settings builder, then the
+       shard runner, pull workers, submitter and fixtures.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
