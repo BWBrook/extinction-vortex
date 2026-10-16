@@ -1,0 +1,545 @@
+{
+ "scope": "Stub-scheduler fixtures for s1a_submit.sh (no PBS, no simulation). Writes s1a_submit_fixture.json beside itself.\nEach scenario runs the real script in a fresh directory with stub qsub/qselect/qstat (PBS_BIN) and a stub preflight\n(S1A_ENV), under FIX_BASH (default bash; kunanyi runs 4.2.46). qsub can reject (no job), accept but lose its reply\n(job created, non-zero exit), or accept a job that finishes and leaves history before its lost reply; qselect\ncan fail at a chosen call; qstat -x can fail for chosen jobs; finished jobs can be expired from history. Every job ever\ncreated is kept in an append-only ledger, so allocation and worker ownership are counted even after history expiry.",
+ "bash_version": "4.2.46(3)-release",
+ "submit_sha256": "057991c35729c872eb1db3b4672a0d1c464c1a9c339a61da7c6f414e91038a3e",
+ "checks": {
+  "normal_then_duplicate_then_resume": true,
+  "reject_at_4_held_until_operator_rejects": true,
+  "delayed_reply_history_expired_no_replacement": true,
+  "lost_reply_at_4_reconciled_at_once": true,
+  "lost_reply_unconfirmed_history_expired_no_replacement": true,
+  "reject_unconfirmed_then_operator_rejects": true,
+  "collector_rejection_held_until_operator_rejects": true,
+  "collector_reply_lost_reconciled_at_once": true,
+  "three_finished_before_collector": true,
+  "all_finished_collector_without_dependencies": true,
+  "one_live_query_fails_no_collector_then_resume": true,
+  "all_queries_fail_no_collector_then_resume": true,
+  "finished_job_history_expired_then_terminal": true,
+  "preflight_refused_before_any_qsub": true,
+  "lock_held_refused": true,
+  "resume_with_other_shape_refused": true,
+  "resume_without_journal_refused": true
+ },
+ "all_ok": true,
+ "scenarios": {
+  "normal_then_duplicate_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    },
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: already dispatched (journal exists); use resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 0,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_8ae66d24_j44 900044.fixture",
+    "request c s1a_8ae66d24_c",
+    "accepted c s1a_8ae66d24_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "reject_at_4_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_4d648c47_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_4d648c47_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_4d648c47_j3 ID manual: <evidence>' or 'rejected j3 s1a_4d648c47_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 43,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_4d648c47_j44 900044.fixture",
+    "request c s1a_4d648c47_c",
+    "accepted c s1a_4d648c47_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "delayed_reply_history_expired": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_770a42f2_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_770a42f2_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_770a42f2_j3 ID manual: <evidence>' or 'rejected j3 s1a_770a42f2_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 42,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_770a42f2_j44 900044.fixture",
+    "request c s1a_770a42f2_c",
+    "accepted c s1a_770a42f2_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "lost_reply_at_4_reconciled_at_once": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_f916bde8_j44 900044.fixture",
+    "request c s1a_f916bde8_c",
+    "accepted c s1a_f916bde8_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "lost_reply_unconfirmed_history_expired": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_5b112a09_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_5b112a09_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_5b112a09_j3 ID manual: <evidence>' or 'rejected j3 s1a_5b112a09_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 42,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_5b112a09_j44 900044.fixture",
+    "request c s1a_5b112a09_c",
+    "accepted c s1a_5b112a09_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "reject_unconfirmed_then_operator_rejects": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_de751124_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_de751124_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_de751124_j3 ID manual: <evidence>' or 'rejected j3 s1a_de751124_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 43,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_de751124_j44 900044.fixture",
+    "request c s1a_de751124_c",
+    "accepted c s1a_de751124_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "collector_rejected_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_9d82fbf9_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_9d82fbf9_c and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted c s1a_9d82fbf9_c ID manual: <evidence>' or 'rejected c s1a_9d82fbf9_c manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "rejected c s1a_9d82fbf9_c manual: tracejob and the accounting log show no such job",
+    "request c s1a_9d82fbf9_c",
+    "accepted c s1a_9d82fbf9_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "collector_reply_lost_reconciled_at_once": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_21903a97_j44 900044.fixture",
+    "request c s1a_21903a97_c",
+    "accepted c s1a_21903a97_c 900045.fixture reconciled"
+   ],
+   "lock_released": true
+  },
+  "three_finished_before_collector": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_ee5d2eff_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 43,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 42,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_ee5d2eff_j44 900044.fixture",
+    "request c s1a_ee5d2eff_c",
+    "accepted c s1a_ee5d2eff_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "all_finished_before_collector": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_acae00fc_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "rejected c s1a_acae00fc_c manual: tracejob and the accounting log show no such job",
+    "request c s1a_acae00fc_c",
+    "accepted c s1a_acae00fc_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "one_live_query_fails_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 45,
+     "stderr": [
+      "s1a_submit: cannot query 900005.fixture (j5), so the collector was not submitted; resume when PBS answers, or append 'terminal j5 900005.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_caa32995_j44 900044.fixture",
+    "request c s1a_caa32995_c",
+    "accepted c s1a_caa32995_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "all_queries_fail_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 45,
+     "stderr": [
+      "s1a_submit: cannot query 900000.fixture (j0), so the collector was not submitted; resume when PBS answers, or append 'terminal j0 900000.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_2ab957d2_j44 900044.fixture",
+    "request c s1a_2ab957d2_c",
+    "accepted c s1a_2ab957d2_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "finished_job_history_expired_then_terminal": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_4d55353f_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: cannot query 900000.fixture (j0), so the collector was not submitted; resume when PBS answers, or append 'terminal j0 900000.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "terminal j0 900000.fixture manual: job0.out and jobs.log show completion",
+    "request c s1a_4d55353f_c",
+    "accepted c s1a_4d55353f_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "preflight_refused": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: preflight refused or failed; see <tmp>/vbase/s1a/main/logs/preflight.log"
+     ]
+    }
+   ],
+   "node_jobs_created": 0,
+   "unique_node_names": 0,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
+   "collector_depends_on": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
+   "lock_released": true
+  },
+  "lock_held": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: another submission holds <tmp>/vbase/s1a/main/.submit.lock (remove it only if none is running)"
+     ]
+    }
+   ],
+   "node_jobs_created": 0,
+   "unique_node_names": 0,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
+   "collector_depends_on": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
+   "lock_released": false
+  },
+  "resume_with_other_shape": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: run identity differs from <tmp>/vbase/s1a/main/run.json"
+     ]
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_d12f8efa_j44 900044.fixture",
+    "request c s1a_d12f8efa_c",
+    "accepted c s1a_d12f8efa_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "resume_without_journal": {
+   "runs": [
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: nothing to resume (no journal)"
+     ]
+    }
+   ],
+   "node_jobs_created": 0,
+   "unique_node_names": 0,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
+   "collector_depends_on": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
+   "lock_released": true
+  }
+ }
+}

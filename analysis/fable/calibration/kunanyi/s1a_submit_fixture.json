@@ -1,15 +1,18 @@
 {
- "scope": "Stub-scheduler fixtures for s1a_submit.sh (no PBS, no simulation). Writes s1a_submit_fixture.json beside itself.\nEach scenario runs the real script in a fresh directory with stub qsub/qselect/qstat (PBS_BIN) and a stub preflight\n(S1A_ENV). qsub can reject (no job) or accept but lose its reply (job created, non-zero exit) at a chosen call; qselect\ncan fail at a chosen call; qstat -x can fail for chosen jobs; finished jobs can be expired from history. Every job ever\ncreated is kept in an append-only ledger, so allocation and worker ownership are counted even after history expiry.",
- "submit_sha256": "8ca2dd97250b294c884c209fdbac2bbc2419503e51a965de303e1cdff8f85a0d",
+ "scope": "Stub-scheduler fixtures for s1a_submit.sh (no PBS, no simulation). Writes s1a_submit_fixture.json beside itself.\nEach scenario runs the real script in a fresh directory with stub qsub/qselect/qstat (PBS_BIN) and a stub preflight\n(S1A_ENV), under FIX_BASH (default bash; kunanyi runs 4.2.46). qsub can reject (no job), accept but lose its reply\n(job created, non-zero exit), or accept a job that finishes and leaves history before its lost reply; qselect\ncan fail at a chosen call; qstat -x can fail for chosen jobs; finished jobs can be expired from history. Every job ever\ncreated is kept in an append-only ledger, so allocation and worker ownership are counted even after history expiry.",
+ "bash_version": "5.2.21(1)-release",
+ "submit_sha256": "057991c35729c872eb1db3b4672a0d1c464c1a9c339a61da7c6f414e91038a3e",
  "checks": {
   "normal_then_duplicate_then_resume": true,
-  "reject_at_4_then_resume": true,
+  "reject_at_4_held_until_operator_rejects": true,
+  "delayed_reply_history_expired_no_replacement": true,
   "lost_reply_at_4_reconciled_at_once": true,
   "lost_reply_unconfirmed_history_expired_no_replacement": true,
   "reject_unconfirmed_then_operator_rejects": true,
-  "collector_rejected_then_resume": true,
+  "collector_rejection_held_until_operator_rejects": true,
   "collector_reply_lost_reconciled_at_once": true,
   "three_finished_before_collector": true,
+  "all_finished_collector_without_dependencies": true,
   "one_live_query_fails_no_collector_then_resume": true,
   "all_queries_fail_no_collector_then_resume": true,
   "finished_job_history_expired_then_terminal": true,
@@ -50,9 +53,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_e030b0ad_j44 900044.fixture",
-    "request c s1a_e030b0ad_c",
-    "accepted c s1a_e030b0ad_c 900045.fixture"
+    "accepted j44 s1a_0bb3577e_j44 900044.fixture",
+    "request c s1a_0bb3577e_c",
+    "accepted c s1a_0bb3577e_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -63,7 +66,15 @@
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_5551bd2e_j3 failed and PBS has no such job; resume may resubmit it"
+      "s1a_submit: qsub for s1a_5b87437d_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_5b87437d_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_5b87437d_j3 ID manual: <evidence>' or 'rejected j3 s1a_5b87437d_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -80,9 +91,47 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_5551bd2e_j44 900044.fixture",
-    "request c s1a_5551bd2e_c",
-    "accepted c s1a_5551bd2e_c 900045.fixture"
+    "accepted j44 s1a_5b87437d_j44 900044.fixture",
+    "request c s1a_5b87437d_c",
+    "accepted c s1a_5b87437d_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "delayed_reply_history_expired": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_0fce68fc_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_0fce68fc_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_0fce68fc_j3 ID manual: <evidence>' or 'rejected j3 s1a_0fce68fc_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 42,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_0fce68fc_j44 900044.fixture",
+    "request c s1a_0fce68fc_c",
+    "accepted c s1a_0fce68fc_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -102,9 +151,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_714a269d_j44 900044.fixture",
-    "request c s1a_714a269d_c",
-    "accepted c s1a_714a269d_c 900045.fixture"
+    "accepted j44 s1a_9c55ebc3_j44 900044.fixture",
+    "request c s1a_9c55ebc3_c",
+    "accepted c s1a_9c55ebc3_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -115,7 +164,7 @@
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_60f715d8_j3 failed and its outcome could not be established; see <tmp>/vbase/s1a/main/submit_journal.tsv"
+      "s1a_submit: qsub for s1a_d31acb5a_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -123,7 +172,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1a_submit: unresolved earlier request for s1a_60f715d8_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_60f715d8_j3 ID manual: <evidence>' or 'rejected j3 s1a_60f715d8_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+      "s1a_submit: unresolved earlier request for s1a_d31acb5a_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_d31acb5a_j3 ID manual: <evidence>' or 'rejected j3 s1a_d31acb5a_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -140,9 +189,9 @@
    "collector_depends_on": 44,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_60f715d8_j44 900044.fixture",
-    "request c s1a_60f715d8_c",
-    "accepted c s1a_60f715d8_c 900045.fixture"
+    "accepted j44 s1a_d31acb5a_j44 900044.fixture",
+    "request c s1a_d31acb5a_c",
+    "accepted c s1a_d31acb5a_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -153,7 +202,7 @@
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_71443125_j3 failed and its outcome could not be established; see <tmp>/vbase/s1a/main/submit_journal.tsv"
+      "s1a_submit: qsub for s1a_a2f8fdbf_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -161,7 +210,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1a_submit: unresolved earlier request for s1a_71443125_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_71443125_j3 ID manual: <evidence>' or 'rejected j3 s1a_71443125_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
+      "s1a_submit: unresolved earlier request for s1a_a2f8fdbf_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_a2f8fdbf_j3 ID manual: <evidence>' or 'rejected j3 s1a_a2f8fdbf_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -178,9 +227,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_71443125_j44 900044.fixture",
-    "request c s1a_71443125_c",
-    "accepted c s1a_71443125_c 900045.fixture"
+    "accepted j44 s1a_a2f8fdbf_j44 900044.fixture",
+    "request c s1a_a2f8fdbf_c",
+    "accepted c s1a_a2f8fdbf_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -191,7 +240,15 @@
      "rc": 1,
      "qsub_calls": 46,
      "stderr": [
-      "s1a_submit: qsub for s1a_5bc4767d_c failed and PBS has no such job; resume may resubmit it"
+      "s1a_submit: qsub for s1a_f1ff3831_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_f1ff3831_c and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted c s1a_f1ff3831_c ID manual: <evidence>' or 'rejected c s1a_f1ff3831_c manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -208,9 +265,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "rejected c s1a_5bc4767d_c absent-after-failure",
-    "request c s1a_5bc4767d_c",
-    "accepted c s1a_5bc4767d_c 900045.fixture"
+    "rejected c s1a_f1ff3831_c manual: tracejob and the accounting log show no such job",
+    "request c s1a_f1ff3831_c",
+    "accepted c s1a_f1ff3831_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -230,9 +287,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_6c1226c5_j44 900044.fixture",
-    "request c s1a_6c1226c5_c",
-    "accepted c s1a_6c1226c5_c 900045.fixture reconciled"
+    "accepted j44 s1a_48646591_j44 900044.fixture",
+    "request c s1a_48646591_c",
+    "accepted c s1a_48646591_c 900045.fixture reconciled"
    ],
    "lock_released": true
   },
@@ -243,7 +300,7 @@
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_91c0fae0_j3 failed and PBS has no such job; resume may resubmit it"
+      "s1a_submit: qsub for s1a_e84b560c_j3 failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -260,9 +317,39 @@
    "collector_depends_on": 42,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_91c0fae0_j44 900044.fixture",
-    "request c s1a_91c0fae0_c",
-    "accepted c s1a_91c0fae0_c 900045.fixture"
+    "accepted j44 s1a_e84b560c_j44 900044.fixture",
+    "request c s1a_e84b560c_c",
+    "accepted c s1a_e84b560c_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "all_finished_before_collector": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_44143e9d_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "rejected c s1a_44143e9d_c manual: tracejob and the accounting log show no such job",
+    "request c s1a_44143e9d_c",
+    "accepted c s1a_44143e9d_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -290,9 +377,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_6a7002d6_j44 900044.fixture",
-    "request c s1a_6a7002d6_c",
-    "accepted c s1a_6a7002d6_c 900045.fixture"
+    "accepted j44 s1a_d097539b_j44 900044.fixture",
+    "request c s1a_d097539b_c",
+    "accepted c s1a_d097539b_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -320,9 +407,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_8911e4ec_j44 900044.fixture",
-    "request c s1a_8911e4ec_c",
-    "accepted c s1a_8911e4ec_c 900045.fixture"
+    "accepted j44 s1a_d82142e6_j44 900044.fixture",
+    "request c s1a_d82142e6_c",
+    "accepted c s1a_d82142e6_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -333,7 +420,7 @@
      "rc": 1,
      "qsub_calls": 46,
      "stderr": [
-      "s1a_submit: qsub for s1a_a1e1824c_c failed and PBS has no such job; resume may resubmit it"
+      "s1a_submit: qsub for s1a_11f25313_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -359,8 +446,8 @@
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
     "terminal j0 900000.fixture manual: job0.out and jobs.log show completion",
-    "request c s1a_a1e1824c_c",
-    "accepted c s1a_a1e1824c_c 900045.fixture"
+    "request c s1a_11f25313_c",
+    "accepted c s1a_11f25313_c 900045.fixture"
    ],
    "lock_released": true
   },
@@ -428,9 +515,9 @@
    "collector_depends_on": 45,
    "allocated_cpu_hours_bound": 991.445,
    "journal_tail": [
-    "accepted j44 s1a_d03308c0_j44 900044.fixture",
-    "request c s1a_d03308c0_c",
-    "accepted c s1a_d03308c0_c 900045.fixture"
+    "accepted j44 s1a_e79c9348_j44 900044.fixture",
+    "request c s1a_e79c9348_c",
+    "accepted c s1a_e79c9348_c 900045.fixture"
    ],
    "lock_released": true
   },

@@ -691,7 +691,8 @@ the budgets and assignment are unchanged.
 - When a qsub fails, the script waits and immediately queries PBS by name:
   - one job: recorded as reconciled, and the script continues;
   - no job, from a successful query: recorded as `rejected …
-    absent-after-failure`, which a resume may resubmit;
+    absent-after-failure`, which a resume may resubmit (*removed in the third
+    round below*);
   - a failed query: recorded as `uncertain`.
 - A lost reply is therefore normally reconciled at once, while history
   still exists.
@@ -759,6 +760,54 @@ history expiry and an append-only ledger of every job created.
   990 + 1 + 0.445 = 991.445 CPU-h.
 - Preflight receipts at 0.445: 45 × 8 at 2:45:00 passes. 4:00:00, 44 × 8,
   and a walltime shorter than the load are refused.
+
+**Dispatch** (superseded by the third-round dispatch below).
+
+### Third repair round (16 October; Astra 1719, `notes/astra_s1a_second_repair_review_20261016.md`)
+
+Runner `ae065826…` and settings `6018ed2a…` are unchanged. `s1a_submit.sh`
+is now `057991c3…`; stage tar `a0f2270f…` (all 8 files match the checkout).
+
+**1. An empty PBS answer no longer counts as rejection.**
+- After a failed or ID-less qsub, only a confirming query showing exactly
+  one job reconciles it. Otherwise the key is recorded as `uncertain` and
+  the script stops.
+- An empty answer cannot distinguish non-acceptance from an accepted job
+  that finished and left history before its reply.
+- Retry now needs PBS evidence or an operator's evidence-backed
+  `rejected KEY NAME manual: …` entry.
+
+**2. Kunanyi runs bash 4.2.46.**
+- A read-only probe in Barry's 14:15 window found this. It also confirmed
+  that `qselect -x -N` (empty and rc 0 when there is no match), the
+  `qstat -x -f` format (`job_state = F`), the unknown-job error (rc 153) and
+  `sync FILE` all behave as assumed. History is kept for 1,344 h.
+- Under bash < 4.4, `"${dep[@]}"` on an empty array with `set -u` is an
+  unbound-variable error. The 3fa81cb submitter therefore died before the
+  collector qsub whenever every node had already finished; this was
+  reproduced under bash 4.2.46.
+- The fix is `${dep[@]+"${dep[@]}"}`.
+- `${ids[-1]}`, which in fact works in 4.2, was replaced with an explicit
+  index anyway.
+
+**Fixture** (`kunanyi/s1a_submit_fixture.py`; `FIX_BASH` selects the
+shell): **17 scenarios, all pass under both bash 5.2.21
+(`s1a_submit_fixture.json`) and a locally built GNU bash 4.2.46
+(`s1a_submit_fixture_bash42.json`).** The local bash was built from GNU
+source with all 46 patches and GNU bison. A first byacc build mis-parsed
+`$(…)` and was discarded.
+- **New:** a delayed reply whose history has expired. The job is created
+  but gone before the confirming query, so the dispatch stops, and the
+  resume refuses with 0 qsub. The operator then records it as accepted and
+  terminal, and the resume submits 41 nodes and the collector: 45 jobs for
+  45 names, 44 dependencies, 991.445 CPU-h.
+- **New:** every node finished before the collector, which submits with no
+  dependencies.
+- Definite rejections (node or collector) are held until an operator
+  `rejected` receipt, then resubmitted once.
+- `s1a_node.pbs` and `s1a_collect.pbs` also run correctly under bash 4.2.46
+  with stub workers: job 44 runs workers 352–359, a failed worker is
+  counted, and the collector packs and verifies.
 
 **Dispatch** (after Astra checks this round; one Jumpbox window).
 1. Push the tar and extract it into run1.

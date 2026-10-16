@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 14:11 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 14:36 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -861,6 +861,26 @@ board 1719; exposure E52; reviewed `3fa81cb`).
   checks that finite delta before the Jumpbox window. No new Barry decision,
   population simulation or full smoke replay is needed for this shell-only fix.
 
+**Fable, 16 October: third Stage 1a repair round** (reply to 1719;
+[NOTE](analysis/fable/calibration/v2_dev/NOTE.md), "Third repair round";
+exposure E53). `s1a_submit.sh` is `057991c3…`; stage tar `a0f2270f…`. The
+runner `ae065826…` and settings `6018ed2a…` are unchanged.
+- **Automatic rejection removed.** After a failed qsub, only a
+  one-job confirmation reconciles it; otherwise the key is `uncertain`, and
+  retry needs PBS evidence or an operator's evidence-backed `rejected`
+  entry.
+- **Bash 4.2.** A read-only kunanyi probe in Barry's window found bash
+  4.2.46, and confirmed the qselect -x and qstat -x behaviour (history kept
+  for 56 days). Under bash 4.2 the 3fa81cb submitter died before the
+  collector qsub when every node had finished (empty-array `set -u`); this
+  was reproduced and fixed.
+- **Fixture:** 17 scenarios, all pass under both bash 5.2 and a locally
+  built bash 4.2.46. They include the delayed-reply/expired-history case (no
+  replacement) and all nodes finished before the collector. The node and
+  collector scripts also run correctly under 4.2.
+- **Next response: Astra.** Check this delta. Barry's Jumpbox window is
+  needed only after that check.
+
 ## Completed by Astra
 
 - 16 October, reviewed second repairs at `3fa81cb` with two bounded reviewers.
@@ -1077,6 +1097,9 @@ board 1719; exposure E52; reviewed `3fa81cb`).
 
 ## Completed by Fable
 
+- 16 October, third Stage 1a round per 1719: automatic rejection removed;
+  bash 4.2 empty-array fix found by a read-only kunanyi probe; 17-scenario
+  fixture under bash 5.2 and 4.2.46. Exposure row E53.
 - 16 October, second Stage 1a repair round per 1708: unresolved submissions
   held for evidence, positively classified collector dependencies, collector
   type/domain/isolation/provenance checks, sensitivity labelling, prior
@@ -1199,11 +1222,9 @@ board 1719; exposure E52; reviewed `3fa81cb`).
 
 ## Pending
 
-1. Fable removes the single automatic-rejection branch in `s1a_submit.sh`
-   identified in review 1719, updates the focused fixture and refreshes the stage
-   checksum. Astra checks that finite delta. The accepted runner `ae065826…`
-   and settings `6018ed2a…` need no rebind for a shell-only repair. Then, in one
-   Jumpbox window, Fable pushes the
+1. Astra checks Fable's third Stage 1a delta (`s1a_submit.sh` `057991c3…`,
+   stage tar `a0f2270f…`; runner `ae065826…` and settings `6018ed2a…`
+   unchanged), per review 1719. Then, in one Jumpbox window, Fable pushes the
    tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.445`; the preflight
    runs first and the collector emails Barry. Preserve the 1,000 allocated
    CPU-hour ceiling and the unchanged scientific settings. The pilot stops at
@@ -1293,9 +1314,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1710 in full and acknowledged through **1710**. Fable's latest
-  posts: 1703/1704 and the second-round reply to 1708.
-- Next retrieval: use `after=1710` on discussion 70.
+- Read through 1721 in full and acknowledged through **1721**. Fable's latest
+  posts: 1714 and the third-round reply to 1719.
+- Next retrieval: use `after=1721` on discussion 70.
 
 ## Coordination note
 

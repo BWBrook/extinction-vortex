@@ -1,19 +1,19 @@
 #!/bin/bash
-# Submit Stage 1a: NJOBS jobs of JOBCPUS workers plus one afterany collector that emails Barry.
+# Submit Stage 1a: NJOBS jobs of JOBCPUS workers plus one afterany collector that emails Barry. Written for bash 4.2.
 # Usage: s1a_submit.sh VBASE SETTINGS OUTDIR NJOBS JOBCPUS WALLTIME(HH:MM:SS) CEILING_CPUH PRIOR_CPUH [resume]
 # The run identity (settings hash, output directory, shape, walltime, ceiling) is fixed in run.json once a journal
 # exists; a lock directory admits one submitter; the bound preflight runs before any qsub. Each job has a unique PBS
 # name (settings hash, output directory, index). The synced journal records, per key (jN or c):
 #   request KEY NAME                      written before the qsub
 #   accepted KEY NAME ID [reconciled]     qsub returned ID, or PBS showed exactly one job of that name
-#   rejected KEY NAME absent-after-failure qsub failed and a successful query straight afterwards found no such job
-#   uncertain KEY NAME                    qsub failed and its outcome could not be established
-# A key whose last entry is request or uncertain is never resubmitted on an empty PBS answer, because completed-job
-# history expires: it stays unresolved until PBS shows the job or an operator, after checking tracejob or the accounting
-# logs, appends "accepted KEY NAME ID manual: <evidence>" or "rejected KEY NAME manual: <evidence>". A second dispatch is
-# refused; "resume" submits only keys never requested or rejected. The collector depends on every accepted job not
-# positively confirmed finished (qstat -x job_state F); a failed or unclassifiable query stops before the collector
-# qsub, and a verified finished job whose history has expired can be recorded as "terminal KEY ID manual: <evidence>".
+#   uncertain KEY NAME                    qsub failed or gave no ID, and PBS did not show exactly one job of that name
+# An empty PBS answer never proves non-acceptance: an accepted job can finish and leave history before its reply. A key
+# whose last entry is request or uncertain therefore stays unresolved until PBS shows the job or an operator, after
+# checking tracejob or the accounting logs, appends "accepted KEY NAME ID manual: <evidence>" or
+# "rejected KEY NAME manual: <evidence>". A second dispatch is refused; "resume" submits only keys never requested or
+# rejected by an operator. The collector depends on every accepted job not positively confirmed finished (qstat -x
+# job_state F); a failed or unclassifiable query stops before the collector qsub, and a verified finished job whose
+# history has expired can be recorded as "terminal KEY ID manual: <evidence>".
 set -euo pipefail
 VBASE=$1; SETTINGS=$2; OUTDIR=$3; NJOBS=$4; JOBCPUS=$5; WALL=$6; CEIL=$7; PRIOR=$8; MODE=${9:-new}
 PBS=${PBS_BIN:-/opt/pbs/bin}
@@ -60,12 +60,10 @@ submit() {   # KEY NAME qsub-args... -> $got
   note "request $key $name"
   if got=$("$PBS/qsub" -N "$name" "$@") && [ -n "$got" ]; then note "accepted $key $name $got"; return; fi
   sleep "${S1A_CONFIRM_SECS:-10}"
-  if found=$("$PBS/qselect" -x -N "$name" | sed '/^$/d'); then
-    n=$(printf '%s' "$found" | grep -c . || true)
-    if [ "$n" -eq 1 ]; then note "accepted $key $name $found reconciled"; got=$found; return; fi
-    if [ "$n" -eq 0 ]; then note "rejected $key $name absent-after-failure"; die "qsub for $name failed and PBS has no such job; resume may resubmit it"; fi
+  if found=$("$PBS/qselect" -x -N "$name" | sed '/^$/d') && [ "$(printf '%s' "$found" | grep -c . || true)" -eq 1 ]; then
+    note "accepted $key $name $found reconciled"; got=$found; return
   fi
-  note "uncertain $key $name"; die "qsub for $name failed and its outcome could not be established; see $J"
+  note "uncertain $key $name"; die "qsub for $name failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
 }
 terminal() { [ -e "$J" ] && awk -v k="$1" -v id="$2" '$1 == "terminal" && $2 == k && $3 == id {f = 1} END {exit !f}' "$J"; }
 ids=()
@@ -97,9 +95,9 @@ else
     done
     if [ ${#live[@]} -gt 0 ]; then dep=(-W depend=afterany:"$(IFS=:; echo "${live[*]}")"); fi
   fi
-  submit c "s1a_${RID}_c" "${dep[@]}" -o "$R/logs/collect.out" -e "$R/logs/collect.err" \
+  submit c "s1a_${RID}_c" ${dep[@]+"${dep[@]}"} -o "$R/logs/collect.out" -e "$R/logs/collect.err" \
     -v VBASE="$VBASE",SETTINGS="$SETTINGS",OUTDIR="$OUTDIR" "$K/s1a_collect.pbs"
 fi
 cid=$got; echo "$cid" > "$R/collect_job.txt"
-echo "jobs: ${#ids[@]} x $JOBCPUS cpus, $MEM, walltime $WALL (${ids[0]} .. ${ids[-1]}); collector: $cid"
+echo "jobs: ${#ids[@]} x $JOBCPUS cpus, $MEM, walltime $WALL (${ids[0]} .. ${ids[$(( ${#ids[@]} - 1 ))]}); collector: $cid"
 "$PBS/qstat" -f "$cid" | grep -E "Mail_Users|Mail_Points|depend" || true
