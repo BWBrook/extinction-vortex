@@ -1,0 +1,74 @@
+{
+  "scope": "Design implications only; naive extension is not an implemented Stage1b bug",
+  "stream_mapping": {
+    "pilot_settings": 1080,
+    "full_settings": 21600,
+    "pilot_ids_changed_by_naive_loop_extension": 1050,
+    "example_seed_id": 30,
+    "old_target_pop_scenario_trial_n": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "naive_new_target_pop_scenario_trial_n": [
+      0,
+      0,
+      10,
+      0
+    ]
+  },
+  "inventory": {
+    "informative_population_libraries": 14400,
+    "shared_n0_population_libraries": 7200,
+    "total_primary_population_libraries": 21600,
+    "primary_retained_pairs_K2000": 43200000,
+    "informative_analyses": 1600,
+    "shared_n0_analyses": 800,
+    "total_primary_analyses": 2400,
+    "nominal_T_vector_evaluations_4001_each": 9602400,
+    "example_second_library_check_2_outers_per_scenario_all_n": {
+      "analyses": 24,
+      "population_libraries": 216,
+      "retained_pairs": 432000,
+      "nominal_T_vector_evaluations": 96024
+    }
+  },
+  "gates": [
+    {
+      "n": 25,
+      "null_max_nonaccepts": null,
+      "power_min_detections": 22,
+      "null_upper_bound_at_zero": 0.16077888838866516,
+      "null_pass_probability_if_true_nonaccept_rate_005": 0
+    },
+    {
+      "n": 50,
+      "null_max_nonaccepts": null,
+      "power_min_detections": 41,
+      "null_upper_bound_at_zero": 0.0839098780079905,
+      "null_pass_probability_if_true_nonaccept_rate_005": 0
+    },
+    {
+      "n": 200,
+      "null_max_nonaccepts": 7,
+      "power_min_detections": 152,
+      "null_upper_bound_at_zero": 0.021671849652908394,
+      "null_pass_probability_if_true_nonaccept_rate_005": 0.21330470278470298
+    },
+    {
+      "n": 300,
+      "null_max_nonaccepts": 13,
+      "power_min_detections": 224,
+      "null_upper_bound_at_zero": 0.014500594315008102,
+      "null_pass_probability_if_true_nonaccept_rate_005": 0.35828861215427527
+    },
+    {
+      "n": 1000,
+      "null_max_nonaccepts": 60,
+      "power_min_detections": 725,
+      "null_upper_bound_at_zero": 0.004372439564671273,
+      "null_pass_probability_if_true_nonaccept_rate_005": 0.9329374813666922
+    }
+  ]
+}

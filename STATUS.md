@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 20:19 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 20:33 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -11,10 +11,11 @@ repairs. His exact words are in discussion 70, message 1131.
 **Compute (Barry, 8 October):** the laptop pilot cap is lifted. Run anything
 serious on `deep-server` in tmux.
 Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
-message 1222. The 15–16 October Stage 1a smoke has now run on Kunanyi and
-measured throughput. The large pilot has passed execution review and awaits
-Fable's dispatch in a Jumpbox window; routine
-development and bounded verification remain on deep-server.
+message 1222. The 15–16 October Stage 1a smoke and large no-fit pilot have
+finished on Kunanyi. Astra verified the saved pilot outputs and cost arithmetic
+on 16 October (board 1755); cost interpretation and the next-stage package need
+finite revisions. Stage 1b/1c remain uncommissioned. Routine development and
+bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -903,7 +904,36 @@ exposure E54; reviewed `b6df9d9`).
   remains 991.445 CPU-hours within the 1,000-hour ceiling; stop at the no-fit
   report. Stage 1b/c remain uncommissioned.
 
+**Astra completed Stage 1a review, 16 October**
+([main review](notes/astra_s1a_results_review_20261016.md),
+[cost audit](notes/astra_s1a_cost_projection_review_20261016.md),
+[next-stage design review](notes/astra_stage1bc_design_review_20261016.md);
+board 1755; exposure E56).
+- All 2,975 regular archive members match; all 1,080 rows and 360 workers bind
+  correctly; archived, saved and fresh collections agree. Counts reproduce:
+  1,073 complete, seven censored, 322,736 hits and 733.873484 worker CPU-hours.
+  Only one setting reached K; no complete nine-population library set did so.
+- The 861,632 gross CPU-hour projection reproduces. The 0.75–0.98 million
+  bootstrap range is conditional resampling spread of estimated costs, with
+  zero-hit costs fixed at lower limits; it is not a calibrated budget range.
+- Keep the full noisy 200-outer design as the main option Barry favours.
+  Fable next for corrected reporting, stable stream IDs, ordered first-K
+  shards, capped waves and full sampling/fitting/library-check inventory.
+- If retaining the old confidence criteria, N=200 needs <=7 null non-accepts
+  and >=152 detections. At a true 5% non-accept rate, the null criterion passes
+  only 21.3% of repetitions. Agree its purpose and interpretation before fits;
+  do not silently rescale counts or change thresholds after outcomes.
+- No new population paths, fitted statistics, empirical tests or scheduler
+  commands were run by Astra. The 991.445-hour dispatch bound verifies;
+  roughly 770 allocated hours remains an estimate without PBS accounting.
+
 ## Completed by Astra
+
+- 16 October evening, audited the completed Stage 1a archive, collector and
+  report with two bounded reviewers; verified the 861,632 CPU-hour arithmetic,
+  qualified its uncertainty and recorded finite Stage 1b/1c contracts (1755,
+  E56). Full noisy-design preparation remains the recommendation; execution
+  needs the concrete package and Barry's decision.
 
 - 16 October, checked the final shell delta at `b6df9d9`: 17 scenarios under
   each of Bash 5.2 and 4.2, paired old/new counterexamples, shell syntax and
@@ -1254,21 +1284,30 @@ exposure E54; reviewed `b6df9d9`).
 
 ## Pending
 
-1. **Stage 1a is complete; its no-fit report is ready for Astra's audit**
+1. **Stage 1a is complete and audited; report corrections and the next-stage
+   package are with Fable**
    ([report](notes/vortex_stage1a_report_20261016.md); separate
    [Stage 1c fitted draft](notes/vortex_stage1c_fitted_draft_20261016.md); exposure E55).
-   - **Run:** all 45 jobs and the collector exited 0. 1,073 settings complete
+   - **Run:** Fable reports all 45 jobs and the collector exited 0. Astra
+     verified the archive, collection, journal and worker summaries.
+     1,073 settings complete
      and 7 censored (one with no exposure); 322,736 hits; 733.9 worker CPU-h,
-     about 770 allocated CPU-h, within the 1,000 ceiling.
+     about 770 estimated allocated CPU-h. The bound is 991.445 hours, within
+     the 1,000 ceiling; authoritative PBS allocation accounting was not
+     independently read in this audit.
    - **Only one setting reached K = 2,000.** Time to K, median (90th
      percentile): 3.0 (3.7) CPU-h at n = 0, 3.9 (35) at n = 30, and 20 (250)
      at n = 300. The tails are heavy at low-s and d10 with n = 300.
    - **Stage 1b projection:** the full planned design is about 0.86 × 10⁶
-     CPU-h (bootstrap 0.75–0.98 × 10⁶), with 84% of it at n = 300.
-     Alternatives are listed in the report.
-   - **Next:** Astra audits the report. Barry then decides Stage 1b's scale,
-     a resource decision that exceeds the "100K CPU hours" statement.
-     Stage 1b and Stage 1c remain uncommissioned.
+     gross worker CPU-h, with 84% of it at n = 300. The bootstrap 0.75–0.98
+     million spread is conditional on estimated costs and lower-limit
+     substitutes; it is not a calibrated full-budget range.
+   - **Next:** Fable corrects the report and prepares the full 200-outer
+     option with stable stream identities, capped waves, complete inventory
+     and a priced independent-library check. Resolve the exact fitted gate's
+     purpose and failure scoring before fits. Astra reviews the package;
+     Barry decides scale/resources and consequential scientific choices.
+     Stage 1b and Stage 1c remain uncommissioned (review 1755; E56).
    - **Barry, 16 October** (Claude chat, exact; an inclination, not yet an
      authorisation): "Regarding compute, I'm strongly inclined to authorise
      the full planned design. Most of those CPU cores just sit idle for much
@@ -1311,9 +1350,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1735**; exhausted `through`: **1735**.
-- Explicit acknowledgement: through actual message **1735** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1735`.
+- Last full retrieval `next_after`: **1755**; exhausted `through`: **1755**.
+- Explicit acknowledgement: through actual message **1755** in discussion 70.
+- Latest own review: **1755** (completed Stage 1a and next-stage contracts).
+- Next retrieval: omit `through` to capture new messages, and use `after=1755`.
 
 ## Decision Inbox checkpoint
 

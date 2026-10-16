@@ -1,0 +1,255 @@
+{
+  "scope": "Independent arithmetic and uncertainty audit using saved Stage 1a rows only.\nNo sampler imports, new population paths, bank scans, fitting or remote execution.\n",
+  "timestamp": "2026-10-16T20:26:01.693597+11:00",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "1.26.4",
+  "sha256": {
+    "collect": "1a02e049e6f8f86155408fb464f4e1e0cd3c8b7ae3d462c436dae53f04f44aa3",
+    "report": "c6761d00336199fa1907bd60243b05276d7a6b5ab2d09a69c06fd0499e7b5ba7",
+    "settings": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2"
+  },
+  "inventory_independent": {
+    "by_n": {
+      "0": 21340.47256973621,
+      "30": 117749.3006580499,
+      "300": 722542.2255837762
+    },
+    "total": 861631.9988115623,
+    "reported_total": 861631.9988115624,
+    "difference": -1.1641532182693481e-10
+  },
+  "counts": {
+    "rows": 1080,
+    "positive_hit_complete": 1069,
+    "positive_hit_censored": 6,
+    "zero_with_exposure": 4,
+    "no_exposure": 1,
+    "hits": 322736,
+    "worker_cpu_h": 733.8734841748661
+  },
+  "zero_hit": [
+    {
+      "index": 242,
+      "proposals": 5029240000,
+      "suffix_proposals": 5029140000,
+      "plug_lower_cost": 607.2618048151741,
+      "exact_suffix_95_expected_cost_lower": 608.1148196049515,
+      "fraction_difference": 0.0014046903378635012,
+      "scaled_200_outer_contribution": 12145.23609630348,
+      "formal_cost_upper": null
+    },
+    {
+      "index": 512,
+      "proposals": 6120680000,
+      "suffix_proposals": 6120580000,
+      "plug_lower_cost": 585.1973186037295,
+      "exact_suffix_95_expected_cost_lower": 586.0214174619925,
+      "fraction_difference": 0.001408241001905619,
+      "scaled_200_outer_contribution": 11703.94637207459,
+      "formal_cost_upper": null
+    },
+    {
+      "index": 536,
+      "proposals": 6256720000,
+      "suffix_proposals": 6256620000,
+      "plug_lower_cost": 586.8592204392766,
+      "exact_suffix_95_expected_cost_lower": 587.6858684247982,
+      "fraction_difference": 0.0014085967413153266,
+      "scaled_200_outer_contribution": 11737.184408785532,
+      "formal_cost_upper": null
+    },
+    {
+      "index": 833,
+      "proposals": 6639680000,
+      "suffix_proposals": 6639580000,
+      "plug_lower_cost": 558.6774269241411,
+      "exact_suffix_95_expected_cost_lower": 559.4648938690591,
+      "fraction_difference": 0.0014095198892383198,
+      "scaled_200_outer_contribution": 11173.54853848282,
+      "formal_cost_upper": null
+    }
+  ],
+  "zero_placeholder_sensitivity": {
+    "current_contribution": 46759.91541564642,
+    "total_without_zero_placeholders": 814872.0833959159,
+    "total_if_10x_lower_placeholder": 1282471.2375523802,
+    "total_if_100x_lower_placeholder": 5490863.6249605585,
+    "note": "Illustrative substitutions only; no new estimates or confidence bounds."
+  },
+  "bootstrap_independent_cell": {
+    "q5": 749014.6374524242,
+    "q50": 860010.795769213,
+    "q95": 981136.3378166805
+  },
+  "bootstrap_reported": {
+    "q5": 749014.6374524242,
+    "q50": 860010.795769213,
+    "q95": 981136.3378166805
+  },
+  "bootstrap_paired_n_within_population_scenario": {
+    "q5": 747085.1235087308,
+    "q50": 861134.5718756196,
+    "q95": 990477.1569608808
+  },
+  "bootstrap_whole_outer_within_scenario": {
+    "q5": 742521.8036972341,
+    "q50": 860672.4505712558,
+    "q95": 985423.1641186113
+  },
+  "bootstrap_notes": "All resampling holds estimated costs and zero-hit lower substitutions fixed. These are sensitivity calculations, not calibrated budget intervals.",
+  "expensive_interval_reconstruction": [
+    {
+      "index": 524,
+      "hits": 1,
+      "suffix_hits": 1,
+      "point": 1848.2477294061675,
+      "independent_retention_interval": [
+        3.955994034906976e-12,
+        8.705883236428434e-10
+      ],
+      "saved_retention_interval": [
+        3.955994034906982e-12,
+        8.705883236428435e-10
+      ],
+      "conditional_mean_cost_interval": [
+        331.71879844657013,
+        73000.74522665668
+      ]
+    },
+    {
+      "index": 335,
+      "hits": 1,
+      "suffix_hits": 1,
+      "point": 1824.960397872298,
+      "independent_retention_interval": [
+        4.269488052869978e-12,
+        9.395783749567766e-10
+      ],
+      "saved_retention_interval": [
+        4.2694880528699834e-12,
+        9.395783749567768e-10
+      ],
+      "conditional_mean_cost_interval": [
+        327.5388418975879,
+        72080.86988286329
+      ]
+    },
+    {
+      "index": 836,
+      "hits": 1,
+      "suffix_hits": 1,
+      "point": 1769.9236742516507,
+      "independent_retention_interval": [
+        3.27073036930007e-12,
+        7.197836104772685e-10
+      ],
+      "saved_retention_interval": [
+        3.2707303693000745e-12,
+        7.197836104772683e-10
+      ],
+      "conditional_mean_cost_interval": [
+        317.6622561386656,
+        69907.34784560483
+      ]
+    }
+  ],
+  "single_row_interval_sensitivity": {
+    "index": 524,
+    "current_total": 861631.9988115623,
+    "total_if_only_this_row_at_its_pointwise_upper_cost": 2284681.948756573,
+    "note": "Illustrative change in one cell mean; not a joint confidence bound or replacement forecast."
+  },
+  "scenario_maximum_qualification": {
+    "scenario": "null_prior_predictive",
+    "n": 300,
+    "reported_resolved_max": 125.06879148730135,
+    "resolved_count": 89,
+    "planned_count": 90,
+    "omitted_zero_hit_row": 242,
+    "omitted_cost_lower": 607.2618048151741
+  },
+  "nine_population_caps": {
+    "30": {
+      "10": 6,
+      "25": 14,
+      "50": 23,
+      "100": 29,
+      "250": 37,
+      "500": 40,
+      "1000": 40
+    },
+    "300": {
+      "10": 0,
+      "25": 2,
+      "50": 8,
+      "100": 13,
+      "250": 19,
+      "500": 23,
+      "1000": 33
+    }
+  },
+  "censored": [
+    {
+      "index": 547,
+      "proposals": 1151260000,
+      "hits": 467,
+      "point": 1.894849384992853,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    },
+    {
+      "index": 576,
+      "proposals": 0,
+      "hits": 0,
+      "point": null,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": false
+    },
+    {
+      "index": 893,
+      "proposals": 1403000000,
+      "hits": 7,
+      "point": 60.264411811581056,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    },
+    {
+      "index": 931,
+      "proposals": 1026280000,
+      "hits": 297,
+      "point": 2.095101576524578,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    },
+    {
+      "index": 985,
+      "proposals": 450100000,
+      "hits": 130,
+      "point": 2.7486069685940095,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    },
+    {
+      "index": 994,
+      "proposals": 824200000,
+      "hits": 14,
+      "point": 40.94100648313138,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    },
+    {
+      "index": 1078,
+      "proposals": 1963340000,
+      "hits": 1036,
+      "point": 1.4403974652873452,
+      "formal_interval_present": false,
+      "sensitivity_interval_present": true
+    }
+  ],
+  "pilot_credit": {
+    "already_used_cpu_hours": 733.8734841748661,
+    "gross_minus_used": 860898.1253273875,
+    "note": "Gross inventory mixes from-scratch projections and one observed completed cost. Remaining-budget accounting must be stated separately; simple subtraction is illustrative."
+  },
+  "elapsed_s": 0.15805356300552376
+}
