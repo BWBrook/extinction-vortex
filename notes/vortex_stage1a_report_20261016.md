@@ -41,15 +41,18 @@ exposed development outers (b1/b3/b5/b16, trial IDs 0–9), not validation.
 | 300 | 0 | 359 | 1 |
 
 - **Only one setting reached K = 2,000:** crow, null_low_s/8, n = 30.
-  Everything else ended at its proposal budget with fewer than 2,000 hits,
-  so its time to K is a projection (§3).
+  All other completed settings ended at their proposal budget with fewer than
+  2,000 hits, and the seven censored settings stopped at the wall deadline.
+  Their times to K are projections (§3).
 - **Censored (7):** all on workers 0–15, the two jobs that started first and
   ran to their deadline at walltime − 10 min. Their exposure is retained.
   - Settings: 547 (golden_plover, MA_betamin/2, n = 30, 467 hits), 576 (golden_plover, MA_d10_0.5/2, n = 0, 0 hits), 893 (wood_turtle_A, null_low_s/7, n = 300, 7 hits), 931 (wood_turtle_A, MA_d10_0.5/0, n = 30, 297 hits), 985 (wood_turtle_B, null_prior_predictive/8, n = 30, 130 hits), 994 (wood_turtle_B, null_low_s/1, n = 30, 14 hits), 1078 (wood_turtle_B, MA_d10_0.5/9, n = 30, 1036 hits).
   - Setting 576 was censored before any proposal. It is a no-exposure failure
     and is excluded from cost means.
-- **Zero hits with exposure (4, all n = 300):** 242 (ms_woodpecker, null_prior_predictive/0; time to K ≥ 607 CPU-h), 512 (golden_plover, null_low_s/0; time to K ≥ 585 CPU-h), 536 (golden_plover, null_low_s/8; time to K ≥ 587 CPU-h), 833 (hawaiian_crow, MA_d10_0.5/7; time to K ≥ 559 CPU-h).
-  Each has only the one-sided 3/N retention bound and an unresolved cost.
+- **Zero hits with exposure (4, all n = 300):** 242 (ms_woodpecker, null_prior_predictive/0: ≥ 608 CPU-h); 512 (golden_plover, null_low_s/0: ≥ 586 CPU-h); 536 (golden_plover, null_low_s/8: ≥ 588 CPU-h); 833 (hawaiian_crow, MA_d10_0.5/7: ≥ 559 CPU-h).
+  These are approximate one-sided expected-cost lower limits from the exact
+  suffix retention bound, not minimum run times. The costs are unresolved.
+  *Corrected 16 Oct per Astra 1755; the first issue used 3/N.*
 
 ## 3. Retention and time to 2,000 (no fits)
 
@@ -59,13 +62,16 @@ exposed development outers (b1/b3/b5/b16, trial IDs 0–9), not validation.
   ending at its budget, and the exact negative-binomial interval for the one
   hit-stopped setting.
 - Censored rows carry sensitivity intervals only.
-- Time to K is observed (1 setting), projected from the rate and CPU per
-  proposal (1,068), projected with sensitivity-only intervals (6 censored),
-  or unresolved (4 zero-hit).
+- Time to K is the projected **expected** worker CPU cost at observed
+  throughput: observed for 1 setting, projected for 1,068, projected with
+  sensitivity-only intervals for 6 censored, and unresolved for 4 zero-hit.
+- Intervals are suffix retention intervals transformed at observed
+  throughput. They bound expected cost; they do not predict a future run's
+  time and exclude throughput variation.
 - Settings with only 1–3 hits have very wide intervals; see the most
   expensive settings below.
 
-**CPU-hours to K = 2,000 retained paths per setting** (median [IQR], max over 40 outers; observed or projected)
+**Projected expected worker CPU-hours to K = 2,000 per setting** (median [IQR], largest resolved point estimate; resolved settings of 40, with unresolved zero-hit or no-exposure settings counted)
 
 | Population | n = 0 | n = 30 | n = 300 |
 |---|---|---|---|
@@ -79,14 +85,16 @@ exposed development outers (b1/b3/b5/b16, trial IDs 0–9), not validation.
 | wood_turtle_A | 3.1 [3.0–3.3], 3.7 | 3.9 [2.7–15.4], 363 | 36.1 [11.3–77.4], 945 |
 | wood_turtle_B | 3.2 [2.9–3.5], 3.8 | 3.2 [2.3–8.6], 51.1 | 16.8 [6.9–35.4], 360 |
 
+By scenario (resolved settings of 90; unresolved counted):
+
 | Scenario | n = 0 | n = 30 | n = 300 |
 |---|---|---|---|
-| null_prior_predictive | 3.0 [2.6–3.4], 4.3 | 2.9 [1.8–4.8], 139 | 7.2 [4.3–16.7], 125 |
-| null_low_s | 3.0 [2.6–3.4], 4.8 | 5.5 [3.2–17.7], 301 | 67.8 [20.6–244], 1,848 |
+| null_prior_predictive | 3.0 [2.6–3.4], 4.3 | 2.9 [1.8–4.8], 139 | 7.2 [4.3–16.7], 125 (1 unresolved) |
+| null_low_s | 3.0 [2.6–3.4], 4.8 | 5.5 [3.2–17.7], 301 | 67.8 [20.6–244], 1,848 (2 unresolved) |
 | MA_betamin | 3.0 [2.6–3.5], 4.9 | 3.1 [2.3–8.4], 363 | 15.6 [5.3–31.0], 945 |
-| MA_d10_0.5 | 3.0 [2.5–3.4], 4.1 | 4.6 [2.6–17.8], 361 | 32.8 [15.4–74.5], 1,825 |
+| MA_d10_0.5 | 3.0 [2.5–3.4], 4.1 (1 unresolved) | 4.6 [2.6–17.8], 361 | 32.8 [15.4–74.5], 1,825 (1 unresolved) |
 
-**Most expensive settings** (CPU-h to K; interval from the suffix retention interval)
+**Most expensive settings** (projected expected CPU-h to K; interval: suffix retention interval transformed at observed throughput, for expected cost, not a run-time prediction)
 
 | Setting | Population | Outer | n | Hits | CPU-h | 95% interval | Kind |
 |---|---|---|---|---|---|---|---|
@@ -105,11 +113,11 @@ exposed development outers (b1/b3/b5/b16, trial IDs 0–9), not validation.
 
 | Population | Scenario | n | Mean CPU-h | Max CPU-h | CPU-h for 200 outers | Unresolved |
 |---|---|---|---|---|---|---|
-| golden_plover | null_low_s | 300 | 568 | 1,848 | 113,631 | 2 |
+| golden_plover | null_low_s | 300 | 568 | 1,848 | 113,664 | 2 |
 | wild_dog | null_low_s | 300 | 505 | 926 | 101,013 | 0 |
 | ms_woodpecker | MA_d10_0.5 | 300 | 338 | 1,825 | 67,557 | 0 |
 | marmot | null_low_s | 300 | 319 | 914 | 63,738 | 0 |
-| hawaiian_crow | MA_d10_0.5 | 300 | 285 | 1,770 | 57,049 | 1 |
+| hawaiian_crow | MA_d10_0.5 | 300 | 285 | 1,770 | 57,065 | 1 |
 | ms_woodpecker | null_low_s | 300 | 171 | 355 | 34,234 | 0 |
 | wood_turtle_A | MA_betamin | 300 | 130 | 945 | 26,040 | 0 |
 | wood_turtle_A | null_low_s | 300 | 114 | 229 | 22,797 | 0 |
@@ -150,34 +158,50 @@ all nine populations.
 ## 5. Stage 1b sampling inventory (projection)
 
 **Planned noisy design:** 9 populations × 4 scenarios × n ∈ {30, 300} × 200
-outers (14,400 population-outer-cells), plus 7,200 n = 0 controls, at
-K = 2,000.
-- **Method:** each cell's mean over its 10 pilot outers, × 200. Zero-hit
-  settings enter at their lower bound, so this is not an upper bound.
+outers (14,400 population-outer-cells), plus 7,200 n = 0 controls: 21,600
+libraries at K = 2,000.
+- **Method:** each cell's mean over its 10 pilot outers, × 200, in gross
+  worker CPU-hours to K. Zero-hit settings enter at their lower limits, so
+  this is not an upper bound.
 
-| Part | Projected CPU-h |
+| Part | Projected gross worker CPU-h |
 |---|---|
 | n = 0 controls | 21,340 |
 | n = 30 | 117,749 |
-| n = 300 | 722,542 |
-| **Total** | **861,632** (bootstrap over pilot outers, 5–95%: 749,015–981,136) |
+| n = 300 | 722,608 |
+| **Total** | **861,698** |
 
-- **The full design is about 7.5–10 times the "100K CPU hours"** Barry
-  described as feasible (15 October). Its n = 300 part is 84% of the
-  projected cost.
+- **Additional work:** subtracting the pilot's 734 spent worker CPU-h gives
+  860,964 additional. Allocated node-hours are larger; see the Stage 1b design.
+- **Uncertainty (corrected 16 Oct per Astra 1755).** Resampling the 10 pilot
+  outers per cell gives 749,078–981,232 (5–95%). Resampling whole nine-population
+  outers within each scenario gives 746,020–984,217.
+  - Both are **conditional empirical resampling spreads of plug-in costs,
+    with zero-hit costs fixed at their lower limits**, not calibrated budget
+    ranges.
+  - They exclude per-setting retention uncertainty, the unknown upper costs of
+    zero-hit settings, unseen expensive outers, and future throughput.
+  - Astra's two illustrations show what this means:
+    - zero-hit costs × 10 gives about 1.28 × 10⁶;
+    - setting 524 at its interval's upper end gives about 2.28 × 10⁶,
+      uncapped.
+  - A defensible upper allowance needs enforceable caps (Stage 1b design),
+    not more bootstrap repetitions.
+- **The point projection is about 8.6 times the "100K CPU hours"** Barry
+  described on 15 October. Its n = 300 part is 84%.
 - **Five low-s or d10 n = 300 cells** (golden plover, wild dog, marmot, crow
-  and woodpecker) account for 402,988 CPU-h.
-- **Bounded alternatives** for a later decision; none is chosen here:
-  - n = 30 only, with controls: 139,090 CPU-h.
-  - Both n with 50 outers per cell: 215,408 CPU-h.
-  - Both n with 25 outers per cell: 107,704 CPU-h.
-  - A density-known θ-tilted proposal (Astra's reserve in 1657 §4): could cut
-    the n = 300 tail, but needs its own law and convergence checks.
-- **Any outer reduction must be declared before Stage 1b launches,** with
-  named IDs and fixed denominators. Cheaply completing outers must not be
-  selected, and no failed population may be omitted (1657 §4).
-- **The pilot's own hits count toward the trial 0–9 libraries,** because they
-  come from the same sampler law.
+  and woodpecker) account for 403,037.
+- **Bounded alternatives:**
+  - n = 30 plus controls: 139,090;
+  - 50 outers per cell: 215,424;
+  - 25 per cell: 107,712;
+  - Astra's θ-tilted reserve.
+- **Barry's 16 October inclination is the full design.** The concrete package
+  (stable IDs, ordered sharding, caps, waves, inventory and the priced
+  library check) is `notes/vortex_stage1b_design_20261016.md`.
+- **Any outer reduction must be declared before launch,** with named IDs and
+  fixed denominators. Cheaply completing outers must not be selected, and no
+  failed population may be omitted (1657 §4).
 
 ## 6. Stop
 

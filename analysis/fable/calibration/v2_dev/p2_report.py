@@ -1,15 +1,20 @@
 """Stage 1a no-fit report (review 1657 §4; report rule bound in the settings). Reads a validated collect.json.
   p2_report.py COLLECT_JSON SETTINGS_JSON OUT_JSON
   p2_report.py tables REPORT_JSON OUT_MD          Markdown tables for the report note
-Time to K = 2,000 retained paths per setting, in CPU-hours: observed through the crossing batch where the hit stop was
-reached; otherwise a rate-based projection (full-stream hits/proposals and CPU per proposal), with an interval from the
-setting's suffix retention interval (formal for completed settings, sensitivity-only for censored ones). Zero-hit settings
-are unresolved; their lower bound uses the one-sided 3/N retention bound. A setting censored before any proposal has no
+Projected expected worker CPU-hours to K = 2,000 retained paths per setting: observed through the crossing batch where
+the hit stop was reached; otherwise K x CPU per proposal / retention (full-stream hits/proposals), at observed throughput.
+Its interval is the setting's suffix retention interval transformed at observed throughput: an interval for expected cost,
+not a predictive interval for a future run's time (formal for completed settings, sensitivity-only for censored ones).
+Zero-hit settings are unresolved; their approximate one-sided expected-cost lower limit uses the exact one-sided 95%
+suffix retention bound -expm1(log(0.05) / suffix_proposals). A setting censored before any proposal has no
 exposure and is excluded from cost means (reported separately). Stage 1b inventory: the planned noisy design is
 9 populations x 4 scenarios x n in {30, 300} x 200 outers, plus one n = 0 control per population-outer pair. Each cell's
 cost is scaled from its 10 pilot outers (mean x 200), with a bootstrap over those outers; the pilot outers' own hits
-count toward their libraries. Projections only: not measured costs and not validation evidence."""
-import json, sys
+count toward their libraries. The bootstrap is conditional empirical resampling spread of these plug-in costs, with
+zero-hit costs fixed at their lower limits: it is not a calibrated budget range, and it excludes unresolved rates, unseen
+expensive outers and future throughput. Gross worker CPU-hours are reported, with the pilot's spent hours shown
+separately. Projections only: not measured costs and not validation evidence."""
+import json, math, sys
 import numpy as np
 
 K, OUTERS_1B, BOOT = 2000, 200, 4000
@@ -24,8 +29,8 @@ def cost(r):
     if r.get("stop") == "hits":
         t = r["observed_cpu_hours_to_crossing_batch"]; return "observed", t, t, t
     if not r["hits"]:
-        lb = K / (3.0 / r["proposals"]) * cpp if cpp else None
-        return "unresolved", None, lb, None
+        up = -math.expm1(math.log(0.05) / r["suffix_proposals"]) if r.get("suffix_proposals") else None
+        return "unresolved", None, (K / up * cpp if cpp and up else None), None
     rate = r["hits"] / r["proposals"]; iv = r.get("ci95_suffix") or r.get("sensitivity_interval95_suffix")
     lo = K / iv[1] * cpp if iv and iv[1] > 0 else None
     hi = K / iv[0] * cpp if iv and iv[0] > 0 else None
@@ -116,10 +121,21 @@ def main(collect_json, settings_json, out):
                               "pilot_hits_counted": done})
                 boot += t[rng.integers(0, len(t), (BOOT, len(t)))].mean(1) * OUTERS_1B
     tot = {n: sum(x["cpu_h_200_outers"] for x in cells if x["n"] == n) for n in (0, 30, 300)}
+    tv = {r["index"]: (r["_t"] if r["_t"] is not None else r["_lo"]) for r in rows}
+    paired = np.zeros(BOOT)                                  # whole nine-population outer (all n) resampled within scenario
+    for s in SCEN:
+        per = np.array([sum(tv[r["index"]] for r in rows if r["outer"] == f"{s}/{tr}" and tv[r["index"]] is not None)
+                        for tr in range(10)])
+        paired += per[rng.integers(0, 10, (BOOT, 10))].sum(1) * (OUTERS_1B // 10)
     rep["stage1b_inventory"] = {
         "design": "9 pops x 4 scenarios x n in {30, 300} x 200 outers (14,400 noisy population-outer-cells) + 7,200 n = 0 controls",
-        "cpu_h_by_n": tot, "cpu_h_total": sum(tot.values()),
+        "cpu_h_by_n": tot, "cpu_h_total": sum(tot.values()), "basis": "gross worker CPU-hours to K",
+        "pilot_worker_cpu_h_spent": sum(r["cpu_seconds"] for r in rows) / 3600,
+        "additional_cpu_h": sum(tot.values()) - sum(r["cpu_seconds"] for r in rows) / 3600,
         "bootstrap_total_q": {f"q{int(p * 100)}": float(np.quantile(boot, p)) for p in (0.05, 0.5, 0.95)},
+        "paired_outer_bootstrap_total_q": {f"q{int(p * 100)}": float(np.quantile(paired, p)) for p in (0.05, 0.5, 0.95)},
+        "bootstrap_label": "conditional empirical resampling spread of plug-in costs, zero-hit costs fixed at lower limits; "
+                           "not a calibrated budget range (excludes unresolved rates, unseen outers, throughput)",
         "unresolved_settings_at_lower_bound": sum(x["unresolved"] for x in cells),
         "top_cells": sorted(cells, key=lambda x: -x["cpu_h_200_outers"])[:12], "cells": cells,
         "note": "projections from 10 pilot outers per cell; heavy tails make the mean and the total uncertain; "
@@ -139,7 +155,8 @@ def main(collect_json, settings_json, out):
 def tables(report_json, out_md):
     r = json.load(open(report_json)); L = []
     f = lambda x: "–" if x is None else (f"{x:.1f}" if x < 100 else f"{x:,.0f}")
-    L += ["**CPU-hours to K = 2,000 retained paths per setting** (median [IQR], max over 40 outers; observed or projected)", "",
+    L += ["**Projected expected worker CPU-hours to K = 2,000 per setting** (median [IQR], largest resolved point "
+          "estimate; resolved settings of 40, with unresolved zero-hit or no-exposure settings counted)", "",
           "| Population | n = 0 | n = 30 | n = 300 |", "|---|---|---|---|"]
     for p in POPS:
         cells = []
@@ -147,14 +164,16 @@ def tables(report_json, out_md):
             d = r["cpu_hours_to_K"]["by_pop_n"][p][f"n={n}"]
             cells.append(f"{f(d['q50'])} [{f(d['q25'])}–{f(d['q75'])}], {f(d['q100'])}" + (f" ({40 - d['n']} unresolved)" if d["n"] < 40 else ""))
         L.append(f"| {p} | " + " | ".join(cells) + " |")
+    L += ["", "By scenario (resolved settings of 90; unresolved counted):"]
     L += ["", "| Scenario | n = 0 | n = 30 | n = 300 |", "|---|---|---|---|"]
     for sc in SCEN:
         cells = []
         for n in (0, 30, 300):
             d = r["cpu_hours_to_K"]["by_scenario_n"][sc][f"n={n}"]
-            cells.append(f"{f(d['q50'])} [{f(d['q25'])}–{f(d['q75'])}], {f(d['q100'])}")
+            cells.append(f"{f(d['q50'])} [{f(d['q25'])}–{f(d['q75'])}], {f(d['q100'])}" + (f" ({90 - d['n']} unresolved)" if d["n"] < 90 else ""))
         L.append(f"| {sc} | " + " | ".join(cells) + " |")
-    L += ["", "**Most expensive settings** (CPU-h to K; interval from the suffix retention interval)", "",
+    L += ["", "**Most expensive settings** (projected expected CPU-h to K; interval: suffix retention interval transformed "
+          "at observed throughput, for expected cost, not a run-time prediction)", "",
           "| Setting | Population | Outer | n | Hits | CPU-h | 95% interval | Kind |", "|---|---|---|---|---|---|---|---|"]
     for x in r["most_expensive"][:10]:
         L.append(f"| {x['index']} | {x['pop']} | {x['outer']} | {x['n']} | {x['hits']} | {f(x['cpu_h'])} | "

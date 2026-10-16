@@ -1,5 +1,5 @@
 {
- "scope": "Stage 1a no-fit report (review 1657 \u00a74; report rule bound in the settings). Reads a validated collect.json.\n  p2_report.py COLLECT_JSON SETTINGS_JSON OUT_JSON\n  p2_report.py tables REPORT_JSON OUT_MD          Markdown tables for the report note\nTime to K = 2,000 retained paths per setting, in CPU-hours: observed through the crossing batch where the hit stop was\nreached; otherwise a rate-based projection (full-stream hits/proposals and CPU per proposal), with an interval from the\nsetting's suffix retention interval (formal for completed settings, sensitivity-only for censored ones). Zero-hit settings\nare unresolved; their lower bound uses the one-sided 3/N retention bound. A setting censored before any proposal has no\nexposure and is excluded from cost means (reported separately). Stage 1b inventory: the planned noisy design is\n9 populations x 4 scenarios x n in {30, 300} x 200 outers, plus one n = 0 control per population-outer pair. Each cell's\ncost is scaled from its 10 pilot outers (mean x 200), with a bootstrap over those outers; the pilot outers' own hits\ncount toward their libraries. Projections only: not measured costs and not validation evidence.",
+ "scope": "Stage 1a no-fit report (review 1657 \u00a74; report rule bound in the settings). Reads a validated collect.json.\n  p2_report.py COLLECT_JSON SETTINGS_JSON OUT_JSON\n  p2_report.py tables REPORT_JSON OUT_MD          Markdown tables for the report note\nProjected expected worker CPU-hours to K = 2,000 retained paths per setting: observed through the crossing batch where\nthe hit stop was reached; otherwise K x CPU per proposal / retention (full-stream hits/proposals), at observed throughput.\nIts interval is the setting's suffix retention interval transformed at observed throughput: an interval for expected cost,\nnot a predictive interval for a future run's time (formal for completed settings, sensitivity-only for censored ones).\nZero-hit settings are unresolved; their approximate one-sided expected-cost lower limit uses the exact one-sided 95%\nsuffix retention bound -expm1(log(0.05) / suffix_proposals). A setting censored before any proposal has no\nexposure and is excluded from cost means (reported separately). Stage 1b inventory: the planned noisy design is\n9 populations x 4 scenarios x n in {30, 300} x 200 outers, plus one n = 0 control per population-outer pair. Each cell's\ncost is scaled from its 10 pilot outers (mean x 200), with a bootstrap over those outers; the pilot outers' own hits\ncount toward their libraries. The bootstrap is conditional empirical resampling spread of these plug-in costs, with\nzero-hit costs fixed at their lower limits: it is not a calibrated budget range, and it excludes unresolved rates, unseen\nexpensive outers and future throughput. Gross worker CPU-hours are reported, with the pilot's spent hours shown\nseparately. Projections only: not measured costs and not validation evidence.",
  "collect_binding": {
   "settings_sha256": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
   "metric_sha256": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
@@ -138,7 +138,7 @@
    "n": 300,
    "status": "complete",
    "proposals": 5029240000,
-   "cpu_h_lower_bound": 607.2618048151741
+   "cpu_h_lower_bound": 608.1148196049517
   },
   {
    "index": 512,
@@ -147,7 +147,7 @@
    "n": 300,
    "status": "complete",
    "proposals": 6120680000,
-   "cpu_h_lower_bound": 585.1973186037294
+   "cpu_h_lower_bound": 586.0214174619925
   },
   {
    "index": 536,
@@ -156,7 +156,7 @@
    "n": 300,
    "status": "complete",
    "proposals": 6256720000,
-   "cpu_h_lower_bound": 586.8592204392766
+   "cpu_h_lower_bound": 587.6858684247983
   },
   {
    "index": 576,
@@ -174,7 +174,7 @@
    "n": 300,
    "status": "complete",
    "proposals": 6639680000,
-   "cpu_h_lower_bound": 558.6774269241411
+   "cpu_h_lower_bound": 559.4648938690591
   }
  ],
  "throughput_realised_over_smoke": {
@@ -1771,14 +1771,23 @@
   "cpu_h_by_n": {
    "0": 21340.47256973621,
    "30": 117749.30065804988,
-   "300": 722542.2255837764
+   "300": 722608.050155346
   },
-  "cpu_h_total": 861631.9988115624,
+  "cpu_h_total": 861697.8233831321,
+  "basis": "gross worker CPU-hours to K",
+  "pilot_worker_cpu_h_spent": 733.8734841748661,
+  "additional_cpu_h": 860963.9498989573,
   "bootstrap_total_q": {
-   "q5": 749014.6374524242,
-   "q50": 860010.795769213,
-   "q95": 981136.3378166805
+   "q5": 749078.1519027097,
+   "q50": 860084.1286910983,
+   "q95": 981231.5119844249
   },
+  "paired_outer_bootstrap_total_q": {
+   "q5": 746019.6229325854,
+   "q50": 862286.9698575598,
+   "q95": 984216.9855753651
+  },
+  "bootstrap_label": "conditional empirical resampling spread of plug-in costs, zero-hit costs fixed at lower limits; not a calibrated budget range (excludes unresolved rates, unseen outers, throughput)",
   "unresolved_settings_at_lower_bound": 4,
   "top_cells": [
    {
@@ -1788,9 +1797,9 @@
     "pilot_outers": 10,
     "no_exposure": 0,
     "unresolved": 2,
-    "mean_cpu_h": 568.1547332129654,
+    "mean_cpu_h": 568.3198078973439,
     "max_cpu_h": 1848.2477294061673,
-    "cpu_h_200_outers": 113630.94664259309,
+    "cpu_h_200_outers": 113663.96157946879,
     "pilot_hits_counted": 52
    },
    {
@@ -1836,9 +1845,9 @@
     "pilot_outers": 10,
     "no_exposure": 0,
     "unresolved": 1,
-    "mean_cpu_h": 285.2465330852832,
+    "mean_cpu_h": 285.32527977977503,
     "max_cpu_h": 1769.9236742516507,
-    "cpu_h_200_outers": 57049.30661705664,
+    "cpu_h_200_outers": 57065.05595595501,
     "pilot_hits_counted": 769
    },
    {
@@ -2246,9 +2255,9 @@
     "pilot_outers": 10,
     "no_exposure": 0,
     "unresolved": 1,
-    "mean_cpu_h": 83.56551921591199,
-    "max_cpu_h": 607.2618048151741,
-    "cpu_h_200_outers": 16713.103843182398,
+    "mean_cpu_h": 83.65082069488975,
+    "max_cpu_h": 608.1148196049517,
+    "cpu_h_200_outers": 16730.16413897795,
     "pilot_hits_counted": 2537
    },
    {
@@ -2570,9 +2579,9 @@
     "pilot_outers": 10,
     "no_exposure": 0,
     "unresolved": 2,
-    "mean_cpu_h": 568.1547332129654,
+    "mean_cpu_h": 568.3198078973439,
     "max_cpu_h": 1848.2477294061673,
-    "cpu_h_200_outers": 113630.94664259309,
+    "cpu_h_200_outers": 113663.96157946879,
     "pilot_hits_counted": 52
    },
    {
@@ -2930,9 +2939,9 @@
     "pilot_outers": 10,
     "no_exposure": 0,
     "unresolved": 1,
-    "mean_cpu_h": 285.2465330852832,
+    "mean_cpu_h": 285.32527977977503,
     "max_cpu_h": 1769.9236742516507,
-    "cpu_h_200_outers": 57049.30661705664,
+    "cpu_h_200_outers": 57065.05595595501,
     "pilot_hits_counted": 769
    },
    {

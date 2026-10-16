@@ -1,0 +1,243 @@
+{
+ "scope": "Stage 1b/1c inventory and pricing from the Stage 1a pilot (no sampling, no fits). Projections only.\n  p2_inventory.py REPORT_JSON COLLECT_JSON OUT_JSON\nPer-setting cost: projected expected worker CPU-hours to K = 2,000 at observed throughput (s1a_report cost rule);\nzero-hit settings at their approximate one-sided lower limit; setting 576 (no exposure) takes its cell's mean.\nEach (population, scenario, n) cell scales its 10 pilot outers to 200 (each pilot outer stands for 20).\nCaps: a per-setting cap c bounds each setting's charge at c; settings projected above c are expected\nfailures-to-fill. Independent-library check: per scenario, the pilot outer (trials 0-9) whose n = 300\nnine-population summed cost is the lower median (\"ordinary\") and the largest resolved (\"difficult\"), all\nthree n and nine populations: 8 outers x 27 = 216 libraries. Fitting: 0.5 worker CPU-h per analysis (v1/D3\nmeasured 0.34-0.48).",
+ "gross_by_wave": {
+  "W1 (n = 0 and 30)": 139089.7732277861,
+  "W2 (n = 300)": 722608.050155346
+ },
+ "gross_total": 861697.8233831321,
+ "pilot_worker_cpu_h_spent": 733.8734841748661,
+ "additional_total": 860963.9498989573,
+ "caps": {
+  "100h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 114769.10200655313,
+    "expected_failures_to_fill": 260
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 277501.9769207965,
+    "expected_failures_to_fill": 1500
+   },
+   "total_cpu_h": 392271.07892734965,
+   "total_failures_to_fill_of_21600": 1760,
+   "datasets_with_a_failure": {
+    "n=30": 220,
+    "n=300": 540
+   }
+  },
+  "250h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 133609.84677660695,
+    "expected_failures_to_fill": 60
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 439553.19183343404,
+    "expected_failures_to_fill": 800
+   },
+   "total_cpu_h": 573163.038610041,
+   "total_failures_to_fill_of_21600": 860,
+   "datasets_with_a_failure": {
+    "n=30": 60,
+    "n=300": 420
+   }
+  },
+  "500h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 139089.7732277861,
+    "expected_failures_to_fill": 0
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 574763.7601191447,
+    "expected_failures_to_fill": 400
+   },
+   "total_cpu_h": 713853.5333469308,
+   "total_failures_to_fill_of_21600": 400,
+   "datasets_with_a_failure": {
+    "n=30": 0,
+    "n=300": 340
+   }
+  },
+  "1000h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 139089.7732277861,
+    "expected_failures_to_fill": 0
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 673745.4141247437,
+    "expected_failures_to_fill": 60
+   },
+   "total_cpu_h": 812835.1873525297,
+   "total_failures_to_fill_of_21600": 60,
+   "datasets_with_a_failure": {
+    "n=30": 0,
+    "n=300": 60
+   }
+  },
+  "2000h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 139089.7732277861,
+    "expected_failures_to_fill": 0
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 722608.050155346,
+    "expected_failures_to_fill": 0
+   },
+   "total_cpu_h": 861697.8233831321,
+   "total_failures_to_fill_of_21600": 0,
+   "datasets_with_a_failure": {
+    "n=30": 0,
+    "n=300": 0
+   }
+  },
+  "5000h": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 139089.7732277861,
+    "expected_failures_to_fill": 0
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 722608.050155346,
+    "expected_failures_to_fill": 0
+   },
+   "total_cpu_h": 861697.8233831321,
+   "total_failures_to_fill_of_21600": 0,
+   "datasets_with_a_failure": {
+    "n=30": 0,
+    "n=300": 0
+   }
+  },
+  "uncapped": {
+   "W1 (n = 0 and 30)": {
+    "expected_cpu_h": 139089.7732277861,
+    "expected_failures_to_fill": 0
+   },
+   "W2 (n = 300)": {
+    "expected_cpu_h": 722608.050155346,
+    "expected_failures_to_fill": 0
+   },
+   "total_cpu_h": 861697.8233831321,
+   "total_failures_to_fill_of_21600": 0,
+   "datasets_with_a_failure": {
+    "n=30": 0,
+    "n=300": 0
+   }
+  }
+ },
+ "independent_library_check": {
+  "rule": "per scenario: lower-median and largest resolved n = 300 nine-population summed pilot cost among trials 0-9; all n, all populations",
+  "outers": [
+   {
+    "scenario": "null_prior_predictive",
+    "trial": 7,
+    "role": "ordinary",
+    "libraries": 27,
+    "cpu_h": 179.4440415444241,
+    "cpu_h_by_n": {
+     "0": 25.399031103310598,
+     "30": 25.143662602239033,
+     "300": 128.90134783887447
+    }
+   },
+   {
+    "scenario": "null_prior_predictive",
+    "trial": 4,
+    "role": "difficult",
+    "libraries": 27,
+    "cpu_h": 492.1763692413314,
+    "cpu_h_by_n": {
+     "0": 26.19278104763216,
+     "30": 64.4237668664938,
+     "300": 401.55982132720544
+    }
+   },
+   {
+    "scenario": "null_low_s",
+    "trial": 6,
+    "role": "ordinary",
+    "libraries": 27,
+    "cpu_h": 1914.538260184393,
+    "cpu_h_by_n": {
+     "0": 27.777151038948382,
+     "30": 172.24201230340603,
+     "300": 1714.5190968420386
+    }
+   },
+   {
+    "scenario": "null_low_s",
+    "trial": 4,
+    "role": "difficult",
+    "libraries": 27,
+    "cpu_h": 3489.959333384714,
+    "cpu_h_by_n": {
+     "0": 25.96821949839963,
+     "30": 488.69502514308266,
+     "300": 2975.296088743232
+    }
+   },
+   {
+    "scenario": "MA_betamin",
+    "trial": 6,
+    "role": "ordinary",
+    "libraries": 27,
+    "cpu_h": 321.1755347195926,
+    "cpu_h_by_n": {
+     "0": 26.862548631605716,
+     "30": 41.29169212223757,
+     "300": 253.0212939657493
+    }
+   },
+   {
+    "scenario": "MA_betamin",
+    "trial": 8,
+    "role": "difficult",
+    "libraries": 27,
+    "cpu_h": 1510.7657204110612,
+    "cpu_h_by_n": {
+     "0": 26.473570086494554,
+     "30": 86.52015607288143,
+     "300": 1397.771994251685
+    }
+   },
+   {
+    "scenario": "MA_d10_0.5",
+    "trial": 6,
+    "role": "ordinary",
+    "libraries": 27,
+    "cpu_h": 842.8307799724934,
+    "cpu_h_by_n": {
+     "0": 26.335373184029724,
+     "30": 93.55638628383538,
+     "300": 722.9390205046283
+    }
+   },
+   {
+    "scenario": "MA_d10_0.5",
+    "trial": 1,
+    "role": "difficult",
+    "libraries": 27,
+    "cpu_h": 3071.884387833182,
+    "cpu_h_by_n": {
+     "0": 26.501500011323678,
+     "30": 258.7969712323814,
+     "300": 2786.5859165894767
+    }
+   }
+  ],
+  "libraries": 216,
+  "analyses": 24,
+  "cpu_h": 11822.774427291191
+ },
+ "fitting": {
+  "primary_analyses": 2400,
+  "check_analyses": 24,
+  "cpu_h_per_analysis": 0.5,
+  "cpu_h": 1212.0
+ },
+ "storage": {
+  "bytes_per_retained_pair": 315.3390294234297,
+  "libraries": 21600,
+  "pairs": 43200000,
+  "gb_primary": 13.622646071092161
+ },
+ "wall_days_at_cores": {
+  "3000": 11.968025324765724
+ }
+}

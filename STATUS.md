@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 20:33 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 20:45 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1154,6 +1154,10 @@ board 1755; exposure E56).
 
 ## Completed by Fable
 
+- 16 October evening, per 1755: corrected the Stage 1a report; wrote the
+  Stage 1b full-design package (inventory, caps, waves, priced library check)
+  and Stage 1c draft revision 2 (gate meaning resolved for challenge).
+  Exposure row E57.
 - 16 October evening, Stage 1a collected, verified and reported (no fits):
   report, tables, Stage 1b inventory and a separate Stage 1c draft. Exposure
   row E55.
@@ -1284,41 +1288,32 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1a is complete and audited; report corrections and the next-stage
-   package are with Fable**
-   ([report](notes/vortex_stage1a_report_20261016.md); separate
-   [Stage 1c fitted draft](notes/vortex_stage1c_fitted_draft_20261016.md); exposure E55).
-   - **Run:** Fable reports all 45 jobs and the collector exited 0. Astra
-     verified the archive, collection, journal and worker summaries.
-     1,073 settings complete
-     and 7 censored (one with no exposure); 322,736 hits; 733.9 worker CPU-h,
-     about 770 estimated allocated CPU-h. The bound is 991.445 hours, within
-     the 1,000 ceiling; authoritative PBS allocation accounting was not
-     independently read in this audit.
-   - **Only one setting reached K = 2,000.** Time to K, median (90th
-     percentile): 3.0 (3.7) CPU-h at n = 0, 3.9 (35) at n = 30, and 20 (250)
-     at n = 300. The tails are heavy at low-s and d10 with n = 300.
-   - **Stage 1b projection:** the full planned design is about 0.86 × 10⁶
-     gross worker CPU-h, with 84% of it at n = 300. The bootstrap 0.75–0.98
-     million spread is conditional on estimated costs and lower-limit
-     substitutes; it is not a calibrated full-budget range.
-   - **Next:** Fable corrects the report and prepares the full 200-outer
-     option with stable stream identities, capped waves, complete inventory
-     and a priced independent-library check. Resolve the exact fitted gate's
-     purpose and failure scoring before fits. Astra reviews the package;
-     Barry decides scale/resources and consequential scientific choices.
-     Stage 1b and Stage 1c remain uncommissioned (review 1755; E56).
-   - **Barry, 16 October** (Claude chat, exact; an inclination, not yet an
-     authorisation): "Regarding compute, I'm strongly inclined to authorise
-     the full planned design. Most of those CPU cores just sit idle for much
-     of the time and we're encouraged to make good use of the
-     infrastructure, as it helps make the case for ongoing investment. The
-     queue systems makes sure use is temporally equitable." Kunanyi
-     snapshot: 2,052 of 7,792 CPUs assigned.
-     - Fable's design implications (board 1751): batch-range sharding of the
-       heavy settings, a declared per-setting cap with a support-failure rule,
-       waves with ceilings, and roughly 12 days of wall-clock at about 3,000
-       cores.
+1. **The Stage 1b package and the corrected Stage 1a report are with Astra; Barry
+   decides authorisation** (reply to 1755; exposure E57).
+   - **Report corrections:**
+     - costs are labelled as projected expected CPU-h at observed throughput;
+     - exact zero-hit suffix bounds;
+     - resolved and unresolved denominators in both tables;
+     - gross versus additional work;
+     - the bootstrap requalified as a conditional spread, with a paired-outer
+       sensitivity check;
+     - the point estimate is about 8.6 × the 100K figure.
+   - **[Stage 1b design](notes/vortex_stage1b_design_20261016.md):** 21,600
+     libraries; stable IDs (pilot indices kept, new ones appended); ordered
+     idempotent sharding with pull-based workers; a 2,000 CPU-h per-setting
+     cap; waves W1 (n = 0/30; 139k) and W2 (n = 300; 723k); allocated
+     ceilings of 200k / 1.0M / 1.2M.
+     - Named independent-library check: 216 libraries, about 11.8k CPU-h.
+     - Fitting about 1.2k; expected total about 0.87 × 10⁶ worker CPU-h.
+   - **[Stage 1c draft revision 2](notes/vortex_stage1c_fitted_draft_20261016.md):**
+     contract-v3 outcome coding; first-K library loading without
+     reselection; independent train/test index draws.
+     - Gate family: four informative null cells at ≤ 7/200, and b5 power at
+       ≥ 152/200.
+     - These are interpreted as stringent development adequacy criteria, with
+       estimation as the primary result.
+   - Stage 1b and Stage 1c remain uncommissioned until Barry authorises them,
+     after Astra's check.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1404,9 +1399,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1736 in full and acknowledged through **1736**. Fable's latest
-  post: the dispatch receipt replying to 1735.
-- Next retrieval: use `after=1736` on discussion 70.
+- Read through 1756 in full and acknowledged through **1756**. Fable's latest
+  post: the reply to 1755.
+- Next retrieval: use `after=1756` on discussion 70.
 
 ## Coordination note
 

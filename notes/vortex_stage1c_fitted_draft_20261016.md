@@ -1,127 +1,160 @@
-# Stage 1c fitted-stage draft (for challenge; not commissioned)
+# Stage 1c fitted-stage draft, revision 2 (for challenge; not commissioned)
 
-Fable, 16 October 2026. This is the separate fitted-stage draft that review 1657
-§4 requires alongside the Stage 1a report
-(`notes/vortex_stage1a_report_20261016.md`). It fixes what must be settled
-before any fitted execution. It is not a protocol freeze, and it commissions
-nothing. Its size depends on the Stage 1b decision, which is still open.
+Fable, 16 October 2026. Revision 2 incorporates Astra's 1755
+(`notes/astra_stage1bc_design_review_20261016.md` P1/P2). It fixes what must
+be settled before any fitted execution. It is not a protocol freeze, and it
+commissions nothing. The sampling it needs is
+`notes/vortex_stage1b_design_20261016.md`.
 
-## 1. Question
+## 1. Question (neutral)
 
-**Aim.** On exposed development outers, does stylised external rate evidence E
-(noisy, n = 30 or 300) restore the support-limited calibration that v1 lacked?
-And what does it cost in detection? This is design §6, "can show".
+**Aim.** On exposed development outers, how does stylised external rate
+evidence E (noisy, n = 30 or 300) change null non-acceptance, detection and
+computational availability, relative to a matched n = 0 analysis under the
+same reference construction?
 - **Cells:** four scenarios (b1 prior-predictive null, b3 low-s null, b5 M_A
   at β_min, b16 M_A at Δ10 = 0.5) × n ∈ {30, 300}.
-- **Comparison:** each cell is compared with a matched n = 0 analysis under
-  the same reference construction.
 
-**Out of scope:** empirical inference, field validity, and uniform validity.
-Any method chosen from this stage needs its own freeze and prospective
-validation on fresh outers.
+**What it does not claim** (revision 1's wording "restore the calibration v1
+lacked" is withdrawn):
+- that v1's failure was caused solely by finite-bank support;
+- that exact informative sampling guarantees fixed-θ calibration, at the
+  low-s corner especially;
+- anything about real marked-animal years, a minimum field sample size,
+  empirical inference or uniform validity.
 
-## 2. Reference-library law
+E informs two stylised marginal rate functionals. The two n levels are
+prebound noisy draws, not necessarily nested observations from one study.
+Any method chosen later needs its own freeze and prospective validation on
+fresh outers.
 
-**Library.** For each population-outer-cell, the reference library is the
-first K = 2,000 retained (θ, path) pairs, in stream order, from the Stage 1a
-sampler law. That law, unchanged:
-- θ is drawn from prior (b) and accepted by L(E | θ)/M_E (Poisson, then
-  binomial);
-- one null path is simulated per accepted θ;
-- the pair is retained if it passes S, A and the closed full-precision C-ball
-  of its outer (all ties eligible).
+## 2. Libraries and loading
 
-**Streams.** Streams are `default_rng([20261015, 2, setting, batch])`, as in
-Stage 1a.
-- For trials 0–9, the Stage 1a hits are the prefix of the library.
-- For further trials, settings and streams are bound before launch.
+**Library.** Each population-outer-cell uses the first K = 2,000 retained
+pairs from Stage 1b, in global stream order, from its verified complete
+prefix.
 
-**The matched baseline is the n = 0 library** of the same population-outer,
-built under the same law with E absent. It is shared by the n = 30 and
-n = 300 cells. This isolates the effect of the information from the
-closed-ball construction; v1's tied K-subset is not reused as if it were the
-same reference law (1657 §4).
+**The matched baseline** is the n = 0 library of the same population-outer.
+It is shared by the n = 30 and n = 300 cells, with one baseline analysis per
+outer and scenario. The pairing is kept in every comparison and every
+uncertainty calculation.
 
-**The crossing batch is retained in Stage 1b, but the library uses only the
-first K pairs.** The surplus is kept for a finite-library check (§3).
+**Stage 1c consumes these libraries as they are.** It does not recompute MAD,
+select a new neighbourhood, or reselect nearest pairs: the fixed closed ball
+was already enforced in Stage 1b.
 
-## 3. Train/test resampling and finite-library variation
+**Reused v1 components:**
+- T fitting;
+- the training mean and covariance;
+- the Mahalanobis rule (Ledoit–Wolf only above condition number 1e6);
+- tie handling;
+- the p_lo/p_hi bounds;
+- the scorer, contract v3.
 
-**Resampling** is as in v1 (`e2e_benchmark.py`):
-- R_train = R_test = 2,000 datasets per analysis, drawn with replacement from
-  the K-member library;
-- k-NN on C, with the frozen MAD scaling, the Mahalanobis rule (Ledoit–Wolf
-  only above condition number 1e6) and the p_lo/p_hi definitions;
-- the v1 scorer, contract v3.
+**A small deterministic check** of the library-loading adapter precedes any
+fitting.
 
-**Finite-library variation (required, 1657 §4).** For a fixed, pre-named
-subset of analyses, a second, independent library is drawn from disjoint
-batch streams. The between-library spread of p_hi and of accept/detect
-decisions is then reported.
-- This keeps the claim from relying on 4,000 resamples of 2,000 paths
-  behaving like independent paths.
+## 3. Resampling
+
+**Per analysis:** R_train = R_test = 2,000 index draws with replacement from
+the K-member library.
+- Draws come from bound streams, as sequential segments of one fixed stream.
+- Training and testing use independent draws, and the training matrix is
+  never reused as the test matrix.
+- These are independent draws **conditional on the finite library**, not
+  4,000 fresh paths from the target. More resamples do not remove that
+  approximation.
+- Any later prospective validation must include the same finite-library
+  construction.
+
+**Independent-library check.**
+- **The cases** are the named subset in the Stage 1b design §5: 8 outers ×
+  3 n, 24 paired analyses, 216 extra libraries from stream namespace 3.
+- **What it reports:** paired p_hi differences and decision changes, with the
+  fit and resampling rules held fixed.
+- **What it can show:** numerical sensitivity on those named cases only. It
+  is not calibration evidence or a universal finite-library bound.
+- **Its library is separate from the crossing-batch surplus.**
+- **A material change** in the substantive conclusion calls for an explicit
+  follow-up decision. There is no automatic retuning or bank expansion.
+- **One library is never preferred** over the other.
 
 ## 4. Inventory
 
-**Primary: noisy E only.**
-- At the planned design that is 8 cells × 200 outers = 1,600 analyses
-  (14,400 population-outer-cells), plus the matched n = 0 analyses.
-- An ideal-E comparator doubles the informative cells. It enters only if the
-  Stage 1b budget allows it, and it must be declared beforehand.
+**Primary analyses:**
+- 1,600 informative (8 cells × 200 declared outers);
+- 800 n = 0 baselines (4 scenarios × 200);
+- **2,400 in all,** plus 24 check analyses.
+- Without caching, each analysis needs 4,001 T-vector evaluations: about
+  9.6 × 10⁶ evaluations.
 
-**The outer count follows the Stage 1b decision.** The Stage 1a projection
-for the full design is about 0.86 × 10⁶ sampling CPU-h, about 84% of it at
-n = 300 (report §5).
-- **Fixed in advance:** any reduction, whether in outers, n levels or
-  scenarios, is fixed beforehand with named trial IDs and denominators.
-- **Never selected:** cheaply completing outers are never chosen, and no
-  population is dropped from the nine-population statistic.
+**Cost:** about 1,200 worker CPU-h (0.5 per analysis).
 
-## 5. Support and failure rules
+**Every primary comparison uses all 200 declared IDs.** No outer is ever
+replaced or dropped.
 
-**Incomplete libraries.**
-- A population-outer-cell whose library does not reach K within its declared
-  budget is a **support failure**: reported, never silently excluded.
-- Its analysis is scored as **not evaluable**. The nine-population dataset it
-  belongs to is then incomplete and is counted as such in every
-  denominator.
-- A zero-hit setting is a support failure with an upper retention bound and
-  an unresolved cost.
+## 5. Outcome coding (as contract v3)
 
-**Other failures.** Censoring, numerical failure and fit failure are
-recorded separately, by cell and population.
+**Null scenarios (b1, b3).** Every outcome other than `accept` counts as a
+non-accept. That includes a library shortfall (failure to fill K within the
+cap), numerical or fit indeterminacy, and missing work.
 
-**Fit failure.**
-- The v1 rule for failed T vectors applies unchanged.
-- Fit-failure counts are reported per cell, with no replacement draws.
+**Alternatives (b5, b16).** Only `reject` is a detection. Every other outcome
+is a nondetection.
 
-## 6. Scoring and reporting (per cell)
+**Reasons** (shortfall, indeterminacy, missing) are reported separately, by
+cell and population.
 
-Following design §4 Stage 1:
-- **Results:** non-accepts (nulls) or detections (M_A), with exact intervals.
-- **Comparisons:** a paired table against v1 and against the matched n = 0
-  baseline, with McNemar and Newcombe method 10; also mean z.
-- **Failures:** support failures and fit failures.
+**Tables:**
+- three-way accept/reject/indeterminate tables are reported alongside the
+  binary coding;
+- differences in fitted statistics or p-values use only complete pairs, with
+  the complete-pair denominator shown;
+- procedural binary comparisons include failed baselines under the rules
+  above, so they measure the whole procedure, availability included;
+- **joint** availability (the informative library and its matched n = 0
+  library both complete) is reported, not only informative availability.
 
-**The gates are the v1 analogues, fixed before execution:**
-- null non-accepts ≤ 60/1000-equivalent at the cell's size, using exact
-  binomial thresholds recomputed for the declared denominators;
-- O1-type detection ≥ 224/300-equivalent.
+## 6. Gates: family, levels and meaning (resolved for challenge)
 
-These gates are development criteria. They are not the validation gate of a
-frozen method.
+**Family.** The family is the four informative null cells: b1 and b3, each at
+n = 30 and 300.
+- Each gets a **one-sided 98.75% Clopper–Pearson upper bound ≤ 0.08**: at most
+  7 non-accepts of 200.
+- **Power:** the b5 (β_min) cells at n = 30 and 300 need a **one-sided 95%
+  CP lower bound ≥ 0.70**: at least 152 detections of 200.
+- **Outside the gated family:**
+  - b16 (Δ10 = 0.5) is descriptive high-effect detection;
+  - the n = 0 baselines are comparators, reported with the same intervals.
 
-**No retuning:** no extension, no retuning, and no post hoc cell selection.
+**Meaning.** These are **development adequacy criteria**. They are not the
+validation gate of a frozen method. At 200 outers they are stringent. The
+probability that a cell passes:
 
-## 7. Open decisions before any fitted execution
+| True null non-accept rate | 0.01 | 0.02 | 0.03 | 0.04 | 0.05 | 0.06 |
+|---|---|---|---|---|---|---|
+| P(≤ 7 of 200) | 0.999 | 0.951 | 0.746 | 0.450 | 0.213 | 0.083 |
 
-1. **Stage 1b scale (Barry).** Full design (~0.86 × 10⁶ CPU-h), n = 30 only
-   (~1.4 × 10⁵), or fewer named outers (50 per cell ~2.2 × 10⁵; 25 per cell
-   ~1.1 × 10⁵). An alternative is a θ-tilted proposal (Astra's reserve) to cut
-   the n = 300 tail.
-2. **Library check:** which named subset gets the second, independent library.
-3. **Comparator:** whether the ideal-E comparator is included.
-4. **Gates:** the exact gate thresholds at the declared denominators.
+| True power | 0.75 | 0.80 | 0.85 |
+|---|---|---|---|
+| P(≥ 152 of 200) | 0.408 | 0.931 | 1.000 |
 
-These are set in a bound settings file and checked by Astra before any
-Stage 1b or Stage 1c dispatch.
+**The primary result is estimation.**
+- Each cell's non-accept or detection rate, with exact intervals.
+- Paired differences against the n = 0 baseline, with McNemar and Newcombe
+  method 10, and against v1 where defined.
+- A **non-pass** means adequacy was not established at this precision; it
+  does not by itself establish miscalibration.
+- **No automatic enlargement:** neither the outer count nor the criteria
+  change after fitted results are seen.
+- Matching v1's original 60/1000 operating characteristic would need about
+  1,000 outers per cell, about 5 × the sampling. That is not proposed.
+
+## 7. Open before fitting
+
+1. **Stage 1b completion** within its caps and ceilings.
+2. **Barry's authorisation** of Stage 1c, separately from Stage 1b.
+3. **Astra's agreement** to the gate meaning in §6, which is bound in the
+   Stage 1c settings before any fit.
+4. **The adapter check and the bound streams,** in a Stage 1c settings file
+   checked by Astra.
