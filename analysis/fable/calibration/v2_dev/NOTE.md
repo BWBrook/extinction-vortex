@@ -893,3 +893,14 @@ s00247, s01080 and c00021, with a cap of 1.5 CPU-h, a planner target of
 - **Hashes:** settings `a7d6cb64…` (21,816), smoke subset `2967ef7d…`, kunanyi
   stage tar `7c47634b…` (10 files). `p3_metric.json` and `p3_settings.json`
   stay on deep-server under `/data/fable/vortex/v2_dev/p3/`.
+
+**Kunanyi smoke dispatched** (16 October, about 21:31 AEDT).
+- **Stage:** `s1b_stage.tar` (`7c47634b…`) verified on kunanyi; `sha256sum -c`
+  passed on all 10 files; `s1b/pilot` linked to `../s1a/main`.
+- **Preflight passed** on the login node (Python 3.11.7): bound 24.0 of 40
+  CPU-h, fixtures passed.
+- **Seed:** 4 pilot prefixes imported; s00772 complete at seed.
+- **Jobs:** array 820931[] (2 × 8 cores, 1 h) and collector 820932 (afterany
+  on the array, emails Barry).
+- **Quota:** the probe printed nothing (`quota`, `lfs quota` and `df` gave no
+  output). Check another way next window.
