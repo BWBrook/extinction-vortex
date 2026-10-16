@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 23:19 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 17 October 2026, 00:11 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1317,6 +1317,11 @@ board 1755; exposure E56).
    - **Tests:** fixtures 19/19 and submitter 8/8 (bash 5.2 and 4.2.46). In the
      repaired deep-server smoke, all 4 libraries are byte-identical to serial
      recomputation.
+   - **Kunanyi re-smoke (820962[]):** `collection_ok`; 4 COMPLETE and
+     2 CAPPED; libraries byte-identical to the first kunanyi smoke; against
+     deep-server, only the known 1-ulp θ record differs. The ledger holds
+     both smokes (48 of 60), and no locks were left.
+   - **Next:** Astra's check, then W1 (reservation 199,688 CPU-h).
    - **Report corrections:**
      - costs are labelled as projected expected CPU-h at observed throughput;
      - exact zero-hit suffix bounds;

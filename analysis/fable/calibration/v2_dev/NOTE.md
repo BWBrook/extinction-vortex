@@ -968,3 +968,21 @@ covering both smokes), stage tar `286854e7…`.
 - **Seed:** 4 pilot prefixes imported; s00772 complete at seed.
 - **Jobs:** array 820962[] (2 × 8 cores, 1 h) and collector 820963 (afterany,
   emails Barry).
+
+**Kunanyi re-smoke result** (array 820962[] queued and started 16 October
+23:25:43).
+- **Jobs:** subjobs on n011 and n008 ran 18 min 00 s and 17 min 31 s and
+  exited 0. Collector 820963 exited 0 and emailed.
+- **Collection** (`p3/smoke2_kunanyi_collect_W1.json`): `collection_ok`,
+  4 COMPLETE and 2 CAPPED, 7.2 CPU-h, nothing incomplete, empty queue and
+  claims, no locks left.
+- **Archive:** `W1.tar.gz` (`2ed7cc4f…`), with matching hashes on kunanyi
+  and deep-server.
+- **Ledger:** `s1b/reservations.tsv` holds both smoke reservations (48 of 60
+  CPU-h); the ledger lock was released.
+- **Comparison** (`p3/smoke2_cross_machine.json`):
+  - all four libraries are **byte-identical to the first kunanyi smoke**;
+  - against deep-server, only the same single 1-ulp θ record in s00247
+    differs, with identities, paths and boundary flags identical;
+  - all six settings match deep-server on status, prefix end and prefix
+    hits.
