@@ -958,3 +958,13 @@ covering both smokes), stage tar `286854e7…`.
   home quota is 20 TiB (X-ray Cavities log, 21 August).
 - **Next:** a kunanyi re-smoke (new locks, ledger and wave filter on NFS),
   then Astra's check, then W1.
+
+**Kunanyi re-smoke dispatched** (16 October; reservation 23:25:39 AEDT).
+- **Stage:** `s1b_stage.tar` (`286854e7…`) verified, and `sha256sum -c` passed.
+- **Ledger:** the first smoke (array 820931[], `s1b_ad937861_a`, 24 CPU-h) was
+  recorded retrospectively in `s1b/reservations.tsv`.
+- **Preflight passed** (Python 3.11.7, campaign `s1b-smoke`) and reserved
+  `s1b_9038aa07_a` at 24 CPU-h: 48 of 60 in that campaign.
+- **Seed:** 4 pilot prefixes imported; s00772 complete at seed.
+- **Jobs:** array 820962[] (2 × 8 cores, 1 h) and collector 820963 (afterany,
+  emails Barry).
