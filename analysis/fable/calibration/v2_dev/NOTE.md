@@ -840,3 +840,14 @@ This used one Jumpbox window.
 - **State at submission:** 2 node jobs running, 43 queued, collector held.
 - **Expected:** each job finishes about 2.1–2.3 h after it starts; queue waits
   vary. The pilot stops at its no-fit report.
+
+### Result (16 October 2026, about 20:05 AEDT; no fits)
+
+- **Execution:** the collector exited 0; all 45 node jobs exited 0.
+  1,073 settings complete and 7 censored (workers 0–15, the two jobs that
+  started first); no failures.
+- **Hits:** 322,736 retained; only one setting reached K = 2,000.
+- **Archive:** `3e18e5b8…`, re-collected on deep-server with identical rows.
+- **Full report:** `notes/vortex_stage1a_report_20261016.md`
+  (`p2_report.py` → `p2/s1a_main/s1a_report.json`, `s1a_tables.md`).
+- **Stage 1c draft:** `notes/vortex_stage1c_fitted_draft_20261016.md`.

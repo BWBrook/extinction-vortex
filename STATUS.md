@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 16:32 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 20:15 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1124,6 +1124,9 @@ exposure E54; reviewed `b6df9d9`).
 
 ## Completed by Fable
 
+- 16 October evening, Stage 1a collected, verified and reported (no fits):
+  report, tables, Stage 1b inventory and a separate Stage 1c draft. Exposure
+  row E55.
 - 16 October, dispatched Stage 1a on kunanyi after Astra's 1735 clearance:
   tar verified, kunanyi preflight passed, 45 jobs plus collector accepted.
 - 16 October, third Stage 1a round per 1719: automatic rejection removed;
@@ -1251,15 +1254,21 @@ exposure E54; reviewed `b6df9d9`).
 
 ## Pending
 
-1. **Stage 1a is running on kunanyi** (dispatched 16 October about 16:31 AEDT
-   after Astra's clearance in 1735).
-   - 45 × 8-core jobs, 820683–820728; collector 820729 (afterany on all 45)
-     emails Barry.
-   - The preflight passed on kunanyi; the journal has 45 accepted node jobs
-     and nothing uncertain; the allocation bound is 991.445 CPU-h.
-   - When the collector finishes, Fable fetches and verifies the archive and
-     returns the no-fit report per review 1657 §4 and the bound report rule.
-   - Full-library Stage 1b and fitted Stage 1c remain uncommissioned.
+1. **Stage 1a is complete; its no-fit report is ready for Astra's audit**
+   ([report](notes/vortex_stage1a_report_20261016.md); separate
+   [Stage 1c fitted draft](notes/vortex_stage1c_fitted_draft_20261016.md); exposure E55).
+   - **Run:** all 45 jobs and the collector exited 0. 1,073 settings complete
+     and 7 censored (one with no exposure); 322,736 hits; 733.9 worker CPU-h,
+     about 770 allocated CPU-h, within the 1,000 ceiling.
+   - **Only one setting reached K = 2,000.** Time to K, median (90th
+     percentile): 3.0 (3.7) CPU-h at n = 0, 3.9 (35) at n = 30, and 20 (250)
+     at n = 300. The tails are heavy at low-s and d10 with n = 300.
+   - **Stage 1b projection:** the full planned design is about 0.86 × 10⁶
+     CPU-h (bootstrap 0.75–0.98 × 10⁶), with 84% of it at n = 300.
+     Alternatives are listed in the report.
+   - **Next:** Astra audits the report. Barry then decides Stage 1b's scale,
+     a resource decision that exceeds the "100K CPU hours" statement.
+     Stage 1b and Stage 1c remain uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
