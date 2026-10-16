@@ -321,6 +321,40 @@ Code: `v2_dev/p3_stage1b.py`; `kunanyi/s1b_node.pbs`, `s1b_collect.pbs`,
    - **Submitter: 8 scenarios** under bash 5.2 and 4.2.46, including a
      concurrent submission refused by the campaign lock.
 
+### 7b. Repairs after Astra 1800 (17 October)
+
+1. **Generation-safe lock reclamation.**
+   - An ended lock generation is broken only through `_reclaim`, which takes
+     the `lock.reclaim` mutex, itself published by an atomic rename, so there
+     is one reclaimer at a time.
+   - Under that mutex the reclaimer re-reads the lock's current token, and
+     breaks the lock only if that token is the observed dead generation and
+     its owner is positively ended.
+   - A reclaim mutex whose own owner has ended fails closed (`LockStale`).
+     That setting waits for operator recovery; claim, recovery and the
+     post-shard step skip it and report it, while other settings proceed.
+   - **Fixture:** Codex's two-contender interleaving. Both contenders observe
+     the same ended generation, and one acts only after the other has
+     acquired. The result is one holder, then the successor. The same
+     harness (`p3/race_check.py`) gives two concurrent holders on the
+     previous code (d801012) in 3/3 runs and one on the repaired code in 3/3.
+   - Two more fixtures: a stale observation cannot remove a successor, and a
+     dead reclaimer fails closed.
+2. **Chronological, identity-bound ledger.**
+   - The ledger is replayed in order. A `release` deactivates a name, and a
+     later `reserve` of that name is active again.
+   - Each reservation binds wave, CPU-h and identity (settings sha, output
+     directory, shape) at its first active line. The same identity is
+     idempotent; any difference is refused.
+   - Array names now include the shape, so a re-shaped retry is a new name and
+     the old reservation stays charged until released with evidence.
+   - **Fixture:** Codex's retry paths.
+     - A same-name reservation with another shape is refused.
+     - A fresh directory beyond the ceiling is refused.
+     - After a release, a same-name retry is charged again, and a
+       fresh-directory array is then refused.
+3. **Fixtures:** p3 22/22; submitter 8/8 under bash 5.2 and 4.2.46.
+
 ## 8. Decisions (Barry, 16 October 2026; board 1759)
 
 "Decisions: 1 and 2 are both fully authorised."

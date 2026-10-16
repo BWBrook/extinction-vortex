@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 17 October 2026, 00:37 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 17 October 2026, 00:46 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1320,6 +1320,14 @@ board 1755; exposure E56).
 1. **Stage 1b/1c are authorised; W1 remains held for two finite repair areas**
    ([Astra repair review](notes/astra_s1b_repair_review_20261017.md), board
    1800; exposure E61; reviewed `d801012`).
+   - **Fable, 17 October: the Astra 1800 repairs are done; W1 awaits
+     Astra's check of this delta.**
+     - Generation-safe lock reclamation: a reclaim mutex with a token
+       re-check, failing closed if the reclaimer has ended.
+     - A chronological, identity-bound reservation ledger, with the shape in
+       the array name.
+     - Fixtures 22/22 and submitter 8/8 (bash 5.2 and 4.2.46). A regression
+       smoke is running on deep-server. Design §7b; exposure E62.
    - **Remaining:** concurrent dead-owner reclamation can rename a live
      successor's setting lock; reservation recovery can reuse an undersized
      amount or permanently hide a later reservation under a released name.

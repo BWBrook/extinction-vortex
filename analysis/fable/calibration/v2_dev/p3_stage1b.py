@@ -11,7 +11,7 @@ Planning (which ranges exist, how many run at once) adapts to observed rates and
   seed          SETTINGS PILOT_DIR RUN WAVE                      import verified pilot prefixes; first tickets
   work          SETTINGS METRIC RUN WAVE OWNER DEADLINE_EPOCH    pull worker for one wave: claim, run, plan successors
   collect       SETTINGS METRIC RUN WAVE OUT_JSON                validate shards, assemble libraries, account CPU
-  preflight     SETTINGS METRIC LEDGER ARRAY_NAME NJOBS JOBCPUS WALL_SECS WAVE   bound check, fixtures, campaign reservation
+  preflight     SETTINGS METRIC LEDGER ARRAY_NAME OUTDIR NJOBS JOBCPUS WALL_SECS WAVE   bound check, fixtures, reservation
   test                                                            synthetic fixtures (exit non-zero on failure)
 Run directory RUN: queue/ (tickets), claimed/ (ticket@owner), sets/<dir>/ (pilot prefix, ranges/, shard checkpoints and
 journals, COMPLETE/CAPPED/FAILED markers, lock/), lib/ (assembled libraries), workers/. Every queue transition (claim,
@@ -172,30 +172,63 @@ def owner_dead(info, qstat=QSTAT):
     return any(l.strip() == "job_state = F" for l in out.splitlines())
 
 
+class LockStale(RuntimeError):
+    """A lock's owner and the reclaimer of that lock have both ended: fail closed for operator recovery."""
+
+
+def _owner(path):
+    try:
+        return json.load(open(os.path.join(path, "owner.json")))
+    except (FileNotFoundError, NotADirectoryError, ValueError):
+        return None
+
+
+def _publish(path, me):
+    """Atomically create directory path holding owner.json; False if it already exists."""
+    tmp = f"{path}.new.{me['token']}"
+    os.mkdir(tmp)
+    with open(os.path.join(tmp, "owner.json"), "w") as fh:
+        json.dump(me, fh); fh.flush(); os.fsync(fh.fileno())
+    try:
+        os.rename(tmp, path); return True
+    except OSError:
+        shutil.rmtree(tmp, ignore_errors=True); return False
+
+
+def _reclaim(d, observed, me, qstat=QSTAT):
+    """Break the ended generation `observed` of lock d. Only one reclaimer at a time (the d.reclaim mutex), and only while
+    d still holds that generation's token: a stale observation can never remove a successor's lock. A reclaim mutex whose
+    own owner has ended is not broken automatically (LockStale)."""
+    r = f"{d}.reclaim"
+    if not _publish(r, me):
+        info = _owner(r)
+        if info and owner_dead(info, qstat):
+            raise LockStale(f"{r}: reclaim mutex held by an ended owner; operator recovery needed")
+        return False
+    try:
+        cur = _owner(d)
+        if cur and cur["token"] == observed["token"] and owner_dead(cur, qstat):
+            os.rename(d, f"{d}.broken.{observed['token']}")
+            return True
+        return False
+    finally:
+        rel = f"{r}.rel.{me['token']}"
+        os.rename(r, rel); shutil.rmtree(rel)
+
+
 def lock(sdir, owner, qstat=QSTAT):
-    """Owner-safe lock: a directory holding owner.json, published by an atomic rename. It is broken only on positive
-    evidence that its owner has ended, never on age; unlock requires the acquiring token."""
+    """Owner-safe lock: a directory holding owner.json, published by an atomic rename (never an empty directory, so a
+    rename cannot replace a live one). It is broken only on positive evidence that its owner has ended, never on age,
+    and only through _reclaim; unlock requires the acquiring token."""
     d = os.path.join(sdir, "lock")
     me = {"owner": owner, "host": os.uname().nodename, "pid": os.getpid(), "token": os.urandom(8).hex()}
     while True:
-        tmp = f"{d}.new.{me['token']}"
-        os.mkdir(tmp)
-        with open(os.path.join(tmp, "owner.json"), "w") as fh:
-            json.dump(me, fh); fh.flush(); os.fsync(fh.fileno())
-        try:
-            os.rename(tmp, d)
+        if _publish(d, me):
             return d, me["token"]
-        except OSError:
-            shutil.rmtree(tmp, ignore_errors=True)
-        try:
-            info = json.load(open(os.path.join(d, "owner.json")))
-        except (FileNotFoundError, NotADirectoryError, ValueError):
+        info = _owner(d)
+        if info is None:
             time.sleep(0.05); continue
-        if owner_dead(info, qstat):
-            try:
-                os.rename(d, f"{d}.broken.{me['token']}")
-            except FileNotFoundError:
-                pass
+        if owner_dead(info, qstat) and _reclaim(d, info, me, qstat):
             continue
         time.sleep(0.05 + random.random() * 0.1)
 
@@ -369,12 +402,15 @@ def claim(run, owner, wave, qstat=QSTAT):
             return None
         head = names[:32]; random.shuffle(head)
         for t in head:
-            with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
-                try:
-                    os.rename(os.path.join(q, t), os.path.join(run, "claimed", f"{t}@{owner}"))
-                    return t
-                except FileNotFoundError:
-                    continue
+            try:
+                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
+                    try:
+                        os.rename(os.path.join(q, t), os.path.join(run, "claimed", f"{t}@{owner}"))
+                        return t
+                    except FileNotFoundError:
+                        continue
+            except LockStale as ex:                      # that setting waits for an operator; others proceed
+                print(f"skipping {t}: {ex}", file=sys.stderr, flush=True)
     return None
 
 
@@ -388,11 +424,14 @@ def recover_stale(run, owner, wave, qstat=QSTAT):
         if job not in seen:
             seen[job] = owner_dead({"owner": own, "host": None}, qstat)
         if seen[job]:
-            with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
-                try:
-                    os.rename(os.path.join(run, "claimed", c), os.path.join(run, "queue", t)); n += 1
-                except FileNotFoundError:
-                    pass
+            try:
+                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
+                    try:
+                        os.rename(os.path.join(run, "claimed", c), os.path.join(run, "queue", t)); n += 1
+                    except FileNotFoundError:
+                        pass
+            except LockStale as ex:
+                print(f"not requeued {c}: {ex}", file=sys.stderr, flush=True)
     return n
 
 
@@ -431,11 +470,14 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
                     mark(sdir, "FAILED", {"range": a, "failure": f"{type(ex).__name__}: {ex}"})
                 os.unlink(cpath)
             done["failed_shards"] += 1; continue
-        with held(sdir, owner, qstat):
-            if S["status"] == "censored":
-                os.rename(cpath, os.path.join(run, "queue", t)); done["requeued_censored"] += 1
-            else:
-                plan(st, sdir, run, b); os.unlink(cpath); done["shards"] += 1
+        try:
+            with held(sdir, owner, qstat):
+                if S["status"] == "censored":
+                    os.rename(cpath, os.path.join(run, "queue", t)); done["requeued_censored"] += 1
+                else:
+                    plan(st, sdir, run, b); os.unlink(cpath); done["shards"] += 1
+        except LockStale as ex:                          # the claim stays; the setting is reported incomplete
+            print(f"left claim {t}: {ex}", file=sys.stderr, flush=True); done["lock_stale"] = done.get("lock_stale", 0) + 1
         if S["status"] == "censored":
             break
     p2.atomic_json({"owner": owner, "wave": wave, "binding": bind, "runtime": p2.runtime(), "host": os.uname().nodename, **done},
@@ -584,38 +626,49 @@ def collect(settings_path, metric_path, run, wave, out):
 
 
 # ---------------------------------------------------------------- campaign account, preflight and fixtures
-def reserve(ledger, campaign, ceilings, wave, name, cpu_h):
-    """Campaign reservation account (the submitter holds its lock). Entries persist across output directories; an
-    unresolved submission keeps its reservation; only an explicit 'release NAME manual: <evidence>' line frees one."""
-    res, rel = [], set()
+def ledger_active(ledger, campaign):
+    """Replay the ledger in order: a reserve line activates a name (its first active line binds wave, CPU-h and identity);
+    a release line deactivates it; a later reserve of the same name is active again."""
+    active = {}
     if os.path.exists(ledger):
         for ln in open(ledger).read().splitlines():
             f = ln.split("\t")
-            if f[0] == "reserve":
-                res.append({"campaign": f[1], "wave": f[2], "name": f[3], "cpu_h": float(f[4])})
+            if f[0] == "reserve" and f[1] == campaign and f[3] not in active:
+                active[f[3]] = {"wave": f[2], "cpu_h": float(f[4]), "identity": f[6] if len(f) > 6 else ""}
             elif f[0] == "release":
-                rel.add(f[1])
-    have = [e for e in res if e["campaign"] == campaign and e["name"] not in rel]
-    tot_c, tot_w = sum(e["cpu_h"] for e in have), sum(e["cpu_h"] for e in have if e["wave"] == wave)
-    if any(e["name"] == name for e in have):
+                active.pop(f[1], None)
+    return active
+
+
+def reserve(ledger, campaign, ceilings, wave, name, cpu_h, identity):
+    """Campaign reservation account (the submitter holds its lock). Same name and same identity is idempotent; same name
+    with any other wave, CPU-h or identity is refused; an unresolved submission stays charged until an explicit
+    'release NAME manual: <evidence>' line."""
+    active = ledger_active(ledger, campaign)
+    tot_c, tot_w = sum(e["cpu_h"] for e in active.values()), sum(e["cpu_h"] for e in active.values() if e["wave"] == wave)
+    if name in active:
+        e = active[name]
+        if (e["wave"], round(e["cpu_h"], 3), e["identity"]) != (wave, round(cpu_h, 3), identity):
+            raise SystemExit(f"reservation {name} is bound to {e}; this request differs (release it with evidence first)")
         return {"recorded": False, "wave_reserved": tot_w, "campaign_reserved": tot_c}
     if tot_w + cpu_h > ceilings[wave] or tot_c + cpu_h > ceilings["campaign"]:
         raise SystemExit(f"reservation {cpu_h:.1f} CPU-h would exceed a ceiling: wave {wave} {tot_w:.1f}/{ceilings[wave]}, "
                          f"campaign {tot_c:.1f}/{ceilings['campaign']}")
     with open(ledger, "a") as fh:
-        fh.write("\t".join(["reserve", campaign, wave, name, f"{cpu_h:.3f}", time.strftime("%Y-%m-%dT%H:%M:%S%z")]) + "\n")
+        fh.write("\t".join(["reserve", campaign, wave, name, f"{cpu_h:.3f}", time.strftime("%Y-%m-%dT%H:%M:%S%z"), identity]) + "\n")
         fh.flush(); os.fsync(fh.fileno())
     return {"recorded": True, "wave_reserved": tot_w + cpu_h, "campaign_reserved": tot_c + cpu_h}
 
 
-def preflight(settings_path, metric_path, ledger, name, njobs, jobcpus, wall_secs, wave):
+def preflight(settings_path, metric_path, ledger, name, outdir, njobs, jobcpus, wall_secs, wave):
     """Bound check and fixtures, then the campaign reservation (array cores x walltime + the collector)."""
     b = check(settings_path, metric_path)
     if wave not in WAVES:
         raise SystemExit(f"unknown wave {wave}")
     cpu_h = int(njobs) * int(jobcpus) * int(wall_secs) / 3600 + COLLECTOR_CPU_H
     test()
-    r = reserve(ledger, b["campaign"], b["ceilings"], wave, name, cpu_h)
+    identity = f"settings={p2.sha(settings_path)} outdir={outdir} jobs={int(njobs)} cpus={int(jobcpus)} wall={int(wall_secs)}"
+    r = reserve(ledger, b["campaign"], b["ceilings"], wave, name, cpu_h, identity)
     print(json.dumps({"preflight": "passed", "settings_sha256": p2.sha(settings_path), "runtime": p2.runtime(), "wave": wave,
                       "campaign": b["campaign"], "array_name": name, "reservation_cpu_h": round(cpu_h, 3), **r,
                       "ceilings": b["ceilings"]}))
@@ -731,6 +784,53 @@ def test():
             os.mkdir(os.path.join(sdir, "lock"))
             json.dump({"owner": "t:dead", "host": os.uname().nodename, "pid": pd.pid, "token": "x"}, open(os.path.join(sdir, "lock", "owner.json"), "w"))
             D = lock(sdir, "t:D", fakeq); res["dead_owner_lock_recovered"] = True; unlock(D)
+            # two contenders both observe the same ended generation before either reclaims (Astra 1800): one holder at a time
+            import threading
+            pd2 = subprocess.Popen(["true"]); pd2.wait()
+            os.mkdir(os.path.join(sdir, "lock"))
+            json.dump({"owner": "t:dead2", "host": os.uname().nodename, "pid": pd2.pid, "token": "dead2"},
+                      open(os.path.join(sdir, "lock", "owner.json"), "w"))
+            barrier, seen_t, guard = threading.Barrier(2), set(), threading.Lock()
+            real_od = me.owner_dead
+
+            def od(info, qstat=QSTAT):
+                r_ = real_od(info, qstat)
+                if info.get("token") == "dead2" and threading.get_ident() not in seen_t:
+                    seen_t.add(threading.get_ident())
+                    if barrier.wait(10) == 0:
+                        time.sleep(0.3)      # acts on its stale observation only after the other contender has acquired
+                return r_
+            active, peak, done_ = [0], [0], []
+
+            def contender(name):
+                L_ = lock(sdir, name, fakeq)
+                with guard:
+                    active[0] += 1; peak[0] = max(peak[0], active[0])
+                time.sleep(0.5)
+                with guard:
+                    active[0] -= 1
+                unlock(L_); done_.append(name)
+            with mock.patch.object(me, "owner_dead", od):
+                ths = [threading.Thread(target=contender, args=(n_,), daemon=True) for n_ in ("t:A2", "t:B2")]
+                for t_ in ths:
+                    t_.start()
+                for t_ in ths:
+                    t_.join(30)
+            res["concurrent_reclaim_one_holder_then_successor"] = peak[0] == 1 and sorted(done_) == ["t:A2", "t:B2"]
+            live = lock(sdir, "t:live", fakeq)
+            stale = {"owner": "t:old", "host": os.uname().nodename, "pid": pd2.pid, "token": "old-generation"}
+            res["stale_observation_cannot_remove_successor"] = not _reclaim(os.path.join(sdir, "lock"), stale,
+                {"owner": "t:r", "host": "h", "pid": os.getpid(), "token": "rtok"}, fakeq) and \
+                _owner(os.path.join(sdir, "lock"))["owner"] == "t:live"
+            unlock(live)
+            os.mkdir(os.path.join(sdir, "lock")); os.mkdir(os.path.join(sdir, "lock.reclaim"))
+            for x in ("lock", "lock.reclaim"):
+                json.dump({"owner": "t:gone", "host": os.uname().nodename, "pid": pd2.pid, "token": x},
+                          open(os.path.join(sdir, x, "owner.json"), "w"))
+            try:
+                lock(sdir, "t:E", fakeq); res["dead_reclaimer_fails_closed"] = False
+            except LockStale:
+                res["dead_reclaimer_fails_closed"] = os.path.isdir(os.path.join(sdir, "lock"))
             # stale claims: requeued only for a finished job, within the worker's own wave
             d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = make(d, 0.05)
             open(os.path.join(run, "claimed", "W1_0000001_s00007_000000000_000000005@dead[1].srv.0"), "w").close()
@@ -812,22 +912,27 @@ def test():
                 seed(sp, pdir, run, "W1", qstat=fakeq); res["seed_rejects_altered_pilot_journal"] = False
             except SystemExit:
                 res["seed_rejects_altered_pilot_journal"] = True
-        # campaign account: a fresh output directory cannot reset spending; resubmitting a name is not double counted
+        # campaign account (Astra 1800): chronological replay; identity bound at first reservation; retries idempotent
         led = os.path.join(tmp, "ledger.tsv"); ceil = {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}
-        r1 = reserve(led, "s1b", ceil, "W1", "s1b_aaaa_a", 199688.0)
-        r2 = reserve(led, "s1b", ceil, "W1", "s1b_aaaa_a", 199688.0)
+        idA = "settings=x outdir=/r/run jobs=520 cpus=8 wall=172800"
+        r1 = reserve(led, "s1b", ceil, "W1", "s1b_aaaa_a", 199688.0, idA)
+        r2 = reserve(led, "s1b", ceil, "W1", "s1b_aaaa_a", 199688.0, idA)
+        refused = []
+        for args in (("W1", "s1b_aaaa_a", 200072.0, idA.replace("520", "521")),        # same name, other shape
+                     ("W1", "s1b_bbbb_a", 199688.0, idA.replace("/r/run", "/r/run2"))):  # fresh directory
+            try:
+                reserve(led, "s1b", ceil, *args); refused.append(False)
+            except SystemExit:
+                refused.append(True)
+        open(led, "a").write("release\ts1b_aaaa_a\tmanual: tracejob shows no job\n")
+        r3 = reserve(led, "s1b", ceil, "W1", "s1b_aaaa_a", 199688.0, idA)                   # same-name retry after release
         try:
-            reserve(led, "s1b", ceil, "W1", "s1b_bbbb_a", 199688.0); fresh_dir = False
+            reserve(led, "s1b", ceil, "W1", "s1b_bbbb_a", 199688.0, idA.replace("/r/run", "/r/run2")); after_release = False
         except SystemExit:
-            fresh_dir = True
-        r3 = reserve(led, "s1b", ceil, "W2", "s1b_cccc_a", 800000.0)
-        try:
-            reserve(led, "s1b", ceil, "W2", "s1b_dddd_a", 300000.0); over = False
-        except SystemExit:
-            over = True
-        open(led, "a").write("release\ts1b_cccc_a\tmanual: tracejob shows no job\n")
-        r4 = reserve(led, "s1b", ceil, "W2", "s1b_dddd_a", 300000.0)
-        res["campaign_account"] = r1["recorded"] and not r2["recorded"] and fresh_dir and r3["recorded"] and over and r4["recorded"]
+            after_release = True
+        act = ledger_active(led, "s1b")
+        res["campaign_account"] = r1["recorded"] and not r2["recorded"] and refused == [True, True] and r3["recorded"] \
+            and after_release and list(act) == ["s1b_aaaa_a"] and act["s1b_aaaa_a"]["cpu_h"] == 199688.0
     finally:
         K, BATCH = saved
         shutil.rmtree(tmp, ignore_errors=True)

@@ -1,4 +1,4 @@
-# p3_stage1b.py test (deep-server, 2026-10-16T23:18:44+11:00)
+# p3_stage1b.py test (deep-server, 2026-10-17T00:45:44+11:00)
 collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
 collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
 collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
@@ -19,6 +19,9 @@ collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0
  "successor_acquires_after_release": true,
  "late_unlock_cannot_free_successor": true,
  "dead_owner_lock_recovered": true,
+ "concurrent_reclaim_one_holder_then_successor": true,
+ "stale_observation_cannot_remove_successor": true,
+ "dead_reclaimer_fails_closed": true,
  "stale_claim_requeued_only_for_finished_job_in_wave": true,
  "wave_filter": true,
  "killed_worker_claim_recovered_and_resumed": true,

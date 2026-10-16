@@ -31,7 +31,8 @@ mkdir "$S/.ledger.lock" 2>/dev/null || die "another Stage 1b submission holds $S
 trap 'rmdir "$S/.ledger.lock"' EXIT
 mkdir "$R/.submit.lock" 2>/dev/null || die "another submission holds $R/.submit.lock (remove it only if none is running)"
 trap 'rmdir "$R/.submit.lock"; rmdir "$S/.ledger.lock"' EXIT
-SHA=$(sha256sum "$S/$SETTINGS" | cut -d' ' -f1); RID=$(printf '%s %s' "$SHA" "$R" | sha256sum | cut -c1-8)
+SHA=$(sha256sum "$S/$SETTINGS" | cut -d' ' -f1)
+RID=$(printf '%s %s %s %s %s' "$SHA" "$R" "$NJOBS" "$JOBCPUS" "$WALL" | sha256sum | cut -c1-8)   # a new shape is a new name
 ID="settings=$SETTINGS sha256=$SHA outdir=$RUN wave=$WAVE jobs=$NJOBS cpus=$JOBCPUS walltime=$WALL"
 if [ -e "$J" ]; then             # a journal fixes the identity; before any request, a refused attempt leaves nothing bound
   if [ ! -f "$R/run.json" ] || [ "$(cat "$R/run.json")" != "$ID" ]; then die "run identity differs from $R/run.json"; fi
@@ -42,7 +43,7 @@ if [ "$MODE" = new ]; then [ ! -e "$J" ] || die "already dispatched (journal exi
 if [ "$MODE" = resume ]; then [ -e "$J" ] || die "nothing to resume (no journal)"; fi
 ( source "${S1A_ENV:-$K/env.sh}"
   python -I analysis/fable/calibration/v2_dev/p3_stage1b.py preflight "$S/$SETTINGS" "$S/p3_metric.json" \
-    "$S/reservations.tsv" "s1b_${RID}_a" "$NJOBS" "$JOBCPUS" "$WALL_SECS" "$WAVE" ) > "$R/logs/preflight.log" 2>&1 \
+    "$S/reservations.tsv" "s1b_${RID}_a" "$RUN" "$NJOBS" "$JOBCPUS" "$WALL_SECS" "$WAVE" ) > "$R/logs/preflight.log" 2>&1 \
   || die "preflight refused or failed; see $R/logs/preflight.log"
 tail -n 1 "$R/logs/preflight.log"
 if [ "$MODE" = new ]; then

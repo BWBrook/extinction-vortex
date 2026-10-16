@@ -1,7 +1,7 @@
 {
  "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
  "bash_version": "4.2.46(3)-release",
- "submit_sha256": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
+ "submit_sha256": "2a982cf96023bc9169d72d2ba8264a7babcb230b1ae0f28ee5b9d906b20b1b46",
  "checks": {
   "normal_then_duplicate_then_resume": true,
   "array_rejected_held_until_operator_rejects": true,
@@ -58,7 +58,7 @@
      "rc": 1,
      "qsub_calls": 1,
      "stderr": [
-      "s1b_submit: qsub for s1b_cc38f7d6_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_63526939_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -66,7 +66,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_cc38f7d6_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_cc38f7d6_a ID manual: <evidence>' or 'rejected a s1b_cc38f7d6_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_63526939_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_63526939_a ID manual: <evidence>' or 'rejected a s1b_63526939_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -120,7 +120,7 @@
      "rc": 1,
      "qsub_calls": 1,
      "stderr": [
-      "s1b_submit: qsub for s1b_ee2bea8a_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_82c9782e_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -128,7 +128,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_ee2bea8a_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_ee2bea8a_a ID manual: <evidence>' or 'rejected a s1b_ee2bea8a_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_82c9782e_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_82c9782e_a ID manual: <evidence>' or 'rejected a s1b_82c9782e_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -188,7 +188,7 @@
      "rc": 1,
      "qsub_calls": 2,
      "stderr": [
-      "s1b_submit: qsub for s1b_dcea082d_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_abc54faa_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
