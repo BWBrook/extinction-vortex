@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 22:22 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 22:37 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -12,10 +12,12 @@ repairs. His exact words are in discussion 70, message 1131.
 serious on `deep-server` in tmux.
 Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
 message 1222. The 15–16 October Stage 1a smoke and large no-fit pilot have
-finished on Kunanyi. Astra verified the saved pilot outputs and cost arithmetic
-on 16 October (board 1755); cost interpretation and the next-stage package need
-finite revisions. Stage 1b/1c remain uncommissioned. Routine development and
-bounded verification remain on deep-server.
+finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
+(board 1759), within their stated caps, allocation ceilings and gate meaning.
+Astra's executable-package review (1791) holds W1 for finite recovery and
+collector repairs and a consistent cap contract. The scientific design and
+major report corrections are accepted. Routine development and bounded
+verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -929,6 +931,19 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 16 October late evening, reviewed the Stage 1b executable package at
+  `e11b9b0` with three bounded reviewers (1791; E59).
+  [Main review](notes/astra_s1b_package_review_20261016.md) links the Python,
+  scheduler and design/report evidence. Verified all 21,816 settings, 7,200
+  Stage 0 outers and 14,400 E records; staged sources; saved smokes; native
+  synthetic fixtures; and corrected costs/gates. Hold W1 for interrupted
+  range/ticket recovery, lock ownership and full collector validation.
+  Clarify nominal-proposal versus measured-CPU cap; bind wave isolation and
+  cumulative reservations before rollover/top-ups. Accept the one-ULP smoke
+  observation with a restricted reproducibility claim. No new populations,
+  bank scan/export, fits, live PBS actions or email. Barry's authorisation
+  remains settled; Fable next for finite repairs and a rebound package.
+
 - 16 October evening, audited the completed Stage 1a archive, collector and
   report with two bounded reviewers; verified the 861,632 CPU-hour arithmetic,
   qualified its uncertainty and recorded finite Stage 1b/1c contracts (1755,
@@ -1288,8 +1303,9 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **The Stage 1b package and the corrected Stage 1a report are with Astra; Barry
-   decides authorisation** (reply to 1755; exposure E57).
+1. **Stage 1b/1c are authorised; Fable has the finite executable repairs before
+   W1** ([Astra review](notes/astra_s1b_package_review_20261016.md), board 1791;
+   exposure E59).
    - **Report corrections:**
      - costs are labelled as projected expected CPU-h at observed throughput;
      - exact zero-hit suffix bounds;
@@ -1331,11 +1347,22 @@ board 1755; exposure E56).
      - **Kunanyi smoke:** `collection_ok`; 4 COMPLETE and 2 CAPPED; same
        statuses, prefixes and hits as deep-server.
        - 3 of 4 libraries are byte-identical; the fourth differs by 1 ulp in
-         one stored θ (1 of 8,000 records), with identities, paths and
-         decisions identical.
-       - Options for the cross-machine reproducibility claim are in the NOTE.
-     - **Next:** Astra checks the package (board 1768 and this result), then
-       W1.
+         one stored θ (1 of 8,000 records), with retained identities, paths
+         and boundary flags identical.
+     - Astra independently verifies the one-ULP observation and favours
+       documenting the observed agreement, without a universal byte/ULP
+       guarantee or an unverified CPU-dispatch explanation.
+     - **Next:** Fable repairs interrupted range/ticket recovery, lock
+       ownership and collector validation. The stated CPU cap must match the
+       actual fixed-proposal or measured-CPU contract; the smoke's nominal
+       1.5-hour cap used 1.532 and 1.560 hours. Bind wave filtering and verified
+       cumulative reservations before rollover/top-ups. Return the rebound
+       package and affected fixtures/smoke for Astra's check before W1.
+     - Prior scientific/reporting findings are closed except finite labels:
+       unresolved zero-hit settings cannot become forecast cap successes;
+       correct 1,800 new metric pairs to 6,840 and stale authority wording.
+       Stage 1c still needs its own executable settings/adapter check before
+       fitting; its authorisation and gate meaning are settled.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1367,10 +1394,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1755**; exhausted `through`: **1755**.
-- Explicit acknowledgement: through actual message **1755** in discussion 70.
-- Latest own review: **1755** (completed Stage 1a and next-stage contracts).
-- Next retrieval: omit `through` to capture new messages, and use `after=1755`.
+- Last full retrieval `next_after`: **1791**; exhausted `through`: **1791**.
+- Explicit acknowledgement: through actual message **1791** in discussion 70.
+- Latest own review: **1791** (Stage 1b executable package; W1 held for repairs).
+- Next retrieval: omit `through` to capture new messages, and use `after=1791`.
 
 ## Decision Inbox checkpoint
 

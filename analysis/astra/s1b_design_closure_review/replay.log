@@ -1,0 +1,56 @@
+{
+ "status": {
+  "complete": 1073,
+  "censored": 7,
+  "failed": 0,
+  "running": 0,
+  "missing": 0,
+  "invalid": 0
+ },
+ "exposure": {
+  "proposals": 3490909420000,
+  "paths": 122054077782,
+  "selected_SA": 2079550487,
+  "hits": 322736,
+  "boundary_hits": 9097,
+  "worker_cpu_hours": 733.8734841748661,
+  "planned_proposals": 3504293600000,
+  "peak_rss_gib": 0.085,
+  "hosts": 21
+ },
+ "stops": {
+  "n=0": {
+   "hit_stop": 0,
+   "budget": 359,
+   "censored": 1
+  },
+  "n=30": {
+   "hit_stop": 1,
+   "budget": 354,
+   "censored": 5
+  },
+  "n=300": {
+   "hit_stop": 0,
+   "budget": 359,
+   "censored": 1
+  }
+ }
+}
+cpu_h_to_K by n {"n=0": {"n": 359, "q0": 1.2234204995300224, "q10": 2.0862123641731336, "q25": 2.5512520475422646, "q50": 2.9908960417610246, "q75": 3.376658098505537, "q90": 3.684064325908797, "q100": 4.855609073481861}, "n=30": {"n": 360, "q0": 0.8655534262349874, "q10": 1.4151460673781364, "q25": 2.390668599083177, "q50": 3.93266944422286, "q75": 11.038733726731424, "q90": 35.24651930745188, "q100": 362.50840033466784}, "n=300": {"n": 356, "q0": 1.5089845501801502, "q10": 3.602881891296083, "q25": 7.754750748660632, "q50": 19.80938525913308, "q75": 66.34192622718307, "q90": 248.08506969575714, "q100": 1848.2477294061673}}
+kinds {'observed': 1, 'projected': 1068, 'projected_censored': 6, 'unresolved': 5}
+availability {'n=30': {'complete_at_pilot_budget': 0, 'within_cap': {'5h': 0, '10h': 6, '25h': 14, '50h': 23, '100h': 29, '250h': 37, '500h': 40, '1000h': 40}, 'unresolved_datasets': 0}, 'n=300': {'complete_at_pilot_budget': 0, 'within_cap': {'5h': 0, '10h': 0, '25h': 2, '50h': 8, '100h': 13, '250h': 19, '500h': 23, '1000h': 33}, 'unresolved_datasets': 4}}
+stage1b {'cpu_h_by_n': {0: 21340.47256973621, 30: 117749.30065804988, 300: 722608.050155346}, 'cpu_h_total': 861697.8233831321, 'bootstrap_total_q': {'q5': 749078.1519027097, 'q50': 860084.1286910983, 'q95': 981231.5119844249}, 'unresolved_settings_at_lower_bound': 4}
+top cells [('golden_plover', 'null_low_s', 300, 113664), ('wild_dog', 'null_low_s', 300, 101013), ('ms_woodpecker', 'MA_d10_0.5', 300, 67557), ('marmot', 'null_low_s', 300, 63738), ('hawaiian_crow', 'MA_d10_0.5', 300, 57065), ('ms_woodpecker', 'null_low_s', 300, 34234), ('wood_turtle_A', 'MA_betamin', 300, 26040), ('wood_turtle_A', 'null_low_s', 300, 22797)]
+throughput realised/smoke {'n': 1073, 'q0': 0.8751078295578303, 'q10': 0.9556970322562173, 'q25': 0.9762430646765481, 'q50': 0.9973698359701065, 'q75': 1.0200736877055994, 'q90': 1.0446157978970194, 'q100': 1.163450246154445}
+allocation estimate {'node_jobs': 45, 'job_busy_hours': {'n': 45, 'q0': 2.0534243966473475, 'q10': 2.0697029642528957, 'q25': 2.078935109840499, 'q50': 2.095148401790195, 'q75': 2.1510858227146996, 'q90': 2.1837703457805846, 'q100': 2.5795444544818666}, 'node_cpu_h_lower_estimate': 767.158749833107, 'note': "8 x the slowest worker's sampling wall time per job; excludes setup and the collector; PBS accounting (resources_used.walltime) is authoritative"}
+zero-hit / no exposure [{'index': 242, 'pop': 'ms_woodpecker', 'outer': 'null_prior_predictive/0', 'n': 300, 'status': 'complete', 'proposals': 5029240000, 'cpu_h_lower_bound': 608.1148196049517}, {'index': 512, 'pop': 'golden_plover', 'outer': 'null_low_s/0', 'n': 300, 'status': 'complete', 'proposals': 6120680000, 'cpu_h_lower_bound': 586.0214174619925}, {'index': 536, 'pop': 'golden_plover', 'outer': 'null_low_s/8', 'n': 300, 'status': 'complete', 'proposals': 6256720000, 'cpu_h_lower_bound': 587.6858684247983}, {'index': 576, 'pop': 'golden_plover', 'outer': 'MA_d10_0.5/2', 'n': 0, 'status': 'censored', 'proposals': 0, 'cpu_h_lower_bound': None}, {'index': 833, 'pop': 'hawaiian_crow', 'outer': 'MA_d10_0.5/7', 'n': 300, 'status': 'complete', 'proposals': 6639680000, 'cpu_h_lower_bound': 559.4648938690591}]
+gross by wave {'W1 (n = 0 and 30)': 139090, 'W2 (n = 300)': 722608} total 861698 additional 860964
+cap 100h      total    392,271  W1   114,769 W2   277,502  failures-to-fill  1760 datasets with a failure {'n=30': 220, 'n=300': 540}
+cap 250h      total    573,163  W1   133,610 W2   439,553  failures-to-fill   860 datasets with a failure {'n=30': 60, 'n=300': 420}
+cap 500h      total    713,854  W1   139,090 W2   574,764  failures-to-fill   400 datasets with a failure {'n=30': 0, 'n=300': 340}
+cap 1000h     total    812,835  W1   139,090 W2   673,745  failures-to-fill    60 datasets with a failure {'n=30': 0, 'n=300': 60}
+cap 2000h     total    861,698  W1   139,090 W2   722,608  failures-to-fill     0 datasets with a failure {'n=30': 0, 'n=300': 0}
+cap 5000h     total    861,698  W1   139,090 W2   722,608  failures-to-fill     0 datasets with a failure {'n=30': 0, 'n=300': 0}
+cap uncapped  total    861,698  W1   139,090 W2   722,608  failures-to-fill     0 datasets with a failure {'n=30': 0, 'n=300': 0}
+library check [('null_prior_predictive', 7, 'ordinary', 179), ('null_prior_predictive', 4, 'difficult', 492), ('null_low_s', 6, 'ordinary', 1915), ('null_low_s', 4, 'difficult', 3490), ('MA_betamin', 6, 'ordinary', 321), ('MA_betamin', 8, 'difficult', 1511), ('MA_d10_0.5', 6, 'ordinary', 843), ('MA_d10_0.5', 1, 'difficult', 3072)] total 11823
+fitting {'primary_analyses': 2400, 'check_analyses': 24, 'cpu_h_per_analysis': 0.5, 'cpu_h': 1212.0} storage GB 13.6 days at 3000 cores 12.0

@@ -1,0 +1,168 @@
+{
+  "scope": "Bounded Stage 1b core review: actual p3 code plus exact p2 storage/runner functions.\n\nSciPy and pandas are absent locally. The p2 shim loads only unchanged-source AST\nfunctions for byte storage, hashing and run_setting, and rejects unmocked\none_batch. All batches below are synthetic; no scientific sampler is imported.\n",
+  "timestamp": "2026-10-16T22:32:22.104599+11:00",
+  "source_sha256": {
+    "p2": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p3": "5cf875b26214bb07eac3f4b299b3ab80e89f6d08fa6f66e39e1003201203b342"
+  },
+  "p2_functions_loaded_verbatim_from_ast": [
+    "sha",
+    "atomic_json",
+    "journal_prefix",
+    "replace_bytes",
+    "run_setting"
+  ],
+  "cases": {
+    "orphan_range_after_retry": {
+      "before": {
+        "ranges": [
+          [
+            0,
+            5
+          ]
+        ],
+        "queue": []
+      },
+      "after": {
+        "ranges": [
+          [
+            0,
+            5
+          ]
+        ],
+        "queue": [],
+        "claim": null,
+        "terminal": null
+      }
+    },
+    "aged_live_lock_is_stolen": {
+      "both_calls_returned_same_path": true,
+      "replacement_lock_existed": true,
+      "stale_dirs": [
+        "lock.stale.2210931.1792150343009160882"
+      ],
+      "old_owner_unlock_removed_new_owner_lock": true
+    },
+    "short_complete_ranges_hide_gaps": {
+      "collection_ok": true,
+      "status": {
+        "COMPLETE": 1,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "row": {
+        "dir": "s00007",
+        "index": 7,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 30,
+        "library": "primary",
+        "library_sha256": "a0631835fa1af1046afe15ac46cb67a4a3f4fd967aa889bcf701e53dd0f3f747",
+        "kth_hit": 10,
+        "status": "COMPLETE",
+        "prefix_end_batch": 11,
+        "prefix_hits": 5,
+        "useful_cpu_h": 1.4027777777764823e-08,
+        "discarded_cpu_h": 0.0,
+        "ranges": 2
+      },
+      "library_batches": [
+        0,
+        0,
+        10,
+        10,
+        10
+      ]
+    },
+    "nonprefix_shard_not_validated": {
+      "collection_ok": true,
+      "status": {
+        "COMPLETE": 1,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "discarded_cpu_h": -1.0,
+      "errors": []
+    },
+    "out_of_range_hit_identity_accepted": {
+      "collection_ok": true,
+      "status": {
+        "COMPLETE": 1,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "row": {
+        "dir": "s00007",
+        "index": 7,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 30,
+        "library": "primary",
+        "library_sha256": "7d8d11f5aa5399e656ea3913bbd703d3bc9e7d1145d91540443bd44041e57525",
+        "kth_hit": 9999,
+        "status": "COMPLETE",
+        "prefix_end_batch": 1,
+        "prefix_hits": 5,
+        "useful_cpu_h": 4.500000000006042e-09,
+        "discarded_cpu_h": 0.0,
+        "ranges": 1
+      }
+    },
+    "nominal_cpu_cap_not_measured_cap": {
+      "declared_cpu_h": 2.0,
+      "cap_batches": 2,
+      "measured_synthetic_cpu_h": 4.0,
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 1,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "worker": {
+        "shards": 1,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0
+      }
+    }
+  },
+  "published_synthetic_suite": {
+    "library_invariant_to_shard_plan_and_order": true,
+    "parallel_plan_used_several_ranges": true,
+    "zero_rate_setting_is_capped": true,
+    "stale_claim_requeued_only_for_finished_job": true,
+    "killed_worker_claim_recovered_and_resumed": true,
+    "no_claim_after_deadline": true,
+    "collector_rejects_tampered_journal": true,
+    "refused_recovery_fails_setting_not_worker": true,
+    "seed_rejects_altered_pilot_journal": true,
+    "all_ok": true
+  },
+  "stream_identity_checks": {
+    "all_primary_ids_once": true,
+    "pilot_ids_preserved": true,
+    "check_namespace": "stream_tag 3; primary tag 2; same stable index; verified in source",
+    "p2_default_tag_preserved": true
+  },
+  "saved_smoke_actual_cap_comparison": [
+    {
+      "dir": "s01080",
+      "nominal_cap_cpu_h": 1.5,
+      "status": "CAPPED",
+      "cpu_h": 1.5319014458572224,
+      "fraction_over_nominal_cap": 0.02126763057148162
+    },
+    {
+      "dir": "c00021",
+      "nominal_cap_cpu_h": 1.5,
+      "status": "CAPPED",
+      "cpu_h": 1.5604656190616684,
+      "fraction_over_nominal_cap": 0.04031041270777891
+    }
+  ],
+  "elapsed_s": 1.2466255309991539
+}
+elapsed_s=1.38 maxrss_kib=45424
