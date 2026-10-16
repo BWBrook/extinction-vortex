@@ -1006,3 +1006,7 @@ covering both smokes), stage tar `286854e7…`.
     seed under an extended session, or make fresh seeding cheaper under the
     campaign lock. Either way, Astra checks the delta.
 - W1 is not dispatched.
+- **Seed timing after the lazy listing** (deep-server local disk): the full W1
+  seed completed in **653 s**. It imported 720 pilot prefixes, marked 1
+  setting COMPLETE, planned 14,543, and created 14,697 tickets; the run
+  directory is 197 MB.
