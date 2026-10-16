@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 20:49 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 21:28 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1319,9 +1319,17 @@ board 1755; exposure E56).
        cap.
      - Stage 1c fitting is authorised with the §6 gate meaning.
      - Astra still checks each executable package before dispatch.
-     - Fable is implementing: the metric export for the 1,800 new
-       population-outer pairs, the stable-ID settings builder, then the
-       shard runner, pull workers, submitter and fixtures.
+     - **Stage 1b is built** (`p3_stage1b.py`, `kunanyi/s1b_*`).
+       - Done: the export (7,200 pairs, pilot identical) and the settings
+         (21,816, stable IDs).
+       - Done: the shard runner, with libraries invariant to shard plans.
+       - Done: pull workers, the wave job-array submitter and the collector.
+       - Fixtures pass: p3 (9) and the submitter (7 scenarios, bash 5.2
+         and 4.2.46).
+     - **Deep-server smoke:** 4 COMPLETE and 2 CAPPED. The libraries are
+       byte-identical to independent serial recomputations.
+     - **Next:** the kunanyi smoke on the same subset (one Jumpbox window),
+       then Astra's check, then W1.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains

@@ -1,0 +1,20 @@
+{"preflight": "passed", "errors": [], "settings_sha256": "2967ef7dad4447e673b1be0e9f08198f39fc6187aafcc39050ebe540bd8c9926", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "allocated_cpu_hours_bound": 24.0, "ceiling": 40.0}
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 errors 0
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 errors 1
+{
+ "library_invariant_to_shard_plan_and_order": true,
+ "parallel_plan_used_several_ranges": true,
+ "zero_rate_setting_is_capped": true,
+ "stale_claim_requeued_only_for_finished_job": true,
+ "killed_worker_claim_recovered_and_resumed": true,
+ "no_claim_after_deadline": true,
+ "collector_rejects_tampered_journal": true,
+ "refused_recovery_fails_setting_not_worker": true,
+ "seed_rejects_altered_pilot_journal": true,
+ "all_ok": true
+}

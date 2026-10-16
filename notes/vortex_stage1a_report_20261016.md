@@ -40,7 +40,9 @@ exposed development outers (b1/b3/b5/b16, trial IDs 0–9), not validation.
 | 30 | 1 | 354 | 5 |
 | 300 | 0 | 359 | 1 |
 
-- **Only one setting reached K = 2,000:** crow, null_low_s/8, n = 30.
+- **Only one setting reached K = 2,000:** setting 772 (crow, null_low_s/7,
+  n = 30). *Corrected 16 Oct: the first issue said null_low_s/8, which is
+  setting 775 and ended at its budget with 1,722 hits.*
   All other completed settings ended at their proposal budget with fewer than
   2,000 hits, and the seven censored settings stopped at the wall deadline.
   Their times to K are projections (§3).

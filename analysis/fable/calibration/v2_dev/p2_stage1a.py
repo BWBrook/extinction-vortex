@@ -206,7 +206,7 @@ def check(settings_path, metric_path):
 
 
 def one_batch(st, mp, bi, B, des):
-    rng = np.random.default_rng([ROOT, 2, st["index"], bi])
+    rng = np.random.default_rng([ROOT, st.get("stream_tag", 2), st["index"], bi])     # tag 3: Stage 1b check libraries
     th = bank.draw_params("ar_cat", B, rng)
     up, ub = np.log(rng.random(B)), np.log(rng.random(B))
     E = st["E"]; hp, nb = factors(th, E)
@@ -267,22 +267,25 @@ def replace_bytes(path, data):
     os.replace(tmp, path)
 
 
-def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS):
-    """One setting, resumable. Commit order: hit records (append, fsync), then the checkpoint recording the journal's
-    committed length and SHA-256. A fresh setting first writes a zero checkpoint, so every later journal byte is either
-    committed or an uncommitted tail; recovery verifies the committed prefix and replaces the file with it atomically."""
-    ck = os.path.join(outdir, f"s{st['index']:04d}.json"); hits_p = os.path.join(outdir, f"s{st['index']:04d}_hits.jsonl")
+def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS, first_batch=0, name=None, cancelled=None):
+    """One setting (or, for Stage 1b, one shard: st["batches"] batches from first_batch, files named by name), resumable.
+    Commit order: hit records (append, fsync), then the checkpoint recording the journal's committed length and SHA-256.
+    A fresh setting first writes a zero checkpoint, so every later journal byte is either committed or an uncommitted
+    tail; recovery verifies the committed prefix and replaces the file with it atomically. cancelled() is polled at the
+    start and at each commit; when true the run commits and ends as "cancelled"."""
+    name = name or f"s{st['index']:04d}"
+    ck = os.path.join(outdir, f"{name}.json"); hits_p = os.path.join(outdir, f"{name}_hits.jsonl")
     keys = COUNTERS
     if os.path.exists(ck):
         try:
             S = json.load(open(ck))
         except ValueError as e:
             raise SystemExit(f"setting {st['index']}: unreadable checkpoint ({e})")
-        if S.get("binding") != b["_binding"] or S.get("index") != st["index"]:
+        if S.get("binding") != b["_binding"] or S.get("index") != st["index"] or S.get("first_batch", 0) != first_batch:
             raise SystemExit(f"setting {st['index']}: checkpoint bound to other inputs")
         data = journal_prefix(hits_p, S)
         size = os.path.getsize(hits_p) if os.path.exists(hits_p) else 0
-        if S["status"] in ("complete", "failed"):
+        if S["status"] in ("complete", "failed", "cancelled"):
             if size != len(data):
                 raise SystemExit(f"setting {st['index']}: terminal checkpoint with {size - len(data)} uncommitted journal bytes")
             return S
@@ -293,6 +296,8 @@ def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS):
             raise SystemExit(f"setting {st['index']}: hit journal without a checkpoint")
         S = {"index": st["index"], "binding": b["_binding"], "batches_done": 0, "status": "running", "cpu_seconds": 0.0,
              "wall_seconds": 0.0, "journal_bytes": 0, "journal_sha256": EMPTY_SHA, **{k: 0 for k in keys}}
+        if first_batch:
+            S["first_batch"] = first_batch
         atomic_json(S, ck)
         data = b""
     jh, pending, last = hashlib.sha256(data), [], time.time()
@@ -307,11 +312,13 @@ def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS):
             pending.clear()
         S["status"] = status; atomic_json(S, ck)
 
+    if cancelled and cancelled():
+        commit("cancelled"); return S
     while S["batches_done"] < st["batches"] and S["hits"] < b["hit_stop"]:
         if time.time() > deadline:
             commit("censored"); return S
         t0, c0 = time.time(), time.process_time()
-        bi = S["batches_done"]
+        bi = first_batch + S["batches_done"]
         B = min(b["batch"], st["proposal_budget"] - bi * b["batch"])
         try:
             r = one_batch(st, mp, bi, B, des)
@@ -323,6 +330,8 @@ def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS):
         S["batches_done"] += 1
         S["cpu_seconds"] += time.process_time() - c0; S["wall_seconds"] += time.time() - t0
         if time.time() - last >= ckpt_secs:
+            if cancelled and cancelled():
+                commit("cancelled"); return S
             commit("running"); last = time.time()
     S["stop"] = "hits" if S["hits"] >= b["hit_stop"] else "budget"
     commit("complete")

@@ -51,7 +51,7 @@ batch])`.
 - Each pilot setting resumes from its last verified complete batch. Its
   accepted-pair identities are preserved exactly once, and its first 100,000
   proposals remain the smoke prefix.
-- Setting 775 (crow, null_low_s/8, n = 30) is already complete.
+- Setting 772 (crow, null_low_s/7, n = 30) is already complete. *Corrected 16 Oct: the first issue named 775.*
 - Setting 576 (no exposure) starts at batch 0.
 
 These remain exposed development paths, not validation data.
@@ -197,27 +197,65 @@ is 1.2 × 10⁶ allocated.
 resampling spread (746k–984k for sampling) is not a calibrated range. The
 caps and ceilings, not the projections, are what bound spending.
 
-## 7. Implementation, after authorisation
+## 7. Implementation (authorised 16 October; board 1759)
 
-Each step below is checked by Astra before dispatch, as in Stage 1a.
-1. **Metric export** for the 1,800 new population-outer pairs (deep-server,
-   one bank pass).
-2. **Settings builder:** stable IDs, an explicit lookup table, per-setting
-   caps and shard plans; the check namespace bound.
-3. **Runner:** shard unit; prefix assembly with hole detection; cancellation
-   accounting; caps; and pilot resumption with verified identity reuse.
-4. **Pull-based worker job** with atomic claims, and the extended journalled
-   submitter with wave ceilings.
-5. **Fixtures.** Shard reproducibility; prefix and holes; cancellation
-   charging; caps; claim races and stale claims; and resumption of a pilot
-   setting.
-6. **Kunanyi smoke** of the shard machinery on a few settings.
+**Built and tested on deep-server;** Astra checks it before any dispatch.
+Code: `v2_dev/p3_stage1b.py`; `kunanyi/s1b_node.pbs`, `s1b_collect.pbs`,
+`s1b_submit.sh` and `s1b_submit_fixture.py`.
 
-## 8. Decisions for Barry
+1. **Metric export.** Done (`p3/p3_metric.json`, `2dc57d9f…`): 7,200 outers
+   and 14,400 E records.
+   - All 360 pilot pairs and 720 pilot E records are identical to Stage 1a's.
+   - It took one bank pass of 6 min 20 s.
+2. **Settings.**
+   - `p3/p3_settings.json` holds 21,600 primary plus 216 check settings,
+     with stable IDs and the pilot prefix bound per setting.
+   - Each setting also binds its rate, its cap (proposals) and a cell-prior
+     hit rate.
+   - The planner parameters are bound in the settings too.
+3. **Runner.** The audited Stage 1a `run_setting` gains a batch offset, a
+   file name and a cancellation hook, with the defaults unchanged; its 34
+   fixtures still pass. The check streams use tag 3.
+   - **Shards** are planned adaptively, as successors created under a
+     per-setting lock (a range marker, then a ticket).
+   - **Claims** are atomic renames. A stale claim is requeued only when PBS
+     reports its job as finished.
+   - **The prefix** has hole blocking. When a COMPLETE marker appears, any
+     running shard is cancelled at its next commit.
+   - **Failures:** a refused recovery or an unexpected error marks the
+     setting FAILED; it does not kill the worker.
+4. **Collector.** It validates every shard's binding, journal and records,
+   assembles each library from the verified prefix, accounts for useful and
+   discarded CPU, and writes the pack list.
+5. **Waves.** Each wave is one PBS job array plus an afterany collector that
+   emails Barry. The submitter is derived from the audited Stage 1a
+   journal/reconciliation contract, with keys a and c.
+6. **Fixtures.**
+   - **p3 synthetic** (all pass):
+     - the library is byte-identical across serial and parallel plans and
+       claim orders;
+     - a zero-rate setting is capped;
+     - stale claims are requeued only for finished jobs;
+     - a killed worker's claim is recovered and resumed identically;
+     - nothing is claimed after the deadline;
+     - tampered journals and altered pilot prefixes are rejected;
+     - a refused recovery fails the setting, not the worker.
+   - **Submitter:** 7 scenarios, passing under bash 5.2 and 4.2.46.
+7. **Planner simulation** on the 1,079 pilot settings, with unlimited
+   workers: worst-case CPU overhead 6.8% over serial. A typical setting needs
+   one range (mean 2.5, maximum 56), about 55k ranges in the campaign.
+8. **Smokes.** A deep-server end-to-end smoke on a 6-setting subset
+   (`p3_settings_smoke.json`, reduced cap) runs first. Then the same subset
+   on kunanyi, where the libraries must match deep-server byte for byte
+   although the machine-dependent shard plans differ. Then W1.
 
-1. **Authorise Stage 1b sampling** (W1, then W2) within the ceilings
-   200,000 / 1,000,000 / 1,200,000 allocated CPU-h, with a 2,000 CPU-h
-   per-setting cap.
-2. **The fitted stage (Stage 1c)** is a separate decision, with its gate
-   meaning fixed before any fit (`notes/vortex_stage1c_fitted_draft_20261016.md`
-   §6).
+## 8. Decisions (Barry, 16 October 2026; board 1759)
+
+"Decisions: 1 and 2 are both fully authorised."
+1. **Stage 1b sampling is authorised:** W1 then W2, within allocated ceilings
+   of 200,000 / 1,000,000 / 1,200,000 CPU-h, with a 2,000 CPU-h per-setting
+   cap.
+2. **Stage 1c fitting is authorised,** with the gate meaning of
+   `notes/vortex_stage1c_fitted_draft_20261016.md` §6.
+
+Each executable package is still checked by Astra before dispatch.

@@ -1,0 +1,21 @@
+#!/bin/bash
+#PBS -N s1b
+#PBS -q normal
+#PBS -l select=1:ncpus=8:mem=10gb
+# Stage 1b subjob of a wave's job array: JOBCPUS pull workers claim shard tickets until none remain or the deadline
+# (walltime - 15 min) passes; a shard reaching the deadline is checkpointed as censored and requeued for another worker.
+# qsub -J 0-(N-1) -l select=1:ncpus=C:mem=M -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,WAVE=...,JOBCPUS=C,WALL_SECS=s s1b_node.pbs
+set -o pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$WAVE/logs"
+DEADLINE=$(( $(date +%s) + WALL_SECS - 900 ))
+pids=()
+for i in $(seq 0 $(( JOBCPUS - 1 ))); do
+  python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" \
+    "$PBS_JOBID.$i" "$DEADLINE" > "$L/w.${PBS_ARRAY_INDEX}.$i.log" 2>&1 &
+  pids+=($!)
+done
+fail=0
+for p in "${pids[@]}"; do wait "$p" || fail=$((fail + 1)); done
+echo "subjob $PBS_ARRAY_INDEX host $(hostname) workers failed: $fail" >> "$L/jobs.log"
+exit "$fail"

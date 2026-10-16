@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N s1b_collect
+#PBS -q normal
+#PBS -l select=1:ncpus=1:mem=16gb
+#PBS -l walltime=08:00:00
+#PBS -M barry.brook@utas.edu.au
+#PBS -m ae
+# Runs after a Stage 1b wave's job array (afterany): validates every shard, assembles libraries, accounts CPU, then packs
+# the wave's libraries and summary with a verified checksum, and emails Barry.
+set -o pipefail
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+S="$VBASE/s1b"; RUN="$S/$OUTDIR"; rc=0
+python -I analysis/fable/calibration/v2_dev/p3_stage1b.py collect "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" "$WAVE" \
+  "$RUN/collect_$WAVE.json" > "$RUN/collect_$WAVE.log" 2>&1 || rc=$?
+pack() { tar -czf "$WAVE.tar.gz" -C "$RUN" -T "$RUN/pack_$WAVE.txt" && tar -dzf "$WAVE.tar.gz" -C "$RUN" > /dev/null; }
+cd "$RUN" && { pack || { sleep 60; pack; } || { sleep 300; pack; }; } && sha256sum "$WAVE.tar.gz" > "$WAVE.tar.gz.sha256" || rc=${rc/#0/4}
+exit "$rc"

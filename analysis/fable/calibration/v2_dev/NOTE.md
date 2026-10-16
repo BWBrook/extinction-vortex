@@ -851,3 +851,45 @@ This used one Jumpbox window.
 - **Full report:** `notes/vortex_stage1a_report_20261016.md`
   (`p2_report.py` → `p2/s1a_main/s1a_report.json`, `s1a_tables.md`).
 - **Stage 1c draft:** `notes/vortex_stage1c_fitted_draft_20261016.md`.
+
+## Stage 1b: full noisy-design sampling (authorised 16 October 2026; board 1759)
+
+The design, inventory, caps, waves and implementation are in
+`notes/vortex_stage1b_design_20261016.md`. Code is in `p3_stage1b.py` and
+`kunanyi/s1b_*`.
+
+**Done on deep-server:**
+- **Export:** 7,200 outers and 14,400 E records, with the 360 pilot pairs
+  identical.
+- **Settings:** 21,600 primary plus 216 check settings, with stable IDs and
+  pilot prefixes.
+- **Fixtures:** all pass (p3 synthetic; the submitter under bash 5.2 and
+  4.2.46).
+- **Planner simulation:** 6.8% worst-case overhead.
+
+**Smokes next:** deep-server, then kunanyi, on a 6-setting subset. The
+libraries must be byte-identical across machines although the shard plans
+differ.
+
+**Deep-server smoke (16 October, 21:01–21:20; no fits).** The subset
+`p3/p3_settings_smoke.json` has six W1 settings: s00772, s00073, s00142,
+s00247, s01080 and c00021, with a cap of 1.5 CPU-h, a planner target of
+0.1 h and minimum shards of 0.05 h. Eight workers ran it.
+- **Seed:** 4 pilot prefixes imported; s00772 was complete at seed.
+- **Collection** (`p3/smoke_deep_collect_W1.json`): `collection_ok`.
+  - 4 COMPLETE, each a 2,000-pair library. The near-K pilot settings
+    completed through 2–3 shards.
+  - 2 CAPPED (s01080 and c00021), each through 15 parallel shards, with 752
+    and 816 hits at the cap.
+  - 5.8 CPU-h; no queue or claims left; no errors.
+- **Independent serial recomputation:** each complete setting was rerun as
+  its pilot prefix plus one unsharded range (`p3_serial_check.py`; output in
+  `p3/smoke_deep_serial_checks.jsonl`). **All 4 libraries are
+  byte-identical** to the sharded ones.
+- **Code version.** The smoke ran runner `b3354dea…`. The current runner
+  (`5cf875b2…`) adds two things: a refused recovery or an unexpected error
+  marks the setting FAILED instead of ending the worker, and the preflight
+  charges the collector (8 CPU-h). All 9 p3 fixtures pass.
+- **Hashes:** settings `a7d6cb64…` (21,816), smoke subset `2967ef7d…`, kunanyi
+  stage tar `7c47634b…` (10 files). `p3_metric.json` and `p3_settings.json`
+  stay on deep-server under `/data/fable/vortex/v2_dev/p3/`.
