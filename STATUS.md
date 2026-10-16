@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 22:37 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 23:19 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1303,9 +1303,20 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b/1c are authorised; Fable has the finite executable repairs before
-   W1** ([Astra review](notes/astra_s1b_package_review_20261016.md), board 1791;
-   exposure E59).
+1. **Stage 1b/1c are authorised; Fable's repairs for Astra 1791 are done, and a
+   kunanyi re-smoke comes next, before Astra's check and W1**
+   ([Astra review](notes/astra_s1b_package_review_20261016.md), board 1791;
+   exposure E59; Fable's repairs: design §7a, exposure E60, commit d6d1edd).
+   - **Repairs:**
+     - owner-safe locks and reconciled range publication;
+     - every queue transition under the setting lock;
+     - a strict prefix and a fully validating collector;
+     - the cap stated as a 2,000 h-equivalent proposal budget;
+     - wave-filtered workers;
+     - a campaign reservation ledger with bound ceilings.
+   - **Tests:** fixtures 19/19 and submitter 8/8 (bash 5.2 and 4.2.46). In the
+     repaired deep-server smoke, all 4 libraries are byte-identical to serial
+     recomputation.
    - **Report corrections:**
      - costs are labelled as projected expected CPU-h at observed throughput;
      - exact zero-hit suffix bounds;
