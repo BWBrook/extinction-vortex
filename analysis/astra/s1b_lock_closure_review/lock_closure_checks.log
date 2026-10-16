@@ -1,0 +1,80 @@
+{
+  "scope": "Finite closure of the dead-owner lock race; no sampler or numerical imports.\n\nLoads the unchanged lock/queue functions via AST from old Git and current source.\nBoth race runs use the same event-controlled interleaving, actual threads, real\nfilesystem calls and the real same-host PID-death test.\n",
+  "old_commit": "ced47a8",
+  "current_commit": "ca94676a0a06cf895637fb25d5dd291f5f65cd50",
+  "source_sha256": {
+    "old": "2708cb1134b201e9a18d36706c46cdf6ca2949d71ff9eff1ceca6804e7d1df95",
+    "current": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b"
+  },
+  "functions_loaded_verbatim_from_ast": [
+    "LockStale",
+    "_owner",
+    "_publish",
+    "_reclaim",
+    "claim",
+    "held",
+    "lock",
+    "owner_dead",
+    "parse_ticket",
+    "pid_alive",
+    "recover_stale",
+    "unlock"
+  ],
+  "cases": {
+    "old_race": {
+      "peak_holders": 2,
+      "events": [
+        "B read dead generation",
+        "A read dead generation",
+        "A acquired",
+        "B acquired",
+        "B released"
+      ],
+      "errors": {
+        "A": "RuntimeError: /tmp/s1b-lock-closure-hrtrbkf0/old/lock: lock is not owned by this holder"
+      },
+      "both_acquired": true,
+      "lock_removed_after_completion": true
+    },
+    "new_race_then_successor": {
+      "peak_holders": 1,
+      "events": [
+        "A read dead generation",
+        "B read dead generation",
+        "A acquired",
+        "B stale reclaim refused while A holds",
+        "A released",
+        "B acquired",
+        "B released"
+      ],
+      "errors": {},
+      "both_acquired": true,
+      "lock_removed_after_completion": true
+    },
+    "dead_reclaimer_fails_closed": {
+      "exception": "LockStale",
+      "message": "/tmp/s1b-lock-closure-hrtrbkf0/stalled/lock.reclaim: reclaim mutex held by an ended owner; operator recovery needed",
+      "owner_files_unchanged": true
+    },
+    "quiescent_operator_recovery": {
+      "ended_reclaimer_evidence_preserved": true,
+      "normal_acquire_then_release": true,
+      "restriction": "Fixture had no active contenders; operator recovery requires quiescence and owner-death evidence."
+    },
+    "claim_skips_stalled_setting": {
+      "healthy_setting_claimed": "W1_0000001_s00008_000000000_000000001",
+      "stalled_ticket_retained": true,
+      "stalled_owner_files_unchanged": true,
+      "diagnostic": "skipping W1_0000001_s00007_000000000_000000001: /tmp/s1b-lock-closure-hrtrbkf0/run/sets/s00007/lock.reclaim: reclaim mutex held by an ended owner; operator recovery needed\n"
+    },
+    "recovery_retains_stalled_claim": {
+      "requeued": 0,
+      "stalled_claim_retained": true,
+      "stalled_owner_files_unchanged": true,
+      "diagnostic": "not requeued W1_0000001_s00007_000000000_000000001@old[1].srv.0: /tmp/s1b-lock-closure-hrtrbkf0/run/sets/s00007/lock.reclaim: reclaim mutex held by an ended owner; operator recovery needed\n"
+    }
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-17T00:51:05.995234+11:00"
+}
+elapsed_s=0.41 max_rss_kib=32700

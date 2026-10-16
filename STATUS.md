@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 17 October 2026, 00:46 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 17 October 2026, 00:54 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -14,12 +14,13 @@ Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
 message 1222. The 15–16 October Stage 1a smoke and large no-fit pilot have
 finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 (board 1759), within their stated caps, allocation ceilings and gate meaning.
-Astra's repair review (1800) keeps W1 on hold for concurrent dead-owner
-lock reclamation and two reservation-ledger retry defects. Orphan publication,
-collector validation, wave isolation and proposal-equivalent cap wording are
-accepted. Saved smokes and native fixtures pass. Fable next for the finite
-repairs and a rebound package; no new Barry decision is needed. Routine
-development and bounded verification remain on deep-server.
+Astra's closure review (1803) accepts the lock and reservation repairs at
+`ca94676`. The executable is cleared for W1 subject to the already-running
+regression smoke completing cleanly and verification/preflight of the exact
+package on Kunanyi. At 00:53 AEDT the smoke remained active, without a final
+collection. Fable next for these completion checks and dispatch; no further
+code-review round or scientific decision is needed if they pass unchanged.
+Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -933,6 +934,21 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 17 October, closed the remaining Stage 1b lock and reservation findings
+  at `ca94676` with two bounded reviewers (1803; E63).
+  [Closure review](notes/astra_s1b_closure_review_20261017.md) records the
+  identical two-contender replay: old code admits two holders, repaired code
+  one followed by a successful successor. Both prior ledger retry sequences
+  now refuse excess allocations. Six lock cases, eleven ledger aggregate
+  checks and eight scheduler scenarios under Bash 5.2/4.2.46 pass. Native
+  full-settings preflight passes all 22 synthetic fixtures and reserves the
+  correct 199,688 CPU-hours in an audit-only ledger. Settings/metric remain
+  unchanged apart from runner binding; stage hashes match. Code clearance
+  is conditional only on the existing smoke result and exact package
+  verification/preflight on Kunanyi. Fable owns completion and dispatch;
+  no new real population simulation, fitting or PBS action by Astra.
+
+
 - 17 October, reviewed Stage 1b repairs at `d801012` with two bounded
   reviewers (1800; E61). [Review](notes/astra_s1b_repair_review_20261017.md)
   closes prior orphan-publication and collector defects, wave isolation and
@@ -1317,48 +1333,35 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b/1c are authorised; W1 remains held for two finite repair areas**
-   ([Astra repair review](notes/astra_s1b_repair_review_20261017.md), board
-   1800; exposure E61; reviewed `d801012`).
-   - **Fable, 17 October: the Astra 1800 repairs are done; W1 awaits
-     Astra's check of this delta.**
-     - Generation-safe lock reclamation: a reclaim mutex with a token
-       re-check, failing closed if the reclaimer has ended.
-     - A chronological, identity-bound reservation ledger, with the shape in
-       the array name.
-     - Fixtures 22/22 and submitter 8/8 (bash 5.2 and 4.2.46). A regression
-       smoke is running on deep-server. Design §7b; exposure E62.
-   - **Remaining:** concurrent dead-owner reclamation can rename a live
-     successor's setting lock; reservation recovery can reuse an undersized
-     amount or permanently hide a later reservation under a released name.
-     Both are reproduced; no actual overspending or smoke corruption is
-     alleged. See the review for exact acceptance tests.
-   - **Closed:** orphan range publication, aged-live-owner protection and
-     foreign unlock, the three prior collector counterexamples, wave
-     isolation, ordinary fresh-directory accounting, and fixed-proposal cap
-     wording. The cap is a 2,000 CPU-hour-equivalent proposal budget, separate
-     from the measured allocation ceilings.
-   - **Verified:** 21,816 unchanged setting rows and unchanged full metric;
-     staged source hashes; native 19-case runner suite; eight submitter
-     scenarios under Bash 5.2 and source-built 4.2.46; exact recollection of
-     the repaired deep-server smoke (four COMPLETE, two CAPPED).
-   - **Kunanyi re-smoke (820962[]):** fetched archive and library hashes
-     verified; four libraries byte-identical to the first Kunanyi smoke.
-     Against deep-server, only the known single one-ULP theta record differs;
-     all 8,000 retained identities, paths and boundary flags agree. Fable
-     reports both smoke reservations charged (48 of 60 CPU-hours), empty
-     queue/claims and no locks left; Astra did not query live PBS accounting.
-   - **Next:** Fable repairs the lock-reclamation and reservation-state
-     paths, refreshes bindings and affected fixtures/smoke evidence, then
-     Astra checks the delta before W1. Its proposed first allocation remains
-     `520 * 8 * 48 + 8 = 199,688` CPU-hours.
+1. **Stage 1b/1c are authorised; lock and ledger blockers are closed.**
+   [Astra closure review](notes/astra_s1b_closure_review_20261017.md), board
+   1803; exposure E63; reviewed `ca94676`.
+   - **Code clearance:** generation-safe lock reclamation and chronological,
+     identity-bound reservations pass the exact preceding failure sequences.
+     Dead reclaimers fail closed for evidence-based operator recovery.
+     No implementation blocker remains within this focused closure review.
+   - **Verified:** native full-settings preflight with all 22 synthetic
+     fixtures; six independent lock cases; eleven ledger acceptance checks;
+     eight scheduler scenarios under Bash 5.2 and source-built 4.2.46; all
+     21,816 setting rows/other fields unchanged except runner hash; unchanged
+     metric/dependencies; all seven staged sources match.
+   - **Still pending:** the existing `smoke_deep3` regression. At 00:53:19
+     AEDT eight workers were active with empty logs and no completion report.
+     Fable must record a clean collection (four COMPLETE, two CAPPED, no
+     errors/incomplete) and four libraries byte-identical to the earlier
+     deep-server smoke before dispatch. Investigate any mismatch.
+   - **Then:** verify tar `b4b1bfc1...` and its manifest on Kunanyi, run the
+     normal bound preflight with the production ledger and campaign-filesystem
+     TMPDIR for the tiny lock fixtures, and dispatch the existing W1 shape:
+     `520 * 8 * 48 + 8 = 199,688` CPU-hours. No new population smoke, code-review
+     round or Barry decision is needed if these checks pass unchanged.
    - **Approved design:** 21,600 primary libraries plus 216 named independent
      check libraries; stable streams and pilot reuse; W1 then W2 with
-     allocated ceilings 200k / 1.0M / 1.2M CPU-hours. The four zero-hit pilot
+     allocated ceilings 200k / 1.0M / 1.2M CPU-hours. The per-setting cap is a
+     2,000 CPU-hour-equivalent proposal budget. The four zero-hit pilot
      settings remain unresolved, not forecast successes.
    - **Barry, 16 October 2026** (exact, board 1759): "Decisions: 1 and 2 are
-     both fully authorised." Stage 1b/1c scale and gate meaning remain
-     settled. No further scale or gate decision is requested.
+     both fully authorised." Stage 1b/1c scale and gate meaning remain settled.
    - **Stage 1c:** still needs its own executable settings/adapter check
      before fitting. Estimation is primary; the four informative null cells
      at <=7/200 and b5 power at >=152/200 are stringent development adequacy
@@ -1394,10 +1397,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1800**; exhausted `through`: **1800**.
-- Explicit acknowledgement: through actual message **1800** in discussion 70.
-- Latest own review: **1800** (Stage 1b repair review; W1 held for lock/ledger repairs).
-- Next retrieval: omit `through` to capture new messages, and use `after=1800`.
+- Last full retrieval `next_after`: **1803**; exhausted `through`: **1803**.
+- Explicit acknowledgement: through actual message **1803** in discussion 70.
+- Latest own review: **1803** (lock/ledger closure; final smoke and staged preflight pending).
+- Next retrieval: omit `through` to capture new messages, and use `after=1803`.
 
 ## Decision Inbox checkpoint
 

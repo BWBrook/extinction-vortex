@@ -1,0 +1,65 @@
+{
+  "scope": "Saved-package and native preflight audit of ca94676; no population simulation or PBS.\n\nRun on deep-server. Only writes the named Astra audit directory and its ledger.\nThe existing Fable regression smoke is inspected without mutation.\n",
+  "timestamp": "2026-10-17T00:51:02.249123+11:00",
+  "host": "deep-server",
+  "hashes": {
+    "p3_settings.json": "f811b7a82d57a311dd653cf55e9814fa774737d4344627b286a3b0a84f0368d3",
+    "p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "p3_settings_smoke.json": "3c89151b764ce8b6b90b71d47242be6b5d9ccdc913f8c231b53cbf3755c16c5a",
+    "s1b_stage.tar": "b4b1bfc16f104bd7eda48ce669421c86035b7b381cfd917988d2c015e01a894c"
+  },
+  "runner_sha256": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b",
+  "previous_settings_exactly_reconstructed": true,
+  "settings_rows_unchanged": 21816,
+  "stage_member_hashes": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": "fa84b88a7d063a262a06504b3be8f849e802056a13e8dd14391b5c0a192debf1",
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": "0e6081167589eed0b8cee9988f8fddfa2a61dff7bb5741186cb118a96d3c88ad",
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": "2a982cf96023bc9169d72d2ba8264a7babcb230b1ae0f28ee5b9d906b20b1b46",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p3_serial_check.py": "9309f860b9e81d3589ab999b0d109cb459c93a22195b5202ed553f53ef5ed0d9",
+    "s1b/p3_settings_smoke.json": "3c89151b764ce8b6b90b71d47242be6b5d9ccdc913f8c231b53cbf3755c16c5a",
+    "s1b/stage_sha256.txt": "a967a5ff4c60dc8ee4e4e0428ef1f84227768defc47e448090bcfb95e58f2771",
+    "s1b/p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "s1b/p3_settings.json": "f811b7a82d57a311dd653cf55e9814fa774737d4344627b286a3b0a84f0368d3"
+  },
+  "native_preflight": {
+    "preflight": "passed",
+    "settings_sha256": "f811b7a82d57a311dd653cf55e9814fa774737d4344627b286a3b0a84f0368d3",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4"
+    },
+    "wave": "W1",
+    "campaign": "s1b",
+    "array_name": "astra_closure_fixture",
+    "reservation_cpu_h": 199688.0,
+    "recorded": true,
+    "wave_reserved": 199688.0,
+    "campaign_reserved": 199688.0,
+    "ceilings": {
+      "W1": 200000.0,
+      "W2": 1000000.0,
+      "campaign": 1200000.0
+    }
+  },
+  "audit_ledger": "reserve\ts1b\tW1\tastra_closure_fixture\t199688.000\t2026-10-17T00:51:02+1100\tsettings=f811b7a82d57a311dd653cf55e9814fa774737d4344627b286a3b0a84f0368d3 outdir=/data/codex/artifacts/project/s1b_closure_review_20261017/not_dispatched jobs=520 cpus=8 wall=172800\n",
+  "regression_smoke_snapshot": {
+    "path": "/data/fable/vortex/v2_dev/p3/smoke_deep3",
+    "complete_report_present": false,
+    "completion_marker_present": false,
+    "worker_logs": {
+      "w3.log": 0,
+      "w6.log": 0,
+      "w5.log": 0,
+      "w2.log": 0,
+      "w1.log": 0,
+      "w7.log": 0,
+      "w4.log": 0,
+      "w0.log": 0
+    }
+  },
+  "elapsed_seconds": 15.70409950499743
+}

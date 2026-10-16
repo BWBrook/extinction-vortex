@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-10-17T00:53:19.046595+11:00",
+  "report_present": false,
+  "done_present": false,
+  "active_workers": [
+    {
+      "pid": 101767,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101768,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101769,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101770,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101771,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101772,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101773,
+      "elapsed_seconds": 431
+    },
+    {
+      "pid": 101774,
+      "elapsed_seconds": 431
+    }
+  ],
+  "nonempty_worker_logs": {}
+}
