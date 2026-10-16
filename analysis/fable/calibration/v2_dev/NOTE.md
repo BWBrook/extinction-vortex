@@ -818,3 +818,25 @@ source with all 46 patches and GNU bison. A first byacc build mis-parsed
 4. The afterany collector emails Barry. After any interruption, rerun with
    `resume`. An unresolved key or failed state query needs the
    evidence-backed journal entry that the script names.
+
+### Dispatch (16 October 2026, about 16:35 AEDT)
+
+Astra cleared the dispatch in 1735 (`notes/astra_s1a_final_shell_review_20261016.md`).
+This used one Jumpbox window.
+- **Tar:** `s1a_stage_final.tar` was pushed from deep-server. Its SHA-256
+  `a0f2270f…` verified on kunanyi, it was extracted into run1, and
+  `sha256sum -c` passed on all 8 files.
+- **Submit:** `s1a_submit.sh /u/bwbrook/vortex/run1 p2_settings_s1a.json main 45 8
+  02:45:00 1000 0.445`.
+- **Preflight passed** on the kunanyi login node (Python 3.11.7, NumPy
+  1.26.4, SciPy 1.11.4) before any qsub: settings `6018ed2a…`, 991.445 CPU-h
+  bound, fixtures passed.
+- **Jobs:** 45 node jobs accepted, 820683–820728. The range has one extra
+  number, presumably another user's job; the journal holds 45 `accepted j`
+  entries.
+- **Collector:** `s1a_ee46c53a_c` = 820729, `afterany` on all 45, Mail_Users
+  barry.brook@utas.edu.au, Mail_Points ae.
+- **Journal:** 46 requests and 46 acceptances, nothing uncertain.
+- **State at submission:** 2 node jobs running, 43 queued, collector held.
+- **Expected:** each job finishes about 2.1–2.3 h after it starts; queue waits
+  vary. The pilot stops at its no-fit report.
