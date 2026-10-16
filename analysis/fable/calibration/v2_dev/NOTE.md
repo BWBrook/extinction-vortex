@@ -894,7 +894,7 @@ s00247, s01080 and c00021, with a cap of 1.5 CPU-h, a planner target of
   stage tar `7c47634b…` (10 files). `p3_metric.json` and `p3_settings.json`
   stay on deep-server under `/data/fable/vortex/v2_dev/p3/`.
 
-**Kunanyi smoke dispatched** (16 October, about 21:31 AEDT).
+**Kunanyi smoke dispatched** (16 October, between 21:29 and 21:48 AEDT; PBS qtime to be read).
 - **Stage:** `s1b_stage.tar` (`7c47634b…`) verified on kunanyi; `sha256sum -c`
   passed on all 10 files; `s1b/pilot` linked to `../s1a/main`.
 - **Preflight passed** on the login node (Python 3.11.7): bound 24.0 of 40
