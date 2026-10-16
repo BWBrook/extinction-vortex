@@ -904,3 +904,39 @@ s00247, s01080 and c00021, with a cap of 1.5 CPU-h, a planner target of
   on the array, emails Barry).
 - **Quota:** the probe printed nothing (`quota`, `lfs quota` and `df` gave no
   output). Check another way next window.
+
+**Kunanyi smoke result** (array 820931[] queued and started 16 October
+21:48:44; subjobs on n011 and n008 ran 17 min 31 s and 17 min 21 s, exit 0;
+collector 820932 exit 0).
+- **Collection** (`p3/smoke_kunanyi_collect_W1.json`): `collection_ok`,
+  4 COMPLETE and 2 CAPPED, 7.1 CPU-h, empty queue and claims, no worker
+  errors.
+- **Archive:** `W1.tar.gz` (`ea54e766…`), pulled to deep-server with the hash
+  verified.
+- **Against deep-server** (`p3/smoke_cross_machine.json`):
+  - all six settings agree on status, range count, prefix end batch and
+    prefix hits;
+  - three of four libraries are byte-identical;
+  - the fourth, s00247, differs in **1 of 2,000 records**: same
+    (batch, proposal), path and boundary flag, but θ's `f` is
+    0.014690871541791694 on kunanyi against …693 on deep-server. That is
+    1 ulp (relative 1.2 × 10⁻¹⁶).
+- **Reading:**
+  - every sampling decision (acceptance, selection, ball membership) agreed;
+  - the stored θ floats are reproducible only per CPU dispatch path;
+  - deep-server is a Broadwell Xeon E5-2683 v4 (AVX2; NumPy has no AVX-512
+    active), and the kunanyi nodes presumably use NumPy's AVX-512 `exp`
+    paths;
+  - so "bit-identical across machines" (the Stage 1a smoke, 38 hits) held
+    for that run but is not a guarantee.
+  - **The pass condition is met at decision level and missed at byte level**
+    for one record.
+- **Options, for Astra's check:**
+  - (a) Document that libraries are reproducible to identities, paths and
+    decisions, with θ to within 1 ulp across CPU types.
+  - (b) Pin NumPy's dispatch (`NPY_DISABLE_CPU_FEATURES` for the AVX-512
+    family) in `env.sh`, so kunanyi matches deep-server bit for bit. This
+    would need one more kunanyi check.
+- **Storage:** `/u/bwbrook` is on a 5.6 PB NFS export, 53% used with
+  2.7 PB free. `quota` errored on an unrelated mount, and `du` timed out. A
+  campaign of about 14 GB is not a storage concern.

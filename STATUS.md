@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 21:28 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 22:22 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1328,8 +1328,14 @@ board 1755; exposure E56).
          and 4.2.46).
      - **Deep-server smoke:** 4 COMPLETE and 2 CAPPED. The libraries are
        byte-identical to independent serial recomputations.
-     - **Next:** the kunanyi smoke on the same subset (one Jumpbox window),
-       then Astra's check, then W1.
+     - **Kunanyi smoke:** `collection_ok`; 4 COMPLETE and 2 CAPPED; same
+       statuses, prefixes and hits as deep-server.
+       - 3 of 4 libraries are byte-identical; the fourth differs by 1 ulp in
+         one stored θ (1 of 8,000 records), with identities, paths and
+         decisions identical.
+       - Options for the cross-machine reproducibility claim are in the NOTE.
+     - **Next:** Astra checks the package (board 1768 and this result), then
+       W1.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
