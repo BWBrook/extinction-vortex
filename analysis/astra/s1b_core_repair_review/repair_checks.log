@@ -1,0 +1,15 @@
+{
+  "all_assertions_passed": true,
+  "cases": [
+    "orphan_repaired_once_without_duplicating_claim",
+    "old_live_lock_and_foreign_unlock",
+    "dead_owner_reclaim_race",
+    "short_complete_ranges_rejected",
+    "malformed_discarded_shard_rejected",
+    "outside_range_identity_rejected",
+    "negative_discarded_cpu_rejected",
+    "valid_early_hit_stop_and_cancelled_later_shard"
+  ],
+  "remaining_blocker": "dead_owner_reclaim_race"
+}
+elapsed_s=0.84 max_rss_kib=41120

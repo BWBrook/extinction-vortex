@@ -1,0 +1,260 @@
+{
+  "scope": "Finite replay of the earlier Stage 1b planner/collector defects and lock races.\n\nActual p3 module plus unmodified AST-extracted p2 storage/runner functions;\nevery one_batch call is synthetic. No proposals or population paths are drawn.\n",
+  "source_sha256": {
+    "p2": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p3": "2708cb1134b201e9a18d36706c46cdf6ca2949d71ff9eff1ceca6804e7d1df95"
+  },
+  "p2_functions_loaded_verbatim_from_ast": [
+    "sha",
+    "atomic_json",
+    "journal_prefix",
+    "replace_bytes",
+    "run_setting"
+  ],
+  "cases": {
+    "orphan_repaired_once_without_duplicating_claim": {
+      "before": {
+        "ranges": [
+          [
+            0,
+            5
+          ]
+        ],
+        "queued": 0
+      },
+      "queue_after_two_retries": [
+        "W1_0000000_s00007_000000000_000000005"
+      ],
+      "claimed": "W1_0000000_s00007_000000000_000000005",
+      "queue_after_replanning_live_claim": [],
+      "claims_after_replanning": [
+        "W1_0000000_s00007_000000000_000000005@audit-worker"
+      ]
+    },
+    "old_live_lock_and_foreign_unlock": {
+      "aged_live_owner_preserved": true,
+      "foreign_unlock_refused": true
+    },
+    "dead_owner_reclaim_race": {
+      "events": [
+        "A read dead generation",
+        "B read dead generation",
+        "A acquired without releasing",
+        "B acquired without releasing"
+      ],
+      "both_acquired_without_release": true,
+      "acquired_tokens": {
+        "A": "5e00371e03cefc95",
+        "B": "8b306c83ffdc6c65"
+      },
+      "current_owner": {
+        "owner": "live-B",
+        "host": "laptop",
+        "pid": 2459430,
+        "token": "8b306c83ffdc6c65"
+      },
+      "A_unlock": "/tmp/s1b-core-repair-2dj10xkj/dead_lock_race/run/sets/s00007/lock: lock is not owned by this holder",
+      "broken_generations": [
+        {
+          "owner": "dead-owner",
+          "host": "laptop",
+          "pid": 2147483647,
+          "token": "dead-generation"
+        },
+        {
+          "owner": "live-A",
+          "host": "laptop",
+          "pid": 2459430,
+          "token": "5e00371e03cefc95"
+        }
+      ]
+    },
+    "short_complete_ranges_rejected": {
+      "exit": "collection failed: s00007: ValueError: shard 0: complete by budget without covering its range",
+      "collection_ok": false,
+      "wave": "W1",
+      "binding": {
+        "settings_sha256": "f4ef975aa5c4e31f45d0c0ca3b1e16072f40a9819dfe96cfa7c15fb76dfc565e",
+        "metric_sha256": "synthetic-metric",
+        "runner_sha256": "synthetic-runner"
+      },
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "n_errors": 1,
+      "errors": [
+        "s00007: ValueError: shard 0: complete by budget without covering its range"
+      ],
+      "useful_cpu_h": 0,
+      "discarded_cpu_h": 0,
+      "incomplete": [],
+      "queue_left": 0,
+      "claims_left": 0,
+      "rows": [
+        {
+          "dir": "s00007",
+          "index": 7,
+          "pop": "synthetic",
+          "outer": "toy/0",
+          "n": 30,
+          "library": "primary",
+          "status": "invalid"
+        }
+      ]
+    },
+    "malformed_discarded_shard_rejected": {
+      "exit": "collection failed: s00007: ValueError: shard 1: bound to other inputs",
+      "collection_ok": false,
+      "wave": "W1",
+      "binding": {
+        "settings_sha256": "f4ef975aa5c4e31f45d0c0ca3b1e16072f40a9819dfe96cfa7c15fb76dfc565e",
+        "metric_sha256": "synthetic-metric",
+        "runner_sha256": "synthetic-runner"
+      },
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "n_errors": 1,
+      "errors": [
+        "s00007: ValueError: shard 1: bound to other inputs"
+      ],
+      "useful_cpu_h": 0,
+      "discarded_cpu_h": 0,
+      "incomplete": [],
+      "queue_left": 0,
+      "claims_left": 0,
+      "rows": [
+        {
+          "dir": "s00007",
+          "index": 7,
+          "pop": "synthetic",
+          "outer": "toy/0",
+          "n": 30,
+          "library": "primary",
+          "status": "invalid"
+        }
+      ]
+    },
+    "outside_range_identity_rejected": {
+      "exit": "collection failed: s00007: ValueError: hit identity outside committed batches [0, 1)",
+      "collection_ok": false,
+      "wave": "W1",
+      "binding": {
+        "settings_sha256": "f4ef975aa5c4e31f45d0c0ca3b1e16072f40a9819dfe96cfa7c15fb76dfc565e",
+        "metric_sha256": "synthetic-metric",
+        "runner_sha256": "synthetic-runner"
+      },
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "n_errors": 1,
+      "errors": [
+        "s00007: ValueError: hit identity outside committed batches [0, 1)"
+      ],
+      "useful_cpu_h": 0,
+      "discarded_cpu_h": 0,
+      "incomplete": [],
+      "queue_left": 0,
+      "claims_left": 0,
+      "rows": [
+        {
+          "dir": "s00007",
+          "index": 7,
+          "pop": "synthetic",
+          "outer": "toy/0",
+          "n": 30,
+          "library": "primary",
+          "status": "invalid"
+        }
+      ]
+    },
+    "negative_discarded_cpu_rejected": {
+      "exit": "collection failed: s00007: ValueError: checkpoint fields of wrong type or domain",
+      "collection_ok": false,
+      "wave": "W1",
+      "binding": {
+        "settings_sha256": "f4ef975aa5c4e31f45d0c0ca3b1e16072f40a9819dfe96cfa7c15fb76dfc565e",
+        "metric_sha256": "synthetic-metric",
+        "runner_sha256": "synthetic-runner"
+      },
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "n_errors": 1,
+      "errors": [
+        "s00007: ValueError: checkpoint fields of wrong type or domain"
+      ],
+      "useful_cpu_h": 0,
+      "discarded_cpu_h": 0,
+      "incomplete": [],
+      "queue_left": 0,
+      "claims_left": 0,
+      "rows": [
+        {
+          "dir": "s00007",
+          "index": 7,
+          "pop": "synthetic",
+          "outer": "toy/0",
+          "n": 30,
+          "library": "primary",
+          "status": "invalid"
+        }
+      ]
+    },
+    "valid_early_hit_stop_and_cancelled_later_shard": {
+      "exit": 0,
+      "collection_ok": true,
+      "wave": "W1",
+      "binding": {
+        "settings_sha256": "f4ef975aa5c4e31f45d0c0ca3b1e16072f40a9819dfe96cfa7c15fb76dfc565e",
+        "metric_sha256": "synthetic-metric",
+        "runner_sha256": "synthetic-runner"
+      },
+      "status": {
+        "COMPLETE": 1,
+        "CAPPED": 0,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "n_errors": 0,
+      "errors": [],
+      "useful_cpu_h": 7.138888888893715e-09,
+      "discarded_cpu_h": 5.16666666667646e-09,
+      "incomplete": [],
+      "queue_left": 0,
+      "claims_left": 0,
+      "rows": [
+        {
+          "dir": "s00007",
+          "index": 7,
+          "pop": "synthetic",
+          "outer": "toy/0",
+          "n": 30,
+          "library": "primary",
+          "library_sha256": "dcf7b67d933ccc7dcb64ba87310191ebf406d43c7a01a80e560d717d306c4c46",
+          "kth_hit": 0,
+          "status": "COMPLETE",
+          "prefix_end_batch": 1,
+          "prefix_hits": 5,
+          "useful_cpu_h": 7.138888888893715e-09,
+          "discarded_cpu_h": 5.16666666667646e-09,
+          "ranges": 2
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-10-17T00:36:08.200242+11:00",
+  "all_assertions_passed": true
+}

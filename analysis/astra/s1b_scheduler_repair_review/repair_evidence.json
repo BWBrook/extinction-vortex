@@ -1,0 +1,714 @@
+{
+  "scope": "Tiny scheduler/ledger review; real shell and extracted real reserve/preflight.\n\nNo PBS, SSH, populations or fits. Source/runtime binding and sampler self-tests\nare stubbed here; arithmetic, ledger parsing/writing and submit orchestration\nare the reviewed implementation. Scientific validation is outside this check.\n",
+  "source_commit": "d801012d2859a69ef076bfa529b4bfba1fbd658a",
+  "source_sha256": {
+    "analysis/fable/calibration/kunanyi/s1b_submit.sh": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "0e6081167589eed0b8cee9988f8fddfa2a61dff7bb5741186cb118a96d3c88ad",
+    "analysis/fable/calibration/kunanyi/s1b_submit_fixture.py": "c005faf548734ca69fc9d5c21d2c65ebb5865f8e1b019b63ad6b4b6f5c7e6978",
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "2708cb1134b201e9a18d36706c46cdf6ca2949d71ff9eff1ceca6804e7d1df95"
+  },
+  "syntax": {
+    "s1b_submit.sh": 0,
+    "s1b_node.pbs": 0,
+    "s1b_collect.pbs": 0
+  },
+  "supplied_fixture_bash52": {
+    "rc": 0,
+    "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
+    "bash_version": "5.2.21(1)-release",
+    "submit_sha256": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
+    "checks": {
+      "normal_then_duplicate_then_resume": true,
+      "array_rejected_held_until_operator_rejects": true,
+      "array_reply_lost_reconciled_at_once": true,
+      "array_reply_lost_history_expired_no_replacement": true,
+      "collector_query_fails_then_resume": true,
+      "array_finished_before_collector": true,
+      "preflight_refused_before_any_qsub": true,
+      "campaign_ledger_lock_refuses_concurrent_submission": true
+    },
+    "all_ok": true,
+    "scenarios": {
+      "normal_then_duplicate_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          },
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: already dispatched (journal exists); use resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_rejected_held_until_operator_rejects": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: qsub for s1b_d9c4c1e6_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_d9c4c1e6_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_d9c4c1e6_a ID manual: <evidence>' or 'rejected a s1b_d9c4c1e6_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_reconciled_at_once": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_history_expired_no_replacement": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: qsub for s1b_f10908fe_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_f10908fe_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_f10908fe_a ID manual: <evidence>' or 'rejected a s1b_f10908fe_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "collector_query_fails_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_finished_before_collector": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 2,
+            "stderr": [
+              "s1b_submit: qsub for s1b_e5a8c2e5_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "preflight_refused": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: preflight refused or failed; see <tmp>/vbase/s1b/run/submit_W1/logs/preflight.log"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": true
+      },
+      "campaign_ledger_lock_held": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: another Stage 1b submission holds <tmp>/vbase/s1b/.ledger.lock (remove it only if none is running)"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": false
+      }
+    }
+  },
+  "supplied_fixture_bash42": {
+    "rc": 0,
+    "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
+    "bash_version": "4.2.46(3)-release",
+    "submit_sha256": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
+    "checks": {
+      "normal_then_duplicate_then_resume": true,
+      "array_rejected_held_until_operator_rejects": true,
+      "array_reply_lost_reconciled_at_once": true,
+      "array_reply_lost_history_expired_no_replacement": true,
+      "collector_query_fails_then_resume": true,
+      "array_finished_before_collector": true,
+      "preflight_refused_before_any_qsub": true,
+      "campaign_ledger_lock_refuses_concurrent_submission": true
+    },
+    "all_ok": true,
+    "scenarios": {
+      "normal_then_duplicate_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          },
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: already dispatched (journal exists); use resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_rejected_held_until_operator_rejects": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: qsub for s1b_abb7cc76_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_abb7cc76_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_abb7cc76_a ID manual: <evidence>' or 'rejected a s1b_abb7cc76_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_reconciled_at_once": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_history_expired_no_replacement": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: qsub for s1b_9fe82181_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_9fe82181_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_9fe82181_a ID manual: <evidence>' or 'rejected a s1b_9fe82181_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "collector_query_fails_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "stderr": [
+              "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_finished_before_collector": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 2,
+            "stderr": [
+              "s1b_submit: qsub for s1b_4cccc2f1_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "preflight_refused": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: preflight refused or failed; see <tmp>/vbase/s1b/run/submit_W1/logs/preflight.log"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": true
+      },
+      "campaign_ledger_lock_held": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "stderr": [
+              "s1b_submit: another Stage 1b submission holds <tmp>/vbase/s1b/.ledger.lock (remove it only if none is running)"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": false
+      }
+    }
+  },
+  "wave_isolation": {
+    "claimed": "W2_0000001_s00007_000000000_000000005",
+    "stale_requeued": 1,
+    "queue": [
+      "W1_0000001_s00007_000000000_000000005",
+      "W2_0000001_s00007_000000005_000000010"
+    ],
+    "claims": [
+      "W1_0000001_s00007_000000005_000000010@dead[0].fixture.0",
+      "W2_0000001_s00007_000000000_000000005@W2[0].fixture.0"
+    ],
+    "worker_invocation_passes_wave": true
+  },
+  "fresh_directory_now_refused": {
+    "runs": [
+      {
+        "step": {},
+        "rc": 0,
+        "stderr": "",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_122a713f_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_122a713f_a\t199688.000\t2026-10-17T00:33:31+1100"
+        ]
+      },
+      {
+        "step": {
+          "outdir": "run_retry"
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: preflight refused or failed; see <tmp>/vbase/s1b/run_retry/submit_W1/logs/preflight.log",
+        "preflight_log": "reservation 199688.0 CPU-h would exceed a ceiling: wave W1 199688.0/200000.0, campaign 199688.0/1200000.0",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_122a713f_a\t199688.000\t2026-10-17T00:33:31+1100"
+        ]
+      }
+    ],
+    "arrays_created": 1,
+    "collectors_created": 1,
+    "actual_accepted_cpu_h": 199688
+  },
+  "prejournal_changed_shape": {
+    "runs": [
+      {
+        "step": {
+          "jobs": 1,
+          "env": {
+            "FIX_SEED_RC": "7"
+          }
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: seed failed; see <tmp>/vbase/s1b/run/submit_W1/logs/seed.log",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_c6d97b98_a\", \"reservation_cpu_h\": 392.0, \"recorded\": true, \"wave_reserved\": 392.0, \"campaign_reserved\": 392.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_c6d97b98_a\t392.000\t2026-10-17T00:33:32+1100"
+        ]
+      },
+      {
+        "step": {
+          "jobs": 521
+        },
+        "rc": 0,
+        "stderr": "",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_c6d97b98_a\", \"reservation_cpu_h\": 200072.0, \"recorded\": false, \"wave_reserved\": 392.0, \"campaign_reserved\": 392.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_c6d97b98_a\t392.000\t2026-10-17T00:33:32+1100"
+        ]
+      }
+    ],
+    "arrays_created": 1,
+    "collectors_created": 1,
+    "actual_accepted_cpu_h": 200072
+  },
+  "release_then_same_name_retry": {
+    "runs": [
+      {
+        "step": {
+          "env": {
+            "FIX_FAIL_AT": "1",
+            "FIX_FAIL_MODE": "reject"
+          }
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: qsub for s1b_42c14712_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_42c14712_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_42c14712_a\t199688.000\t2026-10-17T00:33:32+1100"
+        ]
+      },
+      {
+        "step": {
+          "release_and_reject": true,
+          "mode": "resume"
+        },
+        "rc": 0,
+        "stderr": "",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_42c14712_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_42c14712_a\t199688.000\t2026-10-17T00:33:32+1100",
+          "release\ts1b_42c14712_a\tmanual: stub accounting verifies no accepted job",
+          "reserve\ts1b\tW1\ts1b_42c14712_a\t199688.000\t2026-10-17T00:33:33+1100"
+        ]
+      },
+      {
+        "step": {
+          "outdir": "run_retry"
+        },
+        "rc": 0,
+        "stderr": "",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_1c064740_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_42c14712_a\t199688.000\t2026-10-17T00:33:32+1100",
+          "release\ts1b_42c14712_a\tmanual: stub accounting verifies no accepted job",
+          "reserve\ts1b\tW1\ts1b_42c14712_a\t199688.000\t2026-10-17T00:33:33+1100",
+          "reserve\ts1b\tW1\ts1b_1c064740_a\t199688.000\t2026-10-17T00:33:33+1100"
+        ]
+      }
+    ],
+    "arrays_created": 2,
+    "collectors_created": 2,
+    "actual_accepted_cpu_h": 399376
+  },
+  "seed_failure_same_shape_idempotent": {
+    "runs": [
+      {
+        "step": {
+          "env": {
+            "FIX_SEED_RC": "7"
+          }
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: seed failed; see <tmp>/vbase/s1b/run/submit_W1/logs/seed.log",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_ad216b21_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_ad216b21_a\t199688.000\t2026-10-17T00:33:33+1100"
+        ]
+      },
+      {
+        "step": {},
+        "rc": 0,
+        "stderr": "",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_ad216b21_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": false, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_ad216b21_a\t199688.000\t2026-10-17T00:33:33+1100"
+        ]
+      }
+    ],
+    "arrays_created": 1,
+    "collectors_created": 1,
+    "actual_accepted_cpu_h": 199688
+  },
+  "ambiguous_history_expired_still_reserved": {
+    "runs": [
+      {
+        "step": {
+          "env": {
+            "FIX_FAIL_AT": "1",
+            "FIX_FAIL_MODE": "ambiguous_expired"
+          }
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: qsub for s1b_6792fc8a_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_6792fc8a_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": true, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_6792fc8a_a\t199688.000\t2026-10-17T00:33:34+1100"
+        ]
+      },
+      {
+        "step": {
+          "mode": "resume"
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: unresolved earlier request for s1b_6792fc8a_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_6792fc8a_a ID manual: <evidence>' or 'rejected a s1b_6792fc8a_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume",
+        "preflight_log": "{\"preflight\": \"passed\", \"settings_sha256\": \"binding-stub\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_6792fc8a_a\", \"reservation_cpu_h\": 199688.0, \"recorded\": false, \"wave_reserved\": 199688.0, \"campaign_reserved\": 199688.0, \"ceilings\": {\"W1\": 200000.0, \"W2\": 1000000.0, \"campaign\": 1200000.0}}",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_6792fc8a_a\t199688.000\t2026-10-17T00:33:34+1100"
+        ]
+      },
+      {
+        "step": {
+          "outdir": "run_retry"
+        },
+        "rc": 1,
+        "stderr": "s1b_submit: preflight refused or failed; see <tmp>/vbase/s1b/run_retry/submit_W1/logs/preflight.log",
+        "preflight_log": "reservation 199688.0 CPU-h would exceed a ceiling: wave W1 199688.0/200000.0, campaign 199688.0/1200000.0",
+        "reservations_after": [
+          "reserve\ts1b\tW1\ts1b_6792fc8a_a\t199688.000\t2026-10-17T00:33:34+1100"
+        ]
+      }
+    ],
+    "arrays_created": 1,
+    "collectors_created": 0,
+    "actual_accepted_cpu_h": 199680
+  }
+}

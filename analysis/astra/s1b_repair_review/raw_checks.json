@@ -1,0 +1,137 @@
+{
+  "scope": "Audit saved repaired Stage 1b inputs and smoke outputs; no new population paths.\n\nRun with system Python on deep-server from the staged source checkout.\nWrites only the dated Astra audit directory, including a copy for recollection.\n",
+  "timestamp": "2026-10-17T00:33:25.655448+11:00",
+  "host": "deep-server",
+  "hashes": {
+    "p3_settings.json": "0fc622392404ee982fd44de8a9ca78cb61accf419309c51842781e92014d9683",
+    "p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "s1b_stage.tar": "286854e7abc7231c0515086f565e81f624a16785e042250f8610b3457e84d0f9",
+    "W1.tar.gz": "2ed7cc4f75457c85dd666532a93b804c0ad1d26671bb7310089c69cf50359ff9"
+  },
+  "bound_sources": {
+    "runner_sha256": "2708cb1134b201e9a18d36706c46cdf6ca2949d71ff9eff1ceca6804e7d1df95",
+    "p2_sha256": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p1_sampler_sha256": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "imported_source_sha256": {
+      "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82"
+    }
+  },
+  "settings_rows_unchanged": 21816,
+  "old_settings_hash_reconstructed": true,
+  "metric_unchanged": true,
+  "waves": {
+    "W1": 14544,
+    "W2": 7272
+  },
+  "stage_member_hashes": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": "fa84b88a7d063a262a06504b3be8f849e802056a13e8dd14391b5c0a192debf1",
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": "0e6081167589eed0b8cee9988f8fddfa2a61dff7bb5741186cb118a96d3c88ad",
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": "2708cb1134b201e9a18d36706c46cdf6ca2949d71ff9eff1ceca6804e7d1df95",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p3_serial_check.py": "9309f860b9e81d3589ab999b0d109cb459c93a22195b5202ed553f53ef5ed0d9",
+    "s1b/p3_settings_smoke.json": "092758bc7497a258390e29b44a60760a8c9a980d8c8a6d340c2e59deae24d6ff",
+    "s1b/stage_sha256.txt": "7f901251156099c79f526990dbaf2f196b4ab9ddf9b3bd0b9b784e231bf1f658",
+    "s1b/p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "s1b/p3_settings.json": "0fc622392404ee982fd44de8a9ca78cb61accf419309c51842781e92014d9683"
+  },
+  "smoke_archive_member_hashes": {
+    "collect_W1.json": "785dc37eaab942d79f5eb739df114bf96ff931df27b1167ee4bb987b3bc81a58",
+    "collect_W1.log": "c1dd675c12e261b0e7660617926e94caf24ae147ec5636191bdf6aba2a9492b9",
+    "lib/s00073.jsonl": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+    "lib/s00142.jsonl": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+    "lib/s00247.jsonl": "b45a6f3c3eab51b5c77905efd4d11bf989f45eabbbd33252db447578e35116fc",
+    "lib/s00772.jsonl": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c"
+  },
+  "deep_status": {
+    "COMPLETE": 4,
+    "CAPPED": 2,
+    "FAILED": 0,
+    "incomplete": 0
+  },
+  "cluster_status": {
+    "COMPLETE": 4,
+    "CAPPED": 2,
+    "FAILED": 0,
+    "incomplete": 0
+  },
+  "library_comparisons": [
+    {
+      "dir": "s00073",
+      "records": 2000,
+      "byte_identical": true,
+      "differences": [],
+      "serial_receipt": {
+        "dir": "s00073",
+        "serial_sha256": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+        "sharded_sha256": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+        "identical": true
+      }
+    },
+    {
+      "dir": "s00142",
+      "records": 2000,
+      "byte_identical": true,
+      "differences": [],
+      "serial_receipt": {
+        "dir": "s00142",
+        "serial_sha256": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+        "sharded_sha256": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+        "identical": true
+      }
+    },
+    {
+      "dir": "s00247",
+      "records": 2000,
+      "byte_identical": false,
+      "differences": [
+        {
+          "record_index": 1882,
+          "batch": 250274,
+          "proposal": 16958,
+          "fields": {
+            "f": {
+              "deep": 0.014690871541791693,
+              "cluster": 0.014690871541791694,
+              "ulps": 1.0
+            }
+          }
+        }
+      ],
+      "serial_receipt": {
+        "dir": "s00247",
+        "serial_sha256": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+        "sharded_sha256": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+        "identical": true
+      }
+    },
+    {
+      "dir": "s00772",
+      "records": 2000,
+      "byte_identical": true,
+      "differences": [],
+      "serial_receipt": {
+        "dir": "s00772",
+        "serial_sha256": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c",
+        "sharded_sha256": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c",
+        "identical": true
+      }
+    }
+  ],
+  "recollect_deep_identical": true,
+  "collector_stdout": "collection_ok True W1 {'COMPLETE': 4, 'CAPPED': 2, 'FAILED': 0, 'incomplete': 0} useful 6.0 discarded 0.0 incomplete 0 errors 0\n",
+  "native_synthetic_fixtures_passed": true,
+  "ceilings": {
+    "W1": 200000.0,
+    "W2": 1000000.0,
+    "campaign": 1200000.0
+  },
+  "cap_rule": "per-setting proposal budget cap_batches x batch, equal to 2,000 CPU-h at the setting's bound rate (pilot realised throughput, or its cell median); a fixed stopping rule, not a measured-CPU ceiling",
+  "limitations": [
+    "Kunanyi archive has summary/log and four libraries, but no raw shards or scheduler receipts.",
+    "Comparison covers retained records, not all rejected proposals; CPU dispatch explanation unverified.",
+    "Previous metric and settings verification reused by exact hashes; no bank scan, export, new paths or fits."
+  ],
+  "elapsed_seconds": 15.464157076996344
+}
