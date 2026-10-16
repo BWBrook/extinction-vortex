@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 13:54 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 14:11 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -837,7 +837,37 @@ text changed), `s1a_submit.sh` `8ca2dd97…`, stage tar `ad260115…`.
 - **Next response: Astra.** Check these branches. Barry's Jumpbox window is
   needed only after that check.
 
+**Astra second repair review, 16 October**
+([integrated review](notes/astra_s1a_second_repair_review_20261016.md);
+board 1719; exposure E52; reviewed `3fa81cb`).
+- **Collector, reporting and dependency repairs accepted.** All 34 canonical
+  collector checks, 24 targeted assertions and 15 supplied submission scenarios
+  pass. Unknown/error job states stop before collection; all ten supported live
+  states retain their dependencies. Two minor malformed-input diagnostic gaps
+  are recorded as follow-ups, not dispatch blockers.
+- All 1,080 setting objects, sampling/recovery functions and input bytes are
+  unchanged. All eight staged files match. Saved dry3 was recollected with the
+  new validator, not rerun under the new runner; its original execution bindings,
+  counters and hit bytes remain intact. The bound preflight passes at 991.445
+  CPU-hours and refuses the three negative cases.
+- **One submission branch still holds dispatch.** A failed/no-ID qsub and an
+  empty successful confirmation query are labelled rejected, even if an accepted
+  job completed and left history while the reply was delayed. The new fixture
+  resumes to 46 node jobs for 45 names, one collector and 1,013.445 CPU-hours.
+  This is a stub lifecycle, not observed Kunanyi behaviour.
+- **Next response: Fable.** Delete the automatic absent-after-failure rejection
+  and retain uncertain/stop until positive reconciliation or an evidence-backed
+  operator receipt. Update the focused fixtures and stage checksum. Astra then
+  checks that finite delta before the Jumpbox window. No new Barry decision,
+  population simulation or full smoke replay is needed for this shell-only fix.
+
 ## Completed by Astra
+
+- 16 October, reviewed second repairs at `3fa81cb` with two bounded reviewers.
+  Closed the collector/dependency/reporting findings, verified package and saved
+  smoke bindings, and replayed the bounded preflight. Reproduced one remaining
+  unknown-acceptance branch and returned the exact correction in 1719. E52
+  records the small fixture exposure; no full pilot, bank scan/build or fit.
 
 - 16 October, reviewed repairs at `7f5be0b` with three bounded reviewers.
   Closed original recovery defects, verified unchanged package/smoke evidence
@@ -1169,9 +1199,11 @@ text changed), `s1a_submit.sh` `8ca2dd97…`, stage tar `ad260115…`.
 
 ## Pending
 
-1. Astra checks Fable's second Stage 1a repair round (runner `ae065826…`,
-   settings `6018ed2a…`, `s1a_submit.sh` `8ca2dd97…`, stage tar
-   `ad260115…`) per review 1708. Then, in one Jumpbox window, Fable pushes the
+1. Fable removes the single automatic-rejection branch in `s1a_submit.sh`
+   identified in review 1719, updates the focused fixture and refreshes the stage
+   checksum. Astra checks that finite delta. The accepted runner `ae065826…`
+   and settings `6018ed2a…` need no rebind for a shell-only repair. Then, in one
+   Jumpbox window, Fable pushes the
    tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.445`; the preflight
    runs first and the collector emails Barry. Preserve the 1,000 allocated
    CPU-hour ceiling and the unchanged scientific settings. The pilot stops at
@@ -1208,9 +1240,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1708**; exhausted `through`: **1708**.
-- Explicit acknowledgement: through actual message **1708** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1708`.
+- Last full retrieval `next_after`: **1719**; exhausted `through`: **1719**.
+- Explicit acknowledgement: through actual message **1719** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1719`.
 
 ## Decision Inbox checkpoint
 

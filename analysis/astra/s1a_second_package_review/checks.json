@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-10-16T14:05:05.824785+11:00",
+  "scope": "Review second-repair bindings and saved smoke; reuse the prior bounded preflight replay.\n\nRun locally from this checkout. Remote operations only read saved files and run\nthe existing small preflight fixtures on deep-server. No PBS command is used.\n",
+  "base": "2404fda",
+  "reviewed_commit": "3fa81cb58b262684722332c35d2d3e3b48fe408a",
+  "changed_settings_keys": [
+    "report_rule",
+    "runner_sha256"
+  ],
+  "settings_unchanged": 1080,
+  "unchanged_functions": [
+    "validate_E",
+    "factors",
+    "binom_factor",
+    "in_ball",
+    "one_batch",
+    "run_setting",
+    "journal_prefix",
+    "preflight"
+  ],
+  "metric_helper_bank_throughput_unchanged": true,
+  "all_eight_staged_files_match_checkout": true,
+  "archived_smoke_provenance_preserved": true,
+  "preflight_exit_codes": [
+    0,
+    1,
+    1,
+    1
+  ],
+  "allocated_cpu_hours_bound": 991.445,
+  "reused_reader_sha256": "0d430ade7f53233614e9ea44486ef5f551ec5d11a8bf85180e7896c86062d3cf",
+  "reused_preflight_driver_sha256": "21fa2194cac8fd0b20407f85f3fd7bf74164121dcf54a232e7d4a67efd050483"
+}

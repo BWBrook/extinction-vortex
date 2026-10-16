@@ -1,0 +1,15 @@
+Observed live on deep-server, 16 October 2026 at 14:03:27 (Hobart local time).
+Read-only SSH qualification before the tests:
+  hostname: deep-server
+  uptime: 6:58; 2 users; load average 0.04, 0.02, 0.00
+  memory: 125 GiB total; 123 GiB available; 0 swap used
+  /data: /dev/sdb, 13 TiB total; 8.5 TiB used; 4.1 TiB free; 68% used
+  /usr/bin/python3: 3.12.3 (GCC 13.3.0)
+  NumPy: 1.26.4
+  SciPy: 1.11.4
+  /data/fable/vortex/v2_dev/p2_stage1a.py SHA-256:
+  ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d
+
+Tests used one process with OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1,
+MKL_NUM_THREADS=1 and FLEXIBLAS_NUM_THREADS=1.
+No machine configuration or scheduler state changed.

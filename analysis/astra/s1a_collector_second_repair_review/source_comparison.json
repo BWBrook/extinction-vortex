@@ -1,0 +1,15 @@
+{
+  "reviewed_commit": "3fa81cb58b262684722332c35d2d3e3b48fe408a",
+  "timestamp": "2026-10-16T14:06:01.549063+11:00",
+  "runner_sha256": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d",
+  "changed_functions": [
+    "test",
+    "check_setting",
+    "collect"
+  ],
+  "canonical_log_tail": [
+    " \"all_ok\": true",
+    "}",
+    "elapsed_s=1.47 maxrss_kib=87428"
+  ]
+}

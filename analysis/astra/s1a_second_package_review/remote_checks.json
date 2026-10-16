@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-10-16T14:05:03.316399+11:00",
+  "scope": "Read-only repair-package audit on deep-server; no sampler, bank load or scheduler call.\n\nRun through stdin with Python 3. Reads the staged tar in place and compares the\nfourth saved smoke with the original archived run. Earlier metric/input findings\nare reused only after checking unchanged byte hashes in the local companion.\n",
+  "python": "3.12.3",
+  "actual_hashes": {
+    "runner": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d",
+    "helper": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "metric": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+    "settings": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+    "throughput": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+    "smoke_settings": "71354631680ff0cbdc9f7b2e2a48635efe4d9a88fae30afcebb0e38235657535"
+  },
+  "imported_source_hashes": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82"
+  },
+  "stage_tar_sha256": "ad260115a5dd0a9ad5fdb96639801942c6dc3debadbf643b90ea0ac404508897",
+  "stage_tar_bytes": 522240,
+  "stage_listed_hashes": {
+    "s1a/p2_metric.json": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+    "s1a/p2_settings_s1a.json": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+    "s1a/throughput_kunanyi.json": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+    "src/analysis/fable/calibration/kunanyi/s1a_collect.pbs": "db6788c8ddcbbcc55e5c8ed9b7ff6dff6578614f530e760e3724dafbf26aca49",
+    "src/analysis/fable/calibration/kunanyi/s1a_node.pbs": "2e1f3db472cf1144534b539a2943ed6c25f77cf33de7eb9fdd3f23f581346ee8",
+    "src/analysis/fable/calibration/kunanyi/s1a_submit.sh": "8ca2dd97250b294c884c209fdbac2bbc2419503e51a965de303e1cdff8f85a0d",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d"
+  },
+  "stage_manifest_sha256": "9c10543b07e124436134173f68d55624d970d5c40745ed594970593145b4bc87",
+  "stage_manifest_matches_all_eight_files": true,
+  "dry3_collect_sha256": "8bfa0977c876f4446f92282b66001e309a31a6992fe9e37d2ca0222907c808f5",
+  "smoke_execution_runner_sha256": "793e7a423dc5ad7356f6b871001e1b62b806ad1b0180f5e80d43748cf614966e",
+  "current_collection_provenance_complete": true,
+  "dry3_settings_and_checkpoints_bound": 1080,
+  "dry3_workers_bound": 28,
+  "dry3_matches_original_counters_and_journal_bytes": 1080,
+  "dry3_journal_bytes": 11621,
+  "dry3_totals": {
+    "proposals": 108000000,
+    "poisson_accept": 46903352,
+    "theta_accept": 37731547,
+    "paths": 37731547,
+    "selected_SA": 407320,
+    "overflow": 253296,
+    "hits": 38,
+    "boundary": 2,
+    "hits_lo": 36,
+    "hits_hi": 38,
+    "rounding_excess": 0,
+    "batches_done": 5400
+  },
+  "elapsed_seconds": 0.2469833489994926
+}

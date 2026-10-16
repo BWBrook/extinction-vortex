@@ -1,0 +1,76 @@
+{
+  "scope": "Focused second-repair collector checks. Synthetic batches only; no population simulation.",
+  "timestamp": "2026-10-16T14:05:27.135381+11:00",
+  "runner_sha256": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d",
+  "required_checks": {
+    "reject_negative_fields": true,
+    "reject_string_batches": true,
+    "reject_boolean_counter": true,
+    "reject_negative_wall": true,
+    "reject_nonfinite_cpu": true,
+    "reject_invalid_digest": true,
+    "reject_unknown_status": true,
+    "reject_unknown_stop": true,
+    "reject_invalid_failure": true,
+    "reject_wrong_index": true,
+    "reject_missing_provenance": true,
+    "reject_invalid_runtime": true,
+    "reject_empty_host": true,
+    "reject_negative_rss": true,
+    "reject_nonfinite_rss": true,
+    "missing_workers_separate": true,
+    "per_row_exception_isolated": true,
+    "sensitivity_running": true,
+    "sensitivity_failed": true,
+    "sensitivity_censored": true,
+    "formal_valid": true,
+    "formal_hit_stop": true,
+    "all_old_summaries_replaced": true,
+    "report_rule_qualified": true
+  },
+  "required_checks_all_pass": true,
+  "limited_additional_observations": {
+    "wrong_index": {
+      "collection_ok": false,
+      "run_complete": false,
+      "row_ids": [
+        1,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "errors": [
+        "setting 0: checkpoint bound to other inputs"
+      ]
+    },
+    "running_past_budget": {
+      "collection_ok": true,
+      "run_complete": false,
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "running",
+        "complete"
+      ],
+      "errors": []
+    },
+    "failed_past_budget": {
+      "collection_ok": true,
+      "run_complete": false,
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "failed",
+        "complete"
+      ],
+      "errors": []
+    }
+  }
+}
+elapsed_s=21.16 maxrss_kib=84380

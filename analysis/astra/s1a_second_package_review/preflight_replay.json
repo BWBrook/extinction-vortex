@@ -1,0 +1,197 @@
+{
+  "timestamp": "2026-10-16T14:05:05.721673+11:00",
+  "scope": "Replay the four stated preflight commands on deep-server, without scheduler access.\n\nOnly the valid case reaches the runner's bounded unit fixtures. The other cases\nmust refuse before them. The runner owns temporary scratch and cleans it.\n",
+  "results": [
+    {
+      "case": "valid",
+      "command": [
+        "/usr/bin/python3",
+        "-I",
+        "/data/fable/vortex/v2_dev/p2_stage1a.py",
+        "preflight",
+        "/data/fable/vortex/v2_dev/p2/p2_settings_s1a.json",
+        "/data/fable/vortex/v2_dev/p2/p2_metric.json",
+        "45",
+        "8",
+        "9900",
+        "1000",
+        "0.445",
+        "1"
+      ],
+      "returncode": 0,
+      "receipt": {
+        "preflight": "passed",
+        "errors": [],
+        "settings_sha256": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+        "runtime": {
+          "python": "3.12.3",
+          "numpy": "1.26.4",
+          "scipy": "1.11.4"
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 9900,
+        "allocated_cpu_hours_bound": 991.445,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.202
+      },
+      "stderr": "",
+      "elapsed_seconds": 1.3676995069981785,
+      "fixtures": {
+        "rejects_{'n': 0, 'k': 1, 'r': 0}": true,
+        "rejects_{'n': 30, 'k': 31, 'r': 0}": true,
+        "rejects_{'n': 30, 'k': 3, 'r': -1}": true,
+        "rejects_{'n': 30, 'k': 3.5, 'r': 2}": true,
+        "rejects_{'n': 30, 'k': nan, 'r': 1}": true,
+        "rejects_{'n': -1, 'k': 0, 'r': 0}": true,
+        "radius_zero_exact_equality": true,
+        "resume_deterministic": true,
+        "checkpoint_cadence_invariant": true,
+        "hit_stop_at_batch_boundary": true,
+        "deadline_censors_without_exposure": true,
+        "fault_reference": {
+          "hits": 6,
+          "journal_lines": 6
+        },
+        "crash_at_state_write_1_recovers": true,
+        "crash_at_state_write_2_recovers": true,
+        "crash_at_state_write_3_recovers": true,
+        "crash_at_state_write_4_recovers": true,
+        "crash_during_recovery_recovers": true,
+        "rejects_short": true,
+        "rejects_missing": true,
+        "rejects_altered": true,
+        "rejects_orphan": true,
+        "rejects_terminal_tail": true,
+        "rejects_terminal_missing": true,
+        "rejects_corrupt_checkpoint": true,
+        "deadline_commits_completed_batch": true,
+        "hit_stop_keeps_crossing_batch": true,
+        "bound_failure_is_failed_state": true,
+        "collect_valid_with_missing_setting_and_worker": true,
+        "collect_rejects_malformed": true,
+        "collect_rejects_stale_worker": true,
+        "collect_rejects_invariant": true,
+        "collect_rejects_corrupt_with_old_summary": true,
+        "collect_rejects_negative_fields": true,
+        "collect_rejects_bad_provenance": true,
+        "collect_isolates_bad_type_row": true,
+        "all_ok": true
+      }
+    },
+    {
+      "case": "over_budget",
+      "command": [
+        "/usr/bin/python3",
+        "-I",
+        "/data/fable/vortex/v2_dev/p2_stage1a.py",
+        "preflight",
+        "/data/fable/vortex/v2_dev/p2/p2_settings_s1a.json",
+        "/data/fable/vortex/v2_dev/p2/p2_metric.json",
+        "45",
+        "8",
+        "14400",
+        "1000",
+        "0.445",
+        "1"
+      ],
+      "returncode": 1,
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "allocation 1441.44 CPU-h exceeds the 1000 CPU-h ceiling"
+        ],
+        "settings_sha256": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+        "runtime": {
+          "python": "3.12.3",
+          "numpy": "1.26.4",
+          "scipy": "1.11.4"
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 14400,
+        "allocated_cpu_hours_bound": 1441.445,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.462
+      },
+      "stderr": "preflight refused\n",
+      "elapsed_seconds": 0.3364863260030688
+    },
+    {
+      "case": "wrong_shape",
+      "command": [
+        "/usr/bin/python3",
+        "-I",
+        "/data/fable/vortex/v2_dev/p2_stage1a.py",
+        "preflight",
+        "/data/fable/vortex/v2_dev/p2/p2_settings_s1a.json",
+        "/data/fable/vortex/v2_dev/p2/p2_metric.json",
+        "44",
+        "8",
+        "9900",
+        "1000",
+        "0.445",
+        "1"
+      ],
+      "returncode": 1,
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "shape 44 x 8 does not match the 360 bound workers"
+        ],
+        "settings_sha256": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+        "runtime": {
+          "python": "3.12.3",
+          "numpy": "1.26.4",
+          "scipy": "1.11.4"
+        },
+        "jobs": 44,
+        "cpus_per_job": 8,
+        "wall_seconds": 9900,
+        "allocated_cpu_hours_bound": 969.445,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.202
+      },
+      "stderr": "preflight refused\n",
+      "elapsed_seconds": 0.26398995099953027
+    },
+    {
+      "case": "short_deadline",
+      "command": [
+        "/usr/bin/python3",
+        "-I",
+        "/data/fable/vortex/v2_dev/p2_stage1a.py",
+        "preflight",
+        "/data/fable/vortex/v2_dev/p2/p2_settings_s1a.json",
+        "/data/fable/vortex/v2_dev/p2/p2_metric.json",
+        "45",
+        "8",
+        "7800",
+        "1000",
+        "0.445",
+        "1"
+      ],
+      "returncode": 1,
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "expected worker load exceeds the worker deadline"
+        ],
+        "settings_sha256": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+        "runtime": {
+          "python": "3.12.3",
+          "numpy": "1.26.4",
+          "scipy": "1.11.4"
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 7800,
+        "allocated_cpu_hours_bound": 781.445,
+        "ceiling": 1000.0,
+        "deadline_margin": -0.031
+      },
+      "stderr": "preflight refused\n",
+      "elapsed_seconds": 0.27544850199774373
+    }
+  ]
+}

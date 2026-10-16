@@ -1,0 +1,1407 @@
+{
+  "scope": "Focused second-repair collector checks. Synthetic batches only; no population simulation.",
+  "timestamp": "2026-10-16T14:05:27.135381+11:00",
+  "runner_sha256": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d",
+  "cases": {
+    "valid": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.595899999997881e-05,
+        "wall_seconds": 0.00011157989501953125,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 4.398120833332362e-07
+      }
+    },
+    "negative_fields": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['overflow', 'rounding_excess', 'cpu_seconds']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['overflow', 'rounding_excess', 'cpu_seconds']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['overflow', 'rounding_excess', 'cpu_seconds']"
+        ]
+      }
+    },
+    "string_batches": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['batches_done']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['batches_done']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['batches_done']"
+        ]
+      }
+    },
+    "boolean_counter": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['overflow']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['overflow']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['overflow']"
+        ]
+      }
+    },
+    "negative_wall": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['wall_seconds']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['wall_seconds']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['wall_seconds']"
+        ]
+      }
+    },
+    "nonfinite_cpu": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['cpu_seconds']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['cpu_seconds']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['cpu_seconds']"
+        ]
+      }
+    },
+    "invalid_digest": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['journal_sha256']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['journal_sha256']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['journal_sha256']"
+        ]
+      }
+    },
+    "unknown_status": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['status']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['status']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['status']"
+        ]
+      }
+    },
+    "unknown_stop": {
+      "exit": "collection failed: setting 0: checkpoint fields of wrong type or domain ['stop']",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint fields of wrong type or domain ['stop']"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "recorded_status": "invalid",
+        "errors": [
+          "setting 0: checkpoint fields of wrong type or domain ['stop']"
+        ]
+      }
+    },
+    "invalid_failure": {
+      "exit": "collection failed: setting 0: failed state without a failure",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: failed state without a failure"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "invalid",
+        "cpu_seconds": 0.0001053859999999851,
+        "wall_seconds": 0.0001201629638671875,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "failure": 42,
+        "uncommitted_tail_bytes": 0,
+        "recorded_status": "failed",
+        "errors": [
+          "setting 0: failed state without a failure"
+        ]
+      }
+    },
+    "wrong_index": {
+      "exit": "collection failed: setting 0: checkpoint bound to other inputs",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: checkpoint bound to other inputs"
+      ],
+      "row_ids": [
+        1,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 1,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "invalid",
+        "cpu_seconds": 0.00010219999999994123,
+        "wall_seconds": 0.00011706352233886719,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "recorded_status": "complete",
+        "errors": [
+          "setting 0: checkpoint bound to other inputs"
+        ]
+      }
+    },
+    "running_past_budget": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 1,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "running",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 4,
+        "status": "running",
+        "cpu_seconds": 0.00010134799999994559,
+        "wall_seconds": 0.00011587142944335938,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "sensitivity_interval95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative",
+        "projected_cpu_hours_to_2000": 4.645116666664173e-07
+      }
+    },
+    "failed_past_budget": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 1,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "failed",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 4,
+        "status": "failed",
+        "cpu_seconds": 0.00010165100000014693,
+        "wall_seconds": 0.0001163482666015625,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "failure": "fixture failure",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "sensitivity_interval95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative",
+        "projected_cpu_hours_to_2000": 4.659004166673401e-07
+      }
+    },
+    "missing_workers": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "provenance_complete": false,
+      "workers_missing": [
+        0,
+        1
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.00010313800000005813,
+        "wall_seconds": 0.00011801719665527344,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 4.7271583333359973e-07
+      }
+    },
+    "missing_provenance": {
+      "exit": "collection failed: worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [
+        0
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [
+        "worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.00010126499999996152,
+        "wall_seconds": 0.0001163482666015625,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 4.6413124999982365e-07
+      }
+    },
+    "invalid_runtime": {
+      "exit": "collection failed: worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [
+        0
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [
+        "worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.00012780900000008977,
+        "wall_seconds": 0.0001430511474609375,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 5.857912500004114e-07
+      }
+    },
+    "empty_host": {
+      "exit": "collection failed: worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [
+        0
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [
+        "worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.0001013859999999811,
+        "wall_seconds": 0.00011610984802246094,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 4.6468583333324673e-07
+      }
+    },
+    "negative_rss": {
+      "exit": "collection failed: worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [
+        0
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [
+        "worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.00010156399999994292,
+        "wall_seconds": 0.00011587142944335938,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 4.6550166666640506e-07
+      }
+    },
+    "nonfinite_rss": {
+      "exit": "collection failed: worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [
+        0
+      ],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [
+        "worker0000.json: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 0.00012441899999993122,
+        "wall_seconds": 0.0001392364501953125,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson (ended at its proposal budget)",
+        "projected_cpu_hours_to_2000": 5.702537499996848e-07
+      }
+    },
+    "row_exception": {
+      "exit": "collection failed: setting 0: unexpected TypeError: injected per-row exception",
+      "collection_ok": false,
+      "run_complete": false,
+      "provenance_complete": false,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "errors": [
+        "setting 0: unexpected TypeError: injected per-row exception"
+      ],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "recorded_status": null,
+        "status": "invalid",
+        "errors": [
+          "setting 0: unexpected TypeError: injected per-row exception"
+        ]
+      }
+    },
+    "censored": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 1,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "censored",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 2,
+        "status": "censored",
+        "cpu_seconds": 6.851799999996189e-05,
+        "wall_seconds": 7.748603820800781e-05,
+        "journal_bytes": 652,
+        "journal_sha256": "4018ed7dc2fd2c8155245e5676f6a20b7105d7ab60652e1faddf80e976a547f3",
+        "proposals": 20,
+        "poisson_accept": 20,
+        "theta_accept": 20,
+        "paths": 20,
+        "selected_SA": 4,
+        "overflow": 0,
+        "hits": 4,
+        "boundary": 0,
+        "hits_lo": 4,
+        "hits_hi": 4,
+        "rounding_excess": 0,
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 2,
+        "suffix_proposals": 10,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "sensitivity_interval95_suffix": [
+          0.02521072632683336,
+          0.5560954623076415
+        ],
+        "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative",
+        "projected_cpu_hours_to_2000": 4.7106124999973797e-07
+      }
+    },
+    "failed": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 1,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "failed",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 2,
+        "status": "failed",
+        "cpu_seconds": 8.004799999994372e-05,
+        "wall_seconds": 8.988380432128906e-05,
+        "journal_bytes": 652,
+        "journal_sha256": "4018ed7dc2fd2c8155245e5676f6a20b7105d7ab60652e1faddf80e976a547f3",
+        "proposals": 20,
+        "poisson_accept": 20,
+        "theta_accept": 20,
+        "paths": 20,
+        "selected_SA": 4,
+        "overflow": 0,
+        "hits": 4,
+        "boundary": 0,
+        "hits_lo": 4,
+        "hits_hi": 4,
+        "rounding_excess": 0,
+        "failure": "fixture failure",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 2,
+        "suffix_proposals": 10,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "sensitivity_interval95_suffix": [
+          0.02521072632683336,
+          0.5560954623076415
+        ],
+        "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative",
+        "projected_cpu_hours_to_2000": 5.50329999999613e-07
+      }
+    },
+    "running": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 1,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "running",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 2,
+        "status": "running",
+        "cpu_seconds": 6.638800000002831e-05,
+        "wall_seconds": 7.62939453125e-05,
+        "journal_bytes": 652,
+        "journal_sha256": "4018ed7dc2fd2c8155245e5676f6a20b7105d7ab60652e1faddf80e976a547f3",
+        "proposals": 20,
+        "poisson_accept": 20,
+        "theta_accept": 20,
+        "paths": 20,
+        "selected_SA": 4,
+        "overflow": 0,
+        "hits": 4,
+        "boundary": 0,
+        "hits_lo": 4,
+        "hits_hi": 4,
+        "rounding_excess": 0,
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 2,
+        "suffix_proposals": 10,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "sensitivity_interval95_suffix": [
+          0.02521072632683336,
+          0.5560954623076415
+        ],
+        "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative",
+        "projected_cpu_hours_to_2000": 4.5641750000019465e-07
+      }
+    },
+    "hit_stop": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "provenance_complete": true,
+      "workers_missing": [],
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "errors": [],
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "complete",
+        "complete"
+      ],
+      "stale_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 2,
+        "status": "complete",
+        "cpu_seconds": 6.85829999997889e-05,
+        "wall_seconds": 7.82012939453125e-05,
+        "journal_bytes": 652,
+        "journal_sha256": "4018ed7dc2fd2c8155245e5676f6a20b7105d7ab60652e1faddf80e976a547f3",
+        "proposals": 20,
+        "poisson_accept": 20,
+        "theta_accept": 20,
+        "paths": 20,
+        "selected_SA": 4,
+        "overflow": 0,
+        "hits": 4,
+        "boundary": 0,
+        "hits_lo": 4,
+        "hits_hi": 4,
+        "rounding_excess": 0,
+        "stop": "hits",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 2,
+        "suffix_proposals": 10,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "suffix_proposals_to_cap": 2,
+        "observed_cpu_hours_to_crossing_batch": 1.9050833333274695e-08,
+        "ci95_suffix": [
+          0.01257911709342505,
+          0.975
+        ],
+        "ci_method": "exact negative binomial (stopped at the hit cap)"
+      }
+    }
+  },
+  "required_checks": {
+    "reject_negative_fields": true,
+    "reject_string_batches": true,
+    "reject_boolean_counter": true,
+    "reject_negative_wall": true,
+    "reject_nonfinite_cpu": true,
+    "reject_invalid_digest": true,
+    "reject_unknown_status": true,
+    "reject_unknown_stop": true,
+    "reject_invalid_failure": true,
+    "reject_wrong_index": true,
+    "reject_missing_provenance": true,
+    "reject_invalid_runtime": true,
+    "reject_empty_host": true,
+    "reject_negative_rss": true,
+    "reject_nonfinite_rss": true,
+    "missing_workers_separate": true,
+    "per_row_exception_isolated": true,
+    "sensitivity_running": true,
+    "sensitivity_failed": true,
+    "sensitivity_censored": true,
+    "formal_valid": true,
+    "formal_hit_stop": true,
+    "all_old_summaries_replaced": true,
+    "report_rule_qualified": true
+  },
+  "required_checks_all_pass": true,
+  "limited_additional_observations": {
+    "wrong_index": {
+      "collection_ok": false,
+      "run_complete": false,
+      "row_ids": [
+        1,
+        1
+      ],
+      "row_statuses": [
+        "invalid",
+        "complete"
+      ],
+      "errors": [
+        "setting 0: checkpoint bound to other inputs"
+      ]
+    },
+    "running_past_budget": {
+      "collection_ok": true,
+      "run_complete": false,
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "running",
+        "complete"
+      ],
+      "errors": []
+    },
+    "failed_past_budget": {
+      "collection_ok": true,
+      "run_complete": false,
+      "row_ids": [
+        0,
+        1
+      ],
+      "row_statuses": [
+        "failed",
+        "complete"
+      ],
+      "errors": []
+    }
+  }
+}
