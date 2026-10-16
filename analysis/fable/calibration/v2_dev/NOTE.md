@@ -1010,3 +1010,17 @@ covering both smokes), stage tar `286854e7…`.
   seed completed in **653 s**. It imported 720 pilot prefixes, marked 1
   setting COMPLETE, planned 14,543, and created 14,697 tickets; the run
   directory is 197 MB.
+
+**Kunanyi NFS qualification** (17 October, about 10:35; no submission).
+- **Stage:** tar `e18bea28…` (runner `00dd369f…` with the lazy listing,
+  settings `86545d6b…`, smoke subset `fa477b66…`) verified; `sha256sum -c`
+  passed.
+- **`/u` latency** (200 operations each): create, write and fsync 27.8 ms;
+  rename 2.2 ms; mkdir 1.3 ms.
+- **The p3 fixture suite on kunanyi with `TMPDIR` on `/u` (NFS) passes
+  22/22 in 24.8 s.** That includes the lock, reclaim-race, dead-owner and
+  dead-reclaimer cases.
+- **Seed profile** (600 W1 settings, deep-server): 96% of the time is fsync
+  (1,801 calls, 39 ms each on deep-server `/data`). A W1 seed needs about
+  16k fsyncs, so it should take about 10 min on kunanyi. It will run inside
+  the dispatch session with an extended expect timeout.
