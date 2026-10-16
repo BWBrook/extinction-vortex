@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 12:26:28 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 16 October 2026, 13:54 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -810,6 +810,33 @@ board 1708; exposure E50; reviewed `7f5be0b`).
   delta, targeted receipts and rebound package. Astra checks those branches
   before dispatch. No Barry decision or Jumpbox window is needed for repairs.
 
+**Fable, 16 October: second Stage 1a repair round** (reply to 1708;
+[NOTE](analysis/fable/calibration/v2_dev/NOTE.md), "Second repair round";
+exposure E51). Runner `ae065826…`, settings `6018ed2a…` (only the report-rule
+text changed), `s1a_submit.sh` `8ca2dd97…`, stage tar `ad260115…`.
+- **Unresolved submissions:** a key whose last journal entry is
+  request/uncertain is never resubmitted on an empty PBS answer. It needs
+  either PBS reconciliation or an operator's evidence-backed
+  accepted/rejected entry.
+  - A failed qsub is classified at once by a confirming query: reconciled,
+    rejected-if-absent, or uncertain.
+- **Collector dependencies:** jobs are omitted only when `qstat -x` reports
+  `job_state` F, or after an operator's terminal entry. A query failure or
+  unknown state stops before the collector qsub.
+- **Submit fixture:** 15 scenarios, all pass, including the expired-history
+  lost reply and one or all query failures. Every completed ledger has 45
+  jobs, 360 single-owner workers and ≤ 991.445 CPU-h.
+- **Collector:** type and domain checks before arithmetic; per-row isolation
+  with `invalid` rows; worker provenance validated and missing workers
+  listed (`provenance_complete`).
+- **Runner fixtures:** 34/34 pass. Correction: 1703's "35" should have been
+  31.
+- **Reporting:** interrupted rows carry labelled sensitivity intervals; no
+  coverage is claimed conditional on completed settings.
+- **Prior allocation:** 0.445.
+- **Next response: Astra.** Check these branches. Barry's Jumpbox window is
+  needed only after that check.
+
 ## Completed by Astra
 
 - 16 October, reviewed repairs at `7f5be0b` with three bounded reviewers.
@@ -1020,6 +1047,10 @@ board 1708; exposure E50; reviewed `7f5be0b`).
 
 ## Completed by Fable
 
+- 16 October, second Stage 1a repair round per 1708: unresolved submissions
+  held for evidence, positively classified collector dependencies, collector
+  type/domain/isolation/provenance checks, sensitivity labelling, prior
+  0.445; 15-scenario submit fixture and 34 runner fixtures. Exposure row E51.
 - 16 October, Stage 1a pre-dispatch repairs per 1698: journalled, resumable
   submission with fixture; atomic journal recovery; validating collector;
   bound preflight; report rule. Exposure row E49.
@@ -1138,14 +1169,14 @@ board 1708; exposure E50; reviewed `7f5be0b`).
 
 ## Pending
 
-1. Fable repairs the two remaining Stage 1a scheduler-state branches and
-   collector accounting/inventory per review 1708, labels interrupted-row
-   intervals as sensitivity results and returns the rebound package. Astra
-   checks that finite delta before dispatch. The package at `7f5be0b` remains
-   held; original checkpoint/recovery defects are closed. Preserve the
-   1,000 allocated CPU-hour ceiling and unchanged scientific settings. Barry's
-   Jumpbox window is needed after these checks pass. The pilot stops at its
-   no-fit report; full-library Stage 1b and fitted Stage 1c remain uncommissioned.
+1. Astra checks Fable's second Stage 1a repair round (runner `ae065826…`,
+   settings `6018ed2a…`, `s1a_submit.sh` `8ca2dd97…`, stage tar
+   `ad260115…`) per review 1708. Then, in one Jumpbox window, Fable pushes the
+   tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.445`; the preflight
+   runs first and the collector emails Barry. Preserve the 1,000 allocated
+   CPU-hour ceiling and the unchanged scientific settings. The pilot stops at
+   its no-fit report; full-library Stage 1b and fitted Stage 1c remain
+   uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1230,9 +1261,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1700 in full and acknowledged through **1700**. Fable's latest
-  posts: 1687 and the repair post replying to 1698.
-- Next retrieval: use `after=1700` on discussion 70.
+- Read through 1710 in full and acknowledged through **1710**. Fable's latest
+  posts: 1703/1704 and the second-round reply to 1708.
+- Next retrieval: use `after=1710` on discussion 70.
 
 ## Coordination note
 

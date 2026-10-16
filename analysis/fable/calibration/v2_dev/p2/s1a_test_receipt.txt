@@ -1,4 +1,4 @@
-# p2_stage1a.py test (deep-server, 2026-10-16T12:14:04+11:00)
+# p2_stage1a.py test (deep-server, 2026-10-16T13:53:16+11:00)
 {
  "rejects_{'n': 0, 'k': 1, 'r': 0}": true,
  "rejects_{'n': 30, 'k': 31, 'r': 0}": true,
@@ -30,10 +30,13 @@
  "deadline_commits_completed_batch": true,
  "hit_stop_keeps_crossing_batch": true,
  "bound_failure_is_failed_state": true,
- "collect_valid_with_missing_setting": true,
+ "collect_valid_with_missing_setting_and_worker": true,
  "collect_rejects_malformed": true,
  "collect_rejects_stale_worker": true,
  "collect_rejects_invariant": true,
  "collect_rejects_corrupt_with_old_summary": true,
+ "collect_rejects_negative_fields": true,
+ "collect_rejects_bad_provenance": true,
+ "collect_isolates_bad_type_row": true,
  "all_ok": true
 }

@@ -55,9 +55,11 @@ REPORT_RULE = ("Full-stream hits/proposals per setting is descriptive. Formal 95
                "proposal budget gets Clopper-Pearson on (suffix hits, suffix proposals); a setting ending at the hit "
                "stop gets the exact negative-binomial interval from n*, the suffix position of its (HIT_STOP - h0)-th "
                "suffix hit: [BetaInv(0.025; c, n*-c+1), BetaInv(0.975; c, n*-c)], c = HIT_STOP - h0. Together these "
-               "are exact for the curtailed design (outcomes ordered by n* when stopped, else by suffix hits). Censored, "
-               "failed or interrupted settings get Clopper-Pearson on their committed suffix, labelled conditional on "
-               "non-informative censoring. Time: observed CPU through the crossing batch for hit-stopped settings; "
+               "are exact for each setting's declared curtailed design (outcomes ordered by n* when stopped, else by "
+               "suffix hits); no coverage is claimed conditional on the subset of settings that completed. Censored, "
+               "failed or interrupted settings get no formal interval: a Clopper-Pearson sensitivity interval on their "
+               "committed suffix, labelled as assuming non-informative censoring. Time: observed CPU through the "
+               "crossing batch for hit-stopped settings; "
                "rate-based projections to 2,000 for the others, labelled projections; zero hits give an upper "
                "retention bound and an unresolved cost. All 1,080 rows and complete-nine-population availability are "
                "reported.")
@@ -505,10 +507,19 @@ def test(metric_path):
                 json.dump({"outers": {"synthetic|toy/0": {"recorded": [5, 4, 0]}}}, open(metp, "w"))
                 sts = [dict(fst, index=0, worker=0), dict(fst, index=1, worker=1)]
                 json.dump({"metric_sha256": sha(metp), "runner_sha256": "fixture", "batch": 10, "nworkers": 2, "hit_stop": 99,
-                           "prefix_batches": 1, "settings": sts}, open(setp, "w"))
+                           "prefix_batches": 1, "allowed_runtimes": [runtime()], "settings": sts}, open(setp, "w"))
                 bind = {"settings_sha256": sha(setp), "metric_sha256": sha(metp), "runner_sha256": "fixture"}
                 run_setting(dict(fb, _binding=bind), sts[0], {}, rd, float("inf"), {}, ckpt_secs=0.0)
-                atomic_json({"worker": 0, "nworkers": 2, "binding": bind}, os.path.join(rd, "worker0000.json"))
+                receipt = {"worker": 0, "nworkers": 2, "binding": bind, "runtime": runtime(), "host": "fixture", "peak_rss_gib": 0.01}
+                atomic_json(receipt, os.path.join(rd, "worker0000.json"))
+                if kind == "bad_type_then_valid":
+                    run_setting(dict(fb, _binding=bind), sts[1], {}, rd, float("inf"), {}, ckpt_secs=0.0)
+                    S = json.load(open(os.path.join(rd, "s0000.json"))); S["batches_done"] = "3"; atomic_json(S, os.path.join(rd, "s0000.json"))
+                elif kind == "negative_fields":
+                    S = json.load(open(os.path.join(rd, "s0000.json"))); S.update(overflow=-7, rounding_excess=-9, cpu_seconds=-1.0)
+                    atomic_json(S, os.path.join(rd, "s0000.json"))
+                elif kind == "bad_provenance":
+                    atomic_json(receipt | {"runtime": {"python": "0", "numpy": "0", "scipy": "0"}}, os.path.join(rd, "worker0000.json"))
                 hp = os.path.join(rd, "s0000_hits.jsonl")
                 if kind == "malformed":
                     blob = open(hp, "rb").read(); lines = blob.splitlines(True)
@@ -530,11 +541,15 @@ def test(metric_path):
                 return ok, json.load(open(out))
             with contextlib.redirect_stdout(io.StringIO()):
                 ok, c = collect_case("valid")
-                res["collect_valid_with_missing_setting"] = ok and c["collection_ok"] and not c["run_complete"] \
-                    and c["status"]["missing"] == 1 and len(c["rows"]) == 2
-                for kind in ("malformed", "stale_worker", "invariant", "corrupt_with_old_summary"):
+                res["collect_valid_with_missing_setting_and_worker"] = ok and c["collection_ok"] and not c["run_complete"] \
+                    and c["status"]["missing"] == 1 and len(c["rows"]) == 2 and c["workers_missing"] == [1] \
+                    and not c["provenance_complete"]
+                for kind in ("malformed", "stale_worker", "invariant", "corrupt_with_old_summary", "negative_fields", "bad_provenance"):
                     ok, c = collect_case(kind)
                     res[f"collect_rejects_{kind}"] = not ok and not c["collection_ok"] and "stale" not in c and bool(c["errors"])
+                ok, c = collect_case("bad_type_then_valid")
+                res["collect_isolates_bad_type_row"] = not ok and [r["status"] for r in c["rows"]] == ["invalid", "complete"] \
+                    and c["status"]["invalid"] == 1 and c["status"]["complete"] == 1
     finally:
         for d in tmp:
             shutil.rmtree(d, ignore_errors=True)
@@ -558,9 +573,20 @@ def check_setting(st, b, binding, metric, outdir):
         assert isinstance(S, dict)
     except (ValueError, AssertionError) as e:
         return row | {"status": "invalid"}, [f"setting {i}: unreadable checkpoint ({e})"]
-    need = ("binding", "index", "status", "batches_done", "cpu_seconds", "journal_bytes", "journal_sha256") + COUNTERS
+    need = ("binding", "index", "status", "batches_done", "cpu_seconds", "wall_seconds", "journal_bytes", "journal_sha256") + COUNTERS
     if any(k not in S for k in need):
         return row | {"status": "invalid"}, [f"setting {i}: checkpoint lacks {[k for k in need if k not in S]}"]
+    bad = [k for k in ("index", "batches_done", "journal_bytes") + COUNTERS if type(S[k]) is not int or S[k] < 0]
+    bad += [k for k in ("cpu_seconds", "wall_seconds") if type(S[k]) not in (int, float) or not math.isfinite(S[k]) or S[k] < 0]
+    if not (isinstance(S["journal_sha256"], str) and len(S["journal_sha256"]) == 64
+            and all(c in "0123456789abcdef" for c in S["journal_sha256"])):
+        bad.append("journal_sha256")
+    if S["status"] not in ("complete", "censored", "failed", "running"):
+        bad.append("status")
+    if "stop" in S and S["stop"] not in ("hits", "budget"):
+        bad.append("stop")
+    if bad:
+        return row | {"status": "invalid"}, [f"setting {i}: checkpoint fields of wrong type or domain {bad}"]
     row |= {k: S[k] for k in S if k != "binding"}
     e = lambda m: errs.append(f"setting {i}: {m}")
     if S["binding"] != binding or S["index"] != i:
@@ -579,10 +605,8 @@ def check_setting(st, b, binding, metric, outdir):
         if not (nb < st["batches"] and S["hits"] < cap):
             e("censored state outside its budget or past the hit stop")
     elif status == "failed":
-        if "failure" not in S:
+        if not isinstance(S.get("failure"), str):
             e("failed state without a failure")
-    elif status != "running":
-        e(f"unknown status {status!r}")
     raw = open(hp, "rb").read() if os.path.exists(hp) else b""
     n = S["journal_bytes"]; data = raw[:n]; row["uncommitted_tail_bytes"] = max(len(raw) - n, 0)
     if len(raw) < n:
@@ -629,10 +653,12 @@ def check_setting(st, b, binding, metric, outdir):
                                 float(beta_dist.ppf(0.975, c, nstar - c)) if nstar > c else 1.0],
                 "ci_method": "exact negative binomial (stopped at the hit cap)"}
     elif sn:
-        row |= {"ci95_suffix": [float(beta_dist.ppf(0.025, sh, sn - sh + 1)) if sh else 0.0,
-                                float(beta_dist.ppf(0.975, sh + 1, sn - sh)) if sh < sn else 1.0],
-                "ci_method": "Clopper-Pearson" + ("" if status == "complete" else ", given non-informative censoring"),
-                "projected_cpu_hours_to_2000": cap / (S["hits"] / S["proposals"]) * cpp / 3600 if S["hits"] else None}
+        cp = [float(beta_dist.ppf(0.025, sh, sn - sh + 1)) if sh else 0.0,
+              float(beta_dist.ppf(0.975, sh + 1, sn - sh)) if sh < sn else 1.0]
+        row |= ({"ci95_suffix": cp, "ci_method": "Clopper-Pearson (ended at its proposal budget)"} if status == "complete" else
+                {"sensitivity_interval95_suffix": cp,
+                 "sensitivity_note": "not a formal interval: assumes the censoring, failure or interruption is non-informative"})
+        row["projected_cpu_hours_to_2000"] = cap / (S["hits"] / S["proposals"]) * cpp / 3600 if S["hits"] else None
     return row, errs
 
 
@@ -641,7 +667,7 @@ def collect(settings_path, metric_path, outdir, out):
     atomically. An in-progress failure summary is written first, so no earlier summary survives a crash or abort.
     collection_ok: every present result is consistent; run_complete: also every setting is complete."""
     atomic_json({"collection_ok": False, "run_complete": False, "state": "collecting"}, out)
-    errors, rows, workers, binding = [], [], [], None
+    errors, rows, workers, binding, missing_workers = [], [], [], None, None
     status = {"complete": 0, "censored": 0, "failed": 0, "running": 0, "missing": 0, "invalid": 0}
     try:
         b = json.load(open(settings_path))
@@ -650,28 +676,39 @@ def collect(settings_path, metric_path, outdir, out):
             errors.append("metric differs from the bound settings")
         metric = json.load(open(metric_path))
         for st in b["settings"]:
-            row, errs = check_setting(st, b, binding, metric, outdir)
-            rows.append(row | ({"errors": errs} if errs else {})); errors += errs
-            status[row["status"] if row["status"] in status else "invalid"] += 1
+            try:
+                row, errs = check_setting(st, b, binding, metric, outdir)
+            except Exception as ex:                    # one bad setting never hides the others
+                row = {k: st.get(k) for k in ("index", "pop", "outer", "n", "proposal_budget", "worker")}
+                errs = [f"setting {st.get('index')}: unexpected {type(ex).__name__}: {ex}"]
+            if errs:
+                row = row | {"recorded_status": row.get("status"), "status": "invalid", "errors": errs}
+            rows.append(row); errors += errs
+            status[row["status"]] += 1
         for f in sorted(os.listdir(outdir)):
             if f.startswith("worker") and f.endswith(".json"):
                 try:
                     w = json.load(open(os.path.join(outdir, f)))
                     good = w["binding"] == binding and w["nworkers"] == b["nworkers"] and type(w["worker"]) is int \
-                        and 0 <= w["worker"] < b["nworkers"] and f == f"worker{w['worker']:04d}.json"
+                        and 0 <= w["worker"] < b["nworkers"] and f == f"worker{w['worker']:04d}.json" \
+                        and w["runtime"] in b["allowed_runtimes"] and isinstance(w["host"], str) and w["host"] \
+                        and type(w["peak_rss_gib"]) in (int, float) and math.isfinite(w["peak_rss_gib"]) and w["peak_rss_gib"] >= 0
                 except (ValueError, KeyError, TypeError):
                     good = False
                 if good:
                     workers.append(w)
                 else:
-                    errors.append(f"{f}: worker receipt unreadable, bound to other inputs or out of range")
+                    errors.append(f"{f}: worker receipt unreadable, bound to other inputs, out of range or with invalid provenance")
+        missing_workers = sorted(set(range(b["nworkers"])) - {w["worker"] for w in workers})
     except Exception as ex:
         errors.append(f"collection aborted: {type(ex).__name__}: {ex}")
     summary = {"collection_ok": not errors, "run_complete": not errors and status["complete"] == len(rows) and bool(rows),
+               "provenance_complete": not errors and missing_workers == [], "workers_missing": missing_workers,
                "n_errors": len(errors), "errors": errors[:1000], "binding": binding, "status": status, "workers": workers,
                "rows": rows}
     atomic_json(summary, out)
-    print("collection_ok", summary["collection_ok"], "run_complete", summary["run_complete"], "status", status,
+    print("collection_ok", summary["collection_ok"], "run_complete", summary["run_complete"],
+          "provenance_complete", summary["provenance_complete"], "status", status,
           "cpu_hours", round(sum(r.get("cpu_seconds", 0) for r in rows) / 3600, 2), "hits", sum(r.get("hits", 0) for r in rows),
           "errors", len(errors))
     if errors:

@@ -608,7 +608,8 @@ unchanged.
 - **Rejections.** Missing, short, altered and orphan journals, unreadable
   checkpoints, and terminal checkpoints with a missing journal or uncommitted
   bytes are all rejected with a diagnostic.
-- **Fixtures** (`p2/s1a_test_receipt.txt`, 35 checks, all pass):
+- **Fixtures** (`p2/s1a_test_receipt.txt`, 31 checks, all pass; *corrected:
+  board 1703 said 35*):
   - an injected crash at each of the four state writes, including the one
     right after the first hit fsync;
   - a crash during recovery's journal replacement, with a torn tail;
@@ -630,7 +631,7 @@ unchanged.
   - each worker receipt's binding, range and file name.
 - **Summary.** It publishes `collection_ok` and `run_complete` atomically,
   keeping missing and incomplete rows visible.
-- **Collector fixtures** (in the 35): a valid run with a missing setting is
+- **Collector fixtures** (in the 31): a valid run with a missing setting is
   accepted. Malformed same-length hit JSON, a stale worker receipt, an
   invariant breach, and a corrupt checkpoint over an old success summary are
   all rejected, with a current failure summary.
@@ -662,7 +663,8 @@ unchanged.
   - Together these are exact for the curtailed design: outcomes ordered by n*
     when stopped, otherwise by suffix hits.
   - Censored, failed or interrupted settings get Clopper–Pearson, labelled
-    conditional on non-informative censoring.
+    conditional on non-informative censoring. *Superseded in the second
+    round below: these become sensitivity intervals, not formal ones.*
 - **Cost:** observed CPU through the crossing batch for hit-stopped settings.
   Rate-based projections to 2,000 for the others are labelled as
   projections.
@@ -670,11 +672,100 @@ unchanged.
 - All 1,080 rows and complete-nine-population availability are reported.
 - The collector computes these per row.
 
-**Dispatch** (after Astra checks this repair; one Jumpbox window).
+**Dispatch** (superseded by the second-round dispatch below).
+
+### Second repair round (16 October; Astra 1708, `notes/astra_s1a_repair_review_20261016.md`)
+
+Runner `ae065826…`, settings `6018ed2a…`, `s1a_submit.sh` `8ca2dd97…`,
+stage tar `ad260115…`. Only the report-rule text changed in the settings;
+the budgets and assignment are unchanged.
+
+**1. Unresolved submissions are never replaced on an empty PBS answer.**
+- Each key's state is its last journal entry.
+- A key whose last entry is `request` or `uncertain` is resubmitted only if
+  PBS shows exactly one job of that name (reconciled) or an operator
+  resolves it with evidence: `accepted KEY NAME ID manual: …` or
+  `rejected KEY NAME manual: …`.
+- An empty `qselect -x` answer stops the script, because completed-job
+  history expires.
+- When a qsub fails, the script waits and immediately queries PBS by name:
+  - one job: recorded as reconciled, and the script continues;
+  - no job, from a successful query: recorded as `rejected …
+    absent-after-failure`, which a resume may resubmit;
+  - a failed query: recorded as `uncertain`.
+- A lost reply is therefore normally reconciled at once, while history
+  still exists.
+
+**2. The collector depends on every job not positively confirmed finished.**
+- Each accepted node is classified with `qstat -x -f`: `job_state` F is
+  omitted, and Q, R, H, W, T, E, S, U, B or M is kept.
+- A query failure or an unclassified state stops before the collector qsub,
+  and the run stays resumable.
+- A verified finished job whose history has expired can be recorded as
+  `terminal KEY ID manual: …`.
+
+**Submit fixture** (`kunanyi/s1a_submit_fixture.py` → `.json`): **15
+scenarios, all pass.** The stubs add qselect and qstat failure injection,
+history expiry and an append-only ledger of every job created.
+- **Your expired-history case:** the reply is lost at qsub 4, the
+  confirming query fails, then the job finishes and its history expires.
+  - The resume refuses with 0 qsub.
+  - After the operator records the job as accepted and terminal, the next
+    resume submits 42 (41 nodes and the collector), with no replacement for
+    j3.
+  - It ends with 45 jobs for 45 names and 44 dependencies.
+- **Rejection with a failed confirming query:** refused until the operator
+  records the rejection, then resubmitted.
+- **Lost replies, node or collector:** reconciled at once.
+- **One or all live-job queries failing:** no collector, exit non-zero;
+  resume then submits the collector with all 45 dependencies.
+- **A finished node whose history expired before the collector:** refused
+  until it is recorded as terminal; then 44 dependencies.
+- **The earlier ten cases still pass.**
+- Every completed scenario's ledger has exactly 45 node jobs, the 360
+  workers each owned once, one collector, and an allocation bound of
+  991.445 CPU-h.
+
+**3. Collector completeness.**
+- **Field checks:** type and domain checks run before any arithmetic:
+  non-negative ints for counters, `batches_done`, `journal_bytes` and
+  `index`; finite non-negative CPU and wall times; a hex SHA-256; known
+  status and stop values; and a string failure reason.
+- **Isolation:** each setting is checked in isolation. A bad row becomes
+  `invalid` with `recorded_status`, and every planned ID is still listed.
+- **Workers:** absent worker receipts are listed (`workers_missing`, and
+  `provenance_complete` is separate from `run_complete`). Present receipts
+  must carry an allowed runtime, a host and a finite non-negative RSS.
+- **New fixtures:**
+  - negative overflow, rounding_excess and CPU time are rejected;
+  - a string `batches_done` makes that row invalid, and the next valid row
+    is still collected;
+  - bad worker provenance is rejected;
+  - a missing worker receipt is reported, and collection still succeeds.
+- `p2/s1a_test_receipt.txt` now has **34 checks, all pass**.
+- **Replay:** the new collector, run on the saved smoke replay, gives
+  `collection_ok`, `run_complete` and `provenance_complete`, no missing
+  workers and 38 hits (`p2/dry3_summary.json`).
+
+**Reporting.**
+- Censored, failed or interrupted rows now carry
+  `sensitivity_interval95_suffix`, with a note that it assumes the
+  interruption is non-informative. They have no formal interval.
+- No coverage is claimed conditional on the subset of settings that
+  completed. The bound `report_rule` says so.
+
+**Prior allocation.**
+- The smoke allocation is now recorded as 0.445 CPU-h, so the bound is
+  990 + 1 + 0.445 = 991.445 CPU-h.
+- Preflight receipts at 0.445: 45 × 8 at 2:45:00 passes. 4:00:00, 44 × 8,
+  and a walltime shorter than the load are refused.
+
+**Dispatch** (after Astra checks this round; one Jumpbox window).
 1. Push the tar and extract it into run1.
 2. Run `sha256sum -c`.
 3. Run `s1a_submit.sh /u/bwbrook/vortex/run1 p2_settings_s1a.json main 45 8
-   02:45:00 1000 0.44`. Its preflight runs the bound check and fixtures on
+   02:45:00 1000 0.445`. Its preflight runs the bound check and fixtures on
    the kunanyi login node before any qsub.
 4. The afterany collector emails Barry. After any interruption, rerun with
-   `resume`.
+   `resume`. An unresolved key or failed state query needs the
+   evidence-backed journal entry that the script names.

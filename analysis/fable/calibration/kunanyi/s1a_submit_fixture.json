@@ -1,13 +1,18 @@
 {
- "scope": "Stub-scheduler fixtures for s1a_submit.sh (no PBS, no simulation). Writes s1a_submit_fixture.json beside itself.\nEach scenario runs the real script in a fresh directory with stub qsub/qselect/qstat (PBS_BIN) and a stub preflight\n(S1A_ENV); qsub can reject (no job) or accept but lose its reply (job created, non-zero exit) at a chosen call.",
- "submit_sha256": "facded63e025906cffad131277844b7ca3981cbc122a7547a2ba79acfea11ed4",
+ "scope": "Stub-scheduler fixtures for s1a_submit.sh (no PBS, no simulation). Writes s1a_submit_fixture.json beside itself.\nEach scenario runs the real script in a fresh directory with stub qsub/qselect/qstat (PBS_BIN) and a stub preflight\n(S1A_ENV). qsub can reject (no job) or accept but lose its reply (job created, non-zero exit) at a chosen call; qselect\ncan fail at a chosen call; qstat -x can fail for chosen jobs; finished jobs can be expired from history. Every job ever\ncreated is kept in an append-only ledger, so allocation and worker ownership are counted even after history expiry.",
+ "submit_sha256": "8ca2dd97250b294c884c209fdbac2bbc2419503e51a965de303e1cdff8f85a0d",
  "checks": {
   "normal_then_duplicate_then_resume": true,
   "reject_at_4_then_resume": true,
-  "lost_reply_at_4_then_resume": true,
-  "reject_collector_then_resume": true,
-  "lost_collector_reply_then_resume": true,
-  "reject_at_4_three_finish_then_resume": true,
+  "lost_reply_at_4_reconciled_at_once": true,
+  "lost_reply_unconfirmed_history_expired_no_replacement": true,
+  "reject_unconfirmed_then_operator_rejects": true,
+  "collector_rejected_then_resume": true,
+  "collector_reply_lost_reconciled_at_once": true,
+  "three_finished_before_collector": true,
+  "one_live_query_fails_no_collector_then_resume": true,
+  "all_queries_fail_no_collector_then_resume": true,
+  "finished_job_history_expired_then_terminal": true,
   "preflight_refused_before_any_qsub": true,
   "lock_held_refused": true,
   "resume_with_other_shape_refused": true,
@@ -38,14 +43,17 @@
      "stderr": []
     }
    ],
-   "node_jobs": 45,
+   "node_jobs_created": 45,
    "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
    "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_e030b0ad_j44 900044.fixture",
+    "request c s1a_e030b0ad_c",
+    "accepted c s1a_e030b0ad_c 900045.fixture"
+   ],
    "lock_released": true
   },
   "reject_at_4_then_resume": {
@@ -55,7 +63,7 @@
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_d2164187_j3 failed or returned no ID; resume reconciles it"
+      "s1a_submit: qsub for s1a_5551bd2e_j3 failed and PBS has no such job; resume may resubmit it"
      ]
     },
     {
@@ -65,24 +73,57 @@
      "stderr": []
     }
    ],
-   "node_jobs": 45,
+   "node_jobs_created": 45,
    "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
    "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_5551bd2e_j44 900044.fixture",
+    "request c s1a_5551bd2e_c",
+    "accepted c s1a_5551bd2e_c 900045.fixture"
+   ],
    "lock_released": true
   },
-  "lost_reply_at_4_then_resume": {
+  "lost_reply_at_4_reconciled_at_once": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_714a269d_j44 900044.fixture",
+    "request c s1a_714a269d_c",
+    "accepted c s1a_714a269d_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "lost_reply_unconfirmed_history_expired": {
    "runs": [
     {
      "mode": "new",
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_b1e6d4b4_j3 failed or returned no ID; resume reconciles it"
+      "s1a_submit: qsub for s1a_60f715d8_j3 failed and its outcome could not be established; see <tmp>/vbase/s1a/main/submit_journal.tsv"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_60f715d8_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_60f715d8_j3 ID manual: <evidence>' or 'rejected j3 s1a_60f715d8_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -92,78 +133,35 @@
      "stderr": []
     }
    ],
-   "node_jobs": 45,
+   "node_jobs_created": 45,
    "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
-   "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 1,
-   "lock_released": true
-  },
-  "reject_collector_then_resume": {
-   "runs": [
-    {
-     "mode": "new",
-     "rc": 1,
-     "qsub_calls": 46,
-     "stderr": [
-      "s1a_submit: qsub for s1a_fbbc994f_c failed or returned no ID; resume reconciles it"
-     ]
-    },
-    {
-     "mode": "resume",
-     "rc": 0,
-     "qsub_calls": 1,
-     "stderr": []
-    }
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_60f715d8_j44 900044.fixture",
+    "request c s1a_60f715d8_c",
+    "accepted c s1a_60f715d8_c 900045.fixture"
    ],
-   "node_jobs": 45,
-   "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
-   "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 0,
    "lock_released": true
   },
-  "lost_collector_reply_then_resume": {
-   "runs": [
-    {
-     "mode": "new",
-     "rc": 1,
-     "qsub_calls": 46,
-     "stderr": [
-      "s1a_submit: qsub for s1a_29867d89_c failed or returned no ID; resume reconciles it"
-     ]
-    },
-    {
-     "mode": "resume",
-     "rc": 0,
-     "qsub_calls": 0,
-     "stderr": []
-    }
-   ],
-   "node_jobs": 45,
-   "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
-   "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 1,
-   "lock_released": true
-  },
-  "reject_at_4_three_finish_then_resume": {
+  "reject_unconfirmed_then_operator_rejects": {
    "runs": [
     {
      "mode": "new",
      "rc": 1,
      "qsub_calls": 4,
      "stderr": [
-      "s1a_submit: qsub for s1a_21604c78_j3 failed or returned no ID; resume reconciles it"
+      "s1a_submit: qsub for s1a_71443125_j3 failed and its outcome could not be established; see <tmp>/vbase/s1a/main/submit_journal.tsv"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: unresolved earlier request for s1a_71443125_j3 and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted j3 s1a_71443125_j3 ID manual: <evidence>' or 'rejected j3 s1a_71443125_j3 manual: <evidence>' to <tmp>/vbase/s1a/main/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -173,14 +171,197 @@
      "stderr": []
     }
    ],
-   "node_jobs": 45,
+   "node_jobs_created": 45,
    "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_71443125_j44 900044.fixture",
+    "request c s1a_71443125_c",
+    "accepted c s1a_71443125_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "collector_rejected_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_5bc4767d_c failed and PBS has no such job; resume may resubmit it"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "rejected c s1a_5bc4767d_c absent-after-failure",
+    "request c s1a_5bc4767d_c",
+    "accepted c s1a_5bc4767d_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "collector_reply_lost_reconciled_at_once": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 46,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_6c1226c5_j44 900044.fixture",
+    "request c s1a_6c1226c5_c",
+    "accepted c s1a_6c1226c5_c 900045.fixture reconciled"
+   ],
+   "lock_released": true
+  },
+  "three_finished_before_collector": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 4,
+     "stderr": [
+      "s1a_submit: qsub for s1a_91c0fae0_j3 failed and PBS has no such job; resume may resubmit it"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 43,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
    "collector_depends_on": 42,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_91c0fae0_j44 900044.fixture",
+    "request c s1a_91c0fae0_c",
+    "accepted c s1a_91c0fae0_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "one_live_query_fails_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 45,
+     "stderr": [
+      "s1a_submit: cannot query 900005.fixture (j5), so the collector was not submitted; resume when PBS answers, or append 'terminal j5 900005.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_6a7002d6_j44 900044.fixture",
+    "request c s1a_6a7002d6_c",
+    "accepted c s1a_6a7002d6_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "all_queries_fail_then_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 45,
+     "stderr": [
+      "s1a_submit: cannot query 900000.fixture (j0), so the collector was not submitted; resume when PBS answers, or append 'terminal j0 900000.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 45,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_8911e4ec_j44 900044.fixture",
+    "request c s1a_8911e4ec_c",
+    "accepted c s1a_8911e4ec_c 900045.fixture"
+   ],
+   "lock_released": true
+  },
+  "finished_job_history_expired_then_terminal": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 46,
+     "stderr": [
+      "s1a_submit: qsub for s1a_a1e1824c_c failed and PBS has no such job; resume may resubmit it"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1a_submit: cannot query 900000.fixture (j0), so the collector was not submitted; resume when PBS answers, or append 'terminal j0 900000.fixture manual: <evidence>' if it is verifiably finished"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 1,
+     "stderr": []
+    }
+   ],
+   "node_jobs_created": 45,
+   "unique_node_names": 45,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
+   "collector_depends_on": 44,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "terminal j0 900000.fixture manual: job0.out and jobs.log show completion",
+    "request c s1a_a1e1824c_c",
+    "accepted c s1a_a1e1824c_c 900045.fixture"
+   ],
    "lock_released": true
   },
   "preflight_refused": {
@@ -190,18 +371,17 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1a_submit: preflight refused or failed; see /tmp/tmp4plyto_y/vbase/s1a/main/logs/preflight.log"
+      "s1a_submit: preflight refused or failed; see <tmp>/vbase/s1a/main/logs/preflight.log"
      ]
     }
    ],
-   "node_jobs": 0,
+   "node_jobs_created": 0,
    "unique_node_names": 0,
-   "collectors": 0,
-   "workers_with_one_owner": null,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
    "collector_depends_on": 0,
-   "collector_covers_unfinished_nodes": null,
-   "allocated_cpu_hours_bound": 0.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
    "lock_released": true
   },
   "lock_held": {
@@ -211,18 +391,17 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1a_submit: another submission holds /tmp/tmprbrx4rgo/vbase/s1a/main/.submit.lock (remove it only if none is running)"
+      "s1a_submit: another submission holds <tmp>/vbase/s1a/main/.submit.lock (remove it only if none is running)"
      ]
     }
    ],
-   "node_jobs": 0,
+   "node_jobs_created": 0,
    "unique_node_names": 0,
-   "collectors": 0,
-   "workers_with_one_owner": null,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
    "collector_depends_on": 0,
-   "collector_covers_unfinished_nodes": null,
-   "allocated_cpu_hours_bound": 0.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
    "lock_released": false
   },
   "resume_with_other_shape": {
@@ -238,18 +417,21 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1a_submit: run identity differs from /tmp/tmpiizr_m1w/vbase/s1a/main/run.json"
+      "s1a_submit: run identity differs from <tmp>/vbase/s1a/main/run.json"
      ]
     }
    ],
-   "node_jobs": 45,
+   "node_jobs_created": 45,
    "unique_node_names": 45,
-   "collectors": 1,
-   "workers_with_one_owner": true,
+   "collectors_created": 1,
+   "workers_each_owned_once": true,
    "collector_depends_on": 45,
-   "collector_covers_unfinished_nodes": true,
-   "allocated_cpu_hours_bound": 991.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 991.445,
+   "journal_tail": [
+    "accepted j44 s1a_d03308c0_j44 900044.fixture",
+    "request c s1a_d03308c0_c",
+    "accepted c s1a_d03308c0_c 900045.fixture"
+   ],
    "lock_released": true
   },
   "resume_without_journal": {
@@ -263,14 +445,13 @@
      ]
     }
    ],
-   "node_jobs": 0,
+   "node_jobs_created": 0,
    "unique_node_names": 0,
-   "collectors": 0,
-   "workers_with_one_owner": null,
+   "collectors_created": 0,
+   "workers_each_owned_once": false,
    "collector_depends_on": 0,
-   "collector_covers_unfinished_nodes": null,
-   "allocated_cpu_hours_bound": 0.44,
-   "journal_reconciled_lines": 0,
+   "allocated_cpu_hours_bound": 0.445,
+   "journal_tail": [],
    "lock_released": true
   }
  }
