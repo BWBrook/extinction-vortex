@@ -1,0 +1,61 @@
+{
+ "rejects_{'n': 0, 'k': 1, 'r': 0}": true,
+ "rejects_{'n': 30, 'k': 31, 'r': 0}": true,
+ "rejects_{'n': 30, 'k': 3, 'r': -1}": true,
+ "rejects_{'n': 30, 'k': 3.5, 'r': 2}": true,
+ "rejects_{'n': 30, 'k': nan, 'r': 1}": true,
+ "rejects_{'n': -1, 'k': 0, 'r': 0}": true,
+ "radius_zero_exact_equality": true,
+ "resume_deterministic": true,
+ "checkpoint_cadence_invariant": true,
+ "hit_stop_at_batch_boundary": true,
+ "deadline_censors_without_exposure": true,
+ "fault_reference": {
+  "hits": 6,
+  "journal_lines": 6
+ },
+ "crash_at_state_write_1_recovers": true,
+ "crash_at_state_write_2_recovers": true,
+ "crash_at_state_write_3_recovers": true,
+ "crash_at_state_write_4_recovers": true,
+ "crash_during_recovery_recovers": true,
+ "rejects_short": true,
+ "rejects_missing": true,
+ "rejects_altered": true,
+ "rejects_orphan": true,
+ "rejects_terminal_tail": true,
+ "rejects_terminal_missing": true,
+ "rejects_corrupt_checkpoint": true,
+ "deadline_commits_completed_batch": true,
+ "hit_stop_keeps_crossing_batch": true,
+ "bound_failure_is_failed_state": true,
+ "collect_valid_with_missing_setting": true,
+ "collect_rejects_malformed": true,
+ "collect_rejects_stale_worker": true,
+ "collect_rejects_invariant": true,
+ "collect_rejects_corrupt_with_old_summary": true,
+ "all_ok": true
+}
+	Command being timed: "python3 -I /data/fable/vortex/v2_dev/p2_stage1a.py test /data/fable/vortex/v2_dev/p2/p2_metric.json"
+	User time (seconds): 0.79
+	System time (seconds): 0.14
+	Percent of CPU this job got: 70%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.33
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 87352
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14243
+	Voluntary context switches: 334
+	Involuntary context switches: 8
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1472
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

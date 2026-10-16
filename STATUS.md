@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 12:15 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 12:26:28 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -783,8 +783,40 @@ assignment), stage tar `a4c3e4e4…`.
 - **Next response: Astra.** Check the repaired contracts. Barry's Jumpbox
   window is needed only after that check passes.
 
+**Astra repair review, 16 October** ([integrated review](notes/astra_s1a_repair_review_20261016.md);
+board 1708; exposure E50; reviewed `7f5be0b`).
+- **Original checkpoint/recovery defects closed.** The zero checkpoint,
+  hashed committed prefix and atomic replacement pass the original and added
+  interruption fixtures. Malformed hit records and stale summaries now fail.
+- All 1,080 settings, sampler functions and input/throughput bytes remain
+  unchanged. All staged files match; all new saved smoke counters and hit
+  bytes match the original. The real bound preflight and three negative
+  allocation/shape/deadline checks behave correctly.
+- **Dispatch remains held.** An uncertain prior qsub followed by expired
+  scheduler history still permits a duplicate node allocation (46 jobs,
+  1,013.445 CPU-hours with the exact prior). A qstat query error can omit a live
+  node from the collector dependency; all queries failing yields none.
+  Require positive reconciliation or a stop on unknown state in both branches.
+- Complete collector field-type/domain checks and isolate invalid settings so
+  every planned row remains visible. Negative accounting is currently accepted;
+  one parseable type error can omit later valid rows. Inventory missing workers
+  and validate present runtime/host/RSS separately from setting completion.
+- The completed cap/hit interval formula and prefix/crossing-batch handling
+  pass. Interrupted-row intervals disclose an unverified censoring assumption;
+  label them sensitivity results. No new sampler or interval machinery is needed.
+- Nominal allocation remains 991.445 CPU-hours. Use prior allocation 0.445,
+  rather than rounding down to 0.44, in the final submission receipt.
+- **Next response: Fable.** Return the finite scheduler/collector/reporting
+  delta, targeted receipts and rebound package. Astra checks those branches
+  before dispatch. No Barry decision or Jumpbox window is needed for repairs.
+
 ## Completed by Astra
 
+- 16 October, reviewed repairs at `7f5be0b` with three bounded reviewers.
+  Closed original recovery defects, verified unchanged package/smoke evidence
+  and bound preflight, and accepted the completed-design interval method.
+  Reproduced two remaining scheduler faults and collector accounting gaps;
+  returned a finite repair list in 1708. No full pilot, bank scan/build or fit.
 - 16 October, reviewed Stage 1a at `e3870d4` with three bounded reviewers.
   Verified saved smoke/input/budget evidence, reproduced submission and
   checkpoint-recovery failures, and returned the finite repair list in 1698.
@@ -1106,12 +1138,14 @@ assignment), stage tar `a4c3e4e4…`.
 
 ## Pending
 
-1. Astra checks Fable's Stage 1a pre-dispatch repairs (runner `793e7a42…`,
-   settings `9a7d4699…`, `s1a_submit.sh` `facded63…`, stage tar
-   `a4c3e4e4…`) per review 1698. Then, in one Jumpbox window, Fable pushes the
-   tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.44`; the preflight
-   runs first and the collector emails Barry. The pilot stops at its no-fit
-   report; full-library Stage 1b and fitted Stage 1c remain uncommissioned.
+1. Fable repairs the two remaining Stage 1a scheduler-state branches and
+   collector accounting/inventory per review 1708, labels interrupted-row
+   intervals as sensitivity results and returns the rebound package. Astra
+   checks that finite delta before dispatch. The package at `7f5be0b` remains
+   held; original checkpoint/recovery defects are closed. Preserve the
+   1,000 allocated CPU-hour ceiling and unchanged scientific settings. Barry's
+   Jumpbox window is needed after these checks pass. The pilot stops at its
+   no-fit report; full-library Stage 1b and fitted Stage 1c remain uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1143,9 +1177,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1698**; exhausted `through`: **1698**.
-- Explicit acknowledgement: through actual message **1698** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1698`.
+- Last full retrieval `next_after`: **1708**; exhausted `through`: **1708**.
+- Explicit acknowledgement: through actual message **1708** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1708`.
 
 ## Decision Inbox checkpoint
 

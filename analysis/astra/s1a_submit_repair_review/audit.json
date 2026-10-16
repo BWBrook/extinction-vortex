@@ -1,0 +1,258 @@
+{
+  "source_commit": "7f5be0b4e4a24916d50035eea1d470acef8df056",
+  "submit_sha256": "facded63e025906cffad131277844b7ca3981cbc122a7547a2ba79acfea11ed4",
+  "fixture_sha256": "f24db48edddc66cc644146eb8f1f308e56fde859ede9b4a203c4a4d0e743530a",
+  "baseline": {
+    "returncode": 0,
+    "all_ok": true,
+    "checks": {
+      "normal_then_duplicate_then_resume": true,
+      "reject_at_4_then_resume": true,
+      "lost_reply_at_4_then_resume": true,
+      "reject_collector_then_resume": true,
+      "lost_collector_reply_then_resume": true,
+      "reject_at_4_three_finish_then_resume": true,
+      "preflight_refused_before_any_qsub": true,
+      "lock_held_refused": true,
+      "resume_with_other_shape_refused": true,
+      "resume_without_journal_refused": true
+    },
+    "stderr": ""
+  },
+  "adversarial": {
+    "lost_node_reply_then_history_expires": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 1,
+          "qsub_calls": 4,
+          "stderr": [
+            "s1a_submit: qsub for s1a_b2f1b871_j3 failed or returned no ID; resume reconciles it"
+          ]
+        },
+        {
+          "mode": "resume",
+          "rc": 0,
+          "qsub_calls": 43,
+          "stderr": []
+        }
+      ],
+      "node_jobs": 46,
+      "unique_node_names": 45,
+      "collectors": 1,
+      "workers_with_one_owner": false,
+      "collector_depends_on": 42,
+      "collector_covers_unfinished_nodes": true,
+      "allocated_cpu_hours_bound": 1013.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    },
+    "lost_collector_reply_then_history_expires": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 1,
+          "qsub_calls": 46,
+          "stderr": [
+            "s1a_submit: qsub for s1a_6372232e_c failed or returned no ID; resume reconciles it"
+          ]
+        },
+        {
+          "mode": "resume",
+          "rc": 0,
+          "qsub_calls": 1,
+          "stderr": []
+        }
+      ],
+      "node_jobs": 45,
+      "unique_node_names": 45,
+      "collectors": 2,
+      "workers_with_one_owner": true,
+      "collector_depends_on": 45,
+      "collector_covers_unfinished_nodes": false,
+      "allocated_cpu_hours_bound": 992.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    },
+    "one_qstat_transport_error": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 0,
+          "qsub_calls": 46,
+          "stderr": []
+        }
+      ],
+      "node_jobs": 45,
+      "unique_node_names": 45,
+      "collectors": 1,
+      "workers_with_one_owner": true,
+      "collector_depends_on": 44,
+      "collector_covers_unfinished_nodes": false,
+      "allocated_cpu_hours_bound": 991.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    },
+    "all_qstat_transport_error": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 0,
+          "qsub_calls": 46,
+          "stderr": [
+            "qstat: cannot connect to server"
+          ]
+        }
+      ],
+      "node_jobs": 45,
+      "unique_node_names": 45,
+      "collectors": 1,
+      "workers_with_one_owner": true,
+      "collector_depends_on": 0,
+      "collector_covers_unfinished_nodes": false,
+      "allocated_cpu_hours_bound": 991.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    },
+    "qselect_error_before_dispatch": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 1,
+          "qsub_calls": 0,
+          "stderr": [
+            "qselect: history request failed"
+          ]
+        }
+      ],
+      "node_jobs": 0,
+      "unique_node_names": 0,
+      "collectors": 0,
+      "workers_with_one_owner": null,
+      "collector_depends_on": 0,
+      "collector_covers_unfinished_nodes": null,
+      "allocated_cpu_hours_bound": 0.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    },
+    "qselect_error_during_uncertain_recovery": {
+      "runs": [
+        {
+          "mode": "new",
+          "rc": 1,
+          "qsub_calls": 4,
+          "stderr": [
+            "s1a_submit: qsub for s1a_f5b0c4cb_j3 failed or returned no ID; resume reconciles it"
+          ]
+        },
+        {
+          "mode": "resume",
+          "rc": 1,
+          "qsub_calls": 0,
+          "stderr": [
+            "qselect: history request failed"
+          ]
+        }
+      ],
+      "node_jobs": 4,
+      "unique_node_names": 4,
+      "collectors": 0,
+      "workers_with_one_owner": false,
+      "collector_depends_on": 0,
+      "collector_covers_unfinished_nodes": null,
+      "allocated_cpu_hours_bound": 88.44,
+      "journal_reconciled_lines": 0,
+      "lock_released": true
+    }
+  },
+  "isolated_preflight": {
+    "proposed": {
+      "error": null,
+      "calls": [
+        "check",
+        "test"
+      ],
+      "receipt": {
+        "preflight": "passed",
+        "errors": [],
+        "settings_sha256": "fixture",
+        "runtime": {
+          "fixture": true
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 9900,
+        "allocated_cpu_hours_bound": 991.44,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.202
+      }
+    },
+    "over_budget": {
+      "error": "SystemExit: preflight refused",
+      "calls": [
+        "check"
+      ],
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "allocation 1441.44 CPU-h exceeds the 1000 CPU-h ceiling"
+        ],
+        "settings_sha256": "fixture",
+        "runtime": {
+          "fixture": true
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 14400,
+        "allocated_cpu_hours_bound": 1441.44,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.462
+      }
+    },
+    "wrong_workers": {
+      "error": "SystemExit: preflight refused",
+      "calls": [
+        "check"
+      ],
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "shape 44 x 8 does not match the 360 bound workers"
+        ],
+        "settings_sha256": "fixture",
+        "runtime": {
+          "fixture": true
+        },
+        "jobs": 44,
+        "cpus_per_job": 8,
+        "wall_seconds": 9900,
+        "allocated_cpu_hours_bound": 969.44,
+        "ceiling": 1000.0,
+        "deadline_margin": 0.202
+      }
+    },
+    "too_short": {
+      "error": "SystemExit: preflight refused",
+      "calls": [
+        "check"
+      ],
+      "receipt": {
+        "preflight": "refused",
+        "errors": [
+          "expected worker load exceeds the worker deadline"
+        ],
+        "settings_sha256": "fixture",
+        "runtime": {
+          "fixture": true
+        },
+        "jobs": 45,
+        "cpus_per_job": 8,
+        "wall_seconds": 7800,
+        "allocated_cpu_hours_bound": 781.44,
+        "ceiling": 1000.0,
+        "deadline_margin": -0.031
+      }
+    }
+  },
+  "scope": "Independent bounded replay/adversarial tests of the repaired submitter.\n\nAll scheduler calls go to temporary Python stubs. No PBS, simulation, network,\nor mail is used. The peer fixture is copied before execution to keep it intact.\n"
+}

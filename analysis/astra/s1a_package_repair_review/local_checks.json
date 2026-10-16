@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-10-16T12:21:35.672268+11:00",
+  "scope": "Bind the read-only remote receipts to this checkout and the prior reviewed package.",
+  "base": "81fcea3",
+  "current": "7f5be0b4e4a24916d50035eea1d470acef8df056",
+  "changed_settings_keys": [
+    "prefix_batches",
+    "report_rule",
+    "runner_sha256"
+  ],
+  "settings_unchanged": 1080,
+  "unchanged_sampler_functions": [
+    "validate_E",
+    "factors",
+    "binom_factor",
+    "in_ball",
+    "one_batch"
+  ],
+  "metric_helper_bank_throughput_unchanged": true,
+  "stage_files_match_local": {
+    "s1a/p2_metric.json": "analysis/fable/calibration/v2_dev/p2/p2_metric.json",
+    "s1a/p2_settings_s1a.json": "analysis/fable/calibration/v2_dev/p2/p2_settings_s1a.json",
+    "s1a/throughput_kunanyi.json": "analysis/fable/calibration/v2_dev/p2/throughput_kunanyi.json",
+    "src/analysis/fable/calibration/kunanyi/s1a_collect.pbs": "analysis/fable/calibration/kunanyi/s1a_collect.pbs",
+    "src/analysis/fable/calibration/kunanyi/s1a_node.pbs": "analysis/fable/calibration/kunanyi/s1a_node.pbs",
+    "src/analysis/fable/calibration/kunanyi/s1a_submit.sh": "analysis/fable/calibration/kunanyi/s1a_submit.sh",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "analysis/fable/calibration/v2_dev/p1_sampler.py",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "analysis/fable/calibration/v2_dev/p2_stage1a.py"
+  },
+  "preflight_exit_codes": [
+    0,
+    1,
+    1,
+    1
+  ],
+  "allocation_using_rounded_prior": 991.44,
+  "smoke_allocated_cpu_hours_exact": 0.445,
+  "allocation_using_exact_prior": 991.445,
+  "prior_allocation_rounding_understatement": 0.0050000000000000044
+}

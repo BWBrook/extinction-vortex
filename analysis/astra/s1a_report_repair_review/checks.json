@@ -1,0 +1,159 @@
+{
+  "source_sha256": "793e7a423dc5ad7356f6b871001e1b62b806ad1b0180f5e80d43748cf614966e",
+  "versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "scope": "Exact finite distributions and tiny synthetic collector records; no population trajectories",
+  "curtailed_coverage": [
+    {
+      "target": 1,
+      "fixed_cap": 5,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9750359999999997,
+      "at_p": 0.842,
+      "max_lower_error": 0.024751246878124994,
+      "max_upper_error": 0.024964000000000014
+    },
+    {
+      "target": 2,
+      "fixed_cap": 5,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9750359999999997,
+      "at_p": 0.158,
+      "max_lower_error": 0.024964,
+      "max_upper_error": 0.02495613051199998
+    },
+    {
+      "target": 3,
+      "fixed_cap": 10,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9750438694879999,
+      "at_p": 0.194,
+      "max_lower_error": 0.024956130511999998,
+      "max_upper_error": 0.024946797397170914
+    },
+    {
+      "target": 5,
+      "fixed_cap": 20,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9506122539872808,
+      "at_p": 0.477,
+      "max_lower_error": 0.02499582574012799,
+      "max_upper_error": 0.02499677294252831
+    },
+    {
+      "target": 10,
+      "fixed_cap": 30,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9502587226999146,
+      "at_p": 0.221,
+      "max_lower_error": 0.024993989135579764,
+      "max_upper_error": 0.024973886850912577
+    },
+    {
+      "target": 20,
+      "fixed_cap": 100,
+      "p_grid_size": 999,
+      "minimum_coverage": 0.9500665674556165,
+      "at_p": 0.338,
+      "max_lower_error": 0.024991092773720587,
+      "max_upper_error": 0.02498012893035
+    }
+  ],
+  "informative_censoring_counterexample": {
+    "scope": "Illustrative data-dependent censoring, not the actual runtime law",
+    "p": 0.5,
+    "max_n": 40,
+    "coverage": 0.8464911455157562,
+    "noncoverage": 0.15350885448424378
+  },
+  "collector_fixtures": {
+    "hit_with_overshoot": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 3,
+      "suffix_proposals": 8,
+      "suffix_proposals_to_cap": 5,
+      "observed_cpu_hours_to_crossing_batch": 0.0011111111111111111,
+      "ci95_suffix": [
+        0.052744950526316906,
+        0.8058795503167565
+      ],
+      "ci_method": "exact negative binomial (stopped at the hit cap)"
+    },
+    "hit_at_first_possible_suffix_time": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 2,
+      "suffix_proposals": 4,
+      "suffix_proposals_to_cap": 2,
+      "observed_cpu_hours_to_crossing_batch": 0.0011111111111111111,
+      "ci95_suffix": [
+        0.15811388300841897,
+        1.0
+      ],
+      "ci_method": "exact negative binomial (stopped at the hit cap)"
+    },
+    "fixed_cap": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 1,
+      "suffix_proposals": 12,
+      "ci95_suffix": [
+        0.0021075932318602264,
+        0.38479616515094406
+      ],
+      "ci_method": "Clopper-Pearson",
+      "projected_cpu_hours_to_2000": 0.0016666666666666668
+    },
+    "censored": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 1,
+      "suffix_proposals": 8,
+      "ci95_suffix": [
+        0.0031597235312519063,
+        0.5265096708752065
+      ],
+      "ci_method": "Clopper-Pearson, given non-informative censoring",
+      "projected_cpu_hours_to_2000": 0.0016666666666666668
+    },
+    "failed": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 1,
+      "suffix_proposals": 8,
+      "ci95_suffix": [
+        0.0031597235312519063,
+        0.5265096708752065
+      ],
+      "ci_method": "Clopper-Pearson, given non-informative censoring",
+      "projected_cpu_hours_to_2000": 0.0016666666666666668
+    },
+    "running": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 1,
+      "suffix_proposals": 8,
+      "ci95_suffix": [
+        0.0031597235312519063,
+        0.5265096708752065
+      ],
+      "ci_method": "Clopper-Pearson, given non-informative censoring",
+      "projected_cpu_hours_to_2000": 0.0016666666666666668
+    },
+    "zero_suffix_hits": {
+      "prefix_hits": 1,
+      "prefix_proposals": 4,
+      "suffix_hits": 0,
+      "suffix_proposals": 12,
+      "ci95_suffix": [
+        0.0,
+        0.26464846939705117
+      ],
+      "ci_method": "Clopper-Pearson",
+      "projected_cpu_hours_to_2000": 0.0033333333333333335
+    }
+  }
+}

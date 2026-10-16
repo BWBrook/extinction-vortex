@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-10-16T12:20:27.105230+11:00",
+  "scope": "Read-only repair-package audit on deep-server; no sampler, bank load or scheduler call.\n\nRun through stdin with Python 3. Reads the staged tar in place and compares the\nfourth saved smoke with the original archived run. Earlier metric/input findings\nare reused only after checking unchanged byte hashes in the local companion.\n",
+  "python": "3.12.3",
+  "actual_hashes": {
+    "runner": "793e7a423dc5ad7356f6b871001e1b62b806ad1b0180f5e80d43748cf614966e",
+    "helper": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "metric": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+    "settings": "9a7d4699e1e76ac2f3e4915981373f3a2bbaa49a04e69270c64d52edcd820189",
+    "throughput": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+    "smoke_settings": "71354631680ff0cbdc9f7b2e2a48635efe4d9a88fae30afcebb0e38235657535"
+  },
+  "imported_source_hashes": {
+    "analysis/fable/calibration/bank.py": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82"
+  },
+  "stage_tar_sha256": "a4c3e4e484aed25f8e2206e70df757ca5ecd802a7f0a03634ab90aef58c2ab29",
+  "stage_tar_bytes": 512000,
+  "stage_listed_hashes": {
+    "s1a/p2_metric.json": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+    "s1a/p2_settings_s1a.json": "9a7d4699e1e76ac2f3e4915981373f3a2bbaa49a04e69270c64d52edcd820189",
+    "s1a/throughput_kunanyi.json": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+    "src/analysis/fable/calibration/kunanyi/s1a_collect.pbs": "db6788c8ddcbbcc55e5c8ed9b7ff6dff6578614f530e760e3724dafbf26aca49",
+    "src/analysis/fable/calibration/kunanyi/s1a_node.pbs": "2e1f3db472cf1144534b539a2943ed6c25f77cf33de7eb9fdd3f23f581346ee8",
+    "src/analysis/fable/calibration/kunanyi/s1a_submit.sh": "facded63e025906cffad131277844b7ca3981cbc122a7547a2ba79acfea11ed4",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "793e7a423dc5ad7356f6b871001e1b62b806ad1b0180f5e80d43748cf614966e"
+  },
+  "stage_manifest_sha256": "20fd49d177eccbbd5da1812b603f23d12b3fa3fabfb30cd5ede1ea6bc7f151d1",
+  "stage_manifest_matches_all_eight_files": true,
+  "dry3_collect_sha256": "0a1fbd16fd67b2b8ad023e053bcc0ad8351094f18a7990ae4c2ff3a592c4781e",
+  "dry3_settings_and_checkpoints_bound": 1080,
+  "dry3_workers_bound": 28,
+  "dry3_matches_original_counters_and_journal_bytes": 1080,
+  "dry3_journal_bytes": 11621,
+  "dry3_totals": {
+    "proposals": 108000000,
+    "poisson_accept": 46903352,
+    "theta_accept": 37731547,
+    "paths": 37731547,
+    "selected_SA": 407320,
+    "overflow": 253296,
+    "hits": 38,
+    "boundary": 2,
+    "hits_lo": 36,
+    "hits_hi": 38,
+    "rounding_excess": 0,
+    "batches_done": 5400
+  },
+  "elapsed_seconds": 0.26377866100301617
+}

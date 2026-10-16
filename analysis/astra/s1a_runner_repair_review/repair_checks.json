@@ -1,0 +1,526 @@
+{
+  "scope": "Bounded independent Stage1a repair audit: synthetic retained-hit recovery/collector tests.\nNo bank loading, new outer data, population pilot, fitting, or scheduler command.\n",
+  "timestamp": "2026-10-16T12:21:49.201403+11:00",
+  "runner_sha256": "793e7a423dc5ad7356f6b871001e1b62b806ad1b0180f5e80d43748cf614966e",
+  "bound_check_passes": true,
+  "independent_recovery_cases": {
+    "torn_first_append": {
+      "before": {
+        "committed_hits": 0,
+        "uncommitted_bytes": 163
+      },
+      "same_counters": true,
+      "same_records": true
+    },
+    "after_state_replace": {
+      "before": {
+        "committed_hits": 2,
+        "journal_lines": 2
+      },
+      "same_counters": true,
+      "same_records": true
+    },
+    "after_recovery_replace": {
+      "before": {
+        "committed_hits": 2,
+        "journal_lines": 2
+      },
+      "same_counters": true,
+      "same_records": true
+    }
+  },
+  "collector_cases": {
+    "valid": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.669800000006168e-05,
+        "wall_seconds": 0.00011157989501953125,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson",
+        "projected_cpu_hours_to_2000": 4.4319916666694934e-07
+      }
+    },
+    "json_corrupt_checkpoint": {
+      "exit": "collection failed: setting 0: unreadable checkpoint (Expecting ':' delimiter: line 1 column 10 (char 9))",
+      "collection_ok": false,
+      "run_complete": false,
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 1
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [
+        "setting 0: unreadable checkpoint (Expecting ':' delimiter: line 1 column 10 (char 9))"
+      ],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "invalid",
+        "errors": [
+          "setting 0: unreadable checkpoint (Expecting ':' delimiter: line 1 column 10 (char 9))"
+        ]
+      }
+    },
+    "malformed_record": {
+      "exit": "collection failed: setting 0: malformed hit record",
+      "collection_ok": false,
+      "run_complete": false,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [
+        "setting 0: malformed hit record"
+      ],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.817099999986922e-05,
+        "wall_seconds": 0.0001125335693359375,
+        "journal_bytes": 978,
+        "journal_sha256": "3042d5dc7e996f31b05cd73b2b0f184de81c4c617c2a46fa719b2e71dab8bebe",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "errors": [
+          "setting 0: malformed hit record"
+        ]
+      }
+    },
+    "duplicate_record": {
+      "exit": "collection failed: setting 0: hit identities duplicated or out of order",
+      "collection_ok": false,
+      "run_complete": false,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [
+        "setting 0: hit identities duplicated or out of order"
+      ],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.752200000001654e-05,
+        "wall_seconds": 0.00011205673217773438,
+        "journal_bytes": 978,
+        "journal_sha256": "0c82e217a789938bcccfe7470e0ca02f9383f04c827d4258fe97e59a2835701b",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "errors": [
+          "setting 0: hit identities duplicated or out of order"
+        ]
+      }
+    },
+    "bad_checkpoint_type": {
+      "exit": "collection failed: collection aborted: TypeError: '<' not supported between instances of 'int' and 'str'",
+      "collection_ok": false,
+      "run_complete": false,
+      "status": {
+        "complete": 0,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 0,
+      "row_ids": [],
+      "workers": 0,
+      "errors": [
+        "collection aborted: TypeError: '<' not supported between instances of 'int' and 'str'"
+      ],
+      "stale_summary_survives": false,
+      "row0": null
+    },
+    "missing_workers": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 0,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.558999999992324e-05,
+        "wall_seconds": 0.00011038780212402344,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson",
+        "projected_cpu_hours_to_2000": 4.381208333329815e-07
+      }
+    },
+    "invalid_worker_runtime": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.545199999994036e-05,
+        "wall_seconds": 0.00010967254638671875,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson",
+        "projected_cpu_hours_to_2000": 4.3748833333306e-07
+      }
+    },
+    "missing_worker_provenance": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": 9.579700000006408e-05,
+        "wall_seconds": 0.000110626220703125,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": 0,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": 0,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson",
+        "projected_cpu_hours_to_2000": 4.3906958333362706e-07
+      }
+    },
+    "negative_counters": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": true,
+      "status": {
+        "complete": 2,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 0,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "batches_done": 3,
+        "status": "complete",
+        "cpu_seconds": -1.0,
+        "wall_seconds": 0.00011205673217773438,
+        "journal_bytes": 978,
+        "journal_sha256": "715556c0a226910ad1e2539c04dba0740a609cd148dd67eed8deb9cc1433b4db",
+        "proposals": 30,
+        "poisson_accept": 30,
+        "theta_accept": 30,
+        "paths": 30,
+        "selected_SA": 6,
+        "overflow": -7,
+        "hits": 6,
+        "boundary": 0,
+        "hits_lo": 6,
+        "hits_hi": 6,
+        "rounding_excess": -9,
+        "stop": "budget",
+        "uncommitted_tail_bytes": 0,
+        "prefix_hits": 2,
+        "prefix_proposals": 10,
+        "suffix_hits": 4,
+        "suffix_proposals": 20,
+        "retention_per_proposal": 0.2,
+        "zero_hit_upper95": null,
+        "ci95_suffix": [
+          0.05733399705003277,
+          0.4366140029966683
+        ],
+        "ci_method": "Clopper-Pearson",
+        "projected_cpu_hours_to_2000": -0.004583333333333333
+      }
+    },
+    "orphan_journal": {
+      "exit": 0,
+      "collection_ok": true,
+      "run_complete": false,
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "running": 0,
+        "missing": 1,
+        "invalid": 0
+      },
+      "rows": 2,
+      "row_ids": [
+        0,
+        1
+      ],
+      "workers": 2,
+      "errors": [],
+      "stale_summary_survives": false,
+      "row0": {
+        "index": 0,
+        "pop": "synthetic",
+        "outer": "toy/0",
+        "n": 0,
+        "proposal_budget": 30,
+        "worker": 0,
+        "status": "missing"
+      }
+    }
+  }
+}
