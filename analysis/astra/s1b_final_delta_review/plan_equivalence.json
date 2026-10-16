@@ -1,0 +1,567 @@
+{
+  "scope": "Bounded old/current planner equivalence under its actual setting lock.\n\nLoads source functions unchanged via AST; all checkpoints and counters are\nsynthetic. No sampler imports, proposals, population paths or scheduler calls.\n",
+  "old_commit": "ca94676",
+  "current_commit": "979cd411b1c9ae9ecc32bb2980045a690dfe02b3",
+  "source_sha256": {
+    "old": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b",
+    "current": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407"
+  },
+  "cases": [
+    {
+      "name": "fresh_setting",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_9999998_s00007_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005"
+      ]
+    },
+    {
+      "name": "pilot_prefix_only",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_9999998_s00007_000000002_000000008",
+        "sets/s00007/ranges/000000002-000000008"
+      ]
+    },
+    {
+      "name": "existing_terminal_COMPLETE",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/COMPLETE"
+      ]
+    },
+    {
+      "name": "existing_terminal_CAPPED",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/CAPPED"
+      ]
+    },
+    {
+      "name": "existing_terminal_FAILED",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/FAILED"
+      ]
+    },
+    {
+      "name": "failed_shard",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/FAILED",
+        "sets/s00007/ranges/000000000-000000002",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "new_complete_marker",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/COMPLETE",
+        "sets/s00007/ranges/000000000-000000005",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "new_capped_marker",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 0,
+          "claimed": 0
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/CAPPED",
+        "sets/s00007/ranges/000000000-000000020",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "complete_nonterminal_successor",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_9999998_s00007_000000002_000000008",
+        "sets/s00007/ranges/000000000-000000002",
+        "sets/s00007/ranges/000000002-000000008",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "cancelled_range",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_9999997_s00007_000000002_000000010",
+        "sets/s00007/ranges/000000000-000000002",
+        "sets/s00007/ranges/000000002-000000010",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "unstarted_orphan",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000000_s00007_000000000_000000005",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005"
+      ]
+    },
+    {
+      "name": "running_orphan",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000000_s00007_000000000_000000005",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "censored_orphan",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000000_s00007_000000000_000000005",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "queued_range",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_0000017_s00007_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005"
+      ]
+    },
+    {
+      "name": "live_claim",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W1_0000017_s00007_000000000_000000005@synthetic-owner",
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "sets/s00007/ranges/000000000-000000005",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "completed_range_still_claimed",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 0,
+          "claimed": 0
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W1_0000017_s00007_000000000_000000002@synthetic-owner",
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_9999998_s00007_000000002_000000008",
+        "sets/s00007/ranges/000000000-000000002",
+        "sets/s00007/ranges/000000002-000000008",
+        "sets/s00007/sh000000000.json"
+      ]
+    },
+    {
+      "name": "mixed_multiple_unfinished",
+      "first_state_identical": true,
+      "repeated_plan_state_identical": true,
+      "old_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "current_listings": [
+        {
+          "queue": 1,
+          "claimed": 1
+        },
+        {
+          "queue": 1,
+          "claimed": 1
+        }
+      ],
+      "output_paths": [
+        "claimed/W1_0000017_s00007_000000004_000000008@synthetic-owner",
+        "claimed/W2_0000001_c00007_000000000_000000005@peer",
+        "queue/W1_0000000_s00007_000000012_000000016",
+        "queue/W1_0000000_s00007_000000016_000000020",
+        "queue/W1_0000001_s99999_000000000_000000005",
+        "queue/W1_0000017_s00007_000000008_000000012",
+        "sets/s00007/ranges/000000000-000000002",
+        "sets/s00007/ranges/000000002-000000004",
+        "sets/s00007/ranges/000000004-000000008",
+        "sets/s00007/ranges/000000008-000000012",
+        "sets/s00007/ranges/000000012-000000016",
+        "sets/s00007/ranges/000000016-000000020",
+        "sets/s00007/sh000000000.json",
+        "sets/s00007/sh000000002.json",
+        "sets/s00007/sh000000004.json",
+        "sets/s00007/sh000000012.json"
+      ]
+    }
+  ],
+  "production_callers_inspected": {
+    "seed": "plan at line 392 is inside with held(sdir, owner, qstat)",
+    "work": "plan at line 485 is inside with held(sdir, owner, qstat); claim unlink follows under same lock",
+    "other_calls": "remaining direct plan calls are local synthetic test fixtures"
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-17T10:43:34.644045+11:00"
+}

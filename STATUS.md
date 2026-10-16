@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 17 October 2026, 00:54 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 17 October 2026, 10:47 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -14,12 +14,14 @@ Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
 message 1222. The 15–16 October Stage 1a smoke and large no-fit pilot have
 finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 (board 1759), within their stated caps, allocation ceilings and gate meaning.
-Astra's closure review (1803) accepts the lock and reservation repairs at
-`ca94676`. The executable is cleared for W1 subject to the already-running
-regression smoke completing cleanly and verification/preflight of the exact
-package on Kunanyi. At 00:53 AEDT the smoke remained active, without a final
-collection. Fable next for these completion checks and dispatch; no further
-code-review round or scientific decision is needed if they pass unchanged.
+Astra's final review (1812) clears the current `979cd41` package for W1's
+ordinary bound preflight and submission. The lazy-planning delta passes
+17 old/current equivalence cases; the overnight regression smoke completed
+cleanly with four identical libraries; current native preflight passes all
+22 fixtures. Fable reports the exact stage and all 22 fixtures verified on
+Kunanyi NFS. Accept the roughly ten-minute seed under an extended session.
+Fable next for production-ledger preflight and dispatch of 199,688 CPU-hours;
+no further repair, population smoke or scientific decision is needed.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -934,6 +936,19 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 17 October morning, cleared the final Stage 1b package at `979cd41`
+  (1812; E64). [Final review](notes/astra_s1b_final_delta_review_20261017.md)
+  accepts lazy queue/claim listing after 17 old/current planner equivalence
+  cases under the actual setting lock. Independently verified the completed
+  overnight smoke, four libraries identical to both earlier deep smokes and
+  matching saved serial receipts; current collector reproduces the summary.
+  Native full-settings preflight passes 22 fixtures with the correct audit-only
+  199,688-hour reservation; all settings except runner binding and all staged
+  hashes reconcile. Fable's on-Kunanyi NFS qualification is recorded as peer
+  evidence. Long seeding is acceptable under the extended dispatch session.
+  Fable owns production preflight/submission. No new population simulation,
+  production reservation or PBS action by Astra.
+
 - 17 October, closed the remaining Stage 1b lock and reservation findings
   at `ca94676` with two bounded reviewers (1803; E63).
   [Closure review](notes/astra_s1b_closure_review_20261017.md) records the
@@ -1333,28 +1348,25 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b/1c are authorised; lock and ledger blockers are closed.**
-   [Astra closure review](notes/astra_s1b_closure_review_20261017.md), board
-   1803; exposure E63; reviewed `ca94676`.
-   - **Code clearance:** generation-safe lock reclamation and chronological,
-     identity-bound reservations pass the exact preceding failure sequences.
-     Dead reclaimers fail closed for evidence-based operator recovery.
-     No implementation blocker remains within this focused closure review.
-   - **Verified:** native full-settings preflight with all 22 synthetic
-     fixtures; six independent lock cases; eleven ledger acceptance checks;
-     eight scheduler scenarios under Bash 5.2 and source-built 4.2.46; all
-     21,816 setting rows/other fields unchanged except runner hash; unchanged
-     metric/dependencies; all seven staged sources match.
-   - **Still pending:** the existing `smoke_deep3` regression. At 00:53:19
-     AEDT eight workers were active with empty logs and no completion report.
-     Fable must record a clean collection (four COMPLETE, two CAPPED, no
-     errors/incomplete) and four libraries byte-identical to the earlier
-     deep-server smoke before dispatch. Investigate any mismatch.
-   - **Then:** verify tar `b4b1bfc1...` and its manifest on Kunanyi, run the
+1. **Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
+   [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
+   1812; exposure E64; reviewed `979cd41`.
+   - **Code clearance:** the final lazy-planning delta passes 17 old/current
+     equivalence cases. Lock/ledger/submitter implementations remain unchanged
+     from the passing closure review; dead reclaimers still fail closed for
+     evidence-based operator recovery. No remaining code blocker in this review.
+   - **Verified:** overnight smoke has four COMPLETE and two CAPPED settings,
+     no errors/incomplete and four libraries byte-identical to both earlier
+     deep smokes; saved serial receipts match. Current collector reproduces the
+     summary. Native current preflight passes 22 fixtures; all 21,816 setting
+     rows/other fields remain unchanged except runner binding; metric and seven
+     staged sources match. Fable reports all 22 fixtures pass on Kunanyi NFS
+     and the exact tar/manifest is verified there.
+   - **Fable next:** verify current tar `e18bea28...` and manifest, run the
      normal bound preflight with the production ledger and campaign-filesystem
-     TMPDIR for the tiny lock fixtures, and dispatch the existing W1 shape:
-     `520 * 8 * 48 + 8 = 199,688` CPU-hours. No new population smoke, code-review
-     round or Barry decision is needed if these checks pass unchanged.
+     TMPDIR, then seed and submit `520 * 8 * 48 + 8 = 199,688` CPU-hours.
+     The roughly ten-minute seed is acceptable under the extended 3600-second
+     dispatch session; no further optimization, smoke or Barry decision needed.
    - **Approved design:** 21,600 primary libraries plus 216 named independent
      check libraries; stable streams and pilot reuse; W1 then W2 with
      allocated ceilings 200k / 1.0M / 1.2M CPU-hours. The per-setting cap is a
@@ -1397,10 +1409,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1803**; exhausted `through`: **1803**.
-- Explicit acknowledgement: through actual message **1803** in discussion 70.
-- Latest own review: **1803** (lock/ledger closure; final smoke and staged preflight pending).
-- Next retrieval: omit `through` to capture new messages, and use `after=1803`.
+- Last full retrieval `next_after`: **1812**; exhausted `through`: **1812**.
+- Explicit acknowledgement: through actual message **1812** in discussion 70.
+- Latest own review: **1812** (final planner/smoke/package clearance for W1 dispatch).
+- Next retrieval: omit `through` to capture new messages, and use `after=1812`.
 
 ## Decision Inbox checkpoint
 

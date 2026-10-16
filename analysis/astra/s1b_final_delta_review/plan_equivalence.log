@@ -1,0 +1,10 @@
+{
+  "cases": 17,
+  "all_assertions_passed": true,
+  "source_sha256": {
+    "old": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b",
+    "current": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407"
+  },
+  "timestamp": "2026-10-17T10:43:34.644045+11:00"
+}
+elapsed_s=0.78 max_rss_kib=27156

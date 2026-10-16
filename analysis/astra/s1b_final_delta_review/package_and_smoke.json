@@ -1,0 +1,95 @@
+{
+  "scope": "Final Stage 1b lazy-planning delta: saved package/smoke verification on deep-server.\n\nNo population simulation, production reservation or PBS command. Writes only the\nnamed Astra audit directory, including an isolated copy for smoke recollection.\n",
+  "timestamp": "2026-10-17T10:44:15.314072+11:00",
+  "hashes": {
+    "p3_settings.json": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a",
+    "p3_settings_smoke.json": "fa477b66d38ac06e234fbe69646159f71ca13fc4a87de13d53f4ebd4be2e1096",
+    "p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "s1b_stage.tar": "e18bea28684242309897fbf6e6bd7a367a5f108746ce73b2c4ade699d2b3b629"
+  },
+  "runner_sha256": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407",
+  "settings_rows_unchanged": 21816,
+  "prior_settings_reconstructed_exactly": true,
+  "stage_member_hashes": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": "fa84b88a7d063a262a06504b3be8f849e802056a13e8dd14391b5c0a192debf1",
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": "0e6081167589eed0b8cee9988f8fddfa2a61dff7bb5741186cb118a96d3c88ad",
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": "2a982cf96023bc9169d72d2ba8264a7babcb230b1ae0f28ee5b9d906b20b1b46",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p3_serial_check.py": "9309f860b9e81d3589ab999b0d109cb459c93a22195b5202ed553f53ef5ed0d9",
+    "s1b/p3_settings_smoke.json": "fa477b66d38ac06e234fbe69646159f71ca13fc4a87de13d53f4ebd4be2e1096",
+    "s1b/stage_sha256.txt": "357725cb102ceb2806e435b789fc82b853fa18d50501cd8e2e04cbee38098ec2",
+    "s1b/p3_metric.json": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "s1b/p3_settings.json": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a"
+  },
+  "completed_smoke_status": {
+    "COMPLETE": 4,
+    "CAPPED": 2,
+    "FAILED": 0,
+    "incomplete": 0
+  },
+  "completed_smoke_binding": {
+    "settings_sha256": "3c89151b764ce8b6b90b71d47242be6b5d9ccdc913f8c231b53cbf3755c16c5a",
+    "metric_sha256": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "runner_sha256": "4886d8e89abb09b5acbcb803e5d16e3d198d6a5c3cdad9e67327c9876931930b"
+  },
+  "libraries": [
+    {
+      "dir": "s00073",
+      "sha256": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+      "records": 2000,
+      "previous_deep_bytes_identical": true,
+      "serial_receipt_matches": true
+    },
+    {
+      "dir": "s00142",
+      "sha256": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+      "records": 2000,
+      "previous_deep_bytes_identical": true,
+      "serial_receipt_matches": true
+    },
+    {
+      "dir": "s00247",
+      "sha256": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+      "records": 2000,
+      "previous_deep_bytes_identical": true,
+      "serial_receipt_matches": true
+    },
+    {
+      "dir": "s00772",
+      "sha256": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c",
+      "records": 2000,
+      "previous_deep_bytes_identical": true,
+      "serial_receipt_matches": true
+    }
+  ],
+  "recollect_with_current_collector_identical": true,
+  "native_preflight": {
+    "preflight": "passed",
+    "settings_sha256": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4"
+    },
+    "wave": "W1",
+    "campaign": "s1b",
+    "array_name": "astra_final_fixture",
+    "reservation_cpu_h": 199688.0,
+    "recorded": true,
+    "wave_reserved": 199688.0,
+    "campaign_reserved": 199688.0,
+    "ceilings": {
+      "W1": 200000.0,
+      "W2": 1000000.0,
+      "campaign": 1200000.0
+    }
+  },
+  "limitations": [
+    "Kunanyi NFS fixture and staging results attributed to Fable board 1809; not rerun here.",
+    "Serial recomputation receipts checked against libraries; no fresh numerical recomputation.",
+    "No fresh full-W1 seed timing run; 653 seconds and NFS estimate are Fable measurements."
+  ],
+  "elapsed_seconds": 48.26861112599727
+}
