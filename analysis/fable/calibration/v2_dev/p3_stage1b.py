@@ -322,8 +322,15 @@ def plan(st, sdir, run, b):
         mark(sdir, "CAPPED", {"end_batch": end, "hits": h}); return
     mins, tw, mi, ov = b["min_shard_cpu_h"], b["target_wall_h"], b["max_inflight"], b["overshoot"]   # bound planner
     q, c = os.path.join(run, "queue"), os.path.join(run, "claimed")
-    live = {n.rsplit("_", 2)[1] + "_" + n.rsplit("_", 2)[2] for n in os.listdir(q) if f"_{st['dir']}_" in n}
-    live |= {n.split("@")[0].rsplit("_", 2)[1] + "_" + n.split("@")[0].rsplit("_", 2)[2] for n in os.listdir(c) if f"_{st['dir']}_" in n}
+    live = None                                     # listed only when an unfinished range needs reconciling (O(1) seeding)
+
+    def is_live(a, b_):
+        nonlocal live
+        if live is None:
+            live = {n.rsplit("_", 2)[1] + "_" + n.rsplit("_", 2)[2] for n in os.listdir(q) if f"_{st['dir']}_" in n}
+            live |= {n.split("@")[0].rsplit("_", 2)[1] + "_" + n.split("@")[0].rsplit("_", 2)[2]
+                     for n in os.listdir(c) if f"_{st['dir']}_" in n}
+        return f"{a:09d}_{b_:09d}" in live
     pl = st["pilot"]
     H = (pl["hits"] if pl else 0); N = (pl["batches_done"] if pl else 0); C = (pl["cpu_seconds"] if pl else 0.0)
     inflight, inflight_left, orphans = 0, 0, []
@@ -334,7 +341,7 @@ def plan(st, sdir, run, b):
             H += S["hits"]; N += done; C += S["cpu_seconds"]
         if not S or S["status"] not in ("complete", "cancelled"):
             inflight += 1; inflight_left += (b_ - a) - done
-            if f"{a:09d}_{b_:09d}" not in live:
+            if not is_live(a, b_):
                 orphans.append((a, b_))
     cpb = C / N / 3600 if N and C > 0 else BATCH / st["rate"] / 3600              # CPU-h per batch
     ph = st.get("prior_hpb", 0.0)                                                 # cell prior, PRIOR_HITS pseudo-hits

@@ -1,0 +1,11 @@
+collection_ok True W1 {'COMPLETE': 4, 'CAPPED': 2, 'FAILED': 0, 'incomplete': 0} useful 6.0 discarded 0.0 incomplete 0 errors 0
+"dir": "s00073"	"identical": true
+"dir": "s00142"	"identical": true
+"dir": "s00247"	"identical": true
+"dir": "s00772"	"identical": true
+s00073 identical to first deep smoke
+s00142 identical to first deep smoke
+s00247 identical to first deep smoke
+s00772 identical to first deep smoke
+
+[exited with code 0]

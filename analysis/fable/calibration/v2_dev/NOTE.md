@@ -986,3 +986,23 @@ covering both smokes), stage tar `286854e7…`.
     differs, with identities, paths and boundary flags identical;
   - all six settings match deep-server on status, prefix end and prefix
     hits.
+
+**W1 readiness, 17 October (01:00–01:25).**
+- **Regression smoke `smoke_deep3`** (runner ca94676) passed: `collection_ok`,
+  4 COMPLETE and 2 CAPPED, no errors or incomplete settings. All 4 libraries
+  are byte-identical to serial recomputation and to the first deep-server
+  smoke (`p3/smoke_deep3_*`).
+- **Seed scaling found while preparing W1.** `plan()` listed the whole queue
+  and claims directories on every call.
+  - A full W1 seed (14,544 settings) on deep-server local disk reached only
+    11,347 settings in about 13 min.
+  - The listing is now **lazy**: it happens only when an unfinished range
+    must be reconciled. Behaviour is unchanged, since a fresh setting has
+    nothing to reconcile. Fixtures 22/22; settings rebound (`86545d6b…`).
+  - **The seed is still slow:** about 13,500 settings in about 9 min on local
+    disk, so roughly 25 ms per setting from locks, fsyncs and file
+    creation. It will be slower on kunanyi NFS.
+  - To settle in the morning: profile the seed; then either accept a long
+    seed under an extended session, or make fresh seeding cheaper under the
+    campaign lock. Either way, Astra checks the delta.
+- W1 is not dispatched.
