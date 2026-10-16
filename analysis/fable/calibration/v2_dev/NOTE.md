@@ -463,3 +463,98 @@ calibration or power claim).
   - a declared wider C-locality, which changes the conditioning target;
   - a different reference construction.
 - **This prototype stops here**, as specified.
+
+## Stage 1a: kunanyi smoke and final manifest (15–16 October 2026; no fits)
+
+Astra's bounded sampling pilot (`notes/astra_p1_and_repairs_review_20261015.md`
+§4; board 1657), confirmed in 1660. Runner `p2_stage1a.py`; package 74cf551.
+
+**Smoke** (smoke settings `6c61c68f…`: 1,080 settings × 10⁵ proposals, 28
+workers, one node).
+- Job 819562 was queued 15 Oct 12:21 and started 16 Oct 09:27. The 21 h wait
+  was "Not Running: Insufficient amount of resource: ncpus": no whole 28-core
+  node was free.
+- It ran 57 s wall, 4 min 20 s CPU, exit 0, on n237 with Python 3.11.7,
+  NumPy 1.26.4 and SciPy 1.11.4.
+- 1,080/1,080 settings complete; none censored, failed or missing; 38 hits.
+- Peak worker RSS 0.076 GiB (1.9 GB for 28 workers).
+- Allocation 28 × 57 s = 0.44 CPU-h, plus a 6 s collector.
+- **Collector 819563 exited 4.** `collect` succeeded, but `tar` reported
+  "smoke: file changed as we read it" seconds after the node job ended. A
+  repack on the login node at 10:50 exited 0 and passed `tar -d`. The archive
+  (`58e9feab…`) was pulled to deep-server and its hash agrees. The cause is
+  probably shared-filesystem metadata lag; that is not established.
+- **The results reproduce across machines.** Every counter of all 1,080
+  settings, and every hit record, is identical to the deep-server dry run
+  (Python 3.12.3 there).
+- **Kunanyi is faster per core.** Its rate divided by deep-server's has a
+  median of 1.13 (n = 0), 1.46 (n = 30) and 1.45 (n = 300). Median kunanyi
+  rates are 1.8 × 10⁵, 1.13 × 10⁶ and 1.78 × 10⁶ proposals per CPU-s.
+- **The per-setting rates can serve as budgets.** A linear cost model fits
+  kunanyi CPU time with residual log-ratio sd 0.014 / 0.079 / 0.054 by n
+  (maximum +0.06 / +0.25 / +0.14). Its unit costs are 0.43 µs per proposal,
+  1.65 µs per Poisson acceptance, and 1.3–4.8 µs per simulated path,
+  depending on population.
+- Files: `p2/kunanyi_smoke/collect.json`, `p2/throughput_kunanyi.json`
+  (`a89f5d28…`).
+
+**Repairs before scale** (runner `3fccf9b9…`).
+1. **Checkpoint cadence.** An informative batch takes about 18 ms, so a
+   per-batch fsync would mean about 50 commits per second per worker. Across
+   360 workers that is about 2 × 10⁴ per second on the shared filesystem,
+   and the CPU-time throughput excludes that I/O.
+   - Hit records, then state, are now committed at most every 60 s, and at
+     every terminal state.
+   - Resume semantics are unchanged.
+2. **Declared storage limit.** A setting stops at the first batch boundary
+   with at least 2,000 retained hits (HIT_STOP = K). The crossing batch is
+   kept whole, and the stop reason (`hits` or `budget`) is recorded.
+   - This bounds storage at about 1,080 × 2,000 records, roughly 0.7 GB.
+   - Under this inverse sampling, hits/proposals has bias of order 1/2,000.
+3. **Job shape.** Jobs now take JOBCPUS workers and JOBCPUS/2 + 1 GB, so they
+   can backfill partly occupied nodes.
+4. **Collector packing.** The pack excludes the collector's own PBS logs, is
+   verified with `tar -d`, and retries after 60 s and 300 s. Exit 4 follows
+   only if all three attempts fail.
+
+**New fixtures (all pass).**
+- An uncommitted hit record is dropped on resume.
+- Committing every batch and committing every 60 s give identical results.
+- The hit stop falls at a batch boundary. Smoke setting 775 has hits in
+  batches 1 and 2; with HIT_STOP = 1 it stops after batch 1 with one hit.
+
+The repaired runner reproduces all 1,080 smoke settings exactly on
+deep-server: no counter or hit-record mismatches, 38 hits.
+
+**Final manifest** `p2/p2_settings_s1a.json` (`d0dd1bff…`).
+- **Settings:** the same 1,080 indices and streams. The smoke's five batches
+  are the exact prefix of each final stream, so they are recomputed, not
+  added as extra exposure.
+- **Budgets:** kunanyi throughput × 3,300 s per informative setting and
+  825 s per control, rounded down to whole 20,000-proposal batches. That is
+  Astra's 3,600 s / 900 s scaled by 11/12 for timing margin within the
+  ceiling. Total 3.504 × 10¹² proposals.
+- **Packing:** NWORKERS 360. LPT gives every worker two informative settings
+  and one control, for an expected load of 7,425 s (2.06 h) on every worker.
+- **Dispatch shape:** 45 jobs × 8 cores, 5 GB each, walltime 2:45:00.
+  - The deadline at walltime − 10 min (2.58 h) leaves 25% margin over the
+    expected load.
+  - If every job used its full walltime, the bound would be 360 × 2.75 = 990
+    CPU-h. With the collector (≤ 1 CPU-h) and the smoke (0.44 CPU-h), that
+    is at most 991.5 CPU-h, within the 1,000 CPU-h ceiling.
+  - The expected use is about 760–800 CPU-h.
+- **Hit forecast** (very uncertain).
+  - Smoke hits by n: 31 (n = 0), 5 (n = 30) and 2 (n = 300), each across
+    360 settings.
+  - Of the 34 settings with smoke hits, 15 project to reach 2,000.
+  - The 1,046 zero-hit settings have only an uninformative upper bound at
+    smoke scale.
+- **Stage tar:** `s1a_stage_final.tar` (`ceaa2975…`) on deep-server, with
+  per-file hashes in `s1a/stage_sha256.txt`.
+
+**Dispatch** (after Astra's law, guard and budget check; one Jumpbox window).
+1. Push the tar and extract it into run1.
+2. Run `sha256sum -c`.
+3. Run `p2_stage1a.py test` on the login node, which also checks the runtime.
+4. Submit `s1a_submit.sh /u/bwbrook/vortex/run1 p2_settings_s1a.json main 45 8 02:45:00`.
+   The afterany collector emails Barry.

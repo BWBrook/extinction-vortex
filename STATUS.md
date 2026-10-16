@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 15 October 2026, 11:32:01 Hobart (AEDT), by Astra (board participant Codex).
+Updated: 16 October 2026, 11:05 Hobart (AEDT), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -701,6 +701,30 @@ board 1657; exposure E46).
   Return the no-fit report before any Stage 1b campaign or Stage 1c fits.
   No new Barry questionnaire is needed for this in-scope preparation.
 
+**Fable, 15–16 October: Stage 1a package, kunanyi smoke and final manifest**
+(board 1660 and this tranche;
+[NOTE](analysis/fable/calibration/v2_dev/NOTE.md), Stage 1a section; exposure E47).
+- **Smoke (one 28-core node, 10⁵ proposals per setting):** 1,080/1,080
+  complete, 38 hits, every counter and hit record identical to the deep-server
+  dry run. Peak RSS 0.076 GiB per worker; 0.44 allocated CPU-h.
+  - The node job waited 21 h for a whole free node.
+  - Its collector exited 4 on a transient `tar` "file changed"; a verified
+    repack followed.
+- **Repairs before scale:**
+  - checkpoints at most every 60 s (per-batch fsync would be about 2 × 10⁴
+    commits per second at scale);
+  - a declared stop at 2,000 hits per setting;
+  - 8-core jobs that can backfill partly occupied nodes;
+  - a verified, retried collector pack.
+  - All fixtures pass, and the smoke reproduces exactly.
+- **Final manifest** `p2/p2_settings_s1a.json` (`d0dd1bff…`): budgets are
+  kunanyi throughput × 3,300 s per informative setting and × 825 s per
+  control. 360 workers each carry 2.06 h; 45 jobs × 8 cores at walltime 2:45.
+  - Worst-case allocation is ≤ 991.5 CPU-h including the smoke; about
+    760–800 CPU-h is expected.
+- **Next response: Astra.** Check the law, guards and budget before dispatch.
+  Barry then opens one Jumpbox window for the push, test and submit.
+
 ## Completed by Astra
 
 - 15 October, reviewed the repaired artifacts and informative sampler at
@@ -901,6 +925,10 @@ board 1657; exposure E46).
 
 ## Completed by Fable
 
+- 16 October, Stage 1a: kunanyi smoke (1,080/1,080, cross-machine identical);
+  checkpoint-cadence, hit-stop, job-shape and collector repairs with new
+  fixtures; budgeted final manifest and stage tar. Exposure row E47.
+
 - Verified API v2 and the Fable identity. Read the board interface and recovery
   docs on the Mac mini.
 - Wrote [notes/fable_initial_slate.md](notes/fable_initial_slate.md) before
@@ -1012,13 +1040,13 @@ board 1657; exposure E46).
 
 ## Pending
 
-1. Fable responds to review 1657 with the repaired executable and bound
-   fixed-radius Kunanyi sampling-pilot package (proposed first ceiling
-   1,000 allocated CPU-hours, 720 noisy settings plus 360 matched n=0 controls).
-   Astra checks the package before large dispatch; the pilot stops at its
-   no-fit report. Full-library Stage 1b and fitted Stage 1c remain uncommissioned.
-   Core/Haley, material caribou and one-page table findings are closed; two
-   minor caribou prose/format edits can accompany manuscript assembly.
+1. Astra checks the Stage 1a executable law, guards and budget (runner
+   `3fccf9b9…`, manifest `d0dd1bff…`, stage tar `ceaa2975…`; ceiling 1,000
+   allocated CPU-h, worst case 991.5) before dispatch. Then Fable dispatches 45
+   × 8-core jobs in one Jumpbox window, and the collector emails Barry. The
+   pilot stops at its no-fit report. Full-library Stage 1b and fitted Stage 1c
+   remain uncommissioned.
+   Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
    deferred. The original two-candidate route meets its stop rule. Any new
@@ -1102,10 +1130,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view); discussion 70. The board identity is now
   "Claude"; Astra's appears as "Codex".
-- Read through 1413 in full. Fable's latest posts: 1392 and the 0.10 repairs.
-- Last full retrieval `next_after`: **1419**.
-- Explicit acknowledgement: through message **1368** in discussion 70.
-- Next retrieval: use `after=1419` and omit `through`.
+- Read through 1660 in full and acknowledged through **1660**. Fable's latest
+  posts: 1660 and the Stage 1a manifest post that follows it.
+- Next retrieval: use `after=1660` on discussion 70.
 
 ## Coordination note
 

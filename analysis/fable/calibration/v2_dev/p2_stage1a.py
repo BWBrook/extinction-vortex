@@ -7,9 +7,11 @@ Repairs required before scale (Astra 1657): actual imported-source and exported-
 every result; mask/MAD/query/radius exported once (workers never load a bank); atomic per-batch checkpoints with
 deterministic resume and explicit complete/censored/failed states; a hard wall deadline; admissible-evidence checks
 (n = 0 implies k = r = 0); exact coordinate equality when the radius is zero; exposure counts only simulated batches
-(no path cap truncation). Run from the frozen source root.
+(no path cap truncation). Scale repairs after the kunanyi smoke: checkpoints (hit records, then state) at most every
+CKPT_SECS rather than every batch; a setting stops at the first batch boundary with at least HIT_STOP retained hits
+(the declared storage limit; the batch that crosses it is kept whole). Run from the frozen source root.
   export   MANIFEST BASE S0_INPUTS S0_FULLDIR OUT_METRIC           (deep-server; loads each bank once)
-  settings METRIC OUT_SETTINGS PROPOSALS_INFO PROPOSALS_N0 BATCH NWORKERS [THROUGHPUT_JSON SECONDS_INFO SECONDS_N0]
+  settings METRIC OUT_SETTINGS PROPOSALS_INFO PROPOSALS_N0 BATCH NWORKERS HIT_STOP [THROUGHPUT_JSON SECONDS_INFO SECONDS_N0]
            bind settings, budgets (fixed proposals, or seconds x measured smoke throughput per setting), LPT worker assignment
   test     METRIC                                                  guard/resume fixtures (exits non-zero on failure)
   run      SETTINGS METRIC OUTDIR WORKER NWORKERS DEADLINE_EPOCH  one worker; resumable
@@ -36,6 +38,7 @@ PARAMS = ("s", "f", "sigma", "rho", "p_c", "delta")
 IMPORTED = ("analysis/fable/calibration/bank.py",)
 LOG_TOL = 1e-9
 ROOT = 20261015
+CKPT_SECS = 60.0
 
 
 def sha(p):
@@ -127,8 +130,9 @@ def export(man_path, base, s0_inputs, s0_full, out):
     print("metric", out, sha(out))
 
 
-def settings(metric_path, out, prop_info, prop_n0, batch, nworkers, throughput=None, sec_info=None, sec_n0=None):
-    metric = json.load(open(metric_path)); prop_info, prop_n0, batch, nworkers = int(prop_info), int(prop_n0), int(batch), int(nworkers)
+def settings(metric_path, out, prop_info, prop_n0, batch, nworkers, hit_stop, throughput=None, sec_info=None, sec_n0=None):
+    metric = json.load(open(metric_path))
+    prop_info, prop_n0, batch, nworkers, hit_stop = int(prop_info), int(prop_n0), int(batch), int(nworkers), int(hit_stop)
     rate = json.load(open(throughput)) if throughput else None            # {"pop|outer|n": proposals per CPU-second}
     st = []
     for pop in POPS:
@@ -154,7 +158,8 @@ def settings(metric_path, out, prop_info, prop_n0, batch, nworkers, throughput=N
          "imported_source_sha256": {f: sha(f) for f in IMPORTED},
          "allowed_runtimes": [{"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"},
                               {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}],
-         "batch": batch, "nworkers": nworkers, "throughput_sha256": sha(throughput) if throughput else None,
+         "batch": batch, "nworkers": nworkers, "hit_stop": hit_stop, "checkpoint_seconds": CKPT_SECS,
+         "throughput_sha256": sha(throughput) if throughput else None,
          "seconds_info": sec_info, "seconds_n0": sec_n0,
          "stream": f"numpy.random.default_rng([{ROOT}, 2, setting_index, batch_index]); draw_params(B), Poisson "
                    "uniforms(B), binomial uniforms(B), then simulate_given(all accepted theta) in that order",
@@ -214,7 +219,7 @@ def one_batch(st, mp, bi, B, des):
     return out
 
 
-def run_setting(b, st, mp, outdir, deadline, des):
+def run_setting(b, st, mp, outdir, deadline, des, ckpt_secs=CKPT_SECS):
     ck = os.path.join(outdir, f"s{st['index']:04d}.json"); hits_p = os.path.join(outdir, f"s{st['index']:04d}_hits.jsonl")
     keys = ("proposals", "poisson_accept", "theta_accept", "paths", "selected_SA", "overflow", "hits", "boundary",
             "hits_lo", "hits_hi", "rounding_excess")
@@ -231,27 +236,36 @@ def run_setting(b, st, mp, outdir, deadline, des):
     else:
         S = {"index": st["index"], "binding": b["_binding"], "batches_done": 0, "status": "running", "cpu_seconds": 0.0,
              "wall_seconds": 0.0, **{k: 0 for k in keys}}
-    while S["batches_done"] < st["batches"]:
+    pending, last = [], time.time()
+
+    def commit(status):
+        if pending:                                         # hit records first, then the state that counts them
+            with open(hits_p, "a") as fh:
+                for h in pending:
+                    fh.write(json.dumps(h) + "\n")
+                fh.flush(); os.fsync(fh.fileno())
+            pending.clear()
+        S["status"] = status; atomic_json(S, ck)
+
+    while S["batches_done"] < st["batches"] and S["hits"] < b["hit_stop"]:
         if time.time() > deadline:
-            S["status"] = "censored"; atomic_json(S, ck); return S
+            commit("censored"); return S
         t0, c0 = time.time(), time.process_time()
         bi = S["batches_done"]
         B = min(b["batch"], st["proposal_budget"] - bi * b["batch"])
         try:
             r = one_batch(st, mp, bi, B, des)
         except RuntimeError as e:
-            S["status"] = "failed"; S["failure"] = str(e); atomic_json(S, ck); return S
-        if r["hit_records"]:
-            with open(hits_p, "a") as fh:
-                for h in r["hit_records"]:
-                    fh.write(json.dumps(h) + "\n")
-                fh.flush(); os.fsync(fh.fileno())
+            S["failure"] = str(e); commit("failed"); return S
+        pending.extend(r["hit_records"])
         for k in keys:
             S[k] += r[k]
         S["batches_done"] += 1
         S["cpu_seconds"] += time.process_time() - c0; S["wall_seconds"] += time.time() - t0
-        atomic_json(S, ck)
-    S["status"] = "complete"; atomic_json(S, ck)
+        if time.time() - last >= ckpt_secs:
+            commit("running"); last = time.time()
+    S["stop"] = "hits" if S["hits"] >= b["hit_stop"] else "budget"
+    commit("complete")
     return S
 
 
@@ -289,8 +303,8 @@ def test(metric_path):
           "E": metric["E"]["hawaiian_crow|null_low_s/0|30"], "proposal_budget": 40_000, "batches": 2}
     mp = dict(metric["outers"]["hawaiian_crow|null_low_s/0"], keep=metric["pops"]["hawaiian_crow"]["keep"],
               mad=metric["pops"]["hawaiian_crow"]["mad"])
-    b = {"batch": 20_000, "_binding": {"fixture": True}}
-    d1, d2 = tempfile.mkdtemp(), tempfile.mkdtemp()
+    b = {"batch": 20_000, "hit_stop": 10 ** 9, "_binding": {"fixture": True}}
+    d1, d2, d3 = tempfile.mkdtemp(), tempfile.mkdtemp(), tempfile.mkdtemp()
     try:
         full = run_setting(b, st, mp, d1, float("inf"), des)
         part = run_setting(b, dict(st, batches=1), mp, d2, float("inf"), des)          # one batch, then "killed"
@@ -298,11 +312,29 @@ def test(metric_path):
         resumed = run_setting(b, st, mp, d2, float("inf"), des)
         keys = ("proposals", "theta_accept", "paths", "selected_SA", "hits", "boundary")
         res["resume_deterministic"] = all(full[k] == resumed[k] for k in keys) and resumed["batches_done"] == 2
+        S = json.load(open(os.path.join(d2, "s9999.json"))); S["status"] = "running"; S["batches_done"] = 1
+        for k in keys:
+            S[k] = part[k]
+        atomic_json(S, os.path.join(d2, "s9999.json"))
+        with open(os.path.join(d2, "s9999_hits.jsonl"), "a") as fh:          # an uncommitted record from a killed batch
+            fh.write('{"uncommitted": true}\n')
+        again = run_setting(b, st, mp, d2, float("inf"), des)
+        hl = lambda d: open(os.path.join(d, "s9999_hits.jsonl")).read() if os.path.exists(os.path.join(d, "s9999_hits.jsonl")) else ""
+        res["resume_drops_uncommitted_hits"] = all(full[k] == again[k] for k in keys) and hl(d1) == hl(d2)
+        every = run_setting(b, st, mp, d3, float("inf"), des, ckpt_secs=0.0)
+        res["checkpoint_cadence_invariant"] = all(full[k] == every[k] for k in keys) and every["status"] == "complete"
+        # smoke setting 775 (crow, null_low_s/8, n = 30) has its first hits in batches 1 and 2 on both machines
+        st775 = {"index": 775, "pop": "hawaiian_crow", "outer": "null_low_s/8", "n": 30,
+                 "E": metric["E"]["hawaiian_crow|null_low_s/8|30"], "proposal_budget": 100_000, "batches": 5}
+        mp775 = dict(metric["outers"]["hawaiian_crow|null_low_s/8"], keep=metric["pops"]["hawaiian_crow"]["keep"],
+                     mad=metric["pops"]["hawaiian_crow"]["mad"])
+        h1 = run_setting(dict(b, hit_stop=1), st775, mp775, d1, float("inf"), des)
+        res["hit_stop_at_batch_boundary"] = (h1["status"], h1["stop"], h1["batches_done"], h1["hits"]) == ("complete", "hits", 2, 1)
         censored = run_setting(b, dict(st, index=9998), mp, d1, time.time() - 1, des)
         res["deadline_censors_without_exposure"] = censored["status"] == "censored" and censored["proposals"] == 0
         res["fixture_counts"] = {k: full[k] for k in keys}
     finally:
-        shutil.rmtree(d1); shutil.rmtree(d2)
+        shutil.rmtree(d1); shutil.rmtree(d2); shutil.rmtree(d3)
     res["all_ok"] = all(v for k, v in res.items() if k != "fixture_counts")
     print(json.dumps(res, indent=1))
     if not res["all_ok"]:
@@ -329,7 +361,7 @@ def collect(settings_path, metric_path, outdir, out):
         upper = (3.0 / S["proposals"] if S["hits"] == 0 else None) if S["proposals"] else None      # ~95% one-sided for zero hits
         cpu_per_prop = S["cpu_seconds"] / S["proposals"] if S["proposals"] else None
         to2000 = (2000 / rate * cpu_per_prop / 3600) if rate else None
-        rows.append({k: st[k] for k in ("index", "pop", "outer", "n")} | {k: S[k] for k in S if k not in ("binding",)} |
+        rows.append({k: st[k] for k in ("index", "pop", "outer", "n", "proposal_budget")} | {k: S[k] for k in S if k not in ("binding",)} |
                     {"retention_per_proposal": rate, "zero_hit_upper95": upper, "cpu_hours_to_2000": to2000})
     workers = [json.load(open(os.path.join(outdir, f))) for f in sorted(os.listdir(outdir)) if f.startswith("worker")]
     json.dump({"binding": binding, "status": status, "workers": workers, "rows": rows}, open(out, "w"), indent=1, allow_nan=False)
