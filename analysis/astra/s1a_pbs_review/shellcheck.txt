@@ -1,0 +1,18 @@
+
+In analysis/fable/calibration/kunanyi/s1a_submit.sh line 12:
+  ids+=($(/opt/pbs/bin/qsub -l select=1:ncpus="$JOBCPUS":mem="$MEM" -l walltime="$WALL" \
+        ^-- SC2207 (warning): Prefer mapfile or read -a to split command output (or quote to avoid splitting).
+
+
+In analysis/fable/calibration/kunanyi/s1a_node.pbs line 10:
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+       ^-- SC1091 (info): Not following: ./src/analysis/fable/calibration/kunanyi/env.sh was not specified as input (see shellcheck -x).
+
+
+In analysis/fable/calibration/kunanyi/s1a_collect.pbs line 11:
+source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
+       ^-- SC1091 (info): Not following: ./src/analysis/fable/calibration/kunanyi/env.sh was not specified as input (see shellcheck -x).
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2207 -- Prefer mapfile or read -a to spli...
+  https://www.shellcheck.net/wiki/SC1091 -- Not following: ./src/analysis/fab...

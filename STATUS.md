@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 11:05 Hobart (AEDT), by Fable (board participant Claude).
+Updated: 16 October 2026, 11:58 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -11,8 +11,9 @@ repairs. His exact words are in discussion 70, message 1131.
 **Compute (Barry, 8 October):** the laptop pilot cap is lifted. Run anything
 serious on `deep-server` in tmux.
 Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
-message 1222. This is a later resource option; this project has not submitted a
-PBS job or measured throughput there. Development remains on deep-server.
+message 1222. The 15–16 October Stage 1a smoke has now run on Kunanyi and
+measured throughput. The large pilot awaits execution repairs below; routine
+development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -702,7 +703,7 @@ board 1657; exposure E46).
   No new Barry questionnaire is needed for this in-scope preparation.
 
 **Fable, 15–16 October: Stage 1a package, kunanyi smoke and final manifest**
-(board 1660 and this tranche;
+(board 1660/1687;
 [NOTE](analysis/fable/calibration/v2_dev/NOTE.md), Stage 1a section; exposure E47).
 - **Smoke (one 28-core node, 10⁵ proposals per setting):** 1,080/1,080
   complete, 38 hits, every counter and hit record identical to the deep-server
@@ -725,8 +726,42 @@ board 1657; exposure E46).
 - **Next response: Astra.** Check the law, guards and budget before dispatch.
   Barry then opens one Jumpbox window for the push, test and submit.
 
+**Astra review, 16 October** ([integrated review](notes/astra_s1a_prerun_review_20261016.md);
+board 1698; exposure E48).
+- **Hold large dispatch for execution repairs.** All 1,080 saved smoke settings
+  and 38 hit records reconcile across the three runs. Input/metric bindings,
+  exact budgets and worker assignments pass. Nominal allocation is 991.445
+  CPU-hours including smoke and collector; 742.493 worker CPU-hours is the
+  throughput-based estimate before overhead.
+- A reproduced partial-submission/retry failure accepts 48 jobs, allocating
+  1,056 CPU-hours and duplicating 24 worker owners. The submitter needs an
+  exclusive run identity, durable per-submission receipts, reconciliation and
+  an enforced cumulative allocation limit.
+- Hit-bearing failure fixtures reproduce orphan duplicates and loss of
+  committed records during checkpoint recovery. Require an initial recovery
+  boundary, validated committed prefixes and atomic tail removal; reject
+  short/missing/corrupt journals, including terminal checkpoints.
+- Collection needs current atomic success/failure receipts, hit-record and
+  worker validation, and explicit incomplete outcomes. The documented test
+  does not check the final settings/runtime binding; add the real preflight.
+- Accept the 2,000-hit stop for this no-fit pilot with whole crossing batches,
+  every terminal outcome retained, a stopping-valid uncertainty contract and
+  separate observed time/projections. The reused smoke prefix counts once.
+  The ideal inverse-binomial bias statement is not a general coverage result.
+- Stage 0 runner-hash guard and the minor caribou/table repairs are verified
+  and closed. No full pilot, bank build/scan, fit or Kunanyi submission ran in
+  this audit; only saved-result reads and bounded unit/failure checks.
+- **Next response: Fable.** Repair and rebind the finite package, then Astra
+  checks the changed contracts before dispatch. No new Barry decision or
+  Jumpbox window is needed for these repairs. Stage 1b/c remain uncommissioned.
+
 ## Completed by Astra
 
+- 16 October, reviewed Stage 1a at `e3870d4` with three bounded reviewers.
+  Verified saved smoke/input/budget evidence, reproduced submission and
+  checkpoint-recovery failures, and returned the finite repair list in 1698.
+  Accepted the hit-stop refinement with reporting conditions; preserved the
+  1,000-hour cap and no-fit scope. Evidence and limitations are in E48.
 - 15 October, reviewed the repaired artifacts and informative sampler at
   `b781db1`, incorporating the resource clarification in `a7b8ae3` and 1655.
   Replayed bounded numerical/stream/wrapper checks, all cost arithmetic and
@@ -1040,12 +1075,14 @@ board 1657; exposure E46).
 
 ## Pending
 
-1. Astra checks the Stage 1a executable law, guards and budget (runner
-   `3fccf9b9…`, manifest `d0dd1bff…`, stage tar `ceaa2975…`; ceiling 1,000
-   allocated CPU-h, worst case 991.5) before dispatch. Then Fable dispatches 45
-   × 8-core jobs in one Jumpbox window, and the collector emails Barry. The
-   pilot stops at its no-fit report. Full-library Stage 1b and fitted Stage 1c
-   remain uncommissioned.
+1. Fable repairs Stage 1a submission/retry ownership, hit-journal recovery,
+   collection integrity and final preflight per review 1698, then rebinds the
+   runner/settings/stage archive and returns targeted failure receipts. Astra
+   checks that finite diff before dispatch. The current package at `e3870d4`
+   is held; its nominal single-dispatch allocation fits the 1,000 CPU-hour
+   ceiling, but retry enforcement does not. Barry's next Jumpbox window is
+   needed only after those repairs pass. The pilot stops at its no-fit report;
+   full-library Stage 1b and fitted Stage 1c remain uncommissioned.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
@@ -1077,9 +1114,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1657**; exhausted `through`: **1657**.
-- Explicit acknowledgement: through actual message **1657** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1657`.
+- Last full retrieval `next_after`: **1698**; exhausted `through`: **1698**.
+- Explicit acknowledgement: through actual message **1698** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1698`.
 
 ## Decision Inbox checkpoint
 

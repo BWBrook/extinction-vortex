@@ -1,0 +1,627 @@
+{
+  "normal_then_duplicate": {
+    "runs": [
+      {
+        "returncode": 0,
+        "stdout": "jobs: 45 x 8 cpus, 5gb, walltime 02:45:00 (10001.fixture .. 10045.fixture)\ncollector: 10046.fixture\nMail_Users = fixture\nMail_Points = ae\n",
+        "stderr": "",
+        "node_ledger_exists": true,
+        "node_ledger_lines": 45
+      },
+      {
+        "returncode": 0,
+        "stdout": "jobs: 45 x 8 cpus, 5gb, walltime 02:45:00 (10047.fixture .. 10091.fixture)\ncollector: 10092.fixture\nMail_Users = fixture\nMail_Points = ae\n",
+        "stderr": "",
+        "node_ledger_exists": true,
+        "node_ledger_lines": 45
+      }
+    ],
+    "qsub_calls": 92,
+    "first_qsub": {
+      "number": 1,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=02:45:00",
+        "-o",
+        "/tmp/tmpkjkqlh8q/base/s1a/main/logs/job0.out",
+        "-e",
+        "/tmp/tmpkjkqlh8q/base/s1a/main/logs/job0.err",
+        "-v",
+        "VBASE=/tmp/tmpkjkqlh8q/base,SETTINGS=settings.json,OUTDIR=main,JOB=0,JOBCPUS=8,NW=360,WALL_SECS=9900",
+        "/tmp/tmpkjkqlh8q/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    },
+    "last_qsub": {
+      "number": 92,
+      "args": [
+        "-W",
+        "depend=afterany:10047.fixture:10048.fixture:10049.fixture:10050.fixture:10051.fixture:10052.fixture:10053.fixture:10054.fixture:10055.fixture:10056.fixture:10057.fixture:10058.fixture:10059.fixture:10060.fixture:10061.fixture:10062.fixture:10063.fixture:10064.fixture:10065.fixture:10066.fixture:10067.fixture:10068.fixture:10069.fixture:10070.fixture:10071.fixture:10072.fixture:10073.fixture:10074.fixture:10075.fixture:10076.fixture:10077.fixture:10078.fixture:10079.fixture:10080.fixture:10081.fixture:10082.fixture:10083.fixture:10084.fixture:10085.fixture:10086.fixture:10087.fixture:10088.fixture:10089.fixture:10090.fixture:10091.fixture",
+        "-o",
+        "/tmp/tmpkjkqlh8q/base/s1a/main/logs/collect.out",
+        "-e",
+        "/tmp/tmpkjkqlh8q/base/s1a/main/logs/collect.err",
+        "-v",
+        "VBASE=/tmp/tmpkjkqlh8q/base,SETTINGS=settings.json,OUTDIR=main",
+        "/tmp/tmpkjkqlh8q/base/src/analysis/fable/calibration/kunanyi/s1a_collect.pbs"
+      ]
+    }
+  },
+  "over_budget_same_worker_count": {
+    "runs": [
+      {
+        "returncode": 0,
+        "stdout": "jobs: 45 x 8 cpus, 5gb, walltime 04:00:00 (10001.fixture .. 10045.fixture)\ncollector: 10046.fixture\nMail_Users = fixture\nMail_Points = ae\n",
+        "stderr": "",
+        "node_ledger_exists": true,
+        "node_ledger_lines": 45
+      }
+    ],
+    "qsub_calls": 46,
+    "first_qsub": {
+      "number": 1,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=04:00:00",
+        "-o",
+        "/tmp/tmpi55xneq5/base/s1a/main/logs/job0.out",
+        "-e",
+        "/tmp/tmpi55xneq5/base/s1a/main/logs/job0.err",
+        "-v",
+        "VBASE=/tmp/tmpi55xneq5/base,SETTINGS=settings.json,OUTDIR=main,JOB=0,JOBCPUS=8,NW=360,WALL_SECS=14400",
+        "/tmp/tmpi55xneq5/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    },
+    "last_qsub": {
+      "number": 46,
+      "args": [
+        "-W",
+        "depend=afterany:10001.fixture:10002.fixture:10003.fixture:10004.fixture:10005.fixture:10006.fixture:10007.fixture:10008.fixture:10009.fixture:10010.fixture:10011.fixture:10012.fixture:10013.fixture:10014.fixture:10015.fixture:10016.fixture:10017.fixture:10018.fixture:10019.fixture:10020.fixture:10021.fixture:10022.fixture:10023.fixture:10024.fixture:10025.fixture:10026.fixture:10027.fixture:10028.fixture:10029.fixture:10030.fixture:10031.fixture:10032.fixture:10033.fixture:10034.fixture:10035.fixture:10036.fixture:10037.fixture:10038.fixture:10039.fixture:10040.fixture:10041.fixture:10042.fixture:10043.fixture:10044.fixture:10045.fixture",
+        "-o",
+        "/tmp/tmpi55xneq5/base/s1a/main/logs/collect.out",
+        "-e",
+        "/tmp/tmpi55xneq5/base/s1a/main/logs/collect.err",
+        "-v",
+        "VBASE=/tmp/tmpi55xneq5/base,SETTINGS=settings.json,OUTDIR=main",
+        "/tmp/tmpi55xneq5/base/src/analysis/fable/calibration/kunanyi/s1a_collect.pbs"
+      ]
+    }
+  },
+  "partial_submission_failure": {
+    "runs": [
+      {
+        "returncode": 7,
+        "stdout": "",
+        "stderr": "",
+        "node_ledger_exists": false,
+        "node_ledger_lines": null
+      }
+    ],
+    "qsub_calls": 4,
+    "first_qsub": {
+      "number": 1,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=02:45:00",
+        "-o",
+        "/tmp/tmpveasc96a/base/s1a/main/logs/job0.out",
+        "-e",
+        "/tmp/tmpveasc96a/base/s1a/main/logs/job0.err",
+        "-v",
+        "VBASE=/tmp/tmpveasc96a/base,SETTINGS=settings.json,OUTDIR=main,JOB=0,JOBCPUS=8,NW=360,WALL_SECS=9900",
+        "/tmp/tmpveasc96a/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    },
+    "last_qsub": {
+      "number": 4,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=02:45:00",
+        "-o",
+        "/tmp/tmpveasc96a/base/s1a/main/logs/job3.out",
+        "-e",
+        "/tmp/tmpveasc96a/base/s1a/main/logs/job3.err",
+        "-v",
+        "VBASE=/tmp/tmpveasc96a/base,SETTINGS=settings.json,OUTDIR=main,JOB=3,JOBCPUS=8,NW=360,WALL_SECS=9900",
+        "/tmp/tmpveasc96a/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    }
+  },
+  "partial_failure_then_retry": {
+    "runs": [
+      {
+        "returncode": 7,
+        "stdout": "",
+        "stderr": "",
+        "node_ledger_exists": false,
+        "node_ledger_lines": null
+      },
+      {
+        "returncode": 0,
+        "stdout": "jobs: 45 x 8 cpus, 5gb, walltime 02:45:00 (10005.fixture .. 10049.fixture)\ncollector: 10050.fixture\nMail_Users = fixture\nMail_Points = ae\n",
+        "stderr": "",
+        "node_ledger_exists": true,
+        "node_ledger_lines": 45
+      }
+    ],
+    "qsub_calls": 50,
+    "first_qsub": {
+      "number": 1,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=02:45:00",
+        "-o",
+        "/tmp/tmp5z6dsuh0/base/s1a/main/logs/job0.out",
+        "-e",
+        "/tmp/tmp5z6dsuh0/base/s1a/main/logs/job0.err",
+        "-v",
+        "VBASE=/tmp/tmp5z6dsuh0/base,SETTINGS=settings.json,OUTDIR=main,JOB=0,JOBCPUS=8,NW=360,WALL_SECS=9900",
+        "/tmp/tmp5z6dsuh0/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    },
+    "last_qsub": {
+      "number": 50,
+      "args": [
+        "-W",
+        "depend=afterany:10005.fixture:10006.fixture:10007.fixture:10008.fixture:10009.fixture:10010.fixture:10011.fixture:10012.fixture:10013.fixture:10014.fixture:10015.fixture:10016.fixture:10017.fixture:10018.fixture:10019.fixture:10020.fixture:10021.fixture:10022.fixture:10023.fixture:10024.fixture:10025.fixture:10026.fixture:10027.fixture:10028.fixture:10029.fixture:10030.fixture:10031.fixture:10032.fixture:10033.fixture:10034.fixture:10035.fixture:10036.fixture:10037.fixture:10038.fixture:10039.fixture:10040.fixture:10041.fixture:10042.fixture:10043.fixture:10044.fixture:10045.fixture:10046.fixture:10047.fixture:10048.fixture:10049.fixture",
+        "-o",
+        "/tmp/tmp5z6dsuh0/base/s1a/main/logs/collect.out",
+        "-e",
+        "/tmp/tmp5z6dsuh0/base/s1a/main/logs/collect.err",
+        "-v",
+        "VBASE=/tmp/tmp5z6dsuh0/base,SETTINGS=settings.json,OUTDIR=main",
+        "/tmp/tmp5z6dsuh0/base/src/analysis/fable/calibration/kunanyi/s1a_collect.pbs"
+      ]
+    }
+  },
+  "collector_submission_failure": {
+    "runs": [
+      {
+        "returncode": 7,
+        "stdout": "",
+        "stderr": "",
+        "node_ledger_exists": false,
+        "node_ledger_lines": null
+      }
+    ],
+    "qsub_calls": 46,
+    "first_qsub": {
+      "number": 1,
+      "args": [
+        "-l",
+        "select=1:ncpus=8:mem=5gb",
+        "-l",
+        "walltime=02:45:00",
+        "-o",
+        "/tmp/tmpao9937bn/base/s1a/main/logs/job0.out",
+        "-e",
+        "/tmp/tmpao9937bn/base/s1a/main/logs/job0.err",
+        "-v",
+        "VBASE=/tmp/tmpao9937bn/base,SETTINGS=settings.json,OUTDIR=main,JOB=0,JOBCPUS=8,NW=360,WALL_SECS=9900",
+        "/tmp/tmpao9937bn/base/src/analysis/fable/calibration/kunanyi/s1a_node.pbs"
+      ]
+    },
+    "last_qsub": {
+      "number": 46,
+      "args": [
+        "-W",
+        "depend=afterany:10001.fixture:10002.fixture:10003.fixture:10004.fixture:10005.fixture:10006.fixture:10007.fixture:10008.fixture:10009.fixture:10010.fixture:10011.fixture:10012.fixture:10013.fixture:10014.fixture:10015.fixture:10016.fixture:10017.fixture:10018.fixture:10019.fixture:10020.fixture:10021.fixture:10022.fixture:10023.fixture:10024.fixture:10025.fixture:10026.fixture:10027.fixture:10028.fixture:10029.fixture:10030.fixture:10031.fixture:10032.fixture:10033.fixture:10034.fixture:10035.fixture:10036.fixture:10037.fixture:10038.fixture:10039.fixture:10040.fixture:10041.fixture:10042.fixture:10043.fixture:10044.fixture:10045.fixture",
+        "-o",
+        "/tmp/tmpao9937bn/base/s1a/main/logs/collect.out",
+        "-e",
+        "/tmp/tmpao9937bn/base/s1a/main/logs/collect.err",
+        "-v",
+        "VBASE=/tmp/tmpao9937bn/base,SETTINGS=settings.json,OUTDIR=main",
+        "/tmp/tmpao9937bn/base/src/analysis/fable/calibration/kunanyi/s1a_collect.pbs"
+      ]
+    }
+  },
+  "node_last_job": {
+    "returncode": 1,
+    "worker_ids": [
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      359
+    ],
+    "nworkers": [
+      360
+    ],
+    "jobs_log": "job 44 host laptop workers failed: 1\n"
+  },
+  "collect_missing": {
+    "error": null,
+    "stdout": "status {'complete': 0, 'censored': 0, 'failed': 0, 'missing': 1, 'running': 0} cpu_hours 0.0 hits 0\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 0,
+        "censored": 0,
+        "failed": 0,
+        "missing": 1,
+        "running": 0
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "missing"
+        }
+      ]
+    }
+  },
+  "collect_failed": {
+    "error": null,
+    "stdout": "status {'complete': 0, 'censored': 0, 'failed': 1, 'missing': 0, 'running': 0} cpu_hours 0.0 hits 0\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 0,
+        "censored": 0,
+        "failed": 1,
+        "missing": 0,
+        "running": 0
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "failed",
+          "hits": 0,
+          "proposals": 10,
+          "cpu_seconds": 1,
+          "retention_per_proposal": 0.0,
+          "zero_hit_upper95": 0.3,
+          "cpu_hours_to_2000": null
+        }
+      ]
+    }
+  },
+  "collect_running": {
+    "error": null,
+    "stdout": "status {'complete': 0, 'censored': 0, 'failed': 0, 'missing': 0, 'running': 1} cpu_hours 0.0 hits 0\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 0,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 1
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "running",
+          "hits": 0,
+          "proposals": 10,
+          "cpu_seconds": 1,
+          "retention_per_proposal": 0.0,
+          "zero_hit_upper95": 0.3,
+          "cpu_hours_to_2000": null
+        }
+      ]
+    }
+  },
+  "collect_censored": {
+    "error": null,
+    "stdout": "status {'complete': 0, 'censored': 1, 'failed': 0, 'missing': 0, 'running': 0} cpu_hours 0.0 hits 0\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 0,
+        "censored": 1,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "censored",
+          "hits": 0,
+          "proposals": 10,
+          "cpu_seconds": 1,
+          "retention_per_proposal": 0.0,
+          "zero_hit_upper95": 0.3,
+          "cpu_hours_to_2000": null
+        }
+      ]
+    }
+  },
+  "collect_corrupt_with_old_summary": {
+    "error": "JSONDecodeError: Expecting ':' delimiter: line 1 column 10 (char 9)",
+    "stdout": "",
+    "output": {
+      "stale": true
+    }
+  },
+  "collect_malformed_hit_json": {
+    "error": null,
+    "stdout": "status {'complete': 1, 'censored': 0, 'failed': 0, 'missing': 0, 'running': 0} cpu_hours 0.0 hits 1\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "complete",
+          "hits": 1,
+          "proposals": 10,
+          "cpu_seconds": 1,
+          "retention_per_proposal": 0.1,
+          "zero_hit_upper95": null,
+          "cpu_hours_to_2000": 0.5555555555555556
+        }
+      ]
+    }
+  },
+  "collect_stale_worker": {
+    "error": null,
+    "stdout": "status {'complete': 1, 'censored': 0, 'failed': 0, 'missing': 0, 'running': 0} cpu_hours 0.0 hits 0\n",
+    "output": {
+      "binding": {
+        "settings_sha256": "d71ee321529e2397582282d5cc4142f94458ef0508c7a918c9bdca9ff06823cf",
+        "metric_sha256": "bound_metric",
+        "runner_sha256": "bound_runner"
+      },
+      "status": {
+        "complete": 1,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      },
+      "workers": [
+        {
+          "worker": 9999,
+          "nworkers": 99999,
+          "binding": {
+            "stale": true
+          }
+        }
+      ],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "complete",
+          "hits": 0,
+          "proposals": 10,
+          "cpu_seconds": 1,
+          "retention_per_proposal": 0.0,
+          "zero_hit_upper95": 0.3,
+          "cpu_hours_to_2000": null
+        }
+      ]
+    }
+  },
+  "collector_shell_all_missing": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "archive_members": [
+      "main",
+      "main/collect.json",
+      "main/collect.log",
+      "main/logs",
+      "settings.json",
+      "p2_metric.json"
+    ],
+    "archived_summary": {
+      "binding": {
+        "settings_sha256": "fce33f08fa323e0e8b769d8b919f87cddf1c69b9613a28af8ba0fd4af21d1649",
+        "metric_sha256": "metric",
+        "runner_sha256": "runner"
+      },
+      "status": {
+        "complete": 0,
+        "censored": 0,
+        "failed": 0,
+        "missing": 1,
+        "running": 0
+      },
+      "workers": [],
+      "rows": [
+        {
+          "index": 0,
+          "pop": "fixture",
+          "outer": "fixture/0",
+          "n": 0,
+          "proposal_budget": 10,
+          "status": "missing"
+        }
+      ]
+    },
+    "checksum_matches": true,
+    "live_logs_excluded": true
+  },
+  "collector_shell_corrupt_with_old_summary": {
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "",
+    "archive_members": [
+      "main",
+      "main/s0000.json",
+      "main/collect.json",
+      "main/collect.log",
+      "main/logs",
+      "settings.json",
+      "p2_metric.json"
+    ],
+    "archived_summary": {
+      "old_success": true
+    },
+    "checksum_matches": true,
+    "live_logs_excluded": true
+  },
+  "budget": {
+    "settings": 1080,
+    "workers": 360,
+    "worker_ids": [
+      0,
+      359
+    ],
+    "settings_per_worker": {
+      "3": 360
+    },
+    "one_control_two_info_each": true,
+    "expected_cpu_hours": 742.4932991775485,
+    "min_worker_seconds": 7424.853084262637,
+    "max_worker_seconds": 7424.975233888017,
+    "total_proposals": 3504293600000,
+    "node_allocated_cpu_hours": 990.0,
+    "collector_max_cpu_hours": 1,
+    "smoke_allocated_cpu_hours": 0.44333333333333336,
+    "smoke_collector_cpu_hours": 0.0016666666666666668,
+    "total_ceiling": 991.445
+  },
+  "stage_bundle": {
+    "archive_sha256": "ceaa29759b02915610967c96857092f724871731e13e9bf2fe1444d533ea9f19",
+    "bytes": 491520,
+    "manifest_rows": [
+      {
+        "name": "./s1a/p2_metric.json",
+        "sha256": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./s1a/p2_settings_s1a.json",
+        "sha256": "d0dd1bff336355faac1e35d3e44ab54c39a743c9083727c2aad538c479ec9e39",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./s1a/throughput_kunanyi.json",
+        "sha256": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./src/analysis/fable/calibration/kunanyi/s1a_collect.pbs",
+        "sha256": "db6788c8ddcbbcc55e5c8ed9b7ff6dff6578614f530e760e3724dafbf26aca49",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./src/analysis/fable/calibration/kunanyi/s1a_node.pbs",
+        "sha256": "2e1f3db472cf1144534b539a2943ed6c25f77cf33de7eb9fdd3f23f581346ee8",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./src/analysis/fable/calibration/kunanyi/s1a_submit.sh",
+        "sha256": "5918f11752e026893cb6bbc984828176add7dfabe64ebcabdc8960fe1fc9ca33",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./src/analysis/fable/calibration/v2_dev/p1_sampler.py",
+        "sha256": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      },
+      {
+        "name": "./src/analysis/fable/calibration/v2_dev/p2_stage1a.py",
+        "sha256": "3fccf9b9e48fcc005da01546d9e018003547c75167833a7c8ee7f995d6fff51b",
+        "manifest_matches": true,
+        "local_exists": true,
+        "local_matches": true
+      }
+    ],
+    "files": [
+      "./s1a/p2_metric.json",
+      "./s1a/p2_settings_s1a.json",
+      "./s1a/stage_sha256.txt",
+      "./s1a/throughput_kunanyi.json",
+      "./src/analysis/fable/calibration/kunanyi/s1a_collect.pbs",
+      "./src/analysis/fable/calibration/kunanyi/s1a_node.pbs",
+      "./src/analysis/fable/calibration/kunanyi/s1a_submit.sh",
+      "./src/analysis/fable/calibration/v2_dev/p1_sampler.py",
+      "./src/analysis/fable/calibration/v2_dev/p2_stage1a.py"
+    ],
+    "preexisting_dependencies_omitted": [
+      "src/analysis/fable/calibration/bank.py",
+      "src/analysis/fable/calibration/kunanyi/env.sh"
+    ]
+  },
+  "source_sha256": {
+    "analysis/fable/calibration/kunanyi/s1a_submit.sh": "5918f11752e026893cb6bbc984828176add7dfabe64ebcabdc8960fe1fc9ca33",
+    "analysis/fable/calibration/kunanyi/s1a_node.pbs": "2e1f3db472cf1144534b539a2943ed6c25f77cf33de7eb9fdd3f23f581346ee8",
+    "analysis/fable/calibration/kunanyi/s1a_collect.pbs": "db6788c8ddcbbcc55e5c8ed9b7ff6dff6578614f530e760e3724dafbf26aca49",
+    "analysis/fable/calibration/v2_dev/p2_stage1a.py": "3fccf9b9e48fcc005da01546d9e018003547c75167833a7c8ee7f995d6fff51b"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "runner": {
+    "path": "/data/fable/vortex/v2_dev/p2_stage1a.py",
+    "sha256": "3fccf9b9e48fcc005da01546d9e018003547c75167833a7c8ee7f995d6fff51b"
+  },
+  "helper": {
+    "path": "/data/fable/vortex/v2_dev/p1_sampler.py",
+    "sha256": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f"
+  },
+  "bank": {
+    "path": "/data/fable/vortex/kunanyi_stage/run1/src/analysis/fable/calibration/bank.py",
+    "sha256": "89536328dbba9d298e0da9767d51cdab3e4e7c8bbfbfb47a327babc35b28ad82"
+  },
+  "metric_sha256": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+  "settings_sha256": "d0dd1bff336355faac1e35d3e44ab54c39a743c9083727c2aad538c479ec9e39"
+}

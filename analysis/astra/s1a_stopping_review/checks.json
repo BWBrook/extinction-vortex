@@ -1,0 +1,39 @@
+{
+  "scope": "Exact small Bernoulli examples, not estimates for Stage 1a.",
+  "ideal_unbatched_uncensored_K2000_relative_bias_upper_bound": 0.0005002501250625312,
+  "ideal_unbatched_uncensored_K2000_approx_relative_standard_error_rare_p": 0.022360679774997897,
+  "whole_crossing_batch_strict_record_bound": 21999,
+  "zero_hit_rule3_crossing_probability_upper_bound": 0.049787068367863944,
+  "toy_examples": [
+    {
+      "p": 0.1,
+      "target": 20,
+      "batch": 4,
+      "proposal_cap": 100,
+      "probability_reaching_target": 0.001978560865771236,
+      "mean_H_over_N_all_outcomes": 0.10001353190066258,
+      "mean_H_over_N_conditional_on_target_reached": 0.2133700574977687,
+      "maximum_retained_count": 23
+    },
+    {
+      "p": 0.2,
+      "target": 20,
+      "batch": 4,
+      "proposal_cap": 100,
+      "probability_reaching_target": 0.5398386299354305,
+      "mean_H_over_N_all_outcomes": 0.20452680741913679,
+      "mean_H_over_N_conditional_on_target_reached": 0.23781656342560986,
+      "maximum_retained_count": 23
+    },
+    {
+      "p": 0.4,
+      "target": 20,
+      "batch": 4,
+      "proposal_cap": 100,
+      "probability_reaching_target": 0.9999941186749612,
+      "mean_H_over_N_all_outcomes": 0.41139739859223867,
+      "mean_H_over_N_conditional_on_target_reached": 0.4113987292982138,
+      "maximum_retained_count": 23
+    }
+  ]
+}

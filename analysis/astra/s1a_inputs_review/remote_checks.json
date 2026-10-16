@@ -1,0 +1,144 @@
+{
+  "timestamp": "2026-10-16T11:50:20.306779+11:00",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4"
+  },
+  "scope": "Read-only independent Stage 1a input and saved-smoke audit on deep-server.\nNo bank loading, population simulation, model fit, or scheduler operation.\nRun through stdin; stdout is a JSON receipt. MADs are checked structurally,\nnot recomputed from all bank rows; all q/E/radius mappings are recomputed.\n",
+  "metric_sha256": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+  "settings_sha256": "d0dd1bff336355faac1e35d3e44ab54c39a743c9083727c2aad538c479ec9e39",
+  "runner_sha256": "3fccf9b9e48fcc005da01546d9e018003547c75167833a7c8ee7f995d6fff51b",
+  "source_shard_hash_map_matches": 180,
+  "actual_bank_meta_hash_match": true,
+  "metric_outer_records_and_radii_match": 360,
+  "evidence_records_match": 720,
+  "normalized_query_max_error": 0.0,
+  "mads": "finite nonnegative/mask structural check only; not recomputed from full banks",
+  "raw_s0_sha256": {
+    "wild_dog": "c86baac9dc30f78b5172e10850601aaf7b2eb2e936bd74c963d3e33e85d938af",
+    "marmot": "dc0cdcbe2c0307fd1077aeaa399334b4855dfc1ffda1c837b91eed6888cffed3",
+    "ms_woodpecker": "b845592e52b5f9b826f60e26819b7ff07ce0775ee892b6d2e5556a44e5c8694d",
+    "rc_woodpecker": "021450689747963983fe4c93a1019e7678e4ebfa2163ed07ddd47ea55f6a7327",
+    "golden_plover": "509a89a31e4e48798c6e426a822202ed4149c2c428a14ad1f4ba5a20597fdcca",
+    "whooping_crane": "9fce0190cda61329ce09e7c182a6dbcc68cdad5352d02d769a4800cffaff378a",
+    "hawaiian_crow": "69c71150ade94798e78bb59f602babc7270ffb52a7b239259338423c3794f5b4",
+    "wood_turtle_A": "de91ba486b07c00cfb19878c4b1f6937998675e4cdb408e86ae8824422030dbc",
+    "wood_turtle_B": "16fad54c0ad2de8cfefb7498b90ad25aa95620de2a903df7505a98cda5804375"
+  },
+  "settings_exact_count": 1080,
+  "settings_n_counts": {
+    "0": 360,
+    "30": 360,
+    "300": 360
+  },
+  "proposal_budgets_exact": true,
+  "lpt_assignment_exact": true,
+  "worker_count": 360,
+  "worker_load_seconds_range": [
+    7424.853084262637,
+    7424.975233888016
+  ],
+  "expected_worker_hours": 742.4932991775484,
+  "total_proposal_budget": 3504293600000,
+  "smoke_saved_result_comparisons": {
+    "deep_original": 1080,
+    "kunanyi": 1080,
+    "deep_repaired": 1080
+  },
+  "smoke_archives": {
+    "deep_original": {
+      "path": "/data/fable/vortex/v2_dev/p2/dry",
+      "collect_sha256": "9f0ac907c4f688635adb7001bb58e765a49e4ea4b2000be8f8cbfb02a95e46ea",
+      "status": {
+        "complete": 1080,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      }
+    },
+    "kunanyi": {
+      "path": "/data/fable/vortex/v2_dev/p2/kunanyi_smoke/smoke",
+      "collect_sha256": "0dbac1c66fa1cd1a4e047f067ff8f79ac43e9f6ed89ad3e4bfb6489a35780b9d",
+      "status": {
+        "complete": 1080,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      }
+    },
+    "deep_repaired": {
+      "path": "/data/fable/vortex/v2_dev/p2/dry2",
+      "collect_sha256": "61ac0eaa608731e5041b503008a3c683aae37617961f69309a4670230130077e",
+      "status": {
+        "complete": 1080,
+        "censored": 0,
+        "failed": 0,
+        "missing": 0,
+        "running": 0
+      }
+    }
+  },
+  "smoke_totals": {
+    "proposals": 108000000,
+    "poisson_accept": 46903352,
+    "theta_accept": 37731547,
+    "paths": 37731547,
+    "selected_SA": 407320,
+    "overflow": 253296,
+    "hits": 38,
+    "boundary": 2,
+    "hits_lo": 36,
+    "hits_hi": 38,
+    "rounding_excess": 0,
+    "batches_done": 5400
+  },
+  "smoke_hits_by_n": {
+    "0": 31,
+    "30": 5,
+    "300": 2
+  },
+  "smoke_settings_with_hits": [
+    27,
+    77,
+    138,
+    159,
+    165,
+    216,
+    319,
+    351,
+    384,
+    387,
+    402,
+    432,
+    441,
+    447,
+    489,
+    501,
+    506,
+    546,
+    570,
+    732,
+    739,
+    750,
+    771,
+    774,
+    775,
+    786,
+    789,
+    801,
+    816,
+    840,
+    909,
+    970,
+    993,
+    1059
+  ],
+  "kunanyi_to_deep_rates_median": {
+    "0": 1.1256582263097,
+    "30": 1.4598954786544787,
+    "300": 1.4520595938019598
+  },
+  "elapsed_seconds": 0.6498395730013726
+}

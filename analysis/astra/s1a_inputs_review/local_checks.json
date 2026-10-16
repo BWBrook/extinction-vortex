@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-10-16T11:52:12.316166+11:00",
+  "checked_head": "e3870d47c132421ee625d53f8297c683dddffdfc",
+  "remote_receipt_sha256": "a5089868106f59e412c95b9480c7fc3640dd39336f3af4755a94574905dada8e",
+  "reconciled": {
+    "metric_sha256": true,
+    "settings_sha256": true,
+    "runner_sha256": true,
+    "kunanyi_smoke/collect.json": true,
+    "all_nine_raw_s0_match_previous_audit": true
+  },
+  "prior_fixture_sha256": "af57153101108ac0543a0a9791a00890c340c71553cb9e0be507ae2ffc06344f",
+  "fixture_expected_change": "wrong_runner_hash must now be rejected",
+  "stage0_guard_fixtures": {
+    "self_test_passed": true,
+    "positive_infinity_weights_rejected": true,
+    "ideal_boundary_limits_correct": true,
+    "report_cases": {
+      "valid": {
+        "accepted": true,
+        "neighbourhoods": 7200
+      },
+      "drop_one_outer": {
+        "accepted": false,
+        "message": "report refused: wild_dog rows are not exactly the expected outers"
+      },
+      "duplicate_outer": {
+        "accepted": false,
+        "message": "report refused: wild_dog rows are not exactly the expected outers"
+      },
+      "wrong_population": {
+        "accepted": false,
+        "message": "report refused: wild_dog rows are not exactly the expected outers"
+      },
+      "wrong_input_hash": {
+        "accepted": false,
+        "message": "report refused: wild_dog output is not bound to these inputs/runtime"
+      },
+      "wrong_runtime": {
+        "accepted": false,
+        "message": "report refused: wild_dog output is not bound to these inputs/runtime"
+      },
+      "wrong_manifest": {
+        "accepted": false,
+        "message": "report refused: wild_dog output is not bound to these inputs/runtime"
+      },
+      "wrong_member_hash": {
+        "accepted": false,
+        "message": "report refused: wild_dog member payload missing or changed"
+      },
+      "missing_binding": {
+        "accepted": false,
+        "message": "report refused: wild_dog output is not bound to these inputs/runtime"
+      },
+      "wrong_runner_hash": {
+        "accepted": false,
+        "message": "report refused: wild_dog output is not bound to these inputs/runtime"
+      }
+    }
+  },
+  "stage0_runner_binding_finding_closed": true,
+  "caribou_minor_changes": "Read diff 36cf1a6..e3870d4: both same-surveys phrases replaced by shared monitoring programme; blank line before A11 removed. No new figure or data change."
+}
