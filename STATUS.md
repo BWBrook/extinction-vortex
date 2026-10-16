@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 14:36 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 16:27 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -12,7 +12,8 @@ repairs. His exact words are in discussion 70, message 1131.
 serious on `deep-server` in tmux.
 Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
 message 1222. The 15–16 October Stage 1a smoke has now run on Kunanyi and
-measured throughput. The large pilot awaits execution repairs below; routine
+measured throughput. The large pilot has passed execution review and awaits
+Fable's dispatch in a Jumpbox window; routine
 development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -881,7 +882,33 @@ runner `ae065826…` and settings `6018ed2a…` are unchanged.
 - **Next response: Astra.** Check this delta. Barry's Jumpbox window is
   needed only after that check.
 
+**Astra final shell review, 16 October**
+([review](notes/astra_s1a_final_shell_review_20261016.md); board 1735;
+exposure E54; reviewed `b6df9d9`).
+- **Remaining submission finding closed.** All 17 supplied scenarios pass
+  under Bash 5.2.21 and the existing source-built Bash 4.2.46. Paired old/new
+  regressions reproduce the old duplicate allocation; the repaired script
+  retains uncertainty and makes zero replacement submissions on resume.
+- The Bash 4.2 empty-array failure is reproduced under the old script and
+  fixed under the new one: when every node has finished, exactly one collector
+  is submitted with no dependencies. Both shells pass syntax checks for all
+  three PBS scripts.
+- Stage tar `a0f2270f…` matches all eight listed checkout files. The other
+  seven files are unchanged; runner `ae065826…` and settings `6018ed2a…`
+  retain their accepted bindings. No new simulation or preflight replay was
+  needed. Live Kunanyi probe results remain attributed to Fable's 1727.
+- **Next response: Fable, for dispatch in the next Jumpbox window.** Transfer
+  and verify the accepted package, then use the existing bound command. No
+  further code repair or scientific decision is pending. Nominal allocation
+  remains 991.445 CPU-hours within the 1,000-hour ceiling; stop at the no-fit
+  report. Stage 1b/c remain uncommissioned.
+
 ## Completed by Astra
+
+- 16 October, checked the final shell delta at `b6df9d9`: 17 scenarios under
+  each of Bash 5.2 and 4.2, paired old/new counterexamples, shell syntax and
+  refreshed stage hashes. Closed the final dispatch finding in 1735 and handed
+  execution back to Fable. No simulation, live PBS action or fit; exposure E54.
 
 - 16 October, reviewed second repairs at `3fa81cb` with two bounded reviewers.
   Closed the collector/dependency/reporting findings, verified package and saved
@@ -1222,9 +1249,9 @@ runner `ae065826…` and settings `6018ed2a…` are unchanged.
 
 ## Pending
 
-1. Astra checks Fable's third Stage 1a delta (`s1a_submit.sh` `057991c3…`,
-   stage tar `a0f2270f…`; runner `ae065826…` and settings `6018ed2a…`
-   unchanged), per review 1719. Then, in one Jumpbox window, Fable pushes the
+1. Fable dispatches the accepted Stage 1a package per review 1735
+   (`s1a_submit.sh` `057991c3…`, stage tar `a0f2270f…`; runner `ae065826…`
+   and settings `6018ed2a…` unchanged). In one Jumpbox window, Fable pushes the
    tar and runs `s1a_submit.sh … main 45 8 02:45:00 1000 0.445`; the preflight
    runs first and the collector emails Barry. Preserve the 1,000 allocated
    CPU-hour ceiling and the unchanged scientific settings. The pilot stops at
@@ -1261,9 +1288,9 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1719**; exhausted `through`: **1719**.
-- Explicit acknowledgement: through actual message **1719** in discussion 70.
-- Next retrieval: omit `through` to capture new messages, and use `after=1719`.
+- Last full retrieval `next_after`: **1735**; exhausted `through`: **1735**.
+- Explicit acknowledgement: through actual message **1735** in discussion 70.
+- Next retrieval: omit `through` to capture new messages, and use `after=1735`.
 
 ## Decision Inbox checkpoint
 

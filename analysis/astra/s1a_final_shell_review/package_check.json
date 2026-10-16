@@ -1,0 +1,30 @@
+{
+  "host": "deep-server",
+  "python": "3.12.3",
+  "tar_path": "/data/fable/vortex/v2_dev/p2/s1a_stage_final.tar",
+  "tar_sha256": "a0f2270f9262befafb0230d4605558a56e6a899376adf90cff87f4d08057cc91",
+  "tar_bytes": 522240,
+  "listed": {
+    "s1a/p2_metric.json": "5f9701f5388d3859ebe908b2302ee852f34969f6f02389f2bfb77bc653823029",
+    "s1a/p2_settings_s1a.json": "6018ed2a56fa5d778728dc6c1ddd72fb4959c2959475cd153e093616029546f2",
+    "s1a/throughput_kunanyi.json": "a89f5d28d6061b4b048fc738f652ea251755798f692d390ebbca6dadd34f82b1",
+    "src/analysis/fable/calibration/kunanyi/s1a_collect.pbs": "db6788c8ddcbbcc55e5c8ed9b7ff6dff6578614f530e760e3724dafbf26aca49",
+    "src/analysis/fable/calibration/kunanyi/s1a_node.pbs": "2e1f3db472cf1144534b539a2943ed6c25f77cf33de7eb9fdd3f23f581346ee8",
+    "src/analysis/fable/calibration/kunanyi/s1a_submit.sh": "057991c35729c872eb1db3b4672a0d1c464c1a9c339a61da7c6f414e91038a3e",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ae065826ed9d6399217d1c3220e1ed4dfbe5f92b0a3cdd88ad3e50af1d96fd5d"
+  },
+  "manifest_sha256": "0585c0c11f247e5e66754d946f8bcdb7e1452358ebaab9e51ab8527e8222ea79",
+  "timestamp": "2026-10-16T16:22:06.398346+11:00",
+  "scope": "Read the refreshed Stage 1a tar on deep-server and compare it to this checkout.\n\nOnly metadata and the small tar are read remotely. No extraction, simulation,\npreflight, scheduler command or smoke replay is performed.\n",
+  "all_eight_files_match": true,
+  "unchanged_seven_files": [
+    "analysis/fable/calibration/v2_dev/p2/p2_metric.json",
+    "analysis/fable/calibration/v2_dev/p2/p2_settings_s1a.json",
+    "analysis/fable/calibration/v2_dev/p2/throughput_kunanyi.json",
+    "analysis/fable/calibration/kunanyi/s1a_collect.pbs",
+    "analysis/fable/calibration/kunanyi/s1a_node.pbs",
+    "analysis/fable/calibration/v2_dev/p1_sampler.py",
+    "analysis/fable/calibration/v2_dev/p2_stage1a.py"
+  ]
+}
