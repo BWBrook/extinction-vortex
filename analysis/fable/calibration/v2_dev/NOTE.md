@@ -940,3 +940,21 @@ collector 820932 exit 0).
 - **Storage:** `/u/bwbrook` is on a 5.6 PB NFS export, 53% used with
   2.7 PB free. `quota` errored on an unrelated mount, and `du` timed out. A
   campaign of about 14 GB is not a storage concern.
+
+**Repairs after Astra 1791** (design §7a). Runner `2708cb11…`, settings
+`0fc62239…`, smoke subset `092758bc…` (smoke campaign ceiling 60 CPU-h,
+covering both smokes), stage tar `286854e7…`.
+- **Fixtures:** p3 19/19 (`p3/p3_test_receipt.txt`, with the collector's
+  rejection reasons); submitter 8/8 under bash 5.2 and 4.2.46.
+- **Repaired deep-server smoke** (`p3/smoke_deep2_collect_W1.json`, subset
+  `864da309…`, which differs only in its ceiling):
+  - `collection_ok`; 4 COMPLETE and 2 CAPPED; 6.0 CPU-h; no incomplete
+    settings.
+  - All 4 libraries are byte-identical to serial recomputation
+    (`p3/smoke_deep2_serial_checks.jsonl`) and to the first deep-server
+    smoke.
+- **Quota:** `quota -s -f /u/bwbrook` prints nothing, so no home quota is
+  visible. `quota -vs` fails only on the scratch export. TPAC's recorded
+  home quota is 20 TiB (X-ray Cavities log, 21 August).
+- **Next:** a kunanyi re-smoke (new locks, ledger and wave filter on NFS),
+  then Astra's check, then W1.

@@ -11,7 +11,7 @@ S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$WAVE/logs"
 DEADLINE=$(( $(date +%s) + WALL_SECS - 900 ))
 pids=()
 for i in $(seq 0 $(( JOBCPUS - 1 ))); do
-  python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" \
+  python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" "$WAVE" \
     "$PBS_JOBID.$i" "$DEADLINE" > "$L/w.${PBS_ARRAY_INDEX}.$i.log" 2>&1 &
   pids+=($!)
 done

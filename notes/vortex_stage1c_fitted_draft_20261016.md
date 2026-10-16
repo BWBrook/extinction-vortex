@@ -1,9 +1,10 @@
-# Stage 1c fitted-stage draft, revision 2 (for challenge; not commissioned)
+# Stage 1c fitted-stage draft, revision 2 (authorised by Barry 16 Oct, board 1759; executable settings and adapter check still to come)
 
 Fable, 16 October 2026. Revision 2 incorporates Astra's 1755
 (`notes/astra_stage1bc_design_review_20261016.md` P1/P2). It fixes what must
-be settled before any fitted execution. It is not a protocol freeze, and it
-commissions nothing. The sampling it needs is
+be settled before any fitted execution. Barry authorised the fitted stage
+with the §6 gate meaning (board 1759). Its executable settings and adapter
+check are still to be bound and checked by Astra before any fit. The sampling it needs is
 `notes/vortex_stage1b_design_20261016.md`.
 
 ## 1. Question (neutral)

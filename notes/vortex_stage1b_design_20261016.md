@@ -1,13 +1,15 @@
-# Stage 1b: full noisy-design sampling package (for Astra's check and Barry's decision)
+# Stage 1b: full noisy-design sampling package (authorised; executable package under Astra's check)
 
 Fable, 16 October 2026. This responds to Astra's 1755
 (`notes/astra_stage1bc_design_review_20261016.md` P1/P2 and the cost review).
-It specifies, as a design, the full 200-outer sampling campaign that Barry is
-inclined to authorise. Nothing is implemented or dispatched yet.
+It specifies the full 200-outer sampling campaign. Barry authorised it on
+16 October 2026 (board 1759, exact): "Decisions: 1 and 2 are both fully
+authorised." The implementation is in §7. W1 is dispatched only after Astra's
+check of the executable package.
 
-**Barry, 16 October 2026** (Claude chat, exact; an inclination, not yet an
-authorisation): "Regarding compute, I'm strongly inclined to authorise the
-full planned design."
+Earlier the same day, Barry had stated his inclination (Claude chat, exact):
+"Regarding compute, I'm strongly inclined to authorise the full planned
+design."
 
 Numbers come from `p2_inventory.py` → `p2/s1a_main/s1b_inventory.json` and
 the corrected Stage 1a report. They are projections, not measured costs.
@@ -29,9 +31,10 @@ the corrected Stage 1a report. They are projections, not measured costs.
 
 **Trials 10–199 need their export run once more on deep-server, and E is
 already fixed.** E is fixed in `s0/s0_inputs.json`. The metric (mask, MAD,
-q, radius, recorded series) is exported once on deep-server for the 1,800
-population-outer pairs beyond the pilot's 360, with one bank pass, exactly as
-`p2_stage1a.py export` did.
+q, radius, recorded series) is exported once on deep-server for the 6,840
+population-outer pairs beyond the pilot's 360 (7,200 in all), with one bank
+pass, exactly as `p2_stage1a.py export` did. *Corrected 16 Oct per Astra
+1791: the first issue said 1,800.*
 
 ## 2. Stable identities and pilot reuse
 
@@ -90,8 +93,16 @@ heavy-tailed costs make impractical, each PBS job (for example 28 cores and
 
 ## 4. Caps, waves and ceilings
 
-**Per-setting cap: 2,000 worker CPU-h,** converted to a proposal cap at the
-setting's pilot throughput (the median for unseen trials in the same cell).
+**Per-setting cap: a fixed proposal budget equivalent to 2,000 worker
+CPU-h,** at the setting's bound rate: its pilot's realised throughput, or the
+cell median for trials without a pilot.
+- **It is a fixed stopping rule, not a measured-CPU ceiling.** Measured CPU
+  at the cap can differ by a few per cent: the 1.5 h smoke caps used 1.53 and
+  1.56 h.
+- This was the authorised rule (design §4 as authorised). Astra's 1791 asked
+  for the wording to be made explicit.
+- Allocated-CPU ceilings per wave and per campaign are enforced separately,
+  by the reservation ledger (§7).
 - The cap bounds the unresolved settings and the single-hit tails, where the
   largest interval reaches about 70,000 h.
 - Reaching it is a **failure to fill K within budget**, which Astra calls a
@@ -102,9 +113,14 @@ setting's pilot throughput (the median for unseen trials in the same cell).
 |---|---|---|---|
 | 500 h | 713,854 | 400 | 0; 340 |
 | 1,000 h | 812,835 | 60 | 0; 60 |
-| **2,000 h** | **861,698** | **0** | **0; 0** |
+| **2,000 h** | **861,698** | **0 by point projection** | **0; 0 by point projection** |
 
-These are point projections. Unseen outers will add some failures at any cap.
+These are point projections, and zero plug-in exceedances is not zero expected
+failures.
+- The four zero-hit pilot settings (242, 512, 536, 833) remain **unresolved**.
+  Their expected-cost lower limits, about 560–610 h, are below the cap, but
+  their true costs may exceed it.
+- Unseen outers will add some failures at any cap.
 
 **The cap of 2,000 h is recommended.** At the point projections it removes
 almost nothing. Tighter caps save little and leave n = 300 datasets
@@ -248,6 +264,62 @@ Code: `v2_dev/p3_stage1b.py`; `kunanyi/s1b_node.pbs`, `s1b_collect.pbs`,
    (`p3_settings_smoke.json`, reduced cap) runs first. Then the same subset
    on kunanyi, where the libraries must match deep-server byte for byte
    although the machine-dependent shard plans differ. Then W1.
+
+### 7a. Repairs after Astra 1791 (16 October, evening)
+
+1. **Owner-safe locks.** A lock is a directory holding `owner.json`
+   (owner, host, pid, token), published by an atomic rename.
+   - It is broken only on positive evidence that its owner has ended:
+     the same host with the pid gone, or the owner's PBS job at
+     `job_state = F`. Age is never evidence.
+   - `unlock` requires the acquiring token, so a late unlock cannot free a
+     successor's lock.
+2. **Recoverable publication.**
+   - Every queue transition holds the setting lock: claim, censored requeue,
+     stale requeue, ticket release, and every plan.
+   - `plan()` reconciles each unfinished range so that it has exactly one
+     queued ticket or live claim, and republishes an orphan once. A range
+     marker alone is never counted as recoverable in-flight work.
+3. **Strict prefix and collector certification.**
+   - A completed non-crossing range advances the prefix only when it
+     committed every batch of its range.
+   - The collector validates every declared range before using it for the
+     library or the accounting: ranges tile from the pilot end; and each
+     shard's binding, first batch, status, stop, field types and domains,
+     exact proposal count, counter invariants, journal length, hash and
+     count, record schema, identity bounds within its committed batches,
+     global order and selection S are checked.
+   - It also checks marker consistency in both directions (COMPLETE against
+     the crossing, CAPPED against the cap), and lists incomplete settings.
+4. **Cap rule wording** (§4): a fixed 2,000 h-equivalent proposal budget,
+   not a measured-CPU ceiling.
+5. **Waves.** Workers, claims and stale recovery are restricted to their own
+   wave.
+6. **Campaign account.**
+   - Ceilings are bound in the settings (W1 200k, W2 1.0M, campaign 1.2M).
+     The submitter holds a campaign-wide lock and its preflight writes a
+     reservation to `$VBASE/s1b/reservations.tsv`: array cores × walltime +
+     8 h for the collector, once per array name.
+   - A fresh output directory therefore cannot reset spending history.
+   - An unresolved submission keeps its reservation; only an explicit
+     `release NAME manual: <evidence>` line frees it.
+   - The operator-supplied PRIOR and CEILING arguments are removed.
+7. **Fixtures.**
+   - **p3: 19, all pass.** They add:
+     - an interrupted publication republished once, reaching the reference
+       library;
+     - an aged live lock owner not displaced, and a successor acquiring
+       after release;
+     - a late unlock unable to free a successor, and a dead owner's lock
+       recovered;
+     - stale claims requeued only within the wave, and the wave filter;
+     - the collector rejecting an uncovered range ("complete by budget
+       without covering its range"), an identity outside its committed
+       batches, and a bad discarded shard (wrong binding, negative CPU);
+     - the campaign account: same name, a fresh directory, the ceiling,
+       release.
+   - **Submitter: 8 scenarios** under bash 5.2 and 4.2.46, including a
+     concurrent submission refused by the campaign lock.
 
 ## 8. Decisions (Barry, 16 October 2026; board 1759)
 

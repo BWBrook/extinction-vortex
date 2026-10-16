@@ -1,7 +1,7 @@
 {
  "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
  "bash_version": "4.2.46(3)-release",
- "submit_sha256": "73971b27bad07275a6c71c58cb831fff1b0aaa395c83aa3b62e82b879acd0f0c",
+ "submit_sha256": "89efc8bf74f13e05a78619fee7d05aeb85dd82c23e1d537707f7059dcc5d4287",
  "checks": {
   "normal_then_duplicate_then_resume": true,
   "array_rejected_held_until_operator_rejects": true,
@@ -9,7 +9,8 @@
   "array_reply_lost_history_expired_no_replacement": true,
   "collector_query_fails_then_resume": true,
   "array_finished_before_collector": true,
-  "preflight_refused_before_any_qsub": true
+  "preflight_refused_before_any_qsub": true,
+  "campaign_ledger_lock_refuses_concurrent_submission": true
  },
  "all_ok": true,
  "scenarios": {
@@ -57,7 +58,7 @@
      "rc": 1,
      "qsub_calls": 1,
      "stderr": [
-      "s1b_submit: qsub for s1b_186fb207_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_cc38f7d6_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -65,7 +66,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_186fb207_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_186fb207_a ID manual: <evidence>' or 'rejected a s1b_186fb207_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_cc38f7d6_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_cc38f7d6_a ID manual: <evidence>' or 'rejected a s1b_cc38f7d6_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -119,7 +120,7 @@
      "rc": 1,
      "qsub_calls": 1,
      "stderr": [
-      "s1b_submit: qsub for s1b_b468be63_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_ee2bea8a_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -127,7 +128,7 @@
      "rc": 1,
      "qsub_calls": 0,
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_b468be63_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_b468be63_a ID manual: <evidence>' or 'rejected a s1b_b468be63_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_ee2bea8a_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_ee2bea8a_a ID manual: <evidence>' or 'rejected a s1b_ee2bea8a_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -187,7 +188,7 @@
      "rc": 1,
      "qsub_calls": 2,
      "stderr": [
-      "s1b_submit: qsub for s1b_b70bcb3f_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_dcea082d_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -227,6 +228,25 @@
    "array_ids": [],
    "allocated_cpu_hours_bound": 0.0,
    "lock_released": true
+  },
+  "campaign_ledger_lock_held": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "stderr": [
+      "s1b_submit: another Stage 1b submission holds <tmp>/vbase/s1b/.ledger.lock (remove it only if none is running)"
+     ]
+    }
+   ],
+   "arrays_created": 0,
+   "array_ranges": [],
+   "collectors_created": 0,
+   "collector_depends_on": [],
+   "array_ids": [],
+   "allocated_cpu_hours_bound": 0.0,
+   "lock_released": false
   }
  }
 }

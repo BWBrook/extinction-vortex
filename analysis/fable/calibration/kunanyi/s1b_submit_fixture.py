@@ -21,6 +21,8 @@ def scenario(steps):
         base = dict(os.environ, PBS_BIN=str(fb), S1A_ENV=str(envf), S1A_CONFIRM_SECS="0", FIX_STATE=str(t / "jobs.json"),
                     FIX_LEDGER=str(t / "ledger.jsonl"), FIX_CALLS=str(t / "calls.jsonl"), FIX_QSELECT_CALLS=str(t / "qselect.n"))
         R = vb / "s1b/run/submit_W1"; J = R / "submit_journal.tsv"
+        if step0 := steps[0].get("ledger_locked"):
+            (vb / "s1b/.ledger.lock").mkdir()
         ledger = lambda: [json.loads(x) for x in (t / "ledger.jsonl").read_text().splitlines()] if (t / "ledger.jsonl").exists() else []
         runs = []
         for step in steps:
@@ -36,7 +38,7 @@ def scenario(steps):
             env = dict(base, **step.get("env", {}))
             before = len((t / "calls.jsonl").read_text().splitlines()) if (t / "calls.jsonl").exists() else 0
             args = [os.environ.get("FIX_BASH", "bash"), str(SUBMIT), str(vb), "p3_settings.json", "run", "W1", str(NJOBS), str(CPUS),
-                    "48:00:00", str(CEIL), str(PRIOR)] + ([step["mode"]] if step.get("mode") else [])
+                    "48:00:00"] + ([step["mode"]] if step.get("mode") else [])
             p = subprocess.run(args, env=env, capture_output=True, text=True)
             after = len((t / "calls.jsonl").read_text().splitlines()) if (t / "calls.jsonl").exists() else 0
             runs.append({"mode": step.get("mode", "new"), "rc": p.returncode, "qsub_calls": after - before,
@@ -49,7 +51,7 @@ def scenario(steps):
         return {"runs": runs, "arrays_created": len(arrays), "array_ranges": jflag, "collectors_created": len(coll),
                 "collector_depends_on": deps, "array_ids": [j["id"] for j in arrays],
                 "allocated_cpu_hours_bound": len(arrays) * NJOBS * CPUS * WALL_H + len(coll) * 8 + PRIOR,
-                "lock_released": not (R / ".submit.lock").exists()}
+                "lock_released": not (R / ".submit.lock").exists() and not (vb / "s1b/.ledger.lock").exists()}
 
 
 def ok(r, rcs, calls, arrays, coll, dep_on_array=True, lock=True):
@@ -75,6 +77,7 @@ R = {
     "array_finished_before_collector": scenario([fail(2, "reject"),
                                                  {"operator": ["rejected c x manual: tracejob shows no job"], "finish": [0], "mode": "resume"}]),
     "preflight_refused": scenario([{"env": {"FIX_PREFLIGHT_RC": "1"}}]),
+    "campaign_ledger_lock_held": scenario([{"ledger_locked": True}]),
 }
 checks = {
     "normal_then_duplicate_then_resume": ok(R["normal_then_duplicate_then_resume"], [True, False, True], [2, 0, 0], 1, 1),
@@ -85,6 +88,7 @@ checks = {
     "collector_query_fails_then_resume": ok(R["collector_query_fails_then_resume"], [False, True], [1, 1], 1, 1),
     "array_finished_before_collector": ok(R["array_finished_before_collector"], [False, True], [2, 1], 1, 1, dep_on_array=False),
     "preflight_refused_before_any_qsub": ok(R["preflight_refused"], [False], [0], 0, 0),
+    "campaign_ledger_lock_refuses_concurrent_submission": ok(R["campaign_ledger_lock_held"], [False], [0], 0, 0, lock=False),
 }
 bv = subprocess.run([os.environ.get("FIX_BASH", "bash"), "-c", "echo $BASH_VERSION"], capture_output=True, text=True).stdout.strip()
 out = {"scope": __doc__, "bash_version": bv, "submit_sha256": hashlib.sha256(SUBMIT.read_bytes()).hexdigest(), "checks": checks,

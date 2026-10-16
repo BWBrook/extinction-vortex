@@ -2,7 +2,9 @@
 # Submit one Stage 1b wave: a PBS job array of NJOBS subjobs x JOBCPUS pull workers, plus one afterany collector that
 # emails Barry. Written for bash 4.2. Same journal, reconciliation and dependency contract as the audited Stage 1a
 # submitter; keys are a (the array) and c (the collector). New mode first seeds the wave (pilot prefixes, first tickets).
-# Usage: s1b_submit.sh VBASE SETTINGS OUTDIR WAVE NJOBS JOBCPUS WALLTIME(HH:MM:SS) CEILING_CPUH PRIOR_CPUH [resume]
+# Usage: s1b_submit.sh VBASE SETTINGS OUTDIR WAVE NJOBS JOBCPUS WALLTIME(HH:MM:SS) [resume]
+# Ceilings are bound in the settings; the campaign reservation ledger $VBASE/s1b/reservations.tsv (held under a
+# campaign-wide lock for the whole submission) carries spending history across output directories.
 # The run identity (settings hash, output directory, shape, walltime, ceiling) is fixed in run.json once a journal
 # exists; a lock directory admits one submitter; the bound preflight runs before any qsub. Each job has a unique PBS
 # name (settings hash, output directory, key). The synced journal records, per key (a or c):
@@ -17,7 +19,7 @@
 # job_state F); a failed or unclassifiable query stops before the collector qsub, and a verified finished job whose
 # history has expired can be recorded as "terminal KEY ID manual: <evidence>".
 set -euo pipefail
-VBASE=$1; SETTINGS=$2; OUTDIR=$3; WAVE=$4; NJOBS=$5; JOBCPUS=$6; WALL=$7; CEIL=$8; PRIOR=$9; MODE=${10:-new}
+VBASE=$1; SETTINGS=$2; OUTDIR=$3; WAVE=$4; NJOBS=$5; JOBCPUS=$6; WALL=$7; MODE=${8:-new}
 PBS=${PBS_BIN:-/opt/pbs/bin}
 IFS=: read -r h m s <<< "$WALL"; WALL_SECS=$(( 10#$h * 3600 + 10#$m * 60 + 10#$s ))
 MEM="$(( JOBCPUS + 2 ))gb"
@@ -25,10 +27,12 @@ S="$VBASE/s1b"; RUN="$S/$OUTDIR"; R="$RUN/submit_$WAVE"; K="$VBASE/src/analysis/
 die() { echo "s1b_submit: $*" >&2; exit 1; }
 [ "$MODE" = new ] || [ "$MODE" = resume ] || die "mode must be new or resume"
 mkdir -p "$R/logs"
+mkdir "$S/.ledger.lock" 2>/dev/null || die "another Stage 1b submission holds $S/.ledger.lock (remove it only if none is running)"
+trap 'rmdir "$S/.ledger.lock"' EXIT
 mkdir "$R/.submit.lock" 2>/dev/null || die "another submission holds $R/.submit.lock (remove it only if none is running)"
-trap 'rmdir "$R/.submit.lock"' EXIT
+trap 'rmdir "$R/.submit.lock"; rmdir "$S/.ledger.lock"' EXIT
 SHA=$(sha256sum "$S/$SETTINGS" | cut -d' ' -f1); RID=$(printf '%s %s' "$SHA" "$R" | sha256sum | cut -c1-8)
-ID="settings=$SETTINGS sha256=$SHA outdir=$RUN wave=$WAVE jobs=$NJOBS cpus=$JOBCPUS walltime=$WALL ceiling=$CEIL prior=$PRIOR"
+ID="settings=$SETTINGS sha256=$SHA outdir=$RUN wave=$WAVE jobs=$NJOBS cpus=$JOBCPUS walltime=$WALL"
 if [ -e "$J" ]; then             # a journal fixes the identity; before any request, a refused attempt leaves nothing bound
   if [ ! -f "$R/run.json" ] || [ "$(cat "$R/run.json")" != "$ID" ]; then die "run identity differs from $R/run.json"; fi
 else
@@ -38,9 +42,9 @@ if [ "$MODE" = new ]; then [ ! -e "$J" ] || die "already dispatched (journal exi
 if [ "$MODE" = resume ]; then [ -e "$J" ] || die "nothing to resume (no journal)"; fi
 ( source "${S1A_ENV:-$K/env.sh}"
   python -I analysis/fable/calibration/v2_dev/p3_stage1b.py preflight "$S/$SETTINGS" "$S/p3_metric.json" \
-    "$NJOBS" "$JOBCPUS" "$WALL_SECS" "$CEIL" "$PRIOR" "$WAVE" ) > "$R/logs/preflight.log" 2>&1 \
+    "$S/reservations.tsv" "s1b_${RID}_a" "$NJOBS" "$JOBCPUS" "$WALL_SECS" "$WAVE" ) > "$R/logs/preflight.log" 2>&1 \
   || die "preflight refused or failed; see $R/logs/preflight.log"
-head -n 1 "$R/logs/preflight.log"
+tail -n 1 "$R/logs/preflight.log"
 if [ "$MODE" = new ]; then
   ( source "${S1A_ENV:-$K/env.sh}"
     python -I analysis/fable/calibration/v2_dev/p3_stage1b.py seed "$S/$SETTINGS" "$S/pilot" "$RUN" "$WAVE" ) \
