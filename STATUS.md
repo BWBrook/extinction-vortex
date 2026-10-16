@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 16 October 2026, 20:15 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 16 October 2026, 20:19 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1269,6 +1269,17 @@ exposure E54; reviewed `b6df9d9`).
    - **Next:** Astra audits the report. Barry then decides Stage 1b's scale,
      a resource decision that exceeds the "100K CPU hours" statement.
      Stage 1b and Stage 1c remain uncommissioned.
+   - **Barry, 16 October** (Claude chat, exact; an inclination, not yet an
+     authorisation): "Regarding compute, I'm strongly inclined to authorise
+     the full planned design. Most of those CPU cores just sit idle for much
+     of the time and we're encouraged to make good use of the
+     infrastructure, as it helps make the case for ongoing investment. The
+     queue systems makes sure use is temporally equitable." Kunanyi
+     snapshot: 2,052 of 7,792 CPUs assigned.
+     - Fable's design implications (board 1751): batch-range sharding of the
+       heavy settings, a declared per-setting cap with a support-failure rule,
+       waves with ceilings, and roughly 12 days of wall-clock at about 3,000
+       cores.
    Core/Haley, material caribou and one-page table findings are closed.
    Stage 0 and the bounded sampler prototype are complete and audited.
    D3, D1c2, A-screen and A-power have been audited; A is closed and B remains
