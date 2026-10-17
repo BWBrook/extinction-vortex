@@ -1,0 +1,21 @@
+s1b_stage.tar: OK
+STAGE_OK
+== ledger before
+reserve	s1b-smoke	W1	s1b_ad937861_a	24.000	2026-10-16T21:48:44+1100 first smoke (array 820931[]), recorded retrospectively
+reserve	s1b-smoke	W1	s1b_9038aa07_a	24.000	2026-10-16T23:25:39+1100
+submitter pid 27459 started 10:55:09
+== after 11:17:40
+submitter finished
+{"preflight": "passed", "settings_sha256": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_5e346b76_a", "reservation_
+seed W1 {'imported': 720, 'complete_at_seed': 1, 'planned': 14543}
+wave W1: array 821088[].kunanyi-ohpc (520 x 8 cpus, 10gb, walltime 48:00:00); collector: 821089.kunanyi-ohpc
+    depend = afterany:821088[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_5e346b76_c -W depend=afterany:821088[].kunanyi-oh
+== ledger after
+reserve	s1b-smoke	W1	s1b_ad937861_a	24.000	2026-10-16T21:48:44+1100 first smoke (array 820931[]), recorded retrospectively
+reserve	s1b-smoke	W1	s1b_9038aa07_a	24.000	2026-10-16T23:25:39+1100
+reserve	s1b	W1	s1b_5e346b76_a	199688.000	2026-10-17T10:55:43+1100	settings=86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a outdir=/u/bwbrook/vortex/run1/s1b/run jobs=520 cpus=8 wall=172800
+
+[exited with code 0]

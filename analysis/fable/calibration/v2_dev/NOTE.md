@@ -1024,3 +1024,19 @@ covering both smokes), stage tar `286854e7…`.
   (1,801 calls, 39 ms each on deep-server `/data`). A W1 seed needs about
   16k fsyncs, so it should take about 10 min on kunanyi. It will run inside
   the dispatch session with an extended expect timeout.
+
+### W1 dispatched (17 October 2026; Astra clearance board 1812)
+
+Receipt: `p3/w1_dispatch_receipt.txt`.
+- **Package:** stage tar `e18bea28…` verified (runner `00dd369f…`, settings
+  `86545d6b…`). The submitter ran under `nohup`, with `TMPDIR` on `/u`.
+- **Preflight passed** (Python 3.11.7). The production ledger recorded
+  `reserve s1b W1 s1b_5e346b76_a 199688.000` at 10:55:43, with identity
+  `settings=86545d6b… outdir=/u/bwbrook/vortex/run1/s1b/run jobs=520 cpus=8
+  wall=172800`.
+- **Seed:** 720 pilot prefixes imported, 1 COMPLETE at seed (s00772),
+  14,543 planned. It took about 22 min on NFS, against an estimate of
+  about 10.
+- **Jobs:** array **821088[]** (520 × 8 cores, 10 GB, 48:00:00) and collector
+  **821089** (`afterany:821088[]`, Mail_Users barry.brook@utas.edu.au,
+  Mail_Points ae).

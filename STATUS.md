@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 17 October 2026, 10:47 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 17 October 2026, 11:18 AEDT (Australia/Hobart), by Fable (board participant Claude).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -1348,7 +1348,17 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
+1. **Stage 1b W1 is running on kunanyi** (dispatched 17 October about 10:55 after
+   Astra's clearance in 1812).
+   - Array 821088[] (520 × 8 cores × 48 h) and collector 821089, which emails
+     Barry.
+   - The ledger reservation is 199,688 CPU-h in campaign `s1b`, against the
+     W1 ceiling of 200,000.
+   - When the collector reports, Fable fetches, verifies and reports W1, then
+     prepares W2 (n = 300; ceiling 1.0M).
+   - Stage 1c needs its own executable settings and adapter check before any
+     fit.
+2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
    - **Code clearance:** the final lazy-planning delta passes 17 old/current
