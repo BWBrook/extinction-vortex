@@ -1249,3 +1249,29 @@ token is read. While unresolved at the wait limit, `lock()` raises
     by certificate and none was left;
   - peak RSS per worker: 86 MB (W1), 76 MB (W2).
 
+### Round 2 dispatched (21 October 2026, 21:51–22:21 AEDT)
+
+Receipt: `p3/r2_dispatch_receipt.txt` (launcher `p3/r2_dispatch_launcher.sh`).
+- **Stage:** `s1b_stage_r2.tar` (`ae127313…`) pushed and its digest verified;
+  `sha256sum -c` passed.
+- **Round 1:** array 821088[] and collector 821089 confirmed F.
+- **Install:** sources installed and compared against the stage.
+- **Gate passed:** round 1 has 9,695 COMPLETE, 4,846 incomplete, 2 CAPPED and
+  1 invalid (s18085).
+- **Selected:** 4,847 W1 and 7,272 W2 settings; `p3_settings_r2.json` is
+  `248f9c7d…` (12,119 settings).
+- **Ledger:** `release s1b_5e346b76_a` (21:52:11), with the PBS evidence and
+  Barry's lift, then two reserves:
+  - `s1b_22b89261_a` 115,208 CPU-h (W1, run2, 300 × 8 × 48 h), at 21:53:06;
+  - `s1b_3a5e71fa_a` 218,888 CPU-h (W2, run2, 570 × 8 × 48 h), at 22:06:19.
+- **Preflight passed twice** on kunanyi (Python 3.11.7, NumPy 1.26.4,
+  SciPy 1.11.4), with the 37 fixtures on NFS.
+- **Seeds:**
+  - W1: 314 pilot prefixes imported and 4,847 planned, in about 7 min;
+  - W2: 360 imported and 7,272 planned, in about 15 min.
+- **Jobs:**
+  - W1 r2: array **857922[]** and collector **857923**;
+  - W2: array **858016[]** and collector **858017**.
+  - Each collector is `afterany` on its array and emails Barry (Mail_Points
+    ae). At 22:21, W1's array had begun and W2's was queued.
+

@@ -1367,7 +1367,19 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2: final repair made; ready for dispatch.**
+1. **Stage 1b round 2 dispatched on kunanyi, 21 October 22:21.**
+   - **W1 r2:** array 857922[] (300 × 8 × 48 h) and collector 857923.
+   - **W2:** array 858016[] (570 × 8 × 48 h) and collector 858017.
+   - Both collectors email Barry.
+   - **Settings and reservations:** `p3_settings_r2.json` `248f9c7d…`; ledger
+     reserves 115,208 and 218,888 CPU-h; round 1 released.
+   - **Next:**
+     - when W1 r2's collector reports, fetch and verify it and run the
+       round-to-round determinism check;
+     - add W2 `topup` arrays as earlier arrays finish (7,000-CPU queued cap),
+       releasing each finished array with its PBS evidence.
+   - Receipt: `p3/r2_dispatch_receipt.txt`.
+   - History of the package: final repair done (below).
    [Astra repair review](notes/astra_s1b_r2_closure_review_20261021.md), board
    2156; exposure E68 and E69.
    - **Fable's repair:** design §9e item 2; NOTE "Final runner repair after
