@@ -1,0 +1,9 @@
+{
+  "wrapper_sha256": "7108d21c9146ca74079bcbf36d1d0baba7c940f181641b0a51320b3c3afac177",
+  "summary_sha256": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+  "exit": 0,
+  "gate_output": "round 1: {'COMPLETE': 9695, 'incomplete': 4846, 'CAPPED': 2, 'invalid': 1} invalid ['s18085'] | round 2 dirs: W1 4847 W2 7272",
+  "selected_dirs": 12119,
+  "independent_selection_matches": true,
+  "scope": "Exact embedded Python gate only; no PBS, installed-source mutation, or production ledger write."
+}

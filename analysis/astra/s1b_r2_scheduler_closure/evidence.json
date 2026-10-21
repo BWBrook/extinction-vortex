@@ -1,0 +1,956 @@
+{
+  "scope": "Actual repaired shell scripts and literal/extracted Python bodies with explicit native-science and seed stubs; no live PBS.",
+  "head": "83a6b406681d0c2aec788f8a5f1cb64e124865e4",
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+    "analysis/fable/calibration/kunanyi/s1b_round2_dispatch.sh": "7108d21c9146ca74079bcbf36d1d0baba7c940f181641b0a51320b3c3afac177",
+    "analysis/fable/calibration/kunanyi/s1b_submit.sh": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+    "analysis/fable/calibration/kunanyi/s1b_collect.pbs": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800"
+  },
+  "checksum_failure": {
+    "result": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "== 2026-10-21 20:56:11 AEDT verify stage\nsrc/analysis/fable/calibration/v2_dev/p3_stage1b.py: FAILED\nstage checksum failed: nothing installed\n",
+      "stderr": "sha256sum: WARNING: 1 computed checksum did NOT match\n"
+    },
+    "jobs_created": 0,
+    "changed_runner_installed": false,
+    "ledger": [
+      "reserve\ts1b\tW1\ts1b_5e346b76_a\t199688.000\tfixture\toriginal"
+    ]
+  },
+  "gate": {
+    "normal": {
+      "rc": 0,
+      "stderr": "",
+      "selected": [
+        "s00001",
+        "s00002",
+        "s00003"
+      ]
+    },
+    "wrong_summary_digest": {
+      "rc": 1,
+      "stderr": "round 1 summary is not the verified one",
+      "selected": null
+    },
+    "wrong_wave": {
+      "rc": 1,
+      "stderr": "round 1 summary is not bound to the round-1 settings, metric and runner",
+      "selected": null
+    },
+    "missing_binding": {
+      "rc": 1,
+      "stderr": "round 1 summary is not bound to the round-1 settings, metric and runner",
+      "selected": null
+    },
+    "wrong_settings_sha256": {
+      "rc": 1,
+      "stderr": "round 1 summary is not bound to the round-1 settings, metric and runner",
+      "selected": null
+    },
+    "wrong_metric_sha256": {
+      "rc": 1,
+      "stderr": "round 1 summary is not bound to the round-1 settings, metric and runner",
+      "selected": null
+    },
+    "wrong_runner_sha256": {
+      "rc": 1,
+      "stderr": "round 1 summary is not bound to the round-1 settings, metric and runner",
+      "selected": null
+    },
+    "unknown_status": {
+      "rc": 1,
+      "stderr": "s00000: unknown status or library inconsistent with status",
+      "selected": null
+    },
+    "wrong_row_index": {
+      "rc": 1,
+      "stderr": "s00000: row identity differs from the settings",
+      "selected": null
+    },
+    "wrong_row_pop": {
+      "rc": 1,
+      "stderr": "s00000: row identity differs from the settings",
+      "selected": null
+    },
+    "wrong_row_outer": {
+      "rc": 1,
+      "stderr": "s00000: row identity differs from the settings",
+      "selected": null
+    },
+    "wrong_row_n": {
+      "rc": 1,
+      "stderr": "s00000: row identity differs from the settings",
+      "selected": null
+    },
+    "wrong_row_library": {
+      "rc": 1,
+      "stderr": "s00000: row identity differs from the settings",
+      "selected": null
+    },
+    "duplicate_complete_row": {
+      "rc": 1,
+      "stderr": "round 1 rows are not exactly the W1 inventory",
+      "selected": null
+    },
+    "missing_dir": {
+      "rc": 1,
+      "stderr": "round 1 rows are not exactly the W1 inventory",
+      "selected": null
+    },
+    "complete_without_library": {
+      "rc": 1,
+      "stderr": "s00000: unknown status or library inconsistent with status",
+      "selected": null
+    },
+    "incomplete_with_library": {
+      "rc": 1,
+      "stderr": "s00001: unknown status or library inconsistent with status",
+      "selected": null
+    },
+    "wrong_counts": {
+      "rc": 1,
+      "stderr": "round 1 status counts or incomplete list inconsistent with its rows",
+      "selected": null
+    },
+    "wrong_incomplete_list": {
+      "rc": 1,
+      "stderr": "round 1 status counts or incomplete list inconsistent with its rows",
+      "selected": null
+    },
+    "truncated_errors": {
+      "rc": 1,
+      "stderr": "round 1 errors are not one-to-one with the rows marked invalid",
+      "selected": null
+    },
+    "error_outside_invalid": {
+      "rc": 1,
+      "stderr": "round 1 errors are not one-to-one with the rows marked invalid",
+      "selected": null
+    },
+    "wrong_collection_ok": {
+      "rc": 1,
+      "stderr": "round 1 errors are not one-to-one with the rows marked invalid",
+      "selected": null
+    }
+  },
+  "dispatch": {
+    "first_W2_array_rejected": {
+      "rc": 1,
+      "new_qsub_calls": 3,
+      "stdout": "== 2026-10-21 20:56:13 AEDT verify stage\nstage OK\n== install\n== round-2 settings\nround 1: {'COMPLETE': 1, 'incomplete': 1, 'invalid': 1} invalid ['s00002'] | round 2 dirs: W1 2 W2 1\nselect <tmp>/vbase/s1b/p3_settings_r2.json.new f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da 3 {'W1': 2, 'W2': 1}\nf4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da  <tmp>/vbase/s1b/p3_settings_r2.json\n== release round 1\nreserve\ts1b\tW1\ts1b_5e346b76_a\t199688.000\tfixture\toriginal\nrelease\ts1b_5e346b76_a\tmanual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T20:56:13+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)\n== 20:56:13 submit W1 (new; 300 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_a9810c40_a\", \"reservation_cpu_h\": 115208.0, \"recorded\": true, \"wave_reserved\": 115208.0, \"campaign_reserved\": 115208.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nseed stub\nwave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n== 20:56:15 submit W2 (new; 570 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W2\", \"campaign\": \"s1b\", \"array_name\": \"s1b_f7aeb94d_a\", \"reservation_cpu_h\": 218888.0, \"recorded\": true, \"wave_reserved\": 218888.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nseed stub\n",
+      "stderr": "s1b_submit: qsub for s1b_f7aeb94d_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume\n"
+    },
+    "unresolved_retry": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "== 2026-10-21 20:56:15 AEDT verify stage\nstage OK\n== install\n== round-2 settings\nround 1: {'COMPLETE': 1, 'incomplete': 1, 'invalid': 1} invalid ['s00002'] | round 2 dirs: W1 2 W2 1\nselect <tmp>/vbase/s1b/p3_settings_r2.json.new f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da 3 {'W1': 2, 'W2': 1}\nf4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da  <tmp>/vbase/s1b/p3_settings_r2.json\n== release round 1\nalready released\nreserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=300 cpus=8 wall=172800\nreserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=570 cpus=8 wall=172800\n== 20:56:16 submit W1 (resume; 300 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_a9810c40_a\", \"reservation_cpu_h\": 115208.0, \"recorded\": false, \"wave_reserved\": 115208.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n== 20:56:16 submit W2 (resume; 570 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W2\", \"campaign\": \"s1b\", \"array_name\": \"s1b_f7aeb94d_a\", \"reservation_cpu_h\": 218888.0, \"recorded\": false, \"wave_reserved\": 218888.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\n",
+      "stderr": "s1b_submit: unresolved earlier request for s1b_f7aeb94d_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_f7aeb94d_a ID manual: <evidence>' or 'rejected a s1b_f7aeb94d_a manual: <evidence>' to <tmp>/vbase/s1b/run2/submit_W2/submit_journal.tsv, then resume\n"
+    },
+    "reconciled_retry": {
+      "rc": 0,
+      "new_qsub_calls": 2,
+      "stdout": "== 2026-10-21 20:56:16 AEDT verify stage\nstage OK\n== install\n== round-2 settings\nround 1: {'COMPLETE': 1, 'incomplete': 1, 'invalid': 1} invalid ['s00002'] | round 2 dirs: W1 2 W2 1\nselect <tmp>/vbase/s1b/p3_settings_r2.json.new f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da 3 {'W1': 2, 'W2': 1}\nf4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da  <tmp>/vbase/s1b/p3_settings_r2.json\n== release round 1\nalready released\nreserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=300 cpus=8 wall=172800\nreserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=570 cpus=8 wall=172800\n== 20:56:17 submit W1 (resume; 300 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_a9810c40_a\", \"reservation_cpu_h\": 115208.0, \"recorded\": false, \"wave_reserved\": 115208.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n== 20:56:17 submit W2 (resume; 570 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W2\", \"campaign\": \"s1b\", \"array_name\": \"s1b_f7aeb94d_a\", \"reservation_cpu_h\": 218888.0, \"recorded\": false, \"wave_reserved\": 218888.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W2 (W2): array 900002.fixture (570 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\nrelease\ts1b_5e346b76_a\tmanual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T20:56:13+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)\nreserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=300 cpus=8 wall=172800\nreserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=570 cpus=8 wall=172800\nDISPATCH_DONE 2026-10-21 20:56:18 AEDT\n",
+      "stderr": ""
+    },
+    "complete_retry": {
+      "rc": 0,
+      "new_qsub_calls": 0,
+      "stdout": "== 2026-10-21 20:56:18 AEDT verify stage\nstage OK\n== install\n== round-2 settings\nround 1: {'COMPLETE': 1, 'incomplete': 1, 'invalid': 1} invalid ['s00002'] | round 2 dirs: W1 2 W2 1\nselect <tmp>/vbase/s1b/p3_settings_r2.json.new f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da 3 {'W1': 2, 'W2': 1}\nf4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da  <tmp>/vbase/s1b/p3_settings_r2.json\n== release round 1\nalready released\nreserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=300 cpus=8 wall=172800\nreserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=570 cpus=8 wall=172800\n== 20:56:18 submit W1 (resume; 300 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_a9810c40_a\", \"reservation_cpu_h\": 115208.0, \"recorded\": false, \"wave_reserved\": 115208.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n== 20:56:19 submit W2 (resume; 570 x 8 x 48 h)\n{\"preflight\": \"passed\", \"settings_sha256\": \"f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da\", \"runtime\": {\"stub\": true}, \"wave\": \"W2\", \"campaign\": \"s1b\", \"array_name\": \"s1b_f7aeb94d_a\", \"reservation_cpu_h\": 218888.0, \"recorded\": false, \"wave_reserved\": 218888.0, \"campaign_reserved\": 334096.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W2 (W2): array 900002.fixture (570 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\nrelease\ts1b_5e346b76_a\tmanual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T20:56:13+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)\nreserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=300 cpus=8 wall=172800\nreserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=<tmp>/vbase/s1b/run2 jobs=570 cpus=8 wall=172800\nDISPATCH_DONE 2026-10-21 20:56:19 AEDT\n",
+      "stderr": ""
+    },
+    "jobs": [
+      {
+        "id": "900000.fixture",
+        "name": "s1b_a9810c40_a",
+        "args": [
+          "-N",
+          "s1b_a9810c40_a",
+          "-J",
+          "0-299",
+          "-l",
+          "select=1:ncpus=8:mem=10gb",
+          "-l",
+          "walltime=48:00:00",
+          "-o",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W1/logs/node.^array_index^.out",
+          "-e",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W1/logs/node.^array_index^.err",
+          "-v",
+          "VBASE=/tmp/tmpgsjrr53m/vbase,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W1,TAG=W1,JOBCPUS=8,WALL_SECS=172800",
+          "/tmp/tmpgsjrr53m/vbase/src/analysis/fable/calibration/kunanyi/s1b_node.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900001.fixture",
+        "name": "s1b_a9810c40_c",
+        "args": [
+          "-N",
+          "s1b_a9810c40_c",
+          "-W",
+          "depend=afterany:900000.fixture",
+          "-o",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W1/logs/collect.out",
+          "-e",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W1/logs/collect.err",
+          "-v",
+          "VBASE=/tmp/tmpgsjrr53m/vbase,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W1,TAG=W1",
+          "/tmp/tmpgsjrr53m/vbase/src/analysis/fable/calibration/kunanyi/s1b_collect.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900002.fixture",
+        "name": "s1b_f7aeb94d_a",
+        "args": [
+          "-N",
+          "s1b_f7aeb94d_a",
+          "-J",
+          "0-569",
+          "-l",
+          "select=1:ncpus=8:mem=10gb",
+          "-l",
+          "walltime=48:00:00",
+          "-o",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W2/logs/node.^array_index^.out",
+          "-e",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W2/logs/node.^array_index^.err",
+          "-v",
+          "VBASE=/tmp/tmpgsjrr53m/vbase,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W2,TAG=W2,JOBCPUS=8,WALL_SECS=172800",
+          "/tmp/tmpgsjrr53m/vbase/src/analysis/fable/calibration/kunanyi/s1b_node.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900003.fixture",
+        "name": "s1b_f7aeb94d_c",
+        "args": [
+          "-N",
+          "s1b_f7aeb94d_c",
+          "-W",
+          "depend=afterany:900002.fixture",
+          "-o",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W2/logs/collect.out",
+          "-e",
+          "/tmp/tmpgsjrr53m/vbase/s1b/run2/submit_W2/logs/collect.err",
+          "-v",
+          "VBASE=/tmp/tmpgsjrr53m/vbase,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W2,TAG=W2",
+          "/tmp/tmpgsjrr53m/vbase/src/analysis/fable/calibration/kunanyi/s1b_collect.pbs"
+        ],
+        "state": "Q"
+      }
+    ],
+    "ledger": [
+      "reserve\ts1b\tW1\ts1b_5e346b76_a\t199688.000\tfixture\toriginal",
+      "release\ts1b_5e346b76_a\tmanual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T20:56:13+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)",
+      "reserve\ts1b\tW1\ts1b_a9810c40_a\t115208.000\t2026-10-21T20:56:14+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=/tmp/tmpgsjrr53m/vbase/s1b/run2 jobs=300 cpus=8 wall=172800",
+      "reserve\ts1b\tW2\ts1b_f7aeb94d_a\t218888.000\t2026-10-21T20:56:15+1100\tsettings=f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da outdir=/tmp/tmpgsjrr53m/vbase/s1b/run2 jobs=570 cpus=8 wall=172800"
+    ]
+  },
+  "existing_settings_mismatch": {
+    "rc": 1,
+    "new_qsub_calls": 0,
+    "stdout": "== 2026-10-21 20:56:19 AEDT verify stage\nstage OK\n== install\n== round-2 settings\nround 1: {'COMPLETE': 1, 'incomplete': 1, 'invalid': 1} invalid ['s00002'] | round 2 dirs: W1 2 W2 1\nselect <tmp>/vbase/s1b/p3_settings_r2.json.new f4c53d473634ae2d8ed5b43b20cf11d42643821cd5b3ab06acc817beab26b1da 3 {'W1': 2, 'W2': 1}\nexisting p3_settings_r2.json differs\n",
+    "stderr": "",
+    "existing_bytes_preserved": true,
+    "ledger_lines": 1
+  },
+  "topup": {
+    "first": {
+      "rc": 0,
+      "new_qsub_calls": 2,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"bf8f7fa58bea6a624f80e488273bc4910482ed9033e9fdc19ded939078688e24\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_6da46bf9_a\", \"reservation_cpu_h\": 392.0, \"recorded\": true, \"wave_reserved\": 392.0, \"campaign_reserved\": 392.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nseed stub\nwave W1 (W1): array 900000.fixture (1 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "valid_topup": {
+      "rc": 0,
+      "new_qsub_calls": 2,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"bf8f7fa58bea6a624f80e488273bc4910482ed9033e9fdc19ded939078688e24\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_b1a38830_a\", \"reservation_cpu_h\": 392.0, \"recorded\": true, \"wave_reserved\": 784.0, \"campaign_reserved\": 784.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1_b): array 900002.fixture (1 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "different_filename_same_bytes": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "",
+      "stderr": "s1b_submit: topup settings differ from the wave's seeded submission (<tmp>/vbase/s1b/run2/submit_W1/run.json)\n"
+    },
+    "same_filename_different_bytes": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "",
+      "stderr": "s1b_submit: topup settings differ from the wave's seeded submission (<tmp>/vbase/s1b/run2/submit_W1/run.json)\n"
+    },
+    "resume_valid_topup": {
+      "rc": 0,
+      "new_qsub_calls": 0,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"bf8f7fa58bea6a624f80e488273bc4910482ed9033e9fdc19ded939078688e24\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_b1a38830_a\", \"reservation_cpu_h\": 392.0, \"recorded\": false, \"wave_reserved\": 784.0, \"campaign_reserved\": 784.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1_b): array 900002.fixture (1 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "jobs": [
+      {
+        "id": "900000.fixture",
+        "name": "s1b_6da46bf9_a",
+        "args": [
+          "-N",
+          "s1b_6da46bf9_a",
+          "-J",
+          "0-0",
+          "-l",
+          "select=1:ncpus=8:mem=10gb",
+          "-l",
+          "walltime=48:00:00",
+          "-o",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1/logs/node.^array_index^.out",
+          "-e",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1/logs/node.^array_index^.err",
+          "-v",
+          "VBASE=/tmp/tmpjedgklry/vbase,SETTINGS=p3_settings.json,OUTDIR=run2,WAVE=W1,TAG=W1,JOBCPUS=8,WALL_SECS=172800",
+          "/tmp/tmpjedgklry/vbase/src/analysis/fable/calibration/kunanyi/s1b_node.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900001.fixture",
+        "name": "s1b_6da46bf9_c",
+        "args": [
+          "-N",
+          "s1b_6da46bf9_c",
+          "-W",
+          "depend=afterany:900000.fixture",
+          "-o",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1/logs/collect.out",
+          "-e",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1/logs/collect.err",
+          "-v",
+          "VBASE=/tmp/tmpjedgklry/vbase,SETTINGS=p3_settings.json,OUTDIR=run2,WAVE=W1,TAG=W1",
+          "/tmp/tmpjedgklry/vbase/src/analysis/fable/calibration/kunanyi/s1b_collect.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900002.fixture",
+        "name": "s1b_b1a38830_a",
+        "args": [
+          "-N",
+          "s1b_b1a38830_a",
+          "-J",
+          "0-0",
+          "-l",
+          "select=1:ncpus=8:mem=10gb",
+          "-l",
+          "walltime=48:00:00",
+          "-o",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1_b/logs/node.^array_index^.out",
+          "-e",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1_b/logs/node.^array_index^.err",
+          "-v",
+          "VBASE=/tmp/tmpjedgklry/vbase,SETTINGS=p3_settings.json,OUTDIR=run2,WAVE=W1,TAG=W1_b,JOBCPUS=8,WALL_SECS=172800",
+          "/tmp/tmpjedgklry/vbase/src/analysis/fable/calibration/kunanyi/s1b_node.pbs"
+        ],
+        "state": "Q"
+      },
+      {
+        "id": "900003.fixture",
+        "name": "s1b_b1a38830_c",
+        "args": [
+          "-N",
+          "s1b_b1a38830_c",
+          "-W",
+          "depend=afterany:900002.fixture",
+          "-o",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1_b/logs/collect.out",
+          "-e",
+          "/tmp/tmpjedgklry/vbase/s1b/run2/submit_W1_b/logs/collect.err",
+          "-v",
+          "VBASE=/tmp/tmpjedgklry/vbase,SETTINGS=p3_settings.json,OUTDIR=run2,WAVE=W1,TAG=W1_b",
+          "/tmp/tmpjedgklry/vbase/src/analysis/fable/calibration/kunanyi/s1b_collect.pbs"
+        ],
+        "state": "Q"
+      }
+    ]
+  },
+  "collector_race": {
+    "W1_b": {
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "archive_members": [
+        "collect_W1_b.json",
+        "collect_W1_b.log"
+      ],
+      "summary_tag": "W1_b",
+      "checksum_rc": 0
+    },
+    "W1_c": {
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "archive_members": [
+        "collect_W1_c.json",
+        "collect_W1_c.log"
+      ],
+      "summary_tag": "W1_c",
+      "checksum_rc": 0
+    }
+  },
+  "supplied_submit_fixture": {
+    "rc": 0,
+    "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
+    "bash_version": "5.2.21(1)-release",
+    "submit_sha256": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+    "checks": {
+      "normal_then_duplicate_then_resume": true,
+      "array_rejected_held_until_operator_rejects": true,
+      "array_reply_lost_reconciled_at_once": true,
+      "array_reply_lost_history_expired_no_replacement": true,
+      "collector_query_fails_then_resume": true,
+      "array_finished_before_collector": true,
+      "preflight_refused_before_any_qsub": true,
+      "campaign_ledger_lock_refuses_concurrent_submission": true,
+      "topup_refused_without_seeded_wave": true,
+      "topup_adds_array_and_collector_without_seeding": true,
+      "topup_label_rules": true,
+      "topup_refused_for_another_settings_digest": true
+    },
+    "all_ok": true,
+    "scenarios": {
+      "normal_then_duplicate_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: already dispatched (journal exists); use resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_14c200d7_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_rejected_held_until_operator_rejects": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: qsub for s1b_e7b3b091_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_e7b3b091_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_e7b3b091_a ID manual: <evidence>' or 'rejected a s1b_e7b3b091_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_e7b3b091_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_reconciled_at_once": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_9828a5ce_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_reply_lost_history_expired_no_replacement": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: qsub for s1b_660bea77_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: unresolved earlier request for s1b_660bea77_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_660bea77_a ID manual: <evidence>' or 'rejected a s1b_660bea77_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_660bea77_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "collector_query_fails_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_b375713f_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "array_finished_before_collector": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: qsub for s1b_623e05b8_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_623e05b8_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "preflight_refused": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: preflight refused or failed; see <tmp>/vbase/s1b/run/submit_W1/logs/preflight.log"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "tags": [],
+        "array_names": [],
+        "topup_logs": false,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": true
+      },
+      "campaign_ledger_lock_held": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: another Stage 1b submission holds <tmp>/vbase/s1b/.ledger.lock (remove it only if none is running)"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "tags": [],
+        "array_names": [],
+        "topup_logs": false,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": false
+      },
+      "topup_without_seeded_wave": {
+        "runs": [
+          {
+            "mode": "topup b",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: topup needs the wave's seeded first submission in <tmp>/vbase/s1b/run/submit_W1"
+            ]
+          }
+        ],
+        "arrays_created": 0,
+        "array_ranges": [],
+        "collectors_created": 0,
+        "tags": [],
+        "array_names": [],
+        "topup_logs": true,
+        "collector_depends_on": [],
+        "array_ids": [],
+        "allocated_cpu_hours_bound": 0.0,
+        "lock_released": true
+      },
+      "new_then_topup_then_duplicate_then_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "topup b",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "topup b",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: already dispatched (journal exists); use resume"
+            ]
+          },
+          {
+            "mode": "resume b",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 2,
+        "array_ranges": [
+          "0-519",
+          "0-519"
+        ],
+        "collectors_created": 2,
+        "tags": [
+          "W1",
+          "W1_b",
+          "W1",
+          "W1_b"
+        ],
+        "array_names": [
+          "s1b_eb10d5e7_a",
+          "s1b_05ee3b6f_a"
+        ],
+        "topup_logs": true,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture",
+          "900002.fixture"
+        ],
+        "allocated_cpu_hours_bound": 399376.0,
+        "lock_released": true
+      },
+      "topup_label_rules": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "topup",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: topup mode needs a label"
+            ]
+          },
+          {
+            "mode": "topup B-1",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: a label is lower-case letters and digits"
+            ]
+          },
+          {
+            "mode": "new x",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: new mode takes no label"
+            ]
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_1c2cec51_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "topup_with_other_settings_digest": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 0,
+            "qsub_calls": 2,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "topup b",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [],
+            "stderr": [
+              "s1b_submit: topup settings differ from the wave's seeded submission (<tmp>/vbase/s1b/run/submit_W1/run.json)"
+            ]
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_c9d971d3_a"
+        ],
+        "topup_logs": true,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      }
+    }
+  }
+}

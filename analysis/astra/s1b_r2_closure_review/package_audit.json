@@ -1,0 +1,139 @@
+{
+  "scope": "Read saved Stage 1b round-2 evidence; run synthetic preflight and copied recollection.\n\nRun with system Python on deep-server. Writes only OUT. No population simulation,\nproduction reservation, seed, or PBS submission is performed.\n",
+  "timestamp": "2026-10-21T20:53:40.104009+11:00",
+  "stage_tar_sha256": "3eafd94d5b48f7b49409674f2d1cb1006bb4971c1b14a1ae526e6ec1f1eaaa8f",
+  "stage_member_sha256": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800",
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+    "src/analysis/fable/calibration/kunanyi/s1b_round2_dispatch.sh": "7108d21c9146ca74079bcbf36d1d0baba7c940f181641b0a51320b3c3afac177",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+    "src/analysis/fable/calibration/v2_dev/p3_r2_determinism.py": "bf8809ccca10a4840885325d096638893871e1f584fcfd60f5e984e7e36b3561",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "s1b/stage_sha256.txt": "3bc10934af3743ef1dbca6548a1715487092d09003de60443ff903f99d6f5361"
+  },
+  "smoke_source_comparison": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": {
+      "stage": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800",
+      "smoke_tree": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": {
+      "stage": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+      "smoke_tree": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_round2_dispatch.sh": {
+      "stage": "7108d21c9146ca74079bcbf36d1d0baba7c940f181641b0a51320b3c3afac177",
+      "smoke_tree": "7108d21c9146ca74079bcbf36d1d0baba7c940f181641b0a51320b3c3afac177",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": {
+      "stage": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+      "smoke_tree": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": {
+      "stage": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+      "smoke_tree": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": {
+      "stage": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+      "smoke_tree": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p3_r2_determinism.py": {
+      "stage": "bf8809ccca10a4840885325d096638893871e1f584fcfd60f5e984e7e36b3561",
+      "smoke_tree": "bf8809ccca10a4840885325d096638893871e1f584fcfd60f5e984e7e36b3561",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": {
+      "stage": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+      "smoke_tree": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+      "identical": true
+    }
+  },
+  "round1_summary_sha256": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+  "round1_binding": {
+    "settings_sha256": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a",
+    "metric_sha256": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "runner_sha256": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407"
+  },
+  "round1_counts": {
+    "COMPLETE": 9695,
+    "incomplete": 4846,
+    "CAPPED": 2,
+    "invalid": 1
+  },
+  "selected_sha256": "fa403f91585d5fcae63e81d0024899a50b78f61b680bfa7b28c3f656d8e14814",
+  "selected_counts": {
+    "W1": 4847,
+    "W2": 7272
+  },
+  "selected_rows_identical": true,
+  "other_settings_fields_identical": true,
+  "native_preflight": {
+    "preflight": "passed",
+    "settings_sha256": "fa403f91585d5fcae63e81d0024899a50b78f61b680bfa7b28c3f656d8e14814",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4"
+    },
+    "wave": "W1",
+    "campaign": "s1b",
+    "array_name": "astra_r2_closure_W1",
+    "reservation_cpu_h": 115208.0,
+    "recorded": true,
+    "wave_reserved": 115208.0,
+    "campaign_reserved": 115208.0,
+    "ceilings": {
+      "W1": 200000.0,
+      "W2": 1000000.0,
+      "campaign": 1200000.0
+    }
+  },
+  "smoke_recollection_identical": {
+    "W1": {
+      "COMPLETE": 4,
+      "CAPPED": 2,
+      "FAILED": 0,
+      "incomplete": 0
+    },
+    "W2": {
+      "COMPLETE": 0,
+      "CAPPED": 2,
+      "FAILED": 0,
+      "incomplete": 0
+    }
+  },
+  "smoke_libraries": [
+    {
+      "dir": "s00073",
+      "sha256": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+      "records": 2000
+    },
+    {
+      "dir": "s00142",
+      "sha256": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+      "records": 2000
+    },
+    {
+      "dir": "s00247",
+      "sha256": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+      "records": 2000
+    },
+    {
+      "dir": "s00772",
+      "sha256": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c",
+      "records": 2000
+    }
+  ],
+  "limitations": [
+    "No fresh population paths or fresh serial recomputation.",
+    "No live Kunanyi filesystem qualification or production ledger/PBS action."
+  ],
+  "elapsed_seconds": 39.821235037001316
+}

@@ -1,0 +1,21 @@
+{
+  "certificates": 26,
+  "worker_invocation_nonces": 3,
+  "certificate_rc_counts": {
+    "137": 6,
+    "0": 20
+  },
+  "injected_kills": 5,
+  "successful_node_wrappers": 3,
+  "ghost_lock_reclaimed": true,
+  "determinism_replay_matches_saved": true,
+  "determinism_totals": {
+    "settings": 6,
+    "batches_compared": 174302,
+    "records_compared": 2310,
+    "identical": 2310,
+    "bytes_differ": 0,
+    "unmatched": 0
+  },
+  "scope": "Saved smoke D evidence; no new simulation or live NFS fault reproduction."
+}

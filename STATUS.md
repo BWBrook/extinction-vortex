@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 21 October 2026, 15:14 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 21 October 2026, 21:01 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -18,13 +18,14 @@ W1 round 1 finished with 9,695 COMPLETE libraries, two CAPPED outcomes,
 4,846 incomplete settings and one invalid setting. Astra verified the entire
 archive and all 19,390,000 retained records by library hash and count.
 The round-2 scientific restart strategy is accepted, including concurrent W2
-and retained per-library bindings. The executable at `9a773c9` is held for
-recovery and dispatch repairs (board 2142): reused death certificates can
-reclaim a live lock after a node rerun; transient unlock errors can strand a
-live owner; busy queues and recovery scans still violate liveness/deadlines;
-failed stage checksums do not stop dispatch. Top-up binding/collection and
-cost-report corrections are also documented. Fable owns the coherent repair
-package; no new compute or scientific decision is needed from Barry.
+and retained per-library bindings. Astra's repair review (2156) closes the
+original failures on `83a6b40` but holds for one uncertain-acquisition case:
+an applied lock rename reporting ESTALE, followed by a brief unreadable-owner
+outage, can discard the acquisition token and leave the worker waiting on its
+own live lock until its deadline. No unsafe second holder or corrupted output
+was observed. Dispatch/top-up repairs and exact-package smoke evidence pass.
+Fable owns this narrow recovery repair; no new scientific or compute decision
+is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -939,6 +940,14 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 21 October evening, rechecked the round-2 repair package at `83a6b40`
+  with three bounded reviewers (2156; E68). Closed the original failures;
+  reproduced one remaining uncertain-acquisition liveness case. The
+  [repair review](notes/astra_s1b_r2_closure_review_20261021.md) records the
+  exact-package 35-fixture native preflight, actual summary gate/selection,
+  saved smoke D recollection, strict sparse comparison, and targeted fault
+  replays. No population simulation, fitting or production PBS action.
+
 - 21 October, reviewed the Stage 1b round-2 package with three bounded
   reviewers (2142; E66). Accepted the scientific restart contract; held the
   executable for reproduced ownership, liveness and dispatch failures.
@@ -1358,36 +1367,34 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2: scientific restart accepted; executable repairs made, awaiting
-   Astra's re-check.** [Astra review](notes/astra_s1b_r2_review_20261021.md), board 2142;
-   exposure E66 and E67.
-   - **Fable's repairs:** design §9e and NOTE "Round-2 repairs after Codex 2142".
-   - **Sources:** runner `841feff9…`; stage tar `3eafd94d…`.
-   - **Tests:** fixtures runner 35/35, node 4/4, submitter 12/12 (bash 5.2 and
-     4.2.46); the dispatch rehearsals' negative cases refuse; smoke C and the
-     positive rehearsal are on the exact package.
-   - **The items below are all addressed in §9e.** The runner must not change
-     after round 2 is dispatched.
-   - **Before dispatch:** unique process-incarnation death certificates;
-     recovery of uncertain lock release; healthy work beyond busy ticket
-     groups; absolute deadlines and failed-query throttling; fail-closed
-     stage verification and a fully bound, unique round-1 inventory gate.
-   - **Before later top-ups/comparison:** preserve the seeded settings digest,
-     isolate collector pack/log artifacts and quiescence, document partial
-     wrapper resume, and use sparse verified determinism comparisons.
-   - **Verified:** full round-1 archive, all 9,695 library hashes/counts;
-     actual selection of 4,847 W1 plus 7,272 W2 settings with unchanged row
-     fields; eight staged sources; native 27-fixture preflight; copied smoke
-     recollection and 174,302 shared batches/2,310 identical records.
-   - **Reporting:** 1.19 is a completed-subset estimated crossing-cost ratio;
-     recorded CPU gives 1.247 on that subset. The restart heuristic omits
-     s18085; W2 cost/time remain planning scenarios. Reservation history is
-     distinct from spent CPU; PBS max_run counts jobs, not CPUs.
-   - Preserve all completed/capped round-1 outcomes and the fixed proposal
-     caps. Total compute ceilings have been lifted; in-flight reservations
-     remain accounted. First shapes are W1 300 × 8 × 48 h and W2 570 × 8 ×
-     48 h, each plus its collector: 334,096 CPU-hours reserved in total.
-   - Stage 1c retains its executable settings/adapter check before fitting.
+1. **Stage 1b round 2: one recovery repair before dispatch.**
+   [Astra repair review](notes/astra_s1b_r2_closure_review_20261021.md), board
+   2156; exposure E68; target `83a6b40`. Fable next for the narrow repair.
+   - **Remaining:** uncertain primary-lock publication followed by an
+     eight-second owner-read outage discards the acquisition token. Reads
+     recover, but the live worker waits on itself until its deadline.
+     Preserve/reconcile the token or use the certified exit-75 restart path;
+     retain foreign-live-owner and generation-safety controls.
+   - **Closed:** original stale-certificate, uncertain-release, busy-frontier,
+     deadline/PBS-throttle, checksum, summary-gate, resume, top-up binding and
+     collector TAG failures. Ten core and three node integration checks;
+     21 malformed summary variants refused; 12 submitter checks under Bash 5.2.
+   - **Verified:** all eight checkout/stage/smoke D source hashes; tar
+     `3eafd94d`; native 35-fixture preflight; 4,847 W1 plus 7,272 W2 settings
+     with unchanged scientific row fields; exact saved-smoke recollection;
+     strict journal comparison of 174,302 batches and 2,310 identical records.
+   - **Nonblocking:** reject duplicate hit identities and repeated setting
+     requests before relying on the standalone comparator for the full
+     production comparison, or retain the strict audit; align older NOTE and
+     median-cost wording with the corrected design.
+   - Keep the accepted scientific restart, all original COMPLETE/CAPPED
+     outcomes and fixed proposal caps. Total compute ceilings are lifted;
+     in-flight reservations remain accounted. Initial shapes remain W1
+     300 × 8 × 48 h and W2 570 × 8 × 48 h, plus collectors: 334,096 CPU-hours.
+   - After the narrow repair and bound-package verification, Fable performs
+     ordinary exact-stage checks/preflight on Kunanyi and dispatches. No
+     broad review restart or new Barry decision is requested. Stage 1c still
+     needs its executable settings/adapter check before fitting.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
@@ -1449,10 +1456,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2142**; exhausted `through`: **2142**.
-- Explicit acknowledgement: through actual message **2142** in discussion 70.
-- Latest own review: **2142** (round-2 recovery/dispatch findings; Fable owns repairs).
-- Next retrieval: omit `through` to capture new messages, and use `after=2142`.
+- Last full retrieval `next_after`: **2156**; exhausted `through`: **2156**.
+- Explicit acknowledgement: through actual message **2156** in discussion 70.
+- Latest own review: **2156** (original repairs closed; one uncertain-acquisition fix remains).
+- Next retrieval: omit `through` to capture new messages, and use `after=2156`.
 
 ## Decision Inbox checkpoint
 

@@ -1,0 +1,99 @@
+{
+  "scope": "Original failure sequences replayed on final code, with new JSON certificates.\n\nThe recovery timeout fixture advances a logical clock at the held boundary.\nAll other lock paths and worker storage use unchanged AST-loaded source.\n",
+  "commit": "83a6b406681d0c2aec788f8a5f1cb64e124865e4",
+  "source_sha256": {
+    "p2": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p3": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5"
+  },
+  "cases": {
+    "normal_worker_control": {
+      "receipt": {
+        "shards": 1,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "terminal": "COMPLETE"
+    },
+    "single_unlock_failure_ends_worker": {
+      "exception": "OwnerUncertain",
+      "elapsed_seconds": 0.0,
+      "claims_preserved": 1,
+      "owned_lock_preserved": true
+    },
+    "busy_frontier_reaches_healthy_setting": {
+      "ticket": "W1_0000001_s00006_000000000_000000001",
+      "logical_elapsed_seconds": 30.283000693583745
+    },
+    "claim_deadline": {
+      "logical_elapsed_seconds": 2.0557009935619135,
+      "claims": []
+    },
+    "recovery_stops_at_deadline": {
+      "claims_total": 392,
+      "waits": 12,
+      "elapsed_seconds": 60.0,
+      "waits_started_after_deadline": 0,
+      "claims_preserved": 392,
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 1,
+        "adopted": 0
+      },
+      "injection_boundary": "held context reports normal five-second live-owner timeout"
+    },
+    "pbs_live_cache_control": {
+      "queries": [
+        1000.0
+      ]
+    },
+    "pbs_timeout_cached": {
+      "queries": [
+        {
+          "start": 1240.0,
+          "timeout": 60.0
+        }
+      ],
+      "elapsed_seconds": 60.0,
+      "cache": "{('/opt/pbs/bin/qstat', 'job[0].fixture'): (1240.0, False)}"
+    },
+    "pbs_timeout_deadline_clipped": {
+      "queries": [
+        {
+          "start": 1300.0,
+          "timeout": 1.5
+        }
+      ],
+      "elapsed_seconds": 1.5
+    },
+    "uncertain_acquire_recognised_by_token": {
+      "faults_injected": 1,
+      "released": true
+    },
+    "deadline_checkpoint_commit": {
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 1,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "elapsed_seconds": 2.0,
+      "queue_count": 1
+    }
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-21T20:54:39.582655+11:00"
+}

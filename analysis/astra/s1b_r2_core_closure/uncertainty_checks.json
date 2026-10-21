@@ -1,0 +1,36 @@
+{
+  "scope": "Bounded inspection of uncertainty limits, beyond the five original replays.\n\nThese checks record outcomes, not an assertion of launch readiness. Both use\nactual ownership code with targeted transient NFS faults and a logical clock.\n",
+  "source_sha256": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+  "cases": {
+    "ambiguous_reclaimer_publication": {
+      "faults_injected": 1,
+      "initial_outcome": "LockBusy",
+      "logical_elapsed_seconds": 5.043637908045639,
+      "after_owner_certified": "LockStale",
+      "scope": "known manual-recovery boundary; no second holder or lost claim"
+    },
+    "ambiguous_primary_publication_and_read_burst": {
+      "rename_faults": 1,
+      "read_faults": 24,
+      "read_burst_seconds": 8,
+      "worker_budget_seconds": 30,
+      "logical_elapsed_seconds": 30.016894329542765,
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 3,
+        "adopted": 0
+      },
+      "terminal": null,
+      "queue_count": 1,
+      "lock_still_owned_by_live_worker": true,
+      "diagnostic": "busy None: no claimable ticket: all 1 settings with tickets are busy\nbusy None: no claimable ticket: all 1 settings with tickets are busy\nbusy None: claim reached the deadline\n",
+      "scope": "combined ambiguous-acquire and owner-read outage; single-rename case passes separately"
+    }
+  },
+  "timestamp": "2026-10-21T20:57:44.784478+11:00"
+}

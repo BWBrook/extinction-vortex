@@ -1,0 +1,502 @@
+{
+  "timestamp": "2026-10-21T20:56:32.246133+11:00",
+  "target_head": "83a6b406681d0c2aec788f8a5f1cb64e124865e4",
+  "comparator_sha256": "bf8809ccca10a4840885325d096638893871e1f584fcfd60f5e984e7e36b3561",
+  "cases": [
+    {
+      "name": "identical_records",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 2,
+        "records_compared": 2,
+        "identical": 2,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 2,
+          "records_compared": 2,
+          "identical": 2,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.001481798999975581,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "sparse_gaps_and_half_open_boundaries",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 4,
+        "records_compared": 4,
+        "identical": 4,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 4,
+          "records_compared": 4,
+          "identical": 4,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0025512990000606806,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "positive_batch_overlap_without_hits",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 5,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 5,
+          "records_compared": 0,
+          "identical": 0,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0008195000000341679,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "huge_batch_interval_tiny_journal",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 381823099,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 381823099,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0028824999999415013,
+      "traced_peak_bytes": 17104,
+      "remaining_issue": null
+    },
+    {
+      "name": "no_overlap",
+      "exit": 1,
+      "total": {
+        "settings": 1,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 0,
+          "records_compared": 0,
+          "identical": 0,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.001083800000287738,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "missing_requested_directory",
+      "exit": 1,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s99999: missing from a run"
+      ],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0017017999998643063,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "wrong_hash",
+      "exit": 1,
+      "total": {
+        "settings": 0,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s00001: ValueError: /tmp/s1b-closure-3cqwy3s5/a/sets/s00001/sh000000000.json: journal does not match its checkpoint"
+      ],
+      "settings": {},
+      "seconds": 0.0008487999998578744,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "short_committed_journal",
+      "exit": 1,
+      "total": {
+        "settings": 0,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s00001: ValueError: /tmp/s1b-closure-0bz5xqc0/a/sets/s00001/sh000000000.json: journal does not match its checkpoint"
+      ],
+      "settings": {},
+      "seconds": 0.001051299999744515,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "record_outside_committed_batches",
+      "exit": 1,
+      "total": {
+        "settings": 0,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s00001: ValueError: /tmp/s1b-closure-do8jbiln/a/sets/s00001/sh000000000.json: record outside the shard's committed batches"
+      ],
+      "settings": {},
+      "seconds": 0.0008297999997921579,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "malformed_json_record",
+      "exit": 1,
+      "total": {
+        "settings": 0,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s00001: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      ],
+      "settings": {},
+      "seconds": 0.0007768000000396569,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "missing_record_identity",
+      "exit": 1,
+      "total": {
+        "settings": 0,
+        "batches_compared": 0,
+        "records_compared": 0,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [
+        "s00001: KeyError: 'proposal_in_batch'"
+      ],
+      "settings": {},
+      "seconds": 0.0007206999998743413,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "identity_difference",
+      "exit": 1,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 2,
+        "identical": 0,
+        "bytes_differ": 0,
+        "unmatched": 2
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 2,
+          "identical": 0,
+          "bytes_differ": 0,
+          "unmatched": 2
+        }
+      },
+      "seconds": 0.0010753999999906227,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "byte_only_difference",
+      "exit": 2,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 0,
+        "bytes_differ": 1,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 0,
+          "bytes_differ": 1,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0010437000000820262,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "uncommitted_suffix_excluded",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.00146679999988919,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "duplicate_identity_with_valid_hash",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0012037000001328124,
+      "traced_peak_bytes": null,
+      "remaining_issue": "Two committed records collapse to one identity; valid hashes do not establish uniqueness."
+    },
+    {
+      "name": "conflicting_duplicate_shadowed",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0018223000001853507,
+      "traced_peak_bytes": null,
+      "remaining_issue": "A different earlier record is overwritten by the last duplicate and the comparator exits 0."
+    },
+    {
+      "name": "duplicate_identity_across_overlapping_shards",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.001202700000249024,
+      "traced_peak_bytes": null,
+      "remaining_issue": "Cross-shard identity collisions are overwritten; overlapping checkpoints are not rejected."
+    },
+    {
+      "name": "duplicate_requested_setting",
+      "exit": 0,
+      "total": {
+        "settings": 2,
+        "batches_compared": 2,
+        "records_compared": 2,
+        "identical": 2,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0017526000001453212,
+      "traced_peak_bytes": null,
+      "remaining_issue": "Duplicate directory lines double aggregate counts while the per-setting result has one entry."
+    },
+    {
+      "name": "zero_coverage_setting_explicit_beside_positive",
+      "exit": 0,
+      "total": {
+        "settings": 2,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        },
+        "s00002": {
+          "batches_compared": 0,
+          "records_compared": 0,
+          "identical": 0,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.0010448000002725166,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    },
+    {
+      "name": "source_binding_is_external_to_comparator",
+      "exit": 0,
+      "total": {
+        "settings": 1,
+        "batches_compared": 1,
+        "records_compared": 1,
+        "identical": 1,
+        "bytes_differ": 0,
+        "unmatched": 0
+      },
+      "problems": [],
+      "settings": {
+        "s00001": {
+          "batches_compared": 1,
+          "records_compared": 1,
+          "identical": 1,
+          "bytes_differ": 0,
+          "unmatched": 0
+        }
+      },
+      "seconds": 0.001122299999678944,
+      "traced_peak_bytes": null,
+      "remaining_issue": null
+    }
+  ],
+  "case_count": 20,
+  "unchanged_cost_sources_and_inputs": {
+    "analysis/fable/calibration/v2_dev/p3_w1_costs.py": "c7bce5e34a03b4402005cf47e0dad7b1e56a048c2b20d077a788baacc40a4818",
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_costs.json": "2b1b4c182de1b36cb8817c0f2d362c99c56a316acd7ea0a5e0a4115416f67275",
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_collect_W1.json": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+    "analysis/fable/calibration/v2_dev/p2/s1a_main/collect_deep.json": "1a02e049e6f8f86155408fb464f4e1e0cd3c8b7ae3d462c436dae53f04f44aa3"
+  },
+  "earlier_independent_cost_input_hashes": {
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_collect_W1.json": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+    "analysis/fable/calibration/v2_dev/p2/s1a_main/collect_deep.json": "1a02e049e6f8f86155408fb464f4e1e0cd3c8b7ae3d462c436dae53f04f44aa3",
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_costs.json": "2b1b4c182de1b36cb8817c0f2d362c99c56a316acd7ea0a5e0a4115416f67275",
+    "deep-server:/data/fable/vortex/v2_dev/p3/p3_settings.json": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a"
+  },
+  "design_sha256": "b4a1a41bc294da1fc8024c24810673753ce01a8c19405c74203d76ba968f5295",
+  "note_sha256": "2bc50742618ac89d029064f801dcdb91062feaedcec9da10bd645c50e1013dcc",
+  "interpretation": "Sparse coverage and explicit exit codes work. Duplicate identities remain unvalidated; aggregate positive coverage and sampling source binding require appropriate external interpretation. No launch blocker from this scope."
+}
