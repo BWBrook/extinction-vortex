@@ -1,0 +1,32 @@
+# smoke E (final package: runner 1e35b94a, stage ae127313; settings 08ba60d1): fault tallies and checks, deep-server 2026-10-21
+library s00073 identical-to-smoke_deep3 056d014994351a72
+library s00142 identical-to-smoke_deep3 d18c27595d1d8018
+library s00247 identical-to-smoke_deep3 4f65158b625b891b
+library s00772 identical-to-smoke_deep3 f2f1380e3072c60c
+{"exit": 0, "settings": 6, "batches_compared": 174302, "records_compared": 2310, "identical": 2310, "bytes_differ": 0, "unmatched": 0, "problems": 0}
+determinism rc=0
+certificates 26; exit records 20; worker restarts 5; claims left 0
+certificates well-formed: True | distinct nonces: 3 | rc values: {0: 20, 137: 6}
+worker totals {'shards': 46, 'discarded_tickets': 0, 'requeued_censored': 0, 'stale_requeued': 2, 'failed_shards': 0, 'transient_errors': 0, 'lock_busy': 307, 'adopted': 0}
+subjob 0 host deep-server slots failed: 0
+subjob 1 host deep-server slots failed: 0
+subjob 0 host deep-server slots failed: 0
+2026-10-21 21:27:09 worker smk[0].deep.3r0n6420ad454cc5 exited 137
+2026-10-21 21:21:09 worker smk[0].deep.4r0n6420ad454cc5 exited 137
+2026-10-21 21:24:09 worker smk[0].deep.4r1n6420ad454cc5 exited 137
+2026-10-21 21:18:09 worker smk[1].deep.7r0ne4f9de63ad48 exited 137
+2026-10-21 21:15:09 worker smk2[0].deep.1r0n95e1d95e7494 exited 137
+peak RSS KB per worker: W1 85532, W2 75972
+s00073 directory: lock.broken.ghost 
+inject log:
+start 21:12:09
+21:15:09 killed 351263 (180s)
+21:18:09 killed 351279 (360s)
+21:21:09 killed 351264 (540s)
+21:24:09 killed 352688 (720s)
+21:27:09 ghost certified (JSON)
+21:27:09 killed 351260 (900s)
+node smk2[0].deep rc 0
+node smk[1].deep rc 0
+node smk[0].deep rc 0
+DONE 21:42:11

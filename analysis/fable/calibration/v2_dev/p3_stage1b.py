@@ -302,27 +302,33 @@ def _reclaim(d, observed, me, qstat=QSTAT, cert=None, deadline=math.inf):
 def lock(sdir, owner, qstat=QSTAT, patience=None, deadline=math.inf):
     """Owner-safe lock: a directory holding owner.json, published by an atomic rename (never an empty directory, so a
     rename cannot replace a live one). It is broken only on positive evidence that its owner has ended, never on age,
-    and only through _reclaim; unlock requires the acquiring token. A publication whose rename reported failure but
-    took effect is recognised by its token. PBS is asked about an owner only once the same lock generation has been seen
-    for PBS_SUSPECT_SECS. A wait longer than patience seconds, or past the deadline, raises LockBusy."""
+    and only through _reclaim; unlock requires the acquiring token. PBS is asked about an owner only once the same lock
+    generation has been seen for PBS_SUSPECT_SECS. A failed publication may still have taken effect (an NFS reply lost
+    after the rename), so it stays unresolved until the lock's token is read: this call's token means acquired, a
+    foreign token means contention. A wait longer than patience seconds, or past the deadline, raises LockBusy, or
+    OwnerUncertain while the last publication is unresolved, so a lock this process may hold is never forgotten."""
     d = os.path.join(sdir, "lock"); cert = os.path.join(os.path.dirname(os.path.dirname(sdir)), "workers", "dead")
     me = {"owner": owner, "host": os.uname().nodename, "pid": os.getpid(), "token": os.urandom(8).hex()}
     t0, seen = time.time(), {}
     while True:
         if _publish(d, me):
             return d, me["token"]
+        unresolved = True
         info = _owner(d)
         if info is not None and info.get("token") == me["token"]:
             return d, me["token"]
         if info is None:
             time.sleep(0.05)
         else:
+            unresolved = False                          # a foreign owner's record: known contention
             first = seen.setdefault(info.get("token"), time.time())
             if owner_dead(info, qstat, cert, pbs=time.time() - first >= PBS_SUSPECT_SECS, deadline=deadline) \
                     and _reclaim(d, info, me, qstat, cert, deadline):
                 continue
             time.sleep(0.05 + random.random() * 0.1)
         if (patience is not None and time.time() - t0 > patience) or time.time() > deadline:
+            if unresolved:
+                raise OwnerUncertain(f"{d}: publication outcome unknown and the owner record unreadable at the wait limit")
             raise LockBusy(f"{d}: held by a live owner past the wait limit")
 
 
@@ -1172,6 +1178,53 @@ def test():
             out_ = work(sp, mp, run, "W1", "jobU[0].kunanyi-ohpc.1r0n1", time.time() + 3600, qstat=fakeq, des={})
             res["uncertain_release_ends_worker_and_lock_is_recovered"] = ended and len(fired) == 1 \
                 and held_by["owner"] == "jobU[0].kunanyi-ohpc.0r0n1" and collect_ok(sp, mp, run, "c.json") and lib(run) == serial
+            # Codex 2156: a publication that took effect but reported ESTALE, then an owner-record read outage. Short
+            # (1 s, within the read retries): the token is reconciled and the worker completes. Long (3 s, past retries
+            # and claim patience): the wait ends in OwnerUncertain, never LockBusy with the token forgotten; once reads
+            # recover the certified process's lock is broken and the setting completes
+            outcomes = {}
+            for name, burst in (("short", 1.0), ("long", 3.0)):
+                d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=2); fired, t_out = [], [0.0]
+                lk = os.path.join(sdir, "lock")
+
+                def lost_reply(src, dst):
+                    if str(dst) == lk and ".new." in str(src) and not fired:
+                        real_rename(src, dst); fired.append(dst); t_out[0] = time.time() + burst
+                        raise OSError(errno.ESTALE, "Stale file handle (fixture: lock published, reply lost)")
+                    return real_rename(src, dst)
+
+                def outage(p_):
+                    if p_ == os.path.join(lk, "owner.json") and time.time() < t_out[0]:
+                        raise OSError(errno.ESTALE, "Stale file handle (fixture: owner record unreadable)")
+                    return real_read(p_)
+                with mock.patch.object(os, "rename", lost_reply), mock.patch.object(me, "_jread", outage), \
+                        mock.patch.object(me, "CLAIM_PATIENCE", 0.5):
+                    try:
+                        work(sp, mp, run, "W1", f"job{name}[0].kunanyi-ohpc.0r0n1", time.time() + 3600, qstat=fakeq, des={})
+                        ended = False
+                    except OwnerUncertain:
+                        ended = True
+                time.sleep(max(0.0, t_out[0] - time.time()))
+                held_by = _owner(lk)
+                if ended and held_by:
+                    certify(run, held_by["owner"], held_by["host"], held_by["pid"])
+                    work(sp, mp, run, "W1", f"job{name}[0].kunanyi-ohpc.1r0n1", time.time() + 3600, qstat=fakeq, des={})
+                outcomes[name] = (ended, len(fired), held_by["owner"] if held_by else None,
+                                  collect_ok(sp, mp, run, "c.json") and lib(run) == serial)
+            res["uncertain_acquisition_reconciled_or_ended_and_recovered"] = \
+                outcomes["short"] == (False, 1, None, True) and outcomes["long"] == (True, 1, "joblong[0].kunanyi-ohpc.0r0n1", True)
+            # control: a known foreign live owner still yields LockBusy, never OwnerUncertain
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=2)
+            os.mkdir(os.path.join(sdir, "lock"))
+            json.dump({"owner": "live[5].kunanyi-ohpc.0r0n9", "host": "elsewhere", "pid": 1, "token": "busy5"},
+                      open(os.path.join(sdir, "lock", "owner.json"), "w"))
+            try:
+                lock(sdir, "jobF[0].kunanyi-ohpc.0r0n1", fakeq, patience=0.5); kind = "acquired"
+            except LockBusy:
+                kind = "LockBusy"
+            except OwnerUncertain:
+                kind = "OwnerUncertain"
+            res["known_foreign_owner_is_contention_not_uncertainty"] = kind == "LockBusy"
             # Codex 2142, 3: six busy settings with 28 tickets each ahead of one healthy setting: claim reaches it
             d = tempfile.mkdtemp(dir=tmp); run = os.path.join(d, "run")
             for x in ("queue", "claimed", "workers/dead"):

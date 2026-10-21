@@ -5,7 +5,8 @@ reproduce every hit record that an earlier round committed for the same batches,
 kept as intervals, and the hit records of each run that fall inside the other run's coverage are compared by identity
 (batch, proposal_in_batch) and then by bytes. The pilot prefix is shared input and is not compared.
   p3_r2_determinism.py RUN_EARLIER RUN_LATER DIRS_FILE OUT_JSON
-Every listed setting must exist in both runs. Exit 0: all compared records identical and coverage positive; 1: an
+Every listed setting must exist in both runs, once; a hit identity may not repeat within a shard, nor carry two
+different records within a run. Exit 0: all compared records identical and coverage positive; 1: an
 identity present in one run only, a missing setting, an unverifiable journal or no coverage; 2: identities all
 match but some records differ in bytes (for example a last-place floating-point difference between hosts)."""
 import bisect, hashlib, json, os, sys
@@ -26,6 +27,8 @@ def shards(sdir):
             h = json.loads(ln)
             if not a <= h["batch"] < hi:
                 raise ValueError(f"{sdir}/{f}: record outside the shard's committed batches")
+            if (h["batch"], h["proposal_in_batch"]) in recs:
+                raise ValueError(f"{sdir}/{f}: duplicate hit identity")
             recs[(h["batch"], h["proposal_in_batch"])] = ln
         out.append((a, hi, recs))
     return out
@@ -46,10 +49,25 @@ def inside(m, b):
     return k >= 0 and m[k][0] <= b < m[k][1]
 
 
+def joined(shs, d):
+    """One run's records for a setting: committed shards may overlap (a re-planned range), but an identity may appear
+    in two shards only with identical bytes."""
+    out = {}
+    for _, _, r in shs:
+        for k, v in r.items():
+            if k in out and out[k] != v:
+                raise ValueError(f"{d}: one identity with two different records")
+            out[k] = v
+    return out
+
+
 def main(run_a, run_b, dirs_file, out):
     tot = {"settings": 0, "batches_compared": 0, "records_compared": 0, "identical": 0, "bytes_differ": 0, "unmatched": 0}
     res, problems = {}, []
-    for d in [x.strip() for x in open(dirs_file) if x.strip()]:
+    dirs = [x.strip() for x in open(dirs_file) if x.strip()]
+    if len(dirs) != len(set(dirs)):
+        problems.append("duplicate settings requested"); dirs = list(dict.fromkeys(dirs))
+    for d in dirs:
         pa, pb = os.path.join(run_a, "sets", d), os.path.join(run_b, "sets", d)
         if not (os.path.isdir(pa) and os.path.isdir(pb)):
             problems.append(f"{d}: missing from a run"); continue
@@ -59,7 +77,10 @@ def main(run_a, run_b, dirs_file, out):
             problems.append(f"{d}: {type(ex).__name__}: {ex}"); continue
         ma, mb = merged([(lo, hi) for lo, hi, _ in sa]), merged([(lo, hi) for lo, hi, _ in sb])
         cover = sum(max(0, min(x[1], y[1]) - max(x[0], y[0])) for x in ma for y in mb)
-        ra = {k: v for _, _, r in sa for k, v in r.items()}; rb = {k: v for _, _, r in sb for k, v in r.items()}
+        try:
+            ra, rb = joined(sa, d), joined(sb, d)
+        except ValueError as ex:
+            problems.append(str(ex)); continue
         keys = {k for k in ra if inside(mb, k[0])} | {k for k in rb if inside(ma, k[0])}
         same = sum(1 for k in keys if k in ra and k in rb and ra[k] == rb[k])
         diff = sum(1 for k in keys if k in ra and k in rb and ra[k] != rb[k])

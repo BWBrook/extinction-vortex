@@ -1,0 +1,40 @@
+{
+  "scope": "Bounded inspection of uncertainty limits, beyond the five original replays.\n\nThese checks record outcomes, not an assertion of launch readiness. Both use\nactual ownership code with targeted transient NFS faults and a logical clock.\n",
+  "source_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+  "cases": {
+    "ambiguous_reclaimer_publication": {
+      "faults_injected": 1,
+      "initial_outcome": "LockBusy",
+      "logical_elapsed_seconds": 5.045056363925937,
+      "after_owner_certified": "LockStale",
+      "scope": "known manual-recovery boundary; no second holder or lost claim"
+    },
+    "ambiguous_primary_publication_and_read_burst": {
+      "rename_faults": 1,
+      "read_faults": 24,
+      "read_burst_seconds": 8,
+      "first_worker": "OwnerUncertain (exit 75 via __main__)",
+      "first_worker_logical_seconds": 6.199999999999818,
+      "first_receipt": {
+        "ended_by": "OwnerUncertain",
+        "message": "/tmp/s1b-r2-uncertainty-r8u75j5e/read_burst/run/sets/s00007/lock: publication outcome unknown and the owner record unreadable at the wait limit"
+      },
+      "lock_owner_after_first_worker": "reader[0].fixture.0r0nnew",
+      "restarted_worker_receipt": {
+        "shards": 1,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "terminal_after_restart": "COMPLETE",
+      "queue_after_restart": 0,
+      "claims_after_restart": [],
+      "scope": "Codex 2156 case on runner 1e35b94a; first worker ends uncertain, certified restart completes"
+    }
+  },
+  "timestamp": "2026-10-21T21:11:38.837301+11:00"
+}

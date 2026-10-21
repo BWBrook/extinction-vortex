@@ -1,0 +1,85 @@
+{
+  "scope": "Actual repaired node script with bounded synthetic worker processes.\n\nIdentity replay uses the real lock/reclaim functions. Exit-75 recovery executes\nthe actual runner __main__ dispatch and work/storage functions with a synthetic\nbatch, and skips only the numerical-runtime/source-binding import check.\n",
+  "commit": "d3cda6fec30a2a01891177c437910272027f6ce3",
+  "source_sha256": {
+    "p3": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "node": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec"
+  },
+  "cases": {
+    "same_job_rerun": {
+      "first_owner": {
+        "owner": "same[0].fixture.0r0nafb3b4d14dfd",
+        "pid": 130312
+      },
+      "second_owner": {
+        "owner": "same[0].fixture.0r0naabbbcac2c11",
+        "pid": 130324,
+        "token": "3d976ac748d1f15d"
+      },
+      "first_certificate": {
+        "owner": "same[0].fixture.0r0nafb3b4d14dfd",
+        "host": "laptop",
+        "pid": 130312,
+        "rc": 0
+      },
+      "second_certificate": {
+        "owner": "same[0].fixture.0r0naabbbcac2c11",
+        "host": "laptop",
+        "pid": 130324,
+        "rc": 0
+      },
+      "live_lock_preserved": true,
+      "same_name_wrong_pid_certificate_rejected": true,
+      "node_exit_codes": [
+        0,
+        0
+      ]
+    },
+    "release_before_apply": {
+      "node_exit": 0,
+      "certificates": [
+        {
+          "owner": "same[0].fixture.0r0n4d45cb6bf5c5",
+          "host": "laptop",
+          "pid": 130378,
+          "rc": 75
+        },
+        {
+          "owner": "same[0].fixture.0r1n4d45cb6bf5c5",
+          "host": "laptop",
+          "pid": 130505,
+          "rc": 0
+        }
+      ],
+      "terminal": "COMPLETE",
+      "claims": [],
+      "lock_left": false,
+      "original_processes_reaped": true,
+      "worker_log": "owner uncertain, ending: /tmp/s1b-r2-node-closure-l4einnar/release_before_apply/base/s1b/run/sets/s00007/lock: releasing rename failed: [Errno 116] single audit release failure\n2026-10-21 21:10:09 worker same[0].fixture.0r0n4d45cb6bf5c5 exited 75\n"
+    },
+    "release_after_apply": {
+      "node_exit": 0,
+      "certificates": [
+        {
+          "owner": "same[0].fixture.0r0n2b8ad6de2e32",
+          "host": "laptop",
+          "pid": 130592,
+          "rc": 75
+        },
+        {
+          "owner": "same[0].fixture.0r1n2b8ad6de2e32",
+          "host": "laptop",
+          "pid": 130910,
+          "rc": 0
+        }
+      ],
+      "terminal": "COMPLETE",
+      "claims": [],
+      "lock_left": false,
+      "original_processes_reaped": true,
+      "worker_log": "owner uncertain, ending: /tmp/s1b-r2-node-closure-l4einnar/release_after_apply/base/s1b/run/sets/s00007/lock: releasing rename failed: [Errno 116] single audit release failure\n2026-10-21 21:10:22 worker same[0].fixture.0r0n2b8ad6de2e32 exited 75\n"
+    }
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-21T21:10:32.911122+11:00"
+}

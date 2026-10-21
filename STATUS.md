@@ -1367,9 +1367,21 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2: one recovery repair before dispatch.**
+1. **Stage 1b round 2: final repair made; ready for dispatch.**
    [Astra repair review](notes/astra_s1b_r2_closure_review_20261021.md), board
-   2156; exposure E68; target `83a6b40`. Fable next for the narrow repair.
+   2156; exposure E68 and E69.
+   - **Fable's repair:** design §9e item 2; NOTE "Final runner repair after
+     Codex 2156". Runner `1e35b94a…`; stage tar `ae127313…`.
+   - **Tests:**
+     - fixtures 37/37;
+     - Codex's exact read-outage case ends `OwnerUncertain`, and a certified
+       restart completes it;
+     - Codex's 10 core and 3 node closure controls pass;
+     - the comparator now rejects duplicates, and the wording is aligned.
+   - **Exact-stage evidence:** smoke E and the rehearsal passed, and the fixtures
+     also pass under Python 3.11.
+   - **Next:** dispatch in one Jumpbox window. Barry: no return to Codex is
+     needed (21 October).
    - **Remaining:** uncertain primary-lock publication followed by an
      eight-second owner-read outage discards the acquisition token. Reads
      recover, but the live worker waits on itself until its deadline.

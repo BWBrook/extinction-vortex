@@ -388,7 +388,7 @@ summary with an error, not a crash.
 
 **Cost diagnosis** (`p3_w1_costs.py`, `p3/w1_r1_costs.json`):
 
-| Group | Actual / projected | Median throughput ratio | Median hit-rate ratio |
+| Group (completed settings) | Estimated crossing cost + discards / projected | Median throughput ratio | Median hit-rate ratio |
 |---|---|---|---|
 | Pilot outers (trials 0–9), n = 0 | 0.97 | 0.98 | 1.00 |
 | Pilot outers (trials 0–9), n = 30 | 0.97 | 1.00 | 0.45 |
@@ -407,9 +407,9 @@ proposals, so a typical pilot outer sits below it.
     projection.
   - The ratio excludes unresolved, capped and invalid settings, so it
     establishes neither the full cell means nor the cost of the unresolved tail.
-  - The median completed unseen setting is on projection, which points to a
-    heavy tail of costly outers that the 10 pilot outers per cell do not
-    capture.
+  - Among completed settings, the throughput and hit-rate medians are near
+    projection; unresolved costs remain unknown. The two medians, taken
+    separately, do not establish the median cost ratio.
 - **Discards:** 6,638 CPU-h (6%) on COMPLETE n = 30 settings is the planned
   parallel overshoot. The 20,029 CPU-h outside incomplete n = 30 settings'
   usable prefixes includes the defect's damage (for example, s07690 has 29
@@ -558,6 +558,15 @@ is now a passing regression.
      certificate. A retried rename could have removed a successor's lock.
    - A publication whose rename reported failure but took effect is recognised
      by its token in `lock()`.
+   - **Uncertain acquisition (after Codex 2156).** Each failed publication stays
+     unresolved until the lock's token is read: our own token means acquired, a
+     foreign one means contention. If the wait ends while the last publication
+     is unresolved (the owner record unreadable past the read retries and the
+     patience), `lock()` raises `OwnerUncertain`, not `LockBusy`, so a lock
+     this process may hold is never forgotten. The process exits 75, is
+     certified, and its lock is broken once reads recover. Known foreign live
+     owners are still waited for (`LockBusy`). The fail-closed boundary of an
+     ambiguous reclaim-mutex publication is unchanged.
 3. **Busy settings cannot hide healthy work.** `claim()` keeps passing over busy
    settings, with all their tickets, until it claims a ticket, has found every
    setting with tickets busy (`LockBusy`), or reaches the deadline.

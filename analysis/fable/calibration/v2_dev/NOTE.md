@@ -1053,9 +1053,13 @@ Receipt: `p3/w1_dispatch_receipt.txt`.
   `p3/w1_r1_collect_W1.json`.
 - **Cost diagnosis** (`p3_w1_costs.py`, `p3/w1_r1_costs.json`):
   - pilot outers and n = 0 ran at 0.97–0.98× projection;
-  - unseen n = 30 outers ran at 1.19×, with median throughput and hit
-    rate on projection, so the excess is a heavy tail;
-  - restarting the 4,847 open settings is estimated at about 92k CPU-h.
+  - the 4,251 completed unseen n = 30 settings ran at 1.19× (estimated cost
+    to the crossing batch plus discards; 1.247× by recorded CPU);
+  - among completed settings, the throughput and hit-rate medians are near
+    projection; unresolved costs remain unknown (corrected after Codex 2142
+    and 2156; design §9a);
+  - restarting the 4,846 incomplete settings is estimated at about 92k CPU-h,
+    a planning heuristic that excludes the invalid s18085.
 
 **The defect** (`p3/w1_diag_20261021.txt`):
 - About 103 workers died of NFS errors: ESTALE, and ENOTEMPTY when removing
@@ -1192,4 +1196,56 @@ All are repaired; design §9e lists the changes. Runner `841feff9…`; stage tar
     workers now run as `python`; smokes B and C give 82 MB (W1) and 73 MB (W2).
   - Smoke C (runner `2d09bc7a…`) ran the same faults as a stress test. Its
     receipts are not needed for the final package.
+
+### Final runner repair after Codex 2156 (21 October 2026)
+
+Codex accepted every other repair on 83a6b40 and held one case (board 2156;
+`notes/astra_s1b_r2_closure_review_20261021.md`). A publication rename takes
+effect but reports `ESTALE`, then the owner record stays unreadable past the
+claim patience. `lock()` raised `LockBusy` and forgot its token, so the same
+live worker later waited on its own lock.
+
+**Repair** (design §9e, item 2): a failed publication stays unresolved until a
+token is read. While unresolved at the wait limit, `lock()` raises
+`OwnerUncertain` (exit 75; certified; the lock is broken once reads recover).
+
+**Runner `1e35b94a…`; stage tar `ae127313…`.**
+
+**Evidence:**
+- **Runner fixtures 37/37** (`p3/p3_test_receipt_r5.txt`). New:
+  - a 1 s read outage, within the retries: the token is reconciled and the same
+    worker completes;
+  - a 3 s outage: `OwnerUncertain`, then a certified restart completes with the
+    serial library;
+  - a known foreign live owner still yields `LockBusy`.
+- **Codex's exact case** (`uncertainty_checks.py`, primary case extended with
+  the node certificate and a restarted worker;
+  `p3/codex_uncertainty_case_on_1e35b94a.*`):
+  - the first worker ends `OwnerUncertain` after 6.2 logical s;
+  - after the restart the setting is COMPLETE, with an empty queue and no
+    claims;
+  - the reclaim-mutex boundary is unchanged (LockBusy, then LockStale).
+- **Codex's closure controls on this runner:** `core_checks.py` (10 cases) and
+  `node_checks.py` (3 integrations) pass (`p3/codex_closure_*_on_1e35b94a.json`).
+  Running them rewrote Codex's own receipts in place; those files were restored
+  with `git checkout`, and the outputs are kept only under `p3/`.
+- **Comparator** (Codex non-blocking item; standalone, not bound): duplicate
+  identities in a shard, an identity carrying two different records, and
+  duplicate requested settings are now rejected (exit 1). The smoke-D
+  comparison still exits 0.
+- **Wording:** the cost passages in NOTE and §9a are aligned with Codex's
+  science closure.
+- **Python 3.11:** all 37 fixtures also pass under Python 3.11.13 with NumPy
+  1.26.4 and SciPy 1.11.4 (kunanyi's runtime family;
+  `p3/p3_test_receipt_r5_py311.txt`).
+- **Rehearsal on the final stage `ae127313…`** (`p3/rehearsal_r5.txt`): the
+  positive run, the resuming rerun ("already released", identical settings,
+  no new qsub) and the checksum negative.
+- **Smoke E on the exact final package** (`p3/smoke_r2e_*`):
+  - `collection_ok` for both waves; all four libraries identical to
+    `smoke_deep3`; determinism exit 0 (2,310 records identical);
+  - five restarts (one slot twice) with 26 well-formed certificates and three
+    nonces; the ghost lock broke on its certificate; two claims were requeued
+    by certificate and none was left;
+  - peak RSS per worker: 86 MB (W1), 76 MB (W2).
 
