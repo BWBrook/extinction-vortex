@@ -1,0 +1,14 @@
+{
+  "scope": "Verify the complete saved W1 archive on deep-server without extracting or changing it.\n\nEach archived library must match its collector digest and contain 2,000 newline-\nterminated records. This verifies archive/collector consistency, not the sampler law.\n",
+  "timestamp": "2026-10-21T15:05:54.912640+11:00",
+  "archive_sha256": "bb604f1cc10317b8ea279af471208985c1b3bf464d729b4d284d0418a6538779",
+  "compressed_bytes": 1748023030,
+  "members": 9697,
+  "libraries": 9695,
+  "records": 19390000,
+  "uncompressed_bytes": 6209061178,
+  "all_library_hashes_match": true,
+  "all_library_record_counts_2000": true,
+  "summary_identical": true,
+  "elapsed_seconds": 55.299886299006175
+}

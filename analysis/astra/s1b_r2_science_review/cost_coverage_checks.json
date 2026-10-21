@@ -1,0 +1,518 @@
+{
+  "timestamp": "2026-10-21T15:09:13.938144+11:00",
+  "head": "9a773c9e0fa7b2499d84540c68afe74165304029",
+  "inputs_sha256": {
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_collect_W1.json": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+    "analysis/fable/calibration/v2_dev/p2/s1a_main/collect_deep.json": "1a02e049e6f8f86155408fb464f4e1e0cd3c8b7ae3d462c436dae53f04f44aa3",
+    "analysis/fable/calibration/v2_dev/p3/w1_r1_costs.json": "2b1b4c182de1b36cb8817c0f2d362c99c56a316acd7ea0a5e0a4115416f67275",
+    "deep-server:/data/fable/vortex/v2_dev/p3/p3_settings.json": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a"
+  },
+  "scope": "Read-only metadata arithmetic; no population simulation, library reassembly, production writes or PBS action.",
+  "all_published_cost_statistics_reproduced": true,
+  "groups": {
+    "n=0 pilot outers": {
+      "reproduced": {
+        "settings": 360,
+        "complete_resolved": 221,
+        "actual_cpu_h": 711.7035092901407,
+        "projected_cpu_h": 735.838170884699,
+        "actual_over_projected": 0.9672011285232169,
+        "median_throughput_ratio": 0.9844385542774272,
+        "median_hit_ratio": 0.9977513058211595,
+        "median_discard_share": 0.0
+      },
+      "status_counts": {
+        "COMPLETE": 221,
+        "incomplete": 139
+      },
+      "included_actual_but_missing_projection": [
+        {
+          "dir": "s00576",
+          "cpu_h": 3.334153263975499
+        }
+      ],
+      "matched_only_actual_over_projected": 0.9626700326982113,
+      "completed_fraction": 0.6138888888888889,
+      "recorded_cpu_h_same_completed_subset": 711.7035092901407,
+      "recorded_over_projected": 0.9672011285232169,
+      "proration_removed_cpu_h": 0.0,
+      "completed_prefixes_beyond_crossing": 0
+    },
+    "n=0 unseen outers": {
+      "reproduced": {
+        "settings": 6840,
+        "complete_resolved": 4941,
+        "actual_cpu_h": 15675.700545648428,
+        "projected_cpu_h": 16020.517799155623,
+        "actual_over_projected": 0.9784765225550095,
+        "median_throughput_ratio": 0.9929994519664954,
+        "median_hit_ratio": 1.0002122121483645,
+        "median_discard_share": 0.0
+      },
+      "status_counts": {
+        "COMPLETE": 4941,
+        "incomplete": 1899
+      },
+      "included_actual_but_missing_projection": [],
+      "matched_only_actual_over_projected": 0.9784765225550095,
+      "completed_fraction": 0.7223684210526315,
+      "recorded_cpu_h_same_completed_subset": 15675.700545648428,
+      "recorded_over_projected": 0.9784765225550095,
+      "proration_removed_cpu_h": 0.0,
+      "completed_prefixes_beyond_crossing": 0
+    },
+    "n=30 pilot outers": {
+      "reproduced": {
+        "settings": 360,
+        "complete_resolved": 184,
+        "actual_cpu_h": 4257.109054003444,
+        "projected_cpu_h": 4408.092349519067,
+        "actual_over_projected": 0.9657486087985212,
+        "median_throughput_ratio": 0.9946286765520681,
+        "median_hit_ratio": 0.44899624834061946,
+        "median_discard_share": 0.0
+      },
+      "status_counts": {
+        "incomplete": 175,
+        "COMPLETE": 185
+      },
+      "included_actual_but_missing_projection": [],
+      "matched_only_actual_over_projected": 0.9657486087985212,
+      "completed_fraction": 0.5111111111111111,
+      "recorded_cpu_h_same_completed_subset": 4509.829643886937,
+      "recorded_over_projected": 1.0230796649210332,
+      "proration_removed_cpu_h": 252.72058988349363,
+      "completed_prefixes_beyond_crossing": 33
+    },
+    "n=30 unseen outers": {
+      "reproduced": {
+        "settings": 6840,
+        "complete_resolved": 4251,
+        "actual_cpu_h": 104343.51831428333,
+        "projected_cpu_h": 87435.62222650116,
+        "actual_over_projected": 1.1933753733001684,
+        "median_throughput_ratio": 1.0114848248297088,
+        "median_hit_ratio": 1.0472319184799852,
+        "median_discard_share": 0.0
+      },
+      "status_counts": {
+        "incomplete": 2586,
+        "COMPLETE": 4251,
+        "CAPPED": 2,
+        "invalid": 1
+      },
+      "included_actual_but_missing_projection": [],
+      "matched_only_actual_over_projected": 1.1933753733001684,
+      "completed_fraction": 0.6214912280701754,
+      "recorded_cpu_h_same_completed_subset": 109005.00597155256,
+      "recorded_over_projected": 1.2466887430523008,
+      "proration_removed_cpu_h": 4661.48765726923,
+      "completed_prefixes_beyond_crossing": 598
+    }
+  },
+  "statuses": {
+    "COMPLETE": 9695,
+    "incomplete": 4846,
+    "CAPPED": 2,
+    "invalid": 1
+  },
+  "checkpoint_cpu_h": {
+    "useful": 151637.59166211507,
+    "discarded": 26666.488686096523,
+    "total": 178304.08034821143,
+    "included_pilot": 408.822779735668,
+    "nonpilot": 177895.25756847576,
+    "missing_invalid_rows": 1
+  },
+  "restart_heuristic": {
+    "priced_rows": 4846,
+    "cpu_h": 91952.53878120704,
+    "actual_open_rows": 4847,
+    "omitted_invalid": [
+      {
+        "dir": "s18085",
+        "collector_cpu_missing": true,
+        "completed_cell_mean": 34.575339883532,
+        "pilot_cell_projection": 13.56526552638614
+      }
+    ],
+    "cells_with_completed_costs": 67,
+    "add_invalid_using_same_cell_mean_only": 91987.11412109058
+  },
+  "coverage": {
+    "null_prior_predictive": {
+      "0": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 0,
+        "any_open": 200
+      },
+      "30": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 0,
+        "any_open": 200
+      },
+      "paired_n0_n30_complete": 0
+    },
+    "null_low_s": {
+      "0": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 0,
+        "any_open": 200
+      },
+      "30": {
+        "denominator": 200,
+        "all_nine_complete": 1,
+        "any_capped": 1,
+        "any_open": 199
+      },
+      "paired_n0_n30_complete": 0
+    },
+    "MA_betamin": {
+      "0": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 0,
+        "any_open": 200
+      },
+      "30": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 1,
+        "any_open": 200
+      },
+      "paired_n0_n30_complete": 0
+    },
+    "MA_d10_0.5": {
+      "0": {
+        "denominator": 200,
+        "all_nine_complete": 0,
+        "any_capped": 0,
+        "any_open": 200
+      },
+      "30": {
+        "denominator": 200,
+        "all_nine_complete": 36,
+        "any_capped": 0,
+        "any_open": 164
+      },
+      "paired_n0_n30_complete": 0
+    }
+  },
+  "cell_status": {
+    "golden_plover|MA_betamin|0": {
+      "COMPLETE": 200
+    },
+    "golden_plover|MA_betamin|30": {
+      "incomplete": 196,
+      "COMPLETE": 4
+    },
+    "golden_plover|MA_d10_0.5|0": {
+      "COMPLETE": 200
+    },
+    "golden_plover|MA_d10_0.5|30": {
+      "incomplete": 59,
+      "COMPLETE": 141
+    },
+    "golden_plover|null_low_s|0": {
+      "COMPLETE": 200
+    },
+    "golden_plover|null_low_s|30": {
+      "COMPLETE": 184,
+      "incomplete": 16
+    },
+    "golden_plover|null_prior_predictive|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "golden_plover|null_prior_predictive|30": {
+      "COMPLETE": 5,
+      "incomplete": 195
+    },
+    "hawaiian_crow|MA_betamin|0": {
+      "incomplete": 200
+    },
+    "hawaiian_crow|MA_betamin|30": {
+      "COMPLETE": 170,
+      "incomplete": 30
+    },
+    "hawaiian_crow|MA_d10_0.5|0": {
+      "incomplete": 200
+    },
+    "hawaiian_crow|MA_d10_0.5|30": {
+      "COMPLETE": 171,
+      "incomplete": 29
+    },
+    "hawaiian_crow|null_low_s|0": {
+      "incomplete": 200
+    },
+    "hawaiian_crow|null_low_s|30": {
+      "incomplete": 197,
+      "COMPLETE": 3
+    },
+    "hawaiian_crow|null_prior_predictive|0": {
+      "incomplete": 200
+    },
+    "hawaiian_crow|null_prior_predictive|30": {
+      "incomplete": 197,
+      "COMPLETE": 3
+    },
+    "marmot|MA_betamin|0": {
+      "COMPLETE": 200
+    },
+    "marmot|MA_betamin|30": {
+      "incomplete": 40,
+      "COMPLETE": 160
+    },
+    "marmot|MA_d10_0.5|0": {
+      "COMPLETE": 200
+    },
+    "marmot|MA_d10_0.5|30": {
+      "COMPLETE": 141,
+      "incomplete": 59
+    },
+    "marmot|null_low_s|0": {
+      "COMPLETE": 200
+    },
+    "marmot|null_low_s|30": {
+      "COMPLETE": 187,
+      "incomplete": 13
+    },
+    "marmot|null_prior_predictive|0": {
+      "COMPLETE": 200
+    },
+    "marmot|null_prior_predictive|30": {
+      "incomplete": 67,
+      "COMPLETE": 133
+    },
+    "ms_woodpecker|MA_betamin|0": {
+      "incomplete": 5,
+      "COMPLETE": 195
+    },
+    "ms_woodpecker|MA_betamin|30": {
+      "COMPLETE": 177,
+      "incomplete": 23
+    },
+    "ms_woodpecker|MA_d10_0.5|0": {
+      "incomplete": 200
+    },
+    "ms_woodpecker|MA_d10_0.5|30": {
+      "COMPLETE": 180,
+      "incomplete": 20
+    },
+    "ms_woodpecker|null_low_s|0": {
+      "incomplete": 8,
+      "COMPLETE": 192
+    },
+    "ms_woodpecker|null_low_s|30": {
+      "COMPLETE": 170,
+      "incomplete": 29,
+      "CAPPED": 1
+    },
+    "ms_woodpecker|null_prior_predictive|0": {
+      "incomplete": 199,
+      "COMPLETE": 1
+    },
+    "ms_woodpecker|null_prior_predictive|30": {
+      "COMPLETE": 4,
+      "incomplete": 196
+    },
+    "rc_woodpecker|MA_betamin|0": {
+      "incomplete": 199,
+      "COMPLETE": 1
+    },
+    "rc_woodpecker|MA_betamin|30": {
+      "COMPLETE": 150,
+      "incomplete": 50
+    },
+    "rc_woodpecker|MA_d10_0.5|0": {
+      "incomplete": 199,
+      "COMPLETE": 1
+    },
+    "rc_woodpecker|MA_d10_0.5|30": {
+      "COMPLETE": 169,
+      "incomplete": 31
+    },
+    "rc_woodpecker|null_low_s|0": {
+      "incomplete": 198,
+      "COMPLETE": 2
+    },
+    "rc_woodpecker|null_low_s|30": {
+      "incomplete": 40,
+      "COMPLETE": 160
+    },
+    "rc_woodpecker|null_prior_predictive|0": {
+      "incomplete": 200
+    },
+    "rc_woodpecker|null_prior_predictive|30": {
+      "incomplete": 33,
+      "COMPLETE": 167
+    },
+    "whooping_crane|MA_betamin|0": {
+      "COMPLETE": 196,
+      "incomplete": 4
+    },
+    "whooping_crane|MA_betamin|30": {
+      "COMPLETE": 182,
+      "incomplete": 17,
+      "CAPPED": 1
+    },
+    "whooping_crane|MA_d10_0.5|0": {
+      "incomplete": 6,
+      "COMPLETE": 194
+    },
+    "whooping_crane|MA_d10_0.5|30": {
+      "incomplete": 44,
+      "COMPLETE": 156
+    },
+    "whooping_crane|null_low_s|0": {
+      "incomplete": 5,
+      "COMPLETE": 195
+    },
+    "whooping_crane|null_low_s|30": {
+      "incomplete": 132,
+      "COMPLETE": 68
+    },
+    "whooping_crane|null_prior_predictive|0": {
+      "COMPLETE": 196,
+      "incomplete": 4
+    },
+    "whooping_crane|null_prior_predictive|30": {
+      "incomplete": 62,
+      "COMPLETE": 138
+    },
+    "wild_dog|MA_betamin|0": {
+      "COMPLETE": 200
+    },
+    "wild_dog|MA_betamin|30": {
+      "incomplete": 196,
+      "COMPLETE": 4
+    },
+    "wild_dog|MA_d10_0.5|0": {
+      "incomplete": 1,
+      "COMPLETE": 199
+    },
+    "wild_dog|MA_d10_0.5|30": {
+      "COMPLETE": 164,
+      "incomplete": 36
+    },
+    "wild_dog|null_low_s|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "wild_dog|null_low_s|30": {
+      "COMPLETE": 184,
+      "incomplete": 16
+    },
+    "wild_dog|null_prior_predictive|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "wild_dog|null_prior_predictive|30": {
+      "incomplete": 198,
+      "COMPLETE": 2
+    },
+    "wood_turtle_A|MA_betamin|0": {
+      "COMPLETE": 198,
+      "incomplete": 2
+    },
+    "wood_turtle_A|MA_betamin|30": {
+      "COMPLETE": 158,
+      "incomplete": 42
+    },
+    "wood_turtle_A|MA_d10_0.5|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "wood_turtle_A|MA_d10_0.5|30": {
+      "incomplete": 22,
+      "COMPLETE": 178
+    },
+    "wood_turtle_A|null_low_s|0": {
+      "COMPLETE": 200
+    },
+    "wood_turtle_A|null_low_s|30": {
+      "COMPLETE": 162,
+      "incomplete": 37,
+      "invalid": 1
+    },
+    "wood_turtle_A|null_prior_predictive|0": {
+      "COMPLETE": 200
+    },
+    "wood_turtle_A|null_prior_predictive|30": {
+      "COMPLETE": 124,
+      "incomplete": 76
+    },
+    "wood_turtle_B|MA_betamin|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "wood_turtle_B|MA_betamin|30": {
+      "incomplete": 199,
+      "COMPLETE": 1
+    },
+    "wood_turtle_B|MA_d10_0.5|0": {
+      "COMPLETE": 199,
+      "incomplete": 1
+    },
+    "wood_turtle_B|MA_d10_0.5|30": {
+      "incomplete": 21,
+      "COMPLETE": 179
+    },
+    "wood_turtle_B|null_low_s|0": {
+      "COMPLETE": 198,
+      "incomplete": 2
+    },
+    "wood_turtle_B|null_low_s|30": {
+      "COMPLETE": 168,
+      "incomplete": 32
+    },
+    "wood_turtle_B|null_prior_predictive|0": {
+      "COMPLETE": 200
+    },
+    "wood_turtle_B|null_prior_predictive|30": {
+      "incomplete": 111,
+      "COMPLETE": 89
+    }
+  },
+  "inventory_partition": {
+    "w1": 14544,
+    "primary_w1": 14400,
+    "check_w1": 144,
+    "retained_terminal": 9697,
+    "redo_w1": 4847,
+    "w2": 7272,
+    "round2": 12119,
+    "full_union": 21816
+  },
+  "capped_prefixes": [
+    {
+      "dir": "s06583",
+      "outer": "null_low_s/134",
+      "pop": "ms_woodpecker",
+      "n": 30,
+      "prefix_end_batch": 454386586,
+      "bound_cap_batches": 454386586,
+      "prefix_hits": 326
+    },
+    {
+      "dir": "s14092",
+      "outer": "MA_betamin/167",
+      "pop": "whooping_crane",
+      "n": 30,
+      "prefix_end_batch": 459977986,
+      "bound_cap_batches": 459977986,
+      "prefix_hits": 703
+    }
+  ],
+  "determinism_scaling": {
+    "max_open_dir": "s01669",
+    "committed_prefix_batches": 381823099,
+    "python_integer_bytes": 28,
+    "one_set_integer_payload_lower_bound_bytes": 10691039576,
+    "excludes": "Python set hash tables, second run, intersection, per-batch loops and interpreter overhead."
+  },
+  "qualification": "Completion-conditioned cost summaries and heuristic future budgets are not full-cell means or prediction intervals. Final scientific denominators remain200 per scenario/n, including CAPPED outcomes; check libraries are not extra outer replicates."
+}

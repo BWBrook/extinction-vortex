@@ -1,0 +1,111 @@
+{
+  "scope": "Bounded round-2 recovery audit using actual source functions and synthetic batches.\n\nP3 functions/classes/constants are loaded unchanged via AST, without scientific\nimports. P2 storage and run_setting functions are likewise loaded unchanged.\nAll filesystem state belongs to a temporary fixture. A logical clock prevents\nreal minutes of waiting; time advances only through explicit sleeps or stated\ntimeout fixtures. Unmocked sampling is forbidden.\n",
+  "commit": "9a773c9e0fa7b2499d84540c68afe74165304029",
+  "source_sha256": {
+    "p2": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p3": "29ece4e3d29ceaedbbc43db203b31d9b82419c624c90b01238a94a72b7d31a76"
+  },
+  "cases": {
+    "normal_worker_control": {
+      "receipt": {
+        "shards": 1,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "terminal": "COMPLETE",
+      "claims": []
+    },
+    "single_unlock_error_strands_live_owner": {
+      "faults_injected": 1,
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 1,
+        "lock_busy": 3,
+        "adopted": 3
+      },
+      "logical_elapsed_seconds": 15.10743251405654,
+      "deadline_seconds": 15.0,
+      "terminal": null,
+      "claims_left": [
+        "W1_9999499_s00007_000000000_000000005@unlock[0].fixture.0r0"
+      ],
+      "checkpoint_status": "complete",
+      "lock_owner_is_worker": true,
+      "owner_still_alive": true,
+      "diagnostic": "transient error at None: OSError: [Errno 116] one injected unlock rename error\nbusy W1_9999499_s00007_000000000_000000005: /tmp/s1b-r2-core-dkx5puay/unlock_error/run/sets/s00007/lock: held by a live owner for over 5 s\nbusy W1_9999499_s00007_000000000_000000005: /tmp/s1b-r2-core-dkx5puay/unlock_error/run/sets/s00007/lock: held by a live owner for over 5 s\nbusy W1_9999499_s00007_000000000_000000005: /tmp/s1b-r2-core-dkx5puay/unlock_error/run/sets/s00007/lock: held by a live owner for over 5 s\n",
+      "fixture_wait_constants": {
+        "LOCK_PATIENCE": 5.0,
+        "PARK_SECS": 0.0,
+        "BACKOFF_SECS": 0.0
+      }
+    },
+    "busy_frontier_starves_healthy_setting": {
+      "busy_settings": [
+        "s00000",
+        "s00001",
+        "s00002",
+        "s00003",
+        "s00004",
+        "s00005"
+      ],
+      "tickets_per_busy_setting": 28,
+      "healthy_setting": "s00006",
+      "attempts": [
+        "LockBusy: no claimable ticket among 6 busy settings",
+        "LockBusy: no claimable ticket among 6 busy settings"
+      ],
+      "healthy_ticket_still_queued": true,
+      "claims": [],
+      "logical_elapsed_seconds": 60.60582606211119,
+      "note": "Actual claim/held/lock functions; default CLAIM_PATIENCE=5; no real waiting or PBS query."
+    },
+    "recovery_scan_outlives_deadline_and_margin": {
+      "claims_scanned": 392,
+      "wait_seconds_each": 5.0,
+      "worker_deadline_seconds": 60.0,
+      "logical_elapsed_seconds": 1960.0,
+      "waits_started_after_deadline": 380,
+      "worker_deadline_plus_30_min_margin_exceeded_by": 100.0,
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "diagnostic_lines": 392,
+      "injection_boundary": "held context reports each permitted five-second live-owner timeout; work/recover_stale are actual source"
+    },
+    "pbs_live_answer_cached_control": {
+      "queries": [
+        1000.0
+      ],
+      "cache": "{('/opt/pbs/bin/qstat', 'job[0].fixture'): (1000.0, False)}"
+    },
+    "pbs_timeout_not_cached": {
+      "query_offsets_seconds": [
+        0.0,
+        60.0,
+        120.0,
+        180.0
+      ],
+      "queries_within_300_seconds": 4,
+      "elapsed_seconds": 240.0,
+      "cache": "{}"
+    }
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-21T15:09:17.246311+11:00"
+}

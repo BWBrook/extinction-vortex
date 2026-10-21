@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 17 October 2026, 11:18 AEDT (Australia/Hobart), by Fable (board participant Claude).
+Updated: 21 October 2026, 15:14 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -14,14 +14,17 @@ Fable relayed Barry's offer of Kunanyi capacity (up to 48 x 28-CPU nodes) in
 message 1222. The 15–16 October Stage 1a smoke and large no-fit pilot have
 finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 (board 1759), within their stated caps, allocation ceilings and gate meaning.
-Astra's final review (1812) clears the current `979cd41` package for W1's
-ordinary bound preflight and submission. The lazy-planning delta passes
-17 old/current equivalence cases; the overnight regression smoke completed
-cleanly with four identical libraries; current native preflight passes all
-22 fixtures. Fable reports the exact stage and all 22 fixtures verified on
-Kunanyi NFS. Accept the roughly ten-minute seed under an extended session.
-Fable next for production-ledger preflight and dispatch of 199,688 CPU-hours;
-no further repair, population smoke or scientific decision is needed.
+W1 round 1 finished with 9,695 COMPLETE libraries, two CAPPED outcomes,
+4,846 incomplete settings and one invalid setting. Astra verified the entire
+archive and all 19,390,000 retained records by library hash and count.
+The round-2 scientific restart strategy is accepted, including concurrent W2
+and retained per-library bindings. The executable at `9a773c9` is held for
+recovery and dispatch repairs (board 2142): reused death certificates can
+reclaim a live lock after a node rerun; transient unlock errors can strand a
+live owner; busy queues and recovery scans still violate liveness/deadlines;
+failed stage checksums do not stop dispatch. Top-up binding/collection and
+cost-report corrections are also documented. Fable owns the coherent repair
+package; no new compute or scientific decision is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -936,6 +939,13 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 21 October, reviewed the Stage 1b round-2 package with three bounded
+  reviewers (2142; E66). Accepted the scientific restart contract; held the
+  executable for reproduced ownership, liveness and dispatch failures.
+  [Review and evidence](notes/astra_s1b_r2_review_20261021.md) include the full
+  archive audit, native preflight, sparse smoke comparison and independent
+  fault fixtures. No population simulation, fitting or production PBS action.
+
 - 17 October morning, cleared the final Stage 1b package at `979cd41`
   (1812; E64). [Final review](notes/astra_s1b_final_delta_review_20261017.md)
   accepts lazy queue/claim listing after 17 old/current planner equivalence
@@ -1348,28 +1358,29 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2 is packaged for Codex's check** (design §9; NOTE "W1 round 1
-   result and the round-2 package").
-   - **Round 1:** 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,846 incomplete and
-     1 invalid (s18085); 151,638 useful and 26,666 discarded CPU-h. The
-     archive `bb604f1c…` is verified on deep-server.
-   - **Cause:** the NFS and lock defect (§9a). Cost excess is confined to
-     unseen n = 30 outers (1.19×).
-   - **Barry, 21 October:** "authorised to use whatever compute you need …
-     Break the glass ceiling :)" (board 2123). The ceilings now bound
-     in-flight reservations only.
-   - **Package:**
-     - runner `29ece4e3…`; node, collector and submitter repairs; topup
-       mode; dispatch script; determinism check;
-     - stage tar `b49d00f0…`;
-     - fixtures 27/27 and 11/11 (bash 5.2 and 4.2.46);
-     - fault-injection smoke B passed, smoke A was the negative control,
-       and both dispatch rehearsals behaved as intended.
-   - **Next:** Codex checks. Then, in one Jumpbox window, push the stage,
-     run `s1b_round2_dispatch.sh` (W1 r2 300 × 8 × 48 h; W2 570 × 8 × 48 h)
-     and record receipts. Later W2 arrays use `topup`.
-   - Stage 1c needs its own executable settings and adapter check before any
-     fit.
+1. **Stage 1b round 2: scientific restart accepted; executable repairs pending.**
+   [Astra review](notes/astra_s1b_r2_review_20261021.md), board 2142; exposure E66;
+   target `9a773c9`. Fable next for one coherent repair package.
+   - **Before dispatch:** unique process-incarnation death certificates;
+     recovery of uncertain lock release; healthy work beyond busy ticket
+     groups; absolute deadlines and failed-query throttling; fail-closed
+     stage verification and a fully bound, unique round-1 inventory gate.
+   - **Before later top-ups/comparison:** preserve the seeded settings digest,
+     isolate collector pack/log artifacts and quiescence, document partial
+     wrapper resume, and use sparse verified determinism comparisons.
+   - **Verified:** full round-1 archive, all 9,695 library hashes/counts;
+     actual selection of 4,847 W1 plus 7,272 W2 settings with unchanged row
+     fields; eight staged sources; native 27-fixture preflight; copied smoke
+     recollection and 174,302 shared batches/2,310 identical records.
+   - **Reporting:** 1.19 is a completed-subset estimated crossing-cost ratio;
+     recorded CPU gives 1.247 on that subset. The restart heuristic omits
+     s18085; W2 cost/time remain planning scenarios. Reservation history is
+     distinct from spent CPU; PBS max_run counts jobs, not CPUs.
+   - Preserve all completed/capped round-1 outcomes and the fixed proposal
+     caps. Total compute ceilings have been lifted; in-flight reservations
+     remain accounted. First shapes are W1 300 × 8 × 48 h and W2 570 × 8 ×
+     48 h, each plus its collector: 334,096 CPU-hours reserved in total.
+   - Stage 1c retains its executable settings/adapter check before fitting.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
@@ -1431,10 +1442,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **1812**; exhausted `through`: **1812**.
-- Explicit acknowledgement: through actual message **1812** in discussion 70.
-- Latest own review: **1812** (final planner/smoke/package clearance for W1 dispatch).
-- Next retrieval: omit `through` to capture new messages, and use `after=1812`.
+- Last full retrieval `next_after`: **2142**; exhausted `through`: **2142**.
+- Explicit acknowledgement: through actual message **2142** in discussion 70.
+- Latest own review: **2142** (round-2 recovery/dispatch findings; Fable owns repairs).
+- Next retrieval: omit `through` to capture new messages, and use `after=2142`.
 
 ## Decision Inbox checkpoint
 

@@ -1,0 +1,13 @@
+{
+  "cases": [
+    "normal_worker_control",
+    "single_unlock_error_strands_live_owner",
+    "busy_frontier_starves_healthy_setting",
+    "recovery_scan_outlives_deadline_and_margin",
+    "pbs_live_answer_cached_control",
+    "pbs_timeout_not_cached"
+  ],
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-21T15:09:17.246311+11:00"
+}
+elapsed_s=6.80 max_rss_kib=35620

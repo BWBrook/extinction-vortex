@@ -1,0 +1,14 @@
+{
+  "first_node_exit": 0,
+  "second_node_exit": 0,
+  "first_owner": "same[0].fixture.0r0",
+  "second_owner": "same[0].fixture.0r0",
+  "stale_certificate_present_before_second_process": true,
+  "second_worker_alive_before_reclaim": true,
+  "owner_dead_returned_true_for_live_second_worker": true,
+  "live_lock_stolen": true,
+  "second_worker_unlock_result": "/tmp/s1b-r2-node-p10xmysb/base/s1b/run/sets/s00007/lock: lock is not owned by this holder",
+  "node_source_sha256": "f02bca1f76121c5245588b60762bbeae03a901d00186c3f84dfcb9144c1f5b6b",
+  "timestamp": "2026-10-21T15:10:44.482897+11:00"
+}
+elapsed_s=0.49 max_rss_kib=27604

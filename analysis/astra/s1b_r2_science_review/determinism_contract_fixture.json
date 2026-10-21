@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-10-21T15:11:12.031511+11:00",
+  "source_sha256": "9d7402fd3ef9636a654b1d962d7dc6a159b79a0f866c1b3fc5bfd69e67faf661",
+  "requested_settings": 2,
+  "reported": {
+    "settings": 1,
+    "batches_compared": 1,
+    "identical_lines": 1,
+    "identity_only_equal": 0,
+    "unmatched": 0
+  },
+  "fixture": {
+    "missing_requested_setting": "s99999",
+    "earlier_duplicate_identity": true,
+    "deliberately_wrong_checkpoint_hash": true
+  },
+  "observation": "The diagnostic reports zero differences while skipping a missing setting, collapsing a duplicate hit identity, and not checking journal hashes. This does not invalidate separately collected genuine smoke data.",
+  "recommendation": "Use verified journals and explicit requested/present/shared-batch coverage; sparse interval intersections avoid per-empty-batch memory and runtime."
+}

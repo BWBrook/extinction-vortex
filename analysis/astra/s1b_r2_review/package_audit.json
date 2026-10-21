@@ -1,0 +1,139 @@
+{
+  "scope": "Read saved Stage 1b round-2 evidence; run synthetic preflight and copied recollection.\n\nRun with system Python on deep-server. Writes only OUT. No population simulation,\nproduction reservation, seed, or PBS submission is performed.\n",
+  "timestamp": "2026-10-21T15:06:23.260300+11:00",
+  "stage_tar_sha256": "b49d00f0b6ffab9bbb3926311477edc65f91005560c68e95a36dfb6c9e632765",
+  "stage_member_sha256": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": "5fdaac832d26d5033475a6f6a5e918f8c25e9915844e7af06432593ac3a8c5a1",
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": "f02bca1f76121c5245588b60762bbeae03a901d00186c3f84dfcb9144c1f5b6b",
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": "cb5f2e5a12ba80b1642dd5d400486d9fe0b1be9980dd9410a21012a3186668d2",
+    "src/analysis/fable/calibration/kunanyi/s1b_round2_dispatch.sh": "d2de3b7345b65e4000e7bf3bbf2ff3b1fd4fd03d0ee10a2ada0eaa6c675190b3",
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": "29ece4e3d29ceaedbbc43db203b31d9b82419c624c90b01238a94a72b7d31a76",
+    "src/analysis/fable/calibration/v2_dev/p3_r2_determinism.py": "9d7402fd3ef9636a654b1d962d7dc6a159b79a0f866c1b3fc5bfd69e67faf661",
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "s1b/stage_sha256.txt": "b7d7e29c8f014918c0dda01a24d9403ca884f6046db6d266d1cf3cba910b1de0"
+  },
+  "smoke_source_comparison": {
+    "src/analysis/fable/calibration/kunanyi/s1b_collect.pbs": {
+      "stage": "5fdaac832d26d5033475a6f6a5e918f8c25e9915844e7af06432593ac3a8c5a1",
+      "smoke_tree": "5fdaac832d26d5033475a6f6a5e918f8c25e9915844e7af06432593ac3a8c5a1",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_node.pbs": {
+      "stage": "f02bca1f76121c5245588b60762bbeae03a901d00186c3f84dfcb9144c1f5b6b",
+      "smoke_tree": "f02bca1f76121c5245588b60762bbeae03a901d00186c3f84dfcb9144c1f5b6b",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_round2_dispatch.sh": {
+      "stage": "d2de3b7345b65e4000e7bf3bbf2ff3b1fd4fd03d0ee10a2ada0eaa6c675190b3",
+      "smoke_tree": "61280a585122555281aac4b7fdb7c14e02a084887a21aded71e41eba2e0a397f",
+      "identical": false
+    },
+    "src/analysis/fable/calibration/kunanyi/s1b_submit.sh": {
+      "stage": "cb5f2e5a12ba80b1642dd5d400486d9fe0b1be9980dd9410a21012a3186668d2",
+      "smoke_tree": "cb5f2e5a12ba80b1642dd5d400486d9fe0b1be9980dd9410a21012a3186668d2",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p1_sampler.py": {
+      "stage": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+      "smoke_tree": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p2_stage1a.py": {
+      "stage": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+      "smoke_tree": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p3_r2_determinism.py": {
+      "stage": "9d7402fd3ef9636a654b1d962d7dc6a159b79a0f866c1b3fc5bfd69e67faf661",
+      "smoke_tree": "9d7402fd3ef9636a654b1d962d7dc6a159b79a0f866c1b3fc5bfd69e67faf661",
+      "identical": true
+    },
+    "src/analysis/fable/calibration/v2_dev/p3_stage1b.py": {
+      "stage": "29ece4e3d29ceaedbbc43db203b31d9b82419c624c90b01238a94a72b7d31a76",
+      "smoke_tree": "29ece4e3d29ceaedbbc43db203b31d9b82419c624c90b01238a94a72b7d31a76",
+      "identical": true
+    }
+  },
+  "round1_summary_sha256": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+  "round1_binding": {
+    "settings_sha256": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a",
+    "metric_sha256": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "runner_sha256": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407"
+  },
+  "round1_counts": {
+    "COMPLETE": 9695,
+    "incomplete": 4846,
+    "CAPPED": 2,
+    "invalid": 1
+  },
+  "selected_sha256": "fde6c18bdc6a5ddd352b6147cec3f9b99e653e2346dc47dc2ed11b9edaad81d0",
+  "selected_counts": {
+    "W1": 4847,
+    "W2": 7272
+  },
+  "selected_rows_identical": true,
+  "other_settings_fields_identical": true,
+  "native_preflight": {
+    "preflight": "passed",
+    "settings_sha256": "fde6c18bdc6a5ddd352b6147cec3f9b99e653e2346dc47dc2ed11b9edaad81d0",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4"
+    },
+    "wave": "W1",
+    "campaign": "s1b",
+    "array_name": "astra_r2_W1",
+    "reservation_cpu_h": 115208.0,
+    "recorded": true,
+    "wave_reserved": 115208.0,
+    "campaign_reserved": 115208.0,
+    "ceilings": {
+      "W1": 200000.0,
+      "W2": 1000000.0,
+      "campaign": 1200000.0
+    }
+  },
+  "smoke_recollection_identical": {
+    "W1": {
+      "COMPLETE": 4,
+      "CAPPED": 2,
+      "FAILED": 0,
+      "incomplete": 0
+    },
+    "W2": {
+      "COMPLETE": 0,
+      "CAPPED": 2,
+      "FAILED": 0,
+      "incomplete": 0
+    }
+  },
+  "smoke_libraries": [
+    {
+      "dir": "s00073",
+      "sha256": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+      "records": 2000
+    },
+    {
+      "dir": "s00142",
+      "sha256": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+      "records": 2000
+    },
+    {
+      "dir": "s00247",
+      "sha256": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+      "records": 2000
+    },
+    {
+      "dir": "s00772",
+      "sha256": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c",
+      "records": 2000
+    }
+  ],
+  "limitations": [
+    "No fresh population paths or fresh serial recomputation.",
+    "No live Kunanyi filesystem qualification or production ledger/PBS action."
+  ],
+  "elapsed_seconds": 34.42575880896766
+}
