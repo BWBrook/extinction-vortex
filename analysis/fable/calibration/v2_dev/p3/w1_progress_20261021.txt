@@ -1,0 +1,22 @@
+# W1 progress probe, read-only, kunanyi 2026-10-21 11:23-11:26 AEDT (script: w1_probe.sh)
+== now 2026-10-21 11:23:41 AEDT
+   [+0s]
+queue 5156  claimed 18  worker-exits 3736
+jobs.log lines 442  with failed workers 20
+   [+1s]
+    job_state = B
+    array_state_count = Queued:0 Running:2 Exiting:0 Expired:518 
+    job_state = H
+   [+2s]
+   [+5s]
+worker exits totals {'shards': 16316, 'discarded_tickets': 0, 'requeued_censored': 3736, 'stale_requeued': 0, 'failed_shards': 0}
+n=0: {'COMPLETE': 5217, 'open': 2055}  worker CPU-h 16529  open hit-progress median 0.00 p10 0.00 p90 0.00
+n=30: {'open': 2792, 'COMPLETE': 4478, 'CAPPED': 2}  worker CPU-h 161412  open hit-progress median 0.00 p10 0.00 p90 0.90
+shard states {'complete': 16399, 'censored': 480, 'cancelled': 19}  total worker CPU-h 177940  scan 133s
+open settings by CPU-h so far (top 12):  [(2178, 's07690', 30, 1318), (2108, 's11236', 30, 59), (2107, 's11287', 30, 1318), (2068, 's11119', 30, 883), (1997, 's11104', 30, 2082), (1900, 's01837', 30, 1533), (1722, 's01669', 30, 1632), (1460, 's02059', 30, 1849), (1448, 's03931', 30, 1832), (1336, 's10045', 30, 1892), (1235, 's11194', 30, 1747), (1110, 's08302', 30, 1862)]
+   [+141s]
+    job_state = F
+    array_state_count = Queued:0 Running:0 Exiting:0 Expired:0 
+   [+143s]
+PROBE_DONE
+rc=0

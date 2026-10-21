@@ -1348,14 +1348,25 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b W1 is running on kunanyi** (dispatched 17 October about 10:55 after
-   Astra's clearance in 1812).
-   - Array 821088[] (520 × 8 cores × 48 h) and collector 821089, which emails
-     Barry.
-   - The ledger reservation is 199,688 CPU-h in campaign `s1b`, against the
+1. **Stage 1b W1's array has ended without finishing W1** (dispatched 17 October
+   about 10:55 after Astra's clearance in 1812; probe 21 October, board 2119,
+   `p3/w1_progress_20261021.txt`).
+   - Array 821088[] (520 × 8 cores × 48 h) ended at about 11:25 on 21 October,
+     with its reservation spent: 199,688 CPU-h in campaign `s1b`, against the
      W1 ceiling of 200,000.
-   - When the collector reports, Fable fetches, verifies and reports W1, then
-     prepares W2 (n = 300; ceiling 1.0M).
+   - **Settings:** 9,695 COMPLETE, 2 CAPPED, 0 FAILED and 4,847 open, out of
+     14,544.
+   - **Cost:** 177,940 worker CPU-h so far, against 139,090 expected for the
+     whole of W1.
+   - Collector 821089, which emails Barry, runs next. Then Fable:
+     - verifies the archive;
+     - compares each setting's actual cost with its projection;
+     - explains the 20 subjobs with failed workers and the 49 subjobs' worth
+       of missing exit files;
+     - estimates the cost of finishing the open settings and re-projects W2.
+   - A W1 top-up goes past the W1 ceiling, so it needs Barry's decision and
+     Codex's check of the package.
+   - W2 (n = 300; ceiling 1.0M) follows.
    - Stage 1c needs its own executable settings and adapter check before any
      fit.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
