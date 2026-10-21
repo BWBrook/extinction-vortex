@@ -1,0 +1,13 @@
+start 12:34:46
+12:38:46 killed 275956 (240s)
+12:42:46 killed 275977 (480s)
+node smk[1].deep rc 0
+12:46:46 killed 277018 (720s)
+node smk[0].deep rc 0
+12:49:46 ghost certified
+node smk2[0].deep rc 0
+12:50:46 killed 277003 (960s)
+12:54:46 killed 277006 (1200s)
+12:58:46 killed 277834 (1440s)
+13:02:46 killed 278513 (1680s)
+DONE 13:14:48

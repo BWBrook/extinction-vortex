@@ -2,20 +2,39 @@
 #PBS -N s1b
 #PBS -q normal
 #PBS -l select=1:ncpus=8:mem=10gb
-# Stage 1b subjob of a wave's job array: JOBCPUS pull workers claim shard tickets until none remain or the deadline
-# (walltime - 15 min) passes; a shard reaching the deadline is checkpointed as censored and requeued for another worker.
-# qsub -J 0-(N-1) -l select=1:ncpus=C:mem=M -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,WAVE=...,JOBCPUS=C,WALL_SECS=s s1b_node.pbs
+# Stage 1b subjob of a wave's job array: JOBCPUS worker slots claim shard tickets until none remain or the deadline
+# (job start + walltime - MARGIN_SECS) passes; a shard reaching the deadline is checkpointed as censored and requeued.
+# A slot whose worker exits non-zero restarts it (a new owner name) while time remains. Each reaped worker process gets
+# a death certificate in $RUN/workers/dead/, the positive evidence that lets other workers break its locks and requeue
+# its claims at once. Completion is recorded in one file per subjob (appends to a shared NFS file lose lines).
+# qsub -J 0-(N-1) -l select=1:ncpus=C:mem=M -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,WAVE=...,TAG=...,JOBCPUS=C,WALL_SECS=s s1b_node.pbs
 set -o pipefail
+T0=$(date +%s)
 source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
-S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$WAVE/logs"
-DEADLINE=$(( $(date +%s) + WALL_SECS - 900 ))
+S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$TAG/logs"; DEAD="$RUN/workers/dead"
+DEADLINE=$(( T0 + WALL_SECS - ${MARGIN_SECS:-1800} ))
+mkdir -p "$DEAD"
+slot() {
+  local i=$1 k=0 rc owner log="$L/w.${PBS_ARRAY_INDEX}.$1.log"
+  while :; do
+    owner="$PBS_JOBID.${i}r$k"
+    python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" "$WAVE" \
+      "$owner" "$DEADLINE" >> "$log" 2>&1
+    rc=$?
+    : > "$DEAD/$owner"
+    [ "$rc" -eq 0 ] && return 0
+    echo "$(date '+%F %T') worker $owner exited $rc" >> "$log"
+    k=$(( k + 1 ))
+    if [ "$k" -ge 20 ] || [ "$(date +%s)" -ge $(( DEADLINE - 600 )) ]; then return "$rc"; fi
+    sleep 10
+  done
+}
 pids=()
 for i in $(seq 0 $(( JOBCPUS - 1 ))); do
-  python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" "$WAVE" \
-    "$PBS_JOBID.$i" "$DEADLINE" > "$L/w.${PBS_ARRAY_INDEX}.$i.log" 2>&1 &
+  slot "$i" &
   pids+=($!)
 done
 fail=0
 for p in "${pids[@]}"; do wait "$p" || fail=$((fail + 1)); done
-echo "subjob $PBS_ARRAY_INDEX host $(hostname) workers failed: $fail" >> "$L/jobs.log"
+echo "subjob $PBS_ARRAY_INDEX host $(hostname) slots failed: $fail" > "$L/done.$PBS_ARRAY_INDEX"
 exit "$fail"

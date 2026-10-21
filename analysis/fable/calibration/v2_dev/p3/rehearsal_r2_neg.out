@@ -1,0 +1,11 @@
+open W1 dirs 61
+b3c27e57e51bf31641c48226402d5b4bc5e62fdec7162b489276c3afd226ab75  /data/fable/vortex/r2rehearse1/s1b_stage_r2.tar
+== 2026-10-21 13:01:17 AEDT verify stage
+stage OK
+== install
+== round-2 settings
+round 1 errors are not confined to settings marked invalid
+
+real	0m0.324s
+user	0m0.252s
+sys	0m0.077s

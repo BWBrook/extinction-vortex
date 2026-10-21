@@ -7,6 +7,12 @@ SUBMIT = HERE / "s1b_submit.sh"
 src = (HERE / "s1a_submit_fixture.py").read_text()
 STUBS = {}
 exec(src[src.index("STUBS = {"):src.index("\n\n\ndef scenario")], {}, ns := {}) or STUBS.update(ns["STUBS"])
+STUBS["python"] = r'''
+import json, os, sys
+open(os.environ["FIX_PY_CALLS"], "a").write(json.dumps(sys.argv[1:]) + "\n")
+print('{"preflight": "%s"}' % ("passed" if os.environ.get("FIX_PREFLIGHT_RC", "0") == "0" else "refused"))
+sys.exit(int(os.environ.get("FIX_PREFLIGHT_RC", "0")))
+'''
 NJOBS, CPUS, WALL_H, CEIL, PRIOR = 520, 8, 48.0, 200000.0, 0.0
 
 
@@ -19,7 +25,8 @@ def scenario(steps):
         (vb / "s1b/p3_settings.json").write_text('{"fixture": true}')
         envf = t / "env.sh"; envf.write_text(f'export PATH="{fb}:$PATH"; cd "$VBASE/src"\n')
         base = dict(os.environ, PBS_BIN=str(fb), S1A_ENV=str(envf), S1A_CONFIRM_SECS="0", FIX_STATE=str(t / "jobs.json"),
-                    FIX_LEDGER=str(t / "ledger.jsonl"), FIX_CALLS=str(t / "calls.jsonl"), FIX_QSELECT_CALLS=str(t / "qselect.n"))
+                    FIX_LEDGER=str(t / "ledger.jsonl"), FIX_CALLS=str(t / "calls.jsonl"), FIX_QSELECT_CALLS=str(t / "qselect.n"),
+                    FIX_PY_CALLS=str(t / "py.jsonl"))
         R = vb / "s1b/run/submit_W1"; J = R / "submit_journal.tsv"
         if step0 := steps[0].get("ledger_locked"):
             (vb / "s1b/.ledger.lock").mkdir()
@@ -37,18 +44,22 @@ def scenario(steps):
                                               **{"name_a": next((l.split()[2] for l in J.read_text().splitlines() if l.split()[1] == "a"), "")}) + "\n")
             env = dict(base, **step.get("env", {}))
             before = len((t / "calls.jsonl").read_text().splitlines()) if (t / "calls.jsonl").exists() else 0
+            pyb = len((t / "py.jsonl").read_text().splitlines()) if (t / "py.jsonl").exists() else 0
             args = [os.environ.get("FIX_BASH", "bash"), str(SUBMIT), str(vb), "p3_settings.json", "run", "W1", str(NJOBS), str(CPUS),
-                    "48:00:00"] + ([step["mode"]] if step.get("mode") else [])
+                    "48:00:00"] + (step["mode"].split() if step.get("mode") else [])
             p = subprocess.run(args, env=env, capture_output=True, text=True)
             after = len((t / "calls.jsonl").read_text().splitlines()) if (t / "calls.jsonl").exists() else 0
-            runs.append({"mode": step.get("mode", "new"), "rc": p.returncode, "qsub_calls": after - before,
+            py = [json.loads(x)[2] for x in (t / "py.jsonl").read_text().splitlines()[pyb:]] if (t / "py.jsonl").exists() else []
+            runs.append({"mode": step.get("mode", "new"), "rc": p.returncode, "qsub_calls": after - before, "runner_calls": py,
                          "stderr": [l.replace(td, "<tmp>") for l in p.stderr.strip().splitlines()[-1:]]})
         led = ledger(); arrays = [j for j in led if j["name"].endswith("_a")]; coll = [j for j in led if j["name"].endswith("_c")]
         deps = []
         if coll:
             a = coll[0]["args"]; deps = a[a.index("-W") + 1].split(":", 1)[1].split(":") if "-W" in a else []
         jflag = [j["args"][j["args"].index("-J") + 1] for j in arrays]
-        return {"runs": runs, "arrays_created": len(arrays), "array_ranges": jflag, "collectors_created": len(coll),
+        tags = [a["args"][a["args"].index("-v") + 1].split("TAG=")[1].split(",")[0] for a in arrays + coll]
+        return {"runs": runs, "arrays_created": len(arrays), "array_ranges": jflag, "collectors_created": len(coll), "tags": tags,
+                "array_names": [a["name"] for a in arrays], "topup_logs": (R.parent / "submit_W1_b" / "logs").is_dir(),
                 "collector_depends_on": deps, "array_ids": [j["id"] for j in arrays],
                 "allocated_cpu_hours_bound": len(arrays) * NJOBS * CPUS * WALL_H + len(coll) * 8 + PRIOR,
                 "lock_released": not (R / ".submit.lock").exists() and not (vb / "s1b/.ledger.lock").exists()}
@@ -78,6 +89,10 @@ R = {
                                                  {"operator": ["rejected c x manual: tracejob shows no job"], "finish": [0], "mode": "resume"}]),
     "preflight_refused": scenario([{"env": {"FIX_PREFLIGHT_RC": "1"}}]),
     "campaign_ledger_lock_held": scenario([{"ledger_locked": True}]),
+    "topup_without_seeded_wave": scenario([{"mode": "topup b"}]),
+    "new_then_topup_then_duplicate_then_resume": scenario([{}, {"finish": [0, 1], "mode": "topup b"}, {"mode": "topup b"},
+                                                           {"mode": "resume b"}]),
+    "topup_label_rules": scenario([{}, {"mode": "topup"}, {"mode": "topup B-1"}, {"mode": "new x"}]),
 }
 checks = {
     "normal_then_duplicate_then_resume": ok(R["normal_then_duplicate_then_resume"], [True, False, True], [2, 0, 0], 1, 1),
@@ -89,6 +104,14 @@ checks = {
     "array_finished_before_collector": ok(R["array_finished_before_collector"], [False, True], [2, 1], 1, 1, dep_on_array=False),
     "preflight_refused_before_any_qsub": ok(R["preflight_refused"], [False], [0], 0, 0),
     "campaign_ledger_lock_refuses_concurrent_submission": ok(R["campaign_ledger_lock_held"], [False], [0], 0, 0, lock=False),
+    "topup_refused_without_seeded_wave": [x["rc"] == 0 for x in R["topup_without_seeded_wave"]["runs"]] == [False]
+        and R["topup_without_seeded_wave"]["runs"][0]["qsub_calls"] == 0 and not R["topup_without_seeded_wave"]["runs"][0]["runner_calls"],
+    "topup_adds_array_and_collector_without_seeding": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [True, True, False, True]
+        and [x["qsub_calls"] for x in r["runs"]] == [2, 2, 0, 0] and r["runs"][0]["runner_calls"] == ["preflight", "seed"]
+        and r["runs"][1]["runner_calls"] == ["preflight"] and r["tags"] == ["W1", "W1_b", "W1", "W1_b"]
+        and len(set(r["array_names"])) == 2 and r["topup_logs"] and r["lock_released"])(R["new_then_topup_then_duplicate_then_resume"]),
+    "topup_label_rules": [x["rc"] == 0 for x in R["topup_label_rules"]["runs"]] == [True, False, False, False]
+        and [x["qsub_calls"] for x in R["topup_label_rules"]["runs"]] == [2, 0, 0, 0],
 }
 bv = subprocess.run([os.environ.get("FIX_BASH", "bash"), "-c", "echo $BASH_VERSION"], capture_output=True, text=True).stdout.strip()
 out = {"scope": __doc__, "bash_version": bv, "submit_sha256": hashlib.sha256(SUBMIT.read_bytes()).hexdigest(), "checks": checks,

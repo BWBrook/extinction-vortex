@@ -1,0 +1,25 @@
+# smoke B (final package, runner 29ece4e3; settings 880e34f2): fault tallies and checks, deep-server 2026-10-21
+# note: both smokes injectors matched both smokes workers (pgrep pattern), so each smoke also took kills from the other
+library s00073 identical-to-smoke_deep3 056d014994351a72
+library s00142 identical-to-smoke_deep3 d18c27595d1d8018
+library s00247 identical-to-smoke_deep3 4f65158b625b891b
+library s00772 identical-to-smoke_deep3 f2f1380e3072c60c
+certificates 33; exit records 20; worker restarts 12; claims left 0
+subjob 0 host deep-server slots failed: 0
+subjob 1 host deep-server slots failed: 0
+subjob 0 host deep-server slots failed: 0
+worker totals {'shards': 41, 'discarded_tickets': 0, 'requeued_censored': 0, 'stale_requeued': 7, 'failed_shards': 0, 'transient_errors': 0, 'lock_busy': 248, 'adopted': 0}
+2026-10-21 12:50:46 worker smk[0].deep.0r0 exited 137
+2026-10-21 12:54:46 worker smk[0].deep.1r0 exited 137
+2026-10-21 12:58:46 worker smk[0].deep.1r1 exited 137
+2026-10-21 13:00:59 worker smk[0].deep.1r2 exited 137
+2026-10-21 13:02:47 worker smk[0].deep.1r3 exited 137
+2026-10-21 13:03:59 worker smk[0].deep.1r4 exited 137
+2026-10-21 12:48:58 worker smk[0].deep.2r0 exited 137
+2026-10-21 12:57:59 worker smk[0].deep.3r0 exited 137
+2026-10-21 12:46:46 worker smk[0].deep.6r0 exited 137
+2026-10-21 12:45:58 worker smk[1].deep.1r0 exited 137
+2026-10-21 12:54:59 worker smk[1].deep.5r0 exited 137
+2026-10-21 12:51:59 worker smk2[0].deep.1r0 exited 137
+peak RSS KB per worker: W1 84188, W2 74952
+s00073 directory: lock.broken.ghost lock.new.64c4c723fc932fc4 

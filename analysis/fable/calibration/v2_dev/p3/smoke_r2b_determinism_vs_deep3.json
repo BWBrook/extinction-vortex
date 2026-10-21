@@ -1,0 +1,52 @@
+{
+ "scope": "Round-to-round determinism (design section 9c; no fits): a setting re-run in a later round from batch 0 must\nreproduce every hit record that an earlier round committed for the same batches, since streams are fixed per\n(stream tag, index, batch). Compares committed journal lines batch by batch, for each setting present in both runs.\n  p3_r2_determinism.py RUN_EARLIER RUN_LATER DIRS_FILE OUT_JSON\nEach run's committed records are its shard journals' committed prefixes (checkpoint journal_bytes), any status; the\npilot prefix is shared input and is not compared. Reports byte-identical lines, records equal in identity\n(batch, proposal_in_batch) but not bytes, and identities present in one run only, over the batches both committed.",
+ "runs": [
+  "/data/fable/vortex/v2_dev/p3/smoke_deep3",
+  "/data/fable/vortex/r2dev2/s1b/smoke_r2"
+ ],
+ "total": {
+  "settings": 6,
+  "batches_compared": 174302,
+  "identical_lines": 2310,
+  "identity_only_equal": 0,
+  "unmatched": 0
+ },
+ "settings": {
+  "s00073": {
+   "batches_compared": 23031,
+   "identical_lines": 216,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  },
+  "s00142": {
+   "batches_compared": 33581,
+   "identical_lines": 272,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  },
+  "s00247": {
+   "batches_compared": 39377,
+   "identical_lines": 254,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  },
+  "s00772": {
+   "batches_compared": 0,
+   "identical_lines": 0,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  },
+  "s01080": {
+   "batches_compared": 38911,
+   "identical_lines": 752,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  },
+  "c00021": {
+   "batches_compared": 39402,
+   "identical_lines": 816,
+   "identity_only_equal": 0,
+   "unmatched": 0
+  }
+ }
+}

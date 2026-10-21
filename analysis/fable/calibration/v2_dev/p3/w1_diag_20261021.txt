@@ -1,0 +1,122 @@
+# W1 diagnostic probe, read-only, kunanyi 2026-10-21 12:11 AEDT (script: w1_diag.sh). Full per-subjob table stays on kunanyi: s1b/probe/subjobs.tsv
+== now 2026-10-21 12:11:28 AEDT
+    resources_used.mem = 123328kb
+    resources_used.walltime = 00:46:33
+    job_state = R
+    stime = Wed Oct 21 11:24:05 2026
+-rw-------     1 bwbrook hpcadmin          47 Oct 21 11:24 collect_W1.json
+-rw-r--r--     1 bwbrook hpcadmin           0 Oct 21 11:24 collect_W1.log
+   [+0s]
+    max_array_size = 10000
+    max_queued = [u:PBS_GENERIC=4000]
+    max_queued_res.ncpus = [u:PBS_GENERIC=7000]
+    resources_max.mem = 128gb
+    resources_max.walltime = 48:00:00
+    max_run = [u:PBS_GENERIC=3000]
+   [+0s]
+== jobs.log failed lines
+      1 subjob 433 host n228.kunanyi workers failed: 2
+      1 subjob 379 host n040.kunanyi workers failed: 3
+      1 subjob 189 host n137.kunanyi workers failed: 1
+      1 subjob 188 host n137.kunanyi workers failed: 1
+      1 subjob 183 host n130.kunanyi workers failed: 1
+      1 subjob 182 host n130.kunanyi workers failed: 1
+      1 subjob 181 host n130.kunanyi workers failed: 2
+      1 subjob 179 host n003.kunanyi workers failed: 1
+      1 subjob 178 host n003.kunanyi workers failed: 1
+      1 subjob 176 host n238.kunanyi workers failed: 2
+      1 subjob 171 host n048.kunanyi workers failed: 1
+      1 subjob 170 host n048.kunanyi workers failed: 2
+      1 subjob 167 host n097.kunanyi workers failed: 3
+      1 subjob 166 host n097.kunanyi workers failed: 2
+      1 subjob 165 host n088.kunanyi workers failed: 1
+      1 subjob 163 host n088.kunanyi workers failed: 1
+      1 subjob 156 host n191.kunanyi workers failed: 1
+      1 subjob 153 host n113.kunanyi workers failed: 1
+      1 subjob 152 host n113.kunanyi workers failed: 1
+      1 subjob 151 host n113.kunanyi workers failed: 2
+   [+0s]
+== node .err non-empty: 75
+     75 =>> PBS: job killed: walltime N exceeded limit N
+   [+9s]
+== worker logs non-empty: 104
+     97 OSError: [Errno N] Stale file handle
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.fNbN'
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.f8dff6be9aeN'
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.f13cNf'
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.e3fbNf93fNcf'
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.NeNdcd'
+      1 OSError: [Errno 39] Directory not empty: '/u/bwbrook/vortex/run1/s1b/run/sets/sN/lock.rel.8ebcNd24daaeb8'
+      1   up, ub = np.log(rng.random(B)), np.log(rng.random(B))
+   [+17s]
+== exit files per subjob
+subjobs with 4 exit files: 9
+subjobs with 5 exit files: 8
+subjobs with 6 exit files: 12
+subjobs with 7 exit files: 13
+subjobs with 8 exit files: 425
+subjobs with 1 exit files: 8
+subjobs with 2 exit files: 18
+subjobs with 3 exit files: 23
+380 381 435 437 
+
+   [+18s]
+== stale claims
+W1_9996056_s18085 821088[412].kunanyi-ohpc.6
+W1_9996056_s18085 821088[411].kunanyi-ohpc.2
+   [+18s]
+== per-subjob PBS accounting (slow)
+   [+18s]
+Exit_status counts:
+    425 0
+     75 271
+     12 1
+      6 2
+      2 3
+walltime (h) distribution:
+  ≥47.75 520
+mem (GB) max and top 10:
+0.98 821088[248].kunanyi-ohpc 0 n172/1*8
+0.98 821088[202].kunanyi-ohpc 0 n027/2*8
+0.98 821088[168].kunanyi-ohpc 0 n097/2*8
+0.98 821088[157].kunanyi-ohpc 0 n126/0*8
+0.98 821088[130].kunanyi-ohpc 0 n164/1*8
+0.97 821088[9].kunanyi-ohpc 0 n226/0*8
+0.97 821088[89].kunanyi-ohpc 0 n094/2*8
+0.97 821088[85].kunanyi-ohpc 0 n207/1*8
+0.97 821088[6].kunanyi-ohpc 0 n025/0*8
+0.97 821088[66].kunanyi-ohpc 0 n095/0*8
+non-zero exits (first 30):
+821088[151].kunanyi-ohpc 2 47:45:12 875724kb 3172336kb n113/0*8
+821088[152].kunanyi-ohpc 1 47:45:21 879052kb 3149348kb n113/1*8
+821088[153].kunanyi-ohpc 1 47:45:19 892608kb 3119192kb n113/2*8
+821088[156].kunanyi-ohpc 1 47:45:09 886632kb 3121240kb n191/2*8
+821088[163].kunanyi-ohpc 1 47:45:05 886780kb 3171264kb n088/0*8
+821088[165].kunanyi-ohpc 1 47:45:15 890908kb 3121244kb n088/2*8
+821088[166].kunanyi-ohpc 2 47:45:19 870300kb 3121240kb n097/0*8
+821088[167].kunanyi-ohpc 3 47:45:21 869396kb 3119196kb n097/1*8
+821088[170].kunanyi-ohpc 2 47:45:10 870672kb 3147304kb n048/1*8
+821088[171].kunanyi-ohpc 1 47:45:21 878456kb 3119192kb n048/2*8
+821088[176].kunanyi-ohpc 2 47:45:13 884676kb 3146404kb n238/1*8
+821088[178].kunanyi-ohpc 1 47:45:21 870964kb 3121240kb n003/0*8
+821088[179].kunanyi-ohpc 1 47:45:18 887840kb 3120216kb n003/1*8
+821088[181].kunanyi-ohpc 2 47:45:11 872280kb 3224580kb n130/0*8
+821088[182].kunanyi-ohpc 1 47:45:11 908716kb 3223436kb n130/1*8
+821088[183].kunanyi-ohpc 1 47:45:13 875612kb 3250516kb n130/2*8
+821088[188].kunanyi-ohpc 1 47:45:13 891536kb 3302640kb n137/1*8
+821088[189].kunanyi-ohpc 1 47:45:08 908924kb 3250516kb n137/2*8
+821088[368].kunanyi-ohpc 271 48:01:10 991284kb 3355636kb n129/0*8
+821088[369].kunanyi-ohpc 271 48:01:10 994976kb 3356748kb n129/1*8
+821088[370].kunanyi-ohpc 271 48:01:10 995876kb 3382624kb n129/2*8
+821088[371].kunanyi-ohpc 271 48:00:09 892456kb 3282520kb n144/0*8
+821088[372].kunanyi-ohpc 271 48:00:09 990320kb 3382620kb n144/1*8
+821088[373].kunanyi-ohpc 271 48:00:08 884112kb 3252564kb n144/2*8
+821088[374].kunanyi-ohpc 271 48:01:12 890488kb 3271448kb n118/0*8
+821088[375].kunanyi-ohpc 271 48:01:12 876028kb 3210056kb n118/1*8
+821088[376].kunanyi-ohpc 271 48:01:12 980824kb 3355588kb n118/2*8
+821088[377].kunanyi-ohpc 271 48:00:13 880180kb 3222100kb n040/0*8
+821088[378].kunanyi-ohpc 271 48:00:12 1003664kb 3330556kb n040/1*8
+821088[379].kunanyi-ohpc 3 47:45:25 891576kb 3220956kb n040/2*8
+   [+18s]
+DIAG_DONE
+rc=0

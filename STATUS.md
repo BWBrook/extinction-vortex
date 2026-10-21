@@ -1348,25 +1348,26 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b W1's array has ended without finishing W1** (dispatched 17 October
-   about 10:55 after Astra's clearance in 1812; probe 21 October, board 2119,
-   `p3/w1_progress_20261021.txt`).
-   - Array 821088[] (520 × 8 cores × 48 h) ended at about 11:25 on 21 October,
-     with its reservation spent: 199,688 CPU-h in campaign `s1b`, against the
-     W1 ceiling of 200,000.
-   - **Settings:** 9,695 COMPLETE, 2 CAPPED, 0 FAILED and 4,847 open, out of
-     14,544.
-   - **Cost:** 177,940 worker CPU-h so far, against 139,090 expected for the
-     whole of W1.
-   - Collector 821089, which emails Barry, runs next. Then Fable:
-     - verifies the archive;
-     - compares each setting's actual cost with its projection;
-     - explains the 20 subjobs with failed workers and the 49 subjobs' worth
-       of missing exit files;
-     - estimates the cost of finishing the open settings and re-projects W2.
-   - A W1 top-up goes past the W1 ceiling, so it needs Barry's decision and
-     Codex's check of the package.
-   - W2 (n = 300; ceiling 1.0M) follows.
+1. **Stage 1b round 2 is packaged for Codex's check** (design §9; NOTE "W1 round 1
+   result and the round-2 package").
+   - **Round 1:** 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,846 incomplete and
+     1 invalid (s18085); 151,638 useful and 26,666 discarded CPU-h. The
+     archive `bb604f1c…` is verified on deep-server.
+   - **Cause:** the NFS and lock defect (§9a). Cost excess is confined to
+     unseen n = 30 outers (1.19×).
+   - **Barry, 21 October:** "authorised to use whatever compute you need …
+     Break the glass ceiling :)" (board 2123). The ceilings now bound
+     in-flight reservations only.
+   - **Package:**
+     - runner `29ece4e3…`; node, collector and submitter repairs; topup
+       mode; dispatch script; determinism check;
+     - stage tar `b49d00f0…`;
+     - fixtures 27/27 and 11/11 (bash 5.2 and 4.2.46);
+     - fault-injection smoke B passed, smoke A was the negative control,
+       and both dispatch rehearsals behaved as intended.
+   - **Next:** Codex checks. Then, in one Jumpbox window, push the stage,
+     run `s1b_round2_dispatch.sh` (W1 r2 300 × 8 × 48 h; W2 570 × 8 × 48 h)
+     and record receipts. Later W2 arrays use `topup`.
    - Stage 1c needs its own executable settings and adapter check before any
      fit.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**

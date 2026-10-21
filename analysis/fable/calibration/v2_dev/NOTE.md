@@ -1040,3 +1040,87 @@ Receipt: `p3/w1_dispatch_receipt.txt`.
 - **Jobs:** array **821088[]** (520 × 8 cores, 10 GB, 48:00:00) and collector
   **821089** (`afterany:821088[]`, Mail_Users barry.brook@utas.edu.au,
   Mail_Points ae).
+
+### W1 round 1 result and the round-2 package (21 October 2026)
+
+**Round 1** (array 821088[] ended about 11:25; design §9a; board 2119):
+- **Collector 821089** exited 1: 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,846
+  incomplete and 1 invalid. s18085 has a verified K-hit prefix but no
+  COMPLETE marker, because the worker that should have planned it died.
+- **CPU:** 151,638 useful and 26,666 discarded.
+- **Archive:** `W1.tar.gz` (`bb604f1c…`) verified on deep-server in
+  `/data/fable/vortex/v2_dev/p3/w1_r1/`. The summary is
+  `p3/w1_r1_collect_W1.json`.
+- **Cost diagnosis** (`p3_w1_costs.py`, `p3/w1_r1_costs.json`):
+  - pilot outers and n = 0 ran at 0.97–0.98× projection;
+  - unseen n = 30 outers ran at 1.19×, with median throughput and hit
+    rate on projection, so the excess is a heavy tail;
+  - restarting the 4,847 open settings is estimated at about 92k CPU-h.
+
+**The defect** (`p3/w1_diag_20261021.txt`):
+- About 103 workers died of NFS errors: ESTALE, and ENOTEMPTY when removing
+  a released lock.
+- Locks left by crashed workers were unbreakable from other hosts until the
+  owner's job ended.
+- Lock waits were unbounded, causing 75 walltime kills.
+- Polling PBS on every lock spin probably slowed `qstat`.
+- Appends to `jobs.log` were lost over NFS.
+
+**Repairs** (design §9b):
+- **Runner `29ece4e3…`:**
+  - NFS reads retry ESTALE;
+  - an error that outlives its retries parks the claim, and the same
+    worker resumes it later;
+  - lock waits are bounded, and a busy setting is passed over with all its
+    tickets, so "all busy" is distinct from "queue empty";
+  - death certificates from the node script are positive death evidence;
+  - PBS is asked at most once per 300 s per job, and only about lock
+    generations seen for 300 s;
+  - a `select` subcommand builds a round's settings.
+- **`s1b_node.pbs`:** deadline from job start with a 30 min margin;
+  restarts with certificates; one `done.<index>` file per subjob.
+- **`s1b_submit.sh`:** a `topup LABEL` mode for further arrays of a seeded
+  wave, with `TAG` passed to the node and collector scripts.
+- **`s1b_collect.pbs`:** `collect_<TAG>.json` and `<TAG>.tar.gz`.
+- **`s1b_round2_dispatch.sh`:**
+  - verify and install the stage;
+  - derive the round-2 dirs (incomplete and invalid W1, plus all W2), refusing
+    unless every round-1 error belongs to an invalid setting;
+  - release round 1 with PBS evidence;
+  - submit W1 r2 (300 × 8 × 48 h) and the first W2 array (570 × 8 × 48 h).
+- **`p3_r2_determinism.py`:** batch-by-batch comparison of a re-run
+  setting's committed hit records with an earlier round's.
+
+**Evidence:**
+- **Runner fixtures:** 27/27 (`p3/p3_test_receipt_r2.txt`). The five new
+  cases inject stale handles past their retries, a busy foreign-host lock
+  without PBS queries, PBS throttling, a certificate-broken lock, and a
+  certified crashed worker whose job is still live.
+- **Submitter fixtures:** 11/11 under bash 5.2 and 4.2.46. The three new
+  cases cover topup without a seeded wave, topup without a seed, and label
+  rules.
+- **Fault-injection smokes on deep-server** (6 W1 + 2 W2 settings; node
+  scripts as PBS runs them; a foreign-host "ghost" lock on s00073,
+  certified dead at 15 min; a random `kill -9` every 3–4 min):
+  - **smoke A** (pre-claim-fix runner `ee5e8cd6…`, a negative control):
+    every node exited before the certificate and s00073 never ran;
+  - **smoke B** (final package; `p3/smoke_r2b_*`): `collection_ok` for both
+    waves (W1: 4 COMPLETE and 2 CAPPED; W2: 2 CAPPED).
+    - All four libraries are byte-identical to `smoke_deep3` (old runner).
+    - Determinism: 174,302 batches compared and 2,310 hit records
+      byte-identical between the runners, with 0 mismatches.
+    - Faults absorbed: 12 restarts (one slot through `r0`–`r4`), 33
+      certificates, 7 claims requeued by certificate and 248 waits on the busy
+      ghost setting. The lock broke within 1 s of the certificate; no claims
+      were left and no slot failed.
+    - Peak RSS per worker: 82 MB (W1), 73 MB (W2).
+    - Both smokes' injectors matched both smokes' workers, so each also took
+      the other's kills.
+- **Dispatch rehearsals on deep-server** (stub PBS, real stage, install,
+  select, preflight, seeds):
+  - the positive case, with 61 incomplete and 1 invalid W1 settings, passed
+    in 7 min 48 s;
+  - the negative case, with an error in a non-invalid setting, refused
+    before the ledger (`p3/rehearsal_r2_*.out`).
+- **Production stage tar:** `b49d00f0…`, with every file byte-identical to the
+  rehearsed and smoked copies.

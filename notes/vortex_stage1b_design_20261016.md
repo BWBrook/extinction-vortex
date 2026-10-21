@@ -365,3 +365,151 @@ Code: `v2_dev/p3_stage1b.py`; `kunanyi/s1b_node.pbs`, `s1b_collect.pbs`,
    `notes/vortex_stage1c_fitted_draft_20261016.md` §6.
 
 Each executable package is still checked by Astra before dispatch.
+
+## 9. Round 2 (21 October 2026)
+
+### 9a. W1 round 1: outcome and diagnosis
+
+Array 821088[] (520 × 8 cores × 48 h) ended at about 11:25 on 21 October with
+its 199,688 CPU-h reservation spent. Sources: probe `p3/w1_progress_20261021.txt`;
+diagnosis `p3/w1_diag_20261021.txt`; board 2119.
+
+**Collector 821089** ran 11:24–12:48 and exited 1, which means a finished
+summary with an error, not a crash.
+- **Statuses:** 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,846 incomplete and
+  1 invalid.
+- **The invalid setting is s18085:** "verified K-hit prefix without a COMPLETE
+  marker". Its crossing shard finished, but no worker survived to plan it;
+  its last two claims belonged to dead workers.
+- **Archive:** `W1.tar.gz` (`bb604f1c…`, 1.75 GB) holds the summary, the log
+  and the 9,695 libraries. It was verified on deep-server
+  (`/data/fable/vortex/v2_dev/p3/w1_r1/`).
+- **CPU:** 151,638 useful and 26,666 discarded (pilot CPU included in useful).
+
+**Cost diagnosis** (`p3_w1_costs.py`, `p3/w1_r1_costs.json`):
+
+| Group | Actual / projected | Median throughput ratio | Median hit-rate ratio |
+|---|---|---|---|
+| Pilot outers (trials 0–9), n = 0 | 0.97 | 0.98 | 1.00 |
+| Pilot outers (trials 0–9), n = 30 | 0.97 | 1.00 | 0.45 |
+| Unseen outers, n = 0 | 0.98 | 0.99 | 1.00 |
+| **Unseen outers, n = 30** | **1.19** | **1.01** | **1.05** |
+
+The hit-rate ratio is against the cell's pooled prior, which is weighted by
+proposals, so a typical pilot outer sits below it.
+
+- **Kunanyi's throughput and the pilot outers were projected correctly.**
+- **The excess is in the tail of unseen n = 30 outers.** Each cell's 10 pilot
+  outers underestimate the cell mean of a heavy-tailed cost. The median setting
+  is on projection; the costly unseen outers lie in the tail.
+- **Discards:** 6,638 CPU-h (6%) on COMPLETE n = 30 settings is the planned
+  parallel overshoot. The 20,029 CPU-h on incomplete n = 30 settings is the
+  defect's damage: for example, s07690 has 29 ranges with the first blocked
+  while 28 finished.
+- **Restarting the 4,847 open settings** is estimated at about 92k CPU-h
+  (cell means of realised costs, or 1.25× round-1 spend where larger).
+- **W2 projection** (722,608 expected): with the same unseen-outer factor of
+  1.2–1.35 and the planned overshoot, roughly 0.9–1.1M worker CPU-h. That is
+  about two weeks at 2,600–3,000 cores.
+
+**Settings** (14,544 in W1): 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,847 open
+(including s18085).
+
+**Cost:** 177,940 worker CPU-h from the shard checkpoints (178,304 per the
+collector), against 139,090 expected for the whole of W1.
+
+**A defect that wasted allocation** (none of it reached the science; no shard
+or setting failed):
+- **NFS stale handles:** 97 workers died of `OSError: Stale file handle`, and 6
+  died of `Directory not empty` when removing a released lock, caused by a
+  silly-renamed `.nfs` file. These errors arose in bookkeeping outside
+  `run_setting`'s handler: reading a checkpoint or `owner.json` that another
+  client had just replaced.
+- **Locks left by crashed workers:** a worker that crashed holding a setting
+  lock left it held. Without positive death evidence, workers on other hosts
+  could prove the owner dead only once its PBS job finished, up to 48 h later.
+- **Unbounded waits:** every worker that picked one of that setting's tickets
+  waited without limit, past its own deadline. The waits were the likely cause
+  of the 75 walltime kills (`Exit_status 271`). About 424 workers left no exit
+  record: about 103 had crashed and the rest were stuck until killed.
+- **PBS load:** each stuck worker queried PBS (`qstat -x -f`) on every 0.05–0.15 s
+  poll. That is the likely cause of a single history query taking about 10 min
+  on 18 October.
+- **Lost completion lines:** `jobs.log` received concurrent appends over NFS
+  and lost lines (442 of 520 subjobs recorded).
+- **Memory was not a factor:** peak use was under 1 GB per 8-core subjob,
+  against 10 GB requested.
+
+### 9b. Repairs
+
+Runner `ee5e8cd6…` (fixtures 27/27):
+- **NFS reads:** listings and JSON reads retry `ESTALE`. A released lock's
+  directory is removed with `ignore_errors`.
+- **No crash on transient errors:** an `OSError` that outlives its retries
+  ends only the iteration. The claim stays with the worker, which resumes it
+  from its checkpoint after `PARK_SECS`. Thirty consecutive errors end the
+  worker. A transient `OSError` inside `run_setting` (`ESTALE`/`EIO`) no
+  longer fails the setting.
+- **Bounded lock waits:** a claim passes over a setting whose lock stays busy
+  for 5 s. A commit waits at most 600 s (and never past the deadline), then
+  parks the claim.
+- **Death certificates:** `s1b_node.pbs` writes
+  `workers/dead/<owner>` for every worker process it reaps. Any worker accepts
+  the certificate as positive evidence, so it breaks that owner's locks and
+  requeues its claims without waiting for PBS. Claims are recovered every
+  `RECOVER_SECS` (600 s), as well as when the queue is empty.
+- **PBS throttle:** PBS is consulted about a lock owner only after the same
+  lock generation has been seen for `PBS_SUSPECT_SECS` (300 s). Each job is
+  then queried at most once per interval, and a finished answer is final.
+- **Node script:**
+  - the deadline is taken from the job start, before Lmod, with a 30 min
+    margin;
+  - a slot restarts a failed worker under a new owner name (`<job>.<slot>r<k>`),
+    up to 20 times while time remains;
+  - completion is recorded in one `done.<index>` file per subjob.
+- **`select` subcommand:** a round's settings are the listed dirs of the bound
+  settings, all other fields unchanged, rebound to the new runner.
+
+### 9c. Round-2 design
+
+- **A new binding, so round 2 never resumes round-1 shards.** The binding
+  (settings, metric and runner hashes) is checked on resume and by the
+  collector.
+- **Round-1 settings that are final keep their libraries:** COMPLETE and
+  CAPPED, collected under binding `86545d6b…`/`00dd369f…`.
+- **The open round-1 W1 settings, incomplete and invalid, restart from batch 0,** or from their bound
+  pilot prefix. This is in `run2`, under settings `p3_settings_r2.json` (open W1
+  dirs plus all W2 dirs).
+- **Restarting is chosen over a cross-binding resume** because it needs no
+  compatibility logic. Streams are fixed per (stream tag, index, batch), so the
+  re-run reproduces round 1's hit records batch by batch. Comparing the two is
+  a determinism check that comes free with the restart.
+- **The final W1 library set** is round 1's terminal settings plus round 2's.
+  Each library is reported with its binding.
+- **W2 is dispatched alongside W1 round 2,** in the same run directory, with
+  waves filtered.
+
+### 9d. Ceilings and the ledger (Barry, 21 October 2026, Claude chat; board 2123)
+
+> "As to finishing W1 and W2: authorised to use whatever compute you need.
+> Those caps were just guesses, they're not a straight jacket and I'm replete
+> with allocated compute. It's not a constraint: do what you need to do to get
+> all the work completed! Break the glass ceiling :)"
+
+- **The allocated-CPU ceilings of §4 and §8 no longer limit total spending.**
+- They remain bound in the settings (hash-bound, so unchanged). The ledger now
+  enforces them as **bounds on in-flight reservations**:
+  - each finished array gets a `release` line citing its PBS accounting;
+  - total spending is the sum of reserve lines, reported separately.
+- **The per-setting 2,000 h proposal cap is unchanged.** It is a stopping rule,
+  CAPPED is a reported outcome, and changing it would change the design.
+
+**Shapes.** kunanyi limits a user to 3,000 running CPUs, 7,000 queued CPUs
+(`max_queued_res.ncpus`) and 4,000 queued jobs. Round 2 therefore opens with:
+- W1 r2: 300 × 8 × 48 h;
+- W2 a: 570 × 8 × 48 h;
+- 6,960 CPUs plus two collectors in all.
+
+Later W2 arrays follow as earlier ones finish, each reserved and released the
+same way. Over-provisioning costs only minutes, because a worker exits when
+the queue is empty.

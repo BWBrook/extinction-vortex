@@ -8,17 +8,20 @@ Planning (which ranges exist, how many run at once) adapts to observed rates and
   verify_export METRIC P2_METRIC                                pilot pairs and their E identical to Stage 1a's
   settings      METRIC PILOT_SETTINGS PILOT_COLLECT OUT          bind 21,600 primary + 216 check settings (stable IDs)
   subset        SETTINGS OUT DIRS CAP_CPU_H TARGET_WALL_H MIN_SHARD_CPU_H CEILING   smoke settings (own campaign and ceiling)
+  select        SETTINGS OUT DIRS_FILE                           a round's settings: listed dirs, rebound to this runner
   seed          SETTINGS PILOT_DIR RUN WAVE                      import verified pilot prefixes; first tickets
   work          SETTINGS METRIC RUN WAVE OWNER DEADLINE_EPOCH    pull worker for one wave: claim, run, plan successors
   collect       SETTINGS METRIC RUN WAVE OUT_JSON                validate shards, assemble libraries, account CPU
   preflight     SETTINGS METRIC LEDGER ARRAY_NAME OUTDIR NJOBS JOBCPUS WALL_SECS WAVE   bound check, fixtures, reservation
   test                                                            synthetic fixtures (exit non-zero on failure)
 Run directory RUN: queue/ (tickets), claimed/ (ticket@owner), sets/<dir>/ (pilot prefix, ranges/, shard checkpoints and
-journals, COMPLETE/CAPPED/FAILED markers, lock/), lib/ (assembled libraries), workers/. Every queue transition (claim,
-requeue, release) and every plan happens under the setting's owner-safe lock; planning reconciles each unfinished range
-to exactly one ticket or claim. The per-setting cap is a fixed proposal budget (2,000 CPU-h equivalent at the bound
+journals, COMPLETE/CAPPED/FAILED markers, lock/), lib/ (assembled libraries), workers/ (exit records; dead/ holds the
+death certificates s1b_node.pbs writes for each worker process it has reaped). Every queue transition (claim, requeue,
+release) and every plan happens under the setting's owner-safe lock; planning reconciles each unfinished range to exactly
+one ticket or claim. On the shared NFS filesystem, stale-handle errors are retried and never end a worker; lock waits are
+bounded, so a lock held by a crashed worker delays only its own setting. The per-setting cap is a fixed proposal budget (2,000 CPU-h equivalent at the bound
 rate); allocated-CPU ceilings per wave and campaign are enforced by the reservation ledger. Run from the frozen source root."""
-import hashlib, json, math, os, random, shutil, subprocess, sys, tempfile, time
+import errno, hashlib, json, math, os, random, shutil, subprocess, sys, tempfile, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import p2_stage1a as p2
@@ -35,6 +38,10 @@ CEILINGS = {"W1": 200_000.0, "W2": 1_000_000.0, "campaign": 1_200_000.0}     # a
 WAVES = {"W1": (0, 30), "W2": (300,)}
 CHECK_OUTERS = {"null_prior_predictive": (7, 4), "null_low_s": (6, 4), "MA_betamin": (6, 8), "MA_d10_0.5": (6, 1)}
 TERMINAL = ("COMPLETE", "CAPPED", "FAILED")
+CLAIM_PATIENCE, LOCK_PATIENCE = 5.0, 600.0      # seconds a lock wait may last when claiming / when committing a shard
+PBS_SUSPECT_SECS = 300.0         # a lock is checked against PBS only after this long, and each job at most this often
+RECOVER_SECS = 600.0             # how often a worker requeues claims of certified-dead workers
+PARK_SECS, BACKOFF_SECS, MAX_ERRORS = 60.0, 0.5, 30   # retry delay of an interrupted claim; error backoff and its limit
 
 
 def primary_index(pi, si, t, ni):
@@ -134,6 +141,19 @@ def subset(settings_path, out, dirs, cap_cpu_h, target_wall_h, min_shard_cpu_h, 
     print("subset", out, p2.sha(out), len(st))
 
 
+def select(settings_path, out, dirs_path):
+    """A later round's settings: the listed dirs of a bound settings file, every other field unchanged, rebound to this
+    runner (a new binding, so a round never resumes another round's shards)."""
+    b = json.load(open(settings_path)); want = [x.strip() for x in open(dirs_path) if x.strip()]
+    st = [x for x in b["settings"] if x["dir"] in set(want)]
+    if len(want) != len(set(want)) or len(st) != len(want):
+        raise SystemExit("unknown or duplicate dir")
+    b.update(settings=st, runner_sha256=p2.sha(os.path.abspath(__file__)), derived_from_sha256=p2.sha(settings_path),
+             stage=b["stage"] + f" -- selected round ({len(st)} settings)")
+    json.dump(b, open(out, "w"))
+    print("select", out, p2.sha(out), len(st), {w: sum(x["wave"] == w for x in st) for w in WAVES})
+
+
 def check(settings_path, metric_path):
     b = json.load(open(settings_path))
     if b["metric_sha256"] != p2.sha(metric_path) or b["runner_sha256"] != p2.sha(os.path.abspath(__file__)) \
@@ -149,6 +169,30 @@ def binding(b, settings_path):
 
 
 # ---------------------------------------------------------------- per-setting state
+def nfs(fn, *a, tries=6):
+    """fn(*a), retrying NFS stale-handle errors: a path replaced by another client's rename between lookup and read."""
+    for k in range(tries):
+        try:
+            return fn(*a)
+        except OSError as ex:
+            if ex.errno != errno.ESTALE or k == tries - 1:
+                raise
+            time.sleep(0.1 * (k + 1))
+
+
+def _jread(path):
+    with open(path) as fh:
+        return json.load(fh)
+
+
+def ls(path):
+    return nfs(os.listdir, path)
+
+
+def jload(path):
+    return nfs(_jread, path)
+
+
 def pid_alive(pid):
     try:
         os.kill(int(pid), 0); return True
@@ -158,28 +202,44 @@ def pid_alive(pid):
         return True
 
 
-def owner_dead(info, qstat=QSTAT):
-    """Positive evidence only: same host and pid gone, or the owner's PBS job reported finished (job_state F)."""
+_PBS = {}                        # (qstat, job) -> (time of query, finished); a finished answer is final
+
+
+def owner_dead(info, qstat=QSTAT, cert=None, pbs=True):
+    """Positive evidence only: a death certificate for the owner (its node script reaped the process), same host and pid
+    gone, or (when pbs) the owner's PBS job reported finished (job_state F), each job queried at most once per
+    PBS_SUSPECT_SECS."""
+    own = info.get("owner")
+    if cert and own and os.path.exists(os.path.join(cert, own)):
+        return True
     if info.get("host") == os.uname().nodename:
         return not pid_alive(info["pid"])
-    job = info.get("owner", "").rsplit(".", 1)[0]
-    if "[" not in job and ".kunanyi" not in job:
+    job = (own or "").rsplit(".", 1)[0]
+    if not pbs or ("[" not in job and ".kunanyi" not in job):
         return False
+    c = _PBS.get((qstat, job))
+    if c and (c[1] or time.time() - c[0] < PBS_SUSPECT_SECS):
+        return c[1]
     try:
         out = subprocess.run([qstat, "-x", "-f", job], capture_output=True, text=True, timeout=60).stdout
     except Exception:
         return False
-    return any(l.strip() == "job_state = F" for l in out.splitlines())
+    r = any(l.strip() == "job_state = F" for l in out.splitlines()); _PBS[(qstat, job)] = (time.time(), r)
+    return r
 
 
 class LockStale(RuntimeError):
     """A lock's owner and the reclaimer of that lock have both ended: fail closed for operator recovery."""
 
 
+class LockBusy(RuntimeError):
+    """A lock stayed with a live (not positively ended) owner for longer than the caller's patience."""
+
+
 def _owner(path):
     try:
-        return json.load(open(os.path.join(path, "owner.json")))
-    except (FileNotFoundError, NotADirectoryError, ValueError):
+        return jload(os.path.join(path, "owner.json"))
+    except (OSError, ValueError):
         return None
 
 
@@ -195,56 +255,62 @@ def _publish(path, me):
         shutil.rmtree(tmp, ignore_errors=True); return False
 
 
-def _reclaim(d, observed, me, qstat=QSTAT):
+def _reclaim(d, observed, me, qstat=QSTAT, cert=None):
     """Break the ended generation `observed` of lock d. Only one reclaimer at a time (the d.reclaim mutex), and only while
     d still holds that generation's token: a stale observation can never remove a successor's lock. A reclaim mutex whose
     own owner has ended is not broken automatically (LockStale)."""
     r = f"{d}.reclaim"
     if not _publish(r, me):
         info = _owner(r)
-        if info and owner_dead(info, qstat):
+        if info and owner_dead(info, qstat, cert):
             raise LockStale(f"{r}: reclaim mutex held by an ended owner; operator recovery needed")
         return False
     try:
         cur = _owner(d)
-        if cur and cur["token"] == observed["token"] and owner_dead(cur, qstat):
+        if cur and cur["token"] == observed["token"] and owner_dead(cur, qstat, cert):
             os.rename(d, f"{d}.broken.{observed['token']}")
             return True
         return False
     finally:
         rel = f"{r}.rel.{me['token']}"
-        os.rename(r, rel); shutil.rmtree(rel)
+        os.rename(r, rel); shutil.rmtree(rel, ignore_errors=True)
 
 
-def lock(sdir, owner, qstat=QSTAT):
+def lock(sdir, owner, qstat=QSTAT, patience=None):
     """Owner-safe lock: a directory holding owner.json, published by an atomic rename (never an empty directory, so a
     rename cannot replace a live one). It is broken only on positive evidence that its owner has ended, never on age,
-    and only through _reclaim; unlock requires the acquiring token."""
-    d = os.path.join(sdir, "lock")
+    and only through _reclaim; unlock requires the acquiring token. PBS is asked about an owner only once the same lock
+    generation has been seen for PBS_SUSPECT_SECS. With patience, a wait longer than that many seconds raises LockBusy."""
+    d = os.path.join(sdir, "lock"); cert = os.path.join(os.path.dirname(os.path.dirname(sdir)), "workers", "dead")
     me = {"owner": owner, "host": os.uname().nodename, "pid": os.getpid(), "token": os.urandom(8).hex()}
+    t0, seen = time.time(), {}
     while True:
         if _publish(d, me):
             return d, me["token"]
         info = _owner(d)
         if info is None:
-            time.sleep(0.05); continue
-        if owner_dead(info, qstat) and _reclaim(d, info, me, qstat):
-            continue
-        time.sleep(0.05 + random.random() * 0.1)
+            time.sleep(0.05)
+        else:
+            first = seen.setdefault(info.get("token"), time.time())
+            if owner_dead(info, qstat, cert, pbs=time.time() - first >= PBS_SUSPECT_SECS) and _reclaim(d, info, me, qstat, cert):
+                continue
+            time.sleep(0.05 + random.random() * 0.1)
+        if patience is not None and time.time() - t0 > patience:
+            raise LockBusy(f"{d}: held by a live owner for over {patience:.0f} s")
 
 
 def unlock(L):
     d, token = L
-    info = json.load(open(os.path.join(d, "owner.json")))
+    info = jload(os.path.join(d, "owner.json"))
     if info["token"] != token:
         raise RuntimeError(f"{d}: lock is not owned by this holder")
     rel = f"{d}.rel.{token}"
-    os.rename(d, rel); shutil.rmtree(rel)
+    os.rename(d, rel); shutil.rmtree(rel, ignore_errors=True)      # NFS keeps a silly-renamed file a reader still holds
 
 
 class held:
-    def __init__(self, sdir, owner, qstat=QSTAT):
-        self.args = (sdir, owner, qstat)
+    def __init__(self, sdir, owner, qstat=QSTAT, patience=None):
+        self.args = (sdir, owner, qstat, patience)
 
     def __enter__(self):
         self.L = lock(*self.args); return self.L
@@ -255,12 +321,12 @@ class held:
 
 def ranges(sdir):
     rd = os.path.join(sdir, "ranges")
-    return sorted(tuple(int(x) for x in f.split("-")) for f in os.listdir(rd)) if os.path.isdir(rd) else []
+    return sorted(tuple(int(x) for x in f.split("-")) for f in ls(rd)) if os.path.isdir(rd) else []
 
 
 def shard_state(sdir, a):
     p = os.path.join(sdir, f"sh{a:09d}.json")
-    return json.load(open(p)) if os.path.exists(p) else None
+    return jload(p) if os.path.exists(p) else None
 
 
 def prefix(st, sdir):
@@ -327,9 +393,9 @@ def plan(st, sdir, run, b):
     def is_live(a, b_):
         nonlocal live
         if live is None:
-            live = {n.rsplit("_", 2)[1] + "_" + n.rsplit("_", 2)[2] for n in os.listdir(q) if f"_{st['dir']}_" in n}
+            live = {n.rsplit("_", 2)[1] + "_" + n.rsplit("_", 2)[2] for n in ls(q) if f"_{st['dir']}_" in n}
             live |= {n.split("@")[0].rsplit("_", 2)[1] + "_" + n.split("@")[0].rsplit("_", 2)[2]
-                     for n in os.listdir(c) if f"_{st['dir']}_" in n}
+                     for n in ls(c) if f"_{st['dir']}_" in n}
         return f"{a:09d}_{b_:09d}" in live
     pl = st["pilot"]
     H = (pl["hits"] if pl else 0); N = (pl["batches_done"] if pl else 0); C = (pl["cpu_seconds"] if pl else 0.0)
@@ -372,7 +438,7 @@ def plan(st, sdir, run, b):
 # ---------------------------------------------------------------- seed (pilot prefix import)
 def seed(settings_path, pilot_dir, run, wave, qstat=QSTAT):
     b = json.load(open(settings_path)); owner = f"seed:{os.uname().nodename}:{os.getpid()}"
-    for d in ("queue", "claimed", "sets", "lib", "workers"):
+    for d in ("queue", "claimed", "sets", "lib", "workers", "workers/dead"):
         os.makedirs(os.path.join(run, d), exist_ok=True)
     n = {"imported": 0, "complete_at_seed": 0, "planned": 0}
     for st in b["settings"]:
@@ -401,92 +467,156 @@ def parse_ticket(t):
 
 
 def claim(run, owner, wave, qstat=QSTAT):
-    """Claim one of this wave's tickets (atomic rename) while holding its setting's lock."""
-    q = os.path.join(run, "queue")
+    """Claim one of this wave's tickets (atomic rename) while holding its setting's lock: a random one of the first 32
+    tickets in priority order, among settings not found busy. A setting whose lock stays busy for CLAIM_PATIENCE (or
+    awaits an operator) is passed over with all its tickets. None means the wave has no tickets; LockBusy means it has
+    tickets but none could be claimed."""
+    q = os.path.join(run, "queue"); busy = set()
     for _ in range(3):
-        names = sorted(n for n in os.listdir(q) if n.startswith(f"{wave}_"))
+        names = sorted(n for n in ls(q) if n.startswith(f"{wave}_"))
         if not names:
             return None
-        head = names[:32]; random.shuffle(head)
+        head = [t for t in names if parse_ticket(t)[1] not in busy][:32]; random.shuffle(head)
         for t in head:
+            d = parse_ticket(t)[1]
+            if d in busy:
+                continue
             try:
-                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
+                with held(os.path.join(run, "sets", d), owner, qstat, CLAIM_PATIENCE):
                     try:
                         os.rename(os.path.join(q, t), os.path.join(run, "claimed", f"{t}@{owner}"))
                         return t
                     except FileNotFoundError:
                         continue
+            except LockBusy:
+                busy.add(d)
             except LockStale as ex:                      # that setting waits for an operator; others proceed
-                print(f"skipping {t}: {ex}", file=sys.stderr, flush=True)
-    return None
+                busy.add(d); print(f"skipping {t}: {ex}", file=sys.stderr, flush=True)
+    raise LockBusy(f"no claimable ticket among {len(busy)} busy settings")
 
 
-def recover_stale(run, owner, wave, qstat=QSTAT):
-    """Requeue this wave's claims whose owning PBS job is positively finished (job_state F), under the setting lock."""
-    me = owner.rsplit(".", 1)[0]; seen, n = {}, 0
-    for c in os.listdir(os.path.join(run, "claimed")):
+def recover_stale(run, owner, wave, qstat=QSTAT, pbs=True):
+    """Requeue this wave's claims whose owner has positively ended, under the setting lock: a death certificate, or
+    (when pbs) the owning PBS job reported finished (job_state F)."""
+    me = owner.rsplit(".", 1)[0]; cert = os.path.join(run, "workers", "dead"); seen, n = {}, 0
+    for c in ls(os.path.join(run, "claimed")):
         t, own = c.split("@", 1); job = own.rsplit(".", 1)[0]
-        if job == me or not t.startswith(f"{wave}_"):
+        if own == owner or not t.startswith(f"{wave}_"):
             continue
-        if job not in seen:
-            seen[job] = owner_dead({"owner": own, "host": None}, qstat)
-        if seen[job]:
+        if own not in seen:
+            seen[own] = owner_dead({"owner": own, "host": None}, qstat, cert, pbs=pbs and job != me)
+        if seen[own]:
             try:
-                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat):
+                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat, CLAIM_PATIENCE):
                     try:
                         os.rename(os.path.join(run, "claimed", c), os.path.join(run, "queue", t)); n += 1
                     except FileNotFoundError:
                         pass
-            except LockStale as ex:
+            except (LockStale, LockBusy) as ex:
                 print(f"not requeued {c}: {ex}", file=sys.stderr, flush=True)
     return n
 
 
+def adopt(run, owner, wave, parked):
+    """This worker's own claims left by an interrupted iteration (a stale handle, a busy lock): (the one whose retry time
+    has come first, or None; the earliest later retry time, or None)."""
+    now = time.time()
+    mine = [c.split("@", 1)[0] for c in ls(os.path.join(run, "claimed")) if c.split("@", 1)[1] == owner]
+    mine = [t for t in mine if t.startswith(f"{wave}_") and parked.get(t, 0.0) != math.inf]
+    ready = [t for t in mine if parked.get(t, 0.0) <= now]
+    later = [parked[t] for t in mine if parked.get(t, 0.0) > now]
+    return (min(ready, key=lambda t: parked.get(t, 0.0)) if ready else None), (min(later) if later else None)
+
+
 def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, des=None):
+    """Pull worker. An OSError in an iteration (an NFS stale handle that outlived its retries) or a lock that stays busy
+    leaves the claim with this worker, which resumes it later from its checkpoint; MAX_ERRORS consecutive errors end it."""
     b = check(settings_path, metric_path) if des is None else json.load(open(settings_path))
     metric = json.load(open(metric_path)); des = des if des is not None else p2.designs()
     bind = binding(b, settings_path); by_dir = {s["dir"]: s for s in b["settings"]}
     deadline = float(deadline)
-    done = {"shards": 0, "discarded_tickets": 0, "requeued_censored": 0, "stale_requeued": 0, "failed_shards": 0}
-    while time.time() < deadline:
-        t = claim(run, owner, wave, qstat)
-        if t is None:
-            done["stale_requeued"] += recover_stale(run, owner, wave, qstat)
-            t = claim(run, owner, wave, qstat)
-            if t is None:
-                break
+    done = {"shards": 0, "discarded_tickets": 0, "requeued_censored": 0, "stale_requeued": 0, "failed_shards": 0,
+            "transient_errors": 0, "lock_busy": 0, "adopted": 0}
+    parked, errs, last_rec = {}, 0, time.time()
+
+    def patience():
+        return max(5.0, min(LOCK_PATIENCE, deadline - time.time()))
+
+    def run_ticket(t):
         _, d, a, b_ = parse_ticket(t)
         st, sdir, cpath = by_dir[d], os.path.join(run, "sets", d), os.path.join(run, "claimed", f"{t}@{owner}")
         if terminal(sdir):
-            with held(sdir, owner, qstat):
+            with held(sdir, owner, qstat, patience()):
                 os.unlink(cpath)
-            done["discarded_tickets"] += 1; continue
+            done["discarded_tickets"] += 1; return None
         end, h, crossing, _ = prefix(st, sdir)
         hs = K - h if end == a and not crossing else 10 ** 9
         mp = dict(metric["outers"][f"{st['pop']}|{st['outer']}"], keep=metric["pops"][st["pop"]]["keep"],
                   mad=metric["pops"][st["pop"]]["mad"])
         sst = {"index": st["index"], "pop": st["pop"], "outer": st["outer"], "n": st["n"], "E": st["E"],
                "stream_tag": st["stream_tag"], "proposal_budget": st["cap_batches"] * BATCH, "batches": b_ - a}
+        fail = None
         try:
             S = p2.run_setting({"batch": BATCH, "hit_stop": hs, "_binding": bind}, sst, mp, sdir, deadline, des,
                                ckpt_secs=CKPT_SECS, first_batch=a, name=f"sh{a:09d}",
                                cancelled=lambda: os.path.exists(os.path.join(sdir, "COMPLETE")))
+        except OSError as ex:
+            if ex.errno in (errno.ESTALE, errno.EIO):      # transient: keep the claim; it resumes from its checkpoint
+                raise
+            fail = ex
         except (SystemExit, Exception) as ex:       # refused recovery or an unexpected error fails the setting, not the worker
-            with held(sdir, owner, qstat):
+            fail = ex
+        if fail is not None:
+            with held(sdir, owner, qstat, patience()):
                 if not terminal(sdir):
-                    mark(sdir, "FAILED", {"range": a, "failure": f"{type(ex).__name__}: {ex}"})
+                    mark(sdir, "FAILED", {"range": a, "failure": f"{type(fail).__name__}: {fail}"})
                 os.unlink(cpath)
-            done["failed_shards"] += 1; continue
+            done["failed_shards"] += 1; return None
         try:
-            with held(sdir, owner, qstat):
+            with held(sdir, owner, qstat, patience()):
                 if S["status"] == "censored":
                     os.rename(cpath, os.path.join(run, "queue", t)); done["requeued_censored"] += 1
                 else:
                     plan(st, sdir, run, b); os.unlink(cpath); done["shards"] += 1
         except LockStale as ex:                          # the claim stays; the setting is reported incomplete
             print(f"left claim {t}: {ex}", file=sys.stderr, flush=True); done["lock_stale"] = done.get("lock_stale", 0) + 1
-        if S["status"] == "censored":
-            break
+            parked[t] = math.inf
+        return S["status"]
+
+    while time.time() < deadline:
+        t = None
+        try:
+            if time.time() - last_rec >= RECOVER_SECS:
+                done["stale_requeued"] += recover_stale(run, owner, wave, qstat, pbs=False); last_rec = time.time()
+            t, later = adopt(run, owner, wave, parked)
+            if t is not None:
+                done["adopted"] += 1
+            else:
+                t = claim(run, owner, wave, qstat)
+                if t is None:
+                    done["stale_requeued"] += recover_stale(run, owner, wave, qstat)
+                    t = claim(run, owner, wave, qstat)
+                    if t is None:
+                        if later is None:
+                            break
+                        time.sleep(min(60.0, max(1.0, later - time.time()))); continue
+            status = run_ticket(t); errs = 0
+            if status == "censored":
+                break
+        except LockBusy as ex:
+            done["lock_busy"] += 1; print(f"busy {t}: {ex}", file=sys.stderr, flush=True)
+            if t is not None:
+                parked[t] = time.time() + PARK_SECS
+            else:
+                time.sleep(BACKOFF_SECS * (10 + 20 * random.random()))
+        except OSError as ex:
+            errs += 1; done["transient_errors"] += 1
+            print(f"transient error at {t}: {type(ex).__name__}: {ex}", file=sys.stderr, flush=True)
+            if t is not None:
+                parked[t] = time.time() + PARK_SECS
+            if errs >= MAX_ERRORS:
+                raise
+            time.sleep(min(60.0, BACKOFF_SECS * 2 ** errs))
     p2.atomic_json({"owner": owner, "wave": wave, "binding": bind, "runtime": p2.runtime(), "host": os.uname().nodename, **done},
                    os.path.join(run, "workers", f"{owner}.json"))
     return done
@@ -800,8 +930,8 @@ def test():
             barrier, seen_t, guard = threading.Barrier(2), set(), threading.Lock()
             real_od = me.owner_dead
 
-            def od(info, qstat=QSTAT):
-                r_ = real_od(info, qstat)
+            def od(info, qstat=QSTAT, *a_, **kw_):
+                r_ = real_od(info, qstat, *a_, **kw_)
                 if info.get("token") == "dead2" and threading.get_ident() not in seen_t:
                     seen_t.add(threading.get_ident())
                     if barrier.wait(10) == 0:
@@ -870,6 +1000,81 @@ def test():
             res["killed_worker_claim_recovered_and_resumed"] = len(left) == 1 and left[0].endswith("@jobA[0].srv.0") and \
                 collect_ok(sp, mp, run, "c.json") and lib(run) == serial
             res["no_claim_after_deadline"] = work(sp, mp, run, "W1", "jobC[0].srv.0", time.time() - 1, qstat=fakeq, des={})["shards"] == 0
+            # NFS stale handles (W1, 21 Oct: 97 workers ended by ESTALE): reads are retried; one that outlives its retries in
+            # bookkeeping parks the claim, which the same worker resumes from its checkpoint; the library is unchanged
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=4, tw=1e-6)
+            real_read, real_plan, nread, nplan = me._jread, me.plan, [0], [0]
+
+            def flaky_read(p_):
+                nread[0] += 1
+                if nread[0] % 3 == 0:
+                    raise OSError(errno.ESTALE, "Stale file handle (fixture)")
+                return real_read(p_)
+
+            def flaky_plan(*a_):
+                nplan[0] += 1
+                if nplan[0] == 2:
+                    raise OSError(errno.ESTALE, "Stale file handle (fixture, past its retries)")
+                return real_plan(*a_)
+            with mock.patch.object(me, "_jread", flaky_read), mock.patch.object(me, "plan", flaky_plan), \
+                    mock.patch.object(me, "PARK_SECS", 0.0), mock.patch.object(me, "BACKOFF_SECS", 0.0):
+                out_ = work(sp, mp, run, "W1", "jobS[0].srv.0r0", time.time() + 3600, qstat=fakeq, des={})
+            res["stale_handles_retried_and_parked_claim_resumed"] = out_["transient_errors"] == 1 and out_["adopted"] == 1 \
+                and nread[0] >= 3 and collect_ok(sp, mp, run, "c.json") and lib(run) == serial \
+                and not os.listdir(os.path.join(run, "claimed"))
+            # a lock held by a live owner on another host: claims pass over it within CLAIM_PATIENCE and PBS is not asked;
+            # after PBS_SUSPECT_SECS PBS is asked at most once per interval; a death certificate breaks it without PBS
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=2)
+            qlog, fqR = os.path.join(d, "qstat.log"), os.path.join(d, "qstatR")
+            open(fqR, "w").write(f"#!/bin/sh\necho x >> {qlog}\necho '    job_state = R'\n"); os.chmod(fqR, 0o755)
+            os.mkdir(os.path.join(sdir, "lock"))
+            json.dump({"owner": "live[3].kunanyi-ohpc.0r0", "host": "elsewhere", "pid": 1, "token": "busy"},
+                      open(os.path.join(sdir, "lock", "owner.json"), "w"))
+            t0_ = time.time(); got_ = "unset"
+            with mock.patch.object(me, "CLAIM_PATIENCE", 0.5):
+                try:
+                    got_ = claim(run, "jobQ[0].srv.0r0", "W1", qstat=fqR)
+                except LockBusy:
+                    got_ = "busy"
+                os.makedirs(os.path.join(run, "sets", "s00008", "lock"))      # a second setting, first in priority, blocked too
+                json.dump({"owner": "live[4].kunanyi-ohpc.0r0", "host": "elsewhere", "pid": 1, "token": "busy8"},
+                          open(os.path.join(run, "sets", "s00008", "lock", "owner.json"), "w"))
+                for j in range(40):
+                    open(os.path.join(run, "queue", f"W1_0000001_s00008_{j * 5:09d}_{j * 5 + 5:09d}"), "w").close()
+                shutil.rmtree(os.path.join(sdir, "lock"))                    # s00007 freed: claimed past s00008's 40 tickets
+                got2 = claim(run, "jobQ[0].srv.0r0", "W1", qstat=fqR)
+            res["busy_lock_passed_over_without_pbs_queries"] = got_ == "busy" and time.time() - t0_ < 15 and not os.path.exists(qlog) \
+                and got2 is not None and "_s00007_" in got2
+            os.rename(os.path.join(run, "claimed", f"{got2}@jobQ[0].srv.0r0"), os.path.join(run, "queue", got2))
+            os.mkdir(os.path.join(sdir, "lock"))
+            json.dump({"owner": "live[3].kunanyi-ohpc.0r0", "host": "elsewhere", "pid": 1, "token": "busy"},
+                      open(os.path.join(sdir, "lock", "owner.json"), "w"))
+            _PBS.clear(); n_q = -1
+            with mock.patch.object(me, "PBS_SUSPECT_SECS", 0.4):
+                try:
+                    lock(sdir, "jobQ[0].srv.1r0", fqR, patience=1.0)
+                except LockBusy:
+                    n_q = len(open(qlog).read().splitlines()) if os.path.exists(qlog) else 0
+            res["pbs_asked_at_most_once_per_interval"] = n_q in (1, 2)
+            os.remove(qlog); os.makedirs(os.path.join(run, "workers", "dead"), exist_ok=True)
+            open(os.path.join(run, "workers", "dead", "live[3].kunanyi-ohpc.0r0"), "w").close()
+            L_ = lock(sdir, "jobQ[0].srv.2r0", fqR, patience=5.0); unlock(L_)
+            res["certified_dead_owner_lock_broken_without_pbs"] = not os.path.exists(qlog)
+            # a crashed worker's claim, its job still running: requeued through its death certificate and resumed
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05); calls = [0]
+            fqR2 = os.path.join(d, "qstatR"); open(fqR2, "w").write("#!/bin/sh\necho '    job_state = R'\n"); os.chmod(fqR2, 0o755)
+            with mock.patch.object(p2, "one_batch", dies):
+                try:
+                    work(sp, mp, run, "W1", "jobL[0].kunanyi-ohpc.0r0", time.time() + 3600, qstat=fqR2, des={})
+                except KeyboardInterrupt:
+                    pass
+            left = os.listdir(os.path.join(run, "claimed"))
+            os.makedirs(os.path.join(run, "workers", "dead"), exist_ok=True)
+            open(os.path.join(run, "workers", "dead", "jobL[0].kunanyi-ohpc.0r0"), "w").close()
+            with mock.patch.object(me, "RECOVER_SECS", 0.0):
+                out_ = work(sp, mp, run, "W1", "jobL[0].kunanyi-ohpc.1r0", time.time() + 3600, qstat=fqR2, des={})
+            res["crashed_worker_claim_recovered_by_certificate_while_job_live"] = len(left) == 1 and out_["stale_requeued"] >= 1 \
+                and collect_ok(sp, mp, run, "c.json") and lib(run) == serial
             # collector rejections: a tampered journal; ranges not covered; identities outside committed batches; a bad
             # discarded shard (wrong binding, negative CPU) that never enters the library
             hp = os.path.join(sdir, f"sh{ranges(sdir)[0][0]:09d}_hits.jsonl")
@@ -951,5 +1156,6 @@ def test():
 
 if __name__ == "__main__":
     cmd, a = sys.argv[1], sys.argv[2:]
-    {"export": export, "verify_export": verify_export, "settings": settings, "subset": subset, "seed": seed, "work": work,
+    {"export": export, "verify_export": verify_export, "settings": settings, "subset": subset, "select": select, "seed": seed,
+     "work": work,
      "collect": collect, "preflight": preflight, "test": test}[cmd](*a)
