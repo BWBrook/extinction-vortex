@@ -1358,9 +1358,16 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2: scientific restart accepted; executable repairs pending.**
-   [Astra review](notes/astra_s1b_r2_review_20261021.md), board 2142; exposure E66;
-   target `9a773c9`. Fable next for one coherent repair package.
+1. **Stage 1b round 2: scientific restart accepted; executable repairs made, awaiting
+   Astra's re-check.** [Astra review](notes/astra_s1b_r2_review_20261021.md), board 2142;
+   exposure E66 and E67.
+   - **Fable's repairs:** design §9e and NOTE "Round-2 repairs after Codex 2142".
+   - **Sources:** runner `841feff9…`; stage tar `3eafd94d…`.
+   - **Tests:** fixtures runner 35/35, node 4/4, submitter 12/12 (bash 5.2 and
+     4.2.46); the dispatch rehearsals' negative cases refuse; smoke C and the
+     positive rehearsal are on the exact package.
+   - **The items below are all addressed in §9e.** The runner must not change
+     after round 2 is dispatched.
    - **Before dispatch:** unique process-incarnation death certificates;
      recovery of uncertain lock release; healthy work beyond busy ticket
      groups; absolute deadlines and failed-query throttling; fail-closed

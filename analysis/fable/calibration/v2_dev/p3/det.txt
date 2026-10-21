@@ -1,0 +1,2 @@
+{"exit": 0, "settings": 6, "batches_compared": 174302, "records_compared": 2310, "identical": 2310, "bytes_differ": 0, "unmatched": 0, "problems": 0}
+determinism rc=0

@@ -1,7 +1,7 @@
 {
  "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
  "bash_version": "5.2.21(1)-release",
- "submit_sha256": "cb5f2e5a12ba80b1642dd5d400486d9fe0b1be9980dd9410a21012a3186668d2",
+ "submit_sha256": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
  "checks": {
   "normal_then_duplicate_then_resume": true,
   "array_rejected_held_until_operator_rejects": true,
@@ -13,7 +13,8 @@
   "campaign_ledger_lock_refuses_concurrent_submission": true,
   "topup_refused_without_seeded_wave": true,
   "topup_adds_array_and_collector_without_seeding": true,
-  "topup_label_rules": true
+  "topup_label_rules": true,
+  "topup_refused_for_another_settings_digest": true
  },
  "all_ok": true,
  "scenarios": {
@@ -58,7 +59,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_9dd41ebb_a"
+    "s1b_6366604d_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -81,7 +82,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_79fd86f6_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_98e99ee4_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -92,7 +93,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_79fd86f6_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_79fd86f6_a ID manual: <evidence>' or 'rejected a s1b_79fd86f6_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_98e99ee4_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_98e99ee4_a ID manual: <evidence>' or 'rejected a s1b_98e99ee4_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -115,7 +116,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_79fd86f6_a"
+    "s1b_98e99ee4_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -150,7 +151,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_0383b15c_a"
+    "s1b_23fd5279_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -173,7 +174,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_56c48d4d_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_3ff51b54_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -184,7 +185,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_56c48d4d_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_56c48d4d_a ID manual: <evidence>' or 'rejected a s1b_56c48d4d_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_3ff51b54_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_3ff51b54_a ID manual: <evidence>' or 'rejected a s1b_3ff51b54_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -207,7 +208,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_56c48d4d_a"
+    "s1b_3ff51b54_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -251,7 +252,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_9e4d82db_a"
+    "s1b_e7d7a896_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -274,7 +275,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_936a4ca9_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_02e72ddf_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -297,7 +298,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_936a4ca9_a"
+    "s1b_02e72ddf_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -372,7 +373,7 @@
    "collectors_created": 0,
    "tags": [],
    "array_names": [],
-   "topup_logs": false,
+   "topup_logs": true,
    "collector_depends_on": [],
    "array_ids": [],
    "allocated_cpu_hours_bound": 0.0,
@@ -431,8 +432,8 @@
     "W1_b"
    ],
    "array_names": [
-    "s1b_7d6e84d9_a",
-    "s1b_4a100898_a"
+    "s1b_766c195e_a",
+    "s1b_98d710e7_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -495,9 +496,53 @@
     "W1"
    ],
    "array_names": [
-    "s1b_0c661674_a"
+    "s1b_a1b95e41_a"
    ],
    "topup_logs": false,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture"
+   ],
+   "allocated_cpu_hours_bound": 199688.0,
+   "lock_released": true
+  },
+  "topup_with_other_settings_digest": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": []
+    },
+    {
+     "mode": "topup b",
+     "rc": 1,
+     "qsub_calls": 0,
+     "runner_calls": [],
+     "stderr": [
+      "s1b_submit: topup settings differ from the wave's seeded submission (<tmp>/vbase/s1b/run/submit_W1/run.json)"
+     ]
+    }
+   ],
+   "arrays_created": 1,
+   "array_ranges": [
+    "0-519"
+   ],
+   "collectors_created": 1,
+   "tags": [
+    "W1",
+    "W1"
+   ],
+   "array_names": [
+    "s1b_cc4d86f1_a"
+   ],
+   "topup_logs": true,
    "collector_depends_on": [
     "900000.fixture"
    ],

@@ -1,0 +1,13 @@
+{
+ "scope": "Fixtures for s1b_node.pbs (no PBS, no simulation), after Codex's node-identity reproduction (board 2142). The actual\nnode script runs under FIX_BASH with a stub `python` on PATH that plays the worker; lock functions are the runner's\nown, loaded by AST without its scientific imports. Writes s1b_node_fixture[_FIX_TAG].json beside itself.\n 1. Two invocations with one PBS job identity (a rerun): owner names differ, each reaped process has a certificate\n    naming its host, pid and exit status, and the first invocation's certificate never breaks the second's live lock.\n 2. A worker that exits non-zero is restarted under a new owner name; both processes are certified; done file written.",
+ "bash_version": "4.2.46(2)-release",
+ "node_sha256": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+ "runner_sha256": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+ "checks": {
+  "rerun_owner_names_differ": true,
+  "certificates_name_exact_processes": true,
+  "earlier_certificate_cannot_break_live_lock": true,
+  "failed_worker_restarted_under_new_name_and_certified": true
+ },
+ "all_ok": true
+}

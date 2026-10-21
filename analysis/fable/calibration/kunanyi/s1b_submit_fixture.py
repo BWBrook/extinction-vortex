@@ -39,6 +39,8 @@ def scenario(steps):
                     jobs[i]["state"] = "F"
                 jobs = [j for k, j in enumerate(jobs) if k not in step.get("expire", [])]
                 (t / "jobs.json").write_text(json.dumps(jobs))
+            if "settings" in step:
+                (vb / "s1b/p3_settings.json").write_text(step["settings"])
             for line in step.get("operator", []):
                 J.open("a").write(line.format(**{f"id{k}": j["id"] for k, j in enumerate(ledger())},
                                               **{"name_a": next((l.split()[2] for l in J.read_text().splitlines() if l.split()[1] == "a"), "")}) + "\n")
@@ -93,6 +95,7 @@ R = {
     "new_then_topup_then_duplicate_then_resume": scenario([{}, {"finish": [0, 1], "mode": "topup b"}, {"mode": "topup b"},
                                                            {"mode": "resume b"}]),
     "topup_label_rules": scenario([{}, {"mode": "topup"}, {"mode": "topup B-1"}, {"mode": "new x"}]),
+    "topup_with_other_settings_digest": scenario([{}, {"settings": '{"fixture": "other"}', "mode": "topup b"}]),
 }
 checks = {
     "normal_then_duplicate_then_resume": ok(R["normal_then_duplicate_then_resume"], [True, False, True], [2, 0, 0], 1, 1),
@@ -112,6 +115,10 @@ checks = {
         and len(set(r["array_names"])) == 2 and r["topup_logs"] and r["lock_released"])(R["new_then_topup_then_duplicate_then_resume"]),
     "topup_label_rules": [x["rc"] == 0 for x in R["topup_label_rules"]["runs"]] == [True, False, False, False]
         and [x["qsub_calls"] for x in R["topup_label_rules"]["runs"]] == [2, 0, 0, 0],
+    "topup_refused_for_another_settings_digest": [x["rc"] == 0 for x in R["topup_with_other_settings_digest"]["runs"]] == [True, False]
+        and [x["qsub_calls"] for x in R["topup_with_other_settings_digest"]["runs"]] == [2, 0]
+        and not R["topup_with_other_settings_digest"]["runs"][1]["runner_calls"]
+        and "differ from the wave's seeded" in R["topup_with_other_settings_digest"]["runs"][1]["stderr"][0],
 }
 bv = subprocess.run([os.environ.get("FIX_BASH", "bash"), "-c", "echo $BASH_VERSION"], capture_output=True, text=True).stdout.strip()
 out = {"scope": __doc__, "bash_version": bv, "submit_sha256": hashlib.sha256(SUBMIT.read_bytes()).hexdigest(), "checks": checks,

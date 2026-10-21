@@ -1,0 +1,105 @@
+{
+  "scope": "Bounded round-2 recovery audit using actual source functions and synthetic batches.\n\nP3 functions/classes/constants are loaded unchanged via AST, without scientific\nimports. P2 storage and run_setting functions are likewise loaded unchanged.\nAll filesystem state belongs to a temporary fixture. A logical clock prevents\nreal minutes of waiting; time advances only through explicit sleeps or stated\ntimeout fixtures. Unmocked sampling is forbidden.\n",
+  "commit": "b34b5e1469631fc1f6773e9fdc326cdd350b83ad",
+  "source_sha256": {
+    "p2": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "p3": "74a5289e6feac01357e437bc992ce990ad10d74dd1cd050b3fa7b855e2919a0b"
+  },
+  "cases": {
+    "normal_worker_control": {
+      "receipt": {
+        "shards": 1,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "terminal": "COMPLETE",
+      "claims": []
+    },
+    "single_unlock_error_strands_live_owner": {
+      "faults_injected": 1,
+      "receipt": {
+        "ended_by": "OwnerUncertain",
+        "transient_errors": null,
+        "lock_busy": null
+      },
+      "logical_elapsed_seconds": 0.0,
+      "deadline_seconds": 15.0,
+      "terminal": null,
+      "claims_left": [
+        "W1_9999499_s00007_000000000_000000005@unlock[0].fixture.0r0"
+      ],
+      "checkpoint_status": null,
+      "lock_owner_is_worker": true,
+      "owner_still_alive": null,
+      "diagnostic": "",
+      "fixture_wait_constants": {
+        "LOCK_PATIENCE": 5.0,
+        "PARK_SECS": 0.0,
+        "BACKOFF_SECS": 0.0
+      }
+    },
+    "busy_frontier_starves_healthy_setting": {
+      "busy_settings": [
+        "s00000",
+        "s00001",
+        "s00002",
+        "s00003",
+        "s00004",
+        "s00005"
+      ],
+      "tickets_per_busy_setting": 28,
+      "healthy_setting": "s00006",
+      "attempts": [
+        "W1_0000001_s00006_000000000_000000001",
+        "LockBusy: no claimable ticket: all 6 settings with tickets are busy"
+      ],
+      "healthy_ticket_still_queued": false,
+      "claims": [
+        "W1_0000001_s00006_000000000_000000001@reader[0].fixture.0r0"
+      ],
+      "logical_elapsed_seconds": 60.74879800699637,
+      "note": "Actual claim/held/lock functions; default CLAIM_PATIENCE=5; no real waiting or PBS query."
+    },
+    "recovery_scan_outlives_deadline_and_margin": {
+      "claims_scanned": 0,
+      "wait_seconds_each": 5.0,
+      "worker_deadline_seconds": 60.0,
+      "logical_elapsed_seconds": 0.0,
+      "waits_started_after_deadline": 0,
+      "worker_deadline_plus_30_min_margin_exceeded_by": -1860.0,
+      "receipt": {
+        "shards": 0,
+        "discarded_tickets": 0,
+        "requeued_censored": 0,
+        "stale_requeued": 0,
+        "failed_shards": 0,
+        "transient_errors": 0,
+        "lock_busy": 0,
+        "adopted": 0
+      },
+      "diagnostic_lines": 0,
+      "injection_boundary": "held context reports each permitted five-second live-owner timeout; work/recover_stale are actual source"
+    },
+    "pbs_live_answer_cached_control": {
+      "queries": [
+        1000.0
+      ],
+      "cache": "{('/opt/pbs/bin/qstat', 'job[0].fixture'): (1000.0, False)}"
+    },
+    "pbs_timeout_not_cached": {
+      "query_offsets_seconds": [
+        0.0
+      ],
+      "queries_within_300_seconds": 1,
+      "elapsed_seconds": 60.0,
+      "cache": "{('/opt/pbs/bin/qstat', 'job[0].fixture'): (1240.0, False)}"
+    }
+  },
+  "all_assertions_passed": "assertions disabled: outcomes recorded",
+  "timestamp": "2026-10-21T15:25:56.399079+11:00"
+}

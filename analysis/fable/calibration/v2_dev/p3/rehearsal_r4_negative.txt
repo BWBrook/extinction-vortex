@@ -1,0 +1,4 @@
+== checksum (stage 3eafd94d): stage checksum failed: nothing installed
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== err_not_invalid (stage 3eafd94d): round 1 errors are not one-to-one with the rows marked invalid
+   ledger lines 1; qsub calls 0; settings_r2 absent

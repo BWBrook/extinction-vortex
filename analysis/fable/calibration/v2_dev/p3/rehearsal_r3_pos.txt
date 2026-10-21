@@ -1,0 +1,64 @@
+# positive rehearsal (stage 1e75c7ed), first run then rerun
+## run 1
+== 2026-10-21 15:33:02 AEDT verify stage
+stage OK
+== install
+== round-2 settings
+round 1: {'COMPLETE': 14482, 'incomplete': 61, 'invalid': 1} invalid ['s00150'] | round 2 dirs: W1 62 W2 7272
+select /data/fable/vortex/r3rehearse_pos/s1b/p3_settings_r2.json.new f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d 7334 {'W1': 62, 'W2': 7272}
+f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d  /data/fable/vortex/r3rehearse_pos/s1b/p3_settings_r2.json
+== release round 1
+reserve	s1b	W1	s1b_5e346b76_a	199688.000	2026-10-17T10:55:43+1100	settings=86545d6b outdir=/u/bwbrook/vortex/run1/s1b/run jobs=520 cpus=8 wall=172800
+release	s1b_5e346b76_a	manual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T15:33:11+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)
+== 15:33:11 submit W1 (new; 300 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_9fdadee4_a", "reservation_cpu_h": 115208.0, "recorded": true, "wave_reserved": 115208.0, "campaign_reserved": 115208.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+seed W1 {'imported': 4, 'complete_at_seed': 0, 'planned': 62}
+wave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+== 15:33:43 submit W2 (new; 570 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_076de863_a", "reservation_cpu_h": 218888.0, "recorded": true, "wave_reserved": 218888.0, "campaign_reserved": 334096.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+seed W2 {'imported': 360, 'complete_at_seed': 0, 'planned': 7272}
+wave W2 (W2): array 900002.fixture (570 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+release	s1b_5e346b76_a	manual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T15:33:11+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)
+reserve	s1b	W1	s1b_9fdadee4_a	115208.000	2026-10-21T15:33:39+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=300 cpus=8 wall=172800
+reserve	s1b	W2	s1b_076de863_a	218888.000	2026-10-21T15:34:14+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+DISPATCH_DONE 2026-10-21 15:45:26 AEDT
+## run 2 (rerun: must resume)
+== 2026-10-21 15:45:26 AEDT verify stage
+stage OK
+== install
+== round-2 settings
+round 1: {'COMPLETE': 14482, 'incomplete': 61, 'invalid': 1} invalid ['s00150'] | round 2 dirs: W1 62 W2 7272
+select /data/fable/vortex/r3rehearse_pos/s1b/p3_settings_r2.json.new f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d 7334 {'W1': 62, 'W2': 7272}
+f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d  /data/fable/vortex/r3rehearse_pos/s1b/p3_settings_r2.json
+== release round 1
+already released
+reserve	s1b	W1	s1b_9fdadee4_a	115208.000	2026-10-21T15:33:39+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=300 cpus=8 wall=172800
+reserve	s1b	W2	s1b_076de863_a	218888.000	2026-10-21T15:34:14+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+== 15:45:35 submit W1 (resume; 300 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_9fdadee4_a", "reservation_cpu_h": 115208.0, "recorded": false, "wave_reserved": 115208.0, "campaign_reserved": 334096.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1): array 900000.fixture (300 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+== 15:46:21 submit W2 (resume; 570 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_076de863_a", "reservation_cpu_h": 218888.0, "recorded": false, "wave_reserved": 218888.0, "campaign_reserved": 334096.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2): array 900002.fixture (570 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+release	s1b_5e346b76_a	manual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T15:33:11+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)
+reserve	s1b	W1	s1b_9fdadee4_a	115208.000	2026-10-21T15:33:39+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=300 cpus=8 wall=172800
+reserve	s1b	W2	s1b_076de863_a	218888.000	2026-10-21T15:34:14+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+DISPATCH_DONE 2026-10-21 15:46:58 AEDT
+## ledger
+reserve	s1b	W1	s1b_5e346b76_a	199688.000	2026-10-17T10:55:43+1100	settings=86545d6b outdir=/u/bwbrook/vortex/run1/s1b/run jobs=520 cpus=8 wall=172800
+release	s1b_5e346b76_a	manual: array 821088[] and collector 821089 job_state F (qstat -x, 2026-10-21T15:33:11+1100); ceilings now bound in-flight reservations (Barry 21 Oct 2026, board 2123; design 9d)
+reserve	s1b	W1	s1b_9fdadee4_a	115208.000	2026-10-21T15:33:39+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=300 cpus=8 wall=172800
+reserve	s1b	W2	s1b_076de863_a	218888.000	2026-10-21T15:34:14+1100	settings=f76fb3b1e5048b2d3bdbae99ad73287cdae437b47a0b1fdd249c998e4e05304d outdir=/data/fable/vortex/r3rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+## qsub calls
+s1b_9fdadee4_a VBASE=/data/fable/vortex/r3rehearse_pos,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W1,TAG=W1,JOBCPUS=8,WALL_SECS=172800 0-299
+s1b_9fdadee4_c VBASE=/data/fable/vortex/r3rehearse_pos,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W1,TAG=W1 collector
+s1b_076de863_a VBASE=/data/fable/vortex/r3rehearse_pos,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W2,TAG=W2,JOBCPUS=8,WALL_SECS=172800 0-569
+s1b_076de863_c VBASE=/data/fable/vortex/r3rehearse_pos,SETTINGS=p3_settings_r2.json,OUTDIR=run2,WAVE=W2,TAG=W2 collector

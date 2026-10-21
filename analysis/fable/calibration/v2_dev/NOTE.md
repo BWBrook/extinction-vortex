@@ -1124,3 +1124,72 @@ Receipt: `p3/w1_dispatch_receipt.txt`.
     before the ledger (`p3/rehearsal_r2_*.out`).
 - **Production stage tar:** `b49d00f0…`, with every file byte-identical to the
   rehearsed and smoked copies.
+
+### Round-2 repairs after Codex 2142 (21 October 2026)
+
+Codex held 9a773c9 (board 2142; `notes/astra_s1b_r2_review_20261021.md`) with
+five reproduced failures, plus three protections needed before later topups.
+All are repaired; design §9e lists the changes. Runner `841feff9…`; stage tar
+`3eafd94d…`.
+
+- **Runner fixtures 35/35** on deep-server (Python 3.12.3;
+  `p3/p3_test_receipt_r4.txt`; the 34/34 of `p3_test_receipt_r3.txt` is the
+  intermediate runner `2d09bc7a…`). Eight are new regressions:
+  - a stale certificate under the same owner name and another pid cannot
+    break a live lock;
+  - a failed releasing rename ends the worker with `OwnerUncertain`, and the
+    next worker breaks the lock through the certificate and finishes the
+    setting with an identical library;
+  - six busy settings × 28 tickets cannot hide a healthy setting;
+  - a recovery scan of 392 claims on busy locks stops at a 2 s deadline;
+  - a timed-out PBS query is clipped to the deadline and cached (one query for
+    four calls);
+  - pack and log are isolated per tag;
+  - a setting changed while read is retried and collected;
+  - a wave-wide validation failure costs a single pause.
+- **Codex's own harness on the repaired code**
+  (`p3/codex_core_checks_outcomes_r3.json`, run on runner `2d09bc7a…`, which
+  differs from the final runner only in the collector's retry; assertions
+  recorded rather than enforced):
+  - the release fault now ends the worker;
+  - the healthy setting s00006 is claimed on the first call;
+  - one PBS query in 60 s instead of four;
+  - its recovery case uses empty certificate files, which are no longer
+    accepted, so `deadline_bounds_recovery_scan` covers it instead.
+- **Node fixtures 4/4** under bash 5.2 and 4.2.46 (`kunanyi/s1b_node_fixture*.json`).
+  They cover a rerun with the same PBS job ID (distinct owner names, exact
+  certificates, the live lock not stolen) and a restart after exit 3, with both
+  processes certified. Against the reviewed node script the fixture fails at
+  its first certificate, which was empty.
+- **Submitter fixtures 12/12** under bash 5.2 and 4.2.46; the new case refuses
+  a topup with another settings digest.
+- **Dispatch rehearsals.** The dispatch script and gate are byte-identical
+  across stages `1e75c7ed…` and `3eafd94d…`; the stages differ only in the
+  runner's collector retry.
+  - **Stage `1e75c7ed…`** (`p3/rehearsal_r3_*`): seven negative cases.
+  - **Final stage `3eafd94d…`** (`p3/rehearsal_r4_*`): the positive run, its
+    resuming rerun ("already released", identical settings, both waves
+    resumed, no new qsub), and the checksum and error-mapping negative cases.
+  - Each negative case refuses with no `p3_settings_r2.json`, no ledger line
+    and no qsub:
+  - a tampered stage refuses before installing anything;
+  - a wrong summary digest;
+  - a wrong binding;
+  - a duplicate row;
+  - a changed row identity;
+  - an unknown status;
+  - an error on a non-invalid row.
+- **Fault-injection smoke D on the exact final package** (runner `841feff9…`,
+  stage `3eafd94d…`; `p3/smoke_r2d_*`):
+  - `collection_ok` for both waves: W1 4 COMPLETE and 2 CAPPED; W2 2 CAPPED;
+  - all four libraries are byte-identical to `smoke_deep3`;
+  - determinism exit 0: 174,302 batches and 2,310 records identical;
+  - five `kill -9` restarts; 26 well-formed certificates with three distinct
+    invocation nonces;
+  - the foreign-host ghost lock broke on its JSON certificate, 3 claims were
+    requeued by certificate, and no claims were left.
+  - The RSS sampler matched `python3` and so recorded nothing, because the
+    workers now run as `python`; smokes B and C give 82 MB (W1) and 73 MB (W2).
+  - Smoke C (runner `2d09bc7a…`) ran the same faults as a stress test. Its
+    receipts are not needed for the final package.
+

@@ -1,0 +1,14 @@
+== checksum: stage checksum failed: nothing installed
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== bad_sha: round 1 summary is not the verified one
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== bad_binding: round 1 summary is not bound to the round-1 settings, metric and runner
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== dup_row: round 1 rows are not exactly the W1 inventory
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== bad_identity: s00007: row identity differs from the settings
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== bad_status: s00009: unknown status or library inconsistent with status
+   ledger lines 1; qsub calls 0; settings_r2 absent
+== err_not_invalid: round 1 errors are not one-to-one with the rows marked invalid
+   ledger lines 1; qsub calls 0; settings_r2 absent

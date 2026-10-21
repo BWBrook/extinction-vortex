@@ -35,13 +35,20 @@ esac
 [ -z "$LABEL" ] || [[ "$LABEL" =~ ^[a-z0-9]+$ ]] || die "a label is lower-case letters and digits"
 TAG="$WAVE${LABEL:+_$LABEL}"
 S="$VBASE/s1b"; RUN="$S/$OUTDIR"; R="$RUN/submit_$TAG"; K="$VBASE/src/analysis/fable/calibration/kunanyi"; J="$R/submit_journal.tsv"
-if [ "$MODE" = topup ]; then [ -e "$RUN/submit_$WAVE/submit_journal.tsv" ] || die "topup needs the wave's seeded first submission in $RUN/submit_$WAVE"; fi
 mkdir -p "$R/logs"
 mkdir "$S/.ledger.lock" 2>/dev/null || die "another Stage 1b submission holds $S/.ledger.lock (remove it only if none is running)"
 trap 'rmdir "$S/.ledger.lock"' EXIT
 mkdir "$R/.submit.lock" 2>/dev/null || die "another submission holds $R/.submit.lock (remove it only if none is running)"
 trap 'rmdir "$R/.submit.lock"; rmdir "$S/.ledger.lock"' EXIT
 SHA=$(sha256sum "$S/$SETTINGS" | cut -d' ' -f1)
+if [ "$MODE" = topup ]; then     # a topup joins the run its wave was seeded into: same settings file and digest
+  [ -e "$RUN/submit_$WAVE/submit_journal.tsv" ] || die "topup needs the wave's seeded first submission in $RUN/submit_$WAVE"
+  SEEDED="settings=$SETTINGS sha256=$SHA outdir=$RUN wave=$WAVE tag=$WAVE "
+  case "$(cat "$RUN/submit_$WAVE/run.json")" in
+    "$SEEDED"*) ;;
+    *) die "topup settings differ from the wave's seeded submission ($RUN/submit_$WAVE/run.json)" ;;
+  esac
+fi
 RID=$(printf '%s %s %s %s %s' "$SHA" "$R" "$NJOBS" "$JOBCPUS" "$WALL" | sha256sum | cut -c1-8)   # a new shape is a new name
 ID="settings=$SETTINGS sha256=$SHA outdir=$RUN wave=$WAVE tag=$TAG jobs=$NJOBS cpus=$JOBCPUS walltime=$WALL"
 if [ -e "$J" ]; then             # a journal fixes the identity; before any request, a refused attempt leaves nothing bound

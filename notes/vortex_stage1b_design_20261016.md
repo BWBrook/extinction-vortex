@@ -399,18 +399,31 @@ The hit-rate ratio is against the cell's pooled prior, which is weighted by
 proposals, so a typical pilot outer sits below it.
 
 - **Kunanyi's throughput and the pilot outers were projected correctly.**
-- **The excess is in the tail of unseen n = 30 outers.** Each cell's 10 pilot
-  outers underestimate the cell mean of a heavy-tailed cost. The median setting
-  is on projection; the costly unseen outers lie in the tail.
+- **The scope of the 1.19 ratio** (corrected after Codex 2142). It covers the
+  4,251 unseen n = 30 primary settings that completed, out of 6,840. It is an
+  estimated cost to the K-th-hit batch, prorated from each prefix's average
+  CPU per batch.
+  - The same settings' recorded useful and discarded CPU is 1.247× their
+    projection.
+  - The ratio excludes unresolved, capped and invalid settings, so it
+    establishes neither the full cell means nor the cost of the unresolved tail.
+  - The median completed unseen setting is on projection, which points to a
+    heavy tail of costly outers that the 10 pilot outers per cell do not
+    capture.
 - **Discards:** 6,638 CPU-h (6%) on COMPLETE n = 30 settings is the planned
-  parallel overshoot. The 20,029 CPU-h on incomplete n = 30 settings is the
-  defect's damage: for example, s07690 has 29 ranges with the first blocked
-  while 28 finished.
-- **Restarting the 4,847 open settings** is estimated at about 92k CPU-h
-  (cell means of realised costs, or 1.25× round-1 spend where larger).
-- **W2 projection** (722,608 expected): with the same unseen-outer factor of
-  1.2–1.35 and the planned overshoot, roughly 0.9–1.1M worker CPU-h. That is
-  about two weeks at 2,600–3,000 cores.
+  parallel overshoot. The 20,029 CPU-h outside incomplete n = 30 settings'
+  usable prefixes includes the defect's damage (for example, s07690 has 29
+  ranges with the first blocked while 28 finished). It is not a causal estimate
+  of that damage: later committed work can also wait behind an ordinarily
+  unfinished earlier range.
+- **Restart estimate:** about 92k CPU-h for the 4,846 incomplete rows (cell
+  means of realised costs, or 1.25× round-1 spend where larger). The invalid
+  s18085 is not included. This is a planning heuristic.
+- **W2 planning scenario** (722,608 expected): with a similar unseen-outer
+  excess and the planned overshoot, roughly 0.9–1.1M worker CPU-h. This is a
+  scenario, not a forecast; the unresolved tail is not priced.
+- **Wall time** is conditional on the running CPUs the scheduler grants. W1
+  peaked at 2,624; queued CPUs are capped at 7,000 (§9d).
 
 **Settings** (14,544 in W1): 9,695 COMPLETE, 2 CAPPED, 0 FAILED, 4,847 open
 (including s18085).
@@ -500,12 +513,22 @@ Runner `ee5e8cd6…` (fixtures 27/27):
 - They remain bound in the settings (hash-bound, so unchanged). The ledger now
   enforces them as **bounds on in-flight reservations**:
   - each finished array gets a `release` line citing its PBS accounting;
-  - total spending is the sum of reserve lines, reported separately.
+  - reserve lines are reserved-budget history, not spending.
+- **Spending is reported as four separate measures:**
+  - reservation history;
+  - accepted PBS allocation (subjobs × CPUs × walltime used);
+  - PBS CPU usage;
+  - the checkpoint-accounted useful and discarded CPU.
 - **The per-setting 2,000 h proposal cap is unchanged.** It is a stopping rule,
   CAPPED is a reported outcome, and changing it would change the design.
 
-**Shapes.** kunanyi limits a user to 3,000 running CPUs, 7,000 queued CPUs
-(`max_queued_res.ncpus`) and 4,000 queued jobs. Round 2 therefore opens with:
+**Shapes.** kunanyi's per-user limits (`qmgr`, 21 October) are:
+- `max_run = 3000` running **jobs** (not CPUs; corrected after Codex 2142);
+- `max_queued_res.ncpus = 7000` CPUs, which counts queued and running
+  requests;
+- `max_queued = 4000` jobs.
+
+Round 2 therefore opens with:
 - W1 r2: 300 × 8 × 48 h;
 - W2 a: 570 × 8 × 48 h;
 - 6,960 CPUs plus two collectors in all.
@@ -513,3 +536,64 @@ Runner `ee5e8cd6…` (fixtures 27/27):
 Later W2 arrays follow as earlier ones finish, each reserved and released the
 same way. Over-provisioning costs only minutes, because a worker exits when
 the queue is empty.
+
+### 9e. Repairs after Codex 2142 (21 October 2026)
+
+Runner `841feff9…`; stage tar `3eafd94d…`. Each of Codex's reproduced failures
+is now a passing regression.
+
+1. **Exact death certificates.**
+   - Owner names are `<PBS job>.<slot>r<restart>n<nonce>`, with the nonce drawn
+     per node invocation, so a rerun under the same PBS job never reuses a name.
+     The PBS job identity stays parseable before the last dot.
+   - `s1b_node.pbs` starts each worker in the background, waits for its pid,
+     and certifies `{owner, host, pid, rc}` by atomic rename.
+   - A certificate breaks a lock only if it names the lock owner's host and pid.
+     For a claim, the unique owner name suffices.
+2. **Uncertain ownership.**
+   - If `unlock` cannot read its owner record, or its releasing rename fails,
+     it raises `OwnerUncertain`. That is a `BaseException`, outside every worker
+     handler. The process exits 75, and its node script certifies it and
+     restarts the slot, so other workers break the lock through the
+     certificate. A retried rename could have removed a successor's lock.
+   - A publication whose rename reported failure but took effect is recognised
+     by its token in `lock()`.
+3. **Busy settings cannot hide healthy work.** `claim()` keeps passing over busy
+   settings, with all their tickets, until it claims a ticket, has found every
+   setting with tickets busy (`LockBusy`), or reaches the deadline.
+4. **Absolute deadlines.**
+   - The worker's deadline bounds `claim`, `recover_stale` (it stops scanning),
+     every lock wait and every PBS query (timeout clipped; none within 1 s of
+     the deadline).
+   - Commit-time lock waits end no later than deadline + `LOCK_PATIENCE`.
+   - A failed or timed-out PBS query is cached for `PBS_SUSPECT_SECS` like any
+     other answer.
+5. **Dispatch.**
+   - A stage checksum failure stops before installation.
+   - The gate checks the round-1 summary's exact digest (`2aa92fb0…`); its
+     binding to the round-1 settings, metric and runner; the unique W1
+     inventory with unchanged row identities; known statuses (COMPLETE exactly
+     when a library exists) with consistent counts and incomplete list; and
+     errors one-to-one with the invalid rows.
+   - Every step is repeatable:
+     - an existing `p3_settings_r2.json` must be identical;
+     - the release is written once;
+     - each wave is submitted new, or resumed if it has a journal.
+6. **Before later topups:**
+   - a topup must use the wave's seeded settings file and digest (from
+     `submit_<WAVE>/run.json`);
+   - collectors use `collect_<TAG>.{json,log}` and `pack_<TAG>.txt`, so two
+     collectors of one wave share no files.
+   - **Collection contract:** a collection taken while another array of the
+     wave may run is a snapshot. After one `RETRY_SECS` (30 s) pause, the
+     settings that failed validation are re-read once; the pause is taken once
+     per collection, so a wave-wide failure still yields a summary within the
+     walltime. Only a collection taken after every array of the wave has ended
+     is authoritative.
+7. **Determinism check, now sparse.**
+   - Committed coverage is held as intervals, and only the records inside the
+     other run's coverage are compared, by identity and then by bytes.
+   - Journals are verified against their checkpoints, and every listed setting
+     must exist in both runs.
+   - Exit codes: 0 when identical with positive coverage; 1 for an identity
+     difference, a missing setting or no coverage; 2 for byte-only differences.

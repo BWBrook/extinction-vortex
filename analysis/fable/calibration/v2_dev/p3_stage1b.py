@@ -42,6 +42,7 @@ CLAIM_PATIENCE, LOCK_PATIENCE = 5.0, 600.0      # seconds a lock wait may last w
 PBS_SUSPECT_SECS = 300.0         # a lock is checked against PBS only after this long, and each job at most this often
 RECOVER_SECS = 600.0             # how often a worker requeues claims of certified-dead workers
 PARK_SECS, BACKOFF_SECS, MAX_ERRORS = 60.0, 0.5, 30   # retry delay of an interrupted claim; error backoff and its limit
+RETRY_SECS = 30.0                # a collector's pause before re-reading a setting that failed validation
 
 
 def primary_index(pi, si, t, ni):
@@ -205,23 +206,40 @@ def pid_alive(pid):
 _PBS = {}                        # (qstat, job) -> (time of query, finished); a finished answer is final
 
 
-def owner_dead(info, qstat=QSTAT, cert=None, pbs=True):
-    """Positive evidence only: a death certificate for the owner (its node script reaped the process), same host and pid
-    gone, or (when pbs) the owner's PBS job reported finished (job_state F), each job queried at most once per
-    PBS_SUSPECT_SECS."""
+def certified(cert, info):
+    """A death certificate for this exact owner: s1b_node.pbs writes workers/dead/<owner> ({owner, host, pid, rc}) after
+    reaping the process. Owner names are unique per node invocation; for a lock (info with a pid) the certificate must
+    also name the lock owner's host and pid."""
     own = info.get("owner")
-    if cert and own and os.path.exists(os.path.join(cert, own)):
+    if not (cert and own):
+        return False
+    try:
+        c = jload(os.path.join(cert, own))
+    except (OSError, ValueError):
+        return False
+    return c.get("owner") == own and (info.get("pid") is None or (c.get("host"), c.get("pid")) == (info.get("host"), info.get("pid")))
+
+
+def owner_dead(info, qstat=QSTAT, cert=None, pbs=True, deadline=math.inf):
+    """Positive evidence only: a death certificate for the exact owner process, same host and pid gone, or (when pbs) the
+    owner's PBS job reported finished (job_state F). Each job is queried at most once per PBS_SUSPECT_SECS, failed
+    queries included, and never past the deadline."""
+    if certified(cert, info):
         return True
-    if info.get("host") == os.uname().nodename:
+    if info.get("host") == os.uname().nodename and info.get("pid") is not None:
         return not pid_alive(info["pid"])
-    job = (own or "").rsplit(".", 1)[0]
+    job = (info.get("owner") or "").rsplit(".", 1)[0]
     if not pbs or ("[" not in job and ".kunanyi" not in job):
         return False
     c = _PBS.get((qstat, job))
     if c and (c[1] or time.time() - c[0] < PBS_SUSPECT_SECS):
         return c[1]
+    left = deadline - time.time()
+    if left <= 1.0:
+        return False
+    _PBS[(qstat, job)] = (time.time(), False)
     try:
-        out = subprocess.run([qstat, "-x", "-f", job], capture_output=True, text=True, timeout=60).stdout
+        out = subprocess.run([qstat, "-x", "-f", job], capture_output=True, text=True, timeout=min(60.0, left)).stdout
     except Exception:
         return False
     r = any(l.strip() == "job_state = F" for l in out.splitlines()); _PBS[(qstat, job)] = (time.time(), r)
@@ -234,6 +252,11 @@ class LockStale(RuntimeError):
 
 class LockBusy(RuntimeError):
     """A lock stayed with a live (not positively ended) owner for longer than the caller's patience."""
+
+
+class OwnerUncertain(BaseException):
+    """Releasing a held lock failed, so whether this process still owns it is unknown. Not caught by the worker: the
+    process ends (exit 75) and its node script's death certificate lets other workers break the lock."""
 
 
 def _owner(path):
@@ -255,19 +278,19 @@ def _publish(path, me):
         shutil.rmtree(tmp, ignore_errors=True); return False
 
 
-def _reclaim(d, observed, me, qstat=QSTAT, cert=None):
+def _reclaim(d, observed, me, qstat=QSTAT, cert=None, deadline=math.inf):
     """Break the ended generation `observed` of lock d. Only one reclaimer at a time (the d.reclaim mutex), and only while
     d still holds that generation's token: a stale observation can never remove a successor's lock. A reclaim mutex whose
     own owner has ended is not broken automatically (LockStale)."""
     r = f"{d}.reclaim"
     if not _publish(r, me):
         info = _owner(r)
-        if info and owner_dead(info, qstat, cert):
+        if info and owner_dead(info, qstat, cert, deadline=deadline):
             raise LockStale(f"{r}: reclaim mutex held by an ended owner; operator recovery needed")
         return False
     try:
         cur = _owner(d)
-        if cur and cur["token"] == observed["token"] and owner_dead(cur, qstat, cert):
+        if cur and cur["token"] == observed["token"] and owner_dead(cur, qstat, cert, deadline=deadline):
             os.rename(d, f"{d}.broken.{observed['token']}")
             return True
         return False
@@ -276,11 +299,12 @@ def _reclaim(d, observed, me, qstat=QSTAT, cert=None):
         os.rename(r, rel); shutil.rmtree(rel, ignore_errors=True)
 
 
-def lock(sdir, owner, qstat=QSTAT, patience=None):
+def lock(sdir, owner, qstat=QSTAT, patience=None, deadline=math.inf):
     """Owner-safe lock: a directory holding owner.json, published by an atomic rename (never an empty directory, so a
     rename cannot replace a live one). It is broken only on positive evidence that its owner has ended, never on age,
-    and only through _reclaim; unlock requires the acquiring token. PBS is asked about an owner only once the same lock
-    generation has been seen for PBS_SUSPECT_SECS. With patience, a wait longer than that many seconds raises LockBusy."""
+    and only through _reclaim; unlock requires the acquiring token. A publication whose rename reported failure but
+    took effect is recognised by its token. PBS is asked about an owner only once the same lock generation has been seen
+    for PBS_SUSPECT_SECS. A wait longer than patience seconds, or past the deadline, raises LockBusy."""
     d = os.path.join(sdir, "lock"); cert = os.path.join(os.path.dirname(os.path.dirname(sdir)), "workers", "dead")
     me = {"owner": owner, "host": os.uname().nodename, "pid": os.getpid(), "token": os.urandom(8).hex()}
     t0, seen = time.time(), {}
@@ -288,29 +312,42 @@ def lock(sdir, owner, qstat=QSTAT, patience=None):
         if _publish(d, me):
             return d, me["token"]
         info = _owner(d)
+        if info is not None and info.get("token") == me["token"]:
+            return d, me["token"]
         if info is None:
             time.sleep(0.05)
         else:
             first = seen.setdefault(info.get("token"), time.time())
-            if owner_dead(info, qstat, cert, pbs=time.time() - first >= PBS_SUSPECT_SECS) and _reclaim(d, info, me, qstat, cert):
+            if owner_dead(info, qstat, cert, pbs=time.time() - first >= PBS_SUSPECT_SECS, deadline=deadline) \
+                    and _reclaim(d, info, me, qstat, cert, deadline):
                 continue
             time.sleep(0.05 + random.random() * 0.1)
-        if patience is not None and time.time() - t0 > patience:
-            raise LockBusy(f"{d}: held by a live owner for over {patience:.0f} s")
+        if (patience is not None and time.time() - t0 > patience) or time.time() > deadline:
+            raise LockBusy(f"{d}: held by a live owner past the wait limit")
 
 
 def unlock(L):
+    """Release by token. If reading the owner record or the releasing rename fails, ownership is uncertain:
+    OwnerUncertain ends the process, whose certified death lets others break the lock (a retried rename could remove a
+    successor's lock)."""
     d, token = L
-    info = jload(os.path.join(d, "owner.json"))
+    try:
+        info = jload(os.path.join(d, "owner.json"))
+    except OSError as ex:
+        raise OwnerUncertain(f"{d}: owner record unreadable at release: {ex}")
     if info["token"] != token:
         raise RuntimeError(f"{d}: lock is not owned by this holder")
     rel = f"{d}.rel.{token}"
-    os.rename(d, rel); shutil.rmtree(rel, ignore_errors=True)      # NFS keeps a silly-renamed file a reader still holds
+    try:
+        os.rename(d, rel)
+    except OSError as ex:
+        raise OwnerUncertain(f"{d}: releasing rename failed: {ex}")
+    shutil.rmtree(rel, ignore_errors=True)      # NFS keeps a silly-renamed file that a reader still holds
 
 
 class held:
-    def __init__(self, sdir, owner, qstat=QSTAT, patience=None):
-        self.args = (sdir, owner, qstat, patience)
+    def __init__(self, sdir, owner, qstat=QSTAT, patience=None, deadline=math.inf):
+        self.args = (sdir, owner, qstat, patience, deadline)
 
     def __enter__(self):
         self.L = lock(*self.args); return self.L
@@ -466,23 +503,29 @@ def parse_ticket(t):
     return w, d, int(a), int(b_)
 
 
-def claim(run, owner, wave, qstat=QSTAT):
+def claim(run, owner, wave, qstat=QSTAT, deadline=math.inf):
     """Claim one of this wave's tickets (atomic rename) while holding its setting's lock: a random one of the first 32
-    tickets in priority order, among settings not found busy. A setting whose lock stays busy for CLAIM_PATIENCE (or
-    awaits an operator) is passed over with all its tickets. None means the wave has no tickets; LockBusy means it has
-    tickets but none could be claimed."""
+    tickets in priority order among settings not yet found busy. A setting whose lock stays busy for CLAIM_PATIENCE (or
+    awaits an operator) is passed over with all its tickets, and the scan continues past it until a ticket is claimed,
+    every setting with tickets has been found busy, or the deadline passes. None means the wave has no tickets;
+    LockBusy means it has tickets but none could be claimed."""
     q = os.path.join(run, "queue"); busy = set()
-    for _ in range(3):
+    while time.time() < deadline:
         names = sorted(n for n in ls(q) if n.startswith(f"{wave}_"))
         if not names:
             return None
-        head = [t for t in names if parse_ticket(t)[1] not in busy][:32]; random.shuffle(head)
+        head = [t for t in names if parse_ticket(t)[1] not in busy][:32]
+        if not head:
+            raise LockBusy(f"no claimable ticket: all {len(busy)} settings with tickets are busy")
+        random.shuffle(head)
         for t in head:
             d = parse_ticket(t)[1]
             if d in busy:
                 continue
+            if time.time() >= deadline:
+                break
             try:
-                with held(os.path.join(run, "sets", d), owner, qstat, CLAIM_PATIENCE):
+                with held(os.path.join(run, "sets", d), owner, qstat, CLAIM_PATIENCE, deadline):
                     try:
                         os.rename(os.path.join(q, t), os.path.join(run, "claimed", f"{t}@{owner}"))
                         return t
@@ -492,22 +535,24 @@ def claim(run, owner, wave, qstat=QSTAT):
                 busy.add(d)
             except LockStale as ex:                      # that setting waits for an operator; others proceed
                 busy.add(d); print(f"skipping {t}: {ex}", file=sys.stderr, flush=True)
-    raise LockBusy(f"no claimable ticket among {len(busy)} busy settings")
+    raise LockBusy("claim reached the deadline")
 
 
-def recover_stale(run, owner, wave, qstat=QSTAT, pbs=True):
+def recover_stale(run, owner, wave, qstat=QSTAT, pbs=True, deadline=math.inf):
     """Requeue this wave's claims whose owner has positively ended, under the setting lock: a death certificate, or
-    (when pbs) the owning PBS job reported finished (job_state F)."""
+    (when pbs) the owning PBS job reported finished (job_state F). The scan stops at the deadline."""
     me = owner.rsplit(".", 1)[0]; cert = os.path.join(run, "workers", "dead"); seen, n = {}, 0
     for c in ls(os.path.join(run, "claimed")):
+        if time.time() >= deadline:
+            break
         t, own = c.split("@", 1); job = own.rsplit(".", 1)[0]
         if own == owner or not t.startswith(f"{wave}_"):
             continue
         if own not in seen:
-            seen[own] = owner_dead({"owner": own, "host": None}, qstat, cert, pbs=pbs and job != me)
+            seen[own] = owner_dead({"owner": own, "host": None}, qstat, cert, pbs=pbs and job != me, deadline=deadline)
         if seen[own]:
             try:
-                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat, CLAIM_PATIENCE):
+                with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat, CLAIM_PATIENCE, deadline):
                     try:
                         os.rename(os.path.join(run, "claimed", c), os.path.join(run, "queue", t)); n += 1
                     except FileNotFoundError:
@@ -546,7 +591,7 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
         _, d, a, b_ = parse_ticket(t)
         st, sdir, cpath = by_dir[d], os.path.join(run, "sets", d), os.path.join(run, "claimed", f"{t}@{owner}")
         if terminal(sdir):
-            with held(sdir, owner, qstat, patience()):
+            with held(sdir, owner, qstat, patience(), deadline + LOCK_PATIENCE):
                 os.unlink(cpath)
             done["discarded_tickets"] += 1; return None
         end, h, crossing, _ = prefix(st, sdir)
@@ -567,13 +612,13 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
         except (SystemExit, Exception) as ex:       # refused recovery or an unexpected error fails the setting, not the worker
             fail = ex
         if fail is not None:
-            with held(sdir, owner, qstat, patience()):
+            with held(sdir, owner, qstat, patience(), deadline + LOCK_PATIENCE):
                 if not terminal(sdir):
                     mark(sdir, "FAILED", {"range": a, "failure": f"{type(fail).__name__}: {fail}"})
                 os.unlink(cpath)
             done["failed_shards"] += 1; return None
         try:
-            with held(sdir, owner, qstat, patience()):
+            with held(sdir, owner, qstat, patience(), deadline + LOCK_PATIENCE):
                 if S["status"] == "censored":
                     os.rename(cpath, os.path.join(run, "queue", t)); done["requeued_censored"] += 1
                 else:
@@ -587,19 +632,19 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
         t = None
         try:
             if time.time() - last_rec >= RECOVER_SECS:
-                done["stale_requeued"] += recover_stale(run, owner, wave, qstat, pbs=False); last_rec = time.time()
+                done["stale_requeued"] += recover_stale(run, owner, wave, qstat, False, deadline); last_rec = time.time()
             t, later = adopt(run, owner, wave, parked)
             if t is not None:
                 done["adopted"] += 1
             else:
-                t = claim(run, owner, wave, qstat)
+                t = claim(run, owner, wave, qstat, deadline)
                 if t is None:
-                    done["stale_requeued"] += recover_stale(run, owner, wave, qstat)
-                    t = claim(run, owner, wave, qstat)
+                    done["stale_requeued"] += recover_stale(run, owner, wave, qstat, True, deadline)
+                    t = claim(run, owner, wave, qstat, deadline)
                     if t is None:
                         if later is None:
                             break
-                        time.sleep(min(60.0, max(1.0, later - time.time()))); continue
+                        time.sleep(max(0.0, min(60.0, max(1.0, later - time.time()), deadline - time.time()))); continue
             status = run_ticket(t); errs = 0
             if status == "censored":
                 break
@@ -608,7 +653,7 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
             if t is not None:
                 parked[t] = time.time() + PARK_SECS
             else:
-                time.sleep(BACKOFF_SECS * (10 + 20 * random.random()))
+                time.sleep(max(0.0, min(BACKOFF_SECS * (10 + 20 * random.random()), deadline - time.time())))
         except OSError as ex:
             errs += 1; done["transient_errors"] += 1
             print(f"transient error at {t}: {type(ex).__name__}: {ex}", file=sys.stderr, flush=True)
@@ -616,7 +661,7 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
                 parked[t] = time.time() + PARK_SECS
             if errs >= MAX_ERRORS:
                 raise
-            time.sleep(min(60.0, BACKOFF_SECS * 2 ** errs))
+            time.sleep(max(0.0, min(60.0, BACKOFF_SECS * 2 ** errs, deadline - time.time())))
     p2.atomic_json({"owner": owner, "wave": wave, "binding": bind, "runtime": p2.runtime(), "host": os.uname().nodename, **done},
                    os.path.join(run, "workers", f"{owner}.json"))
     return done
@@ -671,91 +716,109 @@ def verified(S, path, lo, hi, L, terminal_status):
 
 
 def collect(settings_path, metric_path, run, wave, out):
+    """Validate every setting of the wave and assemble its libraries. OUT is collect_<TAG>.json; its log and pack list are
+    collect_<TAG>.log and pack_<TAG>.txt in RUN, so collections of a wave's arrays never share files. A collection taken
+    while any worker of the wave may still run is a snapshot: the settings that fail validation are re-read once, after a
+    single RETRY_SECS pause, and only a collection taken after every array of the wave has ended is authoritative."""
     p2.atomic_json({"collection_ok": False, "state": "collecting"}, out)
+    base = os.path.basename(out)
+    tag = base[len("collect_"):-len(".json")] if base.startswith("collect_") and base.endswith(".json") else wave
     b = json.load(open(settings_path)); bind = binding(b, settings_path); metric = json.load(open(metric_path))
     rows, errors = [], []
     status = {"COMPLETE": 0, "CAPPED": 0, "FAILED": 0, "incomplete": 0}
-    for st in b["settings"]:
-        if st["wave"] != wave:
-            continue
-        sdir = os.path.join(run, "sets", st["dir"]); row = {k: st[k] for k in ("dir", "index", "pop", "outer", "n", "library")}
+
+    def one(st, sdir, row):
+        L = len(metric["outers"][f"{st['pop']}|{st['outer']}"]["recorded"])
+        pl = st["pilot"]; lines = []; useful = discarded = 0.0
+        p0 = pl["batches_done"] if pl else 0
+        if pl:
+            S = jload(os.path.join(sdir, "pilot.json"))
+            if {k: S[k] for k in pl} != pl or S.get("index") != st["index"]:
+                raise ValueError("pilot prefix differs from the bound pilot collection")
+            lines += [ln for ln, _ in verified(S, os.path.join(sdir, "pilot_hits.jsonl"), 0, p0, L, True)]
+            useful += S["cpu_seconds"]
+        rs = ranges(sdir); pos = p0
+        for a, b_ in rs:                                      # declared ranges tile [pilot end, cursor) exactly
+            if a != pos or b_ <= a or b_ > st["cap_batches"]:
+                raise ValueError(f"ranges do not tile from batch {p0}: [{a}, {b_}) at {pos}")
+            pos = b_
+        states = {}
+        for a, b_ in rs:                                      # every declared shard is validated before any use
+            S = shard_state(sdir, a)
+            if S is None:
+                continue
+            if S.get("binding") != bind or S.get("index") != st["index"] or S.get("first_batch", 0) != a:
+                raise ValueError(f"shard {a}: bound to other inputs")
+            if S["status"] not in ("complete", "censored", "running", "cancelled", "failed"):
+                raise ValueError(f"shard {a}: unknown status")
+            if S["status"] == "complete" and S.get("stop") not in ("hits", "budget"):
+                raise ValueError(f"shard {a}: complete without a stop reason")
+            if S["status"] == "complete" and S.get("stop") == "budget" and S["batches_done"] != b_ - a:
+                raise ValueError(f"shard {a}: complete by budget without covering its range")
+            if not 0 <= S["batches_done"] <= b_ - a:
+                raise ValueError(f"shard {a}: committed batches exceed its range")
+            recs = verified(S, os.path.join(sdir, f"sh{a:09d}_hits.jsonl"), a, a + S["batches_done"], L,
+                            S["status"] in ("complete", "failed", "cancelled"))
+            states[a] = (S, recs)
+        end, h, crossing, prow = prefix(st, sdir)
+        in_prefix = {a for a, _ in prow}
+        prev = (-1, -1)
+        for ln in lines:
+            prev = (json.loads(ln)["batch"], json.loads(ln)["proposal_in_batch"])
+        for a, _ in prow:
+            S, recs = states[a]; useful += S["cpu_seconds"]
+            for ln, hrec in recs:
+                if (hrec["batch"], hrec["proposal_in_batch"]) <= prev:
+                    raise ValueError("hit identities out of global order")
+                prev = (hrec["batch"], hrec["proposal_in_batch"]); lines.append(ln)
+        for a, (S, _) in states.items():
+            if a not in in_prefix:
+                discarded += S["cpu_seconds"]
+                if S["status"] == "complete" and S["batches_done"] != dict(rs)[a] - a and not crossing:
+                    raise ValueError(f"shard {a}: short completed range outside a crossing")
+        mk = terminal(sdir)
+        if mk == "COMPLETE":
+            if not crossing or len(lines) < K:
+                raise ValueError("COMPLETE marker without a verified K-hit prefix")
+            lib = b"".join(lines[:K]); p2.replace_bytes(os.path.join(run, "lib", f"{st['dir']}.jsonl"), lib)
+            row |= {"library_sha256": hashlib.sha256(lib).hexdigest(), "kth_hit": json.loads(lines[K - 1])["batch"]}
+        elif mk == "CAPPED" and not (end >= st["cap_batches"] and h < K and not crossing):
+            raise ValueError("CAPPED marker inconsistent with the prefix")
+        elif mk is None and crossing:
+            raise ValueError("verified K-hit prefix without a COMPLETE marker")
+        row |= {"status": mk or "incomplete", "prefix_end_batch": end, "prefix_hits": h, "useful_cpu_h": useful / 3600,
+                "discarded_cpu_h": discarded / 3600, "ranges": len(rs)}
+        return row
+
+    def attempt(st):
+        ident = {k: st[k] for k in ("dir", "index", "pop", "outer", "n", "library")}
         try:
-            L = len(metric["outers"][f"{st['pop']}|{st['outer']}"]["recorded"])
-            pl = st["pilot"]; lines = []; useful = discarded = 0.0
-            p0 = pl["batches_done"] if pl else 0
-            if pl:
-                S = json.load(open(os.path.join(sdir, "pilot.json")))
-                if {k: S[k] for k in pl} != pl or S.get("index") != st["index"]:
-                    raise ValueError("pilot prefix differs from the bound pilot collection")
-                lines += [ln for ln, _ in verified(S, os.path.join(sdir, "pilot_hits.jsonl"), 0, p0, L, True)]
-                useful += S["cpu_seconds"]
-            rs = ranges(sdir); pos = p0
-            for a, b_ in rs:                                      # declared ranges tile [pilot end, cursor) exactly
-                if a != pos or b_ <= a or b_ > st["cap_batches"]:
-                    raise ValueError(f"ranges do not tile from batch {p0}: [{a}, {b_}) at {pos}")
-                pos = b_
-            states = {}
-            for a, b_ in rs:                                      # every declared shard is validated before any use
-                S = shard_state(sdir, a)
-                if S is None:
-                    continue
-                if S.get("binding") != bind or S.get("index") != st["index"] or S.get("first_batch", 0) != a:
-                    raise ValueError(f"shard {a}: bound to other inputs")
-                if S["status"] not in ("complete", "censored", "running", "cancelled", "failed"):
-                    raise ValueError(f"shard {a}: unknown status")
-                if S["status"] == "complete" and S.get("stop") not in ("hits", "budget"):
-                    raise ValueError(f"shard {a}: complete without a stop reason")
-                if S["status"] == "complete" and S.get("stop") == "budget" and S["batches_done"] != b_ - a:
-                    raise ValueError(f"shard {a}: complete by budget without covering its range")
-                if not 0 <= S["batches_done"] <= b_ - a:
-                    raise ValueError(f"shard {a}: committed batches exceed its range")
-                recs = verified(S, os.path.join(sdir, f"sh{a:09d}_hits.jsonl"), a, a + S["batches_done"], L,
-                                S["status"] in ("complete", "failed", "cancelled"))
-                states[a] = (S, recs)
-            end, h, crossing, prow = prefix(st, sdir)
-            in_prefix = {a for a, _ in prow}
-            prev = (-1, -1)
-            for ln in lines:
-                prev = (json.loads(ln)["batch"], json.loads(ln)["proposal_in_batch"])
-            for a, _ in prow:
-                S, recs = states[a]; useful += S["cpu_seconds"]
-                for ln, hrec in recs:
-                    if (hrec["batch"], hrec["proposal_in_batch"]) <= prev:
-                        raise ValueError("hit identities out of global order")
-                    prev = (hrec["batch"], hrec["proposal_in_batch"]); lines.append(ln)
-            for a, (S, _) in states.items():
-                if a not in in_prefix:
-                    discarded += S["cpu_seconds"]
-                    if S["status"] == "complete" and S["batches_done"] != dict(rs)[a] - a and not crossing:
-                        raise ValueError(f"shard {a}: short completed range outside a crossing")
-            mk = terminal(sdir)
-            if mk == "COMPLETE":
-                if not crossing or len(lines) < K:
-                    raise ValueError("COMPLETE marker without a verified K-hit prefix")
-                lib = b"".join(lines[:K]); p2.replace_bytes(os.path.join(run, "lib", f"{st['dir']}.jsonl"), lib)
-                row |= {"library_sha256": hashlib.sha256(lib).hexdigest(), "kth_hit": json.loads(lines[K - 1])["batch"]}
-            elif mk == "CAPPED" and not (end >= st["cap_batches"] and h < K and not crossing):
-                raise ValueError("CAPPED marker inconsistent with the prefix")
-            elif mk is None and crossing:
-                raise ValueError("verified K-hit prefix without a COMPLETE marker")
-            row |= {"status": mk or "incomplete", "prefix_end_batch": end, "prefix_hits": h, "useful_cpu_h": useful / 3600,
-                    "discarded_cpu_h": discarded / 3600, "ranges": len(rs)}
-            status[mk or "incomplete"] += 1
+            return one(st, os.path.join(run, "sets", st["dir"]), dict(ident)), None
         except Exception as ex:
-            errors.append(f"{st['dir']}: {type(ex).__name__}: {ex}"); row["status"] = "invalid"
+            return dict(ident, status="invalid"), f"{st['dir']}: {type(ex).__name__}: {ex}"
+    wave_st = [st for st in b["settings"] if st["wave"] == wave]
+    got = [attempt(st) for st in wave_st]
+    if any(e for _, e in got):                            # one pause, then a single re-read of the settings that failed
+        time.sleep(RETRY_SECS)
+        got = [attempt(st) if e else (r, e) for st, (r, e) in zip(wave_st, got)]
+    for row, e in got:
+        if e:
+            errors.append(e)
+        else:
+            status[row["status"]] += 1
         rows.append(row)
     summary = {"collection_ok": not errors, "wave": wave, "binding": bind, "status": status, "n_errors": len(errors),
                "errors": errors[:1000], "useful_cpu_h": sum(r.get("useful_cpu_h", 0) for r in rows),
                "discarded_cpu_h": sum(r.get("discarded_cpu_h", 0) for r in rows),
                "incomplete": [r["dir"] for r in rows if r["status"] == "incomplete"],
-               "queue_left": len(os.listdir(os.path.join(run, "queue"))), "claims_left": len(os.listdir(os.path.join(run, "claimed"))),
-               "rows": rows}
+               "queue_left": len(ls(os.path.join(run, "queue"))), "claims_left": len(ls(os.path.join(run, "claimed"))),
+               "tag": tag, "rows": rows}
     p2.atomic_json(summary, out)
-    pack = [os.path.relpath(out, run), f"collect_{wave}.log"] + [f"lib/{r['dir']}.jsonl" for r in rows if r.get("library_sha256")]
+    pack = [os.path.relpath(out, run), f"collect_{tag}.log"] + [f"lib/{r['dir']}.jsonl" for r in rows if r.get("library_sha256")]
     fd, tmpf = tempfile.mkstemp(dir=run, prefix=".tmp_")
     with os.fdopen(fd, "w") as fh:
         fh.write("\n".join(pack) + "\n")
-    os.replace(tmpf, os.path.join(run, f"pack_{wave}.txt"))
+    os.replace(tmpf, os.path.join(run, f"pack_{tag}.txt"))
     print("collection_ok", summary["collection_ok"], wave, status, "useful", round(summary["useful_cpu_h"], 1),
           "discarded", round(summary["discarded_cpu_h"], 1), "incomplete", len(summary["incomplete"]), "errors", len(errors))
     if errors:
@@ -814,9 +877,13 @@ def preflight(settings_path, metric_path, ledger, name, outdir, njobs, jobcpus, 
 def test():
     """Synthetic fixtures (K = 25, batches of 10): hits are a deterministic function of (stream tag, index, batch, proposal)."""
     from unittest import mock
-    global K, BATCH
-    me = sys.modules[__name__]; res = {}; tmp = tempfile.mkdtemp(); saved = (K, BATCH)
-    K, BATCH = 25, 10
+    global K, BATCH, RETRY_SECS
+    me = sys.modules[__name__]; res = {}; tmp = tempfile.mkdtemp(); saved = (K, BATCH, RETRY_SECS)
+    K, BATCH, RETRY_SECS = 25, 10, 0.0
+
+    def certify(run, owner, host, pid):                  # what s1b_node.pbs writes after reaping a worker process
+        os.makedirs(os.path.join(run, "workers", "dead"), exist_ok=True)
+        json.dump({"owner": owner, "host": host, "pid": pid, "rc": 137}, open(os.path.join(run, "workers", "dead", owner), "w"))
     fakeq = os.path.join(tmp, "qstat_F"); open(fakeq, "w").write("#!/bin/sh\necho '    job_state = F'\n"); os.chmod(fakeq, 0o755)
 
     def fake(st, mp, bi, B, des):
@@ -1056,8 +1123,7 @@ def test():
                 except LockBusy:
                     n_q = len(open(qlog).read().splitlines()) if os.path.exists(qlog) else 0
             res["pbs_asked_at_most_once_per_interval"] = n_q in (1, 2)
-            os.remove(qlog); os.makedirs(os.path.join(run, "workers", "dead"), exist_ok=True)
-            open(os.path.join(run, "workers", "dead", "live[3].kunanyi-ohpc.0r0"), "w").close()
+            os.remove(qlog); certify(run, "live[3].kunanyi-ohpc.0r0", "elsewhere", 1)
             L_ = lock(sdir, "jobQ[0].srv.2r0", fqR, patience=5.0); unlock(L_)
             res["certified_dead_owner_lock_broken_without_pbs"] = not os.path.exists(qlog)
             # a crashed worker's claim, its job still running: requeued through its death certificate and resumed
@@ -1069,12 +1135,115 @@ def test():
                 except KeyboardInterrupt:
                     pass
             left = os.listdir(os.path.join(run, "claimed"))
-            os.makedirs(os.path.join(run, "workers", "dead"), exist_ok=True)
-            open(os.path.join(run, "workers", "dead", "jobL[0].kunanyi-ohpc.0r0"), "w").close()
+            certify(run, "jobL[0].kunanyi-ohpc.0r0", os.uname().nodename, 0)
             with mock.patch.object(me, "RECOVER_SECS", 0.0):
                 out_ = work(sp, mp, run, "W1", "jobL[0].kunanyi-ohpc.1r0", time.time() + 3600, qstat=fqR2, des={})
             res["crashed_worker_claim_recovered_by_certificate_while_job_live"] = len(left) == 1 and out_["stale_requeued"] >= 1 \
                 and collect_ok(sp, mp, run, "c.json") and lib(run) == serial
+            # Codex 2142, 1: a certificate names one process incarnation. An old certificate under the same owner name but
+            # another pid never breaks a live owner's lock
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=2)
+            pd3 = subprocess.Popen(["true"]); pd3.wait()
+            certify(run, "same[0].kunanyi-ohpc.0r0n1", os.uname().nodename, pd3.pid)
+            os.mkdir(os.path.join(sdir, "lock"))
+            json.dump({"owner": "same[0].kunanyi-ohpc.0r0n1", "host": os.uname().nodename, "pid": os.getpid(), "token": "live"},
+                      open(os.path.join(sdir, "lock", "owner.json"), "w"))
+            try:
+                lock(sdir, "thief[1].kunanyi-ohpc.0r0n2", fakeq, patience=0.5); stolen = True
+            except LockBusy:
+                stolen = False
+            res["stale_certificate_cannot_break_a_live_incarnation"] = not stolen and _owner(os.path.join(sdir, "lock"))["token"] == "live"
+            # Codex 2142, 2: a failed releasing rename ends the worker (OwnerUncertain) instead of leaving it waiting on its
+            # own lock; its certified death lets the next worker break the lock and finish the setting
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=2); fired = []
+            real_rename = os.rename
+
+            def bad_rename(src, dst):
+                if ".rel." in str(dst) and str(src).endswith(os.path.join("s00007", "lock")) and not fired:
+                    fired.append(dst); raise OSError(errno.ESTALE, "Stale file handle (fixture, at release)")
+                return real_rename(src, dst)
+            with mock.patch.object(os, "rename", bad_rename):
+                try:
+                    work(sp, mp, run, "W1", "jobU[0].kunanyi-ohpc.0r0n1", time.time() + 3600, qstat=fakeq, des={}); ended = False
+                except OwnerUncertain:
+                    ended = True
+            held_by = _owner(os.path.join(sdir, "lock"))
+            certify(run, held_by["owner"], held_by["host"], held_by["pid"])
+            out_ = work(sp, mp, run, "W1", "jobU[0].kunanyi-ohpc.1r0n1", time.time() + 3600, qstat=fakeq, des={})
+            res["uncertain_release_ends_worker_and_lock_is_recovered"] = ended and len(fired) == 1 \
+                and held_by["owner"] == "jobU[0].kunanyi-ohpc.0r0n1" and collect_ok(sp, mp, run, "c.json") and lib(run) == serial
+            # Codex 2142, 3: six busy settings with 28 tickets each ahead of one healthy setting: claim reaches it
+            d = tempfile.mkdtemp(dir=tmp); run = os.path.join(d, "run")
+            for x in ("queue", "claimed", "workers/dead"):
+                os.makedirs(os.path.join(run, x))
+            for i in range(7):
+                sd_ = os.path.join(run, "sets", f"s{i:05d}"); os.makedirs(sd_)
+                if i < 6:
+                    os.mkdir(os.path.join(sd_, "lock"))
+                    json.dump({"owner": f"ghost[{i}].elsewhere.0r0", "host": "elsewhere", "pid": 1, "token": f"g{i}"},
+                              open(os.path.join(sd_, "lock", "owner.json"), "w"))
+                for j in range(28 if i < 6 else 1):
+                    open(os.path.join(run, "queue", f"W1_0000001_s{i:05d}_{j:09d}_{j + 1:09d}"), "w").close()
+            with mock.patch.object(me, "CLAIM_PATIENCE", 0.1):
+                got3 = claim(run, "reader[0].kunanyi-ohpc.0r0", "W1", qstat="/bin/false")
+            res["busy_frontier_cannot_hide_a_healthy_setting"] = got3 == "W1_0000001_s00006_000000000_000000001"
+            # Codex 2142, 4: the worker deadline bounds a whole recovery scan; failed PBS queries are cached
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05)
+            for t_ in os.listdir(os.path.join(run, "queue")):
+                os.remove(os.path.join(run, "queue", t_))
+            certify(run, "ended[0].kunanyi-ohpc.0r0", "elsewhere", 1)
+            for i in range(14):
+                sd_ = os.path.join(run, "sets", f"s{i + 100:05d}"); os.makedirs(os.path.join(sd_, "lock"))
+                json.dump({"owner": f"busy[{i}].elsewhere.0r0", "host": "elsewhere", "pid": 1, "token": f"b{i}"},
+                          open(os.path.join(sd_, "lock", "owner.json"), "w"))
+                for j in range(28):
+                    open(os.path.join(run, "claimed", f"W1_0000001_s{i + 100:05d}_{j:09d}_{j + 1:09d}@ended[0].kunanyi-ohpc.0r0"), "w").close()
+            t0_ = time.time()
+            with mock.patch.object(me, "CLAIM_PATIENCE", 0.2), mock.patch.object(me, "BACKOFF_SECS", 0.0):
+                work(sp, mp, run, "W1", "late[0].kunanyi-ohpc.0r0", t0_ + 2.0, qstat=fakeq, des={})
+            res["deadline_bounds_recovery_scan"] = time.time() - t0_ < 6.0
+            slowq, qlog2 = os.path.join(d, "qstat_slow"), os.path.join(d, "slow.log")
+            open(slowq, "w").write(f"#!/bin/sh\necho x >> {qlog2}\nsleep 5\n"); os.chmod(slowq, 0o755)
+            _PBS.clear(); t0_ = time.time()
+            answers = [owner_dead({"owner": "slow[0].kunanyi-ohpc.0r0", "host": "elsewhere"}, slowq, deadline=t0_ + 1.5)
+                       for _ in range(4)]
+            res["failed_pbs_query_cached_and_deadline_clipped"] = answers == [False] * 4 and time.time() - t0_ < 4.0 \
+                and len(open(qlog2).read().splitlines()) == 1
+            # collector: pack list and log isolated per tag; a setting changing while read is retried once
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = drive(d, 0.05, 8, mi=4, tw=1e-6)
+            for tg in ("W1_b", "W1_c"):
+                collect(sp, mp, run, "W1", os.path.join(run, f"collect_{tg}.json"))
+            pk = open(os.path.join(run, "pack_W1_b.txt")).read().split()
+            res["collector_pack_and_log_isolated_per_tag"] = pk[:2] == ["collect_W1_b.json", "collect_W1_b.log"] \
+                and open(os.path.join(run, "pack_W1_c.txt")).read().split()[:2] == ["collect_W1_c.json", "collect_W1_c.log"]
+            os.rename(os.path.join(sdir, "COMPLETE"), os.path.join(d, "COMPLETE.held"))
+            real_time = me.time
+
+            class Pause:                                      # the marker lands while the collector pauses before re-reading
+                time = staticmethod(real_time.time)
+
+                @staticmethod
+                def sleep(x):
+                    os.rename(os.path.join(d, "COMPLETE.held"), os.path.join(sdir, "COMPLETE"))
+            with mock.patch.object(me, "time", Pause):
+                ok_retry = collect_ok(sp, mp, run, "c_retry.json")
+            res["collector_retries_a_setting_changed_while_read"] = ok_retry and lib(run) == serial
+            sp3 = os.path.join(d, "settings3.json"); b3 = json.load(open(sp)); base_st = b3["settings"][0]
+            b3["settings"] = [dict(base_st, dir=f"s0900{i}", index=900 + i) for i in range(3)]; json.dump(b3, open(sp3, "w"))
+            for i in range(3):
+                os.makedirs(os.path.join(run, "sets", f"s0900{i}")); open(os.path.join(run, "sets", f"s0900{i}", "COMPLETE"), "w").close()
+            pauses = []
+
+            class Count:
+                time = staticmethod(real_time.time)
+
+                @staticmethod
+                def sleep(x):
+                    pauses.append(x)
+            with mock.patch.object(me, "time", Count):
+                collect_ok(sp3, mp, run, "c_wide.json")
+            wide = json.load(open(os.path.join(run, "c_wide.json")))
+            res["collector_pauses_once_for_a_wave_wide_failure"] = len(pauses) == 1 and wide["n_errors"] == 3
             # collector rejections: a tampered journal; ranges not covered; identities outside committed batches; a bad
             # discarded shard (wrong binding, negative CPU) that never enters the library
             hp = os.path.join(sdir, f"sh{ranges(sdir)[0][0]:09d}_hits.jsonl")
@@ -1146,7 +1315,7 @@ def test():
         res["campaign_account"] = r1["recorded"] and not r2["recorded"] and refused == [True, True] and r3["recorded"] \
             and after_release and list(act) == ["s1b_aaaa_a"] and act["s1b_aaaa_a"]["cpu_h"] == 199688.0
     finally:
-        K, BATCH = saved
+        K, BATCH, RETRY_SECS = saved
         shutil.rmtree(tmp, ignore_errors=True)
     res["all_ok"] = all(res.values())
     print(json.dumps(res | {"rejection_reasons": reasons}, indent=1))
@@ -1156,6 +1325,9 @@ def test():
 
 if __name__ == "__main__":
     cmd, a = sys.argv[1], sys.argv[2:]
-    {"export": export, "verify_export": verify_export, "settings": settings, "subset": subset, "select": select, "seed": seed,
-     "work": work,
-     "collect": collect, "preflight": preflight, "test": test}[cmd](*a)
+    try:
+        {"export": export, "verify_export": verify_export, "settings": settings, "subset": subset, "select": select,
+         "seed": seed, "work": work, "collect": collect, "preflight": preflight, "test": test}[cmd](*a)
+    except OwnerUncertain as ex:                  # end now; the node script certifies this process and restarts the slot
+        print(f"owner uncertain, ending: {ex}", file=sys.stderr, flush=True)
+        sys.exit(75)
