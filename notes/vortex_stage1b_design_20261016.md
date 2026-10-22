@@ -606,3 +606,49 @@ is now a passing regression.
      must exist in both runs.
    - Exit codes: 0 when identical with positive coverage; 1 for an identity
      difference, a missing setting or no coverage; 2 for byte-only differences.
+
+### 9f. Round 2 in production: false-positive acquisition uncertainty (23 October 2026)
+
+Probe at 36 h (`p3/r2_progress_20261023.txt`).
+
+**Progress**
+- W1 r2: 4,676 of 4,847 COMPLETE (all 2,055 n = 0; 2,621 n = 30), with 171
+  heavy n = 30 settings open (median 76% of K); 53.3k worker CPU-h.
+- W2: all 7,272 open, with the heaviest started first; 18.4k CPU-h.
+- No FAILED or invalid settings and no transient errors.
+
+**Finding: 7,969 worker exits with `OwnerUncertain`** (exit 75; 6,587 in W1,
+1,382 in W2), every one from the acquisition rule of §9e item 2.
+- They are concentrated on a few hot settings: s15403 alone has 1,975.
+- 82 slots have reached the node script's 20-restart cap and stopped.
+- **Cause.** The rule marks *every* failed publication unresolved, including
+  plain contention (`EEXIST`/`ENOTEMPTY`, where the server refused because the
+  lock exists). On a hot lock, the owner record is often absent or unreadable
+  for a moment between holders. When the 5 s claim patience ends in such a
+  moment, the worker exits instead of passing the setting over, restarts, and
+  claims the same hot setting again.
+- **No correctness consequence.**
+  - In a false positive this process holds no lock, so its certificate breaks
+    nothing.
+  - An exit during a commit leaves a claim that certificate recovery requeues.
+- **Cost.** Restarts at about 15–20 s each, plus the capped slots: some
+  hundreds to about 2,000 core-hours over W1 r2, within the 9.8k CPU-h gap
+  between PBS-allocated and used time (84.5% efficiency). Most of that gap is the
+  W1 tail: workers with no W1 tickets exit while their subjob keeps 8 cores for
+  its last shard.
+- **The runner cannot change during round 2.** Its hash is in every run2
+  shard's binding. The correct rule, for any later runner: only an ambiguous
+  rename failure (an errno other than `EEXIST`/`ENOTEMPTY`) leaves acquisition
+  unresolved, and it stays unresolved for the whole call unless this call's own
+  token is read. Reading a foreign or absent record is not trusted to resolve it,
+  because NFS can serve a stale entry.
+
+**Mitigation within the binding, for W2 topup arrays** (the node script is not
+bound; submitted arrays keep PBS's stored copy):
+- restart a worker that exits 75 without a restart cap, while time remains,
+  with a short jittered delay;
+- restart a worker that exits 0 after a pause, but only while the wave still
+  has claims in flight, since a finishing shard can plan successor tickets. A
+  subjob whose wave has nothing left in flight still ends.
+
+This goes to Codex for a check before the first W2 topup.

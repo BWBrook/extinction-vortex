@@ -1,0 +1,51 @@
+# Round-2 progress probe, read-only, kunanyi 2026-10-23 10:27-10:32 AEDT (scripts r2probe.sh, unc.sh)
+== now 2026-10-23 10:27:37 AEDT
+-- 857922[]
+    job_state = B
+    array_state_count = Queued:0 Running:291 Exiting:0 Expired:9 
+-- 858016[]
+    job_state = B
+    array_state_count = Queued:384 Running:186 Exiting:0 Expired:0 
+-- 857923  job_state = H 
+-- 858017  job_state = H 
+   [+0s]
+queue W1 0  W2 16518  claimed 2504  exit-records 1011  certificates 8980
+W1: done-files 9  failed-slot lines 0  restarts 6587  owner-uncertain 6587  transient-lines 0
+W2: done-files 0  failed-slot lines 0  restarts 1382  owner-uncertain 1382  transient-lines 0
+   [+100s]
+restart exit codes:
+   7969 75
+worker-log error tails:
+   [+115s]
+worker exit totals {'shards': 3187, 'discarded_tickets': 0, 'requeued_censored': 0, 'stale_requeued': 0, 'failed_shards': 0, 'transient_errors': 0, 'lock_busy': 1733, 'adopted': 10}
+W1 n=0: {'COMPLETE': 2055}  worker CPU-h 4543  open hit-progress median nan p90 nan
+W1 n=30: {'COMPLETE': 2621, 'open': 171}  worker CPU-h 48768  open hit-progress median 0.76 p90 0.96
+W2 n=300: {'open': 7272}  worker CPU-h 18390  open hit-progress median 0.00 p90 0.00
+total worker CPU-h 71700  scan 133s
+largest open settings by CPU-h: [(956, 's05404', 'W1', 30, 505), (933, 's08302', 'W1', 30, 1583), (933, 's09559', 'W1', 30, 1281), (918, 's14656', 'W1', 30, 1652), (892, 's10045', 'W1', 30, 1275), (852, 's07384', 'W1', 30, 1031), (840, 's12103', 'W1', 30, 452), (818, 's16351', 'W1', 30, 1880)]
+   [+260s]
+w1 subjobs: B=1 R=291 X=9 | exit: 0=9 | allocated CPU-h 63184 cput-h 53389
+w2 subjobs: B=1 Q=384 R=186 | exit: | allocated CPU-h 19084 cput-h 18459
+   [+261s]
+R2PROBE_DONE
+rc=0
+
+## OwnerUncertain tally (second connection, 10:29:54)
+# R=/u/bwbrook/vortex/run1/s1b/run2
+# echo "== $(TZ=Australia/Hobart date '+%T') uncertainty message types"
+# grep -h 'owner uncertain' $R/submit_W*/logs/w.* | sed -E 's#/u/bwbrook/vortex/run1/s1b/run2/sets/s[0-9]+/lock#LOCK#; s/\[Errno [0-9]+\]/[Errno]/' | cut -c1-170 | sort | uniq -c | sort -rn | head -8
+# echo "== restarts per slot (max) and slots at the 20 cap"
+# grep -h 'exited 75' $R/submit_W*/logs/w.* | awk '{print $4}' | sed -E 's/r[0-9]+n[0-9a-f]+$//' | sort | uniq -c | sort -rn | awk 'NR==1{print "max per slot", $1} $1>=19{n++} END{print "slots with >=19 restarts:", n+0}'
+# echo "== settings touched by uncertainty (top)"; grep -h 'owner uncertain' $R/submit_W*/logs/w.* | grep -oE 'sets/s[0-9]+' | sort | uniq -c | sort -rn | head -5
+# echo "== by hour"; grep -h 'exited 75' $R/submit_W*/logs/w.* | cut -c1-13 | sort | uniq -c | tail -12
+# echo UNC_DONE
+## OwnerUncertain tally output (10:29:54 AEDT)
+   7931 owner uncertain, ending: LOCK: publication outcome unknown and the owner record unreadable at the wait limit
+     16 ... sets/c00044/lock (same message)
+     13 ... sets/c00524/lock (same message)
+      5 ... sets/c00214/lock (same message)
+      4 ... sets/c00643/lock (same message)
+      2 ... sets/c00349/lock (same message)
+max restarts per slot 20; slots with >=19 restarts: 82
+settings touched (top): s15403 1975, s15394 593, s15841 369, s15643 342, s15565 206
+exit-75 restarts by hour: 2026-10-21 22h 422; 2026-10-22 12h 24, 21h 2954; 2026-10-23 02h 1536, 03h 1391, 04h 251, 05h 404, 06h 288, 07h 176, 08h 224, 09h 225, 10h 78

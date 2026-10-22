@@ -1379,6 +1379,12 @@ board 1755; exposure E56).
      - add W2 `topup` arrays as earlier arrays finish (7,000-CPU queued cap),
        releasing each finished array with its PBS evidence.
    - Receipt: `p3/r2_dispatch_receipt.txt`.
+   - **23 Oct probe** (§9f): W1 r2 4,676/4,847 COMPLETE (171 heavy n = 30 open);
+     W2 started (186 of 570 subjobs running); 3,816 cores in use.
+     - 7,969 false-positive `OwnerUncertain` restarts (no correctness effect;
+       82 slots capped).
+     - The runner stays bound; a node-script mitigation for W2 topups goes to
+       Codex.
    - History of the package: final repair done (below).
    [Astra repair review](notes/astra_s1b_r2_closure_review_20261021.md), board
    2156; exposure E68 and E69.
