@@ -2,37 +2,94 @@
 #PBS -N s1b
 #PBS -q normal
 #PBS -l select=1:ncpus=8:mem=10gb
-# Stage 1b subjob of a wave's job array: JOBCPUS worker slots claim shard tickets until none remain or the deadline
-# (job start + walltime - MARGIN_SECS) passes; a shard reaching the deadline is checkpointed as censored and requeued.
-# A slot whose worker exits non-zero restarts it while time remains. Owner names are <PBS job>.<slot>r<restart>n<nonce>,
-# with a nonce drawn per invocation, so a rerun of the same PBS job never reuses one. Each reaped worker process gets a
-# death certificate, $RUN/workers/dead/<owner> = {owner, host, pid, rc}: the positive evidence that lets other workers
-# break that exact process's locks and requeue its claims at once. Completion is recorded in one file per subjob
-# (appends to a shared NFS file lose lines).
+# Stage 1b subjob of a wave's job array: JOBCPUS worker slots, each running one worker at a time until the deadline
+# (job start + walltime - MARGIN_SECS); a shard reaching the deadline is checkpointed as censored and requeued.
+# Owner names are <PBS job>.<slot>r<generation>n<nonce>: the nonce is drawn per invocation and the generation advances
+# with every launch, so no two workers ever share a name. Each reaped worker gets a death certificate,
+# $RUN/workers/dead/<owner> = {owner, host, pid, rc}, published and read back before the slot launches again: the
+# positive evidence that lets other workers break that exact process's locks and requeue its claims. Per slot:
+#   exit 75 (OwnerUncertain): launch again while time remains (no cap);
+#   another non-zero exit: launch again until MAX_FAIL such exits, then the slot stops with that status;
+#   exit 0 (no ticket of this wave was claimable): launch again when the wave has queued tickets; while it has only
+#     claims in flight (or its state cannot be read), poll every POLL_SECS with jitter, for at most IDLE_MAX_SECS
+#     after every slot of this subjob has become idle; when both its queue and claims read empty twice, retire.
+# No launch after LAUNCH_CUTOFF_SECS before the deadline; every pause is clipped to that cutoff. Pauses carry random
+# jitter (JITTER_SECS) so idle slots across an array do not poll in step. Completion is one file per subjob.
 # qsub -J 0-(N-1) -l select=1:ncpus=C:mem=M -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,WAVE=...,TAG=...,JOBCPUS=C,WALL_SECS=s s1b_node.pbs
 set -o pipefail
 T0=$(date +%s)
 source "$VBASE/src/analysis/fable/calibration/kunanyi/env.sh"
 S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$TAG/logs"; DEAD="$RUN/workers/dead"
-DEADLINE=$(( T0 + WALL_SECS - ${MARGIN_SECS:-1800} ))
+DEADLINE=$(( T0 + WALL_SECS - ${MARGIN_SECS:-1800} )); LAST_LAUNCH=$(( DEADLINE - ${LAUNCH_CUTOFF_SECS:-600} ))
+POLL=${POLL_SECS:-300}; IDLE_MAX=${IDLE_MAX_SECS:-1800}; MAX_FAIL=${MAX_FAIL:-20}; CERT_TRIES=${CERT_TRIES:-6}
+REFILL=${REFILL_SECS:-5}; RETRY=${RETRY_SECS:-10}; GRACE=${GRACE_SECS:-30}; JITTER=${JITTER_SECS:-30}
 NONCE=$(od -An -N6 -tx1 /dev/urandom | tr -d ' \n'); HOST=$(uname -n)
+BUSY=$(mktemp -d "${TMPDIR:-/tmp}/s1b_busy.XXXXXX")         # node-local: which slots of this subjob hold a worker
 mkdir -p "$DEAD"
+now() { date +%s; }
+note() { local f=$1; shift; echo "$(date '+%F %T') $*" >> "$f"; }
+pause() {          # sleep at most until the launch cutoff
+  local s=$1 left=$(( LAST_LAUNCH - $(now) ))
+  if [ "$s" -gt "$left" ]; then s=$left; fi
+  if [ "$s" -gt 0 ]; then sleep "$s"; fi
+}
+wave() {           # work | inflight | empty | unknown, from this wave's queued tickets, then its claims
+  local q c
+  q=$(find "$RUN/queue" -maxdepth 1 -name "${WAVE}_*" -print -quit 2>/dev/null) || { echo unknown; return; }
+  if [ -n "$q" ]; then echo work; return; fi
+  c=$(find "$RUN/claimed" -maxdepth 1 -name "${WAVE}_*" -print -quit 2>/dev/null) || { echo unknown; return; }
+  if [ -n "$c" ]; then echo inflight; else echo empty; fi
+}
+certify() {        # publish the certificate of a reaped worker; succeed once the exact certificate reads back
+  local owner=$1 body t
+  body=$(printf '{"owner": "%s", "host": "%s", "pid": %d, "rc": %d}' "$1" "$HOST" "$2" "$3")
+  for t in $(seq 1 "$CERT_TRIES"); do
+    { printf '%s\n' "$body" > "$DEAD/.$owner.tmp" && mv "$DEAD/.$owner.tmp" "$DEAD/$owner"; } 2> /dev/null
+    if [ "$(cat "$DEAD/$owner" 2> /dev/null)" = "$body" ]; then return 0; fi
+    sleep "$RETRY"
+  done
+  return 1
+}
 slot() {
-  local i=$1 k=0 rc owner wp log="$L/w.${PBS_ARRAY_INDEX}.$1.log"
-  while :; do
-    owner="$PBS_JOBID.${i}r${k}n$NONCE"
+  local i=$1 g=0 fails=0 rc pid owner st idle0 log="$L/w.${PBS_ARRAY_INDEX}.$1.log"
+  while [ "$(now)" -lt "$LAST_LAUNCH" ]; do
+    owner="$PBS_JOBID.${i}r${g}n$NONCE"; g=$(( g + 1 ))
+    : > "$BUSY/$i"
     python -I analysis/fable/calibration/v2_dev/p3_stage1b.py work "$S/$SETTINGS" "$S/p3_metric.json" "$RUN" "$WAVE" \
       "$owner" "$DEADLINE" >> "$log" 2>&1 &
-    wp=$!
-    wait "$wp"; rc=$?
-    printf '{"owner": "%s", "host": "%s", "pid": %d, "rc": %d}\n' "$owner" "$HOST" "$wp" "$rc" > "$DEAD/.$owner.tmp" \
-      && mv "$DEAD/.$owner.tmp" "$DEAD/$owner"
-    [ "$rc" -eq 0 ] && return 0
-    echo "$(date '+%F %T') worker $owner exited $rc" >> "$log"
-    k=$(( k + 1 ))
-    if [ "$k" -ge 20 ] || [ "$(date +%s)" -ge $(( DEADLINE - 600 )) ]; then return "$rc"; fi
-    sleep 10
+    pid=$!
+    wait "$pid"; rc=$?
+    rm -f "$BUSY/$i"
+    if ! certify "$owner" "$pid" "$rc"; then
+      note "$log" "certificate for $owner (pid $pid, exit $rc) could not be published; slot stops"; return 3
+    fi
+    if [ "$rc" -eq 75 ]; then
+      note "$log" "worker $owner exited 75 (owner uncertain); launching again"; pause $(( REFILL + RANDOM % (JITTER + 1) )); continue
+    fi
+    if [ "$rc" -ne 0 ]; then
+      fails=$(( fails + 1 )); note "$log" "worker $owner exited $rc ($fails of $MAX_FAIL)"
+      if [ "$fails" -ge "$MAX_FAIL" ]; then return "$rc"; fi
+      pause "$RETRY"; continue
+    fi
+    idle0=$(now)
+    while :; do
+      st=$(wave)
+      if [ "$st" = work ]; then break; fi
+      if [ "$st" = empty ]; then
+        pause $(( GRACE + RANDOM % (JITTER + 1) ))
+        st=$(wave)
+        if [ "$st" = empty ]; then note "$log" "wave $WAVE has no queued tickets or claims; slot retires"; return 0; fi
+        continue
+      fi
+      if [ -n "$(ls -A "$BUSY")" ]; then idle0=$(now); fi           # a sibling slot still works: its cores are held anyway
+      if [ $(( $(now) - idle0 )) -ge "$IDLE_MAX" ]; then
+        note "$log" "subjob idle for ${IDLE_MAX}s with wave $WAVE $st; slot retires"; return 0
+      fi
+      if [ "$(now)" -ge "$LAST_LAUNCH" ]; then return 0; fi
+      pause $(( POLL + RANDOM % (JITTER + 1) ))
+    done
   done
+  return 0
 }
 pids=()
 for i in $(seq 0 $(( JOBCPUS - 1 ))); do
@@ -41,5 +98,6 @@ for i in $(seq 0 $(( JOBCPUS - 1 ))); do
 done
 fail=0
 for p in "${pids[@]}"; do wait "$p" || fail=$((fail + 1)); done
+rm -rf "$BUSY"
 echo "subjob $PBS_ARRAY_INDEX host $(hostname) slots failed: $fail" > "$L/done.$PBS_ARRAY_INDEX"
 exit "$fail"

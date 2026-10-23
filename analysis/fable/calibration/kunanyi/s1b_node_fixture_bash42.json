@@ -1,13 +1,33 @@
 {
- "scope": "Fixtures for s1b_node.pbs (no PBS, no simulation), after Codex's node-identity reproduction (board 2142). The actual\nnode script runs under FIX_BASH with a stub `python` on PATH that plays the worker; lock functions are the runner's\nown, loaded by AST without its scientific imports. Writes s1b_node_fixture[_FIX_TAG].json beside itself.\n 1. Two invocations with one PBS job identity (a rerun): owner names differ, each reaped process has a certificate\n    naming its host, pid and exit status, and the first invocation's certificate never breaks the second's live lock.\n 2. A worker that exits non-zero is restarted under a new owner name; both processes are certified; done file written.",
+ "scope": "Fixtures for s1b_node.pbs (no PBS, no simulation), covering the acceptance cases of Codex's node-plan review\n(notes/astra_r2_node_plan_review_20261023.md). The actual node script runs under FIX_BASH with stubs on PATH: `python`\nplays each worker from a scripted plan (exit status, run time, file actions on the wave's queue and claims), and for\nlogical-clock cases `date +%s` and `sleep` share a clock file, `mv` can fail or apply-then-fail when publishing a\ncertificate, and `find` can fail like an NFS scan error. The many-slot idle cases run in real time with short settings.\nWrites s1b_node_fixture[_FIX_TAG].json beside itself.",
  "bash_version": "4.2.46(2)-release",
- "node_sha256": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
- "runner_sha256": "841feff9df54c9ef2fc5f7cf973a49d27e3cd15be99304749ff9dda5db1d14f5",
+ "node_sha256": "00ed12fb3aa3a8224ea99efa6377755821efb75e46e6786a5a0fdfde34ca8457",
  "checks": {
-  "rerun_owner_names_differ": true,
-  "certificates_name_exact_processes": true,
-  "earlier_certificate_cannot_break_live_lock": true,
-  "failed_worker_restarted_under_new_name_and_certified": true
+  "exit75_refilled_without_cap_and_certified": true,
+  "non75_failures_have_a_finite_budget": true,
+  "exit0_refills_on_queued_work_waits_on_claims_retires_when_empty": true,
+  "work_published_between_observations_is_found": true,
+  "scan_errors_are_unknown_never_empty": true,
+  "certificate_published_and_read_back_before_any_replacement": true,
+  "rerun_and_refills_never_reuse_an_owner": true,
+  "no_launch_after_the_cutoff_and_one_deadline": true,
+  "idle_subjob_residence_is_bounded": true
+ },
+ "observations": {
+  "claims_only_idle": {
+   "logical_seconds": 1800,
+   "polls": 6,
+   "finds": 14
+  },
+  "idle_subjob": {
+   "real_seconds": 4.1,
+   "launches": 8,
+   "finds": 64
+  },
+  "idle_with_busy_sibling": {
+   "real_seconds": 8.7,
+   "finds": 106
+  }
  },
  "all_ok": true
 }

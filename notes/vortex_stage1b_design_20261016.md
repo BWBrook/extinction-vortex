@@ -612,30 +612,36 @@ is now a passing regression.
 Probe at 36 h (`p3/r2_progress_20261023.txt`).
 
 **Progress**
-- W1 r2: 4,676 of 4,847 COMPLETE (all 2,055 n = 0; 2,621 n = 30), with 171
-  heavy n = 30 settings open (median 76% of K); 53.3k worker CPU-h.
+- W1 r2: 4,676 of 4,847 COMPLETE markers, or 96.47% (all 2,055 n = 0; 2,621
+  n = 30), with 171 heavy n = 30 settings open. Their median progress of 0.76
+  sums all shard hits, not the verified contiguous prefix. 53.3k worker CPU-h
+  so far, which does not establish the final cost against the ~92k heuristic.
 - W2: all 7,272 open, with the heaviest started first; 18.4k CPU-h.
-- No FAILED or invalid settings and no transient errors.
+- No FAILED marker and no transient-error lines. Invalid settings and journal
+  or library validity were not tested; the strict collection decides those.
 
 **Finding: 7,969 worker exits with `OwnerUncertain`** (exit 75; 6,587 in W1,
 1,382 in W2), every one from the acquisition rule of §9e item 2.
 - They are concentrated on a few hot settings: s15403 alone has 1,975.
-- 82 slots have reached the node script's 20-restart cap and stopped.
+- 82 slots had 19 or 20 restarts (the tally selected ≥ 19; the maximum was 20,
+  which is the node script's cap). Those at 20 have stopped.
 - **Cause.** The rule marks *every* failed publication unresolved, including
   plain contention (`EEXIST`/`ENOTEMPTY`, where the server refused because the
   lock exists). On a hot lock, the owner record is often absent or unreadable
   for a moment between holders. When the 5 s claim patience ends in such a
   moment, the worker exits instead of passing the setting over, restarts, and
   claims the same hot setting again.
-- **No correctness consequence.**
-  - In a false positive this process holds no lock, so its certificate breaks
-    nothing.
-  - An exit during a commit leaves a claim that certificate recovery requeues.
-- **Cost.** Restarts at about 15–20 s each, plus the capped slots: some
-  hundreds to about 2,000 core-hours over W1 r2, within the 9.8k CPU-h gap
-  between PBS-allocated and used time (84.5% efficiency). Most of that gap is the
-  W1 tail: workers with no W1 tickets exit while their subjob keeps 8 cores for
-  its last shard.
+- **No integrity failure observed** (corrected after Codex 2239). Recovery and
+  the strict collection remain to be verified.
+  - In a false positive this process holds no lock.
+  - An acquisition failure during a commit leaves an owned claim. The
+    certificate permits its recovery but is not a recovery receipt: a claim
+    waits while a foreign live lock holds its setting.
+  - Exit-75 processes write no final worker record.
+- **Cost.** The direct restart delay is about 27–37 slot-hours in W1 (6,587 ×
+  15–20 s). Capped-slot idleness, lost in-flight work and the attribution of
+  W1's 9.8k CPU-h allocated-versus-used gap (84.5%) between this and the W1
+  tail are not measured. PBS ratios come from the saved aggregate only.
 - **The runner cannot change during round 2.** Its hash is in every run2
   shard's binding. The correct rule, for any later runner: only an ambiguous
   rename failure (an errno other than `EEXIST`/`ENOTEMPTY`) leaves acquisition
@@ -652,3 +658,54 @@ bound; submitted arrays keep PBS's stored copy):
   subjob whose wave has nothing left in flight still ends.
 
 This goes to Codex for a check before the first W2 topup.
+
+**Node script for topups (`00ed12fb…`; Codex 2239 requirements).** The submitted
+arrays keep PBS's stored copy (`cafc0a4d…`); the runner `1e35b94a…` and the
+settings are unchanged.
+- **Owners.** Every launch advances the slot's generation, so the owner is
+  `<job>.<slot>r<g>n<nonce>`, with the nonce drawn per invocation. Exit 0
+  refills get new names too.
+- **Certificates.** Each child is waited for, certified with `{owner, host, pid,
+  rc}` and read back before any replacement, with up to `CERT_TRIES` attempts.
+  An applied-but-failed rename reconciles by the read-back. A persistent
+  failure stops the slot with a diagnostic (exit 3).
+- **Exit 75** relaunches with no cap while time remains.
+- **Other non-zero exits** relaunch until `MAX_FAIL` (20) such exits, then the
+  slot stops with that status. The generation is never reset.
+- **Exit 0.** Same-wave queued tickets (`WAVE_*` in `queue`) refill at once.
+  - With only claims in flight, or an unreadable state (a scan error is
+    "unknown", never "empty"), the slot polls every `POLL_SECS` (300) plus
+    jitter.
+  - The slot retires once the whole subjob has been idle for `IDLE_MAX_SECS`
+    (1,800). The idle clock restarts while any sibling slot holds a worker,
+    since those cores are held anyway.
+  - Queue and claims reading empty, twice across a grace pause, retire the
+    slot.
+- **Deadline.** One absolute deadline is passed to every child. There is no
+  launch after `LAUNCH_CUTOFF_SECS` (600) before it, checked before every
+  launch, and every pause is clipped to the cutoff.
+- **Polling cost.** A 1,800 s idle budget at a 300 s poll gives at most about 7
+  two-`find` checks per idle slot, with no Python start while idle.
+
+**Evidence**
+- `kunanyi/s1b_node_fixture*.json`: 9/9 under bash 5.2 and 4.2.46, using a
+  logical clock and stubs for `python`, `date`, `sleep`, `mv` and `find`.
+  The cases follow Codex's acceptance table:
+  - 25 × exit 75, then success;
+  - non-75 failures interspersed with 75 and 0;
+  - queue-only, claims-only, empty and other-wave states;
+  - work published between observations;
+  - transient and persistent scan errors;
+  - certificate failure and applied-then-failed rename;
+  - a same-job rerun with refills;
+  - a deadline passed, crossed in a pause, or crossed in a certificate retry;
+  - eight idle slots, with and without a busy sibling, in real time.
+- Codex's `check_current_node.py`, with a clock-advancing `sleep`
+  (`p3/codex_node_baseline_on_00ed12fb.*`):
+  - endless exit 75: 380 certified refills, each seeing its predecessor's
+    certificate;
+  - non-75: stops at 20;
+  - exit 0 with claims: one launch, then bounded retirement;
+  - certificate refusal: one launch, then the slot stops;
+  - deadline crossed during a pause, or passed at start: no further launch.
+- Submitter fixtures are unchanged at 12/12.

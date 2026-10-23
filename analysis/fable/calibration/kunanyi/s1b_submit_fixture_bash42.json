@@ -59,7 +59,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_942c7311_a"
+    "s1b_0166785b_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -82,7 +82,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_d32f69bd_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_7754a028_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -93,7 +93,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_d32f69bd_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_d32f69bd_a ID manual: <evidence>' or 'rejected a s1b_d32f69bd_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_7754a028_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_7754a028_a ID manual: <evidence>' or 'rejected a s1b_7754a028_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -116,7 +116,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_d32f69bd_a"
+    "s1b_7754a028_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -151,7 +151,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_7cf14b52_a"
+    "s1b_f453fc72_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -174,7 +174,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_d6f09697_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_ab6b20c7_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -185,7 +185,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_d6f09697_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_d6f09697_a ID manual: <evidence>' or 'rejected a s1b_d6f09697_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_ab6b20c7_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_ab6b20c7_a ID manual: <evidence>' or 'rejected a s1b_ab6b20c7_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -208,7 +208,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_d6f09697_a"
+    "s1b_ab6b20c7_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -252,7 +252,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_f94feb76_a"
+    "s1b_11adeb67_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -275,7 +275,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_128a37e8_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_65a290c6_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -298,7 +298,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_128a37e8_a"
+    "s1b_65a290c6_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -432,8 +432,8 @@
     "W1_b"
    ],
    "array_names": [
-    "s1b_50afef74_a",
-    "s1b_a6f13167_a"
+    "s1b_4e445936_a",
+    "s1b_c04eba63_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -496,7 +496,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_cc70eb0b_a"
+    "s1b_4f6e86db_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -540,7 +540,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_3b4efb05_a"
+    "s1b_2893a9be_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
