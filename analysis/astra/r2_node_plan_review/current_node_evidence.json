@@ -1,0 +1,912 @@
+{
+  "scope": "Bounded observations of the CURRENT node script, not a proposed implementation.\n\nActual Bash node wrapper, one slot, stub worker/time/sleep/certificate rename.\nNo PBS, simulation, remote writes, production directories or source mutation.\nThe resulting baseline pins acceptance cases for the 23 October refill proposal.\n",
+  "head": "461c115c308d301d228eaaa7497aab56ddb38ddd",
+  "node_sha256": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+  "cases": {
+    "exit75_cap": {
+      "rc": 1,
+      "launches": 20,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0n6c1798f85c49",
+          "pid": 154494,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": null
+        },
+        {
+          "owner": "123[7].kunanyi.0r1n6c1798f85c49",
+          "pid": 154500,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r0n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154494,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r2n6c1798f85c49",
+          "pid": 154506,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r1n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154500,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r3n6c1798f85c49",
+          "pid": 154512,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r2n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154506,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r4n6c1798f85c49",
+          "pid": 154518,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r3n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154512,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r5n6c1798f85c49",
+          "pid": 154524,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r4n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154518,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r6n6c1798f85c49",
+          "pid": 154530,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r5n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154524,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r7n6c1798f85c49",
+          "pid": 154536,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r6n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154530,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r8n6c1798f85c49",
+          "pid": 154542,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r7n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154536,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r9n6c1798f85c49",
+          "pid": 154548,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r8n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154542,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r10n6c1798f85c49",
+          "pid": 154554,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r9n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154548,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r11n6c1798f85c49",
+          "pid": 154560,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r10n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154554,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r12n6c1798f85c49",
+          "pid": 154566,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r11n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154560,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r13n6c1798f85c49",
+          "pid": 154572,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r12n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154566,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r14n6c1798f85c49",
+          "pid": 154578,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r13n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154572,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r15n6c1798f85c49",
+          "pid": 154584,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r14n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154578,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r16n6c1798f85c49",
+          "pid": 154590,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r15n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154584,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r17n6c1798f85c49",
+          "pid": 154596,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r16n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154590,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r18n6c1798f85c49",
+          "pid": 154602,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r17n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154596,
+            "rc": 75
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r19n6c1798f85c49",
+          "pid": 154608,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r18n6c1798f85c49",
+            "host": "laptop",
+            "pid": 154602,
+            "rc": 75
+          }
+        }
+      ],
+      "certificates": [
+        {
+          "owner": "123[7].kunanyi.0r0n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154494,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r13n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154572,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r5n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154524,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r7n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154536,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r12n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154566,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r18n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154602,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r14n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154578,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r16n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154590,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r3n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154512,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r4n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154518,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r15n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154584,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r6n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154530,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r10n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154554,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r11n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154560,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r9n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154548,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r8n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154542,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r2n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154506,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r19n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154608,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r17n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154596,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r1n6c1798f85c49",
+          "host": "laptop",
+          "pid": 154500,
+          "rc": 75
+        }
+      ],
+      "done": "subjob 7 host laptop slots failed: 1",
+      "stderr": "",
+      "same_wave_claims_remaining": 0,
+      "launches_at_or_after_worker_deadline": 0
+    },
+    "non75_cap": {
+      "rc": 1,
+      "launches": 20,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0nd771060b7782",
+          "pid": 154622,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": null
+        },
+        {
+          "owner": "123[7].kunanyi.0r1nd771060b7782",
+          "pid": 154629,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r0nd771060b7782",
+            "host": "laptop",
+            "pid": 154622,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r2nd771060b7782",
+          "pid": 154635,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r1nd771060b7782",
+            "host": "laptop",
+            "pid": 154629,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r3nd771060b7782",
+          "pid": 154648,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r2nd771060b7782",
+            "host": "laptop",
+            "pid": 154635,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r4nd771060b7782",
+          "pid": 154655,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r3nd771060b7782",
+            "host": "laptop",
+            "pid": 154648,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r5nd771060b7782",
+          "pid": 154661,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r4nd771060b7782",
+            "host": "laptop",
+            "pid": 154655,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r6nd771060b7782",
+          "pid": 154667,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r5nd771060b7782",
+            "host": "laptop",
+            "pid": 154661,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r7nd771060b7782",
+          "pid": 154673,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r6nd771060b7782",
+            "host": "laptop",
+            "pid": 154667,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r8nd771060b7782",
+          "pid": 154679,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r7nd771060b7782",
+            "host": "laptop",
+            "pid": 154673,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r9nd771060b7782",
+          "pid": 154773,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r8nd771060b7782",
+            "host": "laptop",
+            "pid": 154679,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r10nd771060b7782",
+          "pid": 154833,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r9nd771060b7782",
+            "host": "laptop",
+            "pid": 154773,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r11nd771060b7782",
+          "pid": 154839,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r10nd771060b7782",
+            "host": "laptop",
+            "pid": 154833,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r12nd771060b7782",
+          "pid": 154845,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r11nd771060b7782",
+            "host": "laptop",
+            "pid": 154839,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r13nd771060b7782",
+          "pid": 154851,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r12nd771060b7782",
+            "host": "laptop",
+            "pid": 154845,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r14nd771060b7782",
+          "pid": 154857,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r13nd771060b7782",
+            "host": "laptop",
+            "pid": 154851,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r15nd771060b7782",
+          "pid": 154863,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r14nd771060b7782",
+            "host": "laptop",
+            "pid": 154857,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r16nd771060b7782",
+          "pid": 154869,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r15nd771060b7782",
+            "host": "laptop",
+            "pid": 154863,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r17nd771060b7782",
+          "pid": 154875,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r16nd771060b7782",
+            "host": "laptop",
+            "pid": 154869,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r18nd771060b7782",
+          "pid": 154881,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r17nd771060b7782",
+            "host": "laptop",
+            "pid": 154875,
+            "rc": 2
+          }
+        },
+        {
+          "owner": "123[7].kunanyi.0r19nd771060b7782",
+          "pid": 154888,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 2,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r18nd771060b7782",
+            "host": "laptop",
+            "pid": 154881,
+            "rc": 2
+          }
+        }
+      ],
+      "certificates": [
+        {
+          "owner": "123[7].kunanyi.0r2nd771060b7782",
+          "host": "laptop",
+          "pid": 154635,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r9nd771060b7782",
+          "host": "laptop",
+          "pid": 154773,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r12nd771060b7782",
+          "host": "laptop",
+          "pid": 154845,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r13nd771060b7782",
+          "host": "laptop",
+          "pid": 154851,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r0nd771060b7782",
+          "host": "laptop",
+          "pid": 154622,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r4nd771060b7782",
+          "host": "laptop",
+          "pid": 154655,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r7nd771060b7782",
+          "host": "laptop",
+          "pid": 154673,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r6nd771060b7782",
+          "host": "laptop",
+          "pid": 154667,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r17nd771060b7782",
+          "host": "laptop",
+          "pid": 154875,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r19nd771060b7782",
+          "host": "laptop",
+          "pid": 154888,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r11nd771060b7782",
+          "host": "laptop",
+          "pid": 154839,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r10nd771060b7782",
+          "host": "laptop",
+          "pid": 154833,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r14nd771060b7782",
+          "host": "laptop",
+          "pid": 154857,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r3nd771060b7782",
+          "host": "laptop",
+          "pid": 154648,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r16nd771060b7782",
+          "host": "laptop",
+          "pid": 154869,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r5nd771060b7782",
+          "host": "laptop",
+          "pid": 154661,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r1nd771060b7782",
+          "host": "laptop",
+          "pid": 154629,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r8nd771060b7782",
+          "host": "laptop",
+          "pid": 154679,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r15nd771060b7782",
+          "host": "laptop",
+          "pid": 154863,
+          "rc": 2
+        },
+        {
+          "owner": "123[7].kunanyi.0r18nd771060b7782",
+          "host": "laptop",
+          "pid": 154881,
+          "rc": 2
+        }
+      ],
+      "done": "subjob 7 host laptop slots failed: 1",
+      "stderr": "",
+      "same_wave_claims_remaining": 0,
+      "launches_at_or_after_worker_deadline": 0
+    },
+    "zero_with_claims": {
+      "rc": 0,
+      "launches": 1,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0nc803596a8312",
+          "pid": 154902,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 0,
+          "previous_cert": null
+        }
+      ],
+      "certificates": [
+        {
+          "owner": "123[7].kunanyi.0r0nc803596a8312",
+          "host": "laptop",
+          "pid": 154902,
+          "rc": 0
+        }
+      ],
+      "done": "subjob 7 host laptop slots failed: 0",
+      "stderr": "",
+      "same_wave_claims_remaining": 1,
+      "launches_at_or_after_worker_deadline": 0
+    },
+    "certificate_failure": {
+      "rc": 0,
+      "launches": 2,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0nf02e1174d9fa",
+          "pid": 154914,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": null
+        },
+        {
+          "owner": "123[7].kunanyi.0r1nf02e1174d9fa",
+          "pid": 154920,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 0,
+          "previous_cert": null
+        }
+      ],
+      "certificates": [],
+      "done": "subjob 7 host laptop slots failed: 0",
+      "stderr": "fixture: certificate rename refused\nfixture: certificate rename refused\n",
+      "same_wave_claims_remaining": 0,
+      "launches_at_or_after_worker_deadline": 0
+    },
+    "deadline_crossed_during_sleep": {
+      "rc": 0,
+      "launches": 2,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0n324a8c320ce1",
+          "pid": 154932,
+          "deadline": 1008200,
+          "clock": 1000000,
+          "rc": 75,
+          "previous_cert": null
+        },
+        {
+          "owner": "123[7].kunanyi.0r1n324a8c320ce1",
+          "pid": 154938,
+          "deadline": 1008200,
+          "clock": 1009000,
+          "rc": 0,
+          "previous_cert": {
+            "owner": "123[7].kunanyi.0r0n324a8c320ce1",
+            "host": "laptop",
+            "pid": 154932,
+            "rc": 75
+          }
+        }
+      ],
+      "certificates": [
+        {
+          "owner": "123[7].kunanyi.0r0n324a8c320ce1",
+          "host": "laptop",
+          "pid": 154932,
+          "rc": 75
+        },
+        {
+          "owner": "123[7].kunanyi.0r1n324a8c320ce1",
+          "host": "laptop",
+          "pid": 154938,
+          "rc": 0
+        }
+      ],
+      "done": "subjob 7 host laptop slots failed: 0",
+      "stderr": "",
+      "same_wave_claims_remaining": 0,
+      "launches_at_or_after_worker_deadline": 1
+    },
+    "deadline_elapsed_at_start": {
+      "rc": 0,
+      "launches": 1,
+      "calls": [
+        {
+          "owner": "123[7].kunanyi.0r0n1de1261d8e9d",
+          "pid": 154950,
+          "deadline": 1000000,
+          "clock": 1000000,
+          "rc": 0,
+          "previous_cert": null
+        }
+      ],
+      "certificates": [
+        {
+          "owner": "123[7].kunanyi.0r0n1de1261d8e9d",
+          "host": "laptop",
+          "pid": 154950,
+          "rc": 0
+        }
+      ],
+      "done": "subjob 7 host laptop slots failed: 0",
+      "stderr": "",
+      "same_wave_claims_remaining": 0,
+      "launches_at_or_after_worker_deadline": 1
+    }
+  },
+  "arithmetic": {
+    "initial_requested_cpus_including_collectors": 6962,
+    "probe_requested_cpus_including_collectors": 6890,
+    "max_additional_8cpu_subjobs_after_W1_and_collector_end_if_full_W2_remains": 304,
+    "idle_300x8_for_48h_allocated_cpu_h": 115200,
+    "4560_slots_divided_by_10_second_pause": 456.0
+  }
+}

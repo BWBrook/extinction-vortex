@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 21 October 2026, 21:01 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 23 October 2026, 11:00 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -17,15 +17,20 @@ finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 W1 round 1 finished with 9,695 COMPLETE libraries, two CAPPED outcomes,
 4,846 incomplete settings and one invalid setting. Astra verified the entire
 archive and all 19,390,000 retained records by library hash and count.
-The round-2 scientific restart strategy is accepted, including concurrent W2
-and retained per-library bindings. Astra's repair review (2156) closes the
-original failures on `83a6b40` but holds for one uncertain-acquisition case:
-an applied lock rename reporting ESTALE, followed by a brief unreadable-owner
-outage, can discard the acquisition token and leave the worker waiting on its
-own live lock until its deadline. No unsafe second holder or corrupted output
-was observed. Dispatch/top-up repairs and exact-package smoke evidence pass.
-Fable owns this narrow recovery repair; no new scientific or compute decision
-is needed from Barry.
+Round 2 was dispatched on 21 October after Fable's final recovery repair
+(runner `1e35b94a`, stage `ae127313`; board 2158–2160). The 23 October
+10:27–10:32 probe records 4,676/4,847 W1 COMPLETE markers and 171 open
+settings; all 7,272 W2 settings remain open. Strict collection is pending.
+Astra's [interim review](notes/astra_r2_interim_review_20261023.md) (2239)
+reproduces false acquisition uncertainty from ordinary lock contention and
+supports continuing the bound arrays. No integrity failure was observed;
+the probe does not establish that every interrupted claim has recovered.
+The node-only mitigation is accepted in principle, pending Fable's actual
+diff and focused tests before the first extra W2 array. Bound whole-subjob
+idle time, check this wave's queue and claims, certify before replacement,
+and preserve unique owner generations and the allocation deadline.
+Fable is next for that implementation and ordinary collection/determinism
+receipts. No new scientific or resource decision is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -940,6 +945,15 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 23 October, checked round-2 production progress and the node-only proposal
+  at `461c115` with three bounded reviewers (2239; E70). Reproduced ordinary
+  contention causing false exit 75; 17 local classification, node-baseline
+  and progress-interpretation cases, with the five core cases independently
+  repeated by the parent. The [interim review](notes/astra_r2_interim_review_20261023.md)
+  supports continuing existing arrays, qualifies recovery/integrity and cost
+  claims, and gives focused acceptance cases for the forthcoming node diff.
+  No production source edit, population simulation, fitting or PBS action.
+
 - 21 October evening, rechecked the round-2 repair package at `83a6b40`
   with three bounded reviewers (2156; E68). Closed the original failures;
   reproduced one remaining uncertain-acquisition liveness case. The
@@ -1367,63 +1381,39 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2 dispatched on kunanyi, 21 October 22:21.**
-   - **W1 r2:** array 857922[] (300 × 8 × 48 h) and collector 857923.
-   - **W2:** array 858016[] (570 × 8 × 48 h) and collector 858017.
-   - Both collectors email Barry.
-   - **Settings and reservations:** `p3_settings_r2.json` `248f9c7d…`; ledger
-     reserves 115,208 and 218,888 CPU-h; round 1 released.
-   - **Next:**
-     - when W1 r2's collector reports, fetch and verify it and run the
-       round-to-round determinism check;
-     - add W2 `topup` arrays as earlier arrays finish (7,000-CPU queued cap),
-       releasing each finished array with its PBS evidence.
-   - Receipt: `p3/r2_dispatch_receipt.txt`.
-   - **23 Oct probe** (§9f): W1 r2 4,676/4,847 COMPLETE (171 heavy n = 30 open);
-     W2 started (186 of 570 subjobs running); 3,816 cores in use.
-     - 7,969 false-positive `OwnerUncertain` restarts (no correctness effect;
-       82 slots capped).
-     - The runner stays bound; a node-script mitigation for W2 topups goes to
-       Codex.
-   - History of the package: final repair done (below).
-   [Astra repair review](notes/astra_s1b_r2_closure_review_20261021.md), board
-   2156; exposure E68 and E69.
-   - **Fable's repair:** design §9e item 2; NOTE "Final runner repair after
-     Codex 2156". Runner `1e35b94a…`; stage tar `ae127313…`.
-   - **Tests:**
-     - fixtures 37/37;
-     - Codex's exact read-outage case ends `OwnerUncertain`, and a certified
-       restart completes it;
-     - Codex's 10 core and 3 node closure controls pass;
-     - the comparator now rejects duplicates, and the wording is aligned.
-   - **Exact-stage evidence:** smoke E and the rehearsal passed, and the fixtures
-     also pass under Python 3.11.
-   - **Next:** dispatch in one Jumpbox window. Barry: no return to Codex is
-     needed (21 October).
-   - **Remaining:** uncertain primary-lock publication followed by an
-     eight-second owner-read outage discards the acquisition token. Reads
-     recover, but the live worker waits on itself until its deadline.
-     Preserve/reconcile the token or use the certified exit-75 restart path;
-     retain foreign-live-owner and generation-safety controls.
-   - **Closed:** original stale-certificate, uncertain-release, busy-frontier,
-     deadline/PBS-throttle, checksum, summary-gate, resume, top-up binding and
-     collector TAG failures. Ten core and three node integration checks;
-     21 malformed summary variants refused; 12 submitter checks under Bash 5.2.
-   - **Verified:** all eight checkout/stage/smoke D source hashes; tar
-     `3eafd94d`; native 35-fixture preflight; 4,847 W1 plus 7,272 W2 settings
-     with unchanged scientific row fields; exact saved-smoke recollection;
-     strict journal comparison of 174,302 batches and 2,310 identical records.
-   - **Nonblocking:** reject duplicate hit identities and repeated setting
-     requests before relying on the standalone comparator for the full
-     production comparison, or retain the strict audit; align older NOTE and
-     median-cost wording with the corrected design.
-   - Keep the accepted scientific restart, all original COMPLETE/CAPPED
-     outcomes and fixed proposal caps. Total compute ceilings are lifted;
-     in-flight reservations remain accounted. Initial shapes remain W1
-     300 × 8 × 48 h and W2 570 × 8 × 48 h, plus collectors: 334,096 CPU-hours.
-   - After the narrow repair and bound-package verification, Fable performs
-     ordinary exact-stage checks/preflight on Kunanyi and dispatches. No
-     broad review restart or new Barry decision is requested. Stage 1c still
+1. **Stage 1b round 2 is running; node-only mitigation needs its executable check.**
+   - W1 replay array 857922[] (300 × 8 × 48 h), collector 857923; W2 array
+     858016[] (570 × 8 × 48 h), collector 858017. Both collectors email Barry.
+     Settings `p3_settings_r2.json` `248f9c7d…`; reservations 115,208 and
+     218,888 CPU-h; round 1 released. Receipt: `p3/r2_dispatch_receipt.txt`.
+   - **Saved 23 October probe:** W1 4,676/4,847 COMPLETE markers, 171 n = 30
+     open; W2 all 7,272 open. Checkpoint CPU approximately 53.3k/18.4k hours.
+     Earlier log census: 7,969 exits, all code 75. The 82-slot tally means
+     >=19 logged exits, maximum 20; exact cap exhaustion is not established.
+     Marker counts and raw hit progress await strict collection.
+   - **Astra review (2239; E70):** ordinary contention reproduces the false
+     uncertainty path without NFS faults. No observed integrity failure;
+     certificates alone do not establish recovery. Continue existing arrays
+     and preserve runner binding. See [review](notes/astra_r2_interim_review_20261023.md).
+   - **Fable next:** implement the proposed node-only change and its focused
+     fixtures; Codex checks the actual diff before the first W2 top-up. Use
+     same-wave queue OR claims, bounded idle residence/polling, verified
+     certificates before refill, unique per-launch owners, a common deadline,
+     and separate finite handling for unexpected non-75 failures.
+   - On ordinary W1 collection, verify all identities/statuses, journal/library
+     integrity and round-to-round common-batch determinism. Email and
+     `collection_ok` alone do not establish all-COMPLETE. Keep original
+     COMPLETE/CAPPED outcomes, fixed proposal caps and the full denominators.
+   - Size top-ups from actual queued AND running requests under the recorded
+     7,000-CPU cap; release finished reservations with PBS evidence. Starting
+     queued jobs does not release requested capacity. Concurrent same-wave
+     collectors are snapshots until their wave is quiescent.
+   - **Package history:** the 21 October hold in review 2156 was addressed by
+     Fable's final runner repair (2158; E69), then dispatched (2160). The
+     37-fixture preflight, exact eight-second read-outage recovery, closure
+     controls and smoke E are recorded in §9e and dispatch receipts. Barry
+     waived another pre-dispatch return to Codex on 21 October. This interim
+     review does not reopen that completed launch decision. Stage 1c still
      needs its executable settings/adapter check before fitting.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board

@@ -1,0 +1,83 @@
+{
+  "scope": "Production-lock classification and certificate/recovery checks, no NFS/PBS.\n\nThe observed kernel rename refusal is used directly. The EEXIST variant maps\nthat known refusal to the equivalent requested errno; it never performs a\nsuccessful contender publication. Logical time schedules the holder's normal\nrelease just before the claimant's wait limit. All runner functions are the\nunchanged current source, loaded by the existing bounded audit helper.\n",
+  "commit": "461c115c308d301d228eaaa7497aab56ddb38ddd",
+  "source_sha256": {
+    "p3": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "node": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec"
+  },
+  "cases": {
+    "known_live_owner_control": {
+      "outcome": "LockBusy",
+      "publication_successes": [],
+      "refusals": 46,
+      "kernel_errnos": [
+        39
+      ],
+      "reported_errnos": [
+        39
+      ],
+      "last_refusal_at_seconds": 4.99499999999955,
+      "holder_released_at_seconds": [],
+      "elapsed_seconds": 5.10599999999954,
+      "lock_exists_at_exit": true,
+      "diagnostic": "/tmp/r2-production-lock-a4yo0r7p/known_live_owner_control/run/sets/s00007/lock: held by a live owner past the wait limit",
+      "nfs_or_read_fault_injected": false
+    },
+    "ordinary_enotempty_then_holder_release": {
+      "outcome": "OwnerUncertain",
+      "publication_successes": [],
+      "refusals": 46,
+      "kernel_errnos": [
+        39
+      ],
+      "reported_errnos": [
+        39
+      ],
+      "last_refusal_at_seconds": 4.99499999999955,
+      "holder_released_at_seconds": [
+        4.99499999999955
+      ],
+      "elapsed_seconds": 5.044999999999504,
+      "lock_exists_at_exit": false,
+      "diagnostic": "/tmp/r2-production-lock-a4yo0r7p/ordinary_enotempty_then_holder_release/run/sets/s00007/lock: publication outcome unknown and the owner record unreadable at the wait limit",
+      "nfs_or_read_fault_injected": false
+    },
+    "ordinary_eexist_then_holder_release": {
+      "outcome": "OwnerUncertain",
+      "publication_successes": [],
+      "refusals": 46,
+      "kernel_errnos": [
+        39
+      ],
+      "reported_errnos": [
+        17
+      ],
+      "last_refusal_at_seconds": 4.99499999999955,
+      "holder_released_at_seconds": [
+        4.99499999999955
+      ],
+      "elapsed_seconds": 5.044999999999504,
+      "lock_exists_at_exit": false,
+      "diagnostic": "/tmp/r2-production-lock-a4yo0r7p/ordinary_eexist_then_holder_release/run/sets/s00007/lock: publication outcome unknown and the owner record unreadable at the wait limit",
+      "nfs_or_read_fault_injected": false
+    },
+    "ordinary_early_release_control": {
+      "outcome": "acquired_and_released",
+      "elapsed_seconds": 0.049999999999954525
+    },
+    "certificate_is_permission_not_proof_of_recovery": {
+      "first_recovery_count": 0,
+      "foreign_live_lock_preserved": true,
+      "later_recovery_count_after_release": 1,
+      "claimed_after": [],
+      "queued_after": [
+        "W1_9999499_s00007_000000000_000000005"
+      ],
+      "elapsed_seconds": 5.0586318841046705,
+      "initial_recovery_diagnostic": "not requeued W1_9999499_s00007_000000000_000000005@dead[0].fixture.0r0ndead: /tmp/r2-production-lock-a4yo0r7p/certificate/run/sets/s00007/lock: held by a live owner past the wait limit\n",
+      "certificate_scope": "synthetic ended-owner claim; no live production certificate audit"
+    }
+  },
+  "all_assertions_passed": true,
+  "timestamp": "2026-10-23T10:54:50.803613+11:00"
+}

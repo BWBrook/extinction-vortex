@@ -1,0 +1,10 @@
+{
+  "reviewed_files": {
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "cafc0a4dae6b9490a522dda8991aadae34808d5ec8f3b43a9f41ec17d36193ec",
+    "analysis/fable/calibration/v2_dev/p3/r2_probe.sh": "17ceb0a0eaa09adfebfaf7c754c32da2a9686ad345c298879acbd5576d4d0e87",
+    "analysis/fable/calibration/v2_dev/p3/r2_progress_20261023.txt": "bae2ad7d4c7dcaf22ec499016a2905e8fe2b207bb0f40b3279441d1fc974042d",
+    "notes/vortex_stage1b_design_20261016.md": "4093c7a6d0a8e1ab7392846452e776779b3ce343b68ebc11c1844b634f6b3910"
+  },
+  "verified_at": "2026-10-23T10:57:05.885459+11:00"
+}

@@ -1,0 +1,14 @@
+{
+  "reviewed_commit": "461c115c308d301d228eaaa7497aab56ddb38ddd",
+  "python_parsed": 4,
+  "json_parsed": 5,
+  "memos": 4,
+  "local_links_checked": 5,
+  "exposure_rows_excluding_header": 70,
+  "production_sources_unchanged": true,
+  "core_cases": 5,
+  "node_baseline_cases": 6,
+  "progress_cases": 6,
+  "parent_core_repeat_cases": 5,
+  "timestamp": "2026-10-23T11:00:58.181003+11:00"
+}

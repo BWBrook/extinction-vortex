@@ -1,0 +1,155 @@
+{
+  "timestamp": "2026-10-23T10:55:35.283852+11:00",
+  "target_head": "461c115c308d301d228eaaa7497aab56ddb38ddd",
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/p3/r2_probe.sh": "17ceb0a0eaa09adfebfaf7c754c32da2a9686ad345c298879acbd5576d4d0e87",
+    "analysis/fable/calibration/v2_dev/p3/r2_progress_20261023.txt": "bae2ad7d4c7dcaf22ec499016a2905e8fe2b207bb0f40b3279441d1fc974042d",
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75"
+  },
+  "groups": [
+    {
+      "wave": "W1",
+      "n": 0,
+      "marker_counts": {
+        "COMPLETE": 2055
+      },
+      "readable_shard_cpu_h_rounded": 4543,
+      "raw_hit_fraction_median_printed": "nan",
+      "raw_hit_fraction_p90_printed": "nan"
+    },
+    {
+      "wave": "W1",
+      "n": 30,
+      "marker_counts": {
+        "COMPLETE": 2621,
+        "open": 171
+      },
+      "readable_shard_cpu_h_rounded": 48768,
+      "raw_hit_fraction_median_printed": "0.76",
+      "raw_hit_fraction_p90_printed": "0.96"
+    },
+    {
+      "wave": "W2",
+      "n": 300,
+      "marker_counts": {
+        "open": 7272
+      },
+      "readable_shard_cpu_h_rounded": 18390,
+      "raw_hit_fraction_median_printed": "0.00",
+      "raw_hit_fraction_p90_printed": "0.00"
+    }
+  ],
+  "pbs_summary_arithmetic": {
+    "W1": {
+      "reported_allocated_cpu_h": 63184,
+      "reported_cput_h": 53389,
+      "gap_h": 9795,
+      "cput_over_allocated": 0.8449765763484427
+    },
+    "W2": {
+      "reported_allocated_cpu_h": 19084,
+      "reported_cput_h": 18459,
+      "gap_h": 625,
+      "cput_over_allocated": 0.9672500523999161
+    }
+  },
+  "arithmetic": {
+    "w1_replay_marked_complete": 4676,
+    "w1_replay_denominator": 4847,
+    "w1_replay_marker_completion_fraction": 0.9647204456364762,
+    "w1_n30_marker_completion_fraction": 0.9387535816618912,
+    "w1_readable_shard_cpu_h_from_rounded_groups": 53311,
+    "raw_shard_cpu_group_sum": 71701,
+    "raw_shard_cpu_total_printed": 71700,
+    "rounding_note": "Group totals were rounded separately; their one-hour difference does not establish an accounting error.",
+    "historical_w1_complete_plus_current_marker_count": 14371,
+    "historical_w1_capped_retained": 2,
+    "full_w1_inventory": 14544,
+    "nonzero_exit_log_count": 7969,
+    "certificates_minus_exit_records": 7969,
+    "second_message_type_tally": 7971,
+    "second_hour_bin_tally": 7973,
+    "active_subjob_allocated_cores": 3816,
+    "w1_delay_slot_hours_if_15_to_20_seconds": [
+      27.445833333333333,
+      36.59444444444444
+    ],
+    "all_delay_slot_hours_if_15_to_20_seconds": [
+      33.204166666666666,
+      44.272222222222226
+    ],
+    "cap_tally_contract": "82 slots have >=19 logged nonzero exits; max is20. Exact count reaching20 is not given.",
+    "cpu_cost_contract": "The checkpoint probe excludes imported pilot CPU and omits lost uncommitted CPU and overhead; PBS reports a different scope."
+  },
+  "synthetic_fixtures": [
+    {
+      "name": "hits_beyond_prefix_hole",
+      "probe": [
+        "W1",
+        30,
+        "open",
+        1520,
+        10800.0,
+        "s_gap"
+      ],
+      "probe_fraction": 0.76,
+      "contiguous_prefix_hits": 0
+    },
+    {
+      "name": "unreadable_checkpoint_silently_skipped",
+      "probe": [
+        "W1",
+        30,
+        "open",
+        0,
+        0.0,
+        "s_unreadable"
+      ]
+    },
+    {
+      "name": "complete_marker_no_checkpoints_and_conflicting_failed_marker",
+      "probe": [
+        "W1",
+        30,
+        "COMPLETE",
+        0,
+        0.0,
+        "s_marker"
+      ]
+    },
+    {
+      "name": "absent_directory_is_open_zero",
+      "probe": [
+        "W1",
+        30,
+        "open",
+        0,
+        0.0,
+        "s_absent"
+      ]
+    },
+    {
+      "name": "unvalidated_shard_fields_counted",
+      "probe": [
+        "W1",
+        30,
+        "open",
+        1800,
+        3600.0,
+        "s_unbound"
+      ]
+    },
+    {
+      "name": "pilot_hits_counted_but_pilot_cpu_excluded",
+      "probe": [
+        "W1",
+        30,
+        "open",
+        20,
+        0.0,
+        "s_pilot"
+      ]
+    }
+  ],
+  "scope": "Local saved-text arithmetic and exact-function fixtures only; no validation of live production journals or raw PBS records."
+}
