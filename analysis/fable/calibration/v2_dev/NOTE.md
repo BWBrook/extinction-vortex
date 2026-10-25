@@ -1275,3 +1275,48 @@ Receipt: `p3/r2_dispatch_receipt.txt` (launcher `p3/r2_dispatch_launcher.sh`).
   - Each collector is `afterany` on its array and emails Barry (Mail_Points
     ae). At 22:21, W1's array had begun and W2's was queued.
 
+### W1 round 2 collected, reconciled and deterministic (25 October 2026)
+
+**Collection.** Array 857922[] reached F, and collector 857923 ran 20:30–21:40
+on 24 October with exit 0. Receipt: `p3/w1_r2_collection_20261025.txt`.
+- `collection_ok` true, no errors: 4,798 COMPLETE, 1 CAPPED, 0 FAILED and 48
+  incomplete (all n = 30, the heaviest; their shards were censored at the 48 h
+  limit and requeued in run2).
+- CPU: 49,493 useful and 17,974 discarded. The discarded figure includes the
+  incomplete settings' completed ranges beyond their prefix, which the next W1
+  array resumes under the same binding.
+- **Archive:** `W1.tar.gz` (`c12e5378…`, 825 MB; summary `3cd15802…`) was
+  verified on deep-server (`/data/fable/vortex/v2_dev/p3/w1_r2/`). It holds
+  4,800 members: the summary, the log and 4,798 libraries.
+
+**Settings reproduced.** `select` on deep-server, from round 1's summary, the
+full settings and runner `1e35b94a…`, gives `p3_settings_r2.json` =
+`248f9c7d…`, the same as kunanyi.
+
+**Strict reconciliation** (`p3_w1_reconcile.py`; `p3/w1_reconcile_r1_r2.json`;
+exit 0). For each round:
+- the binding is its own settings, metric and runner;
+- the rows are exactly its W1 settings, with unchanged identities, known
+  statuses and consistent counts, and errors one-to-one with invalid rows;
+- a library exists exactly when the row is COMPLETE;
+- every library (9,695 + 4,798 = 14,493) matches its digest and has exactly
+  2,000 records, strictly ordered by (batch, proposal), with the K-th record's
+  batch equal to `kth_hit` and the metric's path length.
+
+Across rounds:
+- round 2's rows are exactly round 1's incomplete and invalid settings;
+- 9,697 + 4,799 terminal settings plus 48 remaining partition all 14,544 W1
+  settings.
+
+**Round-to-round determinism** (`p3_r2_determinism.py` on kunanyi, round 1
+`run` against `run2`, over the 4,847 W1 round-2 dirs; 1,590 s):
+- exit 0 over 9,336,542,588 batches committed in both rounds;
+- **1,643,296 hit records compared, all byte-identical**, with 0 unmatched
+  identities, 0 byte differences and 0 journal problems.
+- The comparison spans different runner versions and bindings, kunanyi nodes
+  and shard plans.
+- The full per-setting JSON is on kunanyi at `s1b/probe/w1r2_determinism.json`.
+
+**W1 after round 2:** 14,493 COMPLETE libraries and 3 CAPPED; 48 settings to
+finish with a W1 array in run2.
+

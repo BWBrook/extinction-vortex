@@ -1381,7 +1381,23 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Stage 1b round 2 is running; node-only mitigation needs its executable check.**
+1. **W1 round 2 collected, reconciled and deterministic (25 October).**
+   - **W1 overall:** 14,493 COMPLETE (9,695 + 4,798) and 3 CAPPED; 48 heavy n = 30
+     settings remain, in run2.
+   - **Checks:**
+     - strict reconciliation of both rounds and their partition of W1 passes;
+     - round-to-round determinism: 1,643,296 records byte-identical over
+       9.34 billion common batches.
+     - Receipts: `p3/w1_r2_*`, `p3/w1_reconcile_r1_r2.json`.
+   - **Running:** W2 858016[] (379 running and 191 done at 11:13; collector
+     858017).
+   - **Next:**
+     - Codex checks node `00ed12fb` (board 2242);
+     - then one window: release W1 r2's reservation, install the node script,
+       and submit a W1 `topup` for the 48 settings and a W2 `topup` sized from
+       live `qstat` within 7,000 CPUs.
+
+2. **Stage 1b round 2 is running; node-only mitigation needs its executable check.**
    - W1 replay array 857922[] (300 × 8 × 48 h), collector 857923; W2 array
      858016[] (570 × 8 × 48 h), collector 858017. Both collectors email Barry.
      Settings `p3_settings_r2.json` `248f9c7d…`; reservations 115,208 and

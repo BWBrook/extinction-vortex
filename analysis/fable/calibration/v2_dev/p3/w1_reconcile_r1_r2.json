@@ -1,0 +1,44 @@
+{
+ "scope": "W1 across rounds (design section 9c; no fits): strict reconciliation of each round's collection and libraries, and the\npartition of the W1 inventory into round-1 terminal libraries, round-2 terminal libraries and what remains.\n  p3_w1_reconcile.py SETTINGS_R1 SETTINGS_R2 METRIC COLLECT_R1 ARCHIVE_R1 COLLECT_R2 ARCHIVE_R2 OUT_JSON\nFor each round: the summary's binding is its round's (settings, metric, runner); rows are exactly that round's W1\nsettings with unchanged identities and known statuses, consistent counts, no errors except rows marked invalid, and a\nlibrary exactly when COMPLETE. Every library in the archive matches its digest, has K records, is strictly ordered by\n(batch, proposal_in_batch), and its K-th record's batch is the row's kth_hit. Across rounds: round-2 rows are exactly\nround 1's incomplete and invalid settings; terminal settings of the two rounds are disjoint; together with round 2's\nremaining settings they partition the W1 inventory. Exit 1 on any failure.",
+ "ok": true,
+ "failures": [],
+ "round_1": {
+  "status": {
+   "COMPLETE": 9695,
+   "CAPPED": 2,
+   "FAILED": 0,
+   "incomplete": 4846,
+   "invalid": 1
+  },
+  "libraries": 9695,
+  "binding": {
+   "settings_sha256": "86545d6b83dec07e31b84fa97a5fd43b5dc4130170c48e01f92b9f7f0320520a",
+   "metric_sha256": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+   "runner_sha256": "00dd369f7eca0e126e47959c2e205a19d155c166a9ca53637059dc03372e5407"
+  }
+ },
+ "round_2": {
+  "status": {
+   "COMPLETE": 4798,
+   "CAPPED": 1,
+   "FAILED": 0,
+   "incomplete": 48,
+   "invalid": 0
+  },
+  "libraries": 4798,
+  "binding": {
+   "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73",
+   "metric_sha256": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+   "runner_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75"
+  }
+ },
+ "w1": {
+  "inventory": 14544,
+  "terminal_round_1": 9697,
+  "terminal_round_2": 4799,
+  "remaining": 48,
+  "remaining_by_n": {
+   "30": 48
+  }
+ }
+}

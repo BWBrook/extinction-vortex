@@ -1,0 +1,25 @@
+# W1 round-2 collection probe and round-to-round determinism on kunanyi, 2026-10-25 11:12-11:39 AEDT (script w1r2.sh)
+== now 2026-10-25 11:12:57 AEDT
+-- W1 r2 collector 857923:  resources_used.walltime = 01:10:16  job_state = F  mtime = Sat Oct 24 21:40:47 2026  stime = Sat Oct 24 20:30:30 2026  Exit_status = 0 
+-- W1 r2 array 857922[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- W2 array 858016[]:  job_state = B  array_state_count = Queued:0 Running:379 Exiting:0 Expired:191  
+-- W2 collector 858017:  job_state = H
+-rw-r--r--     1 bwbrook hpcadmin   824755048 Oct 24 21:40 W1.tar.gz
+-rw-r--r--     1 bwbrook hpcadmin          76 Oct 24 21:40 W1.tar.gz.sha256
+-rw-------     1 bwbrook hpcadmin     1776631 Oct 24 21:31 collect_W1.json
+-rw-r--r--     1 bwbrook hpcadmin         141 Oct 24 21:31 collect_W1.log
+-rw-------     1 bwbrook hpcadmin       81597 Oct 24 21:31 pack_W1.txt
+drwxr-sr-x     3 bwbrook hpcadmin    55717349 Oct 21 21:59 submit_W1
+collection_ok True W1 {'COMPLETE': 4798, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 48} useful 49493.0 discarded 17974.1 incomplete 48 errors 0
+c12e5378589c010f6e4b01d1bbb3cbd19d4d61ca4675aced79269e1e4f0624cc  W1.tar.gz
+   [+0s]
+collection_ok True status {'COMPLETE': 4798, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 48} n_errors 0 incomplete 48 useful 49493 discarded 17974 queue_left 12130 claims_left 3237 tag W1
+row status {'COMPLETE': 4798, 'incomplete': 48, 'CAPPED': 1}
+W1 r2 settings 4847 rows 4847 same set True
+   [+6s]
+== determinism: round 1 run vs run2 over the W1 r2 dirs
+determinism exit 0
+{"exit": 0, "settings": 4847, "batches_compared": 9336542588, "records_compared": 1643296, "identical": 1643296, "bytes_differ": 0, "unmatched": 0, "problems": 0}
+   [+1590s]
+W1R2_DONE
+rc=0
