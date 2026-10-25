@@ -12,7 +12,9 @@
 #   another non-zero exit: launch again until MAX_FAIL such exits, then the slot stops with that status;
 #   exit 0 (no ticket of this wave was claimable): launch again when the wave has queued tickets; while it has only
 #     claims in flight (or its state cannot be read), poll every POLL_SECS with jitter, for at most IDLE_MAX_SECS
-#     after every slot of this subjob has become idle; when both its queue and claims read empty twice, retire.
+#     after every slot of this subjob has become idle; when its queue and claims read empty on two consecutive
+#     checks (GRACE_SECS apart), retire. Each idle pass checks the launch cutoff and the idle budget before anything
+#     else and ends in one pause, so no sequence of readings can loop without waiting or outlive either bound.
 # No launch after LAUNCH_CUTOFF_SECS before the deadline; every pause is clipped to that cutoff. Pauses carry random
 # jitter (JITTER_SECS) so idle slots across an array do not poll in step. Completion is one file per subjob.
 # qsub -J 0-(N-1) -l select=1:ncpus=C:mem=M -l walltime=HH:MM:SS -v VBASE=...,SETTINGS=...,OUTDIR=...,WAVE=...,TAG=...,JOBCPUS=C,WALL_SECS=s s1b_node.pbs
@@ -23,6 +25,7 @@ S="$VBASE/s1b"; RUN="$S/$OUTDIR"; L="$RUN/submit_$TAG/logs"; DEAD="$RUN/workers/
 DEADLINE=$(( T0 + WALL_SECS - ${MARGIN_SECS:-1800} )); LAST_LAUNCH=$(( DEADLINE - ${LAUNCH_CUTOFF_SECS:-600} ))
 POLL=${POLL_SECS:-300}; IDLE_MAX=${IDLE_MAX_SECS:-1800}; MAX_FAIL=${MAX_FAIL:-20}; CERT_TRIES=${CERT_TRIES:-6}
 REFILL=${REFILL_SECS:-5}; RETRY=${RETRY_SECS:-10}; GRACE=${GRACE_SECS:-30}; JITTER=${JITTER_SECS:-30}
+if [ "$POLL" -lt 1 ]; then POLL=1; fi; if [ "$GRACE" -lt 1 ]; then GRACE=1; fi
 NONCE=$(od -An -N6 -tx1 /dev/urandom | tr -d ' \n'); HOST=$(uname -n)
 BUSY=$(mktemp -d "${TMPDIR:-/tmp}/s1b_busy.XXXXXX")         # node-local: which slots of this subjob hold a worker
 mkdir -p "$DEAD"
@@ -51,7 +54,7 @@ certify() {        # publish the certificate of a reaped worker; succeed once th
   return 1
 }
 slot() {
-  local i=$1 g=0 fails=0 rc pid owner st idle0 log="$L/w.${PBS_ARRAY_INDEX}.$1.log"
+  local i=$1 g=0 fails=0 rc pid owner st idle0 empty d left log="$L/w.${PBS_ARRAY_INDEX}.$1.log"
   while [ "$(now)" -lt "$LAST_LAUNCH" ]; do
     owner="$PBS_JOBID.${i}r${g}n$NONCE"; g=$(( g + 1 ))
     : > "$BUSY/$i"
@@ -71,22 +74,23 @@ slot() {
       if [ "$fails" -ge "$MAX_FAIL" ]; then return "$rc"; fi
       pause "$RETRY"; continue
     fi
-    idle0=$(now)
-    while :; do
-      st=$(wave)
-      if [ "$st" = work ]; then break; fi
-      if [ "$st" = empty ]; then
-        pause $(( GRACE + RANDOM % (JITTER + 1) ))
-        st=$(wave)
-        if [ "$st" = empty ]; then note "$log" "wave $WAVE has no queued tickets or claims; slot retires"; return 0; fi
-        continue
-      fi
+    idle0=$(now); st=none; empty=0
+    while :; do                                                    # every pass: cutoff and idle budget first, then one pause
+      if [ "$(now)" -ge "$LAST_LAUNCH" ]; then note "$log" "launch cutoff reached while idle; slot retires"; return 0; fi
       if [ -n "$(ls -A "$BUSY")" ]; then idle0=$(now); fi           # a sibling slot still works: its cores are held anyway
       if [ $(( $(now) - idle0 )) -ge "$IDLE_MAX" ]; then
         note "$log" "subjob idle for ${IDLE_MAX}s with wave $WAVE $st; slot retires"; return 0
       fi
-      if [ "$(now)" -ge "$LAST_LAUNCH" ]; then return 0; fi
-      pause $(( POLL + RANDOM % (JITTER + 1) ))
+      st=$(wave)
+      if [ "$st" = work ]; then break; fi
+      if [ "$st" = empty ]; then
+        if [ "$empty" -eq 1 ]; then note "$log" "wave $WAVE has no queued tickets or claims; slot retires"; return 0; fi
+        empty=1; pause $(( GRACE + RANDOM % (JITTER + 1) )); continue
+      fi
+      empty=0; d=$(( POLL + RANDOM % (JITTER + 1) )); left=$(( IDLE_MAX - ($(now) - idle0) ))
+      if [ "$left" -lt 1 ]; then left=1; fi
+      if [ "$d" -gt "$left" ]; then d=$left; fi
+      pause "$d"
     done
   done
   return 0

@@ -709,3 +709,52 @@ settings are unchanged.
   - certificate refusal: one launch, then the slot stops;
   - deadline crossed during a pause, or passed at start: no further launch.
 - Submitter fixtures are unchanged at 12/12.
+
+**Idle-loop repair after Codex 2391/2393 (node `8fe10208…`).**
+- **The bug.** In `00ed12fb…`, a post-grace reading other than "empty" (unknown
+  or in flight) skipped the idle-budget and cutoff checks. Alternating empty and
+  unknown readings could poll past the idle budget and, at the cutoff (pauses
+  clipped to zero), scan without pause.
+- **The repair.** Every idle pass now:
+  - first checks the launch cutoff, then the whole-subjob idle budget;
+  - then makes one reading;
+  - then ends in one pause: the grace pause after a first "empty", or a poll
+    pause clipped to the remaining idle budget.
+  - Retirement on "empty" needs two consecutive empty readings. Pauses of at
+    least 1 s are enforced.
+- **Evidence:**
+  - node fixtures 10/10 under bash 5.2 (twice) and 4.2.46. The new case fails
+    every third scan:
+    - long before the cutoff the slot retires at the 30 s idle budget after 3
+      scans;
+    - at a 10 s cutoff it retires after 2 scans.
+  - On `00ed12fb…` the same two cases ran to the 60 s harness timeout, with
+    1,431 and 1,525 scans and no retirement.
+  - Codex's `combined_checks.py` on `8fe10208…`
+    (`p3/codex_node_combined_on_8fe10208.*`, the two bug assertions recorded
+    rather than asserted):
+    - past-deadline case: retires at 10 s, 2 scans, 0 at or after the cutoff,
+      no forced termination, done receipt written;
+    - idle-budget case: retires at 30 s after 3 scans;
+    - the mixed-restart and ambiguous-certificate controls pass as assertions.
+
+**Topup dispatch** (`kunanyi/s1b_topup_dispatch.sh`).
+1. Verify the pushed node script's digest and install it.
+2. Release W1 round 2's reservation once, after PBS shows its array and
+   collector F.
+3. Size from live requests: the CPUs of every queued, running and held job and
+   subjob, with array parents excluded. Sizing is refused if the total falls
+   below the running W2 array's own count × 8.
+4. Submit the W1 topup (`W1_JOBS`, default 170, for the 48 remaining
+   settings), then a W2 topup sized to the room left under 7,000 CPUs. Each
+   topup's size is recorded on first submission, so a rerun resumes the same
+   submissions.
+
+The original W2 reservation stays until its array and collector finish.
+Rehearsed with stub PBS (`p3/rehearsal_topup_*`).
+
+**Accounting correction (Codex 2393).** 17,701 of W1 round 2's 17,974
+outside-prefix CPU-h belong to the 48 incomplete settings and are potentially
+reusable by the W1 topup under the same binding. The accounted total of 67,467
+CPU-h includes 190 imported pilot hours.
+

@@ -43,8 +43,12 @@ if name == "sleep":
     time.sleep(n); sys.exit(0)
 if name == "find":
     log("find", dir=sys.argv[1])
-    until = json.load(open(os.path.join(st, "find_fail.json")))["until"]
-    if (locked(clock) if logical else time.time()) < until:
+    cfg = json.load(open(os.path.join(st, "find_fail.json"))); until, every = cfg["until"], cfg.get("every", 0)
+    def count():
+        p = os.path.join(st, "find_n"); n = (int(open(p).read()) if os.path.exists(p) else 0) + 1
+        open(p, "w").write(str(n)); return n
+    n = locked(count)
+    if (locked(clock) if logical else time.time()) < until or (every and n % every == 0):
         print("find: Stale file handle (fixture)", file=sys.stderr); sys.exit(1)
     os.execv("/usr/bin/find", ["find"] + sys.argv[1:])
 if name == "mv":
@@ -71,7 +75,7 @@ if name == "python":                       # a worker: argv ends with OWNER DEAD
 
 
 def run_node(d, plan, jobid="job[0].fixture", cpus=1, logical=True, wall=172800, env=None, events=(), find_fail=0,
-             mv="ok", queue=(), claims=(), fresh=True):
+             mv="ok", queue=(), claims=(), fresh=True, find_every=0):
     base, st, run = d / "base", d / "state", d / "base/s1b/run"
     if fresh:
         for p in (run / "queue", run / "claimed", run / "submit_W1/logs", st, d / "bin", d / "tmp",
@@ -83,7 +87,8 @@ def run_node(d, plan, jobid="job[0].fixture", cpus=1, logical=True, wall=172800,
     (st / "clock").write_text(str(T0)); (st / "lock").touch()
     (st / "logical").touch() if logical else (st / "logical").unlink(missing_ok=True)
     (st / "plan.json").write_text(json.dumps(plan)); (st / "events.json").write_text(json.dumps(list(events)))
-    (st / "find_fail.json").write_text(json.dumps({"until": find_fail})); (st / "mv_mode").write_text(mv)
+    (st / "find_fail.json").write_text(json.dumps({"until": find_fail, "every": find_every})); (st / "mv_mode").write_text(mv)
+    (st / "find_n").unlink(missing_ok=True)
     for q in queue:
         (run / "queue" / q).touch()
     for c in claims:
@@ -95,7 +100,12 @@ def run_node(d, plan, jobid="job[0].fixture", cpus=1, logical=True, wall=172800,
              MARGIN_SECS="1800", LAUNCH_CUTOFF_SECS="600")
     e.update(env or {})
     t = time.time()
-    p = subprocess.run([os.environ.get("FIX_BASH", "bash"), str(NODE)], env=e, capture_output=True, text=True, timeout=120)
+    try:
+        p = subprocess.run([os.environ.get("FIX_BASH", "bash"), str(NODE)], env=e, capture_output=True, text=True, timeout=60,
+                           start_new_session=True)
+    except subprocess.TimeoutExpired as ex:                   # a wrapper that never ends: kill its process group
+        subprocess.run(["pkill", "-9", "-f", str(d)], check=False)
+        p = subprocess.CompletedProcess(ex.cmd, "timeout", "", "")
     calls = [json.loads(x) for x in (st / "calls.jsonl").read_text().splitlines()] if (st / "calls.jsonl").exists() else []
     (st / "calls.jsonl").unlink(missing_ok=True)
     logs = "".join(f.read_text() for f in sorted((run / "submit_W1/logs").glob("w.*.log")))
@@ -141,7 +151,7 @@ def main():
         r = run_node(D("c1"), [{"rc": 0}, {"rc": 0, "do": [["rm", "queue/W1_t1"]]}], queue=["W1_t1"])
         q_only = len(r["launches"]) == 2 and "has no queued tickets or claims" in r["log"]
         r = run_node(D("c2"), [{"rc": 0}], claims=["W1_0000001_s00001_000000000_000000010@remote[1].x.0r0nab"])
-        c_only = len(r["launches"]) == 1 and r["clock"] >= 1800 and "idle for 1800s with wave W1 inflight" in r["log"] \
+        c_only = len(r["launches"]) == 1 and 1800 <= r["clock"] <= 1801 and "idle for 1800s with wave W1 inflight" in r["log"] \
             and len(r["sleeps"]) <= 8
         rec["claims_only_idle"] = {"logical_seconds": r["clock"], "polls": len(r["sleeps"]), "finds": r["finds"]}
         r = run_node(D("c3"), [{"rc": 0}])
@@ -195,6 +205,16 @@ def main():
         sib = len(r["launches"]) == 8 and r["real_s"] >= 7 and r["log"].count("slot retires") == 8   # 5 s + 3 s, 1 s clock
         rec["idle_with_busy_sibling"] = {"real_seconds": round(r["real_s"], 1), "finds": r["finds"]}
         res["idle_subjob_residence_is_bounded"] = idle and sib
+        # 10. Codex 2391/2393: readings alternating empty and unknown (every third scan fails). Long before the cutoff the
+        # idle budget still ends the wait; at the cutoff the slot retires instead of scanning without pause
+        r = run_node(D("j1"), [{"rc": 0}], find_every=3, env={"IDLE_MAX_SECS": "30", "GRACE_SECS": "10"})
+        j1 = r["rc"] == 0 and len(r["launches"]) == 1 and "idle for 30s" in r["log"] and r["finds"] <= 6 and r["clock"] <= 40 \
+            and "has no queued tickets or claims" not in r["log"]
+        r2 = run_node(D("j2"), [{"rc": 0}], find_every=3, wall=1800 + 600 + 10)
+        j2 = r2["rc"] == 0 and len(r2["launches"]) == 1 and "launch cutoff reached while idle" in r2["log"] and r2["finds"] <= 4
+        rec["empty_unknown_alternation"] = {"before_cutoff": {"logical_seconds": r["clock"], "finds": r["finds"]},
+                                            "at_cutoff": {"logical_seconds": r2["clock"], "finds": r2["finds"]}}
+        res["alternating_empty_unknown_bounded_by_idle_budget_and_cutoff"] = j1 and j2
     bv = subprocess.run([os.environ.get("FIX_BASH", "bash"), "-c", "echo $BASH_VERSION"], capture_output=True, text=True).stdout.strip()
     out = {"scope": __doc__, "bash_version": bv, "node_sha256": hashlib.sha256(NODE.read_bytes()).hexdigest(), "checks": res,
            "observations": rec, "all_ok": all(res.values())}

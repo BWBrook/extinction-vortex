@@ -1,0 +1,62 @@
+# topup dispatch rehearsals on deep-server (stub PBS), 25 Oct: node 8fe10208
+== badsha: node script digest mismatch: nothing installed
+   ledger lines 4; qsub calls 0
+== badcount: request total 0 is below the W2 array's own 3032: not sizing
+   ledger lines 5; qsub calls 0
+== pos
+CASE pos rc1=0 rc2=0 qsub_calls=4 ledger_lines=7 node_installed=yes | TOPUP_DONE 2026-10-25 14:16:05 AEDT
+## run 1
+== 2026-10-25 14:14:58 AEDT node script
+s1b_node_topup.pbs: OK
+== release s1b_22b89261_a
+live requests: 3033 CPUs; 858016[] live subjobs: 379
+== 14:14:59 W1 topup b: 170 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_446f2eca_a", "reservation_cpu_h": 65288.0, "recorded": true, "wave_reserved": 65288.0, "campaign_reserved": 284176.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_b): array 900000.fixture (170 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+    depend = afterany:900001.fixture
+live requests: 4394 CPUs; 858016[] live subjobs: 379
+== 14:15:32 W2 topup b: 325 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_3bf8a0de_a", "reservation_cpu_h": 124808.0, "recorded": true, "wave_reserved": 343696.0, "campaign_reserved": 408984.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_b): array 900002.fixture (325 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+    depend = afterany:900003.fixture
+live requests now: 6995 CPUs
+reserve	s1b	W2	s1b_3a5e71fa_a	218888.000	2026-10-21T22:06:19+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+release	s1b_22b89261_a	manual: 857922[] 857923 job_state F (qstat -x, 2026-10-25T14:14:59+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_446f2eca_a	65288.000	2026-10-25T14:15:31+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=170 cpus=8 wall=172800
+reserve	s1b	W2	s1b_3bf8a0de_a	124808.000	2026-10-25T14:16:04+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=325 cpus=8 wall=172800
+TOPUP_DONE 2026-10-25 14:16:05 AEDT
+## run 2 (rerun)
+== 2026-10-25 14:16:05 AEDT node script
+s1b_node_topup.pbs: OK
+== release s1b_22b89261_a
+already released
+== 14:16:05 W1 resume b: 170 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_446f2eca_a", "reservation_cpu_h": 65288.0, "recorded": false, "wave_reserved": 65288.0, "campaign_reserved": 408984.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_b): array 900000.fixture (170 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+    depend = afterany:900001.fixture
+== 14:16:37 W2 resume b: 325 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.12.3", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_3bf8a0de_a", "reservation_cpu_h": 124808.0, "recorded": false, "wave_reserved": 343696.0, "campaign_reserved": 408984.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_b): array 900002.fixture (325 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+    Mail_Users = fixture
+    Mail_Points = ae
+    depend = afterany:900003.fixture
+live requests now: 6995 CPUs
+reserve	s1b	W2	s1b_3a5e71fa_a	218888.000	2026-10-21T22:06:19+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+release	s1b_22b89261_a	manual: 857922[] 857923 job_state F (qstat -x, 2026-10-25T14:14:59+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_446f2eca_a	65288.000	2026-10-25T14:15:31+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=170 cpus=8 wall=172800
+reserve	s1b	W2	s1b_3bf8a0de_a	124808.000	2026-10-25T14:16:04+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=325 cpus=8 wall=172800
+TOPUP_DONE 2026-10-25 14:17:09 AEDT
+## ledger
+reserve	s1b	W1	s1b_5e346b76_a	199688.000	2026-10-17T10:55:43+1100	settings=86545d6b outdir=/u/bwbrook/vortex/run1/s1b/run jobs=520 cpus=8 wall=172800
+release	s1b_5e346b76_a	manual: F
+reserve	s1b	W1	s1b_22b89261_a	115208.000	2026-10-21T21:53:06+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=300 cpus=8 wall=172800
+reserve	s1b	W2	s1b_3a5e71fa_a	218888.000	2026-10-21T22:06:19+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=570 cpus=8 wall=172800
+release	s1b_22b89261_a	manual: 857922[] 857923 job_state F (qstat -x, 2026-10-25T14:14:59+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_446f2eca_a	65288.000	2026-10-25T14:15:31+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=170 cpus=8 wall=172800
+reserve	s1b	W2	s1b_3bf8a0de_a	124808.000	2026-10-25T14:16:04+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/data/fable/vortex/topup_rehearse_pos/s1b/run2 jobs=325 cpus=8 wall=172800
