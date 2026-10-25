@@ -1393,7 +1393,22 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **W1 collection verified; repair one node idle-loop branch before top-ups.**
+1. **Topups b dispatched (25 October 16:22); node idle loop repaired.**
+   - **Node:** `8fe10208`, after the hold in 2391/2393. Evidence: fixtures
+     10/10 under bash 5.2 and 4.2.46; Codex's combined checks pass; board
+     2399.
+   - **W1 topup b:** array 860989[] (170 × 8) for the last 48 W1 settings;
+     collector 860990.
+   - **W2 topup b:** array 860992[] (381 × 8); collector 860993.
+   - **Still running:** W2 858016[] and its collector 858017.
+   - **Requests:** live total 6,995 of 7,000 CPUs. W1 round 2's reservation is
+     released; W2's original reservation is kept.
+   - **Determinism:** the per-setting JSON `73f9cd12` is fetched; 1,091 of 4,847
+     settings have batches committed in both rounds.
+   - Receipt: `p3/r2_topup_b_receipt.txt`.
+   - **Next:** collect each array as its collector emails; add further W2
+     topups as capacity frees.
+2. **(History) W1 collection verified; node idle-loop branch repaired before top-ups.**
    - **Accepted outputs:** W1 combined 14,493 COMPLETE, three CAPPED and 48
      incomplete settings. Round-2 archive `c12e5378…` contains 4,798 verified
      libraries; all 9,596,000 new records pass the independent archive audit.
