@@ -1,0 +1,43 @@
+# Topup dispatch b on kunanyi, 25 Oct 2026 16:18-16:22 AEDT (node 8fe10208, dispatch e85c24b9; launcher r2_topup_launcher.sh)
+== 2026-10-25 16:18:15 AEDT on kunanyi-00.kunanyi.tpac.org.au
+s1b_node_topup.pbs: OK
+s1b_topup_dispatch.sh: OK
+e8cb24aa74726849  src/analysis/fable/calibration/kunanyi/s1b_submit.sh
+ab8c1aa2afa470f1  src/analysis/fable/calibration/kunanyi/s1b_collect.pbs
+1e35b94ab3811cc0  src/analysis/fable/calibration/v2_dev/p3_stage1b.py
+73f9cd129bf5f84c279ea1d43ecd4f7ba392c3477535b3c350f6a31437320633  s1b/probe/w1r2_determinism.json
+== 2026-10-25 16:18:16 AEDT node script
+s1b_node_topup.pbs: OK
+== release s1b_22b89261_a
+live requests: 2601 CPUs; 858016[] live subjobs: 325
+== 16:18:16 W1 topup b: 170 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_b373da8c_a", "reservation_cpu_h": 65288.0, "recorded": true, "wave_reserved": 65288.0, "campaign_reserved": 284176.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_b): array 860989[].kunanyi-ohpc (170 x 8 cpus, 10gb, walltime 48:00:00); collector: 860990.kunanyi-ohpc
+    depend = afterany:860989[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_b373da8c_c -W depend=afterany:860989[].kunanyi-oh
+live requests: 3946 CPUs; 858016[] live subjobs: 323
+== 16:19:27 W2 topup b: 381 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_f093f541_a", "reservation_cpu_h": 146312.0, "recorded": true, "wave_reserved": 365200.0, "campaign_reserved": 430488.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_b): array 860992[].kunanyi-ohpc (381 x 8 cpus, 10gb, walltime 48:00:00); collector: 860993.kunanyi-ohpc
+    depend = afterany:860992[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_f093f541_c -W depend=afterany:860992[].kunanyi-oh
+live requests now: 6995 CPUs
+reserve	s1b	W2	s1b_3a5e71fa_a	218888.000	2026-10-21T22:06:19+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/u/bwbrook/vortex/run1/s1b/run2 jobs=570 cpus=8 wall=172800
+release	s1b_22b89261_a	manual: 857922[] 857923 job_state F (qstat -x, 2026-10-25T16:18:16+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_b373da8c_a	65288.000	2026-10-25T16:19:21+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/u/bwbrook/vortex/run1/s1b/run2 jobs=170 cpus=8 wall=172800
+reserve	s1b	W2	s1b_f093f541_a	146312.000	2026-10-25T16:22:46+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73 outdir=/u/bwbrook/vortex/run1/s1b/run2 jobs=381 cpus=8 wall=172800
+TOPUP_DONE 2026-10-25 16:22:48 AEDT
+TOPUP_EXIT 0
+Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+858016[].kunany bwbrook  normal   s1b_3a5e71    --    1   8   10gb 48:00 B   -- 
+858017.kunanyi- bwbrook  normal   s1b_3a5e71    --    1   1   16gb 08:00 H   -- 
+860989[].kunany bwbrook  normal   s1b_b373da    --    1   8   10gb 48:00 B   -- 
+860990.kunanyi- bwbrook  normal   s1b_b373da    --    1   1   16gb 08:00 H   -- 
+860992[].kunany bwbrook  normal   s1b_f093f5    --    1   8   10gb 48:00 Q   -- 
+860993.kunanyi- bwbrook  normal   s1b_f093f5    --    1   1   16gb 08:00 H   -- 
+rc=0

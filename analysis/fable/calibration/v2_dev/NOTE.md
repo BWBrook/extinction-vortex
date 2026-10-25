@@ -1320,3 +1320,28 @@ Across rounds:
 **W1 after round 2:** 14,493 COMPLETE libraries and 3 CAPPED; 48 settings to
 finish with a W1 array in run2.
 
+### Topups b dispatched (25 October 2026, 16:18–16:22 AEDT)
+
+Receipt: `p3/r2_topup_b_receipt.txt`.
+- **Pushed files** verified on kunanyi: node `8fe10208…` and dispatch
+  `e85c24b9…`. The installed runner `1e35b94a…`, submitter `e8cb24aa…` and
+  collector `ab8c1aa2…` were confirmed.
+- **Determinism file:** `s1b/probe/w1r2_determinism.json` is `73f9cd12…`,
+  identical on kunanyi, on deep-server and in `p3/w1r2_determinism.json`.
+  - Of the 4,847 settings, **3,756 have no batches committed in both rounds**,
+    because round 1 never started most of its open settings beyond their
+    pilot. The 1,643,296 identical records come from the other 1,091.
+  - No setting has common coverage without records.
+- **Ledger:** `release s1b_22b89261_a` at 16:18:16, after W1 round 2's array
+  and collector reached F.
+- **Sizing:** the live request total was 2,601 CPUs (W2: 325 live subjobs).
+- **W1 topup b:** array **860989[]** (170 × 8 × 48 h) and collector **860990**;
+  reservation `s1b_b373da8c_a`, 65,288 CPU-h.
+- After the W1 topup the live total was 3,946 (W2: 323 live).
+- **W2 topup b:** array **860992[]** (381 × 8 × 48 h) and collector **860993**;
+  reservation `s1b_f093f541_a`, 146,312 CPU-h.
+- **Live requests after both: 6,995 of 7,000 CPUs.**
+- Both preflights passed on kunanyi (Python 3.11.7).
+- Both collectors are `afterany` on their own arrays and email Barry.
+- W2's original reservation (218,888) stays until 858016[] and 858017 finish.
+
