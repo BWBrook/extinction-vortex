@@ -1,0 +1,223 @@
+{
+  "node_sha256": "00ed12fb3aa3a8224ea99efa6377755821efb75e46e6786a5a0fdfde34ca8457",
+  "cases": {
+    "empty_unknown_loop_past_deadline": {
+      "rc": -15,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0nb75afb770e1e",
+          "deadline": 1000010,
+          "pid": 251781,
+          "t": 1000000
+        }
+      ],
+      "finds": 64,
+      "sleeps": [
+        10.0
+      ],
+      "log": "",
+      "done": "",
+      "clock": 10,
+      "real_s": 4.006405591964722,
+      "forced_termination": true,
+      "exit": -15,
+      "total_find_attempts": 96,
+      "find_attempts_at_cutoff_or_later": 94,
+      "launch_cutoff_and_deadline_offset": 10,
+      "note": "after first clipped pause, the logical clock stays at cutoff; scans continue without any sleep"
+    },
+    "empty_unknown_loop_ignores_idle_budget": {
+      "rc": -15,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0n63433338f64d",
+          "deadline": 1171000,
+          "pid": 254084,
+          "t": 1000000
+        }
+      ],
+      "finds": 58,
+      "sleeps": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "log": "",
+      "done": "",
+      "clock": 290,
+      "real_s": 4.007739305496216,
+      "forced_termination": true,
+      "exit": -15,
+      "total_find_attempts": 86,
+      "idle_budget_seconds": 30,
+      "launch_cutoff_offset": 170400,
+      "note": "all slots idle throughout; empty branch bypasses idle budget even long before the launch cutoff"
+    },
+    "mixed_restarts_verify_prior_certificate_and_no_overlap": {
+      "rc": 1,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254647,
+          "t": 1000000,
+          "planned_rc": 3
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r1nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254658,
+          "t": 1000010,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r2nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254669,
+          "t": 1000015,
+          "planned_rc": 0
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r3nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254681,
+          "t": 1000015,
+          "planned_rc": 3
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r4nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254692,
+          "t": 1000025,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r5nca709af8bdfa",
+          "deadline": 1171000,
+          "pid": 254703,
+          "t": 1000030,
+          "planned_rc": 3
+        }
+      ],
+      "finds": 1,
+      "sleeps": [
+        10.0,
+        5.0,
+        10.0,
+        5.0
+      ],
+      "log": "2026-10-25 12:05:50 worker job[0].fixture.0r0nca709af8bdfa exited 3 (1 of 3)\n2026-10-25 12:05:50 worker job[0].fixture.0r1nca709af8bdfa exited 75 (owner uncertain); launching again\n2026-10-25 12:05:51 worker job[0].fixture.0r3nca709af8bdfa exited 3 (2 of 3)\n2026-10-25 12:05:51 worker job[0].fixture.0r4nca709af8bdfa exited 75 (owner uncertain); launching again\n2026-10-25 12:05:51 worker job[0].fixture.0r5nca709af8bdfa exited 3 (3 of 3)\n",
+      "done": "subjob 0 host laptop slots failed: 1\n",
+      "clock": 30,
+      "real_s": 0.9537014961242676,
+      "certificates": [
+        {
+          "owner": "job[0].fixture.0r0nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254647,
+          "rc": 3
+        },
+        {
+          "owner": "job[0].fixture.0r1nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254658,
+          "rc": 75
+        },
+        {
+          "owner": "job[0].fixture.0r2nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254669,
+          "rc": 0
+        },
+        {
+          "owner": "job[0].fixture.0r3nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254681,
+          "rc": 3
+        },
+        {
+          "owner": "job[0].fixture.0r4nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254692,
+          "rc": 75
+        },
+        {
+          "owner": "job[0].fixture.0r5nca709af8bdfa",
+          "host": "laptop",
+          "pid": 254703,
+          "rc": 3
+        }
+      ],
+      "verified_before_replacements": 5
+    },
+    "ambiguous_certificate_rename_plus_readback_failure": {
+      "rc": 0,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0n289e285e5c07",
+          "deadline": 1171000,
+          "pid": 254724,
+          "t": 1000000,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r1n289e285e5c07",
+          "deadline": 1171000,
+          "pid": 254754,
+          "t": 1000015,
+          "planned_rc": 0
+        }
+      ],
+      "finds": 4,
+      "sleeps": [
+        10.0,
+        5.0,
+        10.0,
+        30.0
+      ],
+      "log": "2026-10-25 12:05:51 worker job[0].fixture.0r0n289e285e5c07 exited 75 (owner uncertain); launching again\n2026-10-25 12:05:52 wave W1 has no queued tickets or claims; slot retires\n",
+      "done": "subjob 0 host laptop slots failed: 0\n",
+      "clock": 55,
+      "real_s": 0.6636307239532471,
+      "all_final_certificates_match_child_owner_and_pid": true
+    }
+  },
+  "timestamp": "2026-10-25T12:05:52.017150+11:00",
+  "replayed_source_sha256": "569282ac2d52a8195876a73d32dd90d400be6993add0694ad7fe8bbab8a04c33"
+}

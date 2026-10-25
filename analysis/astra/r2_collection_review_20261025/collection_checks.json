@@ -1,0 +1,290 @@
+{
+  "timestamp": "2026-10-25T12:02:04.284710+11:00",
+  "target_head": "805f0079f5eb8157b351ee31c04a1ab91f3ca3f7",
+  "reconciler_sha256": "a128a05ecac09eec387df67c02a0550e767b5e4cf752b408d6152557dc29ca57",
+  "saved": {
+    "inputs_sha256": {
+      "analysis/fable/calibration/v2_dev/p3/w1_r1_collect_W1.json": "2aa92fb0bd8c9d8d2235bddb59c1b55be47f404f14d1eaf9ff800d05b7ba28ab",
+      "analysis/fable/calibration/v2_dev/p3/w1_r2_collect_W1.json": "3cd158028c58477c1652aa727dcbec19450a2a507f016926b83b48774fd92fb5"
+    },
+    "exact_replay_directory_set": true,
+    "collection_row_identities_unchanged": true,
+    "full_w1_status": {
+      "COMPLETE": 14493,
+      "CAPPED": 3,
+      "incomplete": 48
+    },
+    "w1_by_n_library_status": [
+      {
+        "n": 0,
+        "library": "check",
+        "status": "COMPLETE",
+        "count": 72
+      },
+      {
+        "n": 0,
+        "library": "primary",
+        "status": "COMPLETE",
+        "count": 7200
+      },
+      {
+        "n": 30,
+        "library": "check",
+        "status": "COMPLETE",
+        "count": 72
+      },
+      {
+        "n": 30,
+        "library": "primary",
+        "status": "CAPPED",
+        "count": 3
+      },
+      {
+        "n": 30,
+        "library": "primary",
+        "status": "COMPLETE",
+        "count": 7149
+      },
+      {
+        "n": 30,
+        "library": "primary",
+        "status": "incomplete",
+        "count": 48
+      }
+    ],
+    "capped_rows": [
+      {
+        "dir": "s06583",
+        "index": 6583,
+        "pop": "ms_woodpecker",
+        "outer": "null_low_s/134",
+        "n": 30,
+        "library": "primary",
+        "status": "CAPPED",
+        "prefix_end_batch": 454386586,
+        "prefix_hits": 326,
+        "useful_cpu_h": 1684.2084727250465,
+        "discarded_cpu_h": 0.0,
+        "ranges": 29
+      },
+      {
+        "dir": "s14092",
+        "index": 14092,
+        "pop": "whooping_crane",
+        "outer": "MA_betamin/167",
+        "n": 30,
+        "library": "primary",
+        "status": "CAPPED",
+        "prefix_end_batch": 459977986,
+        "prefix_hits": 703,
+        "useful_cpu_h": 1024.6489655753319,
+        "discarded_cpu_h": 0.0,
+        "ranges": 29
+      },
+      {
+        "dir": "s05404",
+        "index": 5404,
+        "pop": "marmot",
+        "outer": "MA_d10_0.5/121",
+        "n": 30,
+        "library": "primary",
+        "status": "CAPPED",
+        "prefix_end_batch": 347402198,
+        "prefix_hits": 628,
+        "useful_cpu_h": 1184.3430590870678,
+        "discarded_cpu_h": 0.0,
+        "ranges": 29
+      }
+    ],
+    "original_invalid_now": {
+      "dir": "s18085",
+      "index": 18085,
+      "pop": "wood_turtle_A",
+      "outer": "null_low_s/168",
+      "n": 30,
+      "library": "primary",
+      "library_sha256": "f7f410c876da35ebbed447770dd640529390022db78248fe6f55ac558872a323",
+      "kth_hit": 7407746,
+      "status": "COMPLETE",
+      "prefix_end_batch": 7555558,
+      "prefix_hits": 2041,
+      "useful_cpu_h": 45.486657625091865,
+      "discarded_cpu_h": 0.0,
+      "ranges": 3
+    },
+    "dataset_availability": {
+      "null_prior_predictive": {
+        "0": {
+          "denominator": 200,
+          "all_nine_complete": 200,
+          "any_capped": 0,
+          "any_incomplete": 0
+        },
+        "30": {
+          "denominator": 200,
+          "all_nine_complete": 187,
+          "any_capped": 0,
+          "any_incomplete": 13
+        }
+      },
+      "null_low_s": {
+        "0": {
+          "denominator": 200,
+          "all_nine_complete": 200,
+          "any_capped": 0,
+          "any_incomplete": 0
+        },
+        "30": {
+          "denominator": 200,
+          "all_nine_complete": 186,
+          "any_capped": 1,
+          "any_incomplete": 13
+        }
+      },
+      "MA_betamin": {
+        "0": {
+          "denominator": 200,
+          "all_nine_complete": 200,
+          "any_capped": 0,
+          "any_incomplete": 0
+        },
+        "30": {
+          "denominator": 200,
+          "all_nine_complete": 188,
+          "any_capped": 1,
+          "any_incomplete": 11
+        }
+      },
+      "MA_d10_0.5": {
+        "0": {
+          "denominator": 200,
+          "all_nine_complete": 200,
+          "any_capped": 0,
+          "any_incomplete": 0
+        },
+        "30": {
+          "denominator": 200,
+          "all_nine_complete": 189,
+          "any_capped": 1,
+          "any_incomplete": 10
+        }
+      }
+    },
+    "cpu_by_round_status": {
+      "round_1": {
+        "CAPPED": {
+          "useful_cpu_h": 2708.8574383003784,
+          "discarded_cpu_h": 0.0
+        },
+        "COMPLETE": {
+          "useful_cpu_h": 124556.77583192031,
+          "discarded_cpu_h": 6637.693059503309
+        },
+        "incomplete": {
+          "useful_cpu_h": 24371.958391894223,
+          "discarded_cpu_h": 20028.795626593197
+        },
+        "invalid": {
+          "useful_cpu_h": 0,
+          "discarded_cpu_h": 0
+        }
+      },
+      "round_2": {
+        "CAPPED": {
+          "useful_cpu_h": 1184.3430590870678,
+          "discarded_cpu_h": 0.0
+        },
+        "COMPLETE": {
+          "useful_cpu_h": 32164.795429777667,
+          "discarded_cpu_h": 272.84576008381373
+        },
+        "incomplete": {
+          "useful_cpu_h": 16143.81634178217,
+          "discarded_cpu_h": 17701.224152919214
+        }
+      }
+    },
+    "round_2_accounted_cpu_h": 67467.02474364999,
+    "scope": "Collector-row arithmetic only; settings, journals and actual archives are checked separately."
+  },
+  "fixtures": [
+    {
+      "name": "valid_partition",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": null
+    },
+    {
+      "name": "row_identity_mismatch_rejected",
+      "exit": 1,
+      "ok": false,
+      "failures": [
+        "round 2 s00001: identity or status"
+      ],
+      "limitation": null
+    },
+    {
+      "name": "duplicate_collection_row_rejected",
+      "exit": 1,
+      "ok": false,
+      "failures": [
+        "round 2: rows are not exactly the round's W1 settings"
+      ],
+      "limitation": null
+    },
+    {
+      "name": "missing_complete_library_rejected",
+      "exit": 1,
+      "ok": false,
+      "failures": [
+        "round 2 s00001: library presence inconsistent with status"
+      ],
+      "limitation": null
+    },
+    {
+      "name": "library_digest_mismatch_rejected",
+      "exit": 1,
+      "ok": false,
+      "failures": [
+        "round 2 s00001: library digest"
+      ],
+      "limitation": null
+    },
+    {
+      "name": "cross_round_sampling_fields_changed",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": "Each summary is checked against its own settings; unchanged cross-round sampling fields/helpers are not established."
+    },
+    {
+      "name": "duplicate_settings_directory_collapsed",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": "Settings inventory is made into a dictionary before duplicate detection."
+    },
+    {
+      "name": "duplicate_archive_member_shadowed",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": "The last same-named library silently overwrites an earlier member."
+    },
+    {
+      "name": "embedded_summary_disagrees",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": "The embedded collection summary is ignored; caller must compare it with the external summary."
+    },
+    {
+      "name": "selection_invalid_path_accepted",
+      "exit": 0,
+      "ok": true,
+      "failures": [],
+      "limitation": "Reconciler checks path length, not the collector's full record/selection contract."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 23 October 2026, 11:00 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 25 October 2026, 12:11 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -17,20 +17,22 @@ finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 W1 round 1 finished with 9,695 COMPLETE libraries, two CAPPED outcomes,
 4,846 incomplete settings and one invalid setting. Astra verified the entire
 archive and all 19,390,000 retained records by library hash and count.
-Round 2 was dispatched on 21 October after Fable's final recovery repair
-(runner `1e35b94a`, stage `ae127313`; board 2158–2160). The 23 October
-10:27–10:32 probe records 4,676/4,847 W1 COMPLETE markers and 171 open
-settings; all 7,272 W2 settings remain open. Strict collection is pending.
-Astra's [interim review](notes/astra_r2_interim_review_20261023.md) (2239)
-reproduces false acquisition uncertainty from ordinary lock contention and
-supports continuing the bound arrays. No integrity failure was observed;
-the probe does not establish that every interrupted claim has recovered.
-The node-only mitigation is accepted in principle, pending Fable's actual
-diff and focused tests before the first extra W2 array. Bound whole-subjob
-idle time, check this wave's queue and claims, certify before replacement,
-and preserve unique owner generations and the allocation deadline.
-Fable is next for that implementation and ordinary collection/determinism
-receipts. No new scientific or resource decision is needed from Barry.
+W1 round 2 is collected. Across retained round 1 and round 2, W1 has
+14,493 COMPLETE libraries, three CAPPED outcomes and 48 incomplete primary
+n = 30 settings. Astra's [25 October review](notes/astra_r2_execution_review_20261025.md)
+(2391, 2393; E71) independently verifies the new 4,798 libraries and all
+9,596,000 records, both archive digests, exact selected settings and the W1
+partition. The saved Kunanyi comparator reports 1,643,296 byte-identical
+records on common committed batches; its per-setting JSON remains to be
+fetched in the next ordinary window. No numerical stream replay was performed.
+**New top-ups are held for one node-wrapper repair.** Node `00ed12fb` passes
+its nine existing fixture groups, but alternating empty/unknown wave reads
+can bypass both idle and cutoff checks. Fable is next to make those checks
+unconditional and replay the two limit cases plus existing controls. The
+bound runner and the collection/continuation strategy remain accepted; existing
+arrays need no intervention from this finding. W2's saved 25 October 11:13
+snapshot has 379 running and 191 expired subjobs, with its collector held.
+No new scientific or resource decision is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -945,6 +947,16 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- 25 October, reviewed node `00ed12fb` and W1 collection at `805f007` with
+  three bounded reviewers (2391, 2393; E71). Independent deep-server streaming
+  audit verifies every new library and all 9,596,000 records, unchanged input
+  rows, exact settings reproduction and preserved round-1 archive digest.
+  Nine node fixture groups and targeted integration controls pass; parent
+  replay confirms a remaining idle/cutoff bypass in one branch. The
+  [review](notes/astra_r2_execution_review_20261025.md) holds new top-ups for
+  that narrow wrapper repair. No production edit, population simulation,
+  numerical sampling replay, fitting or PBS action.
+
 - 23 October, checked round-2 production progress and the node-only proposal
   at `461c115` with three bounded reviewers (2239; E70). Reproduced ordinary
   contention causing false exit 75; 17 local classification, node-baseline
@@ -1381,56 +1393,38 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **W1 round 2 collected, reconciled and deterministic (25 October).**
-   - **W1 overall:** 14,493 COMPLETE (9,695 + 4,798) and 3 CAPPED; 48 heavy n = 30
-     settings remain, in run2.
-   - **Checks:**
-     - strict reconciliation of both rounds and their partition of W1 passes;
-     - round-to-round determinism: 1,643,296 records byte-identical over
-       9.34 billion common batches.
-     - Receipts: `p3/w1_r2_*`, `p3/w1_reconcile_r1_r2.json`.
-   - **Running:** W2 858016[] (379 running and 191 done at 11:13; collector
-     858017).
-   - **Next:**
-     - Codex checks node `00ed12fb` (board 2242);
-     - then one window: release W1 r2's reservation, install the node script,
-       and submit a W1 `topup` for the 48 settings and a W2 `topup` sized from
-       live `qstat` within 7,000 CPUs.
-
-2. **Stage 1b round 2 is running; node-only mitigation needs its executable check.**
-   - W1 replay array 857922[] (300 × 8 × 48 h), collector 857923; W2 array
-     858016[] (570 × 8 × 48 h), collector 858017. Both collectors email Barry.
-     Settings `p3_settings_r2.json` `248f9c7d…`; reservations 115,208 and
-     218,888 CPU-h; round 1 released. Receipt: `p3/r2_dispatch_receipt.txt`.
-   - **Saved 23 October probe:** W1 4,676/4,847 COMPLETE markers, 171 n = 30
-     open; W2 all 7,272 open. Checkpoint CPU approximately 53.3k/18.4k hours.
-     Earlier log census: 7,969 exits, all code 75. The 82-slot tally means
-     >=19 logged exits, maximum 20; exact cap exhaustion is not established.
-     Marker counts and raw hit progress await strict collection.
-   - **Astra review (2239; E70):** ordinary contention reproduces the false
-     uncertainty path without NFS faults. No observed integrity failure;
-     certificates alone do not establish recovery. Continue existing arrays
-     and preserve runner binding. See [review](notes/astra_r2_interim_review_20261023.md).
-   - **Fable next:** implement the proposed node-only change and its focused
-     fixtures; Codex checks the actual diff before the first W2 top-up. Use
-     same-wave queue OR claims, bounded idle residence/polling, verified
-     certificates before refill, unique per-launch owners, a common deadline,
-     and separate finite handling for unexpected non-75 failures.
-   - On ordinary W1 collection, verify all identities/statuses, journal/library
-     integrity and round-to-round common-batch determinism. Email and
-     `collection_ok` alone do not establish all-COMPLETE. Keep original
-     COMPLETE/CAPPED outcomes, fixed proposal caps and the full denominators.
-   - Size top-ups from actual queued AND running requests under the recorded
-     7,000-CPU cap; release finished reservations with PBS evidence. Starting
-     queued jobs does not release requested capacity. Concurrent same-wave
-     collectors are snapshots until their wave is quiescent.
-   - **Package history:** the 21 October hold in review 2156 was addressed by
-     Fable's final runner repair (2158; E69), then dispatched (2160). The
-     37-fixture preflight, exact eight-second read-outage recovery, closure
-     controls and smoke E are recorded in §9e and dispatch receipts. Barry
-     waived another pre-dispatch return to Codex on 21 October. This interim
-     review does not reopen that completed launch decision. Stage 1c still
-     needs its executable settings/adapter check before fitting.
+1. **W1 collection verified; repair one node idle-loop branch before top-ups.**
+   - **Accepted outputs:** W1 combined 14,493 COMPLETE, three CAPPED and 48
+     incomplete settings. Round-2 archive `c12e5378…` contains 4,798 verified
+     libraries; all 9,596,000 new records pass the independent archive audit.
+     Full selected settings reproduce `248f9c7d…` with unchanged scientific
+     rows, caps, streams and helper bindings. Preserve all CAPPED outcomes.
+   - **Node hold:** `00ed12fb` can bypass both the whole-subjob idle limit and
+     allocation cutoff after an empty scan followed by an unknown scan.
+     Reviewer and parent replays reproduce both paths. Fable next for
+     unconditional idle/deadline checks and bounded waiting on every path,
+     then the two limit reproductions, nine fixture groups and two combined
+     certificate/restart controls. See [review](notes/astra_r2_execution_review_20261025.md)
+     and board 2391/2393; E71. No broad scientific rerun is required.
+   - **Once repaired and checked:** install only the reviewed node for future
+     jobs, keeping runner `1e35b94a…`, full `p3_settings_r2.json` and `run2`.
+     Use distinct top-up labels; do not subset/reseed the remaining 48.
+     Tagged archives preserve the existing W1 snapshot. The actual-shell
+     submission, resume, ledger and collector-naming integration checks pass.
+   - W1's proposed 170 × 8 shape reserves 65,288 CPU-h with its collector.
+     Release original W1 reservation `s1b_22b89261_a` once using terminal
+     array 857922[] and collector 857923 evidence. Original W2 858016[] /
+     collector 858017 retains its full reservation until both finish.
+   - Size W2 using fresh queued AND running requests, all held collectors
+     and other jobs under the recorded 7,000-CPU cap. The saved 379-running
+     W2 snapshot is not a current dispatch count. Same-wave collections
+     remain snapshots while another array of that wave runs.
+   - Preserve the reported common-batch determinism receipt: 1,643,296
+     identical records over 9,336,542,588 batches. Fetch/hash its existing
+     per-setting JSON at the next normal transfer; this review did not
+     independently replay raw journals. Keep pilot-only/zero-coverage cases
+     and full scenario denominators explicit. Stage 1c still needs its
+     executable settings/adapter check before fitting.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.

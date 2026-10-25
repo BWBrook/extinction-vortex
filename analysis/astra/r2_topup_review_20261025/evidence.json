@@ -1,0 +1,136 @@
+{
+  "scope": "Read-only source audit with isolated PBS stubs. No live PBS, remote runs or production ledgers.\n\nTests the literal dispatch admission gate, actual select/ledger/preflight bodies\n(native binding and scientific self-tests stubbed), actual submit/dispatch shell,\nand actual collector shell with deterministic concurrent collector stubs.\n",
+  "head": "805f0079f5eb8157b351ee31c04a1ab91f3ca3f7",
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "00ed12fb3aa3a8224ea99efa6377755821efb75e46e6786a5a0fdfde34ca8457",
+    "analysis/fable/calibration/kunanyi/s1b_submit.sh": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+    "analysis/fable/calibration/kunanyi/s1b_collect.pbs": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800",
+    "analysis/fable/calibration/kunanyi/env.sh": "12cfde7548054af9c5ca4e881033d931f601d384f569bb84aba7b4d9949d6d0d"
+  },
+  "integration": {
+    "W1_170": {
+      "rc": 0,
+      "new_qsub_calls": 2,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_925c2b5c_a\", \"reservation_cpu_h\": 65288.0, \"recorded\": true, \"wave_reserved\": 65288.0, \"campaign_reserved\": 284176.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1_b): array 900000.fixture (170 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "W2_325_arithmetic_example": {
+      "rc": 0,
+      "new_qsub_calls": 2,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674\", \"runtime\": {\"stub\": true}, \"wave\": \"W2\", \"campaign\": \"s1b\", \"array_name\": \"s1b_e75b6bae_a\", \"reservation_cpu_h\": 124808.0, \"recorded\": true, \"wave_reserved\": 343696.0, \"campaign_reserved\": 408984.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W2 (W2_b): array 900002.fixture (325 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "resume_W1_b": {
+      "rc": 0,
+      "new_qsub_calls": 0,
+      "stdout": "{\"preflight\": \"passed\", \"settings_sha256\": \"ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674\", \"runtime\": {\"stub\": true}, \"wave\": \"W1\", \"campaign\": \"s1b\", \"array_name\": \"s1b_925c2b5c_a\", \"reservation_cpu_h\": 65288.0, \"recorded\": false, \"wave_reserved\": 65288.0, \"campaign_reserved\": 408984.0, \"ceilings\": {\"W1\": 200000, \"W2\": 1000000, \"campaign\": 1200000}}\nwave W1 (W1_b): array 900000.fixture (170 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\n    Mail_Users = fixture\n    Mail_Points = ae\n",
+      "stderr": ""
+    },
+    "subset_refused": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "",
+      "stderr": "s1b_submit: topup settings differ from the wave's seeded submission (<tmp>/vbase/s1b/run2/submit_W1/run.json)\n"
+    },
+    "new_run_refused": {
+      "rc": 1,
+      "new_qsub_calls": 0,
+      "stdout": "",
+      "stderr": "s1b_submit: topup needs the wave's seeded first submission in <tmp>/vbase/s1b/run3/submit_W1\n"
+    },
+    "settings_bytes_preserved": true,
+    "runner_commands": [
+      "preflight",
+      "preflight",
+      "preflight"
+    ],
+    "array_environments": [
+      {
+        "VBASE": "/tmp/tmpk44vgcn4/vbase",
+        "SETTINGS": "p3_settings_r2.json",
+        "OUTDIR": "run2",
+        "WAVE": "W1",
+        "TAG": "W1_b",
+        "JOBCPUS": "8",
+        "WALL_SECS": "172800"
+      },
+      {
+        "VBASE": "/tmp/tmpk44vgcn4/vbase",
+        "SETTINGS": "p3_settings_r2.json",
+        "OUTDIR": "run2",
+        "WAVE": "W2",
+        "TAG": "W2_b",
+        "JOBCPUS": "8",
+        "WALL_SECS": "172800"
+      }
+    ],
+    "array_ranges": [
+      "0-169",
+      "0-324"
+    ],
+    "array_resource_flags": [
+      [
+        "select=1:ncpus=8:mem=10gb",
+        "walltime=48:00:00"
+      ],
+      [
+        "select=1:ncpus=8:mem=10gb",
+        "walltime=48:00:00"
+      ]
+    ],
+    "collector_dependencies": [
+      "depend=afterany:900000.fixture",
+      "depend=afterany:900002.fixture"
+    ],
+    "array_ids": [
+      "900000.fixture",
+      "900002.fixture"
+    ],
+    "ledger": [
+      "reserve\ts1b\tW1\ts1b_22b89261_a\t115208.000\tfixture\toriginal-W1",
+      "reserve\ts1b\tW2\ts1b_3a5e71fa_a\t218888.000\tfixture\toriginal-W2",
+      "release\ts1b_22b89261_a\tmanual: isolated fixture models verified terminal W1 array and collector",
+      "reserve\ts1b\tW1\ts1b_925c2b5c_a\t65288.000\t2026-10-25T12:01:44+1100\tsettings=ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674 outdir=/tmp/tmpk44vgcn4/vbase/s1b/run2 jobs=170 cpus=8 wall=172800",
+      "reserve\ts1b\tW2\ts1b_e75b6bae_a\t124808.000\t2026-10-25T12:01:44+1100\tsettings=ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674 outdir=/tmp/tmpk44vgcn4/vbase/s1b/run2 jobs=325 cpus=8 wall=172800"
+    ],
+    "active_reservations": {
+      "s1b_3a5e71fa_a": {
+        "wave": "W2",
+        "cpu_h": 218888.0,
+        "identity": "original-W2"
+      },
+      "s1b_925c2b5c_a": {
+        "wave": "W1",
+        "cpu_h": 65288.0,
+        "identity": "settings=ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674 outdir=/tmp/tmpk44vgcn4/vbase/s1b/run2 jobs=170 cpus=8 wall=172800"
+      },
+      "s1b_e75b6bae_a": {
+        "wave": "W2",
+        "cpu_h": 124808.0,
+        "identity": "settings=ab0d00a94b9de36da2b61794a3e4afccbde599725f9fb184a955039cf03d6674 outdir=/tmp/tmpk44vgcn4/vbase/s1b/run2 jobs=325 cpus=8 wall=172800"
+      }
+    }
+  },
+  "archive_naming": {
+    "rc": 0,
+    "prior_W1_files_unchanged": true,
+    "archive_members": [
+      "collect_W1_b.json",
+      "collect_W1_b.log"
+    ],
+    "checksum_rc": 0
+  },
+  "resource_arithmetic": {
+    "W1_max_simultaneous_shards": 1344,
+    "W1_jobs_covering_that_bound": 168,
+    "W1_170_slots": 1360,
+    "W1_48h_reservation": 65288,
+    "25Oct_snapshot_live_subjobs": 379,
+    "W2_topup_max_if_snapshot_live_resource_count_applies": 325,
+    "cpus_with_325_W2_topup_and_three_collectors": 6995,
+    "whole_W2_original_reservation_retained": 218888,
+    "campaign_reservation_after_170_W1_and_325_W2": 408984,
+    "nominal_W1_170_all_idle_30min_cpu_h": 680.0
+  }
+}

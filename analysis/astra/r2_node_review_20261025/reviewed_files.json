@@ -1,0 +1,9 @@
+{
+  "files": {
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "00ed12fb3aa3a8224ea99efa6377755821efb75e46e6786a5a0fdfde34ca8457",
+    "analysis/fable/calibration/kunanyi/s1b_node_fixture.py": "0fea3c5072fcfc5c7bbf0390056d7bb7aab7c48429652a38a311bb5634985ba1",
+    "analysis/fable/calibration/kunanyi/s1b_node_fixture_bash42.json": "401715aec40540924018791ec6409552b8c69252f4dbe01fe0660cb58e39960e",
+    "notes/astra_r2_node_plan_review_20261023.md": "52ef0fd2f35b6864ac2154acbdde2f6cd0c272d87e9e7316b5679c7f3e4312d9"
+  },
+  "verified_at": "2026-10-25T12:06:46.251499+11:00"
+}

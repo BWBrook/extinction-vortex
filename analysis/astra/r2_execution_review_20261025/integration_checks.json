@@ -1,0 +1,13 @@
+{
+  "reviewed_commit": "805f0079f5eb8157b351ee31c04a1ab91f3ca3f7",
+  "python_parsed": 6,
+  "json_parsed": 7,
+  "memos": 4,
+  "local_links_checked": 5,
+  "exposure_rows_excluding_header": 71,
+  "production_sources_unchanged": true,
+  "new_library_records_checked": 9596000,
+  "local_and_archive_collection_hashes_match": true,
+  "parent_replay_exact_source_verified": true,
+  "timestamp": "2026-10-25T12:11:52.862886+11:00"
+}
