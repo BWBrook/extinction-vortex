@@ -1,0 +1,50 @@
+{
+  "round3_dispatch_sha256": "11453addd5ffa1885f8910159e6b37a1b234d736b1e54b983c99e7f1a781d5b9",
+  "topup_dispatch_sha256": "46f1eb34f70321e68ad78a7cd875b6d4993727aab7a864c2faad04db7e2c9b00",
+  "reviewed_stage_tar_sha256": "ddb014b0aad32fce2f4b4ed927c2d38aaf1253e1588235f2f7fd476a7f3ab84a",
+  "cap": 7000,
+  "cases": [
+    {
+      "name": "w1_accepted_but_not_yet_visible_to_qstat",
+      "exit": 0,
+      "submissions": [
+        "W1 63 new",
+        "W2 874 new"
+      ],
+      "installed_unreviewed_marker": true,
+      "stdout": "== 2026-10-27 18:13:39 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n712e0cc7e6cb7fd231120434454204e5c7397ddb452426f75a28632ee8636f91  /tmp/r3_dispatch_review_irfj90ek/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 18:13:39 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\nlive requests: 0 CPUs\n== 18:13:39 submit W2 round 3 (new; 1 settings; 874 x 8 x 48 h)\nlive requests now: 0 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-27T18:13:39+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-27T18:13:39+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-27T18:13:39+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-27 18:13:40 AEDT\n",
+      "stderr": "",
+      "precondition": "W1 qsub accepted 63 x 8 plus collector; the immediately following user listing omits it",
+      "actual_requests_if_accepted": 7498
+    },
+    {
+      "name": "round3_stale_w2_size_after_interruption",
+      "exit": 0,
+      "submissions": [
+        "W2 874 new"
+      ],
+      "installed_unreviewed_marker": true,
+      "stdout": "== 2026-10-27 18:13:40 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n712e0cc7e6cb7fd231120434454204e5c7397ddb452426f75a28632ee8636f91  /tmp/r3_dispatch_review_j9brofrm/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\n== W1: no settings to rerun\n== 18:13:40 submit W2 round 3 (new; 1 settings; 874 x 8 x 48 h)\nlive requests now: 72 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-27T18:13:40+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-27T18:13:40+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-27T18:13:40+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-27 18:13:40 AEDT\n",
+      "stderr": "",
+      "precondition": "size file exists; matching submit journal does not; live load subsequently rose from 0 to 72 CPUs",
+      "actual_requests_if_accepted": 7065
+    },
+    {
+      "name": "topup_stale_size_after_interruption",
+      "exit": 0,
+      "submissions": [
+        "W2 874 topup"
+      ],
+      "precondition": "size file exists; matching submit journal does not; live load subsequently rose from 0 to 72 CPUs",
+      "actual_requests_if_accepted": 7065,
+      "stdout_tail": [
+        "== 2026-10-27 18:13:40 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)",
+        "== 18:13:40 W2 topup b: 874 x 8 x 48 h",
+        "live requests now: 72 CPUs",
+        "TOPUP_DONE 2026-10-27 18:13:40 AEDT"
+      ],
+      "stderr": ""
+    }
+  ],
+  "interpretation": "Actual scripts accept all three requests above the cap. The stage case separately shows only that the dispatcher relies on the launch procedure for external stage identity."
+}

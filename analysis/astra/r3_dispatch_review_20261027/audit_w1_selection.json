@@ -1,0 +1,36 @@
+{
+  "settings_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73",
+  "summary_sha256": "8d7028079000e6788c40c306d1df15b2cf41d50881e8f7554c1f20fd70ad4335",
+  "runner_r2_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+  "runner_r3_sha256": "c56d0af653f1d7ecd525cacc5b6a191d8a1cadf398b601fc4327f3f6da34983b",
+  "status": {
+    "COMPLETE": 4820,
+    "incomplete": 15,
+    "CAPPED": 9,
+    "invalid": 3
+  },
+  "selected_count": 18,
+  "selected_dirs": [
+    "s00208",
+    "s00835",
+    "s01669",
+    "s02059",
+    "s02077",
+    "s02311",
+    "s03649",
+    "s03931",
+    "s07384",
+    "s08302",
+    "s08677",
+    "s09559",
+    "s10624",
+    "s11194",
+    "s12163",
+    "s14440",
+    "s14782",
+    "s16447"
+  ],
+  "failed_included": 0,
+  "summary_identity_fields_match_settings": true,
+  "selection_rule": "incomplete, invalid, or FAILED; COMPLETE and CAPPED excluded"
+}

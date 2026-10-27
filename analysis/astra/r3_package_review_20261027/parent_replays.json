@@ -1,0 +1,32 @@
+{
+  "recovery": {
+    "command": [
+      "uv",
+      "run",
+      "--offline",
+      "--python",
+      "3.12",
+      "--with",
+      "numpy==1.26.4",
+      "--with",
+      "scipy==1.11.4",
+      "python",
+      "analysis/astra/r3_recovery_review_20261027/reproduce_recovery_gaps.py"
+    ],
+    "return_code": 0,
+    "stdout_sha256": "2d09aa15b826b5ff3576d69385af29ca23511b9bfade27440d81dde9543eff85",
+    "stderr": "",
+    "exactly_reproduces_component_receipt": true,
+    "assertions_passed": true
+  },
+  "dispatch": {
+    "command": [
+      "python3",
+      "analysis/astra/r3_dispatch_review_20261027/review_dispatch_contracts.py"
+    ],
+    "return_code": 0,
+    "stdout_sha256": "eb0e304f1d0526b714a47d30c3cf12c2c4a327137f883c15259a36c40a3c1915",
+    "stderr": "",
+    "assertions_passed": true
+  }
+}

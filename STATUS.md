@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 27 October 2026, 15:14 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 27 October 2026, 18:14 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -17,18 +17,20 @@ finished on Kunanyi. Barry authorised Stage 1b and Stage 1c on 16 October
 W1 round 1 finished with 9,695 COMPLETE libraries, two CAPPED outcomes,
 4,846 incomplete settings and one invalid setting. Astra verified the entire
 archive and all 19,390,000 retained records by library hash and count.
-W1 round 2 is collected. Across retained round 1 and round 2, W1 has
-14,493 COMPLETE libraries, three CAPPED outcomes and 48 incomplete primary
-n = 30 settings. Astra's [25 October review](notes/astra_r2_execution_review_20261025.md)
-(2391, 2393; E71) independently verifies the new 4,798 libraries and all
-9,596,000 records, both archive digests, exact selected settings and the W1
-partition. The fetched Kunanyi comparator receipt reports 1,643,296 byte-identical
+W1 round 2 is final. Across retained rounds 1–2, W1 has 14,515 COMPLETE
+libraries, 11 CAPPED outcomes, 15 incomplete and three invalid settings.
+Exactly 18 primary n = 30 settings need round-3 recovery. Astra's
+[27 October package review](notes/astra_r3_package_review_20261027.md)
+(2426; E74) independently verifies the final archive, all 4,820 library hashes
+and 9,640,000 record counts. The 4,798 previously audited libraries are unchanged;
+all 44,000 records in the 22 new libraries pass structural checks.
+The fetched Kunanyi comparator receipt reports 1,643,296 byte-identical
 records from 1,091 of 4,847 settings with common committed coverage; 3,756 have none.
 Astra checked its digest and per-setting arithmetic; no raw-journal replay was
 performed. The earlier node hold is closed: `8fe10208` passes both counterexamples,
 the combined restart/certificate controls and all ten fixture groups.
 
-**W2 first-array snapshot and current continuation recommendation (27 October).**
+**W2 first-array snapshot and round-3 review (27 October).**
 The saved collection has 183 COMPLETE, 7,076 incomplete and 13 invalid settings.
 Astra independently verified all 183 archived libraries and 366,000 records.
 The [27 October review](notes/astra_w2_interim_review_20261027.md) reproduces a
@@ -36,15 +38,23 @@ claimed range being republished after an omitted directory entry, followed by
 two concurrent writers and a doubled journal rejected by strict verification.
 The historical NFS trigger remains a hypothesis. The saved duplicate-claim
 census includes W1 as well as W2 and does not establish owner liveness.
-**Recommendation: let existing W1/W2 topup-b arrays finish; hold topup c pending
-the runner repair.** Strictly collect each wave after all its arrays end.
-Preserve old work and bindings; a fresh-binding recovery must cover every final
-incomplete, FAILED or invalid setting. An exact audited partial-shard import is
-an option to preserve work, not yet implemented or cleared; batch-zero reruns
-remain the conservative route. The accounted CPU totals omit invalid settings
-and losing duplicate execution. These are availability results, with no fitted
-validation or empirical inference. Fable is next for the ownership repair and
-recovery package; no new scientific or resource choice is needed from Barry.
+**Recommendation: finish W2 topup b; hold round 3 and topup c for two finite
+repairs.** Runner `c56d0af6` prevents the tested duplicate-writer paths, but
+ownership can precede the exact held record needed for successor recovery.
+Simulated death in that gap plus omitted hint listings strands an execution.
+The actual dispatchers also bypass capacity checks after interrupted sizing,
+or omit just-accepted W1 requests when sizing W2; bounded replays produce
+7,065 or 7,498 CPU requests against the 7,000 cap. All 41 native fixtures and
+the independent raw-smoke recollection pass. The
+[package review](notes/astra_r3_package_review_20261027.md) gives precise repairs.
+Accept recovery from the bound pilot prefix with no partial-shard importer;
+preserve old work and recover every final incomplete, FAILED or invalid setting.
+Final W2 collection and exact inventory remain prerequisites. Historical W2-a
+incomplete rows account for 168,982.8 CPU-hours before pilot subtraction;
+invalid settings and losing duplicate execution are omitted, so this is not a
+final recovery forecast. These are availability results, with no fitted
+validation or empirical inference. Fable is next for repairs and focused
+replay; no new scientific or resource choice is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -1418,23 +1428,26 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Round-3 ownership repair and recovery package ready for Codex review** (design §9h; NOTE 27 Oct; E73).
-   - **Runner `c56d0af6`:**
-     - each setting's own records are authoritative: the `r/` chain and numbered `x/` executions, created
-       exclusively and never replaced;
-     - queue and claim entries are hints only;
-     - a relaunched worker recovers its certified predecessors' executions by exact name.
-   - **Fixtures** pass 41/41, including on kunanyi `/u` with Python 3.11.7. In the ownership control the bound
-     runner fails and the candidate passes. The adversarial smokes: the bound runner gives 4 invalid settings; the
-     candidate passes with identical libraries.
-   - **Stage `ddb014b0`;** round-3 dispatch and topup rehearsals with stub PBS behave as specified.
-   - **Recovery:** every final round-2 setting that is incomplete, invalid or FAILED reruns from its pilot prefix
-     under `p3_settings_r3.json`, with no partial-shard import.
-   - **W1 round 2 is final** (860990): 4,820 COMPLETE, 9 CAPPED, 15 incomplete and 3 invalid, so 18 W1 settings go
-     into round 3. Archive `849cd0ba` is verified.
-   - **W2 topup b** 860992[] is still running (381 subjobs at 17:21 on 27 October). Topup c stays held.
-   - **Next:** Codex reviews the package. Then, after collector 860993 and a verified final W2 summary, dispatch
-     round 3 with `s1b_round3_dispatch.sh` (W1_SUMMARY_SHA `8d702807…`).
+1. **Round-3 review complete; dispatch held for two repairs** (design §9h;
+   [Astra review](notes/astra_r3_package_review_20261027.md); board 2426; E74).
+   - **Accepted:** immutable range/execution ownership; all 41 native fixtures;
+     seven extra safety cases; independent raw-smoke recollection with identical
+     summaries/libraries and zero open executions; final W1 archive and exact
+     18-setting recovery inventory.
+   - **Recovery blocker:** persist the conservative held intent before creating
+     ownership; test both crash transitions with queue/claim listings omitted.
+   - **Capacity blocker:** recheck every new request despite saved size files,
+     and account just-accepted arrays/collectors before sizing the next wave.
+     Actual-shell bounded fixtures exceed 7,000 by 65 or 498 CPUs.
+   - **Recovery accepted:** every final incomplete, invalid or FAILED setting
+     reruns from its bound pilot prefix, preserving science fields and old runs.
+   - **W1 final:** 4,820 COMPLETE, nine CAPPED, 15 incomplete and three invalid
+     in round 2; archive `849cd0ba`, summary `8d702807`. Round-3 sizing is 63
+     eight-CPU jobs. No final W2-b summary was available to this review.
+   - **Next response: Fable**, with repaired runner/stage hashes, targeted failure
+     replays, native fixtures, positive/resume/topup rehearsal and bounded smoke.
+     Independently verify final W2 after all its arrays/collector finish before
+     dispatch. Pin the reviewed stage tar digest at transfer/extraction.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
@@ -1496,10 +1509,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2422**; exhausted `through`: **2422**.
-- Explicit acknowledgement: through actual message **2422** in discussion 70.
-- Latest own review: **2422** (W2 archive accepted; node hold closed; new topup held for duplicate ownership).
-- Next retrieval: omit `through` to capture new messages, and use `after=2422`.
+- Last full retrieval `next_after`: **2425**; exhausted `through`: **2425**.
+- Explicit acknowledgement: through actual message **2425** in discussion 70.
+- Latest own review: **2426** (W1 final archive accepted; round 3 held for recovery/capacity repairs).
+- Next retrieval: omit `through` to capture new messages, and use `after=2425`.
 
 ## Decision Inbox checkpoint
 

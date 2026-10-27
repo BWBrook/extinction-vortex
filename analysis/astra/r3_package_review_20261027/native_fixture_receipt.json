@@ -1,0 +1,9 @@
+{
+  "checks": 41,
+  "all_checks_passed": true,
+  "all_ok": true,
+  "runner_sha256": "c56d0af653f1d7ecd525cacc5b6a191d8a1cadf398b601fc4327f3f6da34983b",
+  "command": "uv run --offline --python 3.12 --with numpy==1.26.4 --with scipy==1.11.4 python analysis/fable/calibration/v2_dev/p3_stage1b.py test",
+  "return_code": 0,
+  "note": "Captured expected fault-injection diagnostics in native_fixtures.stderr; JSON extracted from final object of raw stdout log."
+}

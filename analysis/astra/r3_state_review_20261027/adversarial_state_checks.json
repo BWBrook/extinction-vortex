@@ -1,0 +1,22 @@
+{
+  "runner": "analysis/fable/calibration/v2_dev/p3_stage1b.py",
+  "runner_sha256": "c56d0af653f1d7ecd525cacc5b6a191d8a1cadf398b601fc4327f3f6da34983b",
+  "command": "uv run --offline --python 3.12 --with numpy==1.26.4 --with scipy==1.11.4 python analysis/astra/r3_state_review_20261027/adversarial_state_checks.py",
+  "exit_code": 0,
+  "all_expected": true,
+  "safety_cases": {
+    "lost_link_reply_same_token_is_success": true,
+    "lost_reply_plus_stale_read_fails_closed": true,
+    "stale_range_head_cannot_create_overlap": true,
+    "stale_execution_start_cannot_admit_second_writer": true,
+    "stale_latest_execution_cannot_skip_generation": true,
+    "stale_execution_end_cannot_be_overwritten_or_advanced": true,
+    "take_reconciles_lost_link_reply_without_duplicate": true
+  },
+  "diagnostic_limit": {
+    "collector_off_chain_check_depends_on_listing_completeness": true,
+    "observed": "With an off-chain r/000000010 present and all directory listings injected empty, collect returned collection_ok=true, reported zero ranges, and left the record undetected.",
+    "interpretation": "The off-chain cross-check is conditional evidence, not an independent proof of absence. This did not reproduce a normal construction path to an off-chain record or a second writer."
+  },
+  "scope": "Local POSIX fault injection of exact-read omissions and lost hard-link replies; not an NFS server conformance test."
+}

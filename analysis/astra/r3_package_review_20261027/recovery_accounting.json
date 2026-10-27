@@ -1,0 +1,27 @@
+{
+  "w1_round3_settings": 18,
+  "w1_jobs": 63,
+  "w1_cpus": 504,
+  "w1_allocation_cpu_h_with_collector": 24200,
+  "w1_combined_primary_availability": {
+    "0": {
+      "all_nine_complete": 800,
+      "outer_denominator": 800
+    },
+    "30": {
+      "all_nine_complete": 772,
+      "outer_denominator": 800
+    }
+  },
+  "w2_a_incomplete_verified_prefix_cpu_h": 96293.78198234046,
+  "w2_a_incomplete_outside_prefix_cpu_h": 72689.02024048853,
+  "w2_a_incomplete_total_accounted_cpu_h": 168982.802222829,
+  "w2_a_incomplete_total_at_7000_cpu_days": 1.005850013231125,
+  "cost_limits": "Historical W2-a accounting only, excludes invalid/losing duplicate work; final W2 inventory unavailable and some earlier incomplete settings may finish in topup b. Not a forecast of round-three cost. Reused pilot prefix cost not subtracted.",
+  "source_receipts": {
+    "w1": "archive_delta_audit.json (plus full bound summaries for outer-dataset grouping)",
+    "w2": "analysis/astra/w2_collection_review_20261027/audit_w2_snapshot.json",
+    "w2_receipt_sha256": "16ca03a8ad272f38869630f3a1eed6b796e87288c052d7a9865ef1e6a4e9d6dd"
+  },
+  "arithmetic_tolerance_cpu_h": 1e-08
+}

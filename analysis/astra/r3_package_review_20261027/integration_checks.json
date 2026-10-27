@@ -1,0 +1,13 @@
+{
+  "python_files_parse": 6,
+  "json_files_parse": 12,
+  "exposure_rows": 74,
+  "all_exposure_rows_nine_fields": true,
+  "main_memo_links_exist": true,
+  "production_sources_unchanged": {
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "c56d0af653f1d7ecd525cacc5b6a191d8a1cadf398b601fc4327f3f6da34983b",
+    "analysis/fable/calibration/kunanyi/s1b_round3_dispatch.sh": "11453addd5ffa1885f8910159e6b37a1b234d736b1e54b983c99e7f1a781d5b9",
+    "analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh": "46f1eb34f70321e68ad78a7cd875b6d4993727aab7a864c2faad04db7e2c9b00"
+  },
+  "all_assertions_passed": true
+}
