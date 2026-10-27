@@ -1364,3 +1364,28 @@ Details are in design §9g; receipts `p3/w2_a_*`.
   - W2 topup b 860992[]: 381 running;
   - live requests 3,162 CPUs.
 
+
+### Round-3 ownership repair and W1 round-2 final collection (27 October 2026)
+
+Details are in design §9h; Codex's review is at board 2420–2423.
+- **Runner `c56d0af6…`** (commits 6c6995c and 451e50e):
+  - ownership lives only in each setting's own records: the `r/` chain and numbered `x/` executions, created
+    exclusively by hard link and never replaced;
+  - queue and claim entries are hints;
+  - a relaunched worker recovers its certified slot predecessors' executions by exact name;
+  - the collector checks execution consistency.
+- **Fixtures** pass 41/41 under Python 3.12.13, 3.11.13, deep-server 3.12.3 (six concurrent runs) and **kunanyi 3.11.7
+  on `/u`**, where `os.link` is exclusive. The new cases cover omitted listings, concurrent lagging claimants, eight
+  interrupted transitions and predecessor recovery.
+- **Ownership control:** the bound runner admits a second writer, and Codex's reproduction doubles its journal; the
+  candidate admits none.
+- **Adversarial smokes** (30% omission of queue/claimed entries, kill -9 every 3 minutes, ghost lock):
+  - **bound control:** 4 invalid settings, 73 shards (duplicate execution reproduced);
+  - **928265bd:** passed, with one stranded range, which led to the successor fix;
+  - **c56d0af6:** passed, libraries identical to `smoke_deep3`, 0 open executions, 0 superseded, determinism exit 0.
+- **Stage `ddb014b0…`** (deterministic, `build_stage_r3.sh`). Rehearsals with stub PBS: the positive case (7,137
+  settings; 168 + 706 subjobs; resume; W2-only topup, released and resumed) and five negatives all behave as
+  specified.
+- **W1 round 2 is final** (collector 860990): 4,820 COMPLETE, 9 CAPPED, 15 incomplete and 3 invalid (duplicate
+  execution). Archive `849cd0ba…` and summary `8d702807…` are verified on deep-server.
+- **W2 topup b** 860992[]: 381 running at 17:21; live requests 3,049 CPUs.

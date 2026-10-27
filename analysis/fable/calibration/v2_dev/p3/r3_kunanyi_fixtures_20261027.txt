@@ -1,0 +1,13 @@
+# Round-3 runner fixtures on kunanyi /u (scratch extract of stage ddb014b0; installed runner 1e35b94a untouched), 27 Oct 2026
+== 2026-10-27 17:22:25 AEDT round-3 fixtures on kunanyi /u (scratch copy; installed runner untouched)
+ddb014b0aad32fce2f4b4ed927c2d38aaf1253e1588235f2f7fd476a7f3ab84a  /u/bwbrook/vortex/run1/s1b/probe/s1b_stage_round3_check.tar
+stage checksums OK
+1e35b94ab3811cc0
+fixtures rc 0
+3.11.7
+66
+ "transition_cases": {
+  "claim: execution created, hint not moved": {
+   "ended_there": true,
+os.link on /u: exclusive (second link EEXIST)
+R3FIX_DONE

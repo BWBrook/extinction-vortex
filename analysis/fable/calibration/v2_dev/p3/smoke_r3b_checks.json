@@ -1,0 +1,81 @@
+{
+ "run": "r3dev2/s1b/smoke_r3",
+ "library s00073": "identical 056d014994351a72",
+ "library s00142": "identical d18c27595d1d8018",
+ "library s00247": "identical 4f65158b625b891b",
+ "library s00772": "identical f2f1380e3072c60c",
+ "collect W1": {
+  "ok": true,
+  "status": {
+   "COMPLETE": 4,
+   "CAPPED": 2,
+   "FAILED": 0,
+   "incomplete": 0
+  },
+  "n_errors": 0,
+  "errors": [],
+  "executions": 39,
+  "dead_executions": 2,
+  "open_executions": 0,
+  "queue_left": 0,
+  "claims_left": 0
+ },
+ "collect W2": {
+  "ok": true,
+  "status": {
+   "COMPLETE": 0,
+   "CAPPED": 2,
+   "FAILED": 0,
+   "incomplete": 0
+  },
+  "n_errors": 0,
+  "errors": [],
+  "executions": 15,
+  "dead_executions": 1,
+  "open_executions": 0,
+  "queue_left": 0,
+  "claims_left": 0
+ },
+ "worker exit records": 26,
+ "worker totals": {
+  "shards": 47,
+  "discarded_tickets": 0,
+  "requeued_censored": 0,
+  "stale_requeued": 0,
+  "failed_shards": 0,
+  "transient_errors": 0,
+  "lock_busy": 306,
+  "adopted": 0,
+  "superseded": 0,
+  "predecessor_recovered": 1
+ },
+ "certificates": {
+  "n": 32,
+  "rc": {
+   "0": 26,
+   "137": 6
+  }
+ },
+ "claim entries left": 0,
+ "ranges with two claim entries left": 0,
+ "execution outcomes": {
+  "complete": 51,
+  "dead": 3
+ },
+ "inject log": [
+  "start 16:50:16 omit_p 0.3 runner c56d0af653f1d7ec",
+  "16:53:16 killed 1024765 (180s)",
+  "16:56:16 killed 1024797 (360s)",
+  "16:59:16 killed 1026171 (540s)",
+  "17:02:16 killed 1024798 (720s)",
+  "17:05:16 ghost certified (JSON)",
+  "17:05:16 killed 1026810 (900s)",
+  "node smk2[0].deep rc 0",
+  "node smk[1].deep rc 0",
+  "node smk[0].deep rc 0",
+  "collect W1 rc 0",
+  "collect W2 rc 0",
+  "determinism rc 0",
+  "DONE 17:20:19"
+ ]
+}

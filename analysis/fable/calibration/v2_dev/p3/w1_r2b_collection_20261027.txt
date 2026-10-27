@@ -1,0 +1,21 @@
+# W1 round-2 final collection (collector 860990, F, Exit_status 1; 27 Oct 2026 16:45-17:04 AEDT), fetched 17:22 and verified on deep-server
+== now 2026-10-27 17:21:41 AEDT on kunanyi-00.kunanyi.tpac.org.au
+-- 860990:  job_state = F  mtime = Tue Oct 27 17:04:54 2026  stime = Tue Oct 27 16:45:05 2026  Exit_status = 1 
+-- 860993:  job_state = H  mtime = Sun Oct 25 16:22:47 2026 
+-- 860989[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 860992[]:  job_state = B  array_state_count = Queued:0 Running:381 Exiting:0 Expired:0  
+live requests: 3049 CPUs
+-rw-r--r--     1 bwbrook hpcadmin   828679039 Oct 27 17:04 W1_b.tar.gz
+-rw-r--r--     1 bwbrook hpcadmin          78 Oct 27 17:04 W1_b.tar.gz.sha256
+-rw-------     1 bwbrook hpcadmin     1776631 Oct 24 21:31 collect_W1.json
+-rw-r--r--     1 bwbrook hpcadmin         141 Oct 24 21:31 collect_W1.log
+-rw-------     1 bwbrook hpcadmin     1778033 Oct 27 16:55 collect_W1_b.json
+-rw-r--r--     1 bwbrook hpcadmin         223 Oct 27 16:55 collect_W1_b.log
+-rw-------     1 bwbrook hpcadmin       81597 Oct 24 21:31 pack_W1.txt
+-rw-------     1 bwbrook hpcadmin       81975 Oct 27 16:55 pack_W1_b.txt
+drwxr-sr-x     3 bwbrook hpcadmin      158857 Oct 25 16:19 submit_W1_b
+collection_ok False W1 {'COMPLETE': 4820, 'CAPPED': 9, 'FAILED': 0, 'incomplete': 15} useful 71044.3 discarded 1254.6 incomplete 15 errors 3
+## deep-server verification (verify_w1b.py)
+849cd0ba2d65b30d987c594416a773d78902b8e0e1aa5ce00fb78ed4c1e2ab21  W1_b.tar.gz
+8d7028079000e6788c40c306d1df15b2cf41d50881e8f7554c1f20fd70ad4335  collect_W1_b.json
+{"members": 4822, "unique": 4822, "libraries": 4820, "expected": 4820, "bad": [], "embedded_summary_identical": true, "status": {"COMPLETE": 4820, "CAPPED": 9, "FAILED": 0, "incomplete": 15}, "errors": ["s02311: ValueError: journal length differs from its checkpoint", "s10624: ValueError: journal differs from its checkpoint", "s14782: ValueError: journal length differs from its checkpoint"], "binding": {"settings_sha256": "248f9c7d", "metric_sha256": "2dc57d9f", "runner_sha256": "1e35b94a"}}

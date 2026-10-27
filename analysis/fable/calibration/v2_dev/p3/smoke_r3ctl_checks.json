@@ -1,0 +1,83 @@
+{
+ "run": "r2dev6/s1b/smoke_r3ctl",
+ "library s00073": "identical 056d014994351a72",
+ "library s00142": "identical d18c27595d1d8018",
+ "library s00247": "identical 4f65158b625b891b",
+ "library s00772": "identical f2f1380e3072c60c",
+ "collect W1": {
+  "ok": false,
+  "status": {
+   "COMPLETE": 4,
+   "CAPPED": 0,
+   "FAILED": 0,
+   "incomplete": 0
+  },
+  "n_errors": 2,
+  "errors": [
+   "s01080: ValueError: journal length differs from its checkpoint",
+   "c00021: ValueError: journal length differs from its checkpoint"
+  ],
+  "executions": null,
+  "dead_executions": null,
+  "open_executions": null,
+  "queue_left": 0,
+  "claims_left": 0
+ },
+ "collect W2": {
+  "ok": false,
+  "status": {
+   "COMPLETE": 0,
+   "CAPPED": 0,
+   "FAILED": 0,
+   "incomplete": 0
+  },
+  "n_errors": 2,
+  "errors": [
+   "s00002: ValueError: journal length differs from its checkpoint",
+   "s00008: ValueError: journal length differs from its checkpoint"
+  ],
+  "executions": null,
+  "dead_executions": null,
+  "open_executions": null,
+  "queue_left": 0,
+  "claims_left": 0
+ },
+ "worker exit records": 20,
+ "worker totals": {
+  "shards": 73,
+  "discarded_tickets": 3,
+  "requeued_censored": 0,
+  "stale_requeued": 6,
+  "failed_shards": 0,
+  "transient_errors": 0,
+  "lock_busy": 5,
+  "adopted": 0
+ },
+ "certificates": {
+  "n": 27,
+  "rc": {
+   "0": 20,
+   "137": 7
+  }
+ },
+ "claim entries left": 0,
+ "ranges with two claim entries left": 0,
+ "execution outcomes": {},
+ "inject log": [
+  "start 16:10:26 omit_p 0.3 runner 1e35b94ab3811cc0",
+  "16:13:26 killed 1017221 (180s)",
+  "16:16:27 killed 1017219 (361s)",
+  "16:19:27 killed 1017217 (541s)",
+  "16:22:27 killed 1017238 (721s)",
+  "16:25:26 ghost certified (JSON)",
+  "16:25:27 killed 1017214 (901s)",
+  "16:28:27 killed 1017233 (1081s)",
+  "node smk[1].deep rc 0",
+  "node smk[0].deep rc 0",
+  "node smk2[0].deep rc 0",
+  "collect W1 rc 1",
+  "collect W2 rc 1",
+  "determinism rc 0",
+  "DONE 16:41:32"
+ ]
+}

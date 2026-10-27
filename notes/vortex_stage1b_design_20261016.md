@@ -809,3 +809,152 @@ yet measured.
 - **Repair for that runner:** never infer "no live ticket or claim" from a
   directory listing. Record each range's ticket and claim state in the
   setting's own directory, under the setting lock, and plan from that record.
+
+### 9h. Round 3: authoritative range ownership (27 October 2026)
+
+**Codex's review (board 2420–2423).** Review notes:
+`notes/astra_w2_interim_review_20261027.md`, `notes/astra_w2_duplicate_mechanism_review_20261027.md` and
+`notes/astra_w2_collection_review_20261027.md`.
+- Codex reproduced the 9g path on the bound runner 1e35b94a. With the setting lock held, one omitted `claimed/` entry
+  makes `plan()` republish a live range. `claim()` then admits a second owner, and two shard engines write
+  byte-identical journal halves (318 bytes against a 159-byte checkpoint), which strict verification rejects.
+- This shows the path is sufficient, not that this NFS read happened in production.
+- **Recommendation:** let the running topup-b arrays finish; collect both waves strictly once all their arrays have
+  ended; hold topup c until the runner is repaired; recover every final incomplete, FAILED and invalid setting under a
+  fresh binding.
+
+**The repair (runner `928265bd…`).** Ownership is decided only by each setting's own records:
+
+| Record | Meaning |
+|---|---|
+| `r/<a>` | declares range [a, b), with b and the range's queue priority |
+| `x/<a>.<k>` | names the owner of the range's k-th execution |
+| `x/<a>.<k>.end` | its outcome: complete, censored, cancelled, failed, discarded or dead |
+
+- **How records are written:** each record is created exclusively, by hard-linking a fully written temporary into
+  place. A lost NFS reply is resolved by reading back a token. No record is ever replaced or removed.
+- **Invariant:** execution k + 1 is created only after `x/<a>.<k>.end` exists with outcome censored or dead. Because
+  each start record is created exclusively, a range has at most one live execution.
+- **The range chain:** ranges form a chain from the pilot prefix (`r/<a>` → `r/<b>` → …), extended only at its end.
+  No two ranges can share a start, and none can overlap another.
+- **Reads use exact names, never a directory listing.** Records are never removed, so a cached positive is always
+  true. A stale negative (a record not yet visible here) can only:
+  - delay work, or
+  - lead to an exclusive create that fails (`Behind`), after which the setting is passed over and retried.
+- **Queue and claim entries are hints.**
+  - `take()` resolves a hint against the records under the setting lock. It returns the execution this worker now
+    owns, or spends the hint: a range live under another owner becomes that owner's claim hint, and a finished range
+    or terminal setting drops it.
+  - `plan()` consults no listing.
+  - Recovery reads claim hints to find dead owners. With positive death evidence it ends that owner's execution as
+    dead, replans the setting (republishing every runnable range's hint) and removes the hint.
+- **Crash windows.** Every transition is ordered so that whatever survives a crash, a queue hint or a claim hint,
+  leads a later worker to reconcile the setting. Fixture case 3 enumerates the eight windows.
+- **A second hazard removed.** The bound runner's `ranges()` also lists the setting's own `ranges/` directory. If that
+  listing omits an entry, planning recreates an existing range: it fails on the exclusive create, or, if the omitted
+  range was the last and the new size differs, two overlapping ranges share a start. The ownership control (below) hit
+  the first outcome. The chain removes this dependence too.
+- **Unchanged:** the death evidence (an exact-owner certificate or PBS job_state F for executions; host and pid as
+  well for locks), the lock protocol, the shard engine (`p2_stage1a.run_setting`), streams, caps and the library rule.
+- **The collector** now:
+  - walks the chain and the execution records;
+  - requires every execution before the last to have ended censored or dead;
+  - cross-checks, after a listing taken before the walks, that no range or execution record lies off the chain;
+  - reports executions, dead executions and open executions for each setting and in total.
+
+**Recovery: rerun every affected setting from batch 0.**
+- **Scope:** every setting that round 2's final collections leave incomplete, invalid or FAILED, in both waves. Each
+  reruns from its bound pilot prefix under `p3_settings_r3.json`, made by `select` from `p3_settings_r2.json`.
+  Scientific fields, streams and caps are unchanged; denominators stay complete; FAILED is not treated as a final
+  scientific exclusion.
+- **No import of partial shards.**
+  - Barry lifted the compute ceilings on 21 October (9d).
+  - An importer would be a new data path across bindings, needing its own adversarial review.
+  - Batch-zero reruns regenerate the old committed prefixes deterministically, so `p3_r2_determinism.py` can compare
+    run2 against run3 and extend the 9c determinism coverage.
+  - **The cost:** W2-a's 72.7k reusable outside-prefix CPU-h plus topup b's incomplete work, roughly a day at the
+    7,000-CPU queued cap.
+- **Old runs stay sealed:** `run` and `run2` are never modified, and their archives are kept. The final library set
+  carries one binding per library across rounds 1–3.
+
+**Dispatch.**
+1. **Precondition:** every round-2 array and collector is F, and both final summaries (`run2/collect_W1_b.json`,
+   `run2/collect_W2_b.json`) are fetched and verified.
+2. **`s1b_round3_dispatch.sh`:**
+   1. verify the stage checksums;
+   2. require PBS to show round 2 finished, and only then install;
+   3. gate both summaries: exact digest, binding, inventory, identities, counts, and errors one-to-one with invalid
+      rows;
+   4. run `select`;
+   5. release the three round-2 reservations with PBS evidence;
+   6. submit W1 round 3 (one subjob per 8 of its settings' 28 in-flight ranges, at most 170) and W2 round 3 (the CPUs
+      left under the cap), each resumable.
+3. **Later W2 arrays** go through `s1b_topup_dispatch.sh`. It now takes:
+   - an explicit `WAVES` list, so a W2-only topup;
+   - a required array reference `REF`, read with `qstat -x`, so a finished reference counts zero live subjobs instead
+     of failing;
+   - the releases as parameters.
+
+   The node-install step is gone: round 3 installs everything.
+
+**Successor recovery (runner `c56d0af6…`, commit 451e50e).**
+- **The gap:** the first adversarial smoke (runner 928265bd, 30% listing omission) left one W2 range under a killed
+  owner. Its successor's single recovery pass missed the claim hint, and the node idles on in-flight work without
+  relaunching. This was a liveness gap, with no second writer.
+- **The fix:** a worker keeps the hints of ranges it may own in `workers/held/<owner>`. A relaunched worker derives its
+  slot predecessors' exact names (`<job>.<slot>r<g>n<nonce>`, g below its own), and the node certifies each before the
+  next launch. At start, the worker ends as dead any execution a certified predecessor still owns, then replans. No
+  listing is involved.
+
+**Evidence (27 October 2026).** Receipts are in `analysis/fable/calibration/v2_dev/p3/`.
+
+*Fixtures.* 41/41 pass on Python 3.12.13 and 3.11.13 locally, 3.12.3 on deep-server (six concurrent runs, all
+passing) and **3.11.7 on kunanyi `/u`** (`r3_kunanyi_fixtures_20261027.txt`, from a scratch extract of stage
+`ddb014b0`). The new cases:
+
+| Case | Result |
+|---|---|
+| Every directory listing omitted | no hint for a live range; a forged duplicate hint admits no second writer |
+| Eight concurrent claimant processes, half unable to see execution records | one execution record; only its owner given the range |
+| A worker ended at each of eight transitions, with its lock left held | each reconciles to the serial library, with no superseded writer |
+| A successor recovering its predecessor with every listing omitted | recovered |
+
+On `/u`, `os.link` is exclusive (a second link reports EEXIST). The mount is NFS 4.1, `hard`, with default lookup
+caching.
+
+*Ownership control* (`p3_ownership_control.py`, `r3_ownership_control.json`):
+- The bound runner 1e35b94a, with the global listings omitted, republishes a live range at priority 0, and owner B
+  claims it beside owner A.
+- Codex's reproduction on it doubles the journal (318 bytes against a 159-byte checkpoint).
+- The candidate admits nobody, whether the global listings or every listing is omitted.
+
+*Adversarial smokes* (deep-server; `smoke_r3.sh`, `smoke_omit.py`). Each worker's `queue/` and `claimed/` listings
+drop every entry with probability 0.3. A random worker is killed with `kill -9` every 3 minutes for 30 minutes, and a
+foreign-host ghost lock is certified at 15 minutes:
+
+| Runner | Collections | Libraries vs `smoke_deep3` | Shards | Other |
+|---|---|---|---|---|
+| bound 1e35b94a (control) | both fail: 4 settings invalid ("journal length differs from its checkpoint") | — | 73 | 3 discarded tickets; reproduces the production defect |
+| 928265bd | both pass | 4 identical | 44 | one W2 range stranded (above); 5 executions ended dead; 0 superseded |
+| **c56d0af6** | **both pass** | **4 identical; W2 2 CAPPED, as the reference** | 47 | 0 open executions, 0 claims left, 0 superseded; 3 executions ended dead, 1 by its successor; determinism exit 0 |
+
+The control's determinism comparison also passes, because duplicate execution writes byte-identical records. Only the
+strict length and digest checks expose it, as Codex noted.
+
+*Dispatch rehearsals* (stub PBS, `rehearsal_round3.sh`, on the real round-2 W1 and W2-a summaries):
+- **Positive:** the gate gives 48 W1 and 7,089 W2 settings, 7,137 in all. The three reservations are released with
+  PBS evidence. W1 round 3 is sized 168 × 8 and W2 706 × 8, bringing live requests to 6,994. A rerun resumes without a
+  qsub.
+- **Topup:** with W1 finished, a W2-only topup b is released and sized at 168 × 8, and its rerun resumes.
+- **Negatives:** a tampered stage stops before install. An unfinished round-2 job stops before install. A wrong digest,
+  or errors not one-to-one with the invalid rows, stops before the settings, ledger and PBS.
+
+**W1 round 2 is final** (collector 860990 F, exit 1; `w1_r2b_collection_20261027.txt`). The archive `849cd0ba…` is
+verified: 4,822 unique members, all 4,820 library digests match, and the embedded summary is identical.
+
+| COMPLETE | CAPPED | FAILED | incomplete | invalid |
+|---|---|---|---|---|
+| 4,820 | 9 | 0 | 15 | 3 |
+
+The invalid settings are s02311, s10624 and s14782, all journal mismatches of the duplicate-execution kind. No W1
+claims remain. W1's round-3 inventory is therefore 15 + 3 = 18 settings.

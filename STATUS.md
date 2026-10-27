@@ -1418,41 +1418,23 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **W2 interim review complete; Fable next for the runner repair and recovery package.**
-   [Consolidated review](notes/astra_w2_interim_review_20261027.md), with
-   [mechanism](notes/astra_w2_duplicate_mechanism_review_20261027.md) and
-   [collection](notes/astra_w2_collection_review_20261027.md) reviews; E72.
-   - Existing W1/W2 topup-b arrays may finish. Hold further topups, including c,
-     until the demonstrated duplicate-ownership path is repaired and tested.
-     The saved 27 October 14:36 probe reports W1 b: 14 running, W2 b: 381
-     running; this is not a fresh dispatch count.
-   - W2-a archive `55448298` independently passes all 183 libraries / 366,000
-     records. Snapshot remains 183 COMPLETE / 7,076 incomplete / 13 invalid.
-     Zero of 800 W2 outer datasets has all nine primary libraries; no fits.
-   - An omitted claim listing reproduces republication and two concurrent
-     writers under the unchanged runner; the parent replay agrees. Historical
-     NFS omission and simultaneous liveness of the census owners are unproved.
-     Authoritative range state must prevent duplicate claims despite stale or
-     omitted global queue entries and survive interrupted transitions.
-   - Collect both waves authoritatively after all their arrays end. Recover all
-     final incomplete, FAILED and invalid settings with unchanged scientific
-     settings and streams. Preserve old bindings/evidence. Any partial-work
-     import into a repaired fresh binding requires exact independent checks;
-     otherwise rerun those settings from batch zero. Do not silently rebind.
-   - Accounted W2 useful / outside-prefix CPU-h are 143,903.73 / 98,520.26,
-     excluding invalid settings and losing duplicate work. Of the latter,
-     72,689.02 h is potentially reusable on incomplete settings. The saved
-     recheck has 8 FAILED / 4 unmarked / 1 COMPLETE, not nine FAILED markers.
-   - Node `8fe10208` closes the prior idle/cutoff hold: two regression cases,
-     two certificate/restart controls, and ten fixture groups pass on Bash
-     5.3.9. Saved Bash 4.2 evidence is attributed to Fable.
-   - W1 determinism JSON `73f9cd12` is fetched and its totals checked: 1,091
-     settings have common coverage, 3,756 do not. No new raw-journal replay.
-   - A later W2-only dispatch must use a suitable live/terminal-aware array
-     reference, fresh total requests, exact resume identity and distinct tags.
-     Current `W2_ARRAY=858016[]` can safely refuse after that array finishes;
-     the proposed WAVES change is not yet reviewed. Release reservations once
-     only, with both array and collector terminal evidence.
+1. **Round-3 ownership repair and recovery package ready for Codex review** (design §9h; NOTE 27 Oct; E73).
+   - **Runner `c56d0af6`:**
+     - each setting's own records are authoritative: the `r/` chain and numbered `x/` executions, created
+       exclusively and never replaced;
+     - queue and claim entries are hints only;
+     - a relaunched worker recovers its certified predecessors' executions by exact name.
+   - **Fixtures** pass 41/41, including on kunanyi `/u` with Python 3.11.7. In the ownership control the bound
+     runner fails and the candidate passes. The adversarial smokes: the bound runner gives 4 invalid settings; the
+     candidate passes with identical libraries.
+   - **Stage `ddb014b0`;** round-3 dispatch and topup rehearsals with stub PBS behave as specified.
+   - **Recovery:** every final round-2 setting that is incomplete, invalid or FAILED reruns from its pilot prefix
+     under `p3_settings_r3.json`, with no partial-shard import.
+   - **W1 round 2 is final** (860990): 4,820 COMPLETE, 9 CAPPED, 15 incomplete and 3 invalid, so 18 W1 settings go
+     into round 3. Archive `849cd0ba` is verified.
+   - **W2 topup b** 860992[] is still running (381 subjobs at 17:21 on 27 October). Topup c stays held.
+   - **Next:** Codex reviews the package. Then, after collector 860993 and a verified final W2 summary, dispatch
+     round 3 with `s1b_round3_dispatch.sh` (W1_SUMMARY_SHA `8d702807…`).
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
