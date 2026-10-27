@@ -1,0 +1,91 @@
+{
+ "bound_runner_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+ "candidate_runner_sha256": "928265bd19f8f4b0710ebe302ef42b54bba02adebb1cf28612eea1cc57c3846a",
+ "bound": {
+  "first_hints": [
+   "W2_9944444_s00001_000000000_000000100"
+  ],
+  "owner_a": "W2_9944444_s00001_000000000_000000100",
+  "republished_hints": [
+   "W2_0000000_s00001_000000000_000000100"
+  ],
+  "owner_b": "W2_0000000_s00001_000000000_000000100",
+  "claim_entries": [
+   "W2_0000000_s00001_000000000_000000100@ownerB",
+   "W2_9944444_s00001_000000000_000000100@ownerA"
+  ],
+  "second_writer_admitted": true
+ },
+ "candidate": {
+  "first_hints": [
+   "W2_9944444_s00001_000000000_000000100"
+  ],
+  "owner_a": [
+   "W2_9944444_s00001_000000000_000000100",
+   0
+  ],
+  "republished_hints": [],
+  "owner_b": null,
+  "claim_entries": [
+   "W2_9944444_s00001_000000000_000000100@ownerA"
+  ],
+  "execution_records": [
+   "000000000.0"
+  ],
+  "second_writer_admitted": false
+ },
+ "candidate_all_listings_omitted": {
+  "first_hints": [
+   "W2_9944444_s00001_000000000_000000100"
+  ],
+  "owner_a": [
+   "W2_9944444_s00001_000000000_000000100",
+   0
+  ],
+  "republished_hints": [],
+  "owner_b": null,
+  "claim_entries": [
+   "W2_9944444_s00001_000000000_000000100@ownerA"
+  ],
+  "execution_records": [
+   "000000000.0"
+  ],
+  "second_writer_admitted": false
+ },
+ "codex_reproduction_on_bound": {
+  "exit": 0,
+  "result": {
+   "bound_runner_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+   "checkpoint_journal_bytes": 159,
+   "claims_for_same_range": [
+    "W2_0000000_s00001_000000000_000000001@ownerA",
+    "W2_0000000_s00001_000000000_000000001@ownerB"
+   ],
+   "concurrent_worker_results": [
+    {
+     "ok": true,
+     "status": "complete"
+    },
+    {
+     "ok": true,
+     "status": "complete"
+    }
+   ],
+   "journal_bytes": 318,
+   "journal_exactly_double_checkpoint": true,
+   "journal_halves_identical": true,
+   "journal_lines": 2,
+   "omitted_listing_republished_ticket": true,
+   "planner_called_under_setting_lock": true,
+   "runtime": {
+    "numpy": "1.26.4",
+    "python": "3.12.13",
+    "scipy": "1.11.4"
+   },
+   "second_worker_claimed_republication": true,
+   "strict_verification_error": "ValueError: journal length differs from its checkpoint",
+   "two_claims_exist": true
+  }
+ },
+ "control_ok": true
+}
