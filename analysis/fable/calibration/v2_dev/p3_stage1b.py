@@ -26,7 +26,7 @@ shared NFS filesystem, stale-handle errors are retried and never end a worker; l
 a crashed worker delays only its own setting. The per-setting cap is a fixed proposal budget (2,000 CPU-h equivalent at
 the bound rate); allocated-CPU ceilings per wave and campaign are enforced by the reservation ledger. Run from the frozen
 source root."""
-import errno, hashlib, json, math, os, random, shutil, subprocess, sys, tempfile, time
+import errno, hashlib, json, math, os, random, re, shutil, subprocess, sys, tempfile, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import p2_stage1a as p2
@@ -716,17 +716,26 @@ def adopt(parked):
     return (min(ready, key=lambda t: parked[t]) if ready else None), (min(later) if later else None)
 
 
+def predecessors(owner):
+    """The earlier workers of this worker's node slot: s1b_node.pbs names them <job>.<slot>r<generation>n<nonce>, with
+    the generation advanced on every launch, and certifies each one before launching the next."""
+    m = re.fullmatch(r"(.+\.\d+r)(\d+)(n[0-9a-f]+)", owner)
+    return [f"{m[1]}{g}{m[3]}" for g in range(int(m[2]))] if m else []
+
+
 def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, des=None):
     """Pull worker. An OSError in an iteration (an NFS stale handle that outlived its retries) or a lock that stays busy
     parks the hint, which this worker retries later (resuming its own execution from its checkpoint); MAX_ERRORS
-    consecutive errors end it."""
+    consecutive errors end it. The hints of ranges this worker may own are kept in workers/held/<owner>; a worker first
+    ends as dead the executions its slot's certified predecessors still own there, found by exact names alone."""
     b = check(settings_path, metric_path) if des is None else json.load(open(settings_path))
     metric = json.load(open(metric_path)); des = des if des is not None else p2.designs()
     bind = binding(b, settings_path); by_dir = {s["dir"]: s for s in b["settings"]}
     deadline = float(deadline)
     done = {"shards": 0, "discarded_tickets": 0, "requeued_censored": 0, "stale_requeued": 0, "failed_shards": 0,
-            "transient_errors": 0, "lock_busy": 0, "adopted": 0, "superseded": 0}
-    parked, errs, last_rec = {}, 0, time.time()
+            "transient_errors": 0, "lock_busy": 0, "adopted": 0, "superseded": 0, "predecessor_recovered": 0}
+    parked, errs, last_rec, holding = {}, 0, time.time(), set()
+    hdir, cert = os.path.join(run, "workers", "held"), os.path.join(run, "workers", "dead")
 
     def patience():
         return max(5.0, min(LOCK_PATIENCE, deadline - time.time()))
@@ -734,6 +743,29 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
     def replan(d):
         if d in by_dir:
             plan(by_dir[d], os.path.join(run, "sets", d), run, b, owner)
+
+    def hold(t, mine):
+        if (t in holding) != mine:
+            (holding.add if mine else holding.discard)(t)
+            p2.atomic_json({"owner": owner, "tickets": sorted(holding)}, os.path.join(hdir, owner))
+
+    def recover_predecessors():
+        for p in predecessors(owner):
+            h = rec(os.path.join(hdir, p))
+            if not (h and certified(cert, {"owner": p})):
+                continue
+            for t in h["tickets"]:
+                _, d, a, _ = parse_ticket(t); sdir = os.path.join(run, "sets", d)
+                try:
+                    with held(sdir, owner, qstat, CLAIM_PATIENCE, deadline):
+                        k, s, e = execution(sdir, a)
+                        if s is not None and s["owner"] == p:
+                            if e is None:
+                                close(sdir, a, k, "dead", owner); done["predecessor_recovered"] += 1
+                            replan(d)
+                        drop(os.path.join(run, "claimed", f"{t}@{p}"))
+                except (LockBusy, LockStale, OSError) as ex:          # left to the claim-hint recovery
+                    print(f"predecessor {p}, {t}: {type(ex).__name__}: {ex}", file=sys.stderr, flush=True)
 
     def run_ticket(t, k):
         _, d, a, b_ = parse_ticket(t)
@@ -780,6 +812,8 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
             done["lock_stale"] = done.get("lock_stale", 0) + 1; parked[t] = math.inf
         return outcome
 
+    os.makedirs(hdir, exist_ok=True)
+    recover_predecessors()
     while time.time() < deadline:
         t = None
         try:
@@ -791,7 +825,7 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
                 with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat, CLAIM_PATIENCE, deadline):
                     k = take(run, t, owner, qstat, replan)
                 if k is None:
-                    parked.pop(t); continue
+                    parked.pop(t); hold(t, False); continue
             else:
                 got = claim(run, owner, wave, qstat, deadline, replan)
                 if got is None:
@@ -802,8 +836,10 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
                             break
                         time.sleep(max(0.0, min(60.0, max(1.0, later - time.time()), deadline - time.time()))); continue
                 t, k = got
-            parked.pop(t, None)
+            parked.pop(t, None); hold(t, True)
             status = run_ticket(t, k); errs = 0
+            if parked.get(t) != math.inf:
+                hold(t, False)
             if status == "censored":
                 break
         except LockBusy as ex:
@@ -817,6 +853,10 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
             print(f"transient error at {t}: {type(ex).__name__}: {ex}", file=sys.stderr, flush=True)
             if t is not None:
                 parked[t] = time.time() + PARK_SECS
+                try:
+                    hold(t, True)                        # this iteration may have left the range with this worker
+                except OSError:
+                    pass
             if errs >= MAX_ERRORS:
                 raise
             time.sleep(max(0.0, min(60.0, BACKOFF_SECS * 2 ** errs, deadline - time.time())))
@@ -1517,7 +1557,7 @@ def test():
                 and os.listdir(os.path.join(sdir, "x")) == [f"{aA:09d}.0"] and rec(xpath(sdir, aA, 0))["owner"] == "ownA[0].srv.0" \
                 and os.listdir(os.path.join(run, "claimed")) == [f"{tA}@ownA[0].srv.0"] and not os.listdir(os.path.join(run, "queue"))
             # Codex 2422, 2: eight concurrent claimant processes, half with a view in which no execution record is visible,
-            # race over one runnable range while its hint is republished: one execution exists and one claimant owns it
+            # race over one runnable range while its hint is republished: one execution exists, and only its owner was given it
             d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.05, mi=1)
             t1 = os.listdir(os.path.join(run, "queue"))[0]; a1 = parse_ticket(t1)[2]
             import multiprocessing
@@ -1534,18 +1574,20 @@ def test():
                         r_ = claim(run, f"c{i}[0].srv.0", "W1", qstat=fakeq, deadline=time.time() + 5)
                     except LockBusy:
                         r_ = None
+                    except OwnerUncertain:                   # as in production, this claimant ends (exit 75)
+                        break
                     if r_:
                         got_.append(r_)
                 outq.put((i, got_))
             ps_ = [ctx.Process(target=claimant, args=(i,)) for i in range(8)]
             for p_ in ps_:
                 p_.start()
-            outs = dict(outq.get(timeout=120) for _ in ps_)
+            outs = dict(outq.get(timeout=300) for _ in ps_)
             for p_ in ps_:
                 p_.join(10)
-            owners = [i for i, g in outs.items() if g]
-            res["stale_duplicate_hints_admit_one_owner"] = len(owners) == 1 and set(outs[owners[0]]) == {(t1, 0)} \
-                and os.listdir(os.path.join(sdir, "x")) == [f"{a1:09d}.0"]
+            owner0 = (rec(xpath(sdir, a1, 0)) or {}).get("owner")
+            res["stale_duplicate_hints_admit_one_owner"] = os.listdir(os.path.join(sdir, "x")) == [f"{a1:09d}.0"] \
+                and all(f"c{i}[0].srv.0" == owner0 and set(g) == {(t1, 0)} for i, g in outs.items() if g)
             # Codex 2422, 3: a worker ended at each transition, on either side of its hint update, leaving its lock held as a
             # killed process does; once certified, the next worker reconciles with no second writer and no range lost
             import contextlib
@@ -1618,6 +1660,31 @@ def test():
                                      "dead_executions": row_.get("dead_executions")}
             res["interrupted_transitions_reconciled_without_second_writer"] = len(transitions) == 8 and all(
                 v["ended_there"] and v["serial_library"] and v["superseded"] == 0 for v in transitions.values())
+            # a killed worker's successor in the same node slot ends its execution through the held record and the exact
+            # predecessor name, with every directory listing omitted; a later worker then finishes the setting
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.01, mi=1, tw=1e-6); n_ = [0]
+
+            def dies_pred(*a_):
+                n_[0] += 1
+                if n_[0] == 4:
+                    raise KeyboardInterrupt("killed mid-shard")
+                return fake(*a_)
+            with mock.patch.object(p2, "one_batch", dies_pred):
+                try:
+                    work(sp, mp, run, "W1", "jobH[0].srv.3r0nab12", time.time() + 3600, qstat=fq_run, des={})
+                except KeyboardInterrupt:
+                    pass
+            certify(run, "jobH[0].srv.3r0nab12", os.uname().nodename, 0)
+            hrec = rec(os.path.join(run, "workers", "held", "jobH[0].srv.3r0nab12"))
+            with mock.patch.object(me, "ls", lambda p_: []):
+                out_ = work(sp, mp, run, "W1", "jobH[0].srv.3r1nab12", time.time() + 3600, qstat=fq_run, des={})
+            aH = parse_ticket(hrec["tickets"][0])[2]; eH = execution(sdir, aH)
+            work(sp, mp, run, "W1", "jobI[0].srv.0r0n77", time.time() + 3600, qstat=fq_run, des={})
+            res["successor_recovers_predecessor_without_listings"] = len(hrec["tickets"]) == 1 \
+                and out_["predecessor_recovered"] == 1 and eH[0] == 0 and eH[2]["outcome"] == "dead" \
+                and eH[2]["by"] == "jobH[0].srv.3r1nab12" and execution(sdir, aH)[0] >= 1 \
+                and collect_ok(sp, mp, run, "c.json") and lib(run) == serial_low \
+                and predecessors("j[1].k.2r2n0f") == ["j[1].k.2r0n0f", "j[1].k.2r1n0f"] and predecessors("jobA[0].srv.0") == []
             # pilot prefix import refuses a journal that differs from the bound pilot collection
             d = tempfile.mkdtemp(dir=tmp); pdir = os.path.join(d, "pilot"); os.makedirs(pdir)
             data = b'{"x": 1}\n'
