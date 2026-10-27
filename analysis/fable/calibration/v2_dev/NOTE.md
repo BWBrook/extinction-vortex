@@ -1345,3 +1345,22 @@ Receipt: `p3/r2_topup_b_receipt.txt`.
 - Both collectors are `afterany` on their own arrays and email Barry.
 - W2's original reservation (218,888) stays until 858016[] and 858017 finish.
 
+### W2 first-array collection and duplicate shard execution (27 October 2026)
+
+Details are in design §9g; receipts `p3/w2_a_*`.
+- **Collector 858017** exited 1: 183 COMPLETE, 7,076 incomplete and 13 invalid.
+  Archive `55448298…` verified on deep-server; summary `9bfe0ca4…`.
+- **The 13 invalid settings fail persistently:** journals out of step with
+  their checkpoints, some exactly doubled.
+- **Census:** 8 ranges with two live claims and 1 range both queued and
+  claimed.
+- **Concurrent duplicate execution is the interpretation**, most likely through
+  orphan republication from an incomplete NFS directory listing.
+- **Integrity holds** through the strict collector and refused recovery.
+- **W2 continues.** Affected settings get a later round under a repaired
+  runner.
+- **Live state at 14:36:**
+  - W1 topup b 860989[]: 14 subjobs running, 156 expired;
+  - W2 topup b 860992[]: 381 running;
+  - live requests 3,162 CPUs.
+

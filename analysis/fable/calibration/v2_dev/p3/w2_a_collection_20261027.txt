@@ -1,0 +1,54 @@
+# W2 first-array collection (858017) probe, read-only recheck and duplicate-claim census, kunanyi 2026-10-27 14:36-14:39 AEDT
+## probe (w2a.sh)
+== now 2026-10-27 14:36:37 AEDT
+-- 858017:  job_state = F  mtime = Mon Oct 26 20:31:23 2026  stime = Mon Oct 26 20:02:34 2026  Exit_status = 1 
+-- 860990:  job_state = H  mtime = Sun Oct 25 16:19:26 2026 
+-- 860993:  job_state = H  mtime = Sun Oct 25 16:22:47 2026 
+-- 858016[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 860989[]:  job_state = B  array_state_count = Queued:0 Running:14 Exiting:0 Expired:156  
+-- 860992[]:  job_state = B  array_state_count = Queued:0 Running:381 Exiting:0 Expired:0  
+live requests: 3162 CPUs
+-rw-r--r--     1 bwbrook hpcadmin    35046827 Oct 26 20:31 W2.tar.gz
+-rw-r--r--     1 bwbrook hpcadmin          76 Oct 26 20:31 W2.tar.gz.sha256
+-rw-------     1 bwbrook hpcadmin     1776631 Oct 24 21:31 collect_W1.json
+-rw-r--r--     1 bwbrook hpcadmin         141 Oct 24 21:31 collect_W1.log
+-rw-------     1 bwbrook hpcadmin     1871925 Oct 26 20:31 collect_W2.json
+-rw-r--r--     1 bwbrook hpcadmin         222 Oct 26 20:31 collect_W2.log
+-rw-------     1 bwbrook hpcadmin       81597 Oct 24 21:31 pack_W1.txt
+-rw-------     1 bwbrook hpcadmin        3142 Oct 26 20:31 pack_W2.txt
+drwxr-sr-x     3 bwbrook hpcadmin      150652 Oct 25 16:19 submit_W1_b
+drwxr-sr-x     3 bwbrook hpcadmin     1532571 Oct 21 22:21 submit_W2
+drwxr-sr-x     3 bwbrook hpcadmin      283744 Oct 25 16:22 submit_W2_b
+-rw-r--r--     1 bwbrook hpcadmin           4 Oct 25 16:19 topup_b_W2.jobs
+collection_ok False W2 {'COMPLETE': 183, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 7076} useful 143903.7 discarded 98520.3 incomplete 7076 errors 13
+collection failed: s00341: ValueError: journal differs from its checkpoint
+55448298029d8bb2d1783f489ed5809dcc88345c84c6e8294c0e23744e9eec96  W2.tar.gz
+W2 collection_ok False status {'COMPLETE': 183, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 7076} n_errors 13 incomplete 7076 useful 143904 discarded 98520 queue_left 9219 claims_left 3176 tag W2
+8 ValueError: journal differs from its checkpoint
+5 ValueError: journal length differs from its checkpoint
+row status {'incomplete': 7076, 'COMPLETE': 183, 'invalid': 13}
+W1_b: done 156 restarts75 91 other-exits 0 cert-fail 0 idle-retire 1248
+W2_b: done 0 restarts75 728 other-exits 0 cert-fail 0 idle-retire 0
+W2: done 570 restarts75 3680 other-exits 0 cert-fail 0 idle-retire 0
+W2A_DONE
+rc=0
+## recheck of the 13 invalid settings (recheck.sh; NOTE: its claims= lists matched range bounds without the setting dir and over-count; see the census)
+== 2026-10-27 14:37:44 AEDT read-only recheck of W2 invalid settings (terminal marker | first failing shards: range, status, committed batches, journal_bytes in checkpoint, file size)
+s00341 terminal FAILED | [265179761,317997420) censored done=17913014 jbytes=20276 file=30550: journal differs; [582085715,634903374) censored jbytes=9346 file=18692: differs; [634903374,687721033) censored jbytes=16217 file=26193: differs
+s01670 terminal FAILED | [395543024,439243320) censored jbytes=1007 file=2014: differs
+s01688 terminal None | [16667656,25001484) complete jbytes=26315 file=26661: length differs; [33335312,41669140) complete 20940/21623; [100005936,108339764) complete 26395/27768
+s01961 terminal None | [0,8333828) complete jbytes=12818 file=13843: length differs; [248696516,277535333) running jbytes=21520 file=38959: differs
+s02093 terminal COMPLETE | [8333828,16667656) complete jbytes=77814 file=85079: length differs
+s02096 terminal FAILED | [133341248,167691269) censored 12200/12886; [236391311,270741332) censored 12279/13640; [270741332,305091353) censored 10548/12259: differs
+s02102 terminal FAILED | [505704878,542941241) censored jbytes=9483 file=18966: differs
+s02105 terminal FAILED | [133341248,231158406) running jbytes=49153 file=74733: differs
+s11033 terminal FAILED | [139687759,252181963) censored jbytes=43874 file=69507: differs
+s11285 terminal None | [106820051,115036978) complete jbytes=22729 file=23367: length differs
+s11318 terminal FAILED | [16433854,24650781) complete 27225/27541: length differs; [139687759,209356176) running 73367/105470: differs
+s11330 terminal FAILED | [527371183,570447119) censored jbytes=6419 file=12838: differs; [656598991,699674921) censored jbytes=4828 file=9656: differs
+c00170 terminal None | [51181794,59712093) complete jbytes=84052 file=87319: length differs
+## duplicate-claim census (dups.sh), 2026-10-27 14:39:28 AEDT
+claims 3084  queued 8714
+ranges with >1 claim: 8  claims on them: 16 (e.g. s10624_205019425_272206603, s04019_115210403_126310065, s03974 x3)
+ranges both queued and claimed: 1; queue names repeated: 0
+by wave, claims: W1 20 W2 3064; W1 ranges with >1 claim: 2; W2 ranges with >1 claim: 6

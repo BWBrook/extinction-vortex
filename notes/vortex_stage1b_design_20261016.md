@@ -758,3 +758,54 @@ outside-prefix CPU-h belong to the 48 incomplete settings and are potentially
 reusable by the W1 topup under the same binding. The accounted total of 67,467
 CPU-h includes 190 imported pilot hours.
 
+
+### 9g. Duplicate shard execution in W2 (27 October 2026)
+
+**W2 collector 858017** (the first array, 858016[], F) ran 26 October 20:02–20:31
+and exited 1 (`p3/w2_a_collection_20261027.txt`).
+- **Statuses:** 183 COMPLETE, 7,076 incomplete and 13 invalid. Archive `55448298…`
+  (35 MB, 183 libraries) verified on deep-server.
+- **This collection is a snapshot**, taken while W2 topup b's 381 subjobs ran.
+  Its errors are nonetheless persistent: a read-only re-check of the 13 settings,
+  using the runner's own `verified()`, fails again 18 hours later.
+- **The failures:** eight "journal differs from its checkpoint" and five
+  "journal length differs from its checkpoint".
+  - Several journals are **exactly twice** their committed length (for example
+    9,346 → 18,692 bytes; 1,007 → 2,014; 6,419 → 12,838): the same batches were
+    written twice.
+  - Completed shards carry extra appended bytes.
+  - Nine of the settings already have FAILED markers, written when the runner
+    refused to resume a mismatched journal.
+- **Duplicate claims are live:** a census of `claimed/` filtered by setting and
+  range finds 8 ranges with two claims each (2 W1, 6 W2) among 3,084 claims,
+  and one range both queued and claimed. My first re-check over-counted claims
+  because it matched range bounds without the setting.
+
+**Interpretation: shards of one range have been run concurrently by two workers.**
+- **The likely path is orphan republication.** `plan()` decides that an
+  unfinished range has no live ticket or claim from directory listings of the
+  shared `queue` and `claimed` directories. An NFS directory read of a large
+  directory under concurrent renames can omit entries. A claimed range then
+  looks orphaned, is republished, and is claimed by a second worker.
+- This is a hypothesis consistent with the evidence, not yet reproduced.
+
+**Integrity holds.**
+- Every affected shard is rejected: by the collector's strict checks (committed
+  prefix digest, exact length for terminal shards, strictly increasing
+  identities) or by the runner's own refused recovery.
+- Duplicated records cannot enter a library.
+- The W1 libraries passed strict reconciliation, and W1 round 2 had no such
+  errors.
+
+**Cost.** Duplicated CPU, and affected settings ending FAILED or invalid. W2's
+collection shows 98.5k outside-prefix CPU-h against 143.9k useful; most of that
+belongs to incomplete settings and stays reusable. The duplication share is not
+yet measured.
+
+**Decision: continue W2 under its binding.**
+- Restarting W2 under a repaired runner would discard its committed work.
+- FAILED and invalid settings rerun from batch 0 in a later round under a
+  repaired runner, as W1's did in round 2.
+- **Repair for that runner:** never infer "no live ticket or claim" from a
+  directory listing. Record each range's ticket and claim state in the
+  setting's own directory, under the setting lock, and plan from that record.

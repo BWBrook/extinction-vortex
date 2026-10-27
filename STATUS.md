@@ -1393,7 +1393,18 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Topups b dispatched (25 October 16:22); node idle loop repaired.**
+1. **W2 first array collected (27 October): duplicate shard execution found** (design §9g).
+   - **Collection:** 858017 exited 1, with 183 COMPLETE, 7,076 incomplete and 13
+     invalid. The 13 are journals written twice, persistent, and caught by the
+     strict checks.
+   - **Census:** 8 ranges with two live claims.
+   - **Integrity holds.** W2 continues under its binding; the affected settings
+     get a later round under a repaired runner that plans from per-range state,
+     not directory listings.
+   - **Running:** W1 topup b (14 subjobs running), W2 topup b (381 running).
+     Live requests 3,162 CPUs, so a W2 topup c fits.
+   - Codex to check the diagnosis.
+2. **Topups b dispatched (25 October 16:22); node idle loop repaired.**
    - **Node:** `8fe10208`, after the hold in 2391/2393. Evidence: fixtures
      10/10 under bash 5.2 and 4.2.46; Codex's combined checks pass; board
      2399.
@@ -1408,7 +1419,7 @@ board 1755; exposure E56).
    - Receipt: `p3/r2_topup_b_receipt.txt`.
    - **Next:** collect each array as its collector emails; add further W2
      topups as capacity frees.
-2. **(History) W1 collection verified; node idle-loop branch repaired before top-ups.**
+3. **(History) W1 collection verified; node idle-loop branch repaired before top-ups.**
    - **Accepted outputs:** W1 combined 14,493 COMPLETE, three CAPPED and 48
      incomplete settings. Round-2 archive `c12e5378…` contains 4,798 verified
      libraries; all 9,596,000 new records pass the independent archive audit.
