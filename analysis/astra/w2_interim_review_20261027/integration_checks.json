@@ -1,0 +1,30 @@
+{
+  "python_ast_valid": [
+    "analysis/astra/w2_interim_review_20261027/archive_audit.py",
+    "analysis/astra/w2_interim_review_20261027/dispatch_check.py",
+    "analysis/astra/w2_interim_review_20261027/replay_node.py",
+    "analysis/astra/w2_collection_review_20261027/audit_w2_snapshot.py",
+    "analysis/astra/w2_duplicate_review_20261027/reproduce_duplicate_path.py"
+  ],
+  "json_parse_valid": [
+    "analysis/astra/w2_interim_review_20261027/dispatch_check.json",
+    "analysis/astra/w2_interim_review_20261027/parent_duplicate_replay.json",
+    "analysis/astra/w2_interim_review_20261027/determinism_receipt_check.json",
+    "analysis/astra/w2_interim_review_20261027/archive_audit.json",
+    "analysis/astra/w2_interim_review_20261027/node_checks.json",
+    "analysis/astra/w2_interim_review_20261027/s1b_node_fixture.json",
+    "analysis/astra/w2_interim_review_20261027/parent_collection_replay.json",
+    "analysis/astra/w2_collection_review_20261027/audit_w2_snapshot.json",
+    "analysis/astra/w2_duplicate_review_20261027/reproduction_result.json"
+  ],
+  "review_memos": 3,
+  "exposure_rows": 72,
+  "all_exposure_rows_nine_fields": true,
+  "production_sources_unchanged": true,
+  "parent_duplicate_matches_reviewer": true,
+  "source_sha256": {
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "8fe102080e1433ef880f0d1f30f8ef5cd127881c46cde0ae44bf38a40e5729c6",
+    "analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh": "e85c24b90448a291a02db3e0e12c7d5aada8836af1f74dfb90e56e3c483e1d26"
+  }
+}

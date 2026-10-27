@@ -1,0 +1,42 @@
+{
+ "bash_version": "5.3.9(1)-release",
+ "checks": {
+  "exit75_refilled_without_cap_and_certified": true,
+  "non75_failures_have_a_finite_budget": true,
+  "exit0_refills_on_queued_work_waits_on_claims_retires_when_empty": true,
+  "work_published_between_observations_is_found": true,
+  "scan_errors_are_unknown_never_empty": true,
+  "certificate_published_and_read_back_before_any_replacement": true,
+  "rerun_and_refills_never_reuse_an_owner": true,
+  "no_launch_after_the_cutoff_and_one_deadline": true,
+  "idle_subjob_residence_is_bounded": true,
+  "alternating_empty_unknown_bounded_by_idle_budget_and_cutoff": true
+ },
+ "observations": {
+  "claims_only_idle": {
+   "logical_seconds": 1800,
+   "polls": 6,
+   "finds": 12
+  },
+  "idle_subjob": {
+   "real_seconds": 4.0,
+   "launches": 8,
+   "finds": 48
+  },
+  "idle_with_busy_sibling": {
+   "real_seconds": 8.9,
+   "finds": 76
+  },
+  "empty_unknown_alternation": {
+   "before_cutoff": {
+    "logical_seconds": 30,
+    "finds": 3
+   },
+   "at_cutoff": {
+    "logical_seconds": 10,
+    "finds": 2
+   }
+  }
+ },
+ "all_ok": true
+}

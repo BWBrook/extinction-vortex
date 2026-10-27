@@ -1,0 +1,195 @@
+{
+  "node_sha256": "8fe102080e1433ef880f0d1f30f8ef5cd127881c46cde0ae44bf38a40e5729c6",
+  "cases": {
+    "empty_unknown_loop_past_deadline": {
+      "rc": 0,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0nb8519c985a3e",
+          "deadline": 1000010,
+          "pid": 78699,
+          "t": 1000000
+        }
+      ],
+      "finds": 2,
+      "sleeps": [
+        10.0
+      ],
+      "log": "2026-10-27 15:06:29 launch cutoff reached while idle; slot retires\n",
+      "done": "subjob 0 host laptop slots failed: 0\n",
+      "clock": 10,
+      "real_s": 0.4221630096435547,
+      "forced_termination": false,
+      "exit": 0,
+      "total_find_attempts": 2,
+      "find_attempts_at_cutoff_or_later": 0,
+      "launch_cutoff_and_deadline_offset": 10,
+      "note": "after first clipped pause, the logical clock stays at cutoff; scans continue without any sleep"
+    },
+    "empty_unknown_loop_ignores_idle_budget": {
+      "rc": 0,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0ncc35f6cee33e",
+          "deadline": 1171000,
+          "pid": 79217,
+          "t": 1000000
+        }
+      ],
+      "finds": 2,
+      "sleeps": [
+        10.0,
+        20.0
+      ],
+      "log": "2026-10-27 15:06:30 subjob idle for 30s with wave W1 unknown; slot retires\n",
+      "done": "subjob 0 host laptop slots failed: 0\n",
+      "clock": 30,
+      "real_s": 0.6190414428710938,
+      "forced_termination": false,
+      "exit": 0,
+      "total_find_attempts": 3,
+      "idle_budget_seconds": 30,
+      "launch_cutoff_offset": 170400,
+      "note": "all slots idle throughout; empty branch bypasses idle budget even long before the launch cutoff"
+    },
+    "mixed_restarts_verify_prior_certificate_and_no_overlap": {
+      "rc": 1,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 79741,
+          "t": 1000000,
+          "planned_rc": 3
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r1n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 80118,
+          "t": 1000010,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r2n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 80240,
+          "t": 1000015,
+          "planned_rc": 0
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r3n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 80466,
+          "t": 1000015,
+          "planned_rc": 3
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r4n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 80747,
+          "t": 1000025,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r5n3ddf3b986257",
+          "deadline": 1171000,
+          "pid": 80760,
+          "t": 1000030,
+          "planned_rc": 3
+        }
+      ],
+      "finds": 1,
+      "sleeps": [
+        10.0,
+        5.0,
+        10.0,
+        5.0
+      ],
+      "log": "2026-10-27 15:06:30 worker job[0].fixture.0r0n3ddf3b986257 exited 3 (1 of 3)\n2026-10-27 15:06:30 worker job[0].fixture.0r1n3ddf3b986257 exited 75 (owner uncertain); launching again\n2026-10-27 15:06:31 worker job[0].fixture.0r3n3ddf3b986257 exited 3 (2 of 3)\n2026-10-27 15:06:31 worker job[0].fixture.0r4n3ddf3b986257 exited 75 (owner uncertain); launching again\n2026-10-27 15:06:31 worker job[0].fixture.0r5n3ddf3b986257 exited 3 (3 of 3)\n",
+      "done": "subjob 0 host laptop slots failed: 1\n",
+      "clock": 30,
+      "real_s": 1.1176304817199707,
+      "certificates": [
+        {
+          "owner": "job[0].fixture.0r0n3ddf3b986257",
+          "host": "laptop",
+          "pid": 79741,
+          "rc": 3
+        },
+        {
+          "owner": "job[0].fixture.0r1n3ddf3b986257",
+          "host": "laptop",
+          "pid": 80118,
+          "rc": 75
+        },
+        {
+          "owner": "job[0].fixture.0r2n3ddf3b986257",
+          "host": "laptop",
+          "pid": 80240,
+          "rc": 0
+        },
+        {
+          "owner": "job[0].fixture.0r3n3ddf3b986257",
+          "host": "laptop",
+          "pid": 80466,
+          "rc": 3
+        },
+        {
+          "owner": "job[0].fixture.0r4n3ddf3b986257",
+          "host": "laptop",
+          "pid": 80747,
+          "rc": 75
+        },
+        {
+          "owner": "job[0].fixture.0r5n3ddf3b986257",
+          "host": "laptop",
+          "pid": 80760,
+          "rc": 3
+        }
+      ],
+      "verified_before_replacements": 5
+    },
+    "ambiguous_certificate_rename_plus_readback_failure": {
+      "rc": 0,
+      "launches": [
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r0nc3eff2388157",
+          "deadline": 1171000,
+          "pid": 80979,
+          "t": 1000000,
+          "planned_rc": 75
+        },
+        {
+          "kind": "launch",
+          "owner": "job[0].fixture.0r1nc3eff2388157",
+          "deadline": 1171000,
+          "pid": 81055,
+          "t": 1000015,
+          "planned_rc": 0
+        }
+      ],
+      "finds": 4,
+      "sleeps": [
+        10.0,
+        5.0,
+        10.0,
+        30.0
+      ],
+      "log": "2026-10-27 15:06:31 worker job[0].fixture.0r0nc3eff2388157 exited 75 (owner uncertain); launching again\n2026-10-27 15:06:32 wave W1 has no queued tickets or claims; slot retires\n",
+      "done": "subjob 0 host laptop slots failed: 0\n",
+      "clock": 55,
+      "real_s": 0.8300385475158691,
+      "all_final_certificates_match_child_owner_and_pid": true
+    }
+  },
+  "timestamp": "2026-10-27T15:06:32.490636+11:00"
+}

@@ -1,0 +1,99 @@
+{
+  "accounting": {
+    "by_status_library": {
+      "COMPLETE|check": {
+        "discarded_cpu_h": 205.04792854349967,
+        "n": 1,
+        "useful_cpu_h": 184.70706349213597
+      },
+      "COMPLETE|primary": {
+        "discarded_cpu_h": 25626.195333909025,
+        "n": 182,
+        "useful_cpu_h": 47425.23657852211
+      },
+      "incomplete|check": {
+        "discarded_cpu_h": 1090.1024790105382,
+        "n": 70,
+        "useful_cpu_h": 1159.6677942406222
+      },
+      "incomplete|primary": {
+        "discarded_cpu_h": 71598.91776147796,
+        "n": 7006,
+        "useful_cpu_h": 95134.1141880998
+      },
+      "invalid|check": {
+        "discarded_cpu_h": 0.0,
+        "n": 1,
+        "useful_cpu_h": 0.0
+      },
+      "invalid|primary": {
+        "discarded_cpu_h": 0.0,
+        "n": 12,
+        "useful_cpu_h": 0.0
+      }
+    },
+    "discarded_cpu_h_recomputed": 98520.26350294104,
+    "discarded_cpu_h_saved": 98520.26350294106,
+    "incomplete_discarded_cpu_h": 72689.02024048853,
+    "incomplete_share_of_accounted_discarded": 0.7378078139053963,
+    "invalid_rows_have_no_cpu_fields": true,
+    "reported_totals_exclude_invalid_settings": true,
+    "useful_cpu_h_recomputed": 143903.7256243547,
+    "useful_cpu_h_saved": 143903.72562435459
+  },
+  "fixed_denominators": {
+    "check_cells": 36,
+    "check_complete": 1,
+    "check_rows": 72,
+    "check_rows_per_population_scenario": [
+      2
+    ],
+    "maximum_populations_complete_in_one_outer_dataset": 5,
+    "outer_datasets_with_all_9_primary_libraries_complete": 0,
+    "primary_cells": 36,
+    "primary_complete": 182,
+    "primary_rows": 7200,
+    "primary_rows_per_population_scenario": [
+      200
+    ]
+  },
+  "inputs": {
+    "receipt": "analysis/fable/calibration/v2_dev/p3/w2_a_collection_20261027.txt",
+    "runner": "analysis/fable/calibration/v2_dev/p3_stage1b.py",
+    "runner_sha256": "1e35b94ab3811cc0ddded21aeaa5258120500c9e60f02dd5a6ee0c9c89d50d75",
+    "summary": "analysis/fable/calibration/v2_dev/p3/w2_a_collect_W2.json",
+    "summary_sha256": "9bfe0ca4e2c833bdd2e6c5eeb1e26aecc50e1777e68f7a1aba07bee3e8704a08"
+  },
+  "journal_guard_experiments": {
+    "coherent_structural_record_not_recomputed": true,
+    "committed_duplicate_error": "hit identities duplicated or out of order",
+    "committed_duplicate_identity_rejected": true,
+    "nonterminal_duplicate_tail_excluded": true,
+    "nonterminal_verified_records": 1,
+    "terminal_tail_error": "journal length differs from its checkpoint",
+    "terminal_uncommitted_duplicate_tail_rejected": true
+  },
+  "summary_contract": {
+    "collection_ok": false,
+    "error_dirs_equal_invalid_dirs": true,
+    "errors": 13,
+    "invalid_recheck_terminal_markers": {
+      "COMPLETE": 1,
+      "FAILED": 8,
+      "None": 4
+    },
+    "invalid_rows": 13,
+    "rows": 7272,
+    "status_recomputed": {
+      "COMPLETE": 183,
+      "incomplete": 7076,
+      "invalid": 13
+    },
+    "status_saved": {
+      "CAPPED": 0,
+      "COMPLETE": 183,
+      "FAILED": 0,
+      "incomplete": 7076
+    }
+  }
+}

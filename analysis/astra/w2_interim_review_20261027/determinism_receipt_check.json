@@ -1,0 +1,17 @@
+{
+  "source_sha256": "73f9cd129bf5f84c279ea1d43ecd4f7ba392c3477535b3c350f6a31437320633",
+  "total": {
+    "settings": 4847,
+    "batches_compared": 9336542588,
+    "records_compared": 1643296,
+    "identical": 1643296,
+    "bytes_differ": 0,
+    "unmatched": 0
+  },
+  "positive_coverage": 1091,
+  "zero_coverage": 3756,
+  "positive_coverage_without_records": 0,
+  "problems": [],
+  "exit": 0,
+  "scope": "Arithmetic and source digest check of reported comparator result; raw journals not independently replayed"
+}

@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 25 October 2026, 12:11 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 27 October 2026, 15:14 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -22,17 +22,29 @@ W1 round 2 is collected. Across retained round 1 and round 2, W1 has
 n = 30 settings. Astra's [25 October review](notes/astra_r2_execution_review_20261025.md)
 (2391, 2393; E71) independently verifies the new 4,798 libraries and all
 9,596,000 records, both archive digests, exact selected settings and the W1
-partition. The saved Kunanyi comparator reports 1,643,296 byte-identical
-records on common committed batches; its per-setting JSON remains to be
-fetched in the next ordinary window. No numerical stream replay was performed.
-**New top-ups are held for one node-wrapper repair.** Node `00ed12fb` passes
-its nine existing fixture groups, but alternating empty/unknown wave reads
-can bypass both idle and cutoff checks. Fable is next to make those checks
-unconditional and replay the two limit cases plus existing controls. The
-bound runner and the collection/continuation strategy remain accepted; existing
-arrays need no intervention from this finding. W2's saved 25 October 11:13
-snapshot has 379 running and 191 expired subjobs, with its collector held.
-No new scientific or resource decision is needed from Barry.
+partition. The fetched Kunanyi comparator receipt reports 1,643,296 byte-identical
+records from 1,091 of 4,847 settings with common committed coverage; 3,756 have none.
+Astra checked its digest and per-setting arithmetic; no raw-journal replay was
+performed. The earlier node hold is closed: `8fe10208` passes both counterexamples,
+the combined restart/certificate controls and all ten fixture groups.
+
+**W2 first-array snapshot and current continuation recommendation (27 October).**
+The saved collection has 183 COMPLETE, 7,076 incomplete and 13 invalid settings.
+Astra independently verified all 183 archived libraries and 366,000 records.
+The [27 October review](notes/astra_w2_interim_review_20261027.md) reproduces a
+claimed range being republished after an omitted directory entry, followed by
+two concurrent writers and a doubled journal rejected by strict verification.
+The historical NFS trigger remains a hypothesis. The saved duplicate-claim
+census includes W1 as well as W2 and does not establish owner liveness.
+**Recommendation: let existing W1/W2 topup-b arrays finish; hold topup c pending
+the runner repair.** Strictly collect each wave after all its arrays end.
+Preserve old work and bindings; a fresh-binding recovery must cover every final
+incomplete, FAILED or invalid setting. An exact audited partial-shard import is
+an option to preserve work, not yet implemented or cleared; batch-zero reruns
+remain the conservative route. The accounted CPU totals omit invalid settings
+and losing duplicate execution. These are availability results, with no fitted
+validation or empirical inference. Fable is next for the ownership repair and
+recovery package; no new scientific or resource choice is needed from Barry.
 Routine development and bounded verification remain on deep-server.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
@@ -947,6 +959,19 @@ board 1755; exposure E56).
 
 ## Completed by Astra
 
+- **27 October W2 interim review** ([consolidated review](notes/astra_w2_interim_review_20261027.md),
+  board 2421–2422; E72). Independently verified the W2-a archive: 183 libraries,
+  366,000 records and exact summary/settings/metric bindings. Two bounded
+  reviews tested duplicate ownership and collection contracts; parent replays
+  confirmed both. An omitted claim listing reproduces republication and two
+  shard writers with a doubled journal rejected by strict verification.
+  Historical NFS cause and production owner liveness remain unverified.
+  Closed the earlier node hold on `8fe10208`: both counterexamples, combined
+  controls and all ten fixture groups pass. Checked W1 comparator receipt
+  coverage and corrected W2 CPU/marker interpretation. Recommended current b
+  arrays finish, both waves get terminal collections, and topup c waits for
+  repaired ownership plus fresh-binding recovery. No production source, job,
+  reservation or scientific setting was changed. Fable's repair is next.
 - 25 October, reviewed node `00ed12fb` and W1 collection at `805f007` with
   three bounded reviewers (2391, 2393; E71). Independent deep-server streaming
   audit verifies every new library and all 9,596,000 records, unchanged input
@@ -1393,64 +1418,41 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **W2 first array collected (27 October): duplicate shard execution found** (design §9g).
-   - **Collection:** 858017 exited 1, with 183 COMPLETE, 7,076 incomplete and 13
-     invalid. The 13 are journals written twice, persistent, and caught by the
-     strict checks.
-   - **Census:** 8 ranges with two live claims.
-   - **Integrity holds.** W2 continues under its binding; the affected settings
-     get a later round under a repaired runner that plans from per-range state,
-     not directory listings.
-   - **Running:** W1 topup b (14 subjobs running), W2 topup b (381 running).
-     Live requests 3,162 CPUs, so a W2 topup c fits.
-   - Codex to check the diagnosis.
-2. **Topups b dispatched (25 October 16:22); node idle loop repaired.**
-   - **Node:** `8fe10208`, after the hold in 2391/2393. Evidence: fixtures
-     10/10 under bash 5.2 and 4.2.46; Codex's combined checks pass; board
-     2399.
-   - **W1 topup b:** array 860989[] (170 × 8) for the last 48 W1 settings;
-     collector 860990.
-   - **W2 topup b:** array 860992[] (381 × 8); collector 860993.
-   - **Still running:** W2 858016[] and its collector 858017.
-   - **Requests:** live total 6,995 of 7,000 CPUs. W1 round 2's reservation is
-     released; W2's original reservation is kept.
-   - **Determinism:** the per-setting JSON `73f9cd12` is fetched; 1,091 of 4,847
-     settings have batches committed in both rounds.
-   - Receipt: `p3/r2_topup_b_receipt.txt`.
-   - **Next:** collect each array as its collector emails; add further W2
-     topups as capacity frees.
-3. **(History) W1 collection verified; node idle-loop branch repaired before top-ups.**
-   - **Accepted outputs:** W1 combined 14,493 COMPLETE, three CAPPED and 48
-     incomplete settings. Round-2 archive `c12e5378…` contains 4,798 verified
-     libraries; all 9,596,000 new records pass the independent archive audit.
-     Full selected settings reproduce `248f9c7d…` with unchanged scientific
-     rows, caps, streams and helper bindings. Preserve all CAPPED outcomes.
-   - **Node hold:** `00ed12fb` can bypass both the whole-subjob idle limit and
-     allocation cutoff after an empty scan followed by an unknown scan.
-     Reviewer and parent replays reproduce both paths. Fable next for
-     unconditional idle/deadline checks and bounded waiting on every path,
-     then the two limit reproductions, nine fixture groups and two combined
-     certificate/restart controls. See [review](notes/astra_r2_execution_review_20261025.md)
-     and board 2391/2393; E71. No broad scientific rerun is required.
-   - **Once repaired and checked:** install only the reviewed node for future
-     jobs, keeping runner `1e35b94a…`, full `p3_settings_r2.json` and `run2`.
-     Use distinct top-up labels; do not subset/reseed the remaining 48.
-     Tagged archives preserve the existing W1 snapshot. The actual-shell
-     submission, resume, ledger and collector-naming integration checks pass.
-   - W1's proposed 170 × 8 shape reserves 65,288 CPU-h with its collector.
-     Release original W1 reservation `s1b_22b89261_a` once using terminal
-     array 857922[] and collector 857923 evidence. Original W2 858016[] /
-     collector 858017 retains its full reservation until both finish.
-   - Size W2 using fresh queued AND running requests, all held collectors
-     and other jobs under the recorded 7,000-CPU cap. The saved 379-running
-     W2 snapshot is not a current dispatch count. Same-wave collections
-     remain snapshots while another array of that wave runs.
-   - Preserve the reported common-batch determinism receipt: 1,643,296
-     identical records over 9,336,542,588 batches. Fetch/hash its existing
-     per-setting JSON at the next normal transfer; this review did not
-     independently replay raw journals. Keep pilot-only/zero-coverage cases
-     and full scenario denominators explicit. Stage 1c still needs its
-     executable settings/adapter check before fitting.
+1. **W2 interim review complete; Fable next for the runner repair and recovery package.**
+   [Consolidated review](notes/astra_w2_interim_review_20261027.md), with
+   [mechanism](notes/astra_w2_duplicate_mechanism_review_20261027.md) and
+   [collection](notes/astra_w2_collection_review_20261027.md) reviews; E72.
+   - Existing W1/W2 topup-b arrays may finish. Hold further topups, including c,
+     until the demonstrated duplicate-ownership path is repaired and tested.
+     The saved 27 October 14:36 probe reports W1 b: 14 running, W2 b: 381
+     running; this is not a fresh dispatch count.
+   - W2-a archive `55448298` independently passes all 183 libraries / 366,000
+     records. Snapshot remains 183 COMPLETE / 7,076 incomplete / 13 invalid.
+     Zero of 800 W2 outer datasets has all nine primary libraries; no fits.
+   - An omitted claim listing reproduces republication and two concurrent
+     writers under the unchanged runner; the parent replay agrees. Historical
+     NFS omission and simultaneous liveness of the census owners are unproved.
+     Authoritative range state must prevent duplicate claims despite stale or
+     omitted global queue entries and survive interrupted transitions.
+   - Collect both waves authoritatively after all their arrays end. Recover all
+     final incomplete, FAILED and invalid settings with unchanged scientific
+     settings and streams. Preserve old bindings/evidence. Any partial-work
+     import into a repaired fresh binding requires exact independent checks;
+     otherwise rerun those settings from batch zero. Do not silently rebind.
+   - Accounted W2 useful / outside-prefix CPU-h are 143,903.73 / 98,520.26,
+     excluding invalid settings and losing duplicate work. Of the latter,
+     72,689.02 h is potentially reusable on incomplete settings. The saved
+     recheck has 8 FAILED / 4 unmarked / 1 COMPLETE, not nine FAILED markers.
+   - Node `8fe10208` closes the prior idle/cutoff hold: two regression cases,
+     two certificate/restart controls, and ten fixture groups pass on Bash
+     5.3.9. Saved Bash 4.2 evidence is attributed to Fable.
+   - W1 determinism JSON `73f9cd12` is fetched and its totals checked: 1,091
+     settings have common coverage, 3,756 do not. No new raw-journal replay.
+   - A later W2-only dispatch must use a suitable live/terminal-aware array
+     reference, fresh total requests, exact resume identity and distinct tags.
+     Current `W2_ARRAY=858016[]` can safely refuse after that array finishes;
+     the proposed WAVES change is not yet reviewed. Release reservations once
+     only, with both array and collector terminal evidence.
 2. **(History) Stage 1b/1c are authorised; W1 is cleared for preflight and dispatch.**
    [Astra final review](notes/astra_s1b_final_delta_review_20261017.md), board
    1812; exposure E64; reviewed `979cd41`.
@@ -1512,10 +1514,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2156**; exhausted `through`: **2156**.
-- Explicit acknowledgement: through actual message **2156** in discussion 70.
-- Latest own review: **2156** (original repairs closed; one uncertain-acquisition fix remains).
-- Next retrieval: omit `through` to capture new messages, and use `after=2156`.
+- Last full retrieval `next_after`: **2422**; exhausted `through`: **2422**.
+- Explicit acknowledgement: through actual message **2422** in discussion 70.
+- Latest own review: **2422** (W2 archive accepted; node hold closed; new topup held for duplicate ownership).
+- Next retrieval: omit `through` to capture new messages, and use `after=2422`.
 
 ## Decision Inbox checkpoint
 

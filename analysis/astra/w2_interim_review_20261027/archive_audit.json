@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-27T15:06:27.337027+11:00",
+  "scope": "Check the saved W2-a archive without running its sampler or touching live output.",
+  "hashes": {
+    "archive": "55448298029d8bb2d1783f489ed5809dcc88345c84c6e8294c0e23744e9eec96",
+    "summary": "9bfe0ca4e2c833bdd2e6c5eeb1e26aecc50e1777e68f7a1aba07bee3e8704a08",
+    "settings": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73",
+    "metric": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0"
+  },
+  "archive_bytes": 35046827,
+  "members": 185,
+  "libraries": 183,
+  "records": 366000,
+  "uncompressed_bytes": 121878831,
+  "counts": {
+    "incomplete": 7076,
+    "COMPLETE": 183,
+    "invalid": 13
+  },
+  "all_assertions_passed": true,
+  "elapsed_seconds": 6.677252427092753,
+  "limits": "No raw-journal replay or numerical regeneration. This verifies the immutable archived libraries, not live shards or completeness of first-K discovery."
+}

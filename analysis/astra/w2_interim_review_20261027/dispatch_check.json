@@ -1,0 +1,22 @@
+{
+  "scope": "Probe current topup dispatcher with a finished original W2 array; no PBS calls.",
+  "dispatcher_sha256": "e85c24b90448a291a02db3e0e12c7d5aada8836af1f74dfb90e56e3c483e1d26",
+  "cases": {
+    "finished_default_reference": {
+      "exit": 153,
+      "stdout": "== 2026-10-27 15:08:03 AEDT node script\ns1b_node_topup.pbs: OK\n== release s1b_22b89261_a\nalready released\n",
+      "stderr": "qstat: Unknown Job Id 858016[]\n",
+      "submissions": []
+    },
+    "live_reference_explicit": {
+      "exit": 0,
+      "stdout": "== 2026-10-27 15:08:03 AEDT node script\ns1b_node_topup.pbs: OK\n== release s1b_22b89261_a\nalready released\nlive requests: 3162 CPUs; 860992[] live subjobs: 381\n== 15:08:03 W1 topup c: 170 x 8 x 48 h\nlive requests: 3162 CPUs; 860992[] live subjobs: 381\n== 15:08:03 W2 topup c: 479 x 8 x 48 h\nlive requests now: 3162 CPUs\nrelease\ts1b_22b89261_a\tfixture already released\nTOPUP_DONE 2026-10-27 15:08:03 AEDT\n",
+      "stderr": "",
+      "submissions": [
+        "<temporary> p3_settings_r2.json run2 W1 170 8 48:00:00 topup c",
+        "<temporary> p3_settings_r2.json run2 W2 479 8 48:00:00 topup c"
+      ]
+    }
+  },
+  "limits": "qstat models a scheduler that omits finished jobs unless -x; no live qstat replay. Submitter is a recording stub; its CPU reservations are not simulated."
+}
