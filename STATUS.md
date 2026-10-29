@@ -1428,7 +1428,24 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Round-3 review complete; dispatch held for two repairs** (design §9h;
+1. **Round-3 repairs returned to Codex for closure** (design §9h; NOTE 29 October; E75; board reply to 2426).
+   - **Repairs:**
+     - runner `e261befa` writes the held intent before execution creation;
+     - capacity gates: `s1b_capacity.sh`, the submitter's just-in-time check, and dispatchers that recompute unbound
+       sizes and wait for, then fail closed on, unlisted accepted jobs;
+     - `STAGE_SHA` and the manifest are pinned. The stage is `53603d42`.
+   - **Evidence:** fixtures 42/42; submitter 16/16 under bash 5.3.9 and 4.2.46; Codex's recovery reproduction reports
+     the gap closed; the adversarial smoke passed; eleven rehearsals on the final summaries behaved as specified.
+   - **Round 2 is final for both waves:**
+     - W1 860990: 4,820 COMPLETE, 9 CAPPED, 15 incomplete, 3 invalid (`8d702807`);
+     - W2 860993: 355 COMPLETE, 6,901 incomplete, 16 invalid (`beabe2d1`);
+     - both archives verified; all round-2 jobs F.
+   - **Round 3:** 6,935 settings; predicted `p3_settings_r3.json` `8c46667e`.
+   - **Dispatch** (after Codex clears it): one Jumpbox window, run from wsl with `kunanyi/tpac.sh`. Steps: push stage
+     `53603d42`; extract after the digest check; launch under nohup with `STAGE_SHA=53603d42…`,
+     `W1_SUMMARY_SHA=8d702807…` and `W2_SUMMARY_SHA=beabe2d1…`.
+
+1b. **(Addressed 29 Oct by item 1) Round-3 review complete; dispatch held for two repairs** (design §9h;
    [Astra review](notes/astra_r3_package_review_20261027.md); board 2426; E74).
    - **Accepted:** immutable range/execution ownership; all 41 native fixtures;
      seven extra safety cases; independent raw-smoke recollection with identical

@@ -1389,3 +1389,22 @@ Details are in design §9h; Codex's review is at board 2420–2423.
 - **W1 round 2 is final** (collector 860990): 4,820 COMPLETE, 9 CAPPED, 15 incomplete and 3 invalid (duplicate
   execution). Archive `849cd0ba…` and summary `8d702807…` are verified on deep-server.
 - **W2 topup b** 860992[]: 381 running at 17:21; live requests 3,049 CPUs.
+
+### Round-2 final, Codex review and round-3 repairs (27–29 October 2026)
+
+Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra_r3_*_20261027.md`).
+- **W2 round 2 is final:** collector 860993, exit 1, with 355 COMPLETE, 6,901 incomplete and 16 invalid. Archive
+  `c760f0c6…` and summary `beabe2d1…` were pulled directly from wsl, because the Macs no longer reach deep (29 October),
+  and verified on deep-server. All round-2 jobs are F, with 0 live requests.
+- **Round 3 inventory:** 18 W1 + 6,917 W2 = **6,935** settings.
+- **Codex's blockers are repaired:**
+  - runner `e261befa` writes the held intent before execution creation;
+  - capacity is checked by `s1b_capacity.sh` and the submitter's just-in-time gate;
+  - the dispatchers recompute unbound sizes and wait for, then fail closed on, unlisted accepted jobs;
+  - `STAGE_SHA` and the manifest are pinned.
+- **Evidence:**
+  - fixtures 42/42, and submitter fixtures 16/16 under bash 5.3.9 and 4.2.46;
+  - Codex's recovery reproduction on `e261befa` reports `gap_reproduced: false`;
+  - the adversarial smoke passed;
+  - eleven rehearsals on stage `53603d42` behaved as specified.
+- **`kunanyi/tpac.sh`** now runs on wsl, with `run`, `push` and `pull` over the direct VPN route.

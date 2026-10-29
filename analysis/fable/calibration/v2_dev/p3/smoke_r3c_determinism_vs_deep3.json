@@ -1,0 +1,61 @@
+{
+ "scope": "Round-to-round determinism (design section 9c; no fits): a setting re-run in a later round from batch 0 must\nreproduce every hit record that an earlier round committed for the same batches, since streams are fixed per\n(stream tag, index, batch). For each listed setting, both runs' shard journals are verified against their checkpoints\n(committed prefix length and SHA-256, every record inside its shard's committed batches); committed batch coverage is\nkept as intervals, and the hit records of each run that fall inside the other run's coverage are compared by identity\n(batch, proposal_in_batch) and then by bytes. The pilot prefix is shared input and is not compared.\n  p3_r2_determinism.py RUN_EARLIER RUN_LATER DIRS_FILE OUT_JSON\nEvery listed setting must exist in both runs, once; a hit identity may not repeat within a shard, nor carry two\ndifferent records within a run. Exit 0: all compared records identical and coverage positive; 1: an\nidentity present in one run only, a missing setting, an unverifiable journal or no coverage; 2: identities all\nmatch but some records differ in bytes (for example a last-place floating-point difference between hosts).",
+ "runs": [
+  "/data/fable/vortex/v2_dev/p3/smoke_deep3",
+  "/data/fable/vortex/r3dev3/s1b/smoke_r3"
+ ],
+ "exit": 0,
+ "total": {
+  "settings": 6,
+  "batches_compared": 174302,
+  "records_compared": 2310,
+  "identical": 2310,
+  "bytes_differ": 0,
+  "unmatched": 0
+ },
+ "problems": [],
+ "settings": {
+  "s00073": {
+   "batches_compared": 23031,
+   "records_compared": 216,
+   "identical": 216,
+   "bytes_differ": 0,
+   "unmatched": 0
+  },
+  "s00142": {
+   "batches_compared": 33581,
+   "records_compared": 272,
+   "identical": 272,
+   "bytes_differ": 0,
+   "unmatched": 0
+  },
+  "s00247": {
+   "batches_compared": 39377,
+   "records_compared": 254,
+   "identical": 254,
+   "bytes_differ": 0,
+   "unmatched": 0
+  },
+  "s00772": {
+   "batches_compared": 0,
+   "records_compared": 0,
+   "identical": 0,
+   "bytes_differ": 0,
+   "unmatched": 0
+  },
+  "s01080": {
+   "batches_compared": 38911,
+   "records_compared": 752,
+   "identical": 752,
+   "bytes_differ": 0,
+   "unmatched": 0
+  },
+  "c00021": {
+   "batches_compared": 39402,
+   "records_compared": 816,
+   "identical": 816,
+   "bytes_differ": 0,
+   "unmatched": 0
+  }
+ }
+}

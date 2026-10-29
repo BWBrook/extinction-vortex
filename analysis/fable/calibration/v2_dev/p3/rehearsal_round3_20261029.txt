@@ -1,0 +1,219 @@
+# Round-3 dispatch and topup rehearsals, stage 53603d42 (commit 8be1b4e), deep-server stub PBS, final round-2 summaries W1 8d702807 and W2 beabe2d1; 29 Oct 2026 14:36-15:37 AEDT
+## pos
+CASE pos rc1=0 rc2=0 qsub_calls=4 ledger_lines=12 [live requests now: 6994 CPUs] settings_r3=yes src_runner=new-runner | DISPATCH_DONE 2026-10-29 15:29:38 AEDT
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:select /data/fable/vortex/r3d_rehearse_pos/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df2
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_pos/s1b/p3_
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:== release s1b_3a5e71fa_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:== release s1b_b373da8c_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:== release s1b_f093f541_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:live requests: 0 CPUs
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:== 14:36:41 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:live requests: 505 CPUs
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:== 14:40:08 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:live requests now: 6994 CPUs
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T14:36:40+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T14:36:40+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T14:36:41+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_1.log:DISPATCH_DONE 2026-10-29 15:29:38 AEDT
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:select /data/fable/vortex/r3d_rehearse_pos/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df2
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_pos/s1b/p3_
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:== release s1b_3a5e71fa_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:already released
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:== release s1b_b373da8c_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:already released
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:== release s1b_f093f541_a
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:already released
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:== 15:29:44 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:== 15:32:23 submit W2 round 3 (resume; 6917 settings; 811 x 8 x 48 h)
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:live requests now: 6994 CPUs
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T14:36:40+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T14:36:40+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T14:36:41+1100); in-flight le
+/data/fable/vortex/r3d_rehearse_pos/dispatch_2.log:DISPATCH_DONE 2026-10-29 15:33:50 AEDT
+TOPUP rc3=0 qsub_calls=6 rc4=0 qsub_calls=6 ledger_lines=14
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:== release s1b_51f00960_a
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:live requests: 6489 CPUs; 900002.fixture live subjobs: 811
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:== 15:33:51 W2 topup b: 63 x 8 x 48 h
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:live requests now: 6994 CPUs
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:release	s1b_51f00960_a	manual: 900000.fixture 900001.fixture job_state F (qstat -x, 2026-10-29T15:33:50+1100); i
+/data/fable/vortex/r3d_rehearse_pos/topup_1.log:TOPUP_DONE 2026-10-29 15:35:17 AEDT
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:== release s1b_51f00960_a
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:already released
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:== 15:35:17 W2 resume b: 63 x 8 x 48 h
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:live requests now: 6994 CPUs
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:release	s1b_51f00960_a	manual: 900000.fixture 900001.fixture job_state F (qstat -x, 2026-10-29T15:33:50+1100); i
+/data/fable/vortex/r3d_rehearse_pos/topup_2.log:TOPUP_DONE 2026-10-29 15:36:43 AEDT
+reserve	s1b	W1	s1b_51f00960_a	24200.000	2026-10-29T14:40:01+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vo
+reserve	s1b	W2	s1b_74861a27_a	311432.000	2026-10-29T14:43:30+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/v
+release	s1b_51f00960_a	manual: 900000.fixture 900001.fixture job_state F (qstat -x, 2026-10-29T15:33:50+1100); in-flight ledger (design 9d)
+reserve	s1b	W2	s1b_d7231faa_a	24200.000	2026-10-29T15:35:16+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vo
+6935
+W1 18
+W2 6917
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_pos/s1b/p3_settings_r3.json
+claimed
+lib
+queue
+r3_W1.jobs
+r3_W2.jobs
+sets
+submit_W1
+submit_W2
+submit_W2_b
+topup_b_W2.jobs
+workers
+4
+4
+## checksum
+CASE checksum rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=round2-runner | stage checksum failed: nothing installed
+## badtar
+CASE badtar rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=round2-runner | stage tar is not the reviewed one: nothing installed
+## badmanifest
+CASE badmanifest rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=round2-runner | extracted manifest differs from the stage tar's: nothing installed
+## notF
+CASE notF rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=round2-runner | round 2 job 860993 is not finished
+## bad_sha
+CASE bad_sha rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=new-runner | W2: round 2 summary is not the verified one
+## err_not_invalid
+CASE err_not_invalid rc1=1 rc2=x qsub_calls=0 ledger_lines=7 [] settings_r3=no src_runner=new-runner | W2: round 2 errors are not one-to-one with the rows marked invalid
+## badref
+CASE badref rc1=0 rc2=1 qsub_calls=4 ledger_lines=12 [live requests now: 6994 CPUs] settings_r3=yes src_runner=new-runner | DISPATCH_DONE 2026-10-29 15:29:19 AEDT
+## stale_size
+CASE stale_size rc1=0 rc2=x qsub_calls=4 ledger_lines=12 [live requests now: 6994 CPUs] settings_r3=yes src_runner=new-runner | DISPATCH_DONE 2026-10-29 15:29:53 AEDT
+## w1_unlisted
+CASE w1_unlisted rc1=1 rc2=0 (qsub_calls after run 1: 1) qsub_calls=4 ledger_lines=12 [live requests now: 6994 CPUs] settings_r3=yes src_runner=new-runner | s1b_submit: accepted jobs not yet in the live listing: 900000.f
+## w1c_unlisted
+CASE w1c_unlisted rc1=1 rc2=0 (qsub_calls after run 1: 2) qsub_calls=4 ledger_lines=12 [live requests now: 6994 CPUs] settings_r3=yes src_runner=new-runner | accepted jobs still not listed: 900001.fixture; nothing more s
+## w1_unlisted dispatch log (non-JSON lines)
+== 2026-10-29 14:36:30 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 6935 {'W1': 18, 'W2': 6917}
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+== release s1b_b373da8c_a
+== release s1b_f093f541_a
+live requests: 0 CPUs
+== 14:36:37 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)
+seed W1 {'imported': 2, 'complete_at_seed': 0, 'planned': 18}
+s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)
+== 2026-10-29 14:40:05 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 6935 {'W1': 18, 'W2': 6917}
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+already released
+== release s1b_b373da8c_a
+already released
+== release s1b_f093f541_a
+already released
+== 14:40:11 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)
+wave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+live requests: 505 CPUs
+== 14:43:33 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)
+seed W2 {'imported': 319, 'complete_at_seed': 0, 'planned': 6917}
+wave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+live requests now: 6994 CPUs
+release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T14:36:36+1100); in-flight ledger (design 9d)
+release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T14:36:37+1100); in-flight ledger (design 9d)
+release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T14:36:37+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_b7f5bc4c_a	24200.000	2026-10-29T14:39:56+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/run3 j
+reserve	s1b	W2	s1b_b3c36f64_a	311432.000	2026-10-29T14:47:10+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_w1_unlisted/s1b/run3 
+DISPATCH_DONE 2026-10-29 15:32:33 AEDT
+## w1c_unlisted dispatch log (non-JSON lines)
+== 2026-10-29 14:36:30 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 6935 {'W1': 18, 'W2': 6917}
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+== release s1b_b373da8c_a
+== release s1b_f093f541_a
+live requests: 0 CPUs
+== 14:36:37 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)
+seed W1 {'imported': 2, 'complete_at_seed': 0, 'planned': 18}
+wave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+accepted jobs not yet listed: 900001.fixture (check 1)
+accepted jobs not yet listed: 900001.fixture (check 2)
+accepted jobs still not listed: 900001.fixture; nothing more submitted (rerun once PBS lists them)
+== 2026-10-29 14:40:06 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 6935 {'W1': 18, 'W2': 6917}
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+already released
+== release s1b_b373da8c_a
+already released
+== release s1b_f093f541_a
+already released
+== 14:40:12 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)
+wave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+live requests: 505 CPUs
+== 14:43:15 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)
+seed W2 {'imported': 319, 'complete_at_seed': 0, 'planned': 6917}
+wave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+live requests now: 6994 CPUs
+release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T14:36:36+1100); in-flight ledger (design 9d)
+release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T14:36:36+1100); in-flight ledger (design 9d)
+release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T14:36:37+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_e6a13434_a	24200.000	2026-10-29T14:39:57+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/run3 
+reserve	s1b	W2	s1b_5174aee9_a	311432.000	2026-10-29T14:46:49+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_w1c_unlisted/s1b/run3
+DISPATCH_DONE 2026-10-29 15:32:09 AEDT
+## stale_size dispatch log (non-JSON lines)
+== 2026-10-29 14:36:30 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /data/fable/vortex/r3d_rehearse_stale_size/s1b/p3_settings_r3.json.new 8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 6935 {'W1': 18, 'W2': 6917}
+8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9  /data/fable/vortex/r3d_rehearse_stale_size/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+== release s1b_b373da8c_a
+== release s1b_f093f541_a
+live requests: 72 CPUs
+== 14:36:37 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)
+seed W1 {'imported': 2, 'complete_at_seed': 0, 'planned': 18}
+wave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture
+live requests: 577 CPUs
+== 14:40:06 submit W2 round 3 (new; 6917 settings; 802 x 8 x 48 h)
+seed W2 {'imported': 319, 'complete_at_seed': 0, 'planned': 6917}
+wave W2 (W2): array 900002.fixture (802 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture
+live requests now: 6994 CPUs
+release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T14:36:36+1100); in-flight ledger (design 9d)
+release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T14:36:36+1100); in-flight ledger (design 9d)
+release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T14:36:37+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_0f19a943_a	24200.000	2026-10-29T14:39:57+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_stale_size/s1b/run3 jo
+reserve	s1b	W2	s1b_7f56bb01_a	307976.000	2026-10-29T14:43:23+1100	settings=8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9 outdir=/data/fable/vortex/r3d_rehearse_stale_size/s1b/run3 j
+DISPATCH_DONE 2026-10-29 15:29:53 AEDT
+## badref topup log
+== 2026-10-29 15:29:19 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)
+qstat: Unknown Job Id 999999.fixture
+reference 999999.fixture: no PBS answer
+## fixtures on deep (runner e261befa), three concurrent runs
+run 1: 75 true, 0 false
+run 2: 75 true, 0 false
+run 3: 75 true, 0 false

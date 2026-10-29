@@ -1,0 +1,41 @@
+# W2 round-2 final collection (collector 860993, F, Exit_status 1; 28 Oct 2026 19:32-19:54 AEDT), probed 29 Oct 14:19; pulled direct from wsl (Macs no longer reach deep, 29 Oct) and verified on deep-server
+== now 2026-10-29 14:19:28 AEDT on kunanyi-00.kunanyi.tpac.org.au
+-- 857923:  job_state = F  mtime = Sat Oct 24 21:40:47 2026  stime = Sat Oct 24 20:30:30 2026  Exit_status = 0 
+-- 858017:  job_state = F  mtime = Mon Oct 26 20:31:23 2026  stime = Mon Oct 26 20:02:34 2026  Exit_status = 1 
+-- 860990:  job_state = F  mtime = Tue Oct 27 17:04:54 2026  stime = Tue Oct 27 16:45:05 2026  Exit_status = 1 
+-- 860993:  job_state = F  mtime = Wed Oct 28 19:54:11 2026  stime = Wed Oct 28 19:32:31 2026  Exit_status = 1 
+-- 857922[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 858016[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 860989[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 860992[]:  job_state = F  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+live requests: 0 CPUs
+-rw-r--r--     1 bwbrook hpcadmin    67516303 Oct 28 19:54 W2_b.tar.gz
+-rw-r--r--     1 bwbrook hpcadmin          78 Oct 28 19:54 W2_b.tar.gz.sha256
+-rw-------     1 bwbrook hpcadmin     1871925 Oct 26 20:31 collect_W2.json
+-rw-r--r--     1 bwbrook hpcadmin         222 Oct 26 20:31 collect_W2.log
+-rw-------     1 bwbrook hpcadmin     1898443 Oct 28 19:53 collect_W2_b.json
+-rw-r--r--     1 bwbrook hpcadmin         223 Oct 28 19:53 collect_W2_b.log
+-rw-------     1 bwbrook hpcadmin        3142 Oct 26 20:31 pack_W2.txt
+-rw-------     1 bwbrook hpcadmin        6070 Oct 28 19:53 pack_W2_b.txt
+drwxr-sr-x     3 bwbrook hpcadmin      505550 Oct 25 16:22 submit_W2_b
+collection_ok False W2 {'COMPLETE': 355, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 6901} useful 199852.2 discarded 149325.2 incomplete 6901 errors 16
+collection failed: s00341: ValueError: journal differs from its checkpoint
+beabe2d1678fe45b5c74fbd42db6153adaa2cd72ddfc3b25abec1177377f703b  /u/bwbrook/vortex/run1/s1b/run2/collect_W2_b.json
+c760f0c62222fae8a67ae1544d728d2d21e03d674752bb0349191c9a46f8624d  /u/bwbrook/vortex/run1/s1b/run2/W2_b.tar.gz
+c760f0c62222fae8a67ae1544d728d2d21e03d674752bb0349191c9a46f8624d  W2_b.tar.gz
+W2_b collection_ok False status {'COMPLETE': 355, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 6901} n_errors 16 incomplete 6901 useful 199852 discarded 149325 queue_left 10814 claims_left 20 tag W2_b
+  10 ValueError: journal differs from its checkpoint
+  6 ValueError: journal length differs from its checkpoint
+row status {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} by library {('primary', 'incomplete'): 6832, ('primary', 'COMPLETE'): 353, ('primary', 'invalid'): 15, ('check', 'incomplete'): 69, ('check', 'COMPLETE'): 2, ('check', 'invalid'): 1}
+W2 claim entries 20 ranges 20 ranges with >1 claim 0 owners with certificate 4
+W2: done 570 restarts75 3680 other-exits 0 idle-retire 0
+W2_b: done 381 restarts75 728 other-exits 0 idle-retire 3048
+reserve	s1b	W2	s1b_3a5e71fa_a	218888.000	2026-10-21T22:06:19+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42a
+release	s1b_22b89261_a	manual: 857922[] 857923 job_state F (qstat -x, 2026-10-25T16:18:16+1100); in-flight ledger (desig
+reserve	s1b	W1	s1b_b373da8c_a	65288.000	2026-10-25T16:19:21+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42ab
+reserve	s1b	W2	s1b_f093f541_a	146312.000	2026-10-25T16:22:46+1100	settings=248f9c7de660dcac19a3e6806fbf97bc512aca9cff42a
+W2B_DONE
+## deep-server verification (w1_r2b_verify.py adapted to W2_b)
+c760f0c62222fae8a67ae1544d728d2d21e03d674752bb0349191c9a46f8624d  W2_b.tar.gz
+beabe2d1678fe45b5c74fbd42db6153adaa2cd72ddfc3b25abec1177377f703b  collect_W2_b.json
+{"members": 357, "unique": 357, "libraries": 355, "expected": 355, "bad": [], "embedded_summary_identical": true, "status": {"COMPLETE": 355, "CAPPED": 0, "FAILED": 0, "incomplete": 6901}, "errors": ["s00341: ValueError: journal differs from its checkpoint", "s01670: ValueError: journal differs from its checkpoint", "s01688: ValueError: journal length differs from its checkpoint", "s01961: ValueError: journal length differs from its checkpoint", "s02093: ValueError: journal length differs from its checkpoint", "s02096: ValueError: journal differs from its checkpoint", "s02102: ValueError: journal differs from its checkpoint", "s02105: ValueError: journal differs from its checkpoint", "s03974: ValueError: journal differs from its checkpoint", "s04019: ValueError: journal differs from its checkpoint", "s04322: ValueError: journal differs from its checkpoint", "s11033: ValueError: journal differs from its checkpoint", "s11285: ValueError: journal length differs from its checkpoint", "s11318: ValueError: journal length differs from its checkpoint", "s11330: ValueError: journal differs from its checkpoint", "c00170: ValueError: journal length differs from its checkpoint"], "binding": {"settings_sha256": "248f9c7d", "metric_sha256": "2dc57d9f", "runner_sha256": "1e35b94a"}}

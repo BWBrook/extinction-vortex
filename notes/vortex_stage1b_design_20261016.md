@@ -958,3 +958,66 @@ verified: 4,822 unique members, all 4,820 library digests match, and the embedde
 
 The invalid settings are s02311, s10624 and s14782, all journal mismatches of the duplicate-execution kind. No W1
 claims remain. W1's round-3 inventory is therefore 15 + 3 = 18 settings.
+
+**Repairs after Codex's round-3 review (board 2425–2427; `notes/astra_r3_package_review_20261027.md`; 29 October).**
+Codex accepted the immutable range/execution design, the batch-zero recovery and the final W1 archive, and held
+dispatch for two blockers.
+
+1. **A crash before the held record (liveness).** `take()` created the execution and settled the hint before `work()`
+   wrote `workers/held/<owner>`. A death in between, with the successor's listings omitted, left the execution open.
+   - **Fix (runner `e261befa…`):** `take()` calls `intend(t)` under the setting lock just before the exclusive create,
+     so the held record names t before the worker can own it. An intent left by an exclusive create that failed is
+     harmless, because successor recovery acts only on executions whose owner is exactly the predecessor.
+   - **Fixtures 42/42:** both crash points, with the lock left held and every listing omitted for the successor, give
+     1 predecessor recovery, the serial library, 0 open executions and 0 superseded.
+   - Codex's `reproduce_recovery_gaps.py`, run on `e261befa` from a scratch copy, reports `gap_reproduced: false`
+     (`p3/codex_recovery_gaps_on_e261befa.json`).
+2. **Capacity accounting.** A saved size could bypass the cap check on restart, and W2 was sized from a listing that
+   might not yet show the just-accepted W1 jobs. The fixes:
+   - **`kunanyi/s1b_capacity.sh`:** live CPUs, and accepted jobs in a run's journals that the live listing omits and
+     PBS does not show finished. Operator `terminal` records count as finished.
+   - **`s1b_submit.sh`:** any new array or collector request must fit under `CAP_CPUS` (7,000) with live requests, and
+     no accepted job of the run may be unlisted. This is checked before preflight (so a refusal leaves no reservation)
+     and again just before `request`, under the campaign lock. Submitter fixtures 16/16 under bash 5.3.9 and 4.2.46,
+     including capacity refused before preflight, load rising during preflight, an unlisted accepted array refusing a
+     topup, and a rejected array rechecked on resume.
+   - **Dispatchers:** a saved size binds only once its submission journal exists, and is recomputed until then. Before
+     sizing a wave, `wait_listed` waits for every accepted job of the run to be listed or finished, then fails closed.
+3. **Stage identity (Codex's non-blocking point).** `s1b_round3_dispatch.sh` now requires `STAGE_SHA`, checks the
+   extracted manifest byte for byte against the tar's own, then checks every file.
+
+**Final round-2 inventories.**
+
+| Wave | Collector | COMPLETE | CAPPED | FAILED | incomplete | invalid | Archive | Summary |
+|---|---|---|---|---|---|---|---|---|
+| W1 | 860990 | 4,820 | 9 | 0 | 15 | 3 | `849cd0ba` | `8d702807` |
+| W2 | 860993 | 355 | 0 | 0 | 6,901 | 16 | `c760f0c6` | `beabe2d1` |
+
+- Both are verified on deep-server: W2 has 357 unique members, all 355 library digests match, and the embedded summary
+  is identical (`p3/w2_r2b_collection_20261029.txt`).
+- **Round 3 reruns 18 W1 and 6,917 W2 settings, 6,935 in all.**
+- **Corrected cost of batch-zero recovery** (Codex 2426): W2-a's incomplete rows held 96,293.8 CPU-h inside their
+  verified prefixes and 72,689.0 outside, 168,982.8 in all. The final W2 incomplete rows hold 116,481.9 inside
+  (including pilot CPU, which is reused) and 117,138.4 outside. The rerun therefore forfeits up to about 234k CPU-h,
+  roughly 1.4 days at the cap. Invalid settings and losing duplicate executions are not counted. This is a historical
+  bound, not a round-3 forecast.
+
+**Closure evidence (29 October; stage `53603d42…`, commit 8be1b4e).** The stage is deterministic: two builds give the
+same digest.
+- **Fixtures:** 42/42 on Python 3.12.13 and 3.11.13 locally and in three concurrent deep-server runs (3.12.3).
+- **Adversarial smoke** (runner e261befa; 30% omission of queue and claim entries, kill -9 every 3 minutes, ghost
+  lock): both collections pass, 4 libraries identical to `smoke_deep3`, W2 2 CAPPED, 0 open executions, 0 claims
+  left, 0 superseded, 3 predecessor recoveries, determinism exit 0 (`p3/smoke_r3c_*`).
+- **Rehearsals** on the final summaries (`p3/rehearsal_round3_20261029.txt`):
+  - **positive:** live requests 0, then W1 63 × 8, then 505, then W2 811 × 8, giving **6,994 CPUs**; a rerun resumes
+    with no qsub;
+  - **topup:** with W1 F, a W2-only topup b is released and sized at 63 × 8, giving 6,994; its rerun resumes;
+  - **stale size:** a saved 874 with no journal and 72 CPUs of other load is resized to 802 × 8, giving 6,994;
+  - **W1 array unlisted:** the submitter refuses even W1's collector (1 qsub), and a rerun once listed completes at
+    6,994;
+  - **W1 collector unlisted:** the dispatcher's wait fails closed before W2 (2 qsubs), and a rerun completes at 6,994;
+  - **refusals:** a tampered file, a substituted tar, a self-consistent substituted manifest and an unfinished round-2
+    job each stop before install; a wrong digest and errors not matching the invalid rows stop before the settings,
+    ledger and PBS; a bad `REF` refuses with no qsub.
+- **Prediction for production:** `p3_settings_r3.json` will be `8c46667e…`, since `select` over the same inputs is
+  deterministic. That gives a check at dispatch.
