@@ -748,10 +748,11 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
         if d in by_dir:
             plan(by_dir[d], os.path.join(run, "sets", d), run, b, owner)
 
-    def hold(t, mine):
-        if (t in holding) != mine:
-            (holding.add if mine else holding.discard)(t)
-            p2.atomic_json({"owner": owner, "tickets": sorted(holding)}, os.path.join(hdir, owner))
+    def hold(t, mine):                              # memory follows the published record, never leads it
+        new = holding | {t} if mine else holding - {t}
+        if new != holding:
+            p2.atomic_json({"owner": owner, "tickets": sorted(new)}, os.path.join(hdir, owner))
+            holding.clear(); holding.update(new)
 
     def intend(t):
         hold(t, True)
@@ -1728,6 +1729,69 @@ def test():
             res["held_intent_covers_crash_before_claim_returns"] = all(
                 v["crashed"] and v["held_intent"] and v["open_before"] == 1 and v["predecessor_recovered"] == 1 and v["serial_library"]
                 and v["open_after"] == 0 and v["superseded"] == 0 for v in intent.values())
+            # Codex 2550: the first held-record publication fails at its rename; the retry must publish before the
+            # execution exists, so the same two crash points still recover; a publication that always fails creates none
+            held_dir = f"{os.sep}workers{os.sep}held{os.sep}"
+            real_replace = os.replace
+            for case, side in (("publication failed once, then after execution created", "before"),
+                               ("publication failed once, then after hint settled", "after")):
+                d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.01, mi=1, tw=1e-6); fired, writes = [], []
+                real_settle, real_unlock = me.settle, me.unlock
+
+                def replace_once(src, dst, *a_, **k_):
+                    if held_dir in str(dst):
+                        writes.append(dst)
+                        if len(writes) == 1:
+                            raise OSError(errno.ESTALE, "Stale file handle (fixture: held record rename)")
+                    return real_replace(src, dst, *a_, **k_)
+
+                def settle_crash(*a_, _side=side):
+                    if not fired and _side == "before":
+                        fired.append(1); raise Crash("killed before settling")
+                    r_ = real_settle(*a_)
+                    if not fired:
+                        fired.append(1); raise Crash("killed after settling")
+                    return r_
+                with mock.patch.object(os, "replace", replace_once), mock.patch.object(me, "settle", settle_crash), \
+                        mock.patch.object(me, "unlock", lambda L_: None if fired else real_unlock(L_)), \
+                        mock.patch.object(me, "PARK_SECS", 0.0), mock.patch.object(me, "BACKOFF_SECS", 0.0):
+                    try:
+                        work(sp, mp, run, "W1", "jobT[0].srv.5r0n7a", time.time() + 3600, qstat=fq_run, des={})
+                    except Crash:
+                        pass
+                L_ = _owner(os.path.join(sdir, "lock"))
+                certify(run, "jobT[0].srv.5r0n7a", L_["host"], L_["pid"])
+                hq = rec(os.path.join(run, "workers", "held", "jobT[0].srv.5r0n7a")) or {"tickets": []}
+                with mock.patch.object(me, "ls", lambda p_: []):
+                    out_ = work(sp, mp, run, "W1", "jobT[0].srv.5r1n7a", time.time() + 3600, qstat=fq_run, des={})
+                outC = work(sp, mp, run, "W1", "jobU[0].srv.0r0n2", time.time() + 3600, qstat=fq_run, des={})
+                ok_ = collect_ok(sp, mp, run, "c.json"); row_ = json.load(open(os.path.join(run, "c.json")))["rows"][0]
+                intent[case] = {"crashed": fired == [1], "publications_attempted_before_death": len(writes),
+                                "held_intent": len(hq["tickets"]) == 1, "predecessor_recovered": out_["predecessor_recovered"],
+                                "serial_library": ok_ and lib(run) == serial_low, "open_after": row_.get("open_executions"),
+                                "superseded": out_["superseded"] + outC["superseded"]}
+            d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.01, mi=1, tw=1e-6)
+            queued0 = sorted(os.listdir(os.path.join(run, "queue")))
+
+            def replace_never(src, dst, *a_, **k_):
+                if held_dir in str(dst):
+                    raise OSError(errno.ESTALE, "Stale file handle (fixture: held record rename, permanent)")
+                return real_replace(src, dst, *a_, **k_)
+            with mock.patch.object(os, "replace", replace_never), mock.patch.object(me, "PARK_SECS", 0.0), \
+                    mock.patch.object(me, "BACKOFF_SECS", 0.0), mock.patch.object(me, "MAX_ERRORS", 3):
+                try:
+                    work(sp, mp, run, "W1", "jobV[0].srv.0r0n3", time.time() + 3600, qstat=fq_run, des={}); ended = False
+                except OSError:
+                    ended = True
+            intent["publication always fails"] = {"worker_ended": ended, "executions": sorted(os.listdir(os.path.join(sdir, "x"))),
+                                                  "hint_still_queued": sorted(os.listdir(os.path.join(run, "queue"))) == queued0,
+                                                  "claim_hints": os.listdir(os.path.join(run, "claimed"))}
+            res["held_publication_failure_retried_before_execution"] = all(
+                intent[k]["crashed"] and intent[k]["publications_attempted_before_death"] >= 2 and intent[k]["held_intent"]
+                and intent[k]["predecessor_recovered"] == 1 and intent[k]["serial_library"] and intent[k]["open_after"] == 0
+                and intent[k]["superseded"] == 0 for k in intent if k.startswith("publication failed once")) \
+                and intent["publication always fails"] == {"worker_ended": True, "executions": [], "hint_still_queued": True,
+                                                           "claim_hints": []}
             transitions.update({f"held intent, {k}": v for k, v in intent.items()})
             # pilot prefix import refuses a journal that differs from the bound pilot collection
             d = tempfile.mkdtemp(dir=tmp); pdir = os.path.join(d, "pilot"); os.makedirs(pdir)
