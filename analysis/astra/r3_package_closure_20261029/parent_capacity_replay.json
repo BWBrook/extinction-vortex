@@ -1,0 +1,82 @@
+{
+  "all_assertions_passed": true,
+  "cases": {
+    "normal_and_resume": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 6994
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 0,
+        "actual_live_cpu_requests": 6994
+      }
+    ],
+    "stale_size_recomputed": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 6994
+      }
+    ],
+    "accepted_w1_wholly_unlisted": [
+      {
+        "rc": 1,
+        "qsub_calls": 1,
+        "actual_live_cpu_requests": 504
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 3,
+        "actual_live_cpu_requests": 6994
+      }
+    ],
+    "accepted_w1_collector_unlisted": [
+      {
+        "rc": 1,
+        "qsub_calls": 2,
+        "actual_live_cpu_requests": 505
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 2,
+        "actual_live_cpu_requests": 6994
+      }
+    ],
+    "user_listing_query_failure": [
+      {
+        "rc": 2,
+        "qsub_calls": 0,
+        "actual_live_cpu_requests": 0
+      }
+    ],
+    "exact_array_query_failure": [
+      {
+        "rc": 1,
+        "qsub_calls": 1,
+        "actual_live_cpu_requests": 504
+      }
+    ],
+    "inconsistent_parent_only_listing": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 7498
+      }
+    ],
+    "inconsistent_one_subjob_listing": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 7490
+      }
+    ],
+    "topup_stale_size_recomputed": {
+      "rc": 0,
+      "qsub_calls": 2,
+      "actual_live_cpu_requests": 6993,
+      "new_size": 865
+    }
+  }
+}

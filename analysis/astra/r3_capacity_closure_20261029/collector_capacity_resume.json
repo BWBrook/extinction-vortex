@@ -1,0 +1,45 @@
+{
+  "runs": [
+    {
+      "mode": "new",
+      "rc": 1,
+      "qsub_calls": 2,
+      "runner_calls": [
+        "preflight",
+        "seed"
+      ],
+      "stderr": [
+        "s1b_submit: qsub for s1b_ce896a0b_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      ]
+    },
+    {
+      "mode": "resume",
+      "rc": 1,
+      "qsub_calls": 0,
+      "runner_calls": [
+        "preflight"
+      ],
+      "stderr": [
+        "s1b_submit: capacity: 7000 live + 1 new CPUs exceed 7000; nothing requested"
+      ]
+    }
+  ],
+  "arrays_created": 1,
+  "array_ranges": [
+    "0-519"
+  ],
+  "collectors_created": 0,
+  "tags": [
+    "W1"
+  ],
+  "array_names": [
+    "s1b_ce896a0b_a"
+  ],
+  "topup_logs": false,
+  "collector_depends_on": [],
+  "array_ids": [
+    "900000.fixture"
+  ],
+  "allocated_cpu_hours_bound": 199680.0,
+  "lock_released": true
+}

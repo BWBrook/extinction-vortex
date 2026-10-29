@@ -1,0 +1,12 @@
+{
+  "target_commit": "dbb1b850c83ee47bedf5de3f74a61c42a8b67a4b",
+  "python_files_parse": 5,
+  "json_files_parse": 11,
+  "exposure_rows": 76,
+  "all_exposure_rows_nine_fields": true,
+  "main_and_component_links_exist": true,
+  "parent_recovery_exactly_reproduced": true,
+  "parent_capacity_assertions_passed": true,
+  "all_ten_production_source_hashes_unchanged": true,
+  "all_assertions_passed": true
+}

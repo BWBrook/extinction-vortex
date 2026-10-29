@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-10-29T16:36:06.835037+11:00",
+  "scope": "Verify the final W2 archive and account for its complete recovery inventory.",
+  "hashes": {
+    "archive": "c760f0c62222fae8a67ae1544d728d2d21e03d674752bb0349191c9a46f8624d",
+    "summary": "beabe2d1678fe45b5c74fbd42db6153adaa2cd72ddfc3b25abec1177377f703b",
+    "previous_summary": "9bfe0ca4e2c833bdd2e6c5eeb1e26aecc50e1777e68f7a1aba07bee3e8704a08",
+    "settings": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73",
+    "metric": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "w1_summary": "8d7028079000e6788c40c306d1df15b2cf41d50881e8f7554c1f20fd70ad4335"
+  },
+  "archive_bytes": 67516303,
+  "members": 357,
+  "libraries": 355,
+  "records_hashed_and_counted": 710000,
+  "new_library_count": 172,
+  "new_records_structurally_checked": 344000,
+  "previously_audited_libraries_byte_identical": 183,
+  "uncompressed_bytes": 234235245,
+  "counts": {
+    "incomplete": 6901,
+    "COMPLETE": 355,
+    "invalid": 16
+  },
+  "round3_counts": {
+    "W1": 18,
+    "W2": 6917,
+    "total": 6935
+  },
+  "recovery_dirs_sha256": "061a43f4a93dd08a2f5e2ec8a94b99b77f4ee1acc6177a5d9aedd8477b132e4e",
+  "by_status_library": {
+    "incomplete|primary": {
+      "rows": 6832,
+      "prefix_cpu_h": 115236.14411383578,
+      "outside_prefix_cpu_h": 115073.63261773995
+    },
+    "COMPLETE|primary": {
+      "rows": 353,
+      "prefix_cpu_h": 83027.5843220672,
+      "outside_prefix_cpu_h": 31981.73466663666
+    },
+    "invalid|primary": {
+      "rows": 15,
+      "prefix_cpu_h": 0.0,
+      "outside_prefix_cpu_h": 0.0
+    },
+    "incomplete|check": {
+      "rows": 69,
+      "prefix_cpu_h": 1245.725958282993,
+      "outside_prefix_cpu_h": 2064.804566375384
+    },
+    "COMPLETE|check": {
+      "rows": 2,
+      "prefix_cpu_h": 342.74402975608507,
+      "outside_prefix_cpu_h": 205.04792854349967
+    },
+    "invalid|check": {
+      "rows": 1,
+      "prefix_cpu_h": 0.0,
+      "outside_prefix_cpu_h": 0.0
+    }
+  },
+  "historical_incomplete_cpu_h": {
+    "prefix": 116481.87007211876,
+    "outside_prefix": 117138.43718411533,
+    "sum": 233620.3072562341,
+    "days_at_7000_cpus": 1.3905970670013936
+  },
+  "w2_primary_outer_datasets": {
+    "denominator": 800,
+    "all_nine_complete": 0,
+    "maximum_populations_complete": 5
+  },
+  "all_assertions_passed": true,
+  "elapsed_seconds": 7.306960052112117,
+  "limits": "183 previously audited libraries hash matched, not reparsed. No raw production journal or numerical replay. Historical CPU excludes invalid and losing duplicate work and includes reused pilot CPU; not a forecast."
+}

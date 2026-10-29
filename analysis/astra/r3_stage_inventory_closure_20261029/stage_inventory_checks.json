@@ -1,0 +1,119 @@
+{
+  "target_commit": "dbb1b850c83ee47bedf5de3f74a61c42a8b67a4b",
+  "stage_source_commit": "8be1b4e",
+  "stage_sha256": "53603d427f7f5313fc5e100649ea186770d712b52601ef935cfc15611872b241",
+  "stage_manifest_sha256": "ccc056511cbb7b49afbd2cb4d6ad173b39419d289309dc731cd716b907f7c8c9",
+  "two_builds_identical": true,
+  "all_ten_stage_files_equal_review_checkout": {
+    "analysis/fable/calibration/kunanyi/s1b_capacity.sh": "e2e0c4b1fdf58bd324f756b16dfdf07021ee655d1a9d880545fd3f0ab15b0806",
+    "analysis/fable/calibration/kunanyi/s1b_collect.pbs": "ab8c1aa2afa470f1789f04e786ba1626f4fffad79c2144041e3429a7d7c02800",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs": "8fe102080e1433ef880f0d1f30f8ef5cd127881c46cde0ae44bf38a40e5729c6",
+    "analysis/fable/calibration/kunanyi/s1b_round3_dispatch.sh": "7430c2edb2471dc97e950ad99190d9c329f8228a9dbb626b08e3ef6c640074c9",
+    "analysis/fable/calibration/kunanyi/s1b_submit.sh": "ab504d00b583d09e64503cd1d1abe572b62986148ce5a5cfa54a922ca4b8f65c",
+    "analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh": "0c7b6962cdb8a0adabee9894567305f2fd8fa187b3f86c9cfaf8816f0478fb44",
+    "analysis/fable/calibration/v2_dev/p1_sampler.py": "4c967825a4f0aad040604a5b56aa93b30a94bccb25c9b181fa333343a1af295f",
+    "analysis/fable/calibration/v2_dev/p2_stage1a.py": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+    "analysis/fable/calibration/v2_dev/p3_r2_determinism.py": "f6079edba2e54c85afdd281cf8de1d20a25ef570bb6b6e881156e33065e43eb6",
+    "analysis/fable/calibration/v2_dev/p3_stage1b.py": "e261befa4cae08507c133af787f3f92ee283228c7dc5163076931767adf69894"
+  },
+  "stage_cases": [
+    {
+      "case": "valid_stage",
+      "exit_code": 77,
+      "installed_runner_changed": true,
+      "qstat_stub_calls": 8,
+      "last_stdout_line": "== round-3 settings",
+      "stderr": ""
+    },
+    {
+      "case": "tampered_file",
+      "exit_code": 1,
+      "installed_runner_changed": false,
+      "qstat_stub_calls": 0,
+      "last_stdout_line": "stage checksum failed: nothing installed",
+      "stderr": "sha256sum: WARNING: 1 computed checksum did NOT match"
+    },
+    {
+      "case": "substituted_tar",
+      "exit_code": 1,
+      "installed_runner_changed": false,
+      "qstat_stub_calls": 0,
+      "last_stdout_line": "stage tar is not the reviewed one: nothing installed",
+      "stderr": "sha256sum: WARNING: 1 computed checksum did NOT match"
+    },
+    {
+      "case": "substituted_manifest",
+      "exit_code": 1,
+      "installed_runner_changed": false,
+      "qstat_stub_calls": 0,
+      "last_stdout_line": "extracted manifest differs from the stage tar's: nothing installed",
+      "stderr": ""
+    },
+    {
+      "case": "unfinished_round2",
+      "exit_code": 1,
+      "installed_runner_changed": false,
+      "qstat_stub_calls": 1,
+      "last_stdout_line": "round 2 job 857922[] is not finished",
+      "stderr": ""
+    }
+  ],
+  "summary_gate_cases": [
+    {
+      "case": "valid_summaries",
+      "exit_code": 0,
+      "stdout": "round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18\nround 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917",
+      "stderr": "",
+      "selected_count": 6935,
+      "per_wave": {
+        "W1": 18,
+        "W2": 6917
+      }
+    },
+    {
+      "case": "wrong_digest",
+      "exit_code": 1,
+      "stdout": "round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18",
+      "stderr": "W2: round 2 summary is not the verified one"
+    },
+    {
+      "case": "errors_not_invalid",
+      "exit_code": 1,
+      "stdout": "round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18",
+      "stderr": "W2: round 2 errors are not one-to-one with the rows marked invalid"
+    },
+    {
+      "case": "changed_identity",
+      "exit_code": 1,
+      "stdout": "round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18",
+      "stderr": "s00002: row identity differs from the settings"
+    },
+    {
+      "case": "failed_recovery",
+      "exit_code": 0,
+      "stdout": "round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18\nround 2 W2: {'FAILED': 1, 'incomplete': 6900, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917",
+      "stderr": "",
+      "selected_count": 6935,
+      "per_wave": {
+        "W1": 18,
+        "W2": 6917
+      },
+      "failed_row_included": "s00002"
+    }
+  ],
+  "settings_r2_sha256": "248f9c7de660dcac19a3e6806fbf97bc512aca9cff42abd54e5fd0f4ee3bbd73",
+  "settings_r3_sha256": "8c46667e4ab9e8a8bd03911eda81f9de072df25f1f40cfbb953c4108965cb3b9",
+  "selected_rows_unchanged": true,
+  "changed_top_level_fields": [
+    "derived_from_sha256",
+    "runner_sha256",
+    "settings",
+    "stage"
+  ],
+  "selected_rows_by_wave": {
+    "W2": 6917,
+    "W1": 18
+  },
+  "all_assertions_passed": true,
+  "limits": "Local stage extraction/install gate and exact summary/select replay only; no PBS, preflight, simulation, archive-content or remote transport execution."
+}

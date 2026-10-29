@@ -1,0 +1,22 @@
+{
+ "bash_version": "5.3.9(1)-release",
+ "checks": {
+  "normal_then_duplicate_then_resume": true,
+  "array_rejected_held_until_operator_rejects": true,
+  "array_reply_lost_reconciled_at_once": true,
+  "array_reply_lost_history_expired_no_replacement": true,
+  "collector_query_fails_then_resume": true,
+  "array_finished_before_collector": true,
+  "preflight_refused_before_any_qsub": true,
+  "campaign_ledger_lock_refuses_concurrent_submission": true,
+  "topup_refused_without_seeded_wave": true,
+  "topup_adds_array_and_collector_without_seeding": true,
+  "topup_label_rules": true,
+  "topup_refused_for_another_settings_digest": true,
+  "capacity_refused_before_preflight": true,
+  "capacity_rechecked_before_request": true,
+  "accepted_array_unlisted_refuses_topup": true,
+  "rejected_array_rechecked_on_resume": true
+ },
+ "all_ok": true
+}

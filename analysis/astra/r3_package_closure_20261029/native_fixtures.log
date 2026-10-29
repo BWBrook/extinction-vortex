@@ -1,0 +1,169 @@
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 incomplete 0 errors 3
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 incomplete 0 errors 1
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 incomplete 0 errors 1
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 incomplete 0 errors 1
+collection_ok False W1 {'COMPLETE': 0, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0 discarded 0 incomplete 0 errors 1
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+collection_ok True W1 {'COMPLETE': 1, 'CAPPED': 0, 'FAILED': 0, 'incomplete': 0} useful 0.0 discarded 0.0 incomplete 0 errors 0
+{
+ "library_invariant_to_shard_plan_and_order": true,
+ "parallel_plan_used_several_ranges": true,
+ "zero_rate_setting_is_capped": true,
+ "interrupted_publication_republished_once": true,
+ "aged_live_owner_not_displaced": true,
+ "successor_acquires_after_release": true,
+ "late_unlock_cannot_free_successor": true,
+ "dead_owner_lock_recovered": true,
+ "concurrent_reclaim_one_holder_then_successor": true,
+ "stale_observation_cannot_remove_successor": true,
+ "dead_reclaimer_fails_closed": true,
+ "stale_claim_requeued_only_for_finished_job_in_wave": true,
+ "wave_filter": true,
+ "killed_worker_claim_recovered_and_resumed": true,
+ "no_claim_after_deadline": true,
+ "stale_handles_retried_and_parked_claim_resumed": true,
+ "busy_lock_passed_over_without_pbs_queries": true,
+ "pbs_asked_at_most_once_per_interval": true,
+ "certified_dead_owner_lock_broken_without_pbs": true,
+ "crashed_worker_claim_recovered_by_certificate_while_job_live": true,
+ "stale_certificate_cannot_break_a_live_incarnation": true,
+ "uncertain_release_ends_worker_and_lock_is_recovered": true,
+ "uncertain_acquisition_reconciled_or_ended_and_recovered": true,
+ "known_foreign_owner_is_contention_not_uncertainty": true,
+ "busy_frontier_cannot_hide_a_healthy_setting": true,
+ "deadline_bounds_recovery_scan": true,
+ "failed_pbs_query_cached_and_deadline_clipped": true,
+ "collector_pack_and_log_isolated_per_tag": true,
+ "collector_retries_a_setting_changed_while_read": true,
+ "collector_pauses_once_for_a_wave_wide_failure": true,
+ "collector_rejects_tampered_journal": true,
+ "collector_rejects_uncovered_range": true,
+ "collector_rejects_identity_outside_range": true,
+ "collector_rejects_bad_discarded_shard": true,
+ "refused_recovery_fails_setting_not_worker": true,
+ "omitted_listings_cannot_admit_a_second_writer": true,
+ "stale_duplicate_hints_admit_one_owner": true,
+ "interrupted_transitions_reconciled_without_second_writer": true,
+ "successor_recovers_predecessor_without_listings": true,
+ "held_intent_covers_crash_before_claim_returns": true,
+ "seed_rejects_altered_pilot_journal": true,
+ "campaign_account": true,
+ "all_ok": true,
+ "rejection_reasons": {
+  "tampered_journal": "s00007: ValueError: journal length differs from its checkpoint",
+  "uncovered_range": "s00007: ValueError: shard 0: complete by budget without covering its range",
+  "identity_outside_range": "s00007: ValueError: hit identity outside committed batches [0, 20)",
+  "bad_discarded_shard": "s00007: ValueError: shard 100: bound to other inputs"
+ },
+ "transition_cases": {
+  "claim: execution created, hint not moved": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 3,
+   "dead_executions": 1
+  },
+  "claim: hint moved": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 3,
+   "dead_executions": 1
+  },
+  "finish: censored, hint not republished": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 3,
+   "dead_executions": 0
+  },
+  "finish: censored, hint republished": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 3,
+   "dead_executions": 0
+  },
+  "finish: complete, not planned": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 2,
+   "dead_executions": 0
+  },
+  "plan: successor created, its hint not published": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 2,
+   "dead_executions": 0
+  },
+  "finish: claim hint not removed": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 2,
+   "dead_executions": 0
+  },
+  "recovery: dead owner's execution ended, not replanned": {
+   "ended_there": true,
+   "collection_ok": true,
+   "serial_library": true,
+   "superseded": 0,
+   "executions": 3,
+   "dead_executions": 1
+  },
+  "held intent, after execution created": {
+   "crashed": true,
+   "held_intent": true,
+   "open_before": 1,
+   "predecessor_recovered": 1,
+   "collection_ok": true,
+   "serial_library": true,
+   "open_after": 0,
+   "superseded": 0
+  },
+  "held intent, after hint settled": {
+   "crashed": true,
+   "held_intent": true,
+   "open_before": 1,
+   "predecessor_recovered": 1,
+   "collection_ok": true,
+   "serial_library": true,
+   "open_after": 0,
+   "superseded": 0
+  }
+ }
+}

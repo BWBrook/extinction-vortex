@@ -1,0 +1,114 @@
+{
+  "source_sha256": {
+    "s1b_submit.sh": "ab504d00b583d09e64503cd1d1abe572b62986148ce5a5cfa54a922ca4b8f65c",
+    "s1b_capacity.sh": "e2e0c4b1fdf58bd324f756b16dfdf07021ee655d1a9d880545fd3f0ab15b0806",
+    "s1b_round3_dispatch.sh": "7430c2edb2471dc97e950ad99190d9c329f8228a9dbb626b08e3ef6c640074c9",
+    "s1b_topup_dispatch.sh": "0c7b6962cdb8a0adabee9894567305f2fd8fa187b3f86c9cfaf8816f0478fb44"
+  },
+  "cap": 7000,
+  "all_assertions_passed": true,
+  "cases": {
+    "normal_and_resume": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 6994,
+        "stdout": "== 2026-10-29 16:37:32 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:33 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 505 CPUs\n== 16:37:33 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:32+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:32+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:33+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:34 AEDT\n",
+        "stderr": ""
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 0,
+        "actual_live_cpu_requests": 6994,
+        "stdout": "== 2026-10-29 16:37:34 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\nalready released\n== release s1b_b373da8c_a\nalready released\n== release s1b_f093f541_a\nalready released\n== 16:37:34 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\n== 16:37:35 submit W2 round 3 (resume; 6917 settings; 811 x 8 x 48 h)\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:32+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:32+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:33+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:35 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "stale_size_recomputed": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 6994,
+        "stdout": "== 2026-10-29 16:37:35 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 72 CPUs\n== 16:37:35 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 577 CPUs\n== 16:37:36 submit W2 round 3 (new; 6917 settings; 802 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (802 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:35+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:35+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:35+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:37 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "accepted_w1_wholly_unlisted": [
+      {
+        "rc": 1,
+        "qsub_calls": 1,
+        "actual_live_cpu_requests": 504,
+        "stdout": "== 2026-10-29 16:37:37 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:37 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\n",
+        "stderr": "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)\n"
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 3,
+        "actual_live_cpu_requests": 6994,
+        "stdout": "== 2026-10-29 16:37:38 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\nalready released\n== release s1b_b373da8c_a\nalready released\n== release s1b_f093f541_a\nalready released\n== 16:37:38 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 505 CPUs\n== 16:37:38 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:37+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:37+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:37+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:39 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "accepted_w1_collector_unlisted": [
+      {
+        "rc": 1,
+        "qsub_calls": 2,
+        "actual_live_cpu_requests": 505,
+        "stdout": "== 2026-10-29 16:37:39 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:40 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\naccepted jobs not yet listed: 900001.fixture (check 1)\naccepted jobs still not listed: 900001.fixture; nothing more submitted (rerun once PBS lists them)\n",
+        "stderr": ""
+      },
+      {
+        "rc": 0,
+        "qsub_calls": 2,
+        "actual_live_cpu_requests": 6994,
+        "stdout": "== 2026-10-29 16:37:41 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\nalready released\n== release s1b_b373da8c_a\nalready released\n== release s1b_f093f541_a\nalready released\n== 16:37:41 submit W1 round 3 (resume; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 505 CPUs\n== 16:37:41 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:40+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:40+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:40+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:42 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "user_listing_query_failure": [
+      {
+        "rc": 2,
+        "qsub_calls": 0,
+        "actual_live_cpu_requests": 0,
+        "stdout": "== 2026-10-29 16:37:42 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\n",
+        "stderr": ""
+      }
+    ],
+    "exact_array_query_failure": [
+      {
+        "rc": 1,
+        "qsub_calls": 1,
+        "actual_live_cpu_requests": 504,
+        "stdout": "== 2026-10-29 16:37:42 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:43 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\n",
+        "stderr": "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished\n"
+      }
+    ],
+    "inconsistent_parent_only_listing": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 7498,
+        "stdout": "== 2026-10-29 16:37:43 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:44 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 1 CPUs\n== 16:37:45 submit W2 round 3 (new; 6917 settings; 874 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (874 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:44+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:44+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:44+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:45 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "inconsistent_one_subjob_listing": [
+      {
+        "rc": 0,
+        "qsub_calls": 4,
+        "actual_live_cpu_requests": 7490,
+        "stdout": "== 2026-10-29 16:37:45 AEDT verify stage\nstage OK\nround 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993\n== install\n== round-3 settings\n218589323cbe80b7ed077e3ee36f1663e7cb5f8f4e4ad02c938ad8a5c2c5a6b9  <fixture>/s1b/p3_settings_r3.json\n== release s1b_3a5e71fa_a\n== release s1b_b373da8c_a\n== release s1b_f093f541_a\nlive requests: 0 CPUs\n== 16:37:46 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W1 (W1): array 900000.fixture (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 900001.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests: 9 CPUs\n== 16:37:46 submit W2 round 3 (new; 6917 settings; 873 x 8 x 48 h)\n{\"preflight\":\"passed\"}\n{\"preflight\":\"passed\"}\nwave W2 (W2): array 900002.fixture (873 x 8 cpus, 10gb, walltime 48:00:00); collector: 900003.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6994 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:46+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:46+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:46+1100); in-flight ledger (design 9d)\nDISPATCH_DONE 2026-10-29 16:37:47 AEDT\n",
+        "stderr": ""
+      }
+    ],
+    "topup_stale_size_recomputed": {
+      "rc": 0,
+      "qsub_calls": 2,
+      "actual_live_cpu_requests": 6993,
+      "stdout": "== 2026-10-29 16:37:49 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)\nlive requests: 72 CPUs; 900002.fixture live subjobs: 0\n== 16:37:49 W2 topup b: 865 x 8 x 48 h\n{\"preflight\":\"passed\"}\nwave W2 (W2_b): array 900004.fixture (865 x 8 cpus, 10gb, walltime 48:00:00); collector: 900005.fixture\nMail_Users = fixture\nMail_Points = ae\nlive requests now: 6993 CPUs\nrelease\ts1b_3a5e71fa_a\tmanual: 858016[] 858017 job_state F (qstat -x, 2026-10-29T16:37:47+1100); in-flight ledger (design 9d)\nrelease\ts1b_b373da8c_a\tmanual: 860989[] 860990 job_state F (qstat -x, 2026-10-29T16:37:47+1100); in-flight ledger (design 9d)\nrelease\ts1b_f093f541_a\tmanual: 860992[] 860993 job_state F (qstat -x, 2026-10-29T16:37:48+1100); in-flight ledger (design 9d)\nTOPUP_DONE 2026-10-29 16:37:50 AEDT\n",
+      "stderr": "",
+      "new_size": 865
+    }
+  },
+  "limits": "Actual dispatcher, submitter and capacity shell code; simulated PBS, preflight, summary selection and tiny stage. Parent/partial listings are injected inconsistent PBS responses, not observed behavior or established normal -t output."
+}

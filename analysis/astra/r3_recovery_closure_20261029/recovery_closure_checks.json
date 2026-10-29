@@ -1,0 +1,68 @@
+{
+  "all_expected_observations_confirmed": true,
+  "cases": [
+    {
+      "collection_ok": true,
+      "crash_side": "before",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "collection_ok": true,
+      "crash_side": "after",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "crash_side": "before",
+      "exact_owner_certificate_present": true,
+      "gap_reproduced": true,
+      "held_file_exists_at_crash": false,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": true,
+      "lock_left_held": true,
+      "open_execution_after_successor": true,
+      "open_execution_before_successor": true,
+      "successor_predecessor_recovered": 0
+    },
+    {
+      "crash_side": "after",
+      "exact_owner_certificate_present": true,
+      "gap_reproduced": true,
+      "held_file_exists_at_crash": false,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": true,
+      "lock_left_held": true,
+      "open_execution_after_successor": true,
+      "open_execution_before_successor": true,
+      "successor_predecessor_recovered": 0
+    }
+  ],
+  "limits": "Tiny deterministic batches; actual atomic_json reaches os.replace, injected ESTALE prevents that held-intent rename; process death injected; all listings hidden only for exact successor. No actual NFS or PBS use.",
+  "runner_sha256": "e261befa4cae08507c133af787f3f92ee283228c7dc5163076931767adf69894",
+  "runtime": {
+    "numpy": "1.26.4",
+    "python": "3.12.13",
+    "scipy": "1.11.4"
+  }
+}
