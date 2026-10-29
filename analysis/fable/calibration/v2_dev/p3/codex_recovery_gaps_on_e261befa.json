@@ -1,0 +1,30 @@
+{
+  "collector_open_execution": {
+    "collection_ok": true,
+    "earlier_ticket": "W1_9999424_s00007_000000000_000000058",
+    "gap_reproduced": true,
+    "later_execution_number": 0,
+    "later_execution_still_open": true,
+    "later_ticket": "W1_9999424_s00007_000000058_000000116",
+    "library_records": 25,
+    "row_status": "COMPLETE",
+    "summary_open_executions": 1,
+    "terminal": "COMPLETE"
+  },
+  "late_shared_file_writes": {
+    "coherent_stale_zero_pair_error": "s00007: ValueError: COMPLETE marker without a verified K-hit prefix",
+    "coherent_stale_zero_pair_rejected": true,
+    "late_journal_tail_error": "s00007: ValueError: journal length differs from its checkpoint",
+    "late_journal_tail_rejected": true
+  },
+  "pre_hold_crash": {
+    "claim_hint_still_exists_but_was_omitted": false,
+    "execution_open_after_successor": false,
+    "execution_open_before_successor": true,
+    "gap_reproduced": false,
+    "predecessor_held_record_exists": true,
+    "queue_hints_visible_after_mock": 2,
+    "successor_predecessor_recovered": 1,
+    "transition_reached": true
+  }
+}

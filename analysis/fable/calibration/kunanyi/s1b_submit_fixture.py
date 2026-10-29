@@ -13,6 +13,45 @@ open(os.environ["FIX_PY_CALLS"], "a").write(json.dumps(sys.argv[1:]) + "\n")
 print('{"preflight": "%s"}' % ("passed" if os.environ.get("FIX_PREFLIGHT_RC", "0") == "0" else "refused"))
 sys.exit(int(os.environ.get("FIX_PREFLIGHT_RC", "0")))
 '''
+STUBS["python"] = STUBS["python"].replace('import json, os, sys\n', '''import json, os, pathlib, sys
+if os.environ.get("FIX_RAISE_LOAD"):                  # live load rises while preflight runs
+    pathlib.Path(os.environ["FIX_LOAD_FILE"]).write_text(os.environ["FIX_RAISE_LOAD"])
+''', 1)
+STUBS["qstat"] = r'''
+import json, os, pathlib, sys
+st = pathlib.Path(os.environ["FIX_STATE"]); jobs = json.loads(st.read_text()) if st.exists() else []
+a = sys.argv[1:]; fail = os.environ.get("FIX_QSTAT_FAIL", "")
+if "-u" in a:                                   # the user listing: unfinished jobs and subjobs, minus FIX_HIDE, plus FIX_LOAD_FILE CPUs
+    me = a[a.index("-u") + 1]; hide = os.environ.get("FIX_HIDE", "").split(",")
+    lf = pathlib.Path(os.environ.get("FIX_LOAD_FILE", "/nonexistent")); load = int(lf.read_text()) if lf.exists() else 0
+    print("Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time")
+    print("--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----")
+    if load:
+        print(f"777777.kunanyi- {me}  normal   other         --    1 {load}   10gb 48:00 R   -- ")
+    for j in jobs:
+        if j["state"] == "F" or j["id"] in hide:
+            continue
+        ar = j["args"]
+        if "-J" in ar:
+            n = int(ar[ar.index("-J") + 1].split("-")[1]) + 1
+            cpus = int([x for x in ar if "ncpus=" in x][0].split("ncpus=")[1].split(":")[0])
+            print(f"{j['id'][:6]}[].ku {me}  normal   {j['name'][:10]}    --    1 {cpus}   10gb 48:00 B   -- ")
+            for i in range(n):
+                print(f"{j['id'][:6]}[{i}].ku {me}  normal   {j['name'][:10]}    --    1 {cpus}   10gb 48:00 {j['state']}   -- ")
+        else:
+            print(f"{j['id'][:15]} {me}  normal   {j['name'][:10]}    --    1 1   16gb 08:00 {j['state']}   -- ")
+    sys.exit(0)
+jobs = {j["id"]: j for j in jobs}; jid = a[-1]
+if "-x" in a and (fail == "all" or jid.split(".")[0] in [str(900000 + int(i)) for i in fail.split(",") if i]):
+    print("qstat: cannot connect to server (stub)", file=sys.stderr); sys.exit(2)
+j = jobs.get(jid)
+if j is None:
+    print(f"qstat: Unknown Job Id {jid}", file=sys.stderr); sys.exit(153)
+if "-x" in a:
+    print(f"Job Id: {jid}\n    Job_Name = {j['name']}\n    job_state = {j['state']}")
+elif "-f" in a:
+    print("    Mail_Users = fixture\n    Mail_Points = ae")
+'''
 NJOBS, CPUS, WALL_H, CEIL, PRIOR = 520, 8, 48.0, 200000.0, 0.0
 
 
@@ -26,7 +65,7 @@ def scenario(steps):
         envf = t / "env.sh"; envf.write_text(f'export PATH="{fb}:$PATH"; cd "$VBASE/src"\n')
         base = dict(os.environ, PBS_BIN=str(fb), S1A_ENV=str(envf), S1A_CONFIRM_SECS="0", FIX_STATE=str(t / "jobs.json"),
                     FIX_LEDGER=str(t / "ledger.jsonl"), FIX_CALLS=str(t / "calls.jsonl"), FIX_QSELECT_CALLS=str(t / "qselect.n"),
-                    FIX_PY_CALLS=str(t / "py.jsonl"))
+                    FIX_PY_CALLS=str(t / "py.jsonl"), FIX_LOAD_FILE=str(t / "load.txt"), PBS_USER="fixture")
         R = vb / "s1b/run/submit_W1"; J = R / "submit_journal.tsv"
         if step0 := steps[0].get("ledger_locked"):
             (vb / "s1b/.ledger.lock").mkdir()
@@ -39,6 +78,8 @@ def scenario(steps):
                     jobs[i]["state"] = "F"
                 jobs = [j for k, j in enumerate(jobs) if k not in step.get("expire", [])]
                 (t / "jobs.json").write_text(json.dumps(jobs))
+            if "load" in step:
+                (t / "load.txt").write_text(str(step["load"]))
             if "settings" in step:
                 (vb / "s1b/p3_settings.json").write_text(step["settings"])
             for line in step.get("operator", []):
@@ -96,6 +137,12 @@ R = {
                                                            {"mode": "resume b"}]),
     "topup_label_rules": scenario([{}, {"mode": "topup"}, {"mode": "topup B-1"}, {"mode": "new x"}]),
     "topup_with_other_settings_digest": scenario([{}, {"settings": '{"fixture": "other"}', "mode": "topup b"}]),
+    "capacity_refused_before_preflight": scenario([{"load": 2840}, {"load": 2839}]),
+    "capacity_rechecked_before_request": scenario([{"env": {"FIX_RAISE_LOAD": "2840"}}, {"load": 0}]),
+    "accepted_array_unlisted_refuses_topup": scenario([{}, {"env": {"FIX_HIDE": "900000.fixture"}, "mode": "topup b"},
+                                                       {"finish": [0, 1], "env": {"FIX_HIDE": "900000.fixture"}, "mode": "topup b"}]),
+    "rejected_array_rechecked_on_resume": scenario([fail(1, "reject"), {"operator": ["rejected a {name_a} manual: tracejob shows no job"],
+                                                    "load": 2900, "mode": "resume"}, {"load": 0, "mode": "resume"}]),
 }
 checks = {
     "normal_then_duplicate_then_resume": ok(R["normal_then_duplicate_then_resume"], [True, False, True], [2, 0, 0], 1, 1),
@@ -119,6 +166,18 @@ checks = {
         and [x["qsub_calls"] for x in R["topup_with_other_settings_digest"]["runs"]] == [2, 0]
         and not R["topup_with_other_settings_digest"]["runs"][1]["runner_calls"]
         and "differ from the wave's seeded" in R["topup_with_other_settings_digest"]["runs"][1]["stderr"][0],
+    "capacity_refused_before_preflight": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [False, True]
+        and [x["qsub_calls"] for x in r["runs"]] == [0, 2] and r["runs"][0]["runner_calls"] == []
+        and "capacity: 2840 live + 4161 new CPUs exceed 7000" in r["runs"][0]["stderr"][0])(R["capacity_refused_before_preflight"]),
+    "capacity_rechecked_before_request": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [False, True]
+        and [x["qsub_calls"] for x in r["runs"]] == [0, 2] and r["runs"][0]["runner_calls"] == ["preflight", "seed"]
+        and "capacity: 2840 live" in r["runs"][0]["stderr"][0])(R["capacity_rechecked_before_request"]),
+    "accepted_array_unlisted_refuses_topup": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [True, False, True]
+        and [x["qsub_calls"] for x in r["runs"]] == [2, 0, 2] and r["runs"][1]["runner_calls"] == []
+        and "not yet in the live listing: 900000.fixture" in r["runs"][1]["stderr"][0])(R["accepted_array_unlisted_refuses_topup"]),
+    "rejected_array_rechecked_on_resume": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [False, False, True]
+        and [x["qsub_calls"] for x in r["runs"]] == [1, 0, 2] and "capacity: 2900 live" in r["runs"][1]["stderr"][0])(
+        R["rejected_array_rechecked_on_resume"]),
 }
 bv = subprocess.run([os.environ.get("FIX_BASH", "bash"), "-c", "echo $BASH_VERSION"], capture_output=True, text=True).stdout.strip()
 out = {"scope": __doc__, "bash_version": bv, "submit_sha256": hashlib.sha256(SUBMIT.read_bytes()).hexdigest(), "checks": checks,

@@ -607,11 +607,12 @@ def parse_ticket(t):
     return w, d, int(a), int(b_)
 
 
-def take(run, t, owner, qstat=QSTAT, replan=None):
+def take(run, t, owner, qstat=QSTAT, replan=None, intend=None):
     """Resolve queue hint t while holding its setting's lock, from the range's records alone (a hint never authorises a
     writer): the execution number this worker now owns (a new execution, or its own unfinished one), or None when the
     hint is spent (the range runs under a live owner, whose claim hint it becomes; or has finished; or the setting is
-    terminal). A live execution whose owner has a death certificate is ended as dead first. Behind: this view lags."""
+    terminal). A live execution whose owner has a death certificate is ended as dead first. Behind: this view lags.
+    intend(t) runs just before an execution is created: the worker's held record must name t before it can own it."""
     _, prio, d, a, b_ = t.split("_"); a, b_ = int(a), int(b_)
     sdir = os.path.join(run, "sets", d); q = os.path.join(run, "queue", t); mine = os.path.join(run, "claimed", f"{t}@{owner}")
     R = rec(rpath(sdir, a))
@@ -636,6 +637,8 @@ def take(run, t, owner, qstat=QSTAT, replan=None):
         if e["by"] == owner:
             drop(mine)
         return None
+    if intend:
+        intend(t)
     if not create(xpath(sdir, a, k + 1), {"owner": owner, "host": os.uname().nodename, "pid": os.getpid(), "range": [a, b_],
                                            "time": time.time()}):
         raise Behind(f"{t}: execution {k + 1} already exists")
@@ -643,7 +646,7 @@ def take(run, t, owner, qstat=QSTAT, replan=None):
     return k + 1
 
 
-def claim(run, owner, wave, qstat=QSTAT, deadline=math.inf, replan=None):
+def claim(run, owner, wave, qstat=QSTAT, deadline=math.inf, replan=None, intend=None):
     """Take a range through one of this wave's queue hints: under its setting's lock, a random one of the first 32 hints in
     priority order among settings not yet found busy is resolved by take(). A setting whose lock stays busy for
     CLAIM_PATIENCE, whose records this view lags, or that awaits an operator is passed over with all its hints, and the
@@ -667,7 +670,7 @@ def claim(run, owner, wave, qstat=QSTAT, deadline=math.inf, replan=None):
                 break
             try:
                 with held(os.path.join(run, "sets", d), owner, qstat, CLAIM_PATIENCE, deadline):
-                    k = take(run, t, owner, qstat, replan)
+                    k = take(run, t, owner, qstat, replan, intend)
                 if k is not None:
                     return t, k
             except LockBusy:
@@ -726,8 +729,9 @@ def predecessors(owner):
 def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, des=None):
     """Pull worker. An OSError in an iteration (an NFS stale handle that outlived its retries) or a lock that stays busy
     parks the hint, which this worker retries later (resuming its own execution from its checkpoint); MAX_ERRORS
-    consecutive errors end it. The hints of ranges this worker may own are kept in workers/held/<owner>; a worker first
-    ends as dead the executions its slot's certified predecessors still own there, found by exact names alone."""
+    consecutive errors end it. The hints of ranges this worker may own are kept in workers/held/<owner>, each written
+    before the worker can create that range's execution; a worker first ends as dead the executions its slot's certified
+    predecessors still own there, found by exact names alone."""
     b = check(settings_path, metric_path) if des is None else json.load(open(settings_path))
     metric = json.load(open(metric_path)); des = des if des is not None else p2.designs()
     bind = binding(b, settings_path); by_dir = {s["dir"]: s for s in b["settings"]}
@@ -748,6 +752,9 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
         if (t in holding) != mine:
             (holding.add if mine else holding.discard)(t)
             p2.atomic_json({"owner": owner, "tickets": sorted(holding)}, os.path.join(hdir, owner))
+
+    def intend(t):
+        hold(t, True)
 
     def recover_predecessors():
         for p in predecessors(owner):
@@ -823,14 +830,14 @@ def work(settings_path, metric_path, run, wave, owner, deadline, qstat=QSTAT, de
             if t is not None:
                 done["adopted"] += 1
                 with held(os.path.join(run, "sets", parse_ticket(t)[1]), owner, qstat, CLAIM_PATIENCE, deadline):
-                    k = take(run, t, owner, qstat, replan)
+                    k = take(run, t, owner, qstat, replan, intend)
                 if k is None:
                     parked.pop(t); hold(t, False); continue
             else:
-                got = claim(run, owner, wave, qstat, deadline, replan)
+                got = claim(run, owner, wave, qstat, deadline, replan, intend)
                 if got is None:
                     done["stale_requeued"] += recover_stale(run, owner, wave, replan, qstat, True, deadline)
-                    got = claim(run, owner, wave, qstat, deadline, replan)
+                    got = claim(run, owner, wave, qstat, deadline, replan, intend)
                     if got is None:
                         if later is None:
                             break
@@ -1685,6 +1692,43 @@ def test():
                 and eH[2]["by"] == "jobH[0].srv.3r1nab12" and execution(sdir, aH)[0] >= 1 \
                 and collect_ok(sp, mp, run, "c.json") and lib(run) == serial_low \
                 and predecessors("j[1].k.2r2n0f") == ["j[1].k.2r0n0f", "j[1].k.2r1n0f"] and predecessors("jobA[0].srv.0") == []
+            # Codex r3 review: a worker killed just after creating its execution, or just after settling its hint (lock
+            # left held), before claim() returns; its same-slot successor, with every listing omitted, ends that execution
+            # through the held intent written before creation; a later worker finishes with nothing left open
+            intent = {}
+            for case, side in (("after execution created", "before"), ("after hint settled", "after")):
+                d = tempfile.mkdtemp(dir=tmp); sp, mp, run, st, sdir = seeded(d, 0.01, mi=1, tw=1e-6); fired = []
+                real_settle, real_unlock = me.settle, me.unlock
+
+                def settle_crash(*a_, _side=side):
+                    if not fired and _side == "before":
+                        fired.append(1); raise Crash("killed before settling")
+                    r_ = real_settle(*a_)
+                    if not fired:
+                        fired.append(1); raise Crash("killed after settling")
+                    return r_
+                with mock.patch.object(me, "settle", settle_crash), \
+                        mock.patch.object(me, "unlock", lambda L_: None if fired else real_unlock(L_)):
+                    try:
+                        work(sp, mp, run, "W1", "jobQ[0].srv.4r0n9e", time.time() + 3600, qstat=fq_run, des={})
+                    except Crash:
+                        pass
+                L_ = _owner(os.path.join(sdir, "lock"))
+                certify(run, "jobQ[0].srv.4r0n9e", L_["host"], L_["pid"])
+                hq = rec(os.path.join(run, "workers", "held", "jobQ[0].srv.4r0n9e")) or {"tickets": []}
+                open0 = [a_ for a_, _, _ in ranges(st, sdir) if execution(sdir, a_)[1] and execution(sdir, a_)[2] is None]
+                with mock.patch.object(me, "ls", lambda p_: []):
+                    out_ = work(sp, mp, run, "W1", "jobQ[0].srv.4r1n9e", time.time() + 3600, qstat=fq_run, des={})
+                outC = work(sp, mp, run, "W1", "jobR[0].srv.0r0n1", time.time() + 3600, qstat=fq_run, des={})
+                ok_ = collect_ok(sp, mp, run, "c.json"); row_ = json.load(open(os.path.join(run, "c.json")))["rows"][0]
+                intent[case] = {"crashed": fired == [1], "held_intent": len(hq["tickets"]) == 1, "open_before": len(open0),
+                                "predecessor_recovered": out_["predecessor_recovered"], "collection_ok": ok_,
+                                "serial_library": ok_ and lib(run) == serial_low, "open_after": row_.get("open_executions"),
+                                "superseded": out_["superseded"] + outC["superseded"]}
+            res["held_intent_covers_crash_before_claim_returns"] = all(
+                v["crashed"] and v["held_intent"] and v["open_before"] == 1 and v["predecessor_recovered"] == 1 and v["serial_library"]
+                and v["open_after"] == 0 and v["superseded"] == 0 for v in intent.values())
+            transitions.update({f"held intent, {k}": v for k, v in intent.items()})
             # pilot prefix import refuses a journal that differs from the bound pilot collection
             d = tempfile.mkdtemp(dir=tmp); pdir = os.path.join(d, "pilot"); os.makedirs(pdir)
             data = b'{"x": 1}\n'

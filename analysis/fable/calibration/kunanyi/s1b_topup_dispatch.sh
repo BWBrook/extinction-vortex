@@ -8,9 +8,10 @@
 # 2. count this user's live requests: the CPUs of every queued, running or held job and subjob (array parents excluded),
 #    cross-checked against REF, one of this user's arrays (live or finished: PBS history is consulted, so a finished
 #    array counts zero live subjobs); refuse to size from an implausible total or an unanswered reference;
-# 3. for each wave of WAVES in order, submit a topup: W1_JOBS x 8 for W1, the CPUs left under CAP_CPUS for W2 (each
-#    topup also needs one CPU for its collector). Sizes are recorded on first submission and reused, so a rerun resumes
-#    the same submissions. Written for bash 4.2.
+# 3. for each wave of WAVES in order, once every job accepted in OUTDIR is in the live listing or finished, submit a
+#    topup: W1_JOBS x 8 for W1, the CPUs left under CAP_CPUS for W2 (each topup also needs one CPU for its collector).
+#    A size binds once its submission journal exists, so a rerun resumes the same submission; before that it is
+#    recomputed. The submitter checks capacity again before any new request. Written for bash 4.2.
 set -euo pipefail
 VB=${VB:-/u/bwbrook/vortex/run1}; S=$VB/s1b; PBS=${PBS_BIN:-/opt/pbs/bin}; C=src/analysis/fable/calibration
 LABEL=${LABEL:?}; WAVES=${WAVES:?}; REF=${REF:?}; RELEASES=${RELEASES-}
@@ -30,9 +31,7 @@ for rel in $RELEASES; do
     "$(date '+%FT%T%z')" >> "$S/reservations.tsv"
   sync "$S/reservations.tsv"; rmdir "$S/.ledger.lock"
 done
-requested() {      # CPUs of this user's queued, running and held jobs and subjobs; array parents excluded
-  "$PBS/qstat" -t -u "$ME" | awk -v me="$ME" '$2 == me && $1 !~ /\[\]/ && $10 ~ /^[QRHWTSE]$/ {n += $7} END {print n + 0}'
-}
+source "$C/kunanyi/s1b_capacity.sh"
 ref_live() {       # REF's queued, running and held subjobs from its own state counts, history included
   local out
   out=$("$PBS/qstat" -x -f "$REF") || { echo "reference $REF: no PBS answer" >&2; return 1; }
@@ -43,10 +42,11 @@ size_file() { echo "$S/$OUTDIR/topup_${LABEL}_$1.jobs"; }
 export TMPDIR="$S/tmp"; mkdir -p "$TMPDIR"
 for w in $WAVES; do
   J="$S/$OUTDIR/submit_${w}_$LABEL/submit_journal.tsv"
-  if [ -e "$(size_file $w)" ]; then
+  wait_listed "$S/$OUTDIR"
+  if [ -e "$J" ] && [ -e "$(size_file $w)" ]; then
     n=$(cat "$(size_file $w)")
   else
-    req=$(requested); live=$(ref_live)
+    req=$(live_cpus); live=$(ref_live)
     echo "live requests: $req CPUs; $REF live subjobs: $live"
     if [ "$req" -lt $(( 8 * live )) ]; then echo "request total $req is below $REF's own $(( 8 * live )): not sizing"; exit 1; fi
     if [ "$w" = W1 ]; then n=$W1_JOBS; else n=$(( (CAP - req - 1) / 8 )); fi
@@ -58,6 +58,6 @@ for w in $WAVES; do
   echo "== $(date '+%T') $w $mode $LABEL: $n x 8 x 48 h"
   bash "$C/kunanyi/s1b_submit.sh" "$VB" "$SETTINGS" "$OUTDIR" "$w" "$n" 8 48:00:00 "$mode" "$LABEL"
 done
-echo "live requests now: $(requested) CPUs"
+echo "live requests now: $(live_cpus) CPUs"
 tail -n 4 "$S/reservations.tsv"
 echo "TOPUP_DONE $(date '+%F %T %Z')"

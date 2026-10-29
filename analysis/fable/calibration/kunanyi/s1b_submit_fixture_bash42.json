@@ -1,7 +1,7 @@
 {
  "scope": "Stub-scheduler fixtures for s1b_submit.sh (no PBS, no simulation), reusing the s1a_submit_fixture stubs. FIX_BASH selects\nthe shell; writes s1b_submit_fixture[_FIX_TAG].json beside itself. Keys: a (the wave's job array) and c (the collector).",
  "bash_version": "4.2.46(2)-release",
- "submit_sha256": "e8cb24aa74726849613d7145458e992e87142f23712fafb6f062ab95e2bd7ded",
+ "submit_sha256": "ab504d00b583d09e64503cd1d1abe572b62986148ce5a5cfa54a922ca4b8f65c",
  "checks": {
   "normal_then_duplicate_then_resume": true,
   "array_rejected_held_until_operator_rejects": true,
@@ -14,7 +14,11 @@
   "topup_refused_without_seeded_wave": true,
   "topup_adds_array_and_collector_without_seeding": true,
   "topup_label_rules": true,
-  "topup_refused_for_another_settings_digest": true
+  "topup_refused_for_another_settings_digest": true,
+  "capacity_refused_before_preflight": true,
+  "capacity_rechecked_before_request": true,
+  "accepted_array_unlisted_refuses_topup": true,
+  "rejected_array_rechecked_on_resume": true
  },
  "all_ok": true,
  "scenarios": {
@@ -59,7 +63,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_0166785b_a"
+    "s1b_50fc6694_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -82,7 +86,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_7754a028_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_c388e745_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -93,7 +97,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_7754a028_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_7754a028_a ID manual: <evidence>' or 'rejected a s1b_7754a028_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_c388e745_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_c388e745_a ID manual: <evidence>' or 'rejected a s1b_c388e745_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -116,7 +120,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_7754a028_a"
+    "s1b_c388e745_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -151,7 +155,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_f453fc72_a"
+    "s1b_871d480b_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -174,7 +178,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_ab6b20c7_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_267d0d0d_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -185,7 +189,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_ab6b20c7_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_ab6b20c7_a ID manual: <evidence>' or 'rejected a s1b_ab6b20c7_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_267d0d0d_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_267d0d0d_a ID manual: <evidence>' or 'rejected a s1b_267d0d0d_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -208,7 +212,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_ab6b20c7_a"
+    "s1b_267d0d0d_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -252,7 +256,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_11adeb67_a"
+    "s1b_13143a59_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -275,7 +279,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_65a290c6_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_22e3a678_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -298,7 +302,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_65a290c6_a"
+    "s1b_22e3a678_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -432,8 +436,8 @@
     "W1_b"
    ],
    "array_names": [
-    "s1b_4e445936_a",
-    "s1b_c04eba63_a"
+    "s1b_229a7190_a",
+    "s1b_5d30bbff_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -496,7 +500,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_4f6e86db_a"
+    "s1b_b273735f_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -540,9 +544,213 @@
     "W1"
    ],
    "array_names": [
-    "s1b_2893a9be_a"
+    "s1b_fcc10e73_a"
    ],
    "topup_logs": true,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture"
+   ],
+   "allocated_cpu_hours_bound": 199688.0,
+   "lock_released": true
+  },
+  "capacity_refused_before_preflight": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "runner_calls": [],
+     "stderr": [
+      "s1b_submit: capacity: 2840 live + 4161 new CPUs exceed 7000; nothing requested"
+     ]
+    },
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": []
+    }
+   ],
+   "arrays_created": 1,
+   "array_ranges": [
+    "0-519"
+   ],
+   "collectors_created": 1,
+   "tags": [
+    "W1",
+    "W1"
+   ],
+   "array_names": [
+    "s1b_fa33f223_a"
+   ],
+   "topup_logs": false,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture"
+   ],
+   "allocated_cpu_hours_bound": 199688.0,
+   "lock_released": true
+  },
+  "capacity_rechecked_before_request": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 0,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": [
+      "s1b_submit: capacity: 2840 live + 4161 new CPUs exceed 7000; nothing requested"
+     ]
+    },
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": []
+    }
+   ],
+   "arrays_created": 1,
+   "array_ranges": [
+    "0-519"
+   ],
+   "collectors_created": 1,
+   "tags": [
+    "W1",
+    "W1"
+   ],
+   "array_names": [
+    "s1b_83b04b8d_a"
+   ],
+   "topup_logs": false,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture"
+   ],
+   "allocated_cpu_hours_bound": 199688.0,
+   "lock_released": true
+  },
+  "accepted_array_unlisted_refuses_topup": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": []
+    },
+    {
+     "mode": "topup b",
+     "rc": 1,
+     "qsub_calls": 0,
+     "runner_calls": [],
+     "stderr": [
+      "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+     ]
+    },
+    {
+     "mode": "topup b",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight"
+     ],
+     "stderr": []
+    }
+   ],
+   "arrays_created": 2,
+   "array_ranges": [
+    "0-519",
+    "0-519"
+   ],
+   "collectors_created": 2,
+   "tags": [
+    "W1",
+    "W1_b",
+    "W1",
+    "W1_b"
+   ],
+   "array_names": [
+    "s1b_5c167064_a",
+    "s1b_dc55965a_a"
+   ],
+   "topup_logs": true,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture",
+    "900002.fixture"
+   ],
+   "allocated_cpu_hours_bound": 399376.0,
+   "lock_released": true
+  },
+  "rejected_array_rechecked_on_resume": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 1,
+     "qsub_calls": 1,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": [
+      "s1b_submit: qsub for s1b_d8cb0793_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 1,
+     "qsub_calls": 0,
+     "runner_calls": [],
+     "stderr": [
+      "s1b_submit: capacity: 2900 live + 4161 new CPUs exceed 7000; nothing requested"
+     ]
+    },
+    {
+     "mode": "resume",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight"
+     ],
+     "stderr": []
+    }
+   ],
+   "arrays_created": 1,
+   "array_ranges": [
+    "0-519"
+   ],
+   "collectors_created": 1,
+   "tags": [
+    "W1",
+    "W1"
+   ],
+   "array_names": [
+    "s1b_d8cb0793_a"
+   ],
+   "topup_logs": false,
    "collector_depends_on": [
     "900000.fixture"
    ],

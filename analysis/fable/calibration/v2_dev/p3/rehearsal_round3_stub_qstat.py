@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Stub qstat for the round-3 dispatch rehearsal: jobs from FIX_STATE (written by the stub qsub, each with a state);
-the eight round-2 jobs answer job_state F except FIX_NOT_F; arrays report array_state_count; unknown IDs exit 153."""
+the eight round-2 jobs answer job_state F except FIX_NOT_F; arrays report array_state_count; unknown IDs exit 153. The
+user listing omits the jobs named in FIX_HIDE_FILE (delayed visibility) and adds FIX_LOAD CPUs of another job."""
 import json, os, sys
 a = sys.argv[1:]; jobs = json.load(open(os.environ["FIX_STATE"]))
 R2 = {"857922[]", "857923", "858016[]", "858017", "860989[]", "860990", "860992[]", "860993"}
@@ -17,8 +18,11 @@ if "-u" in a:
     print("\nkunanyi-ohpc:\n                                                            Req'd  Req'd   Elap")
     print("Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time")
     print("--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----")
+    hf = os.environ.get("FIX_HIDE_FILE"); hide = open(hf).read().split() if hf and os.path.exists(hf) else []
+    if int(os.environ.get("FIX_LOAD", "0")):
+        print(f"777777.kunanyi- {me}  normal   other         --    1 {os.environ['FIX_LOAD']}   10gb 48:00 R   -- ")
     for j in jobs:
-        if j["state"] == "F":
+        if j["state"] == "F" or j["id"] in hide:
             continue
         n, cpus = size(j)
         if n:

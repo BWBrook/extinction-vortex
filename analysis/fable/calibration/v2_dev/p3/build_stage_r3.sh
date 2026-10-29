@@ -6,7 +6,8 @@ set -euo pipefail
 REV=$1; OUT=$2; G=$(mktemp -d); C=analysis/fable/calibration
 mkdir -p $G/src/$C/v2_dev $G/src/$C/kunanyi $G/s1b
 for f in v2_dev/p1_sampler.py v2_dev/p2_stage1a.py v2_dev/p3_stage1b.py v2_dev/p3_r2_determinism.py kunanyi/s1b_node.pbs \
-         kunanyi/s1b_collect.pbs kunanyi/s1b_submit.sh kunanyi/s1b_round3_dispatch.sh kunanyi/s1b_topup_dispatch.sh; do
+         kunanyi/s1b_collect.pbs kunanyi/s1b_submit.sh kunanyi/s1b_capacity.sh kunanyi/s1b_round3_dispatch.sh \
+         kunanyi/s1b_topup_dispatch.sh; do
   git show "$REV:$C/$f" > "$G/src/$C/$f"
 done
 (cd $G && find . -type f ! -name stage_sha256.txt | sort | xargs sha256sum > s1b/stage_sha256.txt)

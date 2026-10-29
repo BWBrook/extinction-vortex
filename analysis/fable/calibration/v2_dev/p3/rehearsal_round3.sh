@@ -1,16 +1,19 @@
 #!/bin/bash
 # Rehearsals of s1b_round3_dispatch.sh and s1b_topup_dispatch.sh (stage s1b_stage_round3.tar) on deep-server with stub PBS:
-# round 2's verified W1 (48 incomplete) and W2-a (7,076 incomplete, 13 invalid) summaries standing in for the final ones,
-# the round-2 sources installed, a production-like ledger, real install, select, preflight (fixtures) and seeds.
+# round 2's final verified W1 (8d702807) and W2 (beabe2d1) summaries, the round-2 sources installed, a production-like
+# ledger, real install, select, preflight (fixtures) and seeds.
 # CASE = pos (then a rerun that must resume; then the W1 round-3 jobs finished and a W2-only topup, released and rerun)
-#      | checksum | notF | bad_sha | err_not_invalid | badref. Negative cases must stop before install, settings,
-#      ledger or PBS as their gate requires. Usage: rehearsal_round3.sh CASE STAGE_TAR STUBS_DIR
+#      | checksum | badtar | badmanifest | notF | bad_sha | err_not_invalid | badref (negative: stop before install,
+#      settings, ledger or PBS as their gate requires) | stale_size (a saved W2 size of 874 without a journal and 72 CPUs
+#      of other load: W2 is resized under the cap) | w1_unlisted, w1c_unlisted (the accepted W1 array or collector absent
+#      from the listing: nothing more is submitted until it is listed; then a rerun completes under the cap).
+#      Usage: rehearsal_round3.sh CASE STAGE_TAR STUBS_DIR
 set -uo pipefail
 CASE=$1; TAR=$2; IN=$3; V=/data/fable/vortex; X=$V/r3d_rehearse_$CASE; P=$V/v2_dev/p3
 rm -rf $X; mkdir -p $X/src $X/s1b/run2 $X/bin
 cp -a $V/r2dev6/src/. $X/src/
 cp $P/w1_r2/p3_settings_r2.json $P/p3_metric.json $X/s1b/; ln -s $V/v2_dev/p2/s1a_main/main $X/s1b/pilot
-cp $P/w1_r2/collect_W1.json $X/s1b/run2/collect_W1_b.json; cp $P/w2_a/collect_W2.json $X/s1b/run2/collect_W2_b.json
+cp $P/w1_r2b/collect_W1_b.json $P/w2_r2b/collect_W2_b.json $X/s1b/run2/
 if [ "$CASE" = err_not_invalid ]; then
   python3 - $X/s1b/run2/collect_W2_b.json <<'PY'
 import json, sys
@@ -35,19 +38,30 @@ cp $IN/rehearsal_round3_stub_qstat.py $X/bin/qstat; echo '[]' > $X/jobs.json; ch
 printf 'export OMP_NUM_THREADS=1 PATH="$VBASE/bin:$PATH"\ncd "$VBASE/src"\n' > $X/src/analysis/fable/calibration/kunanyi/env.sh
 export PATH=$X/bin:$PATH PBS_BIN=$X/bin FIX_STATE=$X/jobs.json FIX_LEDGER=$X/qsub_ledger.jsonl FIX_CALLS=$X/qsub_calls.jsonl FIX_QSELECT_CALLS=$X/qselect.n S1A_CONFIRM_SECS=0 PBS_USER=bwbrook
 [ "$CASE" = notF ] && export FIX_NOT_F=860993
+[ "$CASE" = stale_size ] && { mkdir -p $X/s1b/run3; echo 874 > $X/s1b/run3/r3_W2.jobs; export FIX_LOAD=72; }
+[ "$CASE" = w1_unlisted ] && echo 900000.fixture > $X/hide.txt
+[ "$CASE" = w1c_unlisted ] && echo 900001.fixture > $X/hide.txt
+export FIX_HIDE_FILE=$X/hide.txt
+SS=$(sha256sum $TAR | cut -d" " -f1); [ "$CASE" = badtar ] && SS=$(printf '0%.0s' $(seq 64))
 cp $TAR $X/s1b_stage_round3.tar; cd $X && mkdir stage_round3 && tar -xf s1b_stage_round3.tar -C stage_round3
 [ "$CASE" = checksum ] && echo "# tampered" >> stage_round3/src/analysis/fable/calibration/v2_dev/p3_stage1b.py
+if [ "$CASE" = badmanifest ]; then       # a self-consistent substitute: tampered file and a manifest rewritten to match
+  echo "# substitute" >> stage_round3/src/analysis/fable/calibration/v2_dev/p3_stage1b.py
+  (cd stage_round3 && find . -type f ! -name stage_sha256.txt | sort | xargs sha256sum > s1b/stage_sha256.txt)
+fi
 K=$X/src/analysis/fable/calibration/kunanyi
-run() { VB=$X W1_SUMMARY_SHA=$S1 W2_SUMMARY_SHA=$S2 bash $X/stage_round3/src/analysis/fable/calibration/kunanyi/s1b_round3_dispatch.sh > $X/dispatch_$1.log 2>&1; echo $?; }
+run() { VB=$X STAGE_SHA=$SS W1_SUMMARY_SHA=$S1 W2_SUMMARY_SHA=$S2 LIST_TRIES=2 LIST_SECS=0 bash $X/stage_round3/src/analysis/fable/calibration/kunanyi/s1b_round3_dispatch.sh > $X/dispatch_$1.log 2>&1; echo $?; }
 topup() { VB=$X LABEL=b WAVES=W2 REF="$1" RELEASES="$2" bash $K/s1b_topup_dispatch.sh > $X/topup_$3.log 2>&1; echo $?; }
 if [ "$CASE" = badref ]; then
   rc1=$(run 1); rc2=$(topup 999999.fixture "" 1)
 else
   rc1=$(run 1); rc2=x; [ "$CASE" = pos ] && rc2=$(run 2)
+  case "$CASE" in w1_unlisted|w1c_unlisted) n1=$(cat $X/qsub_calls.jsonl 2>/dev/null | wc -l); rm -f $X/hide.txt; rc2="$(run 2) (qsub_calls after run 1: $n1)";; esac
 fi
 nq=$(cat $X/qsub_calls.jsonl 2>/dev/null | wc -l); nl=$(wc -l < $X/s1b/reservations.tsv)
 inst=$(cmp -s $X/src/analysis/fable/calibration/v2_dev/p3_stage1b.py $X/stage_round3/src/analysis/fable/calibration/v2_dev/p3_stage1b.py && echo new-runner || echo round2-runner)
-echo "CASE $CASE rc1=$rc1 rc2=$rc2 qsub_calls=$nq ledger_lines=$nl settings_r3=$([ -e $X/s1b/p3_settings_r3.json ] && echo yes || echo no) src_runner=$inst | $(grep -v '^ ' $X/dispatch_1.log | tail -n 1 | cut -c1-120)"
+live=$(grep -h 'live requests now' $X/dispatch_*.log 2>/dev/null | tail -n 1)
+echo "CASE $CASE rc1=$rc1 rc2=$rc2 qsub_calls=$nq ledger_lines=$nl [$live] settings_r3=$([ -e $X/s1b/p3_settings_r3.json ] && echo yes || echo no) src_runner=$inst | $(grep -v '^ ' $X/dispatch_1.log | tail -n 1 | cut -c1-120)"
 if [ "$CASE" = pos ]; then
   grep -E "round 2 W|release|already released|submit W|live requests|p3_settings_r3|DISPATCH_DONE" $X/dispatch_1.log $X/dispatch_2.log | cut -c1-160
   W1A=$(python3 -c "import json; j=[x for x in json.load(open('$X/jobs.json')) if 'WAVE=W1' in ' '.join(x['args']) and '-J' in x['args']]; print(j[0]['id'], j[0]['name'])")

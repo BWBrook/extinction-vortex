@@ -20,9 +20,14 @@
 # rejected by an operator. The collector depends on every accepted job not positively confirmed finished (qstat -x
 # job_state F); a failed or unclassifiable query stops before the collector qsub, and a verified finished job whose
 # history has expired can be recorded as "terminal KEY ID manual: <evidence>".
+# Capacity (design 9h): before preflight and again just before any new request (under the campaign lock), the new
+# array and its collector (or a new collector alone) must fit under CAP_CPUS (default 7,000, the per-user queued-CPU
+# limit) with this user's live requests, and every job accepted in OUTDIR's journals must be in the live listing or
+# finished; otherwise nothing is requested.
 set -euo pipefail
 VBASE=$1; SETTINGS=$2; OUTDIR=$3; WAVE=$4; NJOBS=$5; JOBCPUS=$6; WALL=$7; MODE=${8:-new}; LABEL=${9:-}
-PBS=${PBS_BIN:-/opt/pbs/bin}
+PBS=${PBS_BIN:-/opt/pbs/bin}; ME=${PBS_USER:-$(id -un)}; CAP=${CAP_CPUS:-7000}
+source "$(dirname "${BASH_SOURCE[0]}")/s1b_capacity.sh"
 IFS=: read -r h m s <<< "$WALL"; WALL_SECS=$(( 10#$h * 3600 + 10#$m * 60 + 10#$s ))
 MEM="$(( JOBCPUS + 2 ))gb"
 die() { echo "s1b_submit: $*" >&2; exit 1; }
@@ -58,6 +63,22 @@ else
 fi
 if [ "$MODE" != resume ]; then [ ! -e "$J" ] || die "already dispatched (journal exists); use resume"; fi
 if [ "$MODE" = resume ]; then [ -e "$J" ] || die "nothing to resume (no journal)"; fi
+note() { printf '%s\n' "$*" >> "$J"; sync "$J"; }
+state() {   # the last submission entry for KEY: "TYPE ID"
+  if [ -e "$J" ]; then
+    awk -v k="$1" '($1 == "request" || $1 == "accepted" || $1 == "rejected" || $1 == "uncertain") && $2 == k {
+      t = $1; id = ($1 == "accepted") ? $4 : ""} END {print t, id}' "$J"
+  fi
+}
+fits() {    # NEED more CPUs fit under CAP with every accepted job of this run listed or finished
+  local need=$1 u live
+  u=$(unlisted "$RUN" | tr '\n' ' ')
+  [ -z "$u" ] || die "accepted jobs not yet in the live listing: ${u% }; nothing requested (rerun once PBS lists them)"
+  live=$(live_cpus)
+  [ $(( live + need )) -le "$CAP" ] || die "capacity: $live live + $need new CPUs exceed $CAP; nothing requested"
+}
+read -r ast _ <<< "$(state a)"
+if [ -z "$ast" ] || [ "$ast" = rejected ]; then fits $(( NJOBS * JOBCPUS + 1 )); fi
 ( source "${S1A_ENV:-$K/env.sh}"
   python -I analysis/fable/calibration/v2_dev/p3_stage1b.py preflight "$S/$SETTINGS" "$S/p3_metric.json" \
     "$S/reservations.tsv" "s1b_${RID}_a" "$RUN" "$NJOBS" "$JOBCPUS" "$WALL_SECS" "$WAVE" ) > "$R/logs/preflight.log" 2>&1 \
@@ -69,13 +90,6 @@ if [ "$MODE" = new ]; then
     > "$R/logs/seed.log" 2>&1 || die "seed failed; see $R/logs/seed.log"
   tail -n 1 "$R/logs/seed.log"
 fi
-note() { printf '%s\n' "$*" >> "$J"; sync "$J"; }
-state() {   # the last submission entry for KEY: "TYPE ID"
-  if [ -e "$J" ]; then
-    awk -v k="$1" '($1 == "request" || $1 == "accepted" || $1 == "rejected" || $1 == "uncertain") && $2 == k {
-      t = $1; id = ($1 == "accepted") ? $4 : ""} END {print t, id}' "$J"
-  fi
-}
 lookup() { found=$("$PBS/qselect" -x -N "$1" | sed '/^$/d'); n=$(printf '%s' "$found" | grep -c . || true); }
 submit() {   # KEY NAME qsub-args... -> $got
   local key=$1 name=$2 st id; shift 2
@@ -87,6 +101,7 @@ submit() {   # KEY NAME qsub-args... -> $got
   if [ "$st" = request ] || [ "$st" = uncertain ]; then
     die "unresolved earlier request for $name and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted $key $name ID manual: <evidence>' or 'rejected $key $name manual: <evidence>' to $J, then resume"
   fi
+  if [ "$key" = a ]; then fits $(( NJOBS * JOBCPUS + 1 )); else fits 1; fi
   note "request $key $name"
   if got=$("$PBS/qsub" -N "$name" "$@") && [ -n "$got" ]; then note "accepted $key $name $got"; return; fi
   sleep "${S1A_CONFIRM_SECS:-10}"
