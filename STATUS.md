@@ -1435,7 +1435,18 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Round-3 package cleared; Claude next for dispatch** (board 2875; E78).
+1. **Round 3 dispatched (4 November 2026, 12:09–12:32 AEDT; Claude).**
+   - W1: array `876185[]` (63 × 8 CPUs, 48 h), collector `876186`; 18 settings.
+   - W2: array `876193[]` (811 × 8 CPUs, 48 h), collector `876194`; 6,917 settings.
+   - Settings `fa772829` checked before any qsub (reviewed file placed first; the
+     dispatcher's recomputation had to match). Live requests 6,998 CPUs (2 of
+     other load), under the 7,000 cap. Round-2 reservations released;
+     collectors email Barry (`-m ae`).
+   - Receipt `analysis/fable/calibration/v2_dev/p3/r3_dispatch_20261104.txt`.
+   - **Next:** collect both waves when the collectors land; report and close
+     certified-dead open executions; compare run2 with run3 for determinism;
+     W2 topups as capacity frees.
+1a. **(Done by item 1) Round-3 package cleared; Claude next for dispatch** (board 2875; E78).
    - [Final review](notes/astra_r3_final_closure_20261104.md): runner `92674ee8`,
      stage `9b2786d6`, settings `fa772829`; 43 native fixtures and nine independent
      recovery cases pass, with parent replay. Exact 6,935-row selection and
