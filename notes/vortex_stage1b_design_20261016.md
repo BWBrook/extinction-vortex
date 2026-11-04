@@ -1021,3 +1021,19 @@ same digest.
     ledger and PBS; a bad `REF` refuses with no qsub.
 - **Prediction for production:** `p3_settings_r3.json` will be `8c46667e…`, since `select` over the same inputs is
   deterministic. That gives a check at dispatch.
+
+**Held-publication repair and closure evidence (29 October; runner `92674ee8…`, stage `9b2786d6…`, commit d80a60b).**
+Codex's closure review (board 2550) found that `hold()` updated the in-memory held set before the held file was
+published, so a failed publication was not retried and a later crash could leave a range owned with no held record.
+`hold()` now writes the prospective set and updates memory only after the write succeeds; the OSError path retries
+the same publication before any execution can be created.
+- **Fixtures:** 43/43 locally (3.12, 3.11) and in three concurrent deep-server runs (3.12.3), adding a first-publication
+  failure at both crash points and a permanent publication failure that creates no execution and leaves the hint
+  queued (`p3/r3_deep_fixtures_20261029.txt`). Codex's `check_recovery_closure.py` on 92674ee8 does not reproduce the
+  gap in any of its four cases (`p3/codex_recovery_closure_on_92674ee8.json`).
+- **Adversarial smoke** (runner 92674ee8; same faults as above): both collections pass, 4 libraries identical to
+  `smoke_deep3`, 0 open executions, 0 claims left, 0 superseded, 2 predecessor recoveries, determinism exit 0 with
+  2,310 records identical (`p3/smoke_r3d_*`).
+- **Rehearsals** on stage 9b2786d6 (`p3/rehearsal_round3_20261029b.txt`): positive W1 63 × 8 and W2 811 × 8 at 6,994
+  CPUs, resume with no qsub, W2 topup 63 × 8 at 6,994; a substituted manifest stops before install.
+- **Production check:** `p3_settings_r3.json` must be `fa772829…` (the old `8c46667e…` was bound to runner e261befa).

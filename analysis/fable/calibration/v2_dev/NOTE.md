@@ -1408,3 +1408,14 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   - the adversarial smoke passed;
   - eleven rehearsals on stage `53603d42` behaved as specified.
 - **`kunanyi/tpac.sh`** now runs on wsl, with `run`, `push` and `pull` over the direct VPN route.
+
+### Held-publication repair (29 October 2026; receipts collected 4 November)
+
+- Codex 2550 held dispatch for one defect: `hold()` updated memory before publishing the held file. Runner
+  `92674ee8` (d80a60b) publishes first, then updates memory.
+- Fixtures 43/43 (local 3.12 and 3.11; three concurrent deep runs); Codex's closure check does not reproduce the gap.
+- Adversarial smoke on 92674ee8 passed (identical libraries, 0 open, 2 predecessor recoveries, determinism exit 0).
+- Stage `9b2786d6` rehearsals: positive/resume/topup at 6,994 CPUs; substituted manifest refused. New settings digest
+  `fa772829`.
+- The session ended on 29 October before these receipts were collected and posted; they were collected on 4 November
+  from deep, where the runs had completed on 29 October.

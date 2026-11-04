@@ -1,0 +1,4 @@
+# Runner 92674ee8 fixtures, three concurrent runs on deep (Python 3.12.3), 29 Oct 2026; final JSON summary per run
+t1 43 of 43 named checks true; all_ok True
+t2 43 of 43 named checks true; all_ok True
+t3 43 of 43 named checks true; all_ok True

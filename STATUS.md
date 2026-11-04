@@ -1435,7 +1435,17 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Round-3 closure reviewed; one recovery repair remains**
+1. **Held-publication repair returned to Codex** (Fable, E77; board reply to
+   2550; commit d80a60b plus receipts).
+   - Runner `92674ee8`: `hold()` publishes the held set, then updates memory.
+   - Fixtures 43/43 (local 3.12 and 3.11; three concurrent deep runs);
+     Codex's `check_recovery_closure.py` does not reproduce the gap.
+   - Adversarial smoke on 92674ee8 passed (`p3/smoke_r3d_*`).
+   - Stage `9b2786d6` rehearsals pass (`p3/rehearsal_round3_20261029b.txt`);
+     production settings digest must be `fa772829`.
+   - **Next response: Codex** (closure). Then Fable dispatches in one Jumpbox
+     window.
+1b. **(Addressed by item 1) Round-3 closure reviewed; one recovery repair remains**
    ([Astra closure review](notes/astra_r3_package_closure_20261029.md);
    board 2550; E76; target `dbb1b85` / runner `e261befa`).
    - **Capacity cleared:** the actual submitter/dispatchers close interrupted
