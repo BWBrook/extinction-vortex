@@ -1,0 +1,42 @@
+# Round-3 dispatch on kunanyi, 4 Nov 2026 (wsl direct route; stage 9b2786d6, runner 92674ee8, settings fa772829); login-session transcript
+s1b_stage_round3.tar: OK
+fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd  s1b/p3_settings_r3.json
+launched pid 8749 Wed Nov  4 12:09:47 AEDT 2026
+dispatcher rc=0 Wed Nov  4 12:32:47 AEDT 2026
+== 2026-11-04 12:09:47 AEDT verify stage
+stage OK
+round 2 jobs finished: 857922[] 857923 858016[] 858017 860989[] 860990 860992[] 860993
+== install
+== round-3 settings
+round 2 W1: {'COMPLETE': 4820, 'incomplete': 15, 'CAPPED': 9, 'invalid': 3} | round 3 dirs: 18
+round 2 W2: {'incomplete': 6901, 'COMPLETE': 355, 'invalid': 16} | round 3 dirs: 6917
+select /u/bwbrook/vortex/run1/s1b/p3_settings_r3.json.new fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd 6935 {'W1': 18, 'W2': 6917}
+fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd  /u/bwbrook/vortex/run1/s1b/p3_settings_r3.json
+== release s1b_3a5e71fa_a
+== release s1b_b373da8c_a
+== release s1b_f093f541_a
+live requests: 2 CPUs
+== 12:09:59 submit W1 round 3 (new; 18 settings; 63 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_dbe5ca91_a", "reservation_cpu_h": 24200.0, "recorded": true, "wave_reserved": 24200.0, "campaign_reserved": 24200.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+seed W1 {'imported': 2, 'complete_at_seed': 0, 'planned': 18}
+wave W1 (W1): array 876185[].kunanyi-ohpc (63 x 8 cpus, 10gb, walltime 48:00:00); collector: 876186.kunanyi-ohpc
+    depend = afterany:876185[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_dbe5ca91_c -W depend=afterany:876185[].kunanyi-oh
+live requests: 507 CPUs
+== 12:12:13 submit W2 round 3 (new; 6917 settings; 811 x 8 x 48 h)
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_47aa6879_a", "reservation_cpu_h": 311432.0, "recorded": true, "wave_reserved": 311432.0, "campaign_reserved": 335632.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+seed W2 {'imported': 319, 'complete_at_seed': 0, 'planned': 6917}
+wave W2 (W2): array 876193[].kunanyi-ohpc (811 x 8 cpus, 10gb, walltime 48:00:00); collector: 876194.kunanyi-ohpc
+    depend = afterany:876193[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_47aa6879_c -W depend=afterany:876193[].kunanyi-oh
+live requests now: 6998 CPUs
+release	s1b_3a5e71fa_a	manual: 858016[] 858017 job_state F (qstat -x, 2026-11-04T12:09:58+1100); in-flight ledger (design 9d)
+release	s1b_b373da8c_a	manual: 860989[] 860990 job_state F (qstat -x, 2026-11-04T12:09:58+1100); in-flight ledger (design 9d)
+release	s1b_f093f541_a	manual: 860992[] 860993 job_state F (qstat -x, 2026-11-04T12:09:58+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_dbe5ca91_a	24200.000	2026-11-04T12:11:55+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=63 cpus=8 wall=172800
+reserve	s1b	W2	s1b_47aa6879_a	311432.000	2026-11-04T12:14:00+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=811 cpus=8 wall=172800
+DISPATCH_DONE 2026-11-04 12:32:17 AEDT

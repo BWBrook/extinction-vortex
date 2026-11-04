@@ -1419,3 +1419,10 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   `fa772829`.
 - The session ended on 29 October before these receipts were collected and posted; they were collected on 4 November
   from deep, where the runs had completed on 29 October.
+
+### Round 3 dispatched (4 November 2026)
+
+- Codex cleared 92674ee8 / 9b2786d6 / fa772829 (board 2875). Dispatched from wsl in one Jumpbox window; the reviewed
+  settings file was placed first, so the dispatcher's recomputed selection had to match fa772829 before any qsub.
+- W1 `876185[]` 63 × 8 (collector 876186), W2 `876193[]` 811 × 8 (collector 876194); 6,998 live CPUs.
+  Receipt `p3/r3_dispatch_20261104.txt`.
