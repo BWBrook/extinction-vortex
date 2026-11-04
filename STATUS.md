@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 29 October 2026, 16:40 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 4 November 2026, 12:05 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -40,29 +40,29 @@ checks. Exactly 6,935 settings need recovery: 18 W1 and 6,917 W2. W2 has no
 complete nine-population primary outer dataset out of 800; these are availability
 results, with no fits, validation result or empirical inference.
 
-**Hold round-3 dispatch for one remaining recovery repair; capacity is cleared.**
-Runner `e261befa` closes both original crash cases, but `hold()` changes its
-in-memory set before publishing the held record. A failed publication lets the
-ordinary retry skip the write and create an execution without its recovery
-record. Both crash positions then strand the range under omitted successor
-listings. Publish the prospective set before changing memory; test transient
-and permanent publication failures. No second writer or invalid accepted
-library was demonstrated. The parent repeated the four discriminating cases.
+**Round-3 final closure (4 November): cleared for normal preflight and dispatch.**
+The [final review](notes/astra_r3_final_closure_20261104.md) (board 2875; E78)
+closes the held-publication retry defect on runner `92674ee8`. Nine focused
+checks pass in both independent review and parent replay, including ambiguous
+publication, permanent failure and failed removals. All 43 native fixtures pass.
+Two fresh builds reproduce stage `9b2786d6`; actual selection produces settings
+`fa772829` and exactly 6,935 unchanged rows (18 W1, 6,917 W2). All nine other
+staged sources are unchanged from the prior clearance. Independent copied
+raw-smoke recollection reproduces both summaries and all four reference libraries.
 
-The capacity repair passes the actual-shell interruption, delayed-visibility,
-query-failure and resume cases; normal/resumed requests remain at 6,994 CPUs.
-All 42 native runner fixtures and 16 submitter fixtures pass. Independent saved
-raw-smoke recollection reproduces both summaries and four reference libraries.
-Stage identity and exact selection pass at the reviewed hashes; both stage and
-settings hashes must change with the next runner binding. Final summaries are
-accepted. Recovery from the bound pilot prefix remains accepted, preserving
-all old outputs and including every final incomplete, invalid or FAILED row.
+Prior capacity and final archive clearances remain accepted. The full new
+rehearsals report 6,994 CPUs; they were inspected, not independently rerun here.
+Claude is next for dispatch using the exact reviewed stage/settings/summary
+bindings and normal fresh live preflight/capacity checks. No current Kunanyi
+occupancy is inferred from old receipts, and this review submitted no jobs.
+The stage must be built from `d80a60b` if rebuilt, because tar metadata includes
+the source commit time. Stage 1c still needs its own executable check before
+fitting; production inference remains unfrozen.
+
 The 233,620.3 recorded CPU-hours on incomplete W2 rows include reused pilot work
-and omit invalid/losing duplicate execution; this is a historical subtotal,
-not a total-cost upper bound or forecast. Fable is next for the single finite
-repair and closure evidence. No new scientific or resource choice is needed.
-Routine development and bounded remote verification from WSL use `deep` under
-the current Nectar access guidance.
+and omit invalid/losing duplicate execution. This is a historical subtotal,
+not a total-cost upper bound or forecast. Routine bounded remote verification
+from WSL uses `deep` under the current Nectar access guidance.
 
 **Phase II (Barry's suggestion, not yet a commitment):** a PRISMA-style search
 (protocol §5) for post-2006 series monitored to extinction, to enlarge the
@@ -1435,17 +1435,16 @@ board 1755; exposure E56).
 
 ## Pending
 
-1. **Held-publication repair returned to Codex** (Fable, E77; board reply to
-   2550; commit d80a60b plus receipts).
-   - Runner `92674ee8`: `hold()` publishes the held set, then updates memory.
-   - Fixtures 43/43 (local 3.12 and 3.11; three concurrent deep runs);
-     Codex's `check_recovery_closure.py` does not reproduce the gap.
-   - Adversarial smoke on 92674ee8 passed (`p3/smoke_r3d_*`).
-   - Stage `9b2786d6` rehearsals pass (`p3/rehearsal_round3_20261029b.txt`);
-     production settings digest must be `fa772829`.
-   - **Next response: Codex** (closure). Then Fable dispatches in one Jumpbox
-     window.
-1b. **(Addressed by item 1) Round-3 closure reviewed; one recovery repair remains**
+1. **Round-3 package cleared; Claude next for dispatch** (board 2875; E78).
+   - [Final review](notes/astra_r3_final_closure_20261104.md): runner `92674ee8`,
+     stage `9b2786d6`, settings `fa772829`; 43 native fixtures and nine independent
+     recovery cases pass, with parent replay. Exact 6,935-row selection and
+     copied raw-smoke recollection pass.
+   - Use normal bound preflight and fresh live capacity gates. Preserve final
+     summary digests W1 `8d702807`, W2 `beabe2d1`; build stage from `d80a60b`.
+   - **Next response: Claude**, with dispatch IDs and allocation receipts.
+     This review dispatched nothing. No new Barry decision is needed.
+1b. **(Historical; closed by item 1) Round-3 closure and final repair request**
    ([Astra closure review](notes/astra_r3_package_closure_20261029.md);
    board 2550; E76; target `dbb1b85` / runner `e261befa`).
    - **Capacity cleared:** the actual submitter/dispatchers close interrupted
@@ -1527,10 +1526,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2546**; exhausted `through`: **2546**.
-- Explicit acknowledgement: through actual message **2546** in discussion 70.
-- Latest own review: **2550** (capacity cleared; final W2 accepted; held-publication retry repair remains).
-- Next retrieval: omit `through` to capture new messages, and use `after=2546`.
+- Last full retrieval `next_after`: **2874**; exhausted `through`: **2874**.
+- Explicit acknowledgement: through actual message **2872** in discussion 70.
+- Latest own review: **2875** (final held-publication closure; reviewed package cleared for preflight and dispatch).
+- Next retrieval: omit `through` to capture new messages, and use `after=2874`.
 
 ## Decision Inbox checkpoint
 

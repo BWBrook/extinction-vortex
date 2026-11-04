@@ -1,0 +1,46 @@
+{
+  "scope": "Independently recollect a private copy of the saved final adversarial smoke.",
+  "timestamp": "2026-11-04T12:03:17.020344+11:00",
+  "runner_sha256": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765",
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "wave_replays": {
+    "W1": {
+      "saved_summary_sha256": "46a90021e0ef223ef9f6a787ed0884c56d07f1a8b4162a387a359cbbbfa1343b",
+      "status": {
+        "COMPLETE": 4,
+        "CAPPED": 2,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "executions": 39,
+      "dead_executions": 2,
+      "open_executions": 0,
+      "all_fields_except_tag_exactly_reproduced": true
+    },
+    "W2": {
+      "saved_summary_sha256": "4ec28c442ea55820f0b6ff5411bec1dabea2c7d5ddd5eed5367ce84b3b826923",
+      "status": {
+        "COMPLETE": 0,
+        "CAPPED": 2,
+        "FAILED": 0,
+        "incomplete": 0
+      },
+      "executions": 15,
+      "dead_executions": 1,
+      "open_executions": 0,
+      "all_fields_except_tag_exactly_reproduced": true
+    }
+  },
+  "libraries_identical_to_saved_and_reference": {
+    "s00073.jsonl": "056d014994351a728d296b21da75aef074a01af098b57c23223f3d92dde7f094",
+    "s00142.jsonl": "d18c27595d1d8018f1d9d08506043d050ea10fb3c5666a0d9c5e203e2c4d34fd",
+    "s00247.jsonl": "4f65158b625b891bd57409db4fae7d89db9ca814a0b0d41cfd3878ad2209c0a0",
+    "s00772.jsonl": "f2f1380e3072c60c4c8b4e3b507f6cb6a38a2cc1ac80776d214e1f2c03ac392c"
+  },
+  "all_assertions_passed": true,
+  "limits": "Recollection of existing raw smoke shards; no new simulator execution, RPC fault injection or production mutation."
+}

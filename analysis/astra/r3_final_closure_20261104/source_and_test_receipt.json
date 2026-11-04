@@ -1,0 +1,17 @@
+{
+  "reviewed_commit": "394d4a6a9187e637a4a6f0261b1cbaeb3e6bbde8",
+  "runner_sha256": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765",
+  "native_checks_passed": 43,
+  "all_other_staged_sources_unchanged_since_prior_clearance": [
+    "analysis/fable/calibration/kunanyi/s1b_capacity.sh",
+    "analysis/fable/calibration/kunanyi/s1b_collect.pbs",
+    "analysis/fable/calibration/kunanyi/s1b_node.pbs",
+    "analysis/fable/calibration/kunanyi/s1b_round3_dispatch.sh",
+    "analysis/fable/calibration/kunanyi/s1b_submit.sh",
+    "analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh",
+    "analysis/fable/calibration/v2_dev/p1_sampler.py",
+    "analysis/fable/calibration/v2_dev/p2_stage1a.py",
+    "analysis/fable/calibration/v2_dev/p3_r2_determinism.py"
+  ],
+  "prior_clearance_commit": "07e72ba3d0aaf1074cad5049b7de901955584d98"
+}

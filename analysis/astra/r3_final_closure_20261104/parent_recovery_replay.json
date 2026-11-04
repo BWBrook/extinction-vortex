@@ -1,0 +1,142 @@
+{
+  "all_nine_checks_passed": true,
+  "ambiguous_addition_cases": [
+    {
+      "collection_ok": true,
+      "crash_side": "before",
+      "exact_owner_certificate_present": true,
+      "fault": "first addition published, then EIO reported",
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 2,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "collection_ok": true,
+      "crash_side": "after",
+      "exact_owner_certificate_present": true,
+      "fault": "first addition published, then EIO reported",
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 2,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    }
+  ],
+  "limits": "Tiny deterministic batches, actual worker and atomic writer, injected exceptions and process death; no real NFS/PBS failure or scientific validation.",
+  "original_four_cases": [
+    {
+      "collection_ok": true,
+      "crash_side": "before",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "collection_ok": true,
+      "crash_side": "after",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 1,
+      "initial_intent_write_failed": false,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "collection_ok": true,
+      "crash_side": "before",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 2,
+      "initial_intent_write_failed": true,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    },
+    {
+      "collection_ok": true,
+      "crash_side": "after",
+      "exact_owner_certificate_present": true,
+      "final_open_executions": 0,
+      "gap_reproduced": false,
+      "held_file_exists_at_crash": true,
+      "held_write_attempts_before_crash": 2,
+      "initial_intent_write_failed": true,
+      "lock_left_held": true,
+      "open_execution_after_successor": false,
+      "open_execution_before_successor": true,
+      "serial_library_equal": true,
+      "successor_predecessor_recovered": 1,
+      "superseded": 0
+    }
+  ],
+  "permanent_addition_failure": {
+    "claim_hints": 0,
+    "execution_files": 0,
+    "publication_attempts": 6,
+    "queue_unchanged": true
+  },
+  "removal_error_cases": [
+    {
+      "ambiguous": false,
+      "collection_ok": true,
+      "faults": 1,
+      "final_held_tickets": [],
+      "open_executions": 0,
+      "removal_attempts": 2,
+      "serial_library_equal": true,
+      "superseded": 0,
+      "transient_errors": 1
+    },
+    {
+      "ambiguous": true,
+      "collection_ok": true,
+      "faults": 1,
+      "final_held_tickets": [],
+      "open_executions": 0,
+      "removal_attempts": 2,
+      "serial_library_equal": true,
+      "superseded": 0,
+      "transient_errors": 1
+    }
+  ],
+  "runner_sha256": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765",
+  "runtime": {
+    "numpy": "1.26.4",
+    "python": "3.12.13",
+    "scipy": "1.11.4"
+  }
+}
