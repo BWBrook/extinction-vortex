@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 4 November 2026, 12:05 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 6 November 2026, 14:49 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -40,7 +40,25 @@ checks. Exactly 6,935 settings need recovery: 18 W1 and 6,917 W2. W2 has no
 complete nine-population primary outer dataset out of 800; these are availability
 results, with no fits, validation result or empirical inference.
 
-**Round-3 final closure (4 November): cleared for normal preflight and dispatch.**
+**W1 round-3 collection reviewed (6 November).**
+The [collection review](notes/astra_w1_r3_review_20261106.md) (board 2908; E79)
+verifies archive `5e0de476`, summary `020a9bbf`, exact settings/runner bindings
+and all 18 W1 rows: zero COMPLETE, one CAPPED, 17 incomplete; zero reported
+errors/dead/open executions. This archive contains summary and log only, so
+raw-state recollection and run2/run3 determinism remain unverified here.
+
+Claude has submitted W1 topup `876850[]` (60 × 8 CPUs), collector `876851`;
+its dispatch receipt reports 6,910 live requested CPUs. The topup remains
+appropriate, with no new code blocker. Independent actual planning and parent
+arithmetic give **32 initial ranges**, not 18. The saved walltime excerpt
+already contains nine long-running subjobs, contradicting the reported seven;
+complete PBS subjob counts/accounting are still needed. Recorded shard CPU
+excluding the imported pilot is 5,650.554 hours, not a full scheduler-usage
+measurement. Outside-prefix work may become useful, but this is not guaranteed.
+Claude is next for reporting corrections, subsequent collections and the
+shared-batch determinism check. Stage 1c and empirical validation remain separate.
+
+**Historical round-3 clearance (4 November; subsequently dispatched).**
 The [final review](notes/astra_r3_final_closure_20261104.md) (board 2875; E78)
 closes the held-publication retry defect on runner `92674ee8`. Nine focused
 checks pass in both independent review and parent replay, including ambiguous
@@ -52,8 +70,8 @@ raw-smoke recollection reproduces both summaries and all four reference librarie
 
 Prior capacity and final archive clearances remain accepted. The full new
 rehearsals report 6,994 CPUs; they were inspected, not independently rerun here.
-Claude is next for dispatch using the exact reviewed stage/settings/summary
-bindings and normal fresh live preflight/capacity checks. No current Kunanyi
+That clearance required the exact reviewed stage/settings/summary bindings and
+normal fresh live preflight/capacity checks; Claude subsequently dispatched. No current Kunanyi
 occupancy is inferred from old receipts, and this review submitted no jobs.
 The stage must be built from `d80a60b` if rebuilt, because tar metadata includes
 the source commit time. Stage 1c still needs its own executable check before
@@ -1443,9 +1461,12 @@ board 1755; exposure E56).
      other load), under the 7,000 cap. Round-2 reservations released;
      collectors email Barry (`-m ae`).
    - Receipt `analysis/fable/calibration/v2_dev/p3/r3_dispatch_20261104.txt`.
-   - **W1 round 3 collected (6 Nov):** 1 CAPPED, 17 incomplete, 0 errors; 56 of
-     63 subjobs retired idle while from-zero first ranges ran (design 9h). W1
-     topup b `876850[]` 60 × 8 (collector `876851`) sent at once; live 6,910 CPUs.
+   - **W1 round 3 collected (6 Nov):** 1 CAPPED, 17 incomplete, 0 errors;
+     archive/summary accepted in board 2908. Initial scarcity is supported,
+     but the reported 7/56 long/idle subjob split is contradicted by its receipt.
+     Actual initial plan: 32 ranges. Claude to correct reporting and collect
+     full scheduler accounting. W1 topup b `876850[]` 60 × 8 (collector `876851`)
+     submitted; its receipt reports 6,910 live requested CPUs.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.
@@ -1540,10 +1561,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2874**; exhausted `through`: **2874**.
-- Explicit acknowledgement: through actual message **2872** in discussion 70.
-- Latest own review: **2875** (final held-publication closure; reviewed package cleared for preflight and dispatch).
-- Next retrieval: omit `through` to capture new messages, and use `after=2874`.
+- Last full retrieval `next_after`: **2907**; exhausted `through`: **2907**.
+- Explicit acknowledgement: through actual message **2907** in discussion 70.
+- Latest own review: **2908** (W1 collection summary accepted; throughput reporting corrections; topup retained).
+- Next retrieval: omit `through` to capture new messages, and use `after=2907`.
 
 ## Decision Inbox checkpoint
 

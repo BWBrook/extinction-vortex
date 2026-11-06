@@ -1,0 +1,114 @@
+{
+  "rows": [
+    {
+      "dir": "s00208",
+      "initial_ranges": 9,
+      "expected_cpu_h": 192.75463424085444,
+      "has_pilot": true
+    },
+    {
+      "dir": "s00835",
+      "initial_ranges": 7,
+      "expected_cpu_h": 161.04104623889543,
+      "has_pilot": true
+    },
+    {
+      "dir": "s01669",
+      "initial_ranges": 1,
+      "expected_cpu_h": 16.76388232593292,
+      "has_pilot": false
+    },
+    {
+      "dir": "s02059",
+      "initial_ranges": 1,
+      "expected_cpu_h": 16.76388232593292,
+      "has_pilot": false
+    },
+    {
+      "dir": "s02077",
+      "initial_ranges": 1,
+      "expected_cpu_h": 16.76388232593292,
+      "has_pilot": false
+    },
+    {
+      "dir": "s02311",
+      "initial_ranges": 1,
+      "expected_cpu_h": 2.444881121858575,
+      "has_pilot": false
+    },
+    {
+      "dir": "s03649",
+      "initial_ranges": 1,
+      "expected_cpu_h": 3.0548271535828433,
+      "has_pilot": false
+    },
+    {
+      "dir": "s03931",
+      "initial_ranges": 1,
+      "expected_cpu_h": 16.53605502299932,
+      "has_pilot": false
+    },
+    {
+      "dir": "s07384",
+      "initial_ranges": 1,
+      "expected_cpu_h": 6.919377740186166,
+      "has_pilot": false
+    },
+    {
+      "dir": "s08302",
+      "initial_ranges": 1,
+      "expected_cpu_h": 3.840543185657076,
+      "has_pilot": false
+    },
+    {
+      "dir": "s08677",
+      "initial_ranges": 1,
+      "expected_cpu_h": 4.390368479200829,
+      "has_pilot": false
+    },
+    {
+      "dir": "s09559",
+      "initial_ranges": 1,
+      "expected_cpu_h": 3.378549233934761,
+      "has_pilot": false
+    },
+    {
+      "dir": "s10624",
+      "initial_ranges": 1,
+      "expected_cpu_h": 2.849290150253718,
+      "has_pilot": false
+    },
+    {
+      "dir": "s11194",
+      "initial_ranges": 1,
+      "expected_cpu_h": 11.332015610801527,
+      "has_pilot": false
+    },
+    {
+      "dir": "s12163",
+      "initial_ranges": 1,
+      "expected_cpu_h": 3.397370535643985,
+      "has_pilot": false
+    },
+    {
+      "dir": "s14440",
+      "initial_ranges": 1,
+      "expected_cpu_h": 3.31929460605522,
+      "has_pilot": false
+    },
+    {
+      "dir": "s14782",
+      "initial_ranges": 1,
+      "expected_cpu_h": 2.5749389078768115,
+      "has_pilot": false
+    },
+    {
+      "dir": "s16447",
+      "initial_ranges": 1,
+      "expected_cpu_h": 4.088638200722405,
+      "has_pilot": false
+    }
+  ],
+  "total_initial_ranges": 32,
+  "all_counts_match_actual_plan": true
+}

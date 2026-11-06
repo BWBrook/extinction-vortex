@@ -1,0 +1,294 @@
+{
+  "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd",
+  "runner_sha256": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765",
+  "total_initial_ranges": 32,
+  "rows": [
+    {
+      "dir": "s00208",
+      "pilot": true,
+      "initial_ranges": 9,
+      "ranges": [
+        [
+          209860,
+          5077342,
+          9980724
+        ],
+        [
+          5077342,
+          9944824,
+          9980724
+        ],
+        [
+          9944824,
+          14812306,
+          9980724
+        ],
+        [
+          14812306,
+          19679788,
+          9980724
+        ],
+        [
+          19679788,
+          24547270,
+          9980724
+        ],
+        [
+          24547270,
+          29414752,
+          9980724
+        ],
+        [
+          29414752,
+          34282234,
+          9980724
+        ],
+        [
+          34282234,
+          39149716,
+          9980724
+        ],
+        [
+          39149716,
+          44017198,
+          9980724
+        ]
+      ]
+    },
+    {
+      "dir": "s00835",
+      "pilot": true,
+      "initial_ranges": 7,
+      "ranges": [
+        [
+          300401,
+          7877756,
+          9983895
+        ],
+        [
+          7877756,
+          15455111,
+          9983895
+        ],
+        [
+          15455111,
+          23032466,
+          9983895
+        ],
+        [
+          23032466,
+          30609821,
+          9983895
+        ],
+        [
+          30609821,
+          38187176,
+          9983895
+        ],
+        [
+          38187176,
+          45764531,
+          9983895
+        ],
+        [
+          45764531,
+          53341886,
+          9983895
+        ]
+      ]
+    },
+    {
+      "dir": "s01669",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          3816855,
+          9998323
+        ]
+      ]
+    },
+    {
+      "dir": "s02059",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          3816855,
+          9998323
+        ]
+      ]
+    },
+    {
+      "dir": "s02077",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          3816855,
+          9998323
+        ]
+      ]
+    },
+    {
+      "dir": "s02311",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          500140,
+          9999755
+        ]
+      ]
+    },
+    {
+      "dir": "s03649",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          701643,
+          9999694
+        ]
+      ]
+    },
+    {
+      "dir": "s03931",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          3975536,
+          9998346
+        ]
+      ]
+    },
+    {
+      "dir": "s07384",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          1574342,
+          9999308
+        ]
+      ]
+    },
+    {
+      "dir": "s08302",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          889516,
+          9999615
+        ]
+      ]
+    },
+    {
+      "dir": "s08677",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          834752,
+          9999560
+        ]
+      ]
+    },
+    {
+      "dir": "s09559",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          774318,
+          9999662
+        ]
+      ]
+    },
+    {
+      "dir": "s10624",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          623093,
+          9999715
+        ]
+      ]
+    },
+    {
+      "dir": "s11194",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          2376333,
+          9998866
+        ]
+      ]
+    },
+    {
+      "dir": "s12163",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          625645,
+          9999660
+        ]
+      ]
+    },
+    {
+      "dir": "s14440",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          734368,
+          9999668
+        ]
+      ]
+    },
+    {
+      "dir": "s14782",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          581303,
+          9999742
+        ]
+      ]
+    },
+    {
+      "dir": "s16447",
+      "pilot": false,
+      "initial_ranges": 1,
+      "ranges": [
+        [
+          0,
+          1083251,
+          9999591
+        ]
+      ]
+    }
+  ],
+  "limits": "actual plan in empty scratch settings directories; no simulator or production files touched"
+}

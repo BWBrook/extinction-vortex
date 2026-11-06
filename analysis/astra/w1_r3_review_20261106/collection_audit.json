@@ -1,0 +1,49 @@
+{
+  "archive_sha256": "5e0de4764cc1eedc55ca8ed930bd7548bae93d9b49106878b8e5e78175cbcf13",
+  "summary_sha256": "020a9bbf71df52a52fed96c31de94e25eec1428d0ad33ebbc572dc3323ff4c64",
+  "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd",
+  "archive_regular_members": [
+    "collect_W1.json",
+    "collect_W1.log"
+  ],
+  "archived_summary_byte_identical": true,
+  "exact_18_setting_inventory_and_bindings": true,
+  "row_status_counts": {
+    "incomplete": 17,
+    "CAPPED": 1
+  },
+  "capped_setting": {
+    "dir": "s14782",
+    "index": 14782,
+    "pop": "hawaiian_crow",
+    "outer": "null_prior_predictive/17",
+    "n": 30,
+    "library": "primary",
+    "status": "CAPPED",
+    "prefix_end_batch": 451508187,
+    "prefix_hits": 1059,
+    "useful_cpu_h": 1033.1586194414667,
+    "discarded_cpu_h": 0.0,
+    "ranges": 29,
+    "executions": 29,
+    "dead_executions": 0,
+    "open_executions": 0
+  },
+  "row_totals": {
+    "useful_cpu_h": 2756.0243368453794,
+    "discarded_cpu_h": 2896.3652892664363,
+    "executions": 250,
+    "dead_executions": 0,
+    "open_executions": 0
+  },
+  "historical_imported_pilot_cpu_h": 1.8354529965988666,
+  "recorded_shard_cpu_h_excluding_pilot": 5650.554173115216,
+  "walltime_excerpt_subjobs": 42,
+  "walltime_excerpt_long_subjobs_lower_bound": 9,
+  "retirement_slot_notes": {
+    "idle": 384,
+    "cutoff": 120
+  },
+  "limits": "Archive contains summary and log only, no raw execution records or libraries. No independent raw-state recollection, scheduler accounting, full subjob histogram, or run2/run3 determinism replay. CPU totals are recorded state accounting, not complete PBS usage. Queue and claim totals cover the shared run directory, not W1 alone.",
+  "all_assertions_passed": true
+}
