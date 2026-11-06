@@ -1,0 +1,142 @@
+# W1 round-3 collection (collector 876186, F, Exit 0, 6 Nov 2026 14:04-14:05) and idle-retirement diagnosis; pulled to wsl 6 Nov
+## digests (kunanyi sha256 files match wsl copies)
+020a9bbf71df52a52fed96c31de94e25eec1428d0ad33ebbc572dc3323ff4c64  collect_W1.json
+5e0de4764cc1eedc55ca8ed930bd7548bae93d9b49106878b8e5e78175cbcf13  W1.tar.gz
+## collect_W1.log
+collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 2756.0 discarded 2896.4 incomplete 17 errors 0
+## subjob start time and walltime used (876185[], count)
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi cd /u/bwbrook/vortex/run1 && P=/opt/pbs/bin; echo "== now $(date)"; $P/qstat -x -t -f "876185[]" | awk "/^Job Id/{id=\$3} /stime =/{s=\$3\" \"\$4\" \"\$5\" \"\$6} /resources_used.walltime/{print id, s, \$3}" | sort -k5 | awk "{print \$3,\$4,\$5,\$6}" | sort | uniq -c | head -40; echo "== launch topup"; LABEL=b WAVES=W1 W1_JOBS=60 REF="876193[]" RELEASES="s1b_dbe5ca91_a=876185[],876186" nohup bash src/analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh > s1b/topup_r3_W1_b.log 2>&1 & pid=$!; for i in $(seq 1 50); do sleep 20; kill -0 $pid 2>/dev/null || break; done; wait $pid; echo "topup rc=$? $(date)"; cat s1b/topup_r3_W1_b.log
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== now Fri Nov  6 14:31:48 AEDT 2026
+      2 Nov 4 12:12:05 47:30:00
+      1 Nov 4 12:15:22 47:30:00
+      1 Nov 4 12:27:37 47:30:00
+      1 Nov 4 12:29:41 00:30:35
+      1 Nov 4 12:31:23 00:30:26
+      1 Nov 4 12:31:23 00:30:35
+      1 Nov 4 12:41:53 00:30:27
+      1 Nov 4 12:48:35 00:30:27
+      1 Nov 4 12:49:43 00:30:37
+      1 Nov 4 12:51:42 00:30:19
+      1 Nov 4 12:51:42 00:30:39
+      1 Nov 4 12:57:21 00:30:29
+      1 Nov 4 13:01:58 00:30:35
+      1 Nov 4 13:01:58 47:30:00
+      1 Nov 4 13:09:43 00:30:27
+      2 Nov 4 13:11:51 00:30:23
+      1 Nov 4 13:12:19 47:30:00
+      1 Nov 4 13:17:14 00:30:28
+      1 Nov 4 13:19:14 00:30:13
+      1 Nov 4 13:20:13 47:30:00
+      1 Nov 4 13:20:50 00:30:24
+      1 Nov 4 13:22:20 00:30:27
+      1 Nov 4 13:22:22 00:30:20
+      1 Nov 4 13:25:10 47:30:00
+      1 Nov 4 13:27:40 00:30:29
+      1 Nov 4 13:32:36 00:30:17
+      1 Nov 4 13:32:37 00:30:26
+      1 Nov 4 13:33:59 00:30:20
+      1 Nov 4 13:34:19 47:30:01
+      1 Nov 4 13:38:26 00:30:21
+      1 Nov 4 13:42:15 00:30:30
+      1 Nov 4 13:42:18 00:30:30
+      1 Nov 4 13:42:48 00:30:14
+      1 Nov 4 13:49:42 00:30:15
+      1 Nov 4 13:50:26 00:30:46
+      1 Nov 4 13:52:45 00:30:42
+      1 Nov 4 13:52:49 00:30:19
+      1 Nov 4 13:55:30 00:30:05
+      1 Nov 4 14:02:54 00:30:24
+      1 Nov 4 14:03:08 00:30:20
+== launch topup
+## W1 topup b
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi cd /u/bwbrook/vortex/run1 && P=/opt/pbs/bin; echo "== now $(date)"; $P/qstat -x -t -f "876185[]" | awk "/^Job Id/{id=\$3} /stime =/{s=\$3\" \"\$4\" \"\$5\" \"\$6} /resources_used.walltime/{print id, s, \$3}" | sort -k5 | awk "{print \$3,\$4,\$5,\$6}" | sort | uniq -c | head -40; echo "== launch topup"; LABEL=b WAVES=W1 W1_JOBS=60 REF="876193[]" RELEASES="s1b_dbe5ca91_a=876185[],876186" nohup bash src/analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh > s1b/topup_r3_W1_b.log 2>&1 & pid=$!; for i in $(seq 1 50); do sleep 20; kill -0 $pid 2>/dev/null || break; done; wait $pid; echo "topup rc=$? $(date)"; cat s1b/topup_r3_W1_b.log
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== now Fri Nov  6 14:31:48 AEDT 2026
+      2 Nov 4 12:12:05 47:30:00
+      1 Nov 4 12:15:22 47:30:00
+      1 Nov 4 12:27:37 47:30:00
+      1 Nov 4 12:29:41 00:30:35
+      1 Nov 4 12:31:23 00:30:26
+      1 Nov 4 12:31:23 00:30:35
+      1 Nov 4 12:41:53 00:30:27
+      1 Nov 4 12:48:35 00:30:27
+      1 Nov 4 12:49:43 00:30:37
+      1 Nov 4 12:51:42 00:30:19
+      1 Nov 4 12:51:42 00:30:39
+      1 Nov 4 12:57:21 00:30:29
+      1 Nov 4 13:01:58 00:30:35
+      1 Nov 4 13:01:58 47:30:00
+      1 Nov 4 13:09:43 00:30:27
+      2 Nov 4 13:11:51 00:30:23
+      1 Nov 4 13:12:19 47:30:00
+      1 Nov 4 13:17:14 00:30:28
+      1 Nov 4 13:19:14 00:30:13
+      1 Nov 4 13:20:13 47:30:00
+      1 Nov 4 13:20:50 00:30:24
+      1 Nov 4 13:22:20 00:30:27
+      1 Nov 4 13:22:22 00:30:20
+      1 Nov 4 13:25:10 47:30:00
+      1 Nov 4 13:27:40 00:30:29
+      1 Nov 4 13:32:36 00:30:17
+      1 Nov 4 13:32:37 00:30:26
+      1 Nov 4 13:33:59 00:30:20
+      1 Nov 4 13:34:19 47:30:01
+      1 Nov 4 13:38:26 00:30:21
+      1 Nov 4 13:42:15 00:30:30
+      1 Nov 4 13:42:18 00:30:30
+      1 Nov 4 13:42:48 00:30:14
+      1 Nov 4 13:49:42 00:30:15
+      1 Nov 4 13:50:26 00:30:46
+      1 Nov 4 13:52:45 00:30:42
+      1 Nov 4 13:52:49 00:30:19
+      1 Nov 4 13:55:30 00:30:05
+      1 Nov 4 14:02:54 00:30:24
+      1 Nov 4 14:03:08 00:30:20
+== launch topup
+topup rc=0 Fri Nov  6 14:34:08 AEDT 2026
+== 2026-11-06 14:31:49 AEDT topup b: waves W1 into run3 (p3_settings_r3.json)
+== release s1b_dbe5ca91_a
+live requests: 6437 CPUs; 876193[] live subjobs: 804
+== 14:31:49 W1 topup b: 60 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_2bbf9409_a", "reservation_cpu_h": 23048.0, "recorded": true, "wave_reserved": 23048.0, "campaign_reserved": 334480.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_b): array 876850[].kunanyi-ohpc (60 x 8 cpus, 10gb, walltime 48:00:00); collector: 876851.kunanyi-ohpc
+    depend = afterany:876850[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_2bbf9409_c -W depend=afterany:876850[].kunanyi-oh
+live requests now: 6910 CPUs
+reserve	s1b	W1	s1b_dbe5ca91_a	24200.000	2026-11-04T12:11:55+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=63 cpus=8 wall=172800
+reserve	s1b	W2	s1b_47aa6879_a	311432.000	2026-11-04T12:14:00+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=811 cpus=8 wall=172800
+release	s1b_dbe5ca91_a	manual: 876185[] 876186 job_state F (qstat -x, 2026-11-06T14:31:49+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_2bbf9409_a	23048.000	2026-11-06T14:33:55+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=60 cpus=8 wall=172800
+TOPUP_DONE 2026-11-06 14:33:56 AEDT
+## read-only diagnosis (diag_w1r3.sh), excerpt
+== Fri Nov  6 14:35:20 AEDT 2026
+== queue W1 hints: 333  W2: 11165
+== claimed W1: 0
+== W1 slot-log retire notes
+    384 subjob idle for 1800s with wave W1 inflight; slot retires
+    120 launch cutoff reached while idle; slot retires
+== /u/bwbrook/vortex/run1/s1b/run3/submit_W1/logs/w.10.0.log
+2026-11-04 13:22:11 subjob idle for 1800s with wave W1 inflight; slot retires
+== s02077
+r/000000000 {"b": 3816855, "prio": 9998323, "token": "e5235678894eb1c1"}
+x/000000000.0 {"owner": "876185[3].kunanyi-ohpc.7r0necd5416c3ff1", "host": "n005.kunanyi", "pid": 7419, "range": [0, 3816855], "time": 1793755786.0574317, "token": "c2651b9d81eaeebd"}
+x/000000000.0.end {"outcome": "complete", "by": "876185[3].kunanyi-ohpc.7r0necd5416c3ff1", "time": 1793809090.7827582, "token": "a8aaba02dc785d55"}
+== s01669
+r/000000000 {"b": 3816855, "prio": 9998323, "token": "05667ea5aae40dbe"}
+x/000000000.0 {"owner": "876185[1].kunanyi-ohpc.1r0ncef5f1475b4c", "host": "n019.kunanyi", "pid": 7468, "range": [0, 3816855], "time": 1793754929.5625267, "token": "14f2d9023cb30921"}
+x/000000000.0.end {"outcome": "complete", "by": "876185[1].kunanyi-ohpc.1r0ncef5f1475b4c", "time": 1793819287.3809073, "token": "6328c369aab3f07f"}
+== s14440
+r/000000000 {"b": 734368, "prio": 9999668, "token": "f3219b05e19f486c"}
+x/000000000.0 {"owner": "876185[0].kunanyi-ohpc.5r0nb4cca41debed", "host": "n108.kunanyi", "pid": 26668, "range": [0, 734368], "time": 1793754747.1085086, "token": "5924910517ea792a"}
+x/000000000.0.end {"outcome": "complete", "by": "876185[0].kunanyi-ohpc.5r0nb4cca41debed", "time": 1793765111.2876039, "token": "736d2d3693ff364a"}

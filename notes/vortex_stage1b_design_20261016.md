@@ -1037,3 +1037,16 @@ the same publication before any execution can be created.
 - **Rehearsals** on stage 9b2786d6 (`p3/rehearsal_round3_20261029b.txt`): positive W1 63 × 8 and W2 811 × 8 at 6,994
   CPUs, resume with no qsub, W2 topup 63 × 8 at 6,994; a substituted manifest stops before install.
 - **Production check:** `p3_settings_r3.json` must be `fa772829…` (the old `8c46667e…` was bound to runner e261befa).
+
+**W1 round-3 collection and idle retirement (6 November).** Collector 876186: collection ok, 1 CAPPED, 17 incomplete,
+0 errors, 0 dead and 0 open executions (archive `5e0de476…`, summary `020a9bbf…`). Only about 5,650 of 24,200 reserved
+CPU-h were used: 7 of 63 subjobs ran 47.5 h and 56 retired after the node script's 30-minute idle budget. Cause, from the
+setting records (`p3/w1_r3_collection_20261106.txt`): 16 of the 18 W1 settings carry no bound pilot, so round 3 replans
+them from batch 0 under the cell prior, which predicts K hits within the first range. Each setting therefore starts as
+one range of 0.7–3.8 M batches (14–18 h on one core) and fans out to about 28 ranges only after that range completes.
+For those 15–18 hours W1 has 18 runnable ranges for 504 slots; the surplus subjobs saw only claims in flight and
+retired well before the fan-out. This is the planner and idle budget behaving as specified: no range was stranded or
+run twice. The cost is wall time, not correctness. W2 is unaffected, since its 6,917 first ranges exceed its 6,488 slots
+and its fan-out keeps 11,165 hints queued. The remedy is a topup after fan-out, sent at once: W1_b `876850[]` (60 × 8,
+collector 876851), with 333 W1 hints queued. Lesson: size a from-zero rerun array to its first ranges, then top up after
+the fan-out, rather than raising the idle budget.

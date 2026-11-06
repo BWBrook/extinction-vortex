@@ -1443,6 +1443,9 @@ board 1755; exposure E56).
      other load), under the 7,000 cap. Round-2 reservations released;
      collectors email Barry (`-m ae`).
    - Receipt `analysis/fable/calibration/v2_dev/p3/r3_dispatch_20261104.txt`.
+   - **W1 round 3 collected (6 Nov):** 1 CAPPED, 17 incomplete, 0 errors; 56 of
+     63 subjobs retired idle while from-zero first ranges ran (design 9h). W1
+     topup b `876850[]` 60 × 8 (collector `876851`) sent at once; live 6,910 CPUs.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.

@@ -1426,3 +1426,11 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   settings file was placed first, so the dispatcher's recomputed selection had to match fa772829 before any qsub.
 - W1 `876185[]` 63 × 8 (collector 876186), W2 `876193[]` 811 × 8 (collector 876194); 6,998 live CPUs.
   Receipt `p3/r3_dispatch_20261104.txt`.
+
+### W1 round-3 collection and W1 topup (6 November 2026)
+
+- Collector 876186: ok, 1 CAPPED, 17 incomplete, 0 errors (archive 5e0de476, summary 020a9bbf). 56 of 63 subjobs
+  retired after 30 min idle: from-zero settings run one prior-sized first range (14–18 h) before fanning out, so W1 had
+  18 runnable ranges for 504 slots until 5 Nov. Specified behaviour, not a defect (design 9h).
+- W1 topup b: `876850[]` 60 × 8 (collector 876851), 333 W1 hints queued; live requests 6,910 CPUs.
+  Receipt `p3/w1_r3_collection_20261106.txt`.
