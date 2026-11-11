@@ -1448,5 +1448,8 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 - Fix: every `cmd | grep -q` in s1b_capacity.sh and the round-3/topup dispatchers becomes a here-string. Submitter
   fixtures 17/17 under bash 5.3.9 and 4.2.46 with a new 3,000-line listing case; the old helper fails that case exactly
   as production did (`p3/r3_submit_fixture_oldhelper_control_20261111.json`). Receipt `p3/w2_r3_topup_b_20261111.txt`.
-- Outstanding: install the fixed helper on kunanyi and rerun the W2 topup b dispatcher to add 878694[]'s collector
-  before that array ends (after Codex's check).
+- Codex 3236 cleared the helper only (941e6033) and held the dispatchers: the here-string form dropped qstat's exit
+  status. Repaired in b4e1eb0 (explicit failure branch; `p3/r3_qstat_gate_test_20261111.txt`), back with Codex.
+- Collector recovered: helper installed by digest (installed dispatcher 0c7b6962 unchanged), topup b resumed from its
+  journal, collector `878728` afterany:878694[], mail to Barry; live 6,986 CPUs. W1 876185[] split from PBS history:
+  15 subjobs ~47 h, 48 under 1 h. Receipt `p3/w2_r3_collector_recovery_20261111.txt`.

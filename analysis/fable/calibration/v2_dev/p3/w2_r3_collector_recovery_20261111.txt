@@ -1,0 +1,39 @@
+# W2 topup b collector recovery (Codex 3236): cleared helper installed by digest, topup b resumed; plus full 876185[] per-subjob walltime split (Codex 2908). Kunanyi, 11 Nov 2026.
+== Wed Nov 11 17:11:05 AEDT 2026
+pushed helper 941e6033288577c15cfcc96d0f5e5cba2230cb17f7c3ddb34873b2a499b626b9
+installed topup dispatcher 0c7b6962cdb8a0adabee9894567305f2fd8fa187b3f86c9cfaf8816f0478fb44
+installed helper (before) e2e0c4b1fdf58bd324f756b16dfdf07021ee655d1a9d880545fd3f0ab15b0806
+installed helper (after) 941e6033288577c15cfcc96d0f5e5cba2230cb17f7c3ddb34873b2a499b626b9
+topup rc=0
+== 2026-11-11 17:11:05 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)
+== 17:11:14 W2 resume b: 854 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_d451ba47_a", "reservation_cpu_h": 327944.0, "recorded": false, "wave_reserved": 639376.0, "campaign_reserved": 662424.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_b): array 878694[].kunanyi-ohpc (854 x 8 cpus, 10gb, walltime 48:00:00); collector: 878728.kunanyi-ohpc
+    depend = afterany:878694[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_d451ba47_c -W depend=afterany:878694[].kunanyi-oh
+live requests now: 6986 CPUs
+reserve	s1b	W2	s1b_47aa6879_a	311432.000	2026-11-04T12:14:00+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=811 cpus=8 wall=172800
+release	s1b_dbe5ca91_a	manual: 876185[] 876186 job_state F (qstat -x, 2026-11-06T14:31:49+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_2bbf9409_a	23048.000	2026-11-06T14:33:55+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=60 cpus=8 wall=172800
+reserve	s1b	W2	s1b_d451ba47_a	327944.000	2026-11-11T16:48:27+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=854 cpus=8 wall=172800
+TOPUP_DONE 2026-11-11 17:12:56 AEDT
+== W2_b journal
+request a s1b_d451ba47_a
+accepted a s1b_d451ba47_a 878694[].kunanyi-ohpc
+request c s1b_d451ba47_c
+accepted c s1b_d451ba47_c 878728.kunanyi-ohpc
+== collector
+    Job_Name = s1b_d451ba47_c
+    job_state = H
+    depend = afterany:878694[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_d451ba47_c -W depend=afterany:878694[].kunanyi-oh
+== live: 6986 CPUs
+== 876185[] per-subjob walltime used (count by h)
+     48 00
+     15 47
+== 876185[] subjobs with walltime record: 63
+RECOVERY_DONE

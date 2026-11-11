@@ -1041,9 +1041,9 @@ the same publication before any execution can be created.
 **W1 round-3 collection and idle retirement (6 November; corrected 11 November after Codex 2908).** Collector 876186:
 collection ok, 1 CAPPED, 17 incomplete, 0 errors, 0 dead and 0 open executions (archive `5e0de476…`, summary
 `020a9bbf…`). The summary's 2,756.0 in-prefix plus 2,896.4 outside-prefix CPU-h includes 1.8 h of imported pilot CPU,
-leaving 5,650.6 recorded shard CPU-h against 24,200 reserved; recorded shard CPU is not PBS consumption. Many subjobs retired after the node script's 30-minute idle budget. The saved histogram (truncated) already
-shows at least 9 subjobs that ran about 47.5 h; the slot logs hold 384 idle-retirement and 120 cutoff notes, which count
-slots, not subjobs. The full per-subjob split is still to be taken from PBS history. Cause, from the setting records
+leaving 5,650.6 recorded shard CPU-h against 24,200 reserved; recorded shard CPU is not PBS consumption. Many subjobs retired after the node script's 30-minute idle budget. PBS history (11 November, all 63
+subjobs) gives the split: 15 subjobs ran about 47 h and 48 ran under an hour, consistent with the 384 idle-retirement and
+120 cutoff notes in the slot logs (`p3/w2_r3_collector_recovery_20261111.txt`). Cause, from the setting records
 (`p3/w1_r3_collection_20261106.txt`) and Codex's call of `plan()` on the bound settings: the initial W1 plan has 32
 ranges, not 18. The 16 no-pilot settings get one range each, replanned from batch 0 under the cell prior, of 0.50–3.98 M
 batches; observed first-range times were 2.9 h (s14440), 14.8 h (s02077) and 17.9 h (s01669). s00208 and s00835 get 9
