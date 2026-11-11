@@ -1467,6 +1467,16 @@ board 1755; exposure E56).
      Actual initial plan: 32 ranges. Claude to correct reporting and collect
      full scheduler accounting. W1 topup b `876850[]` 60 × 8 (collector `876851`)
      submitted; its receipt reports 6,910 live requested CPUs.
+   - **Reporting corrected (11 Nov)** in design 9h and NOTE per board 2908; the full
+     per-subjob PBS split is still outstanding (next authenticated access).
+   - **11 Nov:** W2 array `876193[]` 809 expired, 2 running; 9,482 W2 hints
+     queued; 127 COMPLETE + 1 CAPPED so far. W1 topup `876850[]` started 9 Nov.
+     W2 topup b array `878694[]` (854 × 8) accepted, **collector refused** by a
+     pipefail false negative in `s1b_capacity.sh` (a ~158 KB listing piped into
+     `grep -q`). Fixed with here-strings (614edc9); submitter fixtures 17/17
+     (bash 5.3.9, 4.2.46); the old helper fails the new case as production did.
+     **Next: Codex** checks the fix; then Claude installs it and reruns topup b
+     to add the collector before 878694[] ends.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.

@@ -1038,15 +1038,20 @@ the same publication before any execution can be created.
   CPUs, resume with no qsub, W2 topup 63 × 8 at 6,994; a substituted manifest stops before install.
 - **Production check:** `p3_settings_r3.json` must be `fa772829…` (the old `8c46667e…` was bound to runner e261befa).
 
-**W1 round-3 collection and idle retirement (6 November).** Collector 876186: collection ok, 1 CAPPED, 17 incomplete,
-0 errors, 0 dead and 0 open executions (archive `5e0de476…`, summary `020a9bbf…`). Only about 5,650 of 24,200 reserved
-CPU-h were used: 7 of 63 subjobs ran 47.5 h and 56 retired after the node script's 30-minute idle budget. Cause, from the
-setting records (`p3/w1_r3_collection_20261106.txt`): 16 of the 18 W1 settings carry no bound pilot, so round 3 replans
-them from batch 0 under the cell prior, which predicts K hits within the first range. Each setting therefore starts as
-one range of 0.7–3.8 M batches (14–18 h on one core) and fans out to about 28 ranges only after that range completes.
-For those 15–18 hours W1 has 18 runnable ranges for 504 slots; the surplus subjobs saw only claims in flight and
-retired well before the fan-out. This is the planner and idle budget behaving as specified: no range was stranded or
-run twice. The cost is wall time, not correctness. W2 is unaffected, since its 6,917 first ranges exceed its 6,488 slots
-and its fan-out keeps 11,165 hints queued. The remedy is a topup after fan-out, sent at once: W1_b `876850[]` (60 × 8,
-collector 876851), with 333 W1 hints queued. Lesson: size a from-zero rerun array to its first ranges, then top up after
-the fan-out, rather than raising the idle budget.
+**W1 round-3 collection and idle retirement (6 November; corrected 11 November after Codex 2908).** Collector 876186:
+collection ok, 1 CAPPED, 17 incomplete, 0 errors, 0 dead and 0 open executions (archive `5e0de476…`, summary
+`020a9bbf…`). The summary's 2,756.0 in-prefix plus 2,896.4 outside-prefix CPU-h includes 1.8 h of imported pilot CPU,
+leaving 5,650.6 recorded shard CPU-h against 24,200 reserved; recorded shard CPU is not PBS consumption. Many subjobs retired after the node script's 30-minute idle budget. The saved histogram (truncated) already
+shows at least 9 subjobs that ran about 47.5 h; the slot logs hold 384 idle-retirement and 120 cutoff notes, which count
+slots, not subjobs. The full per-subjob split is still to be taken from PBS history. Cause, from the setting records
+(`p3/w1_r3_collection_20261106.txt`) and Codex's call of `plan()` on the bound settings: the initial W1 plan has 32
+ranges, not 18. The 16 no-pilot settings get one range each, replanned from batch 0 under the cell prior, of 0.50–3.98 M
+batches; observed first-range times were 2.9 h (s14440), 14.8 h (s02077) and 17.9 h (s01669). s00208 and s00835 get 9
+and 7 ranges. Each no-pilot setting fans out to about 28 ranges only after its first range completes. Until then W1 has
+far fewer runnable ranges than its 504 slots, and surplus subjobs that saw only claims in flight retired before the
+fan-out. This is the planner and idle budget behaving as specified. No range was stranded, and the collection shows 0
+open and 0 dead executions; the run2/run3 shared-batch comparison remains the check that no work ran twice. Outside-prefix
+work may become useful as holes close, though a K-crossing can leave trailing work unused. W2's queued work after fan-out
+(11,165 hints) points to less initial scarcity there, not a guarantee. The response was a topup after the fan-out: W1_b
+`876850[]` (60 × 8, collector 876851), with 333 W1 hints queued. Lesson: size a from-zero rerun array to its first ranges,
+then top up after the fan-out, rather than raising the idle budget.

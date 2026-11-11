@@ -1429,9 +1429,12 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 
 ### W1 round-3 collection and W1 topup (6 November 2026)
 
-- Collector 876186: ok, 1 CAPPED, 17 incomplete, 0 errors (archive 5e0de476, summary 020a9bbf). 56 of 63 subjobs
-  retired after 30 min idle: from-zero settings run one prior-sized first range (14–18 h) before fanning out, so W1 had
-  18 runnable ranges for 504 slots until 5 Nov. Specified behaviour, not a defect (design 9h).
+- Collector 876186: ok, 1 CAPPED, 17 incomplete, 0 errors (archive 5e0de476, summary 020a9bbf). Many subjobs retired
+  after 30 min idle: the 16 no-pilot settings run one prior-sized first range (2.9–17.9 h observed) before fanning out,
+  and the initial plan has 32 ranges for 504 slots. Specified behaviour, not a defect (design 9h).
+  Corrected 11 Nov per Codex 2908: the "7 long / 56 idle" split was a mis-tally of a truncated histogram (at least 9
+  long); the full per-subjob count is still to be taken from PBS history. Recorded shard CPU is 5,650.6 h, excluding
+  1.8 h of imported pilot CPU.
 - W1 topup b: `876850[]` 60 × 8 (collector 876851), 333 W1 hints queued; live requests 6,910 CPUs.
   Receipt `p3/w1_r3_collection_20261106.txt`.
 
