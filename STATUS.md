@@ -50,8 +50,12 @@ three direct dispatcher completion checks discarded qstat exit status; Claude's
 repair closes that regression. Independent review and parent replay pass the
 54-run gate matrix at the newly cleared hashes.
 
-W2 topup array `878694[]` remains without its collector in the last supplied
-receipt. **Claude is next:** install the cleared helper by digest, preserve the
+**Done (Claude, 11 Nov 17:11):** helper `941e6033` installed by digest (installed
+dispatcher `0c7b6962` kept), topup b resumed from its journal, collector `878728`
+(afterany:878694[], mail to Barry); live 6,986 CPUs. W1 `876185[]` split from PBS
+history: 15 subjobs ~47 h, 48 under 1 h (`p3/w2_r3_collector_recovery_20261111.txt`).
+The repaired dispatchers (b4e1eb0) are cleared but not yet installed on kunanyi.
+Previously: W2 topup array `878694[]` remained without its collector. **Claude was next:** install the cleared helper by digest, preserve the
 existing journal/size/reservation and add the collector at the next authenticated
 access. Keeping the original installed dispatcher is sufficient for that resume;
 the repaired dispatchers are also cleared. Report collector ID, dependency and
@@ -1495,9 +1499,10 @@ board 1755; exposure E56).
      `grep -q`). **Reviewed at board 3239:** helper cleared, and `b4e1eb0`
      closes the newly found dispatcher query-status regression. Native checks
      pass 17/17 under both shells; helper-only resume and 54 gate cases pass.
-     **Next: Claude** installs the cleared helper and resumes the existing
-     topup journal to add the collector, reporting ID/dependency/live requests.
-     Exact file hashes and the preserved-dispatcher path are in the review.
+     **Done 11 Nov 17:11:** collector `878728` (afterany:878694[]); live 6,986 CPUs.
+   - **Next:** collect each wave as collectors land (876194 W2, 876851 W1_b,
+     878728 W2_b); further W2 topups as capacity frees (install the cleared
+     b4e1eb0 dispatchers by digest first); run2/run3 shared-batch determinism.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.
