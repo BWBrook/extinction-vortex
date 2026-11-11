@@ -1,0 +1,515 @@
+{
+  "scope": "Check actual dispatcher gate prefixes against failed and long qstat replies.",
+  "results": {
+    "5.3.9(1)-release": {
+      "old": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[] is not finished"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[] is not finished"
+        }
+      ],
+      "candidate": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        }
+      ],
+      "working_tree": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[]: no PBS answer"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[]: no PBS answer"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[]: no PBS answer"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        }
+      ]
+    },
+    "4.2.46(2)-release": {
+      "old": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[] is not finished"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[] is not finished"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[] is not finished"
+        }
+      ],
+      "candidate": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        }
+      ],
+      "working_tree": [
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[]: no PBS answer"
+        },
+        {
+          "gate": "topup_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "9000[]: no PBS answer"
+        },
+        {
+          "gate": "round3_release",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": true,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 0,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 2,
+          "padding_lines": 0,
+          "script_rc": 1,
+          "gate_passed": false,
+          "reservation_released": false,
+          "last_stdout": "round 2 job 857922[]: no PBS answer"
+        },
+        {
+          "gate": "preinstall",
+          "qstat_rc": 0,
+          "padding_lines": 3000,
+          "script_rc": 0,
+          "gate_passed": true,
+          "reservation_released": false,
+          "last_stdout": "GATE_PASSED"
+        }
+      ]
+    }
+  },
+  "working_tree_source_sha256": {
+    "s1b_round3_dispatch.sh": "545c9d37d19a1499c85c9e9e6737ad1e4cdf430de42f666bba68c868c364648f",
+    "s1b_topup_dispatch.sh": "7dead4f34805a03894d94dca1054371f72cfb9f0a1355e73566cfd4c74195e83"
+  },
+  "working_tree_source_unchanged_during_tests": true,
+  "all_three_working_tree_gates_passed": true,
+  "candidate_regression_reproduced": true,
+  "limits": "Actual gate prefixes and real Bash, with read-only qstat stubs and temporary ledger/stage. No PBS, production installation, reservations or jobs changed."
+}

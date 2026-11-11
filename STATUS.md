@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 6 November 2026, 14:49 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 11 November 2026, 17:05 AEDT (Australia/Hobart), by Astra (board participant Codex).
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
@@ -39,6 +39,25 @@ libraries are unchanged; all 344,000 records in 172 new libraries pass structura
 checks. Exactly 6,935 settings need recovery: 18 W1 and 6,917 W2. W2 has no
 complete nine-population primary outer dataset out of 800; these are availability
 results, with no fits, validation result or empirical inference.
+
+**Capacity-helper fix and dispatcher closure (11 November).**
+The [review](notes/astra_capacity_helper_review_20261111.md) (board 3236/3239;
+E80) clears helper `941e6033` from `614edc9` and the follow-up dispatcher repair
+`b4e1eb0`. All 17 native submitter checks pass under both Bash versions. Actual
+collector-only resume tests retain one accepted array, add exactly one collector
+and preserve capacity/query-failure refusal. The review found that `614edc9`'s
+three direct dispatcher completion checks discarded qstat exit status; Claude's
+repair closes that regression. Independent review and parent replay pass the
+54-run gate matrix at the newly cleared hashes.
+
+W2 topup array `878694[]` remains without its collector in the last supplied
+receipt. **Claude is next:** install the cleared helper by digest, preserve the
+existing journal/size/reservation and add the collector at the next authenticated
+access. Keeping the original installed dispatcher is sufficient for that resume;
+the repaired dispatchers are also cleared. Report collector ID, dependency and
+live requested CPUs. The review made no live scheduler or installation check.
+The reported 127 COMPLETE / one CAPPED is a preliminary snapshot rather than
+an audited collection. Scientific gates and prospective inference remain unchanged.
 
 **W1 round-3 collection reviewed (6 November).**
 The [collection review](notes/astra_w1_r3_review_20261106.md) (board 2908; E79)
@@ -1473,10 +1492,12 @@ board 1755; exposure E56).
      queued; 127 COMPLETE + 1 CAPPED so far. W1 topup `876850[]` started 9 Nov.
      W2 topup b array `878694[]` (854 × 8) accepted, **collector refused** by a
      pipefail false negative in `s1b_capacity.sh` (a ~158 KB listing piped into
-     `grep -q`). Fixed with here-strings (614edc9); submitter fixtures 17/17
-     (bash 5.3.9, 4.2.46); the old helper fails the new case as production did.
-     **Next: Codex** checks the fix; then Claude installs it and reruns topup b
-     to add the collector before 878694[] ends.
+     `grep -q`). **Reviewed at board 3239:** helper cleared, and `b4e1eb0`
+     closes the newly found dispatcher query-status regression. Native checks
+     pass 17/17 under both shells; helper-only resume and 54 gate cases pass.
+     **Next: Claude** installs the cleared helper and resumes the existing
+     topup journal to add the collector, reporting ID/dependency/live requests.
+     Exact file hashes and the preserved-dispatcher path are in the review.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.
@@ -1571,10 +1592,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **2907**; exhausted `through`: **2907**.
-- Explicit acknowledgement: through actual message **2907** in discussion 70.
-- Latest own review: **2908** (W1 collection summary accepted; throughput reporting corrections; topup retained).
-- Next retrieval: omit `through` to capture new messages, and use `after=2907`.
+- Last full retrieval `next_after`: **3238**; exhausted `through`: **3238**.
+- Explicit acknowledgement: through actual message **3238** in discussion 70.
+- Latest own review: **3239** (helper and b4e1eb0 dispatcher repair cleared; Claude next for missing collector).
+- Next retrieval: omit `through` to capture new messages, and use `after=3238`.
 
 ## Decision Inbox checkpoint
 

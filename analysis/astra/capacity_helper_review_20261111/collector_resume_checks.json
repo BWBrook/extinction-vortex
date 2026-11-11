@@ -1,0 +1,535 @@
+{
+  "reviewed_helper_sha256": "941e6033288577c15cfcc96d0f5e5cba2230cb17f7c3ddb34873b2a499b626b9",
+  "scenarios_by_shell": {
+    "bash": {
+      "normal_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_788f3a44_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "collector_at_capacity": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: capacity: 7000 live + 1 new CPUs exceed 7000; nothing requested"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_eaab07a1_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "accepted_array_hidden": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_60eff6d0_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "exact_query_failure": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_09f4c706_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      }
+    },
+    "/home/bwbrook/.local/opt/bash-4.2.46-bin": {
+      "normal_resume": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_572125aa_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "collector_at_capacity": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: capacity: 7000 live + 1 new CPUs exceed 7000; nothing requested"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_cf7b202b_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "accepted_array_hidden": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_adc0cd00_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      },
+      "exact_query_failure": {
+        "runs": [
+          {
+            "mode": "new",
+            "rc": 1,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight",
+              "seed"
+            ],
+            "stderr": [
+              "s1b_submit: accepted jobs not yet in the live listing: 900000.fixture; nothing requested (rerun once PBS lists them)"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 1,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": [
+              "s1b_submit: cannot query 900000.fixture, so the collector was not submitted; resume when PBS answers, or append 'terminal a 900000.fixture manual: <evidence>' if it is verifiably finished"
+            ]
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 1,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          },
+          {
+            "mode": "resume",
+            "rc": 0,
+            "qsub_calls": 0,
+            "runner_calls": [
+              "preflight"
+            ],
+            "stderr": []
+          }
+        ],
+        "arrays_created": 1,
+        "array_ranges": [
+          "0-519"
+        ],
+        "collectors_created": 1,
+        "tags": [
+          "W1",
+          "W1"
+        ],
+        "array_names": [
+          "s1b_cd626256_a"
+        ],
+        "topup_logs": false,
+        "collector_depends_on": [
+          "900000.fixture"
+        ],
+        "array_ids": [
+          "900000.fixture"
+        ],
+        "allocated_cpu_hours_bound": 199688.0,
+        "lock_released": true
+      }
+    }
+  },
+  "all_assertions_passed": true,
+  "limits": "Actual submitter and helper with stub PBS; only the helper is replaced between the accepted array and collector-only resume. No real scheduler requests or live occupancy verification."
+}
