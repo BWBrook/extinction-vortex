@@ -1500,9 +1500,11 @@ board 1755; exposure E56).
      closes the newly found dispatcher query-status regression. Native checks
      pass 17/17 under both shells; helper-only resume and 54 gate cases pass.
      **Done 11 Nov 17:11:** collector `878728` (afterany:878694[]); live 6,986 CPUs.
-   - **Next:** collect each wave as collectors land (876194 W2, 876851 W1_b,
-     878728 W2_b); further W2 topups as capacity frees (install the cleared
-     b4e1eb0 dispatchers by digest first); run2/run3 shared-batch determinism.
+   - **12 Nov:** W1_b collected (876851: 1 CAPPED, 17 incomplete, 0 errors;
+     summary 734263e7); cleared b4e1eb0 dispatchers installed by digest; W1
+     topup c `879043[]` 8 × 8 (collector 879044); live 6,930 CPUs.
+   - **Next:** collect as collectors land (876194 W2, 878728 W2_b, 879044 W1_c);
+     further topups as capacity frees; run2/run3 shared-batch determinism.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.

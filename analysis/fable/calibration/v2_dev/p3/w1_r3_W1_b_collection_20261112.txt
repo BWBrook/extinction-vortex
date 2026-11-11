@@ -1,0 +1,71 @@
+# W1_b collection (collector 876851, F, Exit 0, 12 Nov 03:36), install of cleared b4e1eb0 dispatchers by digest, W1 topup c. Kunanyi, 12 Nov 2026.
+== Thu Nov 12 10:10:16 AEDT 2026
+installed s1b_topup_dispatch.sh 7dead4f34805a03894d94dca1054371f72cfb9f0a1355e73566cfd4c74195e83
+installed s1b_round3_dispatch.sh 545c9d37d19a1499c85c9e9e6737ad1e4cdf430de42f666bba68c868c364648f
+helper 941e6033288577c15cfcc96d0f5e5cba2230cb17f7c3ddb34873b2a499b626b9
+-- 876851:  job_state = F  mtime = Thu Nov 12 03:36:11 2026  stime = Thu Nov 12 03:34:45 2026  Exit_status = 0 
+-- 876194:  job_state = H  mtime = Wed Nov 4 12:32:16 2026 
+-- 878728:  job_state = H  mtime = Wed Nov 11 17:12:56 2026 
+-- 876850[]:  job_state = F  stime = Mon Nov 9 13:37:17 2026  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 876193[]:  job_state = B  stime = Wed Nov 4 14:50:57 2026  array_state_count = Queued:0 Running:2 Exiting:0 Expired:809  
+-- 878694[]:  job_state = B  stime = Wed Nov 11 16:48:34 2026  array_state_count = Queued:839 Running:15 Exiting:0 Expired:0  
+live: 6865 CPUs
+hints W1 19 W2 9795; claims W1 0 W2 152
+-rw-r--r--    1 bwbrook hpcadmin        1738 Nov  6 14:05 W1.tar.gz
+-rw-r--r--    1 bwbrook hpcadmin          76 Nov  6 14:05 W1.tar.gz.sha256
+-rw-r--r--    1 bwbrook hpcadmin        1868 Nov 12 03:36 W1_b.tar.gz
+-rw-r--r--    1 bwbrook hpcadmin          78 Nov 12 03:36 W1_b.tar.gz.sha256
+-rw-------    1 bwbrook hpcadmin        6743 Nov  6 14:05 collect_W1.json
+-rw-r--r--    1 bwbrook hpcadmin         136 Nov  6 14:05 collect_W1.log
+-rw-------    1 bwbrook hpcadmin        6918 Nov 12 03:36 collect_W1_b.json
+-rw-r--r--    1 bwbrook hpcadmin         136 Nov 12 03:36 collect_W1_b.log
+-rw-------    1 bwbrook hpcadmin          31 Nov  6 14:05 pack_W1.txt
+-rw-------    1 bwbrook hpcadmin          35 Nov 12 03:36 pack_W1_b.txt
+== /u/bwbrook/vortex/run1/s1b/run3/collect_W1_b.log
+collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 15707.3 discarded 989.0 incomplete 17 errors 0
+734263e7c377288b6793863484dd80a8b302655f4137ad1dae15c481d1d7ca94  /u/bwbrook/vortex/run1/s1b/run3/collect_W1_b.json
+545c9c5e1717f9e7dffde32c7241afb75a02f6d176eb4b9efbae2238a52c2226  /u/bwbrook/vortex/run1/s1b/run3/W1_b.tar.gz
+545c9c5e1717f9e7dffde32c7241afb75a02f6d176eb4b9efbae2238a52c2226  W1_b.tar.gz
+== 876850[] walltime split (hours used)
+     16 00
+      1 21
+      1 28
+      1 30
+      5 34
+      6 35
+      2 36
+      2 38
+      1 40
+      1 41
+      1 42
+      2 43
+      3 44
+     18 47
+PROBE_DONE
+## wsl copies
+734263e7c377288b6793863484dd80a8b302655f4137ad1dae15c481d1d7ca94  collect_W1_b.json
+545c9c5e1717f9e7dffde32c7241afb75a02f6d176eb4b9efbae2238a52c2226  W1_b.tar.gz
+## W1 topup c
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi cd /u/bwbrook/vortex/run1 && { LABEL=c WAVES=W1 W1_JOBS=8 REF="878694[]" RELEASES="s1b_2bbf9409_a=876850[],876851" nohup bash src/analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh > s1b/topup_r3_W1_c.log 2>&1 & pid=$!; for i in $(seq 1 80); do sleep 15; kill -0 $pid 2>/dev/null || break; done; wait $pid; echo "topup rc=$? $(date)"; cat s1b/topup_r3_W1_c.log; }
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+topup rc=0 Thu Nov 12 10:14:27 AEDT 2026
+== 2026-11-12 10:11:12 AEDT topup c: waves W1 into run3 (p3_settings_r3.json)
+== release s1b_2bbf9409_a
+live requests: 6865 CPUs; 878694[] live subjobs: 854
+== 10:11:16 W1 topup c: 8 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_f97ebdfe_a", "reservation_cpu_h": 3080.0, "recorded": true, "wave_reserved": 3080.0, "campaign_reserved": 642456.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_c): array 879043[].kunanyi-ohpc (8 x 8 cpus, 10gb, walltime 48:00:00); collector: 879044.kunanyi-ohpc
+    depend = afterany:879043[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_f97ebdfe_c -W depend=afterany:879043[].kunanyi-oh
+live requests now: 6930 CPUs
+reserve	s1b	W1	s1b_2bbf9409_a	23048.000	2026-11-06T14:33:55+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=60 cpus=8 wall=172800
+reserve	s1b	W2	s1b_d451ba47_a	327944.000	2026-11-11T16:48:27+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=854 cpus=8 wall=172800
+release	s1b_2bbf9409_a	manual: 876850[] 876851 job_state F (qstat -x, 2026-11-12T10:11:12+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_f97ebdfe_a	3080.000	2026-11-12T10:13:39+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=8 cpus=8 wall=172800
+TOPUP_DONE 2026-11-12 10:14:18 AEDT

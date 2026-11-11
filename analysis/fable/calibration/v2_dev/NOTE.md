@@ -1453,3 +1453,13 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 - Collector recovered: helper installed by digest (installed dispatcher 0c7b6962 unchanged), topup b resumed from its
   journal, collector `878728` afterany:878694[], mail to Barry; live 6,986 CPUs. W1 876185[] split from PBS history:
   15 subjobs ~47 h, 48 under 1 h. Receipt `p3/w2_r3_collector_recovery_20261111.txt`.
+
+### W1_b collection, dispatcher install and W1 topup c (12 November 2026)
+
+- Collector 876851: ok, 1 CAPPED, 17 incomplete, 0 errors, 623 executions, 0 dead/open (archive 545c9c5e, summary
+  734263e7). Cumulative useful 15,707 CPU-h. Most incomplete settings hold 1,150–1,900 prefix hits (K = 2,000);
+  s00208, s00835, s03649 and s12163 have unchanged prefixes since 6 Nov (long ranges still open in the chain).
+  876850[] split: 44 subjobs ran 21–47 h, 16 under 1 h.
+- Cleared b4e1eb0 dispatchers installed by digest (topup 7dead4f3, round-3 545c9d37; helper 941e6033).
+- W1 topup c: `879043[]` 8 × 8 (collector 879044), sized to the 19 runnable W1 ranges; live 6,930 CPUs.
+  Receipt `p3/w1_r3_W1_b_collection_20261112.txt`.
