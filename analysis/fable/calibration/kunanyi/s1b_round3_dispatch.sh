@@ -39,7 +39,8 @@ fi
 if ! (cd stage_round3 && sha256sum -c --quiet s1b/stage_sha256.txt); then echo "stage checksum failed: nothing installed"; exit 1; fi
 echo "stage OK"
 for j in $R2_JOBS; do
-  grep -q 'job_state = F' <<< "$("$PBS/qstat" -x -f "$j")" || { echo "round 2 job $j is not finished"; exit 1; }
+  out=$("$PBS/qstat" -x -f "$j") || { echo "round 2 job $j: no PBS answer"; exit 1; }
+  grep -q 'job_state = F' <<< "$out" || { echo "round 2 job $j is not finished"; exit 1; }
 done
 echo "round 2 jobs finished: $R2_JOBS"
 echo "== install"
@@ -101,7 +102,10 @@ for rel in $R2_RELEASES; do
   name=${rel%%=*}; jobs=$(echo "${rel#*=}" | tr , ' ')
   echo "== release $name"
   if grep -q "^release	$name	" "$S/reservations.tsv"; then echo "already released"; continue; fi
-  for j in $jobs; do grep -q 'job_state = F' <<< "$("$PBS/qstat" -x -f "$j")" || { echo "$j is not finished"; exit 1; }; done
+  for j in $jobs; do
+    out=$("$PBS/qstat" -x -f "$j") || { echo "$j: no PBS answer"; exit 1; }
+    grep -q 'job_state = F' <<< "$out" || { echo "$j is not finished"; exit 1; }
+  done
   mkdir "$S/.ledger.lock"
   printf 'release\t%s\tmanual: %s job_state F (qstat -x, %s); in-flight ledger (design 9d)\n' "$name" "$jobs" \
     "$(date '+%FT%T%z')" >> "$S/reservations.tsv"

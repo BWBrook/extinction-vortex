@@ -1,0 +1,28 @@
+# Dispatcher qstat completion gates (Codex 3236): stub qstat prints 'job_state = F' (optionally after QPAD padding lines) then exits QRC.
+# Pass = success replies (short and 30,000-line) release; refuse = failed replies write no release. 11 Nov 2026, wsl.
+## s1b_topup_dispatch.sh release gate (real script; 614edc9 shown as control)
+bash repaired qstat_rc=0 pad=0 release_written=1 | 
+bash repaired qstat_rc=0 pad=30000 release_written=1 | 
+bash repaired qstat_rc=2 pad=0 release_written=0 | 1[]: no PBS answer
+bash repaired qstat_rc=2 pad=30000 release_written=0 | 1[]: no PBS answer
+bash 614edc9 qstat_rc=2 pad=0 release_written=1 | 
+bash-4.2.46-bin repaired qstat_rc=0 pad=0 release_written=1 | 
+bash-4.2.46-bin repaired qstat_rc=0 pad=30000 release_written=1 | 
+bash-4.2.46-bin repaired qstat_rc=2 pad=0 release_written=0 | 1[]: no PBS answer
+bash-4.2.46-bin repaired qstat_rc=2 pad=30000 release_written=0 | 1[]: no PBS answer
+bash-4.2.46-bin 614edc9 qstat_rc=2 pad=0 release_written=1 | 
+## s1b_round3_dispatch.sh gates (lines 41-44 preinstall, 105-108 release, extracted verbatim)
+bash rc_q=0 pad=30000: RELEASE_PASSED
+bash rc_q=2 pad=0: 1[]: no PBS answer
+bash rc_q=2 pad=30000: 1[]: no PBS answer
+bash-4.2.46-bin rc_q=0 pad=30000: RELEASE_PASSED
+bash-4.2.46-bin rc_q=2 pad=0: 1[]: no PBS answer
+bash-4.2.46-bin rc_q=2 pad=30000: 1[]: no PBS answer
+bash preinstall qstat_rc=0: PREINSTALL_PASSED
+bash preinstall qstat_rc=2: round 2 job 1[]: no PBS answer
+bash-4.2.46-bin preinstall qstat_rc=0: PREINSTALL_PASSED
+bash-4.2.46-bin preinstall qstat_rc=2: round 2 job 1[]: no PBS answer
+## digests
+941e6033288577c15cfcc96d0f5e5cba2230cb17f7c3ddb34873b2a499b626b9  s1b_capacity.sh
+7dead4f34805a03894d94dca1054371f72cfb9f0a1355e73566cfd4c74195e83  s1b_topup_dispatch.sh
+545c9d37d19a1499c85c9e9e6737ad1e4cdf430de42f666bba68c868c364648f  s1b_round3_dispatch.sh

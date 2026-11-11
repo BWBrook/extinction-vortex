@@ -25,7 +25,10 @@ for rel in $RELEASES; do
   name=${rel%%=*}; jobs=$(echo "${rel#*=}" | tr , ' ')
   echo "== release $name"
   if grep -q "^release	$name	" "$S/reservations.tsv"; then echo "already released"; continue; fi
-  for j in $jobs; do grep -q 'job_state = F' <<< "$("$PBS/qstat" -x -f "$j")" || { echo "$j is not finished"; exit 1; }; done
+  for j in $jobs; do
+    out=$("$PBS/qstat" -x -f "$j") || { echo "$j: no PBS answer"; exit 1; }
+    grep -q 'job_state = F' <<< "$out" || { echo "$j is not finished"; exit 1; }
+  done
   mkdir "$S/.ledger.lock"
   printf 'release\t%s\tmanual: %s job_state F (qstat -x, %s); in-flight ledger (design 9d)\n' "$name" "$jobs" \
     "$(date '+%FT%T%z')" >> "$S/reservations.tsv"
