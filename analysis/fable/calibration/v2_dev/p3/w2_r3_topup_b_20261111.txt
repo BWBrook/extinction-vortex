@@ -1,0 +1,67 @@
+# W2 round-3 topup b (11 Nov 2026): array accepted, collector refused by the capacity helper's pipefail false negative
+## probe before the topup
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi P=/opt/pbs/bin; R=/u/bwbrook/vortex/run1/s1b/run3; echo "== now $(date)"; for j in 876851 876194; do echo "-- $j: $($P/qstat -x -f $j | grep -E "job_state|stime|Exit_status" | tr -s " " | tr "\n" " ")"; done; for j in "876850[]" "876193[]"; do echo "-- $j: $($P/qstat -x -f "$j" | grep -E "job_state|stime|array_state_count" | tr -s " " | tr "\n" " ")"; done; echo "live: $($P/qstat -t -u bwbrook | awk "\$2==\"bwbrook\" && \$1 !~ /\[\]/ && \$10 ~ /^[QRHWTSE]$/ {n+=\$7; c[\$10]++} END {print n+0, \"CPUs\"; for (s in c) print s, c[s]}")"; echo "hints W1 $(ls $R/queue | grep -c ^W1_) W2 $(ls $R/queue | grep -c ^W2_); claims W1 $(ls $R/claimed | grep -c ^W1_) W2 $(ls $R/claimed | grep -c ^W2_)"; echo "terminal markers: $(ls $R/sets/*/COMPLETE 2>/dev/null | wc -l) COMPLETE, $(ls $R/sets/*/CAPPED 2>/dev/null | wc -l) CAPPED, $(ls $R/sets/*/FAILED 2>/dev/null | wc -l) FAILED"; ls -la $R | grep -E "collect|tar"; echo PROBE_DONE
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== now Wed Nov 11 16:45:21 AEDT 2026
+-- 876851:  job_state = H 
+-- 876194:  job_state = H 
+-- 876850[]:  job_state = B  stime = Mon Nov 9 13:37:17 2026  array_state_count = Queued:0 Running:17 Exiting:0 Expired:43  
+-- 876193[]:  job_state = B  stime = Wed Nov 4 14:50:57 2026  array_state_count = Queued:0 Running:2 Exiting:0 Expired:809  
+live: 169 CPUs
+R 25
+H 4
+hints W1 0 W2 9482; claims W1 25 W2 469
+terminal markers: 127 COMPLETE, 1 CAPPED, 0 FAILED
+-rw-r--r--    1 bwbrook hpcadmin        1738 Nov  6 14:05 W1.tar.gz
+-rw-r--r--    1 bwbrook hpcadmin          76 Nov  6 14:05 W1.tar.gz.sha256
+-rw-------    1 bwbrook hpcadmin        6743 Nov  6 14:05 collect_W1.json
+-rw-r--r--    1 bwbrook hpcadmin         136 Nov  6 14:05 collect_W1.log
+PROBE_DONE
+## topup run 1 (dispatcher log)
+== 2026-11-11 16:46:24 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)
+live requests: 161 CPUs; 876193[] live subjobs: 2
+== 16:46:25 W2 topup b: 854 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_d451ba47_a", "reservation_cpu_h": 327944.0, "recorded": true, "wave_reserved": 639376.0, "campaign_reserved": 662424.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+s1b_submit: accepted jobs not yet in the live listing: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc; nothing requested (rerun once PBS lists them)
+submit_W1
+submit_W1_b
+submit_W2
+submit_W2_b
+## listing check and topup run 2 (wait_listed)
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi cd /u/bwbrook/vortex/run1; P=/opt/pbs/bin; $P/qstat -t -u bwbrook > s1b/qstat_tu_check.txt 2>&1; echo "listing rc=$? lines=$(wc -l < s1b/qstat_tu_check.txt)"; grep -cE "^878694\[" s1b/qstat_tu_check.txt; grep -E "^87619[34]|^87685[01]" s1b/qstat_tu_check.txt | head -4; sed -n "1,6p" s1b/qstat_tu_check.txt; { LABEL=b WAVES=W2 REF="876193[]" nohup bash src/analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh > s1b/topup_r3_W2_b_2.log 2>&1 & pid=$!; for i in $(seq 1 80); do sleep 15; kill -0 $pid 2>/dev/null || break; done; wait $pid; echo "topup rc=$? $(date)"; cat s1b/topup_r3_W2_b_2.log; }
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+listing rc=0 lines=1977
+854
+876193[0].kunan bwbrook  normal   s1b_47aa68  12010   1   8   10gb 48:00 X 47:30
+876193[1].kunan bwbrook  normal   s1b_47aa68  26001   1   8   10gb 48:00 X 47:30
+876193[2].kunan bwbrook  normal   s1b_47aa68  26112   1   8   10gb 48:00 X 47:30
+876193[3].kunan bwbrook  normal   s1b_47aa68  17727   1   8   10gb 48:00 X 47:30
+
+kunanyi-ohpc: 
+                                                            Req'd  Req'd   Elap
+Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+870374.kunanyi- bwbrook  normal   superseded    --    1   2    8gb 48:00 H   -- 
+topup rc=1 Wed Nov 11 16:51:47 AEDT 2026
+== 2026-11-11 16:49:32 AEDT topup b: waves W2 into run3 (p3_settings_r3.json)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 1)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 878694[].kunanyi-ohpc (check 2)
+accepted jobs not yet listed: 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 3)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 4)
+accepted jobs not yet listed: 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 5)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 6)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 7)
+accepted jobs not yet listed: 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 8)
+accepted jobs not yet listed: 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 9)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 10)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 11)
+accepted jobs not yet listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc (check 12)
+accepted jobs still not listed: 876193[].kunanyi-ohpc 876194.kunanyi-ohpc 876850[].kunanyi-ohpc 876851.kunanyi-ohpc 878694[].kunanyi-ohpc; nothing more submitted (rerun once PBS lists them)

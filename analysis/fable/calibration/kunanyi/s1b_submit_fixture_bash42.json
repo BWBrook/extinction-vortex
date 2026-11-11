@@ -18,6 +18,7 @@
   "capacity_refused_before_preflight": true,
   "capacity_rechecked_before_request": true,
   "accepted_array_unlisted_refuses_topup": true,
+  "large_listing_lists_accepted_jobs": true,
   "rejected_array_rechecked_on_resume": true
  },
  "all_ok": true,
@@ -63,7 +64,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_50fc6694_a"
+    "s1b_f96171ce_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -86,7 +87,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_c388e745_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_81846c4c_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -97,7 +98,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_c388e745_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_c388e745_a ID manual: <evidence>' or 'rejected a s1b_c388e745_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_81846c4c_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_81846c4c_a ID manual: <evidence>' or 'rejected a s1b_81846c4c_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -120,7 +121,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_c388e745_a"
+    "s1b_81846c4c_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -155,7 +156,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_871d480b_a"
+    "s1b_65cf89ee_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -178,7 +179,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_267d0d0d_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_9783c198_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -189,7 +190,7 @@
       "preflight"
      ],
      "stderr": [
-      "s1b_submit: unresolved earlier request for s1b_267d0d0d_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_267d0d0d_a ID manual: <evidence>' or 'rejected a s1b_267d0d0d_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
+      "s1b_submit: unresolved earlier request for s1b_9783c198_a and PBS has no record of it (history may have expired); verify with tracejob or the accounting logs, append 'accepted a s1b_9783c198_a ID manual: <evidence>' or 'rejected a s1b_9783c198_a manual: <evidence>' to <tmp>/vbase/s1b/run/submit_W1/submit_journal.tsv, then resume"
      ]
     },
     {
@@ -212,7 +213,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_267d0d0d_a"
+    "s1b_9783c198_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -256,7 +257,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_13143a59_a"
+    "s1b_e68b516b_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -279,7 +280,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_22e3a678_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_49fc0ffe_c failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -302,7 +303,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_22e3a678_a"
+    "s1b_49fc0ffe_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [],
@@ -436,8 +437,8 @@
     "W1_b"
    ],
    "array_names": [
-    "s1b_229a7190_a",
-    "s1b_5d30bbff_a"
+    "s1b_ce392144_a",
+    "s1b_a99f20c1_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -500,7 +501,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_b273735f_a"
+    "s1b_34ae480d_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -544,7 +545,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_fcc10e73_a"
+    "s1b_b5389e58_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -588,7 +589,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_fa33f223_a"
+    "s1b_f8a5a902_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -635,7 +636,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_83b04b8d_a"
+    "s1b_84435c6b_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [
@@ -691,8 +692,8 @@
     "W1_b"
    ],
    "array_names": [
-    "s1b_5c167064_a",
-    "s1b_dc55965a_a"
+    "s1b_4c67fa81_a",
+    "s1b_0b73abdb_a"
    ],
    "topup_logs": true,
    "collector_depends_on": [
@@ -703,6 +704,41 @@
     "900002.fixture"
    ],
    "allocated_cpu_hours_bound": 399376.0,
+   "lock_released": true
+  },
+  "large_listing_lists_accepted_jobs": {
+   "runs": [
+    {
+     "mode": "new",
+     "rc": 0,
+     "qsub_calls": 2,
+     "runner_calls": [
+      "preflight",
+      "seed"
+     ],
+     "stderr": []
+    }
+   ],
+   "arrays_created": 1,
+   "array_ranges": [
+    "0-519"
+   ],
+   "collectors_created": 1,
+   "tags": [
+    "W1",
+    "W1"
+   ],
+   "array_names": [
+    "s1b_89b0f83f_a"
+   ],
+   "topup_logs": false,
+   "collector_depends_on": [
+    "900000.fixture"
+   ],
+   "array_ids": [
+    "900000.fixture"
+   ],
+   "allocated_cpu_hours_bound": 199688.0,
    "lock_released": true
   },
   "rejected_array_rechecked_on_resume": {
@@ -716,7 +752,7 @@
       "seed"
      ],
      "stderr": [
-      "s1b_submit: qsub for s1b_d8cb0793_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
+      "s1b_submit: qsub for s1b_8aa50ebe_a failed and PBS does not show exactly one such job; resolve it as the journal header describes, then resume"
      ]
     },
     {
@@ -748,7 +784,7 @@
     "W1"
    ],
    "array_names": [
-    "s1b_d8cb0793_a"
+    "s1b_8aa50ebe_a"
    ],
    "topup_logs": false,
    "collector_depends_on": [

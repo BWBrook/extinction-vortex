@@ -25,7 +25,7 @@ for rel in $RELEASES; do
   name=${rel%%=*}; jobs=$(echo "${rel#*=}" | tr , ' ')
   echo "== release $name"
   if grep -q "^release	$name	" "$S/reservations.tsv"; then echo "already released"; continue; fi
-  for j in $jobs; do "$PBS/qstat" -x -f "$j" | grep -q 'job_state = F' || { echo "$j is not finished"; exit 1; }; done
+  for j in $jobs; do grep -q 'job_state = F' <<< "$("$PBS/qstat" -x -f "$j")" || { echo "$j is not finished"; exit 1; }; done
   mkdir "$S/.ledger.lock"
   printf 'release\t%s\tmanual: %s job_state F (qstat -x, %s); in-flight ledger (design 9d)\n' "$name" "$jobs" \
     "$(date '+%FT%T%z')" >> "$S/reservations.tsv"
@@ -35,7 +35,7 @@ source "$C/kunanyi/s1b_capacity.sh"
 ref_live() {       # REF's queued, running and held subjobs from its own state counts, history included
   local out
   out=$("$PBS/qstat" -x -f "$REF") || { echo "reference $REF: no PBS answer" >&2; return 1; }
-  echo "$out" | grep -q 'array_state_count' || { echo "reference $REF is not an array" >&2; return 1; }
+  grep -q 'array_state_count' <<< "$out" || { echo "reference $REF is not an array" >&2; return 1; }
   echo "$out" | awk -F'[ :=]+' '/array_state_count/ {for (i = 1; i < NF; i++) if ($i == "Queued" || $i == "Running" || $i == "Held") n += $(i + 1)} END {print n + 0}'
 }
 size_file() { echo "$S/$OUTDIR/topup_${LABEL}_$1.jobs"; }

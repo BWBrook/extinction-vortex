@@ -1434,3 +1434,16 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   18 runnable ranges for 504 slots until 5 Nov. Specified behaviour, not a defect (design 9h).
 - W1 topup b: `876850[]` 60 × 8 (collector 876851), 333 W1 hints queued; live requests 6,910 CPUs.
   Receipt `p3/w1_r3_collection_20261106.txt`.
+
+### W2 topup b and the capacity-helper pipefail defect (11 November 2026)
+
+- W2 array 876193[] nearly done (809 expired, 2 running); 9,482 W2 hints queued; 127 COMPLETE + 1 CAPPED so far.
+  W1 topup 876850[] started 9 Nov (17 running, 43 expired).
+- W2 topup b: array `878694[]` 854 × 8 accepted; its collector was refused. `unlisted()` piped a 1,977-line (~158 KB)
+  listing into `grep -q` under `set -o pipefail`: grep exits at its first match, printf takes SIGPIPE, and listed jobs
+  read as unlisted (flickering per check). Rehearsal listings were below one pipe buffer, so they never showed it.
+- Fix: every `cmd | grep -q` in s1b_capacity.sh and the round-3/topup dispatchers becomes a here-string. Submitter
+  fixtures 17/17 under bash 5.3.9 and 4.2.46 with a new 3,000-line listing case; the old helper fails that case exactly
+  as production did (`p3/r3_submit_fixture_oldhelper_control_20261111.json`). Receipt `p3/w2_r3_topup_b_20261111.txt`.
+- Outstanding: install the fixed helper on kunanyi and rerun the W2 topup b dispatcher to add 878694[]'s collector
+  before that array ends (after Codex's check).

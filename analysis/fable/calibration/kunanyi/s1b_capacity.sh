@@ -9,9 +9,9 @@ unlisted() {       # accepted jobs in RUN's submission journals that ME's live l
   ended=$(cat "$run"/submit_*/submit_journal.tsv 2>/dev/null | awk '$1 == "terminal" {print $3}')
   for id in $(cat "$run"/submit_*/submit_journal.tsv 2>/dev/null | awk '$1 == "accepted" {print $4}' | sort -u); do
     num=${id%%[.[]*}
-    if printf '%s\n' "$listing" | grep -q -e "^$num\\." -e "^$num\\["; then continue; fi
-    if printf '%s\n' "$ended" | grep -qxF "$id"; then continue; fi
-    if out=$("$PBS/qstat" -x -f "$id" 2>/dev/null) && printf '%s\n' "$out" | grep -q 'job_state = F'; then continue; fi
+    if grep -q -e "^$num\\." -e "^$num\\[" <<< "$listing"; then continue; fi
+    if grep -qxF "$id" <<< "$ended"; then continue; fi
+    if out=$("$PBS/qstat" -x -f "$id" 2>/dev/null) && grep -q 'job_state = F' <<< "$out"; then continue; fi
     echo "$id"
   done
 }

@@ -40,6 +40,8 @@ if "-u" in a:                                   # the user listing: unfinished j
                 print(f"{j['id'][:6]}[{i}].ku {me}  normal   {j['name'][:10]}    --    1 {cpus}   10gb 48:00 {j['state']}   -- ")
         else:
             print(f"{j['id'][:15]} {me}  normal   {j['name'][:10]}    --    1 1   16gb 08:00 {j['state']}   -- ")
+    for i in range(int(os.environ.get("FIX_PAD", "0"))):   # other users' jobs: a listing larger than a pipe buffer
+        print(f"{600000 + i}.kunanyi- other    normal   padding       --    1 8   10gb 48:00 R   -- ")
     sys.exit(0)
 jobs = {j["id"]: j for j in jobs}; jid = a[-1]
 if "-x" in a and (fail == "all" or jid.split(".")[0] in [str(900000 + int(i)) for i in fail.split(",") if i]):
@@ -141,6 +143,7 @@ R = {
     "capacity_rechecked_before_request": scenario([{"env": {"FIX_RAISE_LOAD": "2840"}}, {"load": 0}]),
     "accepted_array_unlisted_refuses_topup": scenario([{}, {"env": {"FIX_HIDE": "900000.fixture"}, "mode": "topup b"},
                                                        {"finish": [0, 1], "env": {"FIX_HIDE": "900000.fixture"}, "mode": "topup b"}]),
+    "large_listing_lists_accepted_jobs": scenario([{"env": {"FIX_PAD": "3000"}}]),
     "rejected_array_rechecked_on_resume": scenario([fail(1, "reject"), {"operator": ["rejected a {name_a} manual: tracejob shows no job"],
                                                     "load": 2900, "mode": "resume"}, {"load": 0, "mode": "resume"}]),
 }
@@ -175,6 +178,7 @@ checks = {
     "accepted_array_unlisted_refuses_topup": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [True, False, True]
         and [x["qsub_calls"] for x in r["runs"]] == [2, 0, 2] and r["runs"][1]["runner_calls"] == []
         and "not yet in the live listing: 900000.fixture" in r["runs"][1]["stderr"][0])(R["accepted_array_unlisted_refuses_topup"]),
+    "large_listing_lists_accepted_jobs": ok(R["large_listing_lists_accepted_jobs"], [True], [2], 1, 1),
     "rejected_array_rechecked_on_resume": (lambda r: [x["rc"] == 0 for x in r["runs"]] == [False, False, True]
         and [x["qsub_calls"] for x in r["runs"]] == [1, 0, 2] and "capacity: 2900 live" in r["runs"][1]["stderr"][0])(
         R["rejected_array_rechecked_on_resume"]),
