@@ -1503,8 +1503,12 @@ board 1755; exposure E56).
    - **12 Nov:** W1_b collected (876851: 1 CAPPED, 17 incomplete, 0 errors;
      summary 734263e7); cleared b4e1eb0 dispatchers installed by digest; W1
      topup c `879043[]` 8 × 8 (collector 879044); live 6,930 CPUs.
-   - **Next:** collect as collectors land (876194 W2, 878728 W2_b, 879044 W1_c);
-     further topups as capacity frees; run2/run3 shared-batch determinism.
+   - **18 Nov:** 2,728 COMPLETE + 55 CAPPED (snapshot). W2 topup c `881772[]`
+     739 × 8 (collector 881773); live 7,000 CPUs. Phantom subjobs 876193[22]/[23]
+     (dead since 6 Nov on n177, node since reset) removed with qdel, releasing
+     collector 876194 and 32 stranded claims.
+   - **Next:** collect as collectors land (876194 W2, 878728 W2_b, 879044 W1_c,
+     881773 W2_c); further topups as capacity frees; run2/run3 determinism.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.

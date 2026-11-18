@@ -1,0 +1,129 @@
+# Round-3 check, W2 topup c and phantom-subjob removal (kunanyi, 18 Nov 2026)
+## probe
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi P=/opt/pbs/bin; R=/u/bwbrook/vortex/run1/s1b/run3; echo "== now $(date)"; for j in 876194 878728 879044; do echo "-- $j: $($P/qstat -x -f $j | grep -E "job_state|stime|mtime|Exit_status" | tr -s " " | tr "\n" " ")"; done; for j in "876193[]" "878694[]" "879043[]"; do echo "-- $j: $($P/qstat -x -f "$j" | grep -E "job_state|stime|array_state_count" | tr -s " " | tr "\n" " ")"; done; echo "live: $($P/qstat -t -u bwbrook | awk "\$2==\"bwbrook\" && \$1 !~ /\[\]/ && \$10 ~ /^[QRHWTSE]$/ {n+=\$7} END {print n+0}") CPUs"; echo "hints W1 $(ls $R/queue | grep -c ^W1_) W2 $(ls $R/queue | grep -c ^W2_); claims W1 $(ls $R/claimed | grep -c ^W1_) W2 $(ls $R/claimed | grep -c ^W2_)"; echo "terminal: $(ls $R/sets/*/COMPLETE 2>/dev/null | wc -l) COMPLETE $(ls $R/sets/*/CAPPED 2>/dev/null | wc -l) CAPPED $(ls $R/sets/*/FAILED 2>/dev/null | wc -l) FAILED"; ls -la $R | grep -E "collect|tar"; for f in $R/collect_*.log; do echo "== $f: $(cat $f)"; done; echo PROBE_DONE
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== now Wed Nov 18 13:47:32 AEDT 2026
+-- 876194:  job_state = H  mtime = Wed Nov 4 12:32:16 2026 
+-- 878728:  job_state = H  mtime = Wed Nov 11 17:12:56 2026 
+-- 879044:  job_state = H  mtime = Thu Nov 12 10:14:18 2026 
+-- 876193[]:  job_state = B  stime = Wed Nov 4 14:50:57 2026  array_state_count = Queued:0 Running:2 Exiting:0 Expired:809  
+-- 878694[]:  job_state = B  stime = Wed Nov 11 16:48:34 2026  array_state_count = Queued:0 Running:113 Exiting:0 Expired:741  
+-- 879043[]:  job_state = B  stime = Mon Nov 16 16:04:56 2026  array_state_count = Queued:0 Running:3 Exiting:0 Expired:5  
+live: 1087 CPUs
+hints W1 0 W2 7344; claims W1 15 W2 960
+terminal: 2728 COMPLETE 55 CAPPED 0 FAILED
+-rw-r--r--.    1 bwbrook hpcadmin        1738 Nov  6 14:05 W1.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          76 Nov  6 14:05 W1.tar.gz.sha256
+-rw-r--r--.    1 bwbrook hpcadmin        1868 Nov 12 03:36 W1_b.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          78 Nov 12 03:36 W1_b.tar.gz.sha256
+-rw-------.    1 bwbrook hpcadmin        6743 Nov  6 14:05 collect_W1.json
+-rw-r--r--.    1 bwbrook hpcadmin         136 Nov  6 14:05 collect_W1.log
+-rw-------.    1 bwbrook hpcadmin        6918 Nov 12 03:36 collect_W1_b.json
+-rw-r--r--.    1 bwbrook hpcadmin         136 Nov 12 03:36 collect_W1_b.log
+== /u/bwbrook/vortex/run1/s1b/run3/collect_W1.log: collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 2756.0 discarded 2896.4 incomplete 17 errors 0
+== /u/bwbrook/vortex/run1/s1b/run3/collect_W1_b.log: collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 15707.3 discarded 989.0 incomplete 17 errors 0
+PROBE_DONE
+## stuck subjobs and W2 topup c
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi P=/opt/pbs/bin; cd /u/bwbrook/vortex/run1; echo "== stuck subjobs"; $P/qstat -t -u bwbrook | awk "\$1 ~ /^876193\[[0-9]+\]/ && \$10 != \"X\"" ; for id in $($P/qstat -t -u bwbrook | awk "\$1 ~ /^876193\[[0-9]+\]/ && \$10 == \"R\" {print \$1}"); do full=$($P/qstat -t -f "876193[]" | awk -v s="${id%%.*}" "/^Job Id/ {p=(index(\$3, s)==1)} p && /job_state|stime|exec_host|resources_used.walltime|Walltime|substate|comment/" | tr -s " " | tr "\n" " "); echo "-- $id: $full"; done; echo "== topup c"; { LABEL=c WAVES=W2 REF="878694[]" nohup bash src/analysis/fable/calibration/kunanyi/s1b_topup_dispatch.sh > s1b/topup_r3_W2_c.log 2>&1 & pid=$!; for i in $(seq 1 80); do sleep 15; kill -0 $pid 2>/dev/null || break; done; wait $pid; echo "topup rc=$? $(date)"; cat s1b/topup_r3_W2_c.log; }
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== stuck subjobs
+876193[22].kuna bwbrook  normal   s1b_47aa68   3138   1   8   10gb 48:00 R 28:09
+876193[23].kuna bwbrook  normal   s1b_47aa68   3139   1   8   10gb 48:00 R 28:09
+-- 876193[22].kuna:  resources_used.walltime = 28:09:26  job_state = R  exec_host = n177/1*8  stime = Thu Nov 5 18:33:15 2026  substate = 42  comment = Job run at Thu Nov 05 at 18:33 on (n177:ncpus=8:mem=10485760kb) 
+-- 876193[23].kuna:  resources_used.walltime = 28:09:26  job_state = R  exec_host = n177/2*8  stime = Thu Nov 5 18:33:15 2026  substate = 42  comment = Job run at Thu Nov 05 at 18:33 on (n177:ncpus=8:mem=10485760kb) 
+== topup c
+topup rc=0 Wed Nov 18 13:50:51 AEDT 2026
+== 2026-11-18 13:48:36 AEDT topup c: waves W2 into run3 (p3_settings_r3.json)
+live requests: 1087 CPUs; 878694[] live subjobs: 113
+== 13:48:37 W2 topup c: 739 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_077b4ebe_a", "reservation_cpu_h": 283784.0, "recorded": true, "wave_reserved": 923160.0, "campaign_reserved": 926240.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_c): array 881772[].kunanyi-ohpc (739 x 8 cpus, 10gb, walltime 48:00:00); collector: 881773.kunanyi-ohpc
+    depend = afterany:881772[].kunanyi-ohpc@kunanyi-ohpc
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_077b4ebe_c -W depend=afterany:881772[].kunanyi-oh
+live requests now: 7000 CPUs
+reserve	s1b	W2	s1b_d451ba47_a	327944.000	2026-11-11T16:48:27+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=854 cpus=8 wall=172800
+release	s1b_2bbf9409_a	manual: 876850[] 876851 job_state F (qstat -x, 2026-11-12T10:11:12+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_f97ebdfe_a	3080.000	2026-11-12T10:13:39+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=8 cpus=8 wall=172800
+reserve	s1b	W2	s1b_077b4ebe_a	283784.000	2026-11-18T13:50:37+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=/u/bwbrook/vortex/run1/s1b/run3 jobs=739 cpus=8 wall=172800
+TOPUP_DONE 2026-11-18 13:50:41 AEDT
+## n177 evidence
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi R=/u/bwbrook/vortex/run1/s1b/run3; echo "== pbsnodes n177"; /opt/pbs/bin/pbsnodes n177 2>&1 | grep -E "state|jobs|comment|last_state_change|resources_assigned.ncpus" | head; echo "== slot logs"; ls -la --time-style=+%F_%T $R/submit_W2/logs/w.22.*.log $R/submit_W2/logs/w.23.*.log 2>/dev/null | awk "{print \$6, \$7}"; for f in $R/submit_W2/logs/w.22.0.log $R/submit_W2/logs/w.23.0.log; do echo "-- tail $f"; tail -n 3 $f; done; echo "== claims by those subjobs"; ls $R/claimed | grep -E "@876193\[2[23]\]" | head -20; echo "count: $(ls $R/claimed | grep -cE "@876193\[2[23]\]")"; echo "== newest file written by an execution they own"; for c in $(ls $R/claimed | grep -E "@876193\[2[23]\]" | head -16); do t=${c%@*}; d=$(echo $t | cut -d_ -f3); a=$(echo $t | cut -d_ -f4); ls -la --time-style=+%F_%T $R/sets/$d/sh${a}*.json 2>/dev/null | awk "{print \$6, \$7}"; done | sort | tail -n 5; echo DONE
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== pbsnodes n177
+     state = job-busy
+     jobs = 878694[778].kunanyi-ohpc/0, 878694[778].kunanyi-ohpc/1, 878694[778].kunanyi-ohpc/2, 878694[778].kunanyi-ohpc/3, 878694[778].kunanyi-ohpc/4, 878694[778].kunanyi-ohpc/5, 878694[778].kunanyi-ohpc/6, 878694[778].kunanyi-ohpc/7, 881082.kunanyi-ohpc/8, 881082.kunanyi-ohpc/9, 881082.kunanyi-ohpc/10, 881082.kunanyi-ohpc/11, 876193[22].kunanyi-ohpc/12, 876193[22].kunanyi-ohpc/13, 876193[22].kunanyi-ohpc/14, 876193[22].kunanyi-ohpc/15, 876193[22].kunanyi-ohpc/16, 876193[22].kunanyi-ohpc/17, 876193[22].kunanyi-ohpc/18, 876193[22].kunanyi-ohpc/19, 876193[23].kunanyi-ohpc/20, 876193[23].kunanyi-ohpc/21, 876193[23].kunanyi-ohpc/22, 876193[23].kunanyi-ohpc/23, 876193[23].kunanyi-ohpc/24, 876193[23].kunanyi-ohpc/25, 876193[23].kunanyi-ohpc/26, 876193[23].kunanyi-ohpc/27
+     resources_assigned.ncpus = 28
+     last_state_change_time = Tue Nov 17 15:52:00 2026
+== slot logs
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.0.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.1.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.2.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.3.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.4.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.5.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.6.log
+2026-11-04_16:21:45 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.7.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.0.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.1.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.2.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.3.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.4.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.5.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.6.log
+2026-11-04_16:21:49 /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.7.log
+-- tail /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.22.0.log
+-- tail /u/bwbrook/vortex/run1/s1b/run3/submit_W2/logs/w.23.0.log
+== claims by those subjobs
+W2_9841598_s10772_559678132_606343729@876193[23].kunanyi-ohpc.7r0n34265fbe3a40
+W2_9869400_s11153_215114049_252827194@876193[23].kunanyi-ohpc.1r0nc7b91ea37f22
+W2_9880450_s11252_174366113_209044467@876193[23].kunanyi-ohpc.7r0nc7b91ea37f22
+W2_9880450_s11252_209044467_243722821@876193[23].kunanyi-ohpc.3r0nc7b91ea37f22
+W2_9881783_c00524_278625567_313360019@876193[23].kunanyi-ohpc.1r0n34265fbe3a40
+W2_9881783_c00524_487032279_521766731@876193[23].kunanyi-ohpc.5r0n34265fbe3a40
+W2_9902305_s00524_036565116_048646822@876193[23].kunanyi-ohpc.4r0n34265fbe3a40
+W2_9902305_s00524_229872412_241954118@876193[22].kunanyi-ohpc.7r0ne7d53bc3fbab
+W2_9960070_s11018_115036978_123253905@876193[23].kunanyi-ohpc.2r0n34265fbe3a40
+W2_9960070_s11057_082169270_090386197@876193[23].kunanyi-ohpc.6r0n34265fbe3a40
+W2_9960070_s11069_123253905_131470832@876193[22].kunanyi-ohpc.3r0ne7d53bc3fbab
+W2_9960070_s11096_090386197_098603124@876193[22].kunanyi-ohpc.6r0ne7d53bc3fbab
+W2_9960070_s11105_106820051_115036978@876193[22].kunanyi-ohpc.5r0ne7d53bc3fbab
+W2_9960070_s11108_073952343_082169270@876193[22].kunanyi-ohpc.4r0ne7d53bc3fbab
+W2_9960070_s11108_106820051_115036978@876193[23].kunanyi-ohpc.3r0n34265fbe3a40
+W2_9960070_s11120_016433854_024650781@876193[22].kunanyi-ohpc.0r0ne7d53bc3fbab
+W2_9960070_s11120_024650781_032867708@876193[22].kunanyi-ohpc.2r0ne7d53bc3fbab
+W2_9960070_s11135_057518489_065735416@876193[22].kunanyi-ohpc.1r0ne7d53bc3fbab
+W2_9960070_s11135_123253905_131470832@876193[23].kunanyi-ohpc.0r0n34265fbe3a40
+W2_9961980_s02027_058336796_066670624@876193[23].kunanyi-ohpc.0r0nc7b91ea37f22
+count: 32
+== newest file written by an execution they own
+2026-11-05_18:22:47 /u/bwbrook/vortex/run1/s1b/run3/sets/s11105/sh106820051.json
+2026-11-05_18:22:59 /u/bwbrook/vortex/run1/s1b/run3/sets/s11120/sh016433854.json
+2026-11-06_22:38:30 /u/bwbrook/vortex/run1/s1b/run3/sets/s11153/sh215114049.json
+2026-11-06_22:38:33 /u/bwbrook/vortex/run1/s1b/run3/sets/s11252/sh174366113.json
+2026-11-06_22:40:19 /u/bwbrook/vortex/run1/s1b/run3/sets/s11252/sh209044467.json
+DONE
+## qdel
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi P=/opt/pbs/bin; for j in "876193[22]" "876193[23]"; do $P/qdel "$j"; echo "qdel $j rc=$?"; done; sleep 60; for j in "876193[22]" "876193[23]"; do echo "-- $j: $($P/qstat -x -f "$j" 2>&1 | grep -E "job_state|substate|Exit_status|comment" | tr -s " " | tr "\n" " ")"; done
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+qdel 876193[22] rc=0
+qdel 876193[23] rc=0
+-- 876193[22]:  job_state = F  substate = 91  comment = Job run at Thu Nov 05 at 18:33 on (n177:ncpus=8:mem=10485760kb) a 
+-- 876193[23]:  job_state = F  substate = 91  comment = Job run at Thu Nov 05 at 18:33 on (n177:ncpus=8:mem=10485760kb) a 

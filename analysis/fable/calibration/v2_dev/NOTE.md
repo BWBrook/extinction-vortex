@@ -1463,3 +1463,13 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 - Cleared b4e1eb0 dispatchers installed by digest (topup 7dead4f3, round-3 545c9d37; helper 941e6033).
 - W1 topup c: `879043[]` 8 × 8 (collector 879044), sized to the 19 runnable W1 ranges; live 6,930 CPUs.
   Receipt `p3/w1_r3_W1_b_collection_20261112.txt`.
+
+### Progress check, W2 topup c and phantom subjobs (18 November 2026)
+
+- Terminal markers: 2,728 COMPLETE, 55 CAPPED, 0 FAILED of 6,935 (snapshot, not a collection). W2 hints 7,344 queued;
+  W1 hints 0, 15 W1 claims in flight (W1_c 879043[]: 3 running, 5 expired). Live requests had fallen to 1,087 CPUs.
+- W2 topup c: `881772[]` 739 × 8 (collector 881773); live 7,000 CPUs.
+- 876193[22] and [23] were phantoms: listed R on n177 since 5 Nov 18:33 with walltime frozen at 28:09; their workers'
+  last shard writes were 6 Nov 22:40; n177 changed state on 17 Nov and now runs other jobs (all 28 CPUs assigned)
+  without them. They held 16 CPUs, 32 claims, and blocked collector 876194. Removed with qdel (now F, substate 91);
+  recovery treats their executions as dead through the PBS-finished path. Receipt `p3/r3_check_20261118.txt`.
