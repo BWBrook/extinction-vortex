@@ -244,10 +244,12 @@ def owner_dead(info, qstat=QSTAT, cert=None, pbs=True, deadline=math.inf):
         return False
     _PBS[(qstat, job)] = (time.time(), False)
     try:
-        out = subprocess.run([qstat, "-x", "-f", job], capture_output=True, text=True, timeout=min(60.0, left)).stdout
+        p = subprocess.run([qstat, "-x", "-f", job], capture_output=True, text=True, timeout=min(60.0, left))
     except Exception:
         return False
-    r = any(l.strip() == "job_state = F" for l in out.splitlines()); _PBS[(qstat, job)] = (time.time(), r)
+    if p.returncode != 0:                        # only a successful reply is evidence; a failed one is retried later
+        return False
+    r = any(l.strip() == "job_state = F" for l in p.stdout.splitlines()); _PBS[(qstat, job)] = (time.time(), r)
     return r
 
 

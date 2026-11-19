@@ -1,0 +1,6 @@
+# owner_dead() fix (runner 0da2bb9b, candidate; not staged or installed). 19 Nov 2026, wsl, Python 3.12.13.
+## Codex's check_death_query.py cases plus failed-F-then-valid-F, against the fixed runner
+# tuples: (first classified dead, after negative-cache interval, qstat calls); cases: (rc0 R->F), (rc2 empty->F), (rc0 F), (rc2 F->R), (rc2 F->F)
+## bound 92674ee8 gave for the same first four: [(False, True, 2), (False, True, 2), (True, True, 1), (True, True, 1)]
+## native suite (p3_stage1b.py test)
+43 / 43 checks true; all_ok True
