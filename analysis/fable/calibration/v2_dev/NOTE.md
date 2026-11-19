@@ -1469,9 +1469,9 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 - Terminal markers: 2,728 COMPLETE, 55 CAPPED, 0 FAILED of 6,935 (snapshot, not a collection). W2 hints 7,344 queued;
   W1 hints 0, 15 W1 claims in flight (W1_c 879043[]: 3 running, 5 expired). Live requests had fallen to 1,087 CPUs.
 - W2 topup c: `881772[]` 739 × 8 (collector 881773); live 7,000 CPUs.
-- 876193[22] and [23] were phantoms: listed R on n177 since 5 Nov 18:33 with walltime frozen at 28:09; their workers'
-  last shard writes were 6 Nov 22:40; n177 changed state on 17 Nov and now runs other jobs (all 28 CPUs assigned)
-  without them. They held 16 CPUs, 32 claims, and blocked collector 876194. Removed with qdel (now F, substate 91);
+- 876193[22] and [23]: listed R on n177 since 5 Nov 18:33 with walltime frozen at 28:09; the newest shard checkpoints
+  of their executions date from 6 Nov 22:40. **Corrected 19 Nov:** n177's job list did include both subjobs (16 of
+  its 28 slots); I misread a truncated line, so neither a node reset nor the death of their processes is established. They held 16 CPUs, 32 claims, and blocked collector 876194. Removed with qdel (now F, substate 91);
   recovery treats their executions as dead through the PBS-finished path. Receipt `p3/r3_check_20261118.txt`.
 
 ### W2 round-3 first collection (19 November 2026)
