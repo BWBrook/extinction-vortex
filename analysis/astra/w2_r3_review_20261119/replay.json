@@ -1,0 +1,16 @@
+{
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "settings": 64,
+  "proposals_per_batch": 20000,
+  "sampler_sha256": "ebf752ce112452a4a72354aa8d1f0cc20307b1519c23381a4706f7a71e31d455",
+  "batches": 256,
+  "nonempty_batches": 192,
+  "archive_records": 192,
+  "selected_setting_batch_keys_sha256": "586ef61ff11c4b4d8720eaf470818440da861a2563d012260a280d75cf4803ac",
+  "batches_differing_in_identities_or_bytes": 0,
+  "mismatches": []
+}

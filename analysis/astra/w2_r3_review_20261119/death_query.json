@@ -1,0 +1,38 @@
+{
+  "bound_runner_sha256": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765",
+  "cases": [
+    {
+      "initial_rc": 0,
+      "initial_state": "R",
+      "later_state": "F",
+      "first_classified_dead": false,
+      "after_negative_cache_interval_classified_dead": true,
+      "queries": 2
+    },
+    {
+      "initial_rc": 2,
+      "initial_state": "",
+      "later_state": "F",
+      "first_classified_dead": false,
+      "after_negative_cache_interval_classified_dead": true,
+      "queries": 2
+    },
+    {
+      "initial_rc": 0,
+      "initial_state": "F",
+      "later_state": "R",
+      "first_classified_dead": true,
+      "after_negative_cache_interval_classified_dead": true,
+      "queries": 1
+    },
+    {
+      "initial_rc": 2,
+      "initial_state": "F",
+      "later_state": "R",
+      "first_classified_dead": true,
+      "after_negative_cache_interval_classified_dead": true,
+      "queries": 1
+    }
+  ],
+  "failed_matching_reply_accepted_and_cached": true
+}

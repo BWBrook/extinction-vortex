@@ -1,0 +1,123 @@
+{
+  "collector": "876194",
+  "hashes": {
+    "archive": "a6959a80cab77ef6fd7667f348cf611f3cb329e9fc4063f990169d648e85fffa",
+    "summary": "fc376cd2d741ed4fdf6283607a198f6f8158ceecd8bcd7e8b3906e6ed403acbb",
+    "round2_summary": "beabe2d1678fe45b5c74fbd42db6153adaa2cd72ddfc3b25abec1177377f703b",
+    "metric": "2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0",
+    "settings": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd",
+    "runner": "92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765"
+  },
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "archive_bytes": 479675734,
+  "regular_unique_members": 2730,
+  "embedded_summary_byte_identical": true,
+  "library_hashes_and_counts_verified": 2728,
+  "records_checked_for_schema_order_extinction_parameter_support_and_calibration": 5456000,
+  "verified_boundary_flags_true": 32077,
+  "complete_libraries_with_bound_pilot": 177,
+  "pilot_prefix_records_verified_byte_for_byte_by_bound_digest": 14244,
+  "summary": {
+    "status": {
+      "COMPLETE": 2728,
+      "CAPPED": 54,
+      "FAILED": 0,
+      "incomplete": 4135
+    },
+    "n_errors": 0,
+    "executions": 33914,
+    "dead_executions": 1166,
+    "open_executions": 2202,
+    "queue_left": 5631,
+    "claims_left": 2648,
+    "useful_cpu_h": 509430.4130211342,
+    "discarded_cpu_h": 114331.91779507622
+  },
+  "by_status": {
+    "COMPLETE": {
+      "settings": 2728,
+      "libraries": {
+        "primary": 2703,
+        "check": 25
+      },
+      "settings_with_a_dead_execution": 64,
+      "settings_with_an_open_execution": 2,
+      "executions": 18179,
+      "dead_executions": 329,
+      "open_executions": 2
+    },
+    "CAPPED": {
+      "settings": 54,
+      "libraries": {
+        "primary": 54
+      },
+      "settings_with_a_dead_execution": 44,
+      "settings_with_an_open_execution": 0,
+      "executions": 4178,
+      "dead_executions": 211,
+      "open_executions": 0
+    },
+    "incomplete": {
+      "settings": 4135,
+      "libraries": {
+        "primary": 4090,
+        "check": 45
+      },
+      "settings_with_a_dead_execution": 108,
+      "settings_with_an_open_execution": 169,
+      "executions": 11557,
+      "dead_executions": 626,
+      "open_executions": 2200
+    }
+  },
+  "dead_executions_per_setting_histogram": {
+    "0": 6701,
+    "1": 35,
+    "2": 18,
+    "3": 27,
+    "4": 23,
+    "5": 24,
+    "6": 22,
+    "7": 14,
+    "8": 13,
+    "9": 11,
+    "10": 8,
+    "11": 3,
+    "12": 5,
+    "13": 4,
+    "14": 1,
+    "15": 4,
+    "17": 3,
+    "19": 1
+  },
+  "settings_with_any_execution": 4411,
+  "incomplete_prefix": {
+    "zero_hits": 2450,
+    "one_to_499": 562,
+    "500_to_1499": 722,
+    "1500_to_1999": 401,
+    "median": 0,
+    "zero_hits_no_pilot_no_execution": 2409,
+    "zero_hits_with_open_execution": 7,
+    "below_500_with_open_execution": 129,
+    "below_500_no_execution": 2468,
+    "all_incomplete_no_execution": 2506
+  },
+  "retained_round2_complete": 355,
+  "combined_completed_primary_populations_per_outer": {
+    "0": 102,
+    "1": 100,
+    "2": 84,
+    "3": 79,
+    "4": 65,
+    "5": 106,
+    "6": 128,
+    "7": 96,
+    "8": 39,
+    "9": 1
+  },
+  "combined_complete_nine_population_primary_outers": [
+    "null_low_s/1"
+  ]
+}

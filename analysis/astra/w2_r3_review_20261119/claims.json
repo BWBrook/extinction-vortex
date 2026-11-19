@@ -1,0 +1,71 @@
+{
+  "slots_before_deletion": {
+    "876193[22]": 8,
+    "876193[23]": 8,
+    "other": 12
+  },
+  "both_post_deletion_states_F_91": true,
+  "total_claim_hints": 32,
+  "shown_hints": 20,
+  "by_setting": {
+    "c00524": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 0
+    },
+    "s00524": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 0
+    },
+    "s02027": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 0
+    },
+    "s10772": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11018": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11057": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11069": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 3
+    },
+    "s11096": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11105": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 5
+    },
+    "s11108": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11120": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 3
+    },
+    "s11135": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 0
+    },
+    "s11153": {
+      "shown_hints": 1,
+      "all_snapshot_dead_ends": 1
+    },
+    "s11252": {
+      "shown_hints": 2,
+      "all_snapshot_dead_ends": 0
+    }
+  },
+  "shown_hints_in_settings_with_zero_snapshot_dead_ends": 15,
+  "maximum_distinct_snapshot_dead_ends_matching_shown_hints": 5,
+  "maximum_of_32_claim_hints_that_can_match_snapshot_dead_ends": 17
+}

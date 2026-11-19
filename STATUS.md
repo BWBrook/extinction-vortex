@@ -1,12 +1,30 @@
 # Current state
 
-Updated: 11 November 2026, 17:05 AEDT (Australia/Hobart), by Astra (board participant Codex).
+Updated: 19 November 2026, 13:06 AEDT (Australia/Hobart), by Codex.
 
 **Stage:** topic selected; first tranche authorised. Barry approved the vortex
 study on the basis of the final brief and protocol draft 0.3, with the accepted
 repairs. His exact words are in discussion 70, message 1131.
 - The production design is not yet frozen.
 - No empirical p-values before the validation freeze.
+
+**W2 first round-3 collection, reviewed 19 November.**
+Collector `876194` yielded 2,728 COMPLETE, 54 CAPPED and 4,135 incomplete
+settings, with zero failures or collection errors. Codex verified the archive
+on deep, including all 5,456,000 retained records and their calibration
+membership. Combining earlier and new W2 libraries gives one complete
+nine-population primary outer dataset out of 800 (`null_low_s/1`).
+Of 3,012 incomplete settings below 500 hits, 2,468 had yet to record any
+round-3 execution. [Full review and evidence](notes/astra_w2_r3_review_20261119.md)
+(board 3597–3598, E81).
+
+The 1,166 dead endings span 216 settings. Four selected batches from each
+of the 64 affected COMPLETE settings reproduced exactly on deep. The bound
+runner can accept and cache state F from a failed PBS query. Its production
+frequency requires worker and scheduler evidence. **Claude is next** to
+preserve those records, reconcile recoveries and check for overlapping
+writers. Current topups can continue. A further dispatch using this path
+needs the query-status repair and an explicit plan for the runner binding.
 
 **Compute (Barry, 8 October):** the laptop pilot cap is lifted. Run anything
 serious on `deep-server` in tmux.
@@ -36,8 +54,8 @@ settings. The [closure review](notes/astra_r3_package_closure_20261029.md)
 (board 2550; E76) independently verifies archive `c760f0c6`, summary `beabe2d1`,
 all 355 library hashes and 710,000 record counts. All 183 previously audited
 libraries are unchanged; all 344,000 records in 172 new libraries pass structural
-checks. Exactly 6,935 settings need recovery: 18 W1 and 6,917 W2. W2 has no
-complete nine-population primary outer dataset out of 800; these are availability
+checks. Exactly 6,935 settings needed recovery: 18 W1 and 6,917 W2. At that
+collection W2 had no complete nine-population primary outer dataset out of 800; these are availability
 results, with no fits, validation result or empirical inference.
 
 **Capacity-helper fix and dispatcher closure (11 November).**
@@ -54,7 +72,7 @@ repair closes that regression. Independent review and parent replay pass the
 dispatcher `0c7b6962` kept), topup b resumed from its journal, collector `878728`
 (afterany:878694[], mail to Barry); live 6,986 CPUs. W1 `876185[]` split from PBS
 history: 15 subjobs ~47 h, 48 under 1 h (`p3/w2_r3_collector_recovery_20261111.txt`).
-The repaired dispatchers (b4e1eb0) are cleared but not yet installed on kunanyi.
+Claude installed the repaired dispatchers (b4e1eb0) by digest on 12 November.
 Previously: W2 topup array `878694[]` remained without its collector. **Claude was next:** install the cleared helper by digest, preserve the
 existing journal/size/reservation and add the collector at the next authenticated
 access. Keeping the original installed dispatcher is sufficient for that resume;
@@ -1504,17 +1522,16 @@ board 1755; exposure E56).
      summary 734263e7); cleared b4e1eb0 dispatchers installed by digest; W1
      topup c `879043[]` 8 × 8 (collector 879044); live 6,930 CPUs.
    - **18 Nov:** 2,728 COMPLETE + 55 CAPPED (snapshot). W2 topup c `881772[]`
-     739 × 8 (collector 881773); live 7,000 CPUs. Phantom subjobs 876193[22]/[23]
-     (dead since 6 Nov on n177, node since reset) removed with qdel, releasing
-     collector 876194 and 32 stranded claims.
-   - **19 Nov:** W2 first collection (876194): ok, 2,728 COMPLETE, 54 CAPPED,
-     4,135 incomplete, 0 errors; archive a6959a80 / summary fc376cd2 verified
-     on deep (2,728 libraries match). 1,166 dead executions to examine.
-   - **Next:** collect 878728 (W2_b), 879044 (W1_c), 881773 (W2_c); topups as
-     capacity frees; run2/run3 determinism.
-   - **Next:** collect both waves when the collectors land; report and close
-     certified-dead open executions; compare run2 with run3 for determinism;
-     W2 topups as capacity frees.
+     739 × 8 (collector 881773); live 7,000 CPUs. Subjobs 876193[22]/[23]
+     had stale sampled checkpoints and 32 claim hints. PBS still assigned
+     them 16 slots. Deletion moved both to F and released collector 876194.
+     Their physical exit times and the reported node reset remain unverified.
+   - **19 Nov:** Codex accepted the first W2 archive as a snapshot
+     (a6959a80 / fc376cd2). At least 15 of the 32 earlier hints map to
+     settings with zero dead executions here. See the review above.
+   - **Next:** Claude to preserve PBS/certificate/slot history and investigate
+     the 1,166 endings, collect 878728 (W2_b), 879044 (W1_c) and 881773 (W2_c),
+     verify final open attempts and run the shared-batch run2/run3 comparison.
 1a. **(Done by item 1) Round-3 package cleared; Claude next for dispatch** (board 2875; E78).
    - [Final review](notes/astra_r3_final_closure_20261104.md): runner `92674ee8`,
      stage `9b2786d6`, settings `fa772829`; 43 native fixtures and nine independent
@@ -1606,10 +1623,10 @@ and prospective validation. A failed gate is not evidence of absent feedback.
 
 - Project: `project` (active view).
 - Discussion: 70; launch message: 826.
-- Last full retrieval `next_after`: **3238**; exhausted `through`: **3238**.
-- Explicit acknowledgement: through actual message **3238** in discussion 70.
-- Latest own review: **3239** (helper and b4e1eb0 dispatcher repair cleared; Claude next for missing collector).
-- Next retrieval: omit `through` to capture new messages, and use `after=3238`.
+- Last full retrieval `next_after`: **3598**; exhausted `through`: **3598**.
+- Explicit acknowledgement: through actual message **3598** in discussion 70.
+- Latest own review: **3598** (W2 snapshot accepted, Claude next for recovery evidence).
+- Next retrieval: omit `through` to capture new messages, and use `after=3598`.
 
 ## Decision Inbox checkpoint
 
