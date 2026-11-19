@@ -1473,3 +1473,12 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   last shard writes were 6 Nov 22:40; n177 changed state on 17 Nov and now runs other jobs (all 28 CPUs assigned)
   without them. They held 16 CPUs, 32 claims, and blocked collector 876194. Removed with qdel (now F, substate 91);
   recovery treats their executions as dead through the PBS-finished path. Receipt `p3/r3_check_20261118.txt`.
+
+### W2 round-3 first collection (19 November 2026)
+
+- Collector 876194 (released by the 18 Nov qdel of the phantom subjobs): collection ok, 2,728 COMPLETE (2,703 primary,
+  25 check), 54 CAPPED, 0 FAILED, 4,135 incomplete, 0 errors; 33,914 executions, 1,166 dead, 2,202 open (live
+  topups). Archive a6959a80 (457 MB), summary fc376cd2; pulled to wsl and verified on deep: 2,730 unique members,
+  2,728 libraries each matching its SHA with 2,000 records, embedded summary identical. Recorded useful 509,430 and
+  outside-prefix 114,332 CPU-h. Of the incomplete settings, 401 hold ≥1,500 prefix hits and 3,012 fewer than 500.
+  Receipt `p3/w2_r3_collection_20261119.txt`; summary kept on deep (`v2_dev/p3/w2_r3a`).

@@ -1507,8 +1507,11 @@ board 1755; exposure E56).
      739 × 8 (collector 881773); live 7,000 CPUs. Phantom subjobs 876193[22]/[23]
      (dead since 6 Nov on n177, node since reset) removed with qdel, releasing
      collector 876194 and 32 stranded claims.
-   - **Next:** collect as collectors land (876194 W2, 878728 W2_b, 879044 W1_c,
-     881773 W2_c); further topups as capacity frees; run2/run3 determinism.
+   - **19 Nov:** W2 first collection (876194): ok, 2,728 COMPLETE, 54 CAPPED,
+     4,135 incomplete, 0 errors; archive a6959a80 / summary fc376cd2 verified
+     on deep (2,728 libraries match). 1,166 dead executions to examine.
+   - **Next:** collect 878728 (W2_b), 879044 (W1_c), 881773 (W2_c); topups as
+     capacity frees; run2/run3 determinism.
    - **Next:** collect both waves when the collectors land; report and close
      certified-dead open executions; compare run2 with run3 for determinism;
      W2 topups as capacity frees.

@@ -1,0 +1,34 @@
+# W2 round-3 first collection (collector 876194, F, Exit 0, 18 Nov 13:52-15:43 AEDT): pulled to wsl 19 Nov, verified on deep
+spawn ssh -o ControlPath=/home/bwbrook/.ssh/cm-tpac-kunanyi -o ConnectTimeout=45 -o ConnectionAttempts=1 kunanyi R=/u/bwbrook/vortex/run1/s1b/run3; P=/opt/pbs/bin; echo "== now $(date)"; echo "-- 876194: $($P/qstat -x -f 876194 | grep -E "job_state|stime|mtime|Exit_status" | tr -s " " | tr "\n" " ")"; ls -la $R | grep -E "W2"; cat $R/collect_W2.log; sha256sum $R/collect_W2.json $R/W2.tar.gz; cat $R/W2.tar.gz.sha256
+bwbrook@jumpbox.tpac.org.au's password: 
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+bwbrook@kunanyi's password: 
+== now Thu Nov 19 12:49:27 AEDT 2026
+-- 876194:  job_state = F  mtime = Wed Nov 18 15:43:48 2026  stime = Wed Nov 18 13:52:08 2026  Exit_status = 0 
+-rw-r--r--.    1 bwbrook hpcadmin   479675734 Nov 18 15:43 W2.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          76 Nov 18 15:43 W2.tar.gz.sha256
+-rw-------.    1 bwbrook hpcadmin     2539431 Nov 18 15:39 collect_W2.json
+-rw-r--r--.    1 bwbrook hpcadmin         148 Nov 18 15:39 collect_W2.log
+-rw-------.    1 bwbrook hpcadmin       46407 Nov 18 15:39 pack_W2.txt
+-rw-r--r--.    1 bwbrook hpcadmin           4 Nov  4 12:12 r3_W2.jobs
+drwxr-sr-x.    3 bwbrook hpcadmin    42527667 Nov  4 12:32 submit_W2
+drwxr-sr-x.    3 bwbrook hpcadmin      895856 Nov 11 17:12 submit_W2_b
+drwxr-sr-x.    3 bwbrook hpcadmin      255834 Nov 18 13:50 submit_W2_c
+-rw-r--r--.    1 bwbrook hpcadmin           4 Nov 11 16:46 topup_b_W2.jobs
+-rw-r--r--.    1 bwbrook hpcadmin           4 Nov 18 13:48 topup_c_W2.jobs
+collection_ok True W2 {'COMPLETE': 2728, 'CAPPED': 54, 'FAILED': 0, 'incomplete': 4135} useful 509430.4 discarded 114331.9 incomplete 4135 errors 0
+fc376cd2d741ed4fdf6283607a198f6f8158ceecd8bcd7e8b3906e6ed403acbb  /u/bwbrook/vortex/run1/s1b/run3/collect_W2.json
+a6959a80cab77ef6fd7667f348cf611f3cb329e9fc4063f990169d648e85fffa  /u/bwbrook/vortex/run1/s1b/run3/W2.tar.gz
+a6959a80cab77ef6fd7667f348cf611f3cb329e9fc4063f990169d648e85fffa  W2.tar.gz
+## wsl copies
+fc376cd2d741ed4fdf6283607a198f6f8158ceecd8bcd7e8b3906e6ed403acbb  collect_W2.json
+a6959a80cab77ef6fd7667f348cf611f3cb329e9fc4063f990169d648e85fffa  W2.tar.gz
+## deep verification (deep:/data/fable/vortex/v2_dev/p3/w2_r3a; w1_r2b_verify.py adapted to W2)
+a6959a80cab77ef6fd7667f348cf611f3cb329e9fc4063f990169d648e85fffa  W2.tar.gz
+fc376cd2d741ed4fdf6283607a198f6f8158ceecd8bcd7e8b3906e6ed403acbb  collect_W2.json
+{"members": 2730, "unique": 2730, "libraries": 2728, "expected": 2728, "bad": [], "embedded_summary_identical": true, "status": {"COMPLETE": 2728, "CAPPED": 54, "FAILED": 0, "incomplete": 4135}, "errors": [], "binding": {"settings_sha256": "fa772829", "metric_sha256": "2dc57d9f", "runner_sha256": "92674ee8"}}
+## summary accounting
+{'collection_ok': True, 'wave': 'W2', 'binding': {'settings_sha256': 'fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd', 'metric_sha256': '2dc57d9f1b27da08b193d2fbd9b94ff24f721f45052483a22d6d35b779a85ff0', 'runner_sha256': '92674ee8aa685b2a20bf5a689a3cbba836b195b8657ba8f79c5da161f315b765'}, 'status': {'COMPLETE': 2728, 'CAPPED': 54, 'FAILED': 0, 'incomplete': 4135}, 'n_errors': 0, 'useful_cpu_h': 509430.4130211342, 'discarded_cpu_h': 114331.91779507622, 'executions': 33914, 'dead_executions': 1166, 'open_executions': 2202, 'queue_left': 5631, 'claims_left': 2648, 'tag': 'W2'}
+Collected while 878694[], 879043[] and 881772[] were running: open executions and queue/claim hints belong to live workers. The summary (2.5 MB) is kept on deep, not in git.
