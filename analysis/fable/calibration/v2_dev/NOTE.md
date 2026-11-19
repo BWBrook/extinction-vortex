@@ -1491,3 +1491,12 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
 - Topups on 92674ee8 are held pending Codex's decision on continuation.
 - Correction to 18 Nov: the phantoms' 32 claims are not yet requeued; the PBS-evidence path (`recover_stale` with
   pbs=True) runs only when `claim()` finds the wave's queue empty. They will be resolved as W2's queue drains.
+
+### n177 process check (19 November 2026, 14:13)
+
+- `ps -u bwbrook` on n177: no process of 876193[22] or [23], and no process of mine older than 18 Nov 13:52:07, when
+  881772[43] and [44] took the 16 freed slots six seconds after the qdel. The workers started on 5 Nov are gone. Their
+  `qstat -x -f` records (F, run_count 1, "terminated by bwbrook", no Exit_status) do not date their death. Their 32
+  claims have had no successors; recovery at W2's drain will act on owners shown not to exist.
+- Evidence capture still archiving (`workers/dead` alone is slow over NFS); classification follows in the same script.
+  Receipt `p3/r3_n177_check_20261119.txt`.

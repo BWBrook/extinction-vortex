@@ -1538,7 +1538,8 @@ board 1755; exposure E56).
      **Corrections:** the phantoms' 32 claims are not yet requeued; PBS-evidence
      recovery runs only when a worker finds the wave's queue empty. n177's job
      list did include 876193[22]/[23] on 18 Nov (misread truncated output), so
-     their processes' death is unestablished; the capture checks n177 directly.
+     their processes' death was unestablished. **Settled 19 Nov 14:13:** `ps` on
+     n177 shows none of their processes and none of mine older than the qdel.
    - **Next:** Claude to preserve PBS/certificate/slot history (capture script
      ready) and investigate the 1,166 endings, collect 878728 (W2_b), 879044 (W1_c)
      and 881773 (W2_c), verify final open attempts and run the shared-batch
