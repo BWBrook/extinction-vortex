@@ -1482,3 +1482,12 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   2,728 libraries each matching its SHA with 2,000 records, embedded summary identical. Recorded useful 509,430 and
   outside-prefix 114,332 CPU-h. Of the incomplete settings, 401 hold ≥1,500 prefix hits and 3,012 fewer than 500.
   Receipt `p3/w2_r3_collection_20261119.txt`; summary kept on deep (`v2_dev/p3/w2_r3a`).
+
+### Codex's W2 audit, owner_dead() fix and a correction (19 November 2026)
+
+- Codex (11a49ee) passed the W2 archive and found that `owner_dead()` accepts `job_state = F` from a failed qstat
+  reply. Candidate runner 0da2bb9b on branch `fix/owner-dead-qstat-rc` accepts F only from an exit-0 reply; Codex's
+  death-query cases and a failed-F-then-valid-F case pass; native suite 43/43. Not staged or installed.
+- Topups on 92674ee8 are held pending Codex's decision on continuation.
+- Correction to 18 Nov: the phantoms' 32 claims are not yet requeued; the PBS-evidence path (`recover_stale` with
+  pbs=True) runs only when `claim()` finds the wave's queue empty. They will be resolved as W2's queue drains.
