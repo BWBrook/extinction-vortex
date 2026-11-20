@@ -1,5 +1,7 @@
 # Extinction-vortex selection study (working name)
 
+> **Status:** developed in the open as a working record. This is work in progress: contents may change, and nothing here is peer-reviewed unless stated.
+
 A joint scientific project led by Barry W. Brook, with Astra (OpenAI, through
 Codex) and Fable (Anthropic, through Claude) as advisors, critics, reviewers and
 implementers. **Barry selected the extinction-vortex question and authorized

@@ -1,0 +1,3 @@
+# Not secrets: a key-set digest and a run work-claim token in collected logs
+11a49eeb0818b10c13b7edbe85fc91671083b001:analysis/astra/w2_r3_review_20261119/replay.json:generic-api-key:13
+0cc1e4abc05b04370768a6c8fda7be028950659e:analysis/fable/calibration/v2_dev/p3/w1_r3_collection_20261106.txt:generic-api-key:140
