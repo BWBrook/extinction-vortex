@@ -1540,10 +1540,14 @@ board 1755; exposure E56).
      list did include 876193[22]/[23] on 18 Nov (misread truncated output), so
      their processes' death was unestablished. **Settled 19 Nov 14:13:** `ps` on
      n177 shows none of their processes and none of mine older than the qdel.
-   - **Next:** Claude to preserve PBS/certificate/slot history (capture script
-     ready) and investigate the 1,166 endings, collect 878728 (W2_b), 879044 (W1_c)
-     and 881773 (W2_c), verify final open attempts and run the shared-batch
-     run2/run3 comparison; Codex to decide the continuation path for the fix.
+   - **25 Nov:** evidence capture: all 1,167 dead endings certified, 0 unexplained,
+     0 superseded. **Decision (Claude with Barry; Codex thread closed):** finish
+     round 3 on 92674ee8; fix 0da2bb9b is for any later round (NOTE 25 Nov).
+     6,649 COMPLETE + 78 CAPPED markers. W1_c: 2 more COMPLETE, 15 incomplete
+     (serial hole ranges). Tail topups d: W1 `884120[]` 4 × 8 (884121), W2
+     `884122[]` 100 × 8 (884123); live 937 CPUs.
+   - **Next:** collect 878728, 881773, 884121, 884123; further W1 cycles for the
+     hole ranges; final collection; run2/run3 shared-batch comparison (PBS job).
 1a. **(Done by item 1) Round-3 package cleared; Claude next for dispatch** (board 2875; E78).
    - [Final review](notes/astra_r3_final_closure_20261104.md): runner `92674ee8`,
      stage `9b2786d6`, settings `fa772829`; 43 native fixtures and nine independent

@@ -1500,3 +1500,23 @@ Details are in design §9h; Codex's review is at board 2425–2427 (`notes/astra
   claims have had no successors; recovery at W2's drain will act on owners shown not to exist.
 - Evidence capture still archiving (`workers/dead` alone is slow over NFS); classification follows in the same script.
   Receipt `p3/r3_n177_check_20261119.txt`.
+
+### Evidence result, continuation decision and tail topups (25 November 2026)
+
+- Evidence capture (19 Nov, `s1b/evidence_20261119/` on kunanyi, 345 MB): 172,672 certificates, 72,109 `x/` records,
+  PBS history for six arrays. All 1,167 dead endings were closed at or after their exact owner's certificate
+  (skew 120 s); 0 PBS-F-only, 0 unexplained; no worker summary reports `superseded > 0`
+  (`p3/r3_dead_classification_20261119.json`).
+- **Continuation decision (Claude, with Barry; Codex's thread closed 25 Nov).** Round 3 finishes on bound runner
+  92674ee8; the `owner_dead()` fix (branch `fix/owner-dead-qstat-rc`, runner 0da2bb9b) is for any later round. Reasons:
+  every recorded dead ending is certified; the flaw needs a single-job `qstat -x -f` that exits non-zero yet prints
+  `job_state = F`, which neither agent could name; a second writer would surface fail-closed in collection (journal and
+  ordering checks) and in the run2/run3 comparison, costing reruns, not wrong libraries; the alternatives either forfeit
+  progress or need a new binding rule. The 32 claims of 876193[22]/[23] belong to processes shown gone (19 Nov).
+- State 25 Nov: 6,649 COMPLETE + 78 CAPPED markers of 6,935; W2 hints 359, claims 171; W1 hints 15. Collectors 878728
+  and 881773 wait on stragglers (878694[5]; 10 subjobs of 881772[]).
+- W1_c (879044, 18 Nov): 2 COMPLETE (s08302, s08677), 1 CAPPED, 15 incomplete, 0 errors (summary d92d3892).
+  Most incomplete W1 settings add one ~47.5 CPU-h execution per topup outside the prefix: one large hole range runs
+  serially, censored at walltime and resumed, so W1's tail needs several more 48 h cycles.
+- Tail topups d: W1 `884120[]` 4 × 8 (collector 884121); W2 `884122[]` 100 × 8 (collector 884123; CAP_CPUS=940 to
+  size to the tail); live 937 CPUs. Receipt `p3/r3_status_20261125.txt`.

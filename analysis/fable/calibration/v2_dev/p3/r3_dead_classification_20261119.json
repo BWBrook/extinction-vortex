@@ -1,0 +1,11 @@
+{
+ "run": "$VB/s1b/run3",
+ "skew_secs": 120.0,
+ "pbs_finished_subjobs": 946,
+ "counts": {
+  "certified": 1167,
+  "pbs_f": 0,
+  "unexplained": 0
+ },
+ "non_certified": []
+}

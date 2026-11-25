@@ -1,0 +1,90 @@
+# Round-3 status, evidence-capture result, W1_c collection and tail topups d (kunanyi, 25 Nov 2026). Internal addresses redacted.
+## probe
+== now Wed Nov 25 16:26:42 AEDT 2026
+-- 878728:  job_state = H  mtime = Wed Nov 11 17:12:56 2026 
+-- 879044:  job_state = F  mtime = Wed Nov 18 15:36:58 2026  stime = Wed Nov 18 15:35:34 2026  comment = Job run at Wed Nov 18 at 15:35 on (<node>:ncpus=1:mem=16777216kb) a  Exit_status = 0 
+-- 881773:  job_state = H  mtime = Wed Nov 18 13:50:41 2026 
+-- 878694[]:  job_state = B  stime = Wed Nov 11 16:48:34 2026  array_state_count = Queued:0 Running:1 Exiting:0 Expired:853  
+-- 879043[]:  job_state = F  stime = Mon Nov 16 16:04:56 2026  array_state_count = Queued:0 Running:0 Exiting:0 Expired:0  
+-- 881772[]:  job_state = B  stime = Wed Nov 18 13:50:39 2026  array_state_count = Queued:0 Running:10 Exiting:0 Expired:729  
+-- non-X subjobs:
+870374.kunanyi- bwbrook  normal   superseded    --    1   2    8gb 48:00 H   -- 
+878694[0].kunan bwbrook  normal   s1b_d451ba   6925   1   8   10gb 48:00 X 47:30
+878694[1].kunan bwbrook  normal   s1b_d451ba  22021   1   8   10gb 48:00 X 47:30
+878694[2].kunan bwbrook  normal   s1b_d451ba  19956   1   8   10gb 48:00 X 47:30
+878694[3].kunan bwbrook  normal   s1b_d451ba  21997   1   8   10gb 48:00 X 47:30
+878694[4].kunan bwbrook  normal   s1b_d451ba  24324   1   8   10gb 48:00 X 47:30
+878694[5].kunan bwbrook  normal   s1b_d451ba   4420   1   8   10gb 48:00 R 17:29
+878694[6].kunan bwbrook  normal   s1b_d451ba  12824   1   8   10gb 48:00 X 47:30
+878694[7].kunan bwbrook  normal   s1b_d451ba  32561   1   8   10gb 48:00 X 47:30
+live: 103 CPUs
+hints W1 15 W2 359; claims W1 0 W2 171
+terminal: 6649 COMPLETE 78 CAPPED 0 FAILED
+-rw-r--r--.    1 bwbrook hpcadmin        1738 2026-11-06_14:05:36 W1.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          76 2026-11-06_14:05:36 W1.tar.gz.sha256
+-rw-r--r--.    1 bwbrook hpcadmin        1868 2026-11-12_03:36:10 W1_b.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          78 2026-11-12_03:36:11 W1_b.tar.gz.sha256
+-rw-r--r--.    1 bwbrook hpcadmin      329274 2026-11-18_15:36:57 W1_c.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          78 2026-11-18_15:36:57 W1_c.tar.gz.sha256
+-rw-r--r--.    1 bwbrook hpcadmin   479675734 2026-11-18_15:43:29 W2.tar.gz
+-rw-r--r--.    1 bwbrook hpcadmin          76 2026-11-18_15:43:48 W2.tar.gz.sha256
+-rw-------.    1 bwbrook hpcadmin        6743 2026-11-06_14:05:35 collect_W1.json
+-rw-r--r--.    1 bwbrook hpcadmin         136 2026-11-06_14:05:35 collect_W1.log
+-rw-------.    1 bwbrook hpcadmin        6918 2026-11-12_03:36:10 collect_W1_b.json
+-rw-r--r--.    1 bwbrook hpcadmin         136 2026-11-12_03:36:10 collect_W1_b.log
+-rw-------.    1 bwbrook hpcadmin        7091 2026-11-18_15:36:57 collect_W1_c.json
+-rw-r--r--.    1 bwbrook hpcadmin         137 2026-11-18_15:36:57 collect_W1_c.log
+-rw-------.    1 bwbrook hpcadmin     2539431 2026-11-18_15:39:07 collect_W2.json
+-rw-r--r--.    1 bwbrook hpcadmin         148 2026-11-18_15:39:07 collect_W2.log
+== $VB/s1b/run3/collect_W1.log: collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 2756.0 discarded 2896.4 incomplete 17 errors 0
+== $VB/s1b/run3/collect_W1_b.log: collection_ok True W1 {'COMPLETE': 0, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 17} useful 15707.3 discarded 989.0 incomplete 17 errors 0
+== $VB/s1b/run3/collect_W1_c.log: collection_ok True W1 {'COMPLETE': 2, 'CAPPED': 1, 'FAILED': 0, 'incomplete': 15} useful 16167.8 discarded 1294.8 incomplete 15 errors 0
+== $VB/s1b/run3/collect_W2.log: collection_ok True W2 {'COMPLETE': 2728, 'CAPPED': 54, 'FAILED': 0, 'incomplete': 4135} useful 509430.4 discarded 114331.9 incomplete 4135 errors 0
+== capture log
+== 3. worker records (rc 1 = files changed under live workers)
+dead certs tar rc=0 n=172672
+summaries tar rc=0
+tar: workers/held: file changed as we read it
+held tar rc=1
+slot logs tar rc=0
+x records tar rc=0 n=72109
+claims W2 3312 W1 0; hints W2 3026 W1 15
+superseded writers reported by worker summaries: 0
+live: 6004 CPUs
+terminal: 2825 COMPLETE 56 CAPPED 0 FAILED
+== 4. dead-ending classification (skew 120 s)
+{"counts": {"certified": 1167, "pbs_f": 0, "unexplained": 0}, "pbs_finished_subjobs": 946, "errors": 0}
+classify rc=0
+unexplained 0
+345M	$VB/s1b/evidence_20261119
+== end 2026-11-19 16:18:39 AEDT
+CAPTURE_DONE
+PROBE_DONE
+## topups d
+topup rc=0 Wed Nov 25 16:35:54 AEDT 2026
+== 2026-11-25 16:29:24 AEDT topup d: waves W1 W2 into run3 (p3_settings_r3.json)
+== release s1b_f97ebdfe_a
+live requests: 103 CPUs; 881772[] live subjobs: 10
+== 16:29:27 W1 topup d: 4 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W1", "campaign": "s1b", "array_name": "s1b_54a38b15_a", "reservation_cpu_h": 1544.0, "recorded": true, "wave_reserved": 1544.0, "campaign_reserved": 924704.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W1 (W1_d): array 884120[] (4 x 8 cpus, 10gb, walltime 48:00:00); collector: 884121
+    depend = afterany:884120[]
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_54a38b15_c -W depend=afterany:884120[].kunanyi-oh
+live requests: 136 CPUs; 881772[] live subjobs: 10
+== 16:32:40 W2 topup d: 100 x 8 x 48 h
+{"preflight": "passed", "settings_sha256": "fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd", "runtime": {"python": "3.11.7", "numpy": "1.26.4", "scipy": "1.11.4"}, "wave": "W2", "campaign": "s1b", "array_name": "s1b_f790ef07_a", "reservation_cpu_h": 38408.0, "recorded": true, "wave_reserved": 961568.0, "campaign_reserved": 963112.0, "ceilings": {"W1": 200000.0, "W2": 1000000.0, "campaign": 1200000.0}}
+wave W2 (W2_d): array 884122[] (100 x 8 cpus, 10gb, walltime 48:00:00); collector: 884123
+    depend = afterany:884122[]
+    Mail_Points = ae
+    Mail_Users = barry.brook@utas.edu.au
+    Submit_arguments = -N s1b_f790ef07_c -W depend=afterany:884122[].kunanyi-oh
+live requests now: 937 CPUs
+reserve	s1b	W2	s1b_077b4ebe_a	283784.000	2026-11-18T13:50:37+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=$VB/s1b/run3 jobs=739 cpus=8 wall=172800
+release	s1b_f97ebdfe_a	manual: 879043[] 879044 job_state F (qstat -x, 2026-11-25T16:29:24+1100); in-flight ledger (design 9d)
+reserve	s1b	W1	s1b_54a38b15_a	1544.000	2026-11-25T16:32:32+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=$VB/s1b/run3 jobs=4 cpus=8 wall=172800
+reserve	s1b	W2	s1b_f790ef07_a	38408.000	2026-11-25T16:35:32+1100	settings=fa7728290d33fb3f0baf30603d731c769de925739815d9a3b4efb77ddb97b9cd outdir=$VB/s1b/run3 jobs=100 cpus=8 wall=172800
+TOPUP_DONE 2026-11-25 16:35:46 AEDT
+## W1_c summary digest (wsl copy)
+d92d389236e82cc90859859e7fd1bb6115b997e1ce5d9609bbdec7d19cf9e9a6  collect_W1_c.json
